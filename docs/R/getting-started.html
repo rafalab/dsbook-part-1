@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.475">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Rafael A. Irizarry">
+<title>getting-started</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+</head>
+<body class="fullcontent">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content"><section id="sec-getting-started" class="level1"><h1>Getting started with R and RStudio</h1>
+<div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-2_c63002afa3c0fbf88ddc8987c05c5602">
+
+</div>
+<div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-3_8e0d15b4af6b99355c389b66ff14af35">
+
+</div>
+<section id="why-r" class="level2"><h2 class="anchored" data-anchor-id="why-r">Why R?</h2>
+<p>R is not a programming language like C or Java. It was not created by software engineers for software development. Instead, it was developed by statisticians as an interactive environment for data analysis. You can read the full history in the paper A Brief History of S<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. The interactivity is an indispensable feature in data science because, as you will soon learn, the ability to quickly explore data is a necessity for success in this field. However, like in other programming languages, you can save your work as scripts that can be easily executed at any moment. These scripts serve as a record of the analysis you performed, a key feature that facilitates reproducible work. If you are an expert programmer, you should not expect R to follow the conventions you are used to since you will be disappointed. If you are patient, you will come to appreciate the unequal power of R when it comes to data analysis and, specifically, data visualization.</p>
+<p>Other attractive features of R are:</p>
+<ol type="1">
+<li>R is free and open source<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</li>
+<li>It runs on all major platforms: Windows, Mac Os, UNIX/Linux.</li>
+<li>Scripts and data objects can be shared seamlessly across platforms.</li>
+<li>There is a large, growing, and active community of R users and, as a result, there are numerous resources for learning and asking questions<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</li>
+<li>It is easy for others to contribute add-ons which enables developers to share software implementations of new data science methodologies. This gives R users early access to the latest methods and to tools which are developed for a wide variety of disciplines, including ecology, molecular biology, social sciences, and geography, just to name a few examples.</li>
+</ol></section><section id="the-r-console" class="level2"><h2 class="anchored" data-anchor-id="the-r-console">The R console</h2>
+<p>Interactive data analysis usually occurs on the <em>R console</em> that executes commands as you type them. There are several ways to gain access to an R console. One way is to simply start R on your computer. The console looks something like this:</p>
+<div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-4_f47faefc571bf5b1d5e7e3dbb2d15edc">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/R_console.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As a quick example, try using the console to calculate a 15% tip on a meal that cost $19.71:</p>
+<div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/tip_calculator_b5b96a6f80d9f42f2d55290a60967bb8">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">0.15</span> <span class="op">*</span> <span class="fl">19.71</span>  </span>
+<span><span class="co">## [1] 2.96</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Note that in this book, grey boxes are used to show R code typed into the R console. The symbol <code>#&gt;</code> is used to denote what the R console outputs.</strong></p>
+</section><section id="scripts" class="level2"><h2 class="anchored" data-anchor-id="scripts">Scripts</h2>
+<p>One of the great advantages of R over point-and-click analysis software is that you can save your work as scripts. You can edit and save these scripts using a text editor. The material in this book was developed using the interactive <em>integrated development environment</em> (IDE) RStudio<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. RStudio includes an editor with many R specific features, a console to execute your code, and other useful panes, including one to show figures.</p>
+<div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-5_f19cb5a3667c06b9b5856b35b02882ac">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/rstudio.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Most web-based R consoles also provide a pane to edit scripts, but not all permit you to save the scripts for later use.</p>
+<p>All the R scripts used to generate this book can be found on GitHub<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p>
+</section><section id="sec-rstudio" class="level2"><h2 class="anchored" data-anchor-id="sec-rstudio">RStudio</h2>
+<p>RStudio will be our launching pad for data science projects. It not only provides an editor for us to create and edit our scripts but also provides many other useful tools. In this section, we go over some of the basics.</p>
+<section id="the-panes" class="level3"><h3 class="anchored" data-anchor-id="the-panes">The panes</h3>
+<p>When you start RStudio for the first time, you will see three panes. The left pane shows the R console. On the right, the top pane includes tabs such as <em>Environment</em> and <em>History</em>, while the bottom pane shows five tabs: <em>File</em>, <em>Plots</em>, <em>Packages</em>, <em>Help</em>, and <em>Viewer</em> (these tabs may change in new versions). You can click on each tab to move across the different features.</p>
+<div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-6_b6a811698fa2a9454f966805c4de2dfd">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_16.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To start a new script, you can click on File, then New File, then R Script.</p>
+<div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-7_cbabed5be782701a492afac8d3375d32">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_42.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This starts a new pane on the left and it is here where you can start writing your script.</p>
+<div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-8_828d1a1eee9e13c832ffae609f739ff3">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_49.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="key-bindings" class="level3"><h3 class="anchored" data-anchor-id="key-bindings">Key bindings</h3>
+<p>Many tasks we perform with the mouse can be achieved with a combination of key strokes instead. These keyboard versions for performing tasks are referred to as <em>key bindings</em>. For example, we just showed how to use the mouse to start a new script, but you can also use a key binding: Ctrl+Shift+N on Windows and command+shift+N on the Mac.</p>
+<p>Although in this tutorial we often show how to use the mouse, <strong>we highly recommend that you memorize key bindings for the operations you use most</strong>. RStudio provides a useful cheat sheet with the most widely used commands. You can get it from RStudio directly:</p>
+<div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-9_4487b87abe71b5a7aa346062514b98b5">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_22_20.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<!-- and it looks like this:
+
+::: {.cell layout-align="center" hash='getting-started_cache/html/unnamed-chunk-10_df6206f2481b454a323fbd4fc2ca7b6c'}
+::: {.cell-output-display}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_22_54.png){fig-align='center' width=500px style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;"}
+:::
+:::
+
+-->
+<p>You might want to keep this handy so you can look up key-bindings when you find yourself performing repetitive point-and-clicking.</p>
+</section><section id="running-commands-while-editing-scripts" class="level3"><h3 class="anchored" data-anchor-id="running-commands-while-editing-scripts">Running commands while editing scripts</h3>
+<p>There are many editors specifically made for coding. These are useful because color and indentation are automatically added to make code more readable. RStudio is one of these editors, and it was specifically developed for R. One of the main advantages provided by RStudio over other editors is that we can test our code easily as we edit our scripts. Below we show an example.</p>
+<p>Let’s start by opening a new script as we did before. A next step is to give the script a name. We can do this through the editor by saving the current new unnamed script. To do this, click on the save icon or use the key binding Ctrl+S on Windows and command+S on the Mac.<br><!--
+::: {.cell layout-align="center" hash='getting-started_cache/html/unnamed-chunk-11_ee5514021840005ea2b8398d32ec9c7d'}
+::: {.cell-output-display}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_26_37.png){fig-align='center' width=500px style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;"}
+:::
+:::
+--></p>
+<p>When you ask for the document to be saved for the first time, RStudio will prompt you for a name. A good convention is to use a descriptive name, with lower case letters, no spaces, only hyphens to separate words, and then followed by the suffix <em>.R</em>. We will call this script <em>my-first-script.R</em>.</p>
+<div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-12_9e31f386f438f22ede15b38937caec5f">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_27_44.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now we are ready to start editing our first script. The first lines of code in an R script are dedicated to loading the libraries we will use. Another useful RStudio feature is that once we type <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> it starts auto-completing with libraries that we have installed. Note what happens when we type <code><a href="https://rdrr.io/r/base/library.html">library(ti)</a></code>:</p>
+<div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-13_d27f8275622cc32e0260493034a7e786">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_29_47.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Another feature you may have noticed is that when you type <code>library(</code> the second parenthesis is automatically added. This will help you avoid one of the most common errors in coding: forgetting to close a parenthesis.</p>
+<p>Now we can continue to write code. As an example, we will make a graph showing murder totals versus population totals by state. Once you are done writing the code needed to make this plot, you can try it out by <em>executing</em> the code. To do this, click on the <em>Run</em> button on the upper right side of the editing pane. You can also use the key binding: Ctrl+Shift+Enter on Windows or command+shift+return on the Mac.</p>
+<!--
+::: {.cell layout-align="center" hash='getting-started_cache/html/unnamed-chunk-14_6a808ecdf71b77cdf9cdb14be20ccd7d'}
+::: {.cell-output-display}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_44_07.png){fig-align='center' width=500px style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;"}
+:::
+:::
+-->
+<p>Once you run the code, you will see it appear in the R console and, in this case, the generated plot appears in the plots console. Note that the plot console has a useful interface that permits you to click back and forward across different plots, zoom in to the plot, or save the plots as files.</p>
+<div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-15_4ad9ac8452034966e6395817b44b85fa">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_45_18.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To run one line at a time instead of the entire script, you can use Control-Enter on Windows and command-return on the Mac.</p>
+</section><section id="changing-global-options" class="level3"><h3 class="anchored" data-anchor-id="changing-global-options">Changing global options</h3>
+<p>You can change the look and functionality of RStudio quite a bit.</p>
+<p>To change the global options you click on <em>Tools</em> then <em>Global Options…</em>. <!--
+
+::: {.cell layout-align="center" hash='getting-started_cache/html/unnamed-chunk-16_1b48b7753ee6395435ec208a1d733593'}
+::: {.cell-output-display}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_46_54.png){fig-align='center' width=500px style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;"}
+:::
+:::
+
+
+As an example, we show how to change the appearance of the editor. To do this click on _Appearance_ and then notice the _Editor theme_ options.
+
+
+::: {.cell layout-align="center" hash='getting-started_cache/html/unnamed-chunk-17_abc50fb7680888c10afeee608cd3871a'}
+::: {.cell-output-display}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_47_03.png){fig-align='center' width=500px style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;"}
+:::
+:::
+
+
+You can click on these and see examples of how your editor will look. 
+
+
+::: {.cell layout-align="center" hash='getting-started_cache/html/unnamed-chunk-18_992c6782c0a0e438e739be1dd54f22ea'}
+::: {.cell-output-display}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_47_11.png){fig-align='center' width=500px style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;"}
+:::
+:::
+
+
+I personally like the _Cobalt_ option. This makes your editor look like this:
+
+
+::: {.cell layout-align="center" hash='getting-started_cache/html/unnamed-chunk-19_99d1b1fc7ce817bd0cd6501c262db250'}
+::: {.cell-output-display}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_47_24.png){fig-align='center' width=500px style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;"}
+:::
+:::
+
+
+As a second example, 
+--></p>
+<p>As an example we show how to make a change that we <strong>highly recommend</strong>. This is to change the <em>Save workspace to .RData on exit</em> to <em>Never</em> and uncheck the <em>Restore .RData into workspace at start</em>. By default, when you exit R saves all the objects you have created into a file called .RData. This is done so that when you restart the session in the same folder, it will load these objects. We find that this causes confusion especially when we share code with colleagues and assume they have this .RData file. To change these options, make your <em>General</em> settings look like this:</p>
+<div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-20_0985dac97ec49d11772066fdda7efd56">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_56_08.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section><section id="installing-r-packages" class="level2"><h2 class="anchored" data-anchor-id="installing-r-packages">Installing R packages</h2>
+<p>The functionality provided by a fresh install of R is only a small fraction of what is possible. In fact, we refer to what you get after your first install as <em>base R</em>. The extra functionality comes from add-ons available from developers. There are currently hundreds of these available from CRAN and many others shared via other repositories such as GitHub. However, because not everybody needs all available functionality, R instead makes different components available via <em>packages</em>. R makes it very easy to install packages from within R. For example, to install the <strong>dslabs</strong> package, which we use to share datasets and code related to this book, you would type:</p>
+<div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-21_2a36e9cc58e032fac7e1c49abb65ca44">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"dslabs"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In RStudio, you can navigate to the <em>Tools</em> tab and select install packages. We can then load the package into our R sessions using the <code>library</code> function:</p>
+<div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-22_88556ddf58f17c44cd31e95d8fc22f64">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As you go through this book, you will see that we load packages without installing them. This is because once you install a package, it remains installed and only needs to be loaded with <code>library</code>. The package remains loaded until we quit the R session. If you try to load a package and get an error, it probably means you need to install it first.</p>
+<p>We can install more than one package at once by feeding a character vector to this function:</p>
+<div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-23_fbc3659a0bfd146ae0a595168be350e3">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"tidyverse"</span>, <span class="st">"dslabs"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!--
+You can also install packages using RStudio in the following way: 
+
+::: {.cell layout-align="center" hash='getting-started_cache/html/unnamed-chunk-24_7969f0d06dc96bbc581fd5d791e27bc7'}
+::: {.cell-output-display}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_23_41.png){fig-align='center' width=500px style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;"}
+:::
+:::
+
+
+One advantage of using RStudio is that it auto-completes package names once you start typing, which is helpful when you do not remember the exact spelling of the package:
+
+
+::: {.cell layout-align="center" hash='getting-started_cache/html/unnamed-chunk-25_bd30e8fbdb81a797f6cf9e77e1b0b467'}
+::: {.cell-output-display}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_24_18.png){fig-align='center' width=500px style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;"}
+:::
+:::
+
+
+Once you select your package, we recommend selecting all the defaults:
+
+
+::: {.cell layout-align="center" hash='getting-started_cache/html/unnamed-chunk-26_ff058c399680624b1f530b9a61ee7b9b'}
+::: {.cell-output-display}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_24_36.png){fig-align='center' width=45%}
+:::
+
+::: {.cell-output-display}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_26_24.png){fig-align='center' width=45%}
+:::
+:::
+
+
+-->
+<p>Note that installing <strong>tidyverse</strong> actually installs several packages. This commonly occurs when a package has <em>dependencies</em>, or uses functions from other packages. When you load a package using <code>library</code>, you also load its dependencies.</p>
+<p>Once packages are installed, you can load them into R and you do not need to install them again, unless you install a fresh version of R. Remember packages are installed in R not RStudio.</p>
+<p>It is helpful to keep a list of all the packages you need for your work in a script because if you need to perform a fresh install of R, you can re-install all your packages by simply running a script.</p>
+<p>You can see all the packages you have installed using the following function:</p>
+<div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-27_cbde1f27b688a5bff09ca5e18644632e">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>https://pdfs.semanticscholar.org/9b48/46f192aa37ca122cfabb1ed1b59866d8bfda.pdf<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>https://opensource.org/history<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>https://stats.stackexchange.com/questions/138/free-resources-for-learning-r<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>https://www.r-project.org/help.html<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>https://stackoverflow.com/documentation/r/topics<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>https://www.rstudio.com/<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>https://github.com/rafalab/dsbook<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

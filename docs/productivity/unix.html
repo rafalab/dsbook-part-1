@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.475">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Rafael A. Irizarry">
+<title>unix</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+</head>
+<body class="fullcontent">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content"><section id="sec-unix" class="level1"><h1>Organizing with Unix</h1>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-2_41d52ee6f17f67f0d1ce4a5bbf8ace11">
+
+</div>
+<p>Unix is the operating system of choice in data science. We will introduce you to the Unix way of thinking using an example: how to keep a data analysis project organized. We will learn some of the most commonly used commands along the way. However, we won’t go into the details here. We highly encourage you to learn more, especially when you find yourself using the mouse too much or performing a repetitive task often. In those cases, there is probably a more efficient way to do it in Unix. Here are some basic courses to get you started:</p>
+<ul>
+<li><a href="https://www.codecademy.com/learn/learn-the-command-line">https://www.codecademy.com/learn/learn-the-command-line</a></li>
+<li><a href="https://www.edx.org/course/introduction-linux-linuxfoundationx-lfs101x-1">https://www.edx.org/course/introduction-linux-linuxfoundationx-lfs101x-1</a></li>
+<li><a href="https://www.coursera.org/learn/unix">https://www.coursera.org/learn/unix</a></li>
+</ul>
+<p>There are many reference books<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> as well. Bite Size Linux<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> and Bite Size Command Line<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> are two particularly clear, succinct, and complete examples.</p>
+<p>When searching for Unix resources, keep in mind that other terms used to describe what we will learn here are <em>Linux</em>, <em>the shell</em> and <em>the command line</em>. Basically, what we are learning is a series of commands and a way of thinking that facilitates the organization of files without using the mouse.</p>
+<p>To serve as motivation, we are going to start constructing a directory using Unix tools and RStudio.</p>
+<section id="naming-convention" class="level2"><h2 class="anchored" data-anchor-id="naming-convention">Naming convention</h2>
+<p>Before you start organizing projects with Unix you want to pick a name convention that you will use to systematically name your files and directories. This will help you find files and know what is in them.</p>
+<p>In general you want to name your files in a way that is related to their contents and specifies how they relate to other files. The Smithsonian Data Management Best Practices<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> has “five precepts of file naming and organization” and they are:</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<ul>
+<li>Have a distinctive, human-readable name that gives an indication of the content.</li>
+<li>Follow a consistent pattern that is machine-friendly.</li>
+<li>Organize files into directories (when necessary) that follow a consistent pattern.</li>
+<li>Avoid repetition of semantic elements among file and directory names.</li>
+<li>Have a file extension that matches the file format (no changing extensions!)</li>
+</ul>
+</blockquote>
+</blockquote>
+<p>For specific recommendations we highly recommend you follow The Tidyverse Style Guide<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
+</section><section id="sec-the-terminal" class="level2"><h2 class="anchored" data-anchor-id="sec-the-terminal">The terminal</h2>
+<p>Instead of clicking, dragging, and dropping to organize our files and folders, we will be typing Unix commands into the terminal. The way we do this is similar to how we type commands into the R console, but instead of generating plots and statistical summaries, we will be organizing files on our system.</p>
+<p>You will need access to a terminal<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> <!--We have already described how we can access a terminal on a Mac (Section @sec-terminal-on-mac)) and Windows (Section \@ref(terminal-on-windows).--> Once you have a terminal open, you can start typing commands. You should see a blinking cursor at the spot where what you type will show up. This position is called the <em>command line</em>. Once you type something and hit enter on Windows or return on the Mac, Unix will try to execute this command. If you want to try out an example, type this command into your command line:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-3_809ed33bb66111a12981ce418311d1df">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"hello world"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The command <code>echo</code> is similar to <code>cat</code> in R. Executing this line should print out <code>hello world</code>, then return back to the command line.</p>
+<p>Notice that you can’t use the mouse to move around in the terminal. You have to use the keyboard. To go back to a command you previously typed, you can use the up arrow.</p>
+<p>Note that above we included a chunk of code showing Unix commands in the same way we have previously shown R commands. We will make sure to distinguish when the command is meant for R and when it is meant for Unix.</p>
+</section><section id="sec-filesystem" class="level2"><h2 class="anchored" data-anchor-id="sec-filesystem">The filesystem</h2>
+<p>We refer to all the files, folders, and programs on your computer as <em>the filesystem</em>. Keep in mind that folders and programs are also files, but this is a technicality we rarely think about and ignore in this book. We will focus on files and folders for now and discuss programs, or <em>executables</em>, in a later section.</p>
+<section id="directories-and-subdirectories" class="level3"><h3 class="anchored" data-anchor-id="directories-and-subdirectories">Directories and subdirectories</h3>
+<p>The first concept you need to grasp to become a Unix user is how your filesystem is organized. You should think of it as a series of nested folders, each containing files, folders, and executables.</p>
+<p>Here is a visual representation of the structure we are describing:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-4_421ab731beb7d3782f85aeebd9bfbccc">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img//unix/filesystem.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In Unix, we refer to folders as <em>directories</em>. Directories that are inside other directories are often referred to as <em>subdirectories</em>. So, for example, in the figure above, the directory <em>docs</em> has two subdirectories: <em>reports</em> and <em>resumes</em>, and <em>docs</em> is a subdirectory of <em>home</em>.</p>
+</section><section id="the-home-directory" class="level3"><h3 class="anchored" data-anchor-id="the-home-directory">The home directory</h3>
+<p>The <em>home</em> directory is where all your stuff is kept, as opposed to the system files that come with your computer, which are kept elsewhere. In the figure above, the directory called <em>home</em> represents your home directory, but that is rarely the name used. On your system, the name of your home directory is likely the same as your username on that system. Below are an example on Windows and Mac showing a home directory, in this case, named <em>rafa</em>:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-5_29ec00f9bb181d60d04833f80294beca">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img//windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_13.png" class="img-fluid figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img//mac-screenshots/Screen-Shot-2018-04-13-at-4.34.01-PM.png" class="img-fluid figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<!--
+Here is an example from a Mac:
+
+
+::: {.cell layout-align="center" hash='unix_cache/html/unnamed-chunk-6_8f0d7aa9c5c067905918b746c29246a2'}
+::: {.cell-output-display}
+![](img//mac-screenshots/Screen-Shot-2018-04-13-at-4.34.01-PM.png){fig-align='center' width=500px style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;"}
+:::
+:::
+
+-->
+<p>Now, look back at the figure showing a filesystem. Suppose you are using a point-and-click system and you want to remove the file <em>cv.tex</em>. Imagine that on your screen you can see the <em>home</em> directory. To erase this file, you would double click on the <em>home</em> directory, then <em>docs</em>, then <em>resumes</em>, and then drag <em>cv.tex</em> to the trash. Here you are experiencing the hierarchical nature of the system: <em>cv.tex</em> is a file inside the <em>resumes</em> directory, which is a subdirectory inside the <em>docs</em> directory, which is a subdirectory of the <em>home</em> directory.</p>
+<p>Now suppose you can’t see your home directory on your screen. You would somehow need to make it appear on your screen. One way to do this is to navigate from what is called the <em>root</em> directory all the way to your home directory. Any filesystem will have what is called a <em>root</em> directory, which is the directory that contains all directories. The <em>home</em> directory shown in the figure above will usually be two or more levels from the root. On Windows, you will have a structure like this:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-7_ea938a9c0c6a94c086b560bbfb1a97e5">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img//unix/windows-filesystem-from-root.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>while on the Mac, it will be like this:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-8_a41d8cfc27de64eed45f07963761e73a">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img//unix/mac-filesystem-from-root.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Note for Windows Users:</strong> The typical R installation will make your <em>Documents</em> directory your home directory in R. This will likely be different from your home directory in Git Bash. Generally, when we discuss home directories, we refer to the Unix home directory which for Windows, in this book, is the Git Bash Unix directory.</p>
+</section><section id="sec-working-directory" class="level3"><h3 class="anchored" data-anchor-id="sec-working-directory">Working directory</h3>
+<p>The concept of a <em>current location</em> is part of the point-and-click experience: at any given moment we are <em>in a folder</em> and see the content of that folder. As you search for a file, as we did above, you are experiencing the concept of a current location: once you double click on a directory, you change locations and are now <em>in that folder</em>, as opposed to the folder you were in before.</p>
+<p>In Unix, we don’t have the same visual cues, but the concept of a <em>current location</em> is indispensable. We refer to this as the <em>working directory</em>. Each terminal window you have open has a working directory associated with it.</p>
+<p>How do we know what is our working directory? To answer this, we learn our first Unix command: <code>pwd</code>, which stands for <em>print working directory</em>. This command returns the working directory.</p>
+<p>Open a terminal and type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-9_42878ef9fa0eb8d8d38fb2c32b2459ce">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We do not show the result of running this command because it will be quite different on your system compared to others. If you open a terminal and type <code>pwd</code> as your first command, you should see something like <code>/Users/yourusername</code> on a Mac or something like <code>/c/Users/yourusername</code> on Windows. The character string returned by calling <code>pwd</code> represents your working directory. When we first open a terminal, it will start in our home directory so in this case the working directory is the home directory.</p>
+<p>Notice that the forward slashes <code>/</code> in the strings above separate directories. So, for example, the location <code>/c/Users/rafa</code> implies that our working directory is called <code>rafa</code> and it is a subdirectory of <code>Users</code>, which is a subdirectory of <code>c</code>, which is a subdirectory of the root directory. The root directory is therefore represented by just a forward slash: <code>/</code>.</p>
+</section><section id="sec-paths" class="level3"><h3 class="anchored" data-anchor-id="sec-paths">Paths</h3>
+<p>We refer to the string returned by <code>pwd</code> as the <em>full path</em> of the working directory. The name comes from the fact that this string spells out the <em>path</em> you need to follow to get to the directory in question from the root directory. Every directory has a full path. Later, we will learn about <em>relative paths</em>, which tell us how to get to a directory from the working directory.</p>
+<p>In Unix, we use the shorthand <code>~</code> as a nickname for your home directory. So, for example, if <code>docs</code> is a directory in your home directory, the full path for <em>docs</em> can be written like this <code>~/docs</code>.</p>
+<p>Most terminals will show the path to your working directory right on the command line. If you are using default settings and open a terminal on the Mac, you will see that right at the command line you have something like <code>computername:~ username</code> with <code>~</code> representing your working directory, which in this example is the home directory <code>~</code>. The same is true for the Git Bash terminal where you will see something like <code>username@computername MINGW64 ~</code>, with the working directory at the end. When we change directories, we will see this change on both Macs and Windows.</p>
+</section></section><section id="unix-commands" class="level2"><h2 class="anchored" data-anchor-id="unix-commands">Unix commands</h2>
+<p>We will now learn a series of Unix commands that will permit us to prepare a directory for a data science project. We also provide examples of commands that, if you type into your terminal, will return an error. This is because we are assuming the filesystem in the earlier diagram. Your filesystem is different. In the next section, we will provide examples that you can type in.</p>
+<section id="ls-listing-directory-content" class="level3"><h3 class="anchored" data-anchor-id="ls-listing-directory-content">
+<code>ls</code>: Listing directory content</h3>
+<p>In a point-and-click system, we know what is in a directory because we see it. In the terminal, we do not see the icons. Instead, we use the command <code>ls</code> to list the directory content.</p>
+<p>To see the content of your home directory, open a terminal and type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-10_d3393e7368f6f0a0d9d269c211e2bbc9">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We will see more examples soon.</p>
+</section><section id="mkdir-and-rmdir-make-and-remove-a-directory" class="level3"><h3 class="anchored" data-anchor-id="mkdir-and-rmdir-make-and-remove-a-directory">
+<code>mkdir</code> and <code>rmdir</code>: make and remove a directory</h3>
+<p>When we are preparing for a data science project, we will need to create directories. In Unix, we can do this with the command <code>mkdir</code>, which stands for <em>make directory</em>.</p>
+<p>Because you will soon be working on several projects, we highly recommend creating a directory called <em>projects</em> in your home directory.</p>
+<p>You can try this particular example on your system. Open a terminal and type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-11_ffcbbcd40a6f068c961025635ec51b33">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> projects</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you do this correctly, nothing will happen: no news is good news. If the directory already exists, you will get an error message and the existing directory will remain untouched.</p>
+<p>To confirm that you created these directories, you can list the directories:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-12_9b361b3ecfb90d597b4db90b200c9047">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You should see the directories we just created listed. Perhaps you can also see many other directories that come pre-installed on your computer.</p>
+<p>For illustrative purposes, let’s make a few more directories. You can list more than one directory name like this:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-13_1b15717f05d99d3118f34623ad133b61">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> docs teaching</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can check to see if the three directories were created:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-14_9d07ba9baf5c016e3bdc14d5d59524fe">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you made a mistake and need to remove the directory, you can use the command <code>rmdir</code> to remove it.</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-15_a9f6a680b4c437159d37a0a5887868ca">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> junk</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rmdir</span> junk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This will remove the directory as long as it is empty. If it is not empty, you will get an error message and the directory will remain untouched. To remove directories that are not empty, we will learn about the command <code>rm</code> later.</p>
+</section><section id="cd-navigating-the-filesystem-by-changing-directories" class="level3"><h3 class="anchored" data-anchor-id="cd-navigating-the-filesystem-by-changing-directories">
+<code>cd</code>: navigating the filesystem by changing directories</h3>
+<p>Next we want to create directories inside directories that we have already created. We also want to avoid pointing and clicking our way through the filesystem. We explain how to do this in Unix, using the command line.</p>
+<p>Suppose we open a terminal and our working directory is our home directory. We want to change our working directory to <code>projects</code>. We do this using the <code>cd</code> command, which stands for <em>change directory</em>:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-16_5da17ee64911a8172d135d34f207b65d">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> projects</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To check that the working directory changed, we can use a command we previously learned to see our location:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-17_93ef6e05a491ec44454e00dada23ab37">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Our working directory should now be <code>~/projects</code>. Note that on your computer the home directory <code>~</code> will be spelled out to something like <code>/c/Users/yourusername</code>).</p>
+<p><strong>Important Pro Tip</strong>: In Unix you can auto-complete by hitting tab. This means that we can type <code>cd d</code> then hit tab. Unix will either auto-complete if <code>docs</code> is the only directory/file starting with <code>d</code> or show you the options. Try it out! Using Unix without auto-complete will make it unbearable.</p>
+<p>When using <code>cd</code>, we can either type a full path, which will start with <code>/</code> or <code>~</code>, or a <em>relative path</em>. In the example above, in which we typed <code>cd projects</code>, we used a relative path. <strong>If the path you type does not start with <code>/</code> or <code>~</code>, Unix will assume you are typing a relative path, meaning that it will look for the directory in your current working directory</strong>. So something like this will give you an error:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-18_3de1b71cf3a1716bc86ab7d071dad54c">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Users</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>because there is no <code>Users</code> directory in your working directory.</p>
+<p>Now suppose we want to move back to the directory in which <code>projects</code> is a subdirectory, referred to as the <em>parent directory</em>. We could use the full path of the parent directory, but Unix provides a shortcut for this: the parent directory of the working directory is represented with two dots: <code>..</code>, so to move back we simply type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-19_3114ed65e5eacf658da2bfaec4974525">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You should now be back in your home directory which you can confirm using <code>pwd</code>.</p>
+<p>Because we can use full paths with <code>cd</code>, the following command:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-20_2dba969761f49d3ec820d30d8c49b879">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>will always take us back to the home directory, no matter where we are in the filesystem.</p>
+<p>The working directory also has a nickname, which is a single <code>.</code>, so if you type</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-21_ea415c5ca8ed20b39b65b311e5e6b266">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>you will not move. Although this particular use of <code>.</code> is not useful, this nickname does come in handy sometimes. The reasons are not relevant for this section, but you should still be aware of this fact.</p>
+<p>In summary, we have learned that when using <code>cd</code> we either stay put, move to a new directory using the desired directory name, or move back to the parent directory using <code>..</code>.</p>
+<p>When typing directory names, we can concatenate directories with the forward-slashes. So if we want a command that takes us to the <code>projects</code> directory no matter where we are in the filesystem, we can type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-22_e514e626e58b4e0d7b2bff0d85b2e6fc">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/projects</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>which is equivalent to writing the entire path out. For example, in Windows we would write something like</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-23_ba01e7b5d70cee2f9f7123a6e1807d97">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /c/Users/yourusername/projects</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The last two commands are equivalent and in both cases we are typing the full path.</p>
+<p>When typing out the path of the directory we want, either full or relative, we can concatenate directories with the forward-slashes. We already saw that we can move to the <code>projects</code> directory regardless of where we are by typing the full path like this:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-24_0301a83e44fdc80d17e172af462be2ee">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/projects</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can also concatenate directory names for relative paths. For instance, if we want to move back to the parent directory of the parent directory of the working directory, we can type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-25_c66f742f6704185cf37196d8984804dc">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../..</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here are a couple of final tips related to the <code>cd</code> command. First, you can go back to whatever directory you just left by typing:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-26_2bb646f73ce6f9837f3ac82c61335325">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="at">-</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This can be useful if you type a very long path and then realize you want to go back to where you were, and that too has a very long path.</p>
+<p>Second, if you just type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-27_b6e3a4013960738a19584627086a8fbd">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>you will be returned to your home directory.</p>
+</section></section><section id="some-examples" class="level2"><h2 class="anchored" data-anchor-id="some-examples">Some examples</h2>
+<p>Let’s explore some examples of using <code>cd</code>. To help visualize, we will show the graphical representation of our filesystem vertically:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-28_b6a1fa8b501050c34a41fe73bee9b1a9">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img//unix/filesystem-vertical.png" class="img-fluid figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Suppose our working directory is <code>~/projects</code> and we want to move to <code>figs</code> in <code>project-1</code>.</p>
+<p>Here it is convenient to use relative paths:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-29_1a4fc78a0d7986aef06cbdc3ed1499d6">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> project-1/figs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now suppose our working directory is <code>~/projects</code> and we want to move to <code>reports</code> in <code>docs</code>, how can we do this?</p>
+<p>One way is to use relative paths:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-30_62ae41afa55db3f18cfea71a0b964979">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../docs/reports</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Another is to use the full path:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-31_fdc312a0a9693086c44f30ec85d32372">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/docs/reports</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you are trying this out on your system, remember to use auto-complete.</p>
+<p>Let’s examine one more example. Suppose we are in <code>~/projects/project-1/figs</code> and want to change to <code>~/projects/project-2</code>. Again, there are two ways.</p>
+<p>With relative paths:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-32_a71a9e821581beacaf066d45589717d1">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../../proejct-2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>and with full paths:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-33_7d5cb9a9d7634f7d423bbbcf7d4e6257">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/projects/project-2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="more-unix-commands" class="level2"><h2 class="anchored" data-anchor-id="more-unix-commands">More Unix commands</h2>
+<section id="mv-moving-files" class="level3"><h3 class="anchored" data-anchor-id="mv-moving-files">
+<code>mv</code>: moving files</h3>
+<p>In a point-and-click system, we move files from one directory to another by dragging and dropping. In Unix, we use the <code>mv</code> command.</p>
+<p><strong>Warning</strong>: <code>mv</code> will not ask “are you sure?” if your move results in overwriting a file.</p>
+<p>Now that you know how to use full and relative paths, using <code>mv</code> is relatively straightforward. The general form is:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-34_80a63c2961527b4269eaf46663c8dd3f">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> path-to-file path-to-destination-directory</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For example, if we want to move the file <code>cv.tex</code> from <code>resumes</code> to <code>reports</code>, you could use the full paths like this:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-35_8af9e4acccb006b3c9c9c29561e81b17">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> ~/docs/resumes/cv.tex ~/docs/reports/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can also use relative paths. So you could do this:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-36_c7fcfe7e0d161c1b313bc5ae93f127cd">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/docs/resumes</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> cv.tex ../reports/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>or this:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-37_cd8fc4dc1a6f7f2c6b2032ee912ff73e">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/docs/reports/</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> ../resumes/cv.tex ./</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Notice that in the last one we used the working directory shortcut <code>.</code> to give a relative path as the destination directory.</p>
+<p>We can also use <code>mv</code> to change the name of a file. To do this, instead of the second argument being the destination directory, it also includes a filename. So, for example, to change the name from <code>cv.tex</code> to <code>resume.tex</code>, we simply type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-38_a6178b0f9f2d751861562cf1d94fac60">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/docs/resumes</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> cv.tex resume.tex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can also combine the move and a rename. For example:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-39_119530f4f389c8387aa6f3c8c81ed986">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/docs/resumes</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> cv.tex ../reports/resume.tex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And we can move entire directories. To move the <code>resumes</code> directory into <code>reports</code>, we do as follows:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-40_f2c719f245b98ced292617cc482eba62">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> ~/docs/resumes ~/docs/reports/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>It is important to add the last <code>/</code> to make it clear you do not want to rename the <code>resumes</code> directory to <code>reports</code>, but rather move it into the <code>reports</code> directory.</p>
+</section><section id="cp-copying-files" class="level3"><h3 class="anchored" data-anchor-id="cp-copying-files">
+<code>cp</code>: copying files</h3>
+<p>The command <code>cp</code> behaves similar to <code>mv</code> except instead of moving, we copy the file, meaning that the original file stays untouched.</p>
+<p>So in all the <code>mv</code> examples above, you can switch <code>mv</code> to <code>cp</code> and they will copy instead of move with one exception: we can’t copy entire directories without learning about arguments, which we do later.</p>
+</section><section id="rm-removing-files" class="level3"><h3 class="anchored" data-anchor-id="rm-removing-files">
+<code>rm</code>: removing files</h3>
+<p>In point-and-click systems, we remove files by dragging and dropping them into the trash or using a special click on the mouse. In Unix, we use the <code>rm</code> command.</p>
+<p><strong>Warning</strong>: Unlike throwing files into the trash, <code>rm</code> is permanent. Be careful!</p>
+<p>The general way it works is as follows:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-41_c5e41b1d433fd232eab4b15839849e92">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> filename</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can actually list files as well like this:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-42_bc30984911d0bca9a61f0661178a33be">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> filename-1 filename-2 filename-3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can use full or relative paths. To remove directories, you will have to learn about arguments, which we do later.</p>
+</section><section id="less-looking-at-a-file" class="level3"><h3 class="anchored" data-anchor-id="less-looking-at-a-file">
+<code>less</code>: looking at a file</h3>
+<p>Often you want to quickly look at the content of a file. If this file is a text file, the quickest way to do is by using the command <code>less</code>. To look a the file <code>cv.tex</code>, you do this:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-43_2e97a8de638bc6fec9024eaff6954790">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/docs/resumes</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> cv.tex </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To exit the viewer, you type <code>q</code>. If the files are long, you can use the arrow keys to move up and down. There are many other keyboard commands you can use within <code>less</code> to, for example, search or jump pages.</p>
+<p>If you are wondering why the command is called <code>less</code>, it is because the original was called <code>more</code>, as in “show me more of this file”. The second version was called <code>less</code> because of the saying “less is more”.</p>
+</section></section><section id="sec-prep-project" class="level2"><h2 class="anchored" data-anchor-id="sec-prep-project">Preparing for a data science project</h2>
+<p>We are now ready to prepare a directory for a project. We will use the US murders project<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> as an example.</p>
+<p>You should start by creating a directory where you will keep all your projects. We recommend a directory called <em>projects</em> in your home directory. To do this you would type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-44_a3d142c0280bb63dc548a2ac61bde9c0">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> projects</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Our project relates to gun violence murders so we will call the directory for our project <code>murders</code>. It will be a subdirectory in our projects directories. In the <code>murders</code> directory, we will create two subdirectories to hold the raw data and intermediate data. We will call these <code>data</code> and <code>rda</code>, respectively.</p>
+<p>Open a terminal and make sure you are in the home directory:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-45_b10a293fccaa199cbb014aaecc2f5ac9">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now run the following commands to create the directory structure we want. At the end, we use <code>ls</code> and <code>pwd</code> to confirm we have generated the correct directories in the correct working directory:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-46_f96132683c97c30ddf6ab54713ee42d7">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> projects</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> murders</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> murders</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> data rdas </span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that the full path of our <code>murders</code> dataset is <code>~/projects/murders</code>.</p>
+<p>So if we open a new terminal and want to navigate into that directory we type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-47_6086463ec56e889bb09031cd45904646">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> projects/murders</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In Section <strong>?@sec-organizing</strong> we will describe how we can use RStudio to organize a data analysis project, once these directories have been created.</p>
+</section><section id="advanced-unix" class="level2"><h2 class="anchored" data-anchor-id="advanced-unix">Advanced Unix</h2>
+<p>Most Unix implementations include a large number of powerful tools and utilities. We have just learned the very basics here. We recommend that you use Unix as your main file management tool. It will take time to become comfortable with it, but as you struggle, you will find yourself learning just by looking up solutions on the internet. In this section, we superficially cover slightly more advanced topics. The main purpose of the section is to make you aware of what is available rather than explain everything in detail.</p>
+<section id="arguments" class="level3"><h3 class="anchored" data-anchor-id="arguments">Arguments</h3>
+<p>Most Unix commands can be run with arguments. Arguments are typically defined by using a dash <code>-</code> or two dashes <code>--</code> (depending on the command) followed by a letter or a word. An example of an argument is the <code>-r</code> behind <code>rm</code>. The <code>r</code> stands for recursive and the result is that files and directories are removed recursively, which means that if you type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-48_510c3d628298bb8d8cafa0dd772f466d">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> directory-name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>all files, subdirectories, files in subdirectories, subdirectories in subdirectories, and so on, will be removed. This is equivalent to throwing a folder in the trash, except you can’t recover it. Once you remove it, it is deleted for good. Often, when you are removing directories, you will encounter files that are protected. In such cases, you can use the argument <code>-f</code> which stands for <code>force</code>.</p>
+<p>You can also combine arguments. For instance, to remove a directory regardless of protected files, you type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-49_dfddb067a762abeb639ce63aacc50d44">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> directory-name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Remember that once you remove there is no going back, so use this command very carefully.</p>
+<p>A command that is often called with argument is <code>ls</code>. Here are some examples:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-50_ea7c3fee6a978e4bd691094816207975">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>a</code> stands for all. This argument makes <code>ls</code> show you all files in the directory, including hidden files. In Unix, all files starting with a <code>.</code> are hidden. Many applications create hidden directories to store important information without getting in the way of your work. An example is <code>git</code> (which we cover in depth later). Once you initialize a directory as a git directory with <code>git init</code>, a hidden directory called <code>.git</code> is created. Another hidden file is the <code>.gitignore</code> file.</p>
+<p>Another example of using an argument is:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-51_daf84bb4d1f6e40d3ac7409bfca894ba">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>l</code> stands for long and the result is that more information about the files is shown.</p>
+<p>It is often useful to see files in chronological order. For that we use:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-52_3c0c1ff16119e5db5919e364e9bd8c5e">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-t</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>and to reverse the order of how files are shown you can use:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-53_7320328ad75ecd466e80488ad4b6a291">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-r</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can combine all these arguments to show more information for all files in reverse chronological order:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-54_6e69e61e21a61cf0c44cb7e562d2b960">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lart</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Each command has a different set of arguments. In the next section, we learn how to find out what they each do.</p>
+</section><section id="getting-help" class="level3"><h3 class="anchored" data-anchor-id="getting-help">Getting help</h3>
+<p>As you may have noticed, Unix uses an extreme version of abbreviations. This makes it very efficient, but hard to guess how to call commands. To make up for this weakness, Unix includes complete help files or <em>man pages</em> (man is short for manual). In most systems, you can type <code>man</code> followed by the command name to get help. So for <code>ls</code>, we would type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-55_0a13f2b6fc8a69f1a224c6e6bba89482">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">man</span> ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This command is not available in some of the compact implementations of Unix, such as Git Bash. An alternative way to get help that works on Git Bash is to type the command followed by <code>--help</code>. So for <code>ls</code>, it would be as follows:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-56_98537666215e0eda89ce459b107aa7d8">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="pipes" class="level3"><h3 class="anchored" data-anchor-id="pipes">Pipes</h3>
+<p>The help pages are typically long and if you type the commands above to see the help, it scrolls all the way to the end. It would be useful if we could save the help to a file and then use <code>less</code> to see it. The <code>pipe</code>, written like this <code>|</code>, does something similar. It <em>pipes</em> the results of a command to the command after the <code>pipe</code>. This is similar to the pipe <code>|&gt;</code> that we use in R. To get more help we thus can type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-57_618b209bf6d94afc1b7fca8f0832c27a">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">man</span> ls <span class="kw">|</span> <span class="fu">less</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>or in Git Bash:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-58_ef78cc445e09f4fc33ed44664c6f52c7">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">--help</span> <span class="kw">|</span> <span class="fu">less</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This is also useful when listing files with many files. We can type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-59_e2effc7618f51b6c751905a485524931">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lart</span> <span class="kw">|</span> <span class="fu">less</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="wild-cards" class="level3"><h3 class="anchored" data-anchor-id="wild-cards">Wild cards</h3>
+<p>Some of the most powerful aspects of Unix are the <em>wild cards</em>. Suppose we want to remove all the temporary html files produced while trouble shooting for a project. Imagine there are dozens of files. It would be quite painful to remove them one by one. In Unix, we can actually write an expression that means all the files that end in <code>.html</code>. To do this we type <em>wild card</em>: <code>*</code>. As discussed in the data wrangling part of this book, this character means any number of any combination of characters. Specifically, to list all html files, we would type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-60_4e1de9b3998c667d7adb99623896f941">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="pp">*</span>.html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To remove all html files in a directory, we would type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-61_66df9a37d7aeede56609b581662e49b5">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rm</span> <span class="op">*</span><span class="va">.html</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The other useful wild card is the <code>?</code> symbol. This means any single character. So if all the files we want to erase have the form <code>file-001.html</code> with the numbers going from 1 to 999, we can type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-62_4429bc1ffb88077d726ff09492228667">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> file-<span class="pp">???</span>.html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This will only remove files with that format.</p>
+<p>We can combine wild cards. For example, to remove all files with the name <code>file-001</code> regardless of suffix, we can type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-63_5535c2bb1bbef4cf18106616c9f5f462">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> file-001.<span class="pp">*</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Warning: Combining rm with the <code>*</code> wild card can be dangerous. There are combinations of these commands that will erase your entire filesystem without asking “are you sure?”. Make sure you understand how it works before using this wild card with the rm command.</strong></p>
+</section><section id="environment-variables" class="level3"><h3 class="anchored" data-anchor-id="environment-variables">Environment variables</h3>
+<p>Unix has settings that affect your command line <em>environment</em>. These are called environment variables. The home directory is one of them. We can actually change some of these. In Unix, variables are distinguished from other entities by adding a <code>$</code> in front. The home directory is stored in <code>$HOME</code>.</p>
+<p>Earlier we saw that <code>echo</code> is the Unix command for print. So we can see our home directory by typing:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-64_27ae5b62487f5baf9d1b7ba0da48b588">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$HOME</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can see them all by typing:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-65_c8adcc1ace5fb618f6020f5a5e0eaa08">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">env</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can change some of these environment variables. But their names vary across different <em>shells</em>. We describe shells in the next section.</p>
+</section><section id="shells" class="level3"><h3 class="anchored" data-anchor-id="shells">Shells</h3>
+<p>Much of what we use in this chapter is part of what is called the <em>Unix shell</em>. There are actually different shells, but the differences are almost unnoticeable. They are also important, although we do not cover those here. You can see what shell you are using by typing:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-66_55b9ace5fa0910befb92c6d152a19638">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$SHELL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The most common one is <code>bash</code>.</p>
+<p>Once you know the shell, you can change environmental variables. In Bash Shell, we do it using <code>export variable value</code>. To change the path, described in more detail soon, type: (<strong>Don’t actually run this command though!</strong>)</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-67_a7fbf7f2d8feafa3f890229fe31f54ad">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span> <span class="op">=</span> /usr/bin/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>There is a program that is run before each terminal starts where you can edit variables so they change whenever you call the terminal. This changes in different implementations, but if using bash, you can create a file called <code>.bashrc</code>, <code>.bash_profile</code>,<code>.bash_login</code>, or <code>.profile</code>. You might already have one.</p>
+</section><section id="executables" class="level3"><h3 class="anchored" data-anchor-id="executables">Executables</h3>
+<p>In Unix, all programs are files. They are called executables. So <code>ls</code>, <code>mv</code> and <code>git</code> are all files. But where are these program files? You can find out using the command <code>which</code>:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-68_72fde6b86142b124aec1f32ecebd23a8">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> git</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="co">## /usr/bin/git</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>That directory is probably full of program files. The directory <code>/usr/bin</code> usually holds many program files. If you type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-69_b53a677d1a12cf4be4cfe97a6bbe9387">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /usr/bin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>in your terminal, you will see several executable files.</p>
+<p>There are other directories that usually hold program files. The Application directory in the Mac or Program Files directory in Windows are examples.</p>
+<p>When you type <code>ls</code>, Unix knows to run a program which is an executable that is stored in some other directory. So how does Unix know where to find it? This information is included in the environmental variable <code>$PATH</code>. If you type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-70_96b893ea1feb6887d3086fcceccd123e">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$PATH</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>you will see a list of directories separated by <code>:</code>. The directory <code>/usr/bin</code> is probably one of the first ones on the list.</p>
+<p>Unix looks for program files in those directories in that order. Although we don’t teach it here, you can actually create executables yourself. However, if you put it in your working directory and this directory is not on the path, you can’t run it just by typing the command. You get around this by typing the full path. So if your command is called my-ls, you can type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-71_47a10f0a11267edd445fd844ff75c1e4">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./my-ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once you have mastered the basics of Unix, you should consider learning to write your own executables as they can help alleviate repetitive work.</p>
+</section><section id="permissions-and-file-types" class="level3"><h3 class="anchored" data-anchor-id="permissions-and-file-types">Permissions and file types</h3>
+<p>If you type:</p>
+<div class="cell" data-layout-align="center" data-hash="unix_cache/html/unnamed-chunk-72_0853546b17fb06f983d309ef8cf009ea">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>At the beginning, you will see a series of symbols like this <code>-rw-r--r--</code>. This string indicates the type of file: regular file <code>-</code>, directory <code>d</code>, or executable <code>x</code>. This string also indicates the permission of the file: is it readable? writable? executable? Can other users on the system read the file? Can other users on the system edit the file? Can other users execute if the file is executable? This is more advanced than what we cover here, but you can learn much more in a Unix reference book.</p>
+</section><section id="commands-you-should-learn" class="level3"><h3 class="anchored" data-anchor-id="commands-you-should-learn">Commands you should learn</h3>
+<p>There are many commands that we do not teach in this book, but we want to make you aware of them and what they do. They are:</p>
+<ul>
+<li><p>open/start - On the Mac <code>open filename</code> tries to figure out the right application of the filename and open it with that application. This is a very useful command. On Git Bash, you can try <code>start filename</code>. Try opening an <code>R</code> or <code>Rmd</code> file with <code>open</code> or <code>start</code>: it should open them with RStudio.</p></li>
+<li><p>nano - A bare-bones text editor.</p></li>
+<li><p>ln - create a symbolic link. We do not recommend its use, but you should be familiar with it.</p></li>
+<li><p>tar - archive files and subdirectories of a directory into one file.</p></li>
+<li><p>ssh - connect to another computer.</p></li>
+<li><p>grep - search for patterns in a file.</p></li>
+<li><p>awk/sed - These are two very powerful commands that permit you to find specific strings in files and change them.</p></li>
+</ul></section><section id="file-manipulation-in-r" class="level3"><h3 class="anchored" data-anchor-id="file-manipulation-in-r">File manipulation in R</h3>
+<p>We can also perform file management from within R. The key functions to learn about can be seen by looking at the help file for <code><a href="https://rdrr.io/r/base/files.html">?files</a></code>. Another useful function is <code>unlink</code>.</p>
+<p>Although not generally recommended, note that you can run Unix commands in R using <code>system</code>.</p>
+
+
+</section></section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>https://www.quora.com/Which-are-the-best-Unix-Linux-reference-books<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>https://gumroad.com/l/bite-size-linux<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>https://jvns.ca/blog/2018/08/05/new-zine–bite-size-command-line/<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>https://library.si.edu/sites/default/files/tutorial/pdf/filenamingorganizing20180227.pdf<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>https://style.tidyverse.org/<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>https://rafalab.github.io/dsbook/accessing-the-terminal-and-installing-git.html<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>https://github.com/rairizarry/murders<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.475">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Rafael A. Irizarry">
+<title>git</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+</head>
+<body class="fullcontent">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content"><section id="sec-git" class="level1"><h1>Git and GitHub</h1>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-2_0dbaa789c9ffa217530cc2b8b812e2f2">
+
+</div>
+<p>Here we provide some details on Git and GitHub. However, we are only scratching the surface. To learn more about this topic, we highly recommend the following resources:</p>
+<ul>
+<li>Codeacademy: <a href="https://www.codecademy.com/learn/learn-git">https://www.codecademy.com/learn/learn-git</a>
+</li>
+<li>GitHub Guides: <a href="https://guides.github.com/activities/hello-world/">https://guides.github.com/activities/hello-world/</a>
+</li>
+<li>Try Git tutorial: <a href="https://try.github.io/levels/1/challenges/1">https://try.github.io/levels/1/challenges/1</a>
+</li>
+<li>Happy Git and GitHub for the useR: <a href="http://happygitwithr.com/">http://happygitwithr.com/</a>
+</li>
+</ul>
+<section id="why-use-git-and-github" class="level2"><h2 class="anchored" data-anchor-id="why-use-git-and-github">Why use Git and GitHub?</h2>
+<p>There are three main reasons to use Git and GitHub.</p>
+<ol type="1">
+<li><p>Sharing: Even if we do not take advantage of the advanced and powerful version control functionality, we can still use Git and GitHub to share our code.</p></li>
+<li><p>Collaborating: Once you set up a central repo, you can have multiple people make changes to code and keep versions synched. GitHub provides a free service for centralized repos. GitHub also has a special utility, called a <em>pull request</em>, that can be used by anybody to suggest changes to your code. You can easily either accept or deny the request.</p></li>
+<li><p>Version control: The version control capabilities of Git permit us to keep track of changes we make to our code. We can also revert back to previous versions of files. Git also permits us to create <em>branches</em> in which we can test out ideas, then decide if we <em>merge</em> the new branch with the original.</p></li>
+</ol>
+<p>Here we focus on the sharing aspects of Git and GitHub and refer the reader to the links above to learn more about this powerful tool.</p>
+</section><section id="github-accounts" class="level2"><h2 class="anchored" data-anchor-id="github-accounts">GitHub accounts</h2>
+<p>After installing git<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, the first step is to get a GitHub account. Basic GitHub accounts are free. To do this, go to <a href="github.com">GitHub</a> where you will see a box in which you can sign up.</p>
+<!--
+
+::: {.cell layout-align="center" hash='git_cache/html/unnamed-chunk-3_32b9c9fcce0df362084f795f21d06ed2'}
+::: {.cell-output-display}
+![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_11_04_20.png){fig-align='center' width=500px style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;"}
+:::
+:::
+
+-->
+<p>You want to pick a name carefully. It should be short, easy to remember and to spell, somehow related to your name, and professional. This last one is important since you might be sending potential employers a link to your GitHub account. In the example below, I am sacrificing on the ease of spelling to incorporate my name. Your initials and last name are usually a good choice. If you have a very common name, then this may have to be taken into account. A simple solution would be to add numbers or spell out part of your name.</p>
+<p>The account I use for my research, <em>rafalab</em>, is the same one I use for my webpage<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> and Twitter<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, which makes it easy to remember for those that follow my work.</p>
+<!--
+
+::: {.cell layout-align="center" hash='git_cache/html/unnamed-chunk-4_f3d176566c7896b39e6624c3b1fae5b5'}
+::: {.cell-output-display}
+![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_00_35.png){fig-align='center' width=500px style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;"}
+:::
+:::
+
+-->
+<p>Once you have a GitHub account, you are ready to connect Git and RStudio to this account.</p>
+<p>A first step is to let Git know who we are. This will make it easier to connect with GitHub. We start by opening a terminal window in RStudio (remember you can get one through <em>Tools</em> in the menu bar). Now we use the <code>git config</code> command to tell Git who we are. We will type the following two commands in our terminal window:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-5_1183dca73390820728ac6aeb45808e29">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.mail <span class="st">"your@email.com"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You need to use the email account that you used to open your GitHub account. The RStudio session should look something like this:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-6_0932f346a4874911c687a44d1e65f7d6">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_30_19.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You start by going to the <em>Global Options</em>, selecting <em>Git/SVN</em>, <!--
+
+::: {.cell layout-align="center" hash='git_cache/html/unnamed-chunk-7_bec77737b825295f8ade4df37ac8cfdc'}
+::: {.cell-output-display}
+![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_10_25.png){fig-align='center' width=500px style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;"}
+:::
+:::
+
+--> and then you enter a path for the Git executable we just installed.</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-8_826c9bc4899c7edc9aa01f29f7fcb261">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_14_13.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>On the Windows default installation, this will be <em>C:/Program File/Git/bin/git.exe</em>, but you should find it by browsing your system as this can change from system to system. Now to avoid entering our GitHub password every time we try to access our repository, we will create what is called an <em>SSH RSA Key</em>. RStudio can do this for us automatically if we click on the <em>Create RSA Key</em> button:</p>
+<!--
+
+::: {.cell layout-align="center" hash='git_cache/html/unnamed-chunk-9_27d7857b823e11467d58f409e22f2dfc'}
+::: {.cell-output-display}
+![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_14_14.png){fig-align='center' width=500px style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;"}
+:::
+:::
+
+-->
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-10_6c32909b93aba9b5465fc54b782241b9">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_14_14.png" class="img-fluid figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_14_15.png" class="img-fluid figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You can follow the default instructions as shown below:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-11_2983c6d161c70bfd7112c5a716932329">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_14_16.png" class="img-fluid figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_14_17.png" class="img-fluid figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Git, RStudio and GitHub should now be able to connect and we are ready to create a first GitHub code repository.</p>
+</section><section id="sec-github-repos" class="level2"><h2 class="anchored" data-anchor-id="sec-github-repos">GitHub repositories</h2>
+<p>You are now ready to create a GitHub repository (repo). The general idea is that you will have at least two copies of your code: one on your computer and one on GitHub. If you add collaborators to this project, then each will have a copy on their computer. The GitHub copy is usually considered the <em>main</em> (previously called <em>master</em>) copy that each collaborator syncs to. Git will help you keep all the different copies synced.</p>
+<p>As mentioned, one of the advantages of keeping code on a GitHub repository is that you can easily share it with potential employers interested in seeing examples of your work. Because many data science companies use version control systems, like Git, to collaborate on projects, they might also be impressed that you already know at least the basics.</p>
+<p>The first step in creating a repo for your code is to initialize on GitHub. Because you already created an account, you will have a page on GitHub with the URL <code>http://github.com/username</code>.</p>
+<p>To create a repo, first log in to your account by clicking the <em>Sign In</em> button on <a href="http://github.com">https://github.com</a>. You might already be signed in, in which case the <em>Sign In</em> button will not show up. <!--
+
+
+::: {.cell layout-align="center" hash='git_cache/html/unnamed-chunk-12_43ba48caa90f2cb475383aa52773eeae'}
+::: {.cell-output-display}
+![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_23_37.png){fig-align='center' width=500px style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;"}
+:::
+:::
+
+--> If signing in, you will have to enter your username and password. We recommend you set up your browser to remember this to avoid typing it in each time. <!--
+
+::: {.cell layout-align="center" hash='git_cache/html/unnamed-chunk-13_a95e7dd1f06c636c34b6f8e115dcf287'}
+::: {.cell-output-display}
+![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_23_38.png){fig-align='center' width=500px style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;"}
+:::
+:::
+
+--></p>
+<p>Once on your account, you can click on <em>Repositories</em> and then click on <em>New</em> to create a new repo:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-14_7cdd7c01ef3cc608cce794772cede4bf">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_23_39.png" class="img-fluid figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_23_40.png" class="img-fluid figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You will then want to choose a good descriptive name for the project. In the future, you might have dozens of repos so keep that in mind when choosing a name. Here we will use <code>homework-0</code>. We recommend you make the repo public. If you want to keep it private, you will have to pay a monthly charge.</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-15_3c6096483b9c0d3462ae7bf5296c74a4">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_23_42.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You now have your first repo on GitHub. The next step will be to <em>clone it</em> on your computer and start editing and syncing using Git.</p>
+<p>To do this, it is convenient to copy the link provided by GitHub specifically to connect to this repo, using Git as shown below. We will later need to copy and paste this so make sure to remember this step.</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-16_5f3d6f5b014de8435b1d4fe6de2264d9">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_24_19.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="sec-git-overview" class="level2"><h2 class="anchored" data-anchor-id="sec-git-overview">Overview of Git</h2>
+<p>The main actions in Git are to:</p>
+<ol type="1">
+<li>
+<strong>pull</strong> changes from the remote repo, in this case the GitHub repo</li>
+<li>
+<strong>add</strong> files, or as we say in the Git lingo <em>stage</em> files</li>
+<li>
+<strong>commit</strong> changes to the local repo</li>
+<li>
+<strong>push</strong> changes to the <em>remote</em> repo, in our case the GitHub repo</li>
+</ol>
+<p>To effectively permit version control and collaboration in Git, files move across four different areas:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-17_d344428fd963d4c3ad3eeed7499de3e4">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/git/git-layout.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>But how does it all get started? There are two ways: we can clone an existing repo or initialize one. We will explore cloning first.</p>
+<section id="clone" class="level3"><h3 class="anchored" data-anchor-id="clone">Clone</h3>
+<p>We are going to <em>clone</em> an existing <em>Upstream Repository</em>. You can see it on GitHub here: <a href="https://github.com/rairizarry/murders">https://github.com/rairizarry/murders</a>. By visiting this page, you can see multiple files and directories. This is the Upstream Repository. By clicking the green clone button, we can copy the repo’s URL <code>https://github.com/rairizarry/murders.git</code>.</p>
+<p>But what does <em>clone</em> mean? Rather than download all these files to your computer, we are going to actually copy the entire Git structure, which means we will add the files and directories to each of the three local stages: Working Directory, Staging Area, and Local Repository. When you clone, all three are exactly the same to start.</p>
+<p>You can quickly see an example of this by doing the following. Open a terminal and type:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-18_bf2438e57aaf4ec5b61fdf308e3bcc67">
+
+</div>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-19_f3a43274ddc938127b647dcc80a09305">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> git-example</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> git-example</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/rairizarry/murders.git</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> murders</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">## /Users/rafa/myDocuments/teaching/data-science/dsbook-part-1/productivity</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">## Cloning into 'murders'...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You now have cloned a GitHub repo and have a working Git directory, with all the files, on your system.</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-21_50c2c5151768a77e041450daeffa6b26">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">## README.txt</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">## analysis.R</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">## data</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">## download-data.R</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">## murders.Rproj</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">## rdas</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">## report.Rmd</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">## report.md</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">## report.qmd</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">## report_files</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">## wrangle-data.R</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-23_33af5f90bac195cccd4e34bb1b591c4e">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/git/git-clone.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <em>Working Directory</em> is the same as your Unix working directory. When you edit files using an editor such as RStudio, you change the files in this area and only in this area. Git can tell you how these files relate to the versions of the files in other areas with the command <code>git status</code>:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-24_60b6b165729e72c56144b462f7311b51">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/git/git-status.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If you check the status now, you will see that nothing has changed and you get the following message:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-26_1931dfae048b8ad00d830da6641c56c0">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">## On branch master</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Your branch is up to date with 'origin/master'.</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">## nothing to commit, working tree clean</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we are going to make changes to these files. Eventually, we want these new versions of the files to be tracked and synched with the upstream repo. But we don’t want to keep track of every little change: we don’t want to sync until we are sure these versions are final enough to share. For this reason, edits in the staging area are not kept by the version control system.</p>
+<p>To demonstrate, we add a file to the staging area with the <code>git add</code> command. Below we create a file using the Unix <code>echo</code> command just as an example (in reality you would use RStudio):</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-27_7fa1c77e3c3f9afbbc30bb91a4bbb4c7">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"test"</span> <span class="op">&gt;&gt;</span> new-file.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We are also adding a temporary file that we do not want to track at all:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-28_f68be24ecb79dc80260e0fb07fe892c5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"temporary"</span> <span class="op">&gt;&gt;</span> tmp.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we can stage the file we eventually want to add to our repository:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-29_10ad6eb529bee41a5f4a9d9ba3c54693">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add new-file.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Notice what the status says now:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-30_d88fb73ed75d3427fdd9f0a78cc007cf">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">## On branch master</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Your branch is up to date with 'origin/master'.</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">## Changes to be committed:</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">##   (use "git restore --staged &lt;file&gt;..." to unstage)</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">##  new file:   new-file.txt</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">## Untracked files:</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">##   (use "git add &lt;file&gt;..." to include in what will be committed)</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">##  tmp.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-32_2dcf0ff5b416667a699b4cc15ba45bd8">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/git/git-add.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Because <code>new-file.txt</code> is staged, the current version of the file will get added to the local repository next time we commit, which we do as follows:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-34_32c7ef05ca613aee9f7c7aae41eb1da1">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"adding a new file"</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">## [master ff066f4] adding a new file</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">##  Committer: Rafael A. Irizarry &lt;rafa@macrafa-2.local&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Your name and email address were configured automatically based</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">## on your username and hostname. Please check that they are accurate.</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">## You can suppress this message by setting them explicitly. Run the</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">## following command and follow the instructions in your editor to edit</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">## your configuration file:</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">##     git config --global --edit</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">## After doing this, you may fix the identity used for this commit with:</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">##     git commit --amend --reset-author</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">##  1 file changed, 1 insertion(+)</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">##  create mode 100644 new-file.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We have now changed the local repo, which you can confirm using</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-35_ac9e28550106cc18097ec901b5ace460">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-38_ace01fa403a3fbd12e004fbf8e73411b">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/git/git-commit.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>However, if we edit that file again, it changes only in the working directory. To add to the local repo, we need to stage it and commit the changes that are added to the local repo:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-40_ff5f3abfde8267eecf403add2768f63b">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"adding a line"</span> <span class="op">&gt;&gt;</span> new-file.txt</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add new-file.txt</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"adding a new line to new-file"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">## [master 7ed4969] adding a new line to new-file</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">##  Committer: Rafael A. Irizarry &lt;rafa@macrafa-2.local&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">## Your name and email address were configured automatically based</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">## on your username and hostname. Please check that they are accurate.</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">## You can suppress this message by setting them explicitly. Run the</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">## following command and follow the instructions in your editor to edit</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">## your configuration file:</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">##     git config --global --edit</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">## After doing this, you may fix the identity used for this commit with:</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">##     git commit --amend --reset-author</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co">##  1 file changed, 1 insertion(+)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that this step is often unnecessary in our uses of Git. We can skip the staging part if we add the file name to the commit command like this:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-41_36fa556eeaa14c996309bbc814f40b66">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"adding a second line"</span> <span class="op">&gt;&gt;</span> new-file.txt</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"minor change to new-file"</span> new-file.txt</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">## [master 2542707] minor change to new-file</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">##  Committer: Rafael A. Irizarry &lt;rafa@macrafa-2.local&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">## Your name and email address were configured automatically based</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">## on your username and hostname. Please check that they are accurate.</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">## You can suppress this message by setting them explicitly. Run the</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">## following command and follow the instructions in your editor to edit</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">## your configuration file:</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">##     git config --global --edit</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">## After doing this, you may fix the identity used for this commit with:</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">##     git commit --amend --reset-author</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co">##  1 file changed, 1 insertion(+)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can keep track of all the changes we have made with:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-42_7720b4eb630c22e7fd9dad82c26b753f">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log new-file.txt</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">## commit 25427074b6806d1861f169bb1f5c9e5d74a91780</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Author: Rafael A. Irizarry &lt;rafa@macrafa-2.local&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Date:   Wed May 17 15:18:35 2023 -0400</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">##     minor change to new-file</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">## commit 7ed4969dc49d41e0ef3b59c965bca71a55120603</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">## Author: Rafael A. Irizarry &lt;rafa@macrafa-2.local&gt;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">## Date:   Wed May 17 15:18:35 2023 -0400</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">##     adding a new line to new-file</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">## commit ff066f44ca60fde881382c255bf1620117953db5</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">## Author: Rafael A. Irizarry &lt;rafa@macrafa-2.local&gt;</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">## Date:   Wed May 17 15:18:35 2023 -0400</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">##     adding a new file</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To keep everything synced, the final step is to push the changes to the upstream repo. This is done with the <code>git push</code> command like this:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-43_5f54e17a98248704c3ab48f0f5000002">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-45_2cefcbaf5602c4b28f37919a7cbce138">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/git/git-push.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>However, in this particular example, you will not be able to do this because you do not have permission to edit the upstream repo. If this was your repo, you could.</p>
+<p>If this is a collaborative project, the upstream repo may change and become different than our version. To update our local repository to be like the upstream repo, we use the command <code>fetch</code>:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-46_dde090ae513df716f932a3ce7395324a">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-47_889ed0fddcdbafddf7b7c5c64052bebc">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/git/git-fetch.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>And then to make these copies to the staging area and working directory, we use the command:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-48_40ed43541039e081e04306b0066c29d1">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-49_01f96c23f72ecaf5d9d8da07d7758a80">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/git/git-merge.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>However, we often just want to change both with one command. For this, we use:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-50_1d3d78b4542e611277520375a4f84570">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-51_48d4bb87902ff2b05de0627d14462450">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/git/git-pull.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We will learn in Section <a href="#sec-rstudio-git">Section&nbsp;1.6</a> how RStudio has buttons to do all this. The details provided here should help you understand what happens in the background.</p>
+</section></section><section id="sec-init" class="level2"><h2 class="anchored" data-anchor-id="sec-init">Initializing a Git directory</h2>
+<p>Now let’s learn the second way we can get started: by initializing a directory on our own computer rather than cloning.</p>
+<p>Suppose we already have a populated local directory and we want to turn this directory into a collaborative GitHub repository. The most efficient way of achieving this is by <em>initializing</em> the local directory.</p>
+<p>To demonstrate how to do this we will initialize the gun murders directory we created in Section <strong>?@sec-prep-project</strong>. Note that we already created a directory with several subdirectories on our computer but we do not yet have a Git local repo or GitHub upstream repo.</p>
+<p>We start by creating a new repo on our GitHub page. We click on the <em>New</em> button:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-52_a4aa80894dd7394cd08c067b2c32db8f">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_25.png" class="img-fluid figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_26.png" class="img-fluid figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We call it <code>murders</code> here to match the name of the directory on our local system. But if you are doing this for another project, please choose an appropriate name.</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-53_1b1a3504137692b6564886b211011f20">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_27.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We then get a series of instructions on how to get started, but we can instead use what we have learned. The main thing we need from this page is to copy the repo’s URL, in this case: <code>https://github.com/rairizarry/murders.git</code>. <!--
+
+
+::: {.cell layout-align="center" hash='git_cache/html/unnamed-chunk-54_e57fc501fffbe11b956b1c2a476523ca'}
+::: {.cell-output-display}
+![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_28.png){fig-align='center' width=500px style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;"}
+:::
+:::
+
+--></p>
+<p>At this moment, we can start a terminal and <code>cd</code> into our local projects directory. In our example, it would be:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-55_5b3a80268096bd70febd97f7209dfb68">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/projects/murders</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We then <em>intialize</em> the directory. This turns the directory into a Git directory and Git starts tracking:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-56_f0f065fa00b453db40550382e6b3dc16">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>All the files are now <strong>only</strong> in our working directory; no files are in our local repo or on GitHub.</p>
+<p>The next step is to connect the local repo with the GitHub repo. In a previous example, we had RStudio do this for us. Now we need to do it ourselves. We can by adding any of the files and committing it:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-57_510a41b744b5433f5aa0a5a5270ccd82">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.txt</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"First commit. Adding README.txt file just to get started"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We now have a file in our local repo and can connect it to the upstream repo, which has url: <code>https://github.com/rairizarry/murders.git</code>.</p>
+<p>To do this, we use the command <code>git remote add</code>.</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-58_e49b411e3c09cc6c4adbbecf8342d310">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin <span class="kw">`</span><span class="ex">https://github.com/rairizarry/murders.git</span><span class="kw">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can now use <code>git push</code> since there is a connection to an upstream repo:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-59_9c737635063941fa4340547cad36e2e0">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In Section <strong>?@sec-organizing</strong> we continue to work with this example, as we demonstrate how we can use RStudio to work with Git and keep a project synced on GitHub.</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-60_08acb68d8d15a9b820ecd5a3608d10a8">
+
+</div>
+</section><section id="sec-rstudio-git" class="level2"><h2 class="anchored" data-anchor-id="sec-rstudio-git">Using Git and GitHub in RStudio</h2>
+<p>While command line Git is a powerful and flexible tool, it can be somewhat daunting when we are getting started. RStudio provides a graphical interface that facilitates the use of Git in the context of a data analysis project. We describe how to use this RStudio feature to do this here.</p>
+<p>Now we are ready to start an RStudio project that uses version control and stores the code on a GitHub repo. To do this, we start a project but, instead of <em>New Directory</em>, we will select <em>Version Control</em> and then we will select <em>Git</em> as our version control system:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-61_94c6d4ed6b5b0e3c6f3d5bb02df6da64">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_30_35.png" class="img-fluid figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_30_43.png" class="img-fluid figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The repository URL is the link you used to clone. In Section <a href="#sec-github-repos">Section&nbsp;1.3</a>, we used <code>https://github.com/username/homework-0.git</code> as an example. In the project directory name, you need to put the name of the folder that was generated, which in our example will be the name of the repo <code>homework-0</code>. This will create a folder called <code>homework-0</code> on your local system. Once you do this, the project is created and it is aware of the connection to a GitHub repo. You will see on the top right corner the name and type of project as well as a new tab on the upper right pane titled <em>Git</em>.</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-62_60b195623bdecf972d370958dfd50f1d">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_31_10.png" class="img-fluid figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_31_11.png" class="img-fluid figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If you select this tab, it will show you the files on your project with some icons that give you information about these files and their relationship to the repo. In the example below, we already added a file to the folder, called <em>code.R</em> which you can see in the editing pane.</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-63_8a33a7725aa60401f055879eb93a1069">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_34_06.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We now need to pay attention to the Git pane. It is important to know that <strong>your local files and the GitHub repo will not be synced automatically</strong>. As described in Section <a href="#sec-git-overview">Section&nbsp;1.4</a>, you have to sync using git push when you are ready. We show you can do this through RStudio rather than the terminal below.</p>
+<p>Before we start working on a collaborative project, usually the first thing we do is <em>pull</em> in the changes from the remote repo, in our case the one on GitHub. However, for the example shown here, since we are starting with an empty repo and we are the only ones making changes, we don’t need to start by pulling.</p>
+<p>In RStudio, the status of the file as it relates to the remote and local repos are represented in the status symbols with colors. A yellow square means that Git knows nothing about this file. To sync with the GitHub repo, we need to <em>add</em> the file, then <em>commit</em> the change to our local Git repo, then <em>push</em> the change to the GitHub repo. Right now, the file is just on our computer. To add the file using RStudio, we click the <em>Stage</em> box. You will see that the status icon now changes to a green A.</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-64_c4d99772109f77e35e75ae3e23aab6a6">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_51_31.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note: we are only adding the <em>code.R</em> file. We don’t necessarily need to add all the files in our local repo to the GitHub repo, only the ones we want to keep track of or the ones we want to share. If our work is producing files of a certain type that we do not want to keep track of, we can add the suffix that defines these files to the .gitignore file. More details on using .gitignore are included here: <a href="https://git-scm.com/docs/gitignore">https://git-scm.com/docs/gitignore</a>. These files will stop appearing in your RStudio Git pane. For the example shown here, we will only be adding <em>code.R</em>. But, in general, for an RStudio project, we recommend adding both the .gitignore and .Rproj files.</p>
+<p>Now we are ready to commit the file to our local repo. In RStudio, we can use the <em>Commit</em> button. This will open a new dialog window. With Git, whenever we commit a change, we are required to enter a comment describing the changes being <em>committed</em>.</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-65_70b73dbeec450feaadbe2054d5c74db1">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_51_54.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In this case, we will simply describe that we are adding a new script. In this dialog box, RStudio also gives you a summary of what you are changing to the GitHub repo. In this case, because it is a new file, the entire file is highlighted as green, which highlights the changes.</p>
+<p>Once we hit the commit button, we should see a message from Git with a summary of the changes that were committed. Now we are ready to <em>push</em> these changes to the GitHub repo. We can do this by clicking on the <em>Push</em> button on the top right corner:</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-66_b6ab35932f9291736461e53b121e2365">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_52_05.png" class="img-fluid figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_52_17.png" class="img-fluid figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We now see a message from Git letting us know that the push has succeeded. In the pop-up window we no longer see the <code>code.R</code> file. This is because no new changes have been performed since we last pushed. We can exit this pop-up window now and continue working on our code.</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-67_403f004b2103a4a94adfa6fa7ebefdf1">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_52_35.png" class="img-fluid figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_52_44.png" class="img-fluid figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If we now visit our repo on the web, we will see that it matches our local copy.</p>
+<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-68_4c5431c0feac89b0ee11d3686987c7e0">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_09.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Congratulations, you have successfully shared code on a GitHub repository!</p>
+
+
+</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>https://rafalab.github.io/dsbook/accessing-the-terminal-and-installing-git.html<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>http://rafalab.org<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>http://twitter.com/rafalab<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
