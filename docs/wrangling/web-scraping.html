@@ -345,17 +345,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header><div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-1_e26c6af024719c8be96ca7a2268f8f0c">
+</header><div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-1_820229aebb4ea9d63b9d9831e547bb43">
 
 </div>
 <p>The data we need to answer a question is not always in a spreadsheet ready for us to read. For example, the US murders dataset we used in the R Basics chapter originally comes from this Wikipedia page:</p>
-<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-2_61a687734d7b84f4f15ea5e889488328">
+<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-2_064d6ad57af5b1f56ef924a2aefb91e6">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"https://en.wikipedia.org/w/index.php?title="</span>,</span>
 <span>              <span class="st">"Gun_violence_in_the_United_States_by_state"</span>,</span>
 <span>              <span class="st">"&amp;direction=prev&amp;oldid=810166167"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can see the data table when you visit the webpage:</p>
-<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-3_525400f635ba584a133f512b209e7a28">
+<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-3_c4caabc014562bed04dc264c8448b76c">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="img//murders-data-wiki-page.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -365,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>(Web page courtesy of Wikipedia<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. CC-BY-SA-3.0 license<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Screenshot of part of the page.)</p>
 <p><em>Web scraping</em>, or <em>web harvesting</em>, is the term we use to describe the process of extracting data from a website. The reason we can do this is because the information used by a browser to render webpages is received as a text file from a server. The text is code written in hyper text markup language (HTML). Every browser has a way to show the html source code for a page, each one different. On Chrome, you can use Control-U on a PC and command+alt+U on a Mac. You will see something like this:</p>
-<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-4_4bcd437662317a3f5570542e8e3e087f">
+<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-4_5f3dce4a18e5457648ec93b461fef67f">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="img//html-code.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -414,66 +414,66 @@ title="List of U.S. states and territories by population"&gt;Population&lt;/a&gt
 </section><section id="the-rvest-package" class="level2" data-number="14.2"><h2 data-number="14.2" class="anchored" data-anchor-id="the-rvest-package">
 <span class="header-section-number">14.2</span> The rvest package</h2>
 <p>The <strong>tidyverse</strong> provides a web harvesting package called <strong>rvest</strong>. The first step using this package is to import the webpage into R. The package makes this quite simple:</p>
-<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-5_ee0d50aca060323be5a52771478b9758">
+<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-5_5d65761a0fcc4ad8613192f71a8b4b19">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span></span>
 <span><span class="va">h</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that the entire Murders in the US Wikipedia webpage is now contained in <code>h</code>. The class of this object is:</p>
-<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-6_f53bb542e274604e11e3d4b03cbf155f">
+<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-6_070c009f08d06c4e8d2fefa0bb98abe3">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">h</span><span class="op">)</span></span>
-<span><span class="co">## [1] "xml_document" "xml_node"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "xml_document" "xml_node"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <strong>rvest</strong> package is actually more general; it handles XML documents. XML is a general markup language (that’s what the ML stands for) that can be used to represent any kind of data. HTML is a specific type of XML specifically developed for representing webpages. Here we focus on HTML documents.</p>
 <p>Now, how do we extract the table from the object <code>h</code>? If we print <code>h</code>, we don’t really see much:</p>
-<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-7_aa7cbb8d377cd16d21d585d464d086a3">
+<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-7_fc7834145ed00fd244de604ef711c3fb">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">h</span></span>
-<span><span class="co">## {html_document}</span></span>
-<span><span class="co">## &lt;html class="client-nojs vector-feature-language-in-header-enabled vector-feature-language-in-main-page-header-disabled vector-feature-sticky-header-disabled vector-feature-page-tools-pinned-disabled vector-feature-toc-pinned-enabled vector-feature-main-menu-pinned-disabled vector-feature-limited-width-enabled vector-feature-limited-width-content-enabled vector-feature-zebra-design-disabled" lang="en" dir="ltr"&gt;</span></span>
-<span><span class="co">## [1] &lt;head&gt;\n&lt;meta http-equiv="Content-Type" content="text/html; chars ...</span></span>
-<span><span class="co">## [2] &lt;body class="skin-vector skin-vector-search-vue mediawiki ltr sit ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; {html_document}</span></span>
+<span><span class="co">#&gt; &lt;html class="client-nojs vector-feature-language-in-header-enabled vector-feature-language-in-main-page-header-disabled vector-feature-sticky-header-disabled vector-feature-page-tools-pinned-disabled vector-feature-toc-pinned-enabled vector-feature-main-menu-pinned-disabled vector-feature-limited-width-enabled vector-feature-limited-width-content-enabled vector-feature-zebra-design-disabled" lang="en" dir="ltr"&gt;</span></span>
+<span><span class="co">#&gt; [1] &lt;head&gt;\n&lt;meta http-equiv="Content-Type" content="text/html; chars ...</span></span>
+<span><span class="co">#&gt; [2] &lt;body class="skin-vector skin-vector-search-vue mediawiki ltr sit ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can see all the code that defines the downloaded webpage using the <code>html_text</code> function like this:</p>
-<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-8_e57596615d38e131bb5b4e477760085a">
+<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-8_96370a910b82ba86498bab547220845d">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text</a></span><span class="op">(</span><span class="va">h</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We don’t show the output here because it includes thousands of characters, but if we look at it, we can see the data we are after are stored in an HTML table: you can see this in this line of the HTML code above <code>&lt;table class="wikitable sortable"&gt;</code>. The different parts of an HTML document, often defined with a message in between <code>&lt;</code> and <code>&gt;</code> are referred to as <em>nodes</em>. The <strong>rvest</strong> package includes functions to extract nodes of an HTML document: <code>html_nodes</code> extracts all nodes of different types and <code>html_node</code> extracts the first one. To extract the tables from the html code we use:</p>
-<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-9_be4c618f8c1d943b47fd0cb531054726">
+<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-9_7017441f1a09f9cf3d9bc5eb78bf0e94">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">h</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, instead of the entire webpage, we just have the html code for the tables in the page:</p>
-<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-10_51ef188e3debedfcfc4015b85a0602a9">
+<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-10_975475a221367d92bfbe8043fd9b0c3e">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span></span>
-<span><span class="co">## {xml_nodeset (2)}</span></span>
-<span><span class="co">## [1] &lt;table class="wikitable sortable"&gt;&lt;tbody&gt;\n&lt;tr&gt;\n&lt;th&gt;State\n&lt;/th&gt; ...</span></span>
-<span><span class="co">## [2] &lt;table class="nowraplinks hlist mw-collapsible mw-collapsed navbo ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; {xml_nodeset (2)}</span></span>
+<span><span class="co">#&gt; [1] &lt;table class="wikitable sortable"&gt;&lt;tbody&gt;\n&lt;tr&gt;\n&lt;th&gt;State\n&lt;/th&gt; ...</span></span>
+<span><span class="co">#&gt; [2] &lt;table class="nowraplinks hlist mw-collapsible mw-collapsed navbo ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The table we are interested is the first one:</p>
-<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-11_b1f6ebbac101197db0030b4f16a18c52">
+<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-11_1f00feb375c7fab839c0bc13d236a848">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="co">## {html_node}</span></span>
-<span><span class="co">## &lt;table class="wikitable sortable"&gt;</span></span>
-<span><span class="co">## [1] &lt;tbody&gt;\n&lt;tr&gt;\n&lt;th&gt;State\n&lt;/th&gt;\n&lt;th&gt;\n&lt;a href="/wiki/List_of_U.S ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; {html_node}</span></span>
+<span><span class="co">#&gt; &lt;table class="wikitable sortable"&gt;</span></span>
+<span><span class="co">#&gt; [1] &lt;tbody&gt;\n&lt;tr&gt;\n&lt;th&gt;State\n&lt;/th&gt;\n&lt;th&gt;\n&lt;a href="/wiki/List_of_U.S ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This is clearly not a tidy dataset, not even a data frame. In the code above, you can definitely see a pattern and writing code to extract just the data is very doable. In fact, <strong>rvest</strong> includes a function just for converting HTML tables into data frames:</p>
-<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-12_913710db36e140d0db8acf26932a3002">
+<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-12_a98f2565f3332262b84ecd534a20c8fe">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span></span>
-<span><span class="co">## [1] "tbl_df"     "tbl"        "data.frame"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "tbl_df"     "tbl"        "data.frame"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We are now much closer to having a usable data table:</p>
-<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-13_5d2aa6e38d6417dfdff4eb2dd012073c">
+<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-13_15dedfaebccfe11f70cb7ef44c1d7c20">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">tab</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"state"</span>, <span class="st">"population"</span>, <span class="st">"total"</span>, <span class="st">"murder_rate"</span><span class="op">)</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span></span>
-<span><span class="co">## # A tibble: 6 × 4</span></span>
-<span><span class="co">##   state      population total murder_rate</span></span>
-<span><span class="co">##   &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;</span></span>
-<span><span class="co">## 1 Alabama    4,853,875  348           7.2</span></span>
-<span><span class="co">## 2 Alaska     737,709    59            8  </span></span>
-<span><span class="co">## 3 Arizona    6,817,565  309           4.5</span></span>
-<span><span class="co">## 4 Arkansas   2,977,853  181           6.1</span></span>
-<span><span class="co">## 5 California 38,993,940 1,861         4.8</span></span>
-<span><span class="co">## # ℹ 1 more row</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # A tibble: 6 × 4</span></span>
+<span><span class="co">#&gt;   state      population total murder_rate</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Alabama    4,853,875  348           7.2</span></span>
+<span><span class="co">#&gt; 2 Alaska     737,709    59            8  </span></span>
+<span><span class="co">#&gt; 3 Arizona    6,817,565  309           4.5</span></span>
+<span><span class="co">#&gt; 4 Arkansas   2,977,853  181           6.1</span></span>
+<span><span class="co">#&gt; 5 California 38,993,940 1,861         4.8</span></span>
+<span><span class="co">#&gt; # ℹ 1 more row</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We still have some wrangling to do. For example, we need to remove the commas and turn characters into numbers. Before continuing with this, we will learn a more general approach to extracting information from web sites.</p>
 </section><section id="sec-css-selectors" class="level2" data-number="14.3"><h2 data-number="14.3" class="anchored" data-anchor-id="sec-css-selectors">
@@ -484,53 +484,53 @@ title="List of U.S. states and territories by population"&gt;Population&lt;/a&gt
 </section><section id="json" class="level2" data-number="14.4"><h2 data-number="14.4" class="anchored" data-anchor-id="json">
 <span class="header-section-number">14.4</span> JSON</h2>
 <p>Sharing data on the internet has become more and more common. Unfortunately, providers use different formats, which makes it harder for data scientists to wrangle data into R. Yet there are some standards that are also becoming more common. Currently, a format that is widely being adopted is the JavaScript Object Notation or JSON. Because this format is very general, it is nothing like a spreadsheet. This JSON file looks more like the code you use to define a list. Here is an example of information stored in a JSON format:</p>
-<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-14_6fe7daa7e4a90fe77c39ce4457fe31fd">
-<pre><code>## 
-## Attaching package: 'jsonlite'
-## The following object is masked from 'package:purrr':
-## 
-##     flatten
-## [
-##   {
-##     "name": "Miguel",
-##     "student_id": 1,
-##     "exam_1": 85,
-##     "exam_2": 86
-##   },
-##   {
-##     "name": "Sofia",
-##     "student_id": 2,
-##     "exam_1": 94,
-##     "exam_2": 93
-##   },
-##   {
-##     "name": "Aya",
-##     "student_id": 3,
-##     "exam_1": 87,
-##     "exam_2": 88
-##   },
-##   {
-##     "name": "Cheng",
-##     "student_id": 4,
-##     "exam_1": 90,
-##     "exam_2": 91
-##   }
-## ]</code></pre>
+<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-14_157ca847fa13770c62648b3fa1c6a719">
+<pre><code>#&gt; 
+#&gt; Attaching package: 'jsonlite'
+#&gt; The following object is masked from 'package:purrr':
+#&gt; 
+#&gt;     flatten
+#&gt; [
+#&gt;   {
+#&gt;     "name": "Miguel",
+#&gt;     "student_id": 1,
+#&gt;     "exam_1": 85,
+#&gt;     "exam_2": 86
+#&gt;   },
+#&gt;   {
+#&gt;     "name": "Sofia",
+#&gt;     "student_id": 2,
+#&gt;     "exam_1": 94,
+#&gt;     "exam_2": 93
+#&gt;   },
+#&gt;   {
+#&gt;     "name": "Aya",
+#&gt;     "student_id": 3,
+#&gt;     "exam_1": 87,
+#&gt;     "exam_2": 88
+#&gt;   },
+#&gt;   {
+#&gt;     "name": "Cheng",
+#&gt;     "student_id": 4,
+#&gt;     "exam_1": 90,
+#&gt;     "exam_2": 91
+#&gt;   }
+#&gt; ]</code></pre>
 </div>
 <p>The file above actually represents a data frame. To read it, we can use the function <code>fromJSON</code> from the <strong>jsonlite</strong> package. Note that JSON files are often made available via the internet. Several organizations provide a JSON API or a web service that you can connect directly to and obtain data. Here is an example providing information Nobel prize winners:</p>
-<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-15_cca552f139e7771c17165f910fa2601e">
+<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-15_9fea85c95c9820d60afacd3717fd48eb">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nobel</span> <span class="op">&lt;-</span> <span class="fu">fromJSON</span><span class="op">(</span><span class="st">"http://api.nobelprize.org/v1/prize.json"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This downloads a list. The first argument is a table with information about Nobel prize winners:</p>
-<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-16_8ad66cf94ea796e8abd9e83f5f36d8bb">
+<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-16_054e256963f318b53e56e7ca8efd429e">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">nobel</span><span class="op">$</span><span class="va">prize</span>, <span class="va">category</span> <span class="op">==</span> <span class="st">"literature"</span> <span class="op">&amp;</span> <span class="va">year</span> <span class="op">==</span> <span class="st">"1971"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">laureates</span><span class="op">)</span></span>
-<span><span class="co">## [[1]]</span></span>
-<span><span class="co">##    id firstname surname</span></span>
-<span><span class="co">## 1 645     Pablo  Neruda</span></span>
-<span><span class="co">##                                                                                                motivation</span></span>
-<span><span class="co">## 1 "for a poetry that with the action of an elemental force brings alive a continent's destiny and dreams"</span></span>
-<span><span class="co">##   share</span></span>
-<span><span class="co">## 1     1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt;    id firstname surname</span></span>
+<span><span class="co">#&gt; 1 645     Pablo  Neruda</span></span>
+<span><span class="co">#&gt;                                                                                                motivation</span></span>
+<span><span class="co">#&gt; 1 "for a poetry that with the action of an elemental force brings alive a continent's destiny and dreams"</span></span>
+<span><span class="co">#&gt;   share</span></span>
+<span><span class="co">#&gt; 1     1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can learn much more by examining tutorials and help files from the <strong>jsonlite</strong> package. This package is intended for relatively simple tasks such as converting data into tables. For more flexibility, we recommend <code>rjson</code>.</p>
 </section><section id="exercises" class="level2" data-number="14.5"><h2 data-number="14.5" class="anchored" data-anchor-id="exercises">
@@ -539,12 +539,12 @@ title="List of U.S. states and territories by population"&gt;Population&lt;/a&gt
 <p>Notice there are several tables. Say we are interested in comparing the payrolls of teams across the years. The next few exercises take us through the steps needed to do this.</p>
 <p>Start by applying what you learned to read in the website into an object called <code>h</code>.</p>
 <p>2. Note that, although not very useful, we can actually see the content of the page by typing:</p>
-<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-17_4cb5a3a31a467d51fd715b036f4d3300">
+<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-17_0efb6c27b6d475b96b732222a849a381">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text</a></span><span class="op">(</span><span class="va">h</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The next step is to extract the tables. For this, we can use the <code>html_nodes</code> function. We learned that tables in html are associated with the <code>table</code> node. Use the <code>html_nodes</code> function and the <code>table</code> node to extract the first table. Store it in an object <code>nodes</code>.</p>
 <p>3. The <code>html_nodes</code> function returns a list of objects of class <code>xml_node</code>. We can see the content of each one using, for example, the <code>html_text</code> function. You can see the content for an arbitrarily picked component like this:</p>
-<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-18_008bf3886a89930da3a862c478a8cb26">
+<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-18_288c889d0882417fd157089e8ce41524">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">[[</span><span class="fl">8</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If the content of this object is an html table, we can use the <code>html_table</code> function to convert it to a data frame. Use the <code>html_table</code> function to convert the 8th entry of <code>nodes</code> into a table.</p>
@@ -569,7 +569,7 @@ title="List of U.S. states and territories by population"&gt;Population&lt;/a&gt
 <p>10. Use a <code>full_join</code> function to combine these two tables. Before you do this you will have to fix the missing header problem. You will also need to make the names match.</p>
 <p>11. After joining the tables, you see several NAs. This is because some teams are in one table and not the other. Use the <code>anti_join</code> function to get a better idea of why this is happening.</p>
 <p>12. We see see that one of the problems is that Yankees are listed as both <em>N.Y. Yankees</em> and <em>NY Yankees</em>. In the next section, we will learn efficient approaches to fixing problems like this. Here we can do it “by hand” as follows:</p>
-<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-19_ac86da5b10fee3623dc7dc522477e241">
+<div class="cell" data-layout-align="center" data-hash="web-scraping_cache/html/unnamed-chunk-19_ce98e7c86bbe674a0e47d7e77d7bb383">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">&lt;-</span> <span class="va">tab_1</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Team <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">Team</span> <span class="op">==</span> <span class="st">"N.Y. Yankees"</span>, <span class="st">"NY Yankees"</span>, <span class="va">Team</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>

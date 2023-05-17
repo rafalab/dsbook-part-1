@@ -364,279 +364,279 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="manipulating-data-tables" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="manipulating-data-tables">
 <span class="header-section-number">6.1</span> Manipulating data tables</h2>
 <p><code>data.table</code> is a separate package that needs to be installed. Once installed, we then need to load it:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-1_72bcf26d0644100863313b0b1de392f9">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-1_9ae405b60dea87b7deb3511063a0727d">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com">data.table</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We will provide example code showing the <strong>data.table</strong> approaches to <strong>dplyr</strong>’s <code>mutate</code>, <code>filter</code>, <code>select</code>, <code>group_by</code>, and <code>summarize</code> shown in Chapter <a href="tidyverse.html"><span>Chapter&nbsp;4</span></a>. As in that chapter, we will use the <code>murders</code> dataset:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-2_4ed0a94cd16e9ac5a0bb6989df115151">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-2_b587b7257dee4e57e7f3f69bacf39984">
 
 </div>
 <p>The first step when using <strong>data.table</strong> is to convert the data frame into a <code>data.table</code> object using the <code>as.data.table</code> function:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-3_b973ce72ab844981042792ba12509332">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-3_9b42abea20c806ec065204aab2bac303">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html">as.data.table</a></span><span class="op">(</span><span class="va">murders</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Without this initial step, most of the approaches shown below will not work.</p>
 <section id="selecting" class="level3" data-number="6.1.1"><h3 data-number="6.1.1" class="anchored" data-anchor-id="selecting">
 <span class="header-section-number">6.1.1</span> Selecting</h3>
 <p>Selecting with <strong>data.table</strong> is done in a similar way to subsetting matrices. While with <strong>dplyr</strong> we write:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-4_4637a8409885ff96300dc530341a9990">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-4_0523489cad0f5dcc9b9960c9ab9b4563">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">select</span><span class="op">(</span><span class="va">murders</span>, <span class="va">state</span>, <span class="va">region</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In <strong>data.table</strong>, we use notation similar to what is used with matrices:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-5_c860c4590986626dcfaccd45719a5a6f">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-5_e7ac486bc94a8855c4e9036e01757b01">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"state"</span>, <span class="st">"region"</span><span class="op">)</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">##         state region</span></span>
-<span><span class="co">## 1:    Alabama  South</span></span>
-<span><span class="co">## 2:     Alaska   West</span></span>
-<span><span class="co">## 3:    Arizona   West</span></span>
-<span><span class="co">## 4:   Arkansas  South</span></span>
-<span><span class="co">## 5: California   West</span></span>
-<span><span class="co">## 6:   Colorado   West</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;         state region</span></span>
+<span><span class="co">#&gt; 1:    Alabama  South</span></span>
+<span><span class="co">#&gt; 2:     Alaska   West</span></span>
+<span><span class="co">#&gt; 3:    Arizona   West</span></span>
+<span><span class="co">#&gt; 4:   Arkansas  South</span></span>
+<span><span class="co">#&gt; 5: California   West</span></span>
+<span><span class="co">#&gt; 6:   Colorado   West</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also use the <code>.()</code> <strong>data.table</strong> notation to alert R that variables inside the parenthesis are column names, not objects in the R environment. So the above can also be written like this:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-6_13efbcec5d97d7d49332aaeaa8f4197d">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-6_2c45faff5d1e6805fbd8d9187ee5e4aa">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">state</span>, <span class="va">region</span><span class="op">)</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">##         state region</span></span>
-<span><span class="co">## 1:    Alabama  South</span></span>
-<span><span class="co">## 2:     Alaska   West</span></span>
-<span><span class="co">## 3:    Arizona   West</span></span>
-<span><span class="co">## 4:   Arkansas  South</span></span>
-<span><span class="co">## 5: California   West</span></span>
-<span><span class="co">## 6:   Colorado   West</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;         state region</span></span>
+<span><span class="co">#&gt; 1:    Alabama  South</span></span>
+<span><span class="co">#&gt; 2:     Alaska   West</span></span>
+<span><span class="co">#&gt; 3:    Arizona   West</span></span>
+<span><span class="co">#&gt; 4:   Arkansas  South</span></span>
+<span><span class="co">#&gt; 5: California   West</span></span>
+<span><span class="co">#&gt; 6:   Colorado   West</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="adding-a-column-or-changing-columns" class="level3" data-number="6.1.2"><h3 data-number="6.1.2" class="anchored" data-anchor-id="adding-a-column-or-changing-columns">
 <span class="header-section-number">6.1.2</span> Adding a column or changing columns</h3>
 <p>We learned to use the <strong>dplyr</strong> <code>mutate</code> function with this example:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-7_2c9852671cf0b5fe67b719b2cbf1c52b">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-7_6a27739a675051a39c2cc54d42864c89">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">&lt;-</span> <span class="fu">mutate</span><span class="op">(</span><span class="va">murders</span>, rate <span class="op">=</span> <span class="va">total</span> <span class="op">/</span> <span class="va">population</span> <span class="op">*</span> <span class="fl">100000</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>data.table</strong> uses an approach that avoids a new assignment (update by reference). This can help with large datasets that take up most of your computer’s memory. The <strong>data.table</strong> :=` function permits us to do this:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-8_647b58aded32196bfe2ee2c191a0d5d4">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-8_7ef957844cb0d7f5871b4b2269bfca80">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span>, <span class="va">rate</span> <span class="op">:=</span> <span class="va">total</span> <span class="op">/</span> <span class="va">population</span> <span class="op">*</span> <span class="fl">100000</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This adds a new column, <code>rate</code>, to the table. Notice that, as in <strong>dplyr</strong>, we used <code>total</code> and <code>population</code> without quotes.</p>
 <p>We can see that the new column is added:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-9_4e39207c624eb144ffe226c9993b5e74">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-9_8fef37ae0ea0c6e9e2780f8e5e71cf52">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">murders_dt</span><span class="op">)</span></span>
-<span><span class="co">##         state abb region population total rate</span></span>
-<span><span class="co">## 1:    Alabama  AL  South    4779736   135 2.82</span></span>
-<span><span class="co">## 2:     Alaska  AK   West     710231    19 2.68</span></span>
-<span><span class="co">## 3:    Arizona  AZ   West    6392017   232 3.63</span></span>
-<span><span class="co">## 4:   Arkansas  AR  South    2915918    93 3.19</span></span>
-<span><span class="co">## 5: California  CA   West   37253956  1257 3.37</span></span>
-<span><span class="co">## 6:   Colorado  CO   West    5029196    65 1.29</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;         state abb region population total rate</span></span>
+<span><span class="co">#&gt; 1:    Alabama  AL  South    4779736   135 2.82</span></span>
+<span><span class="co">#&gt; 2:     Alaska  AK   West     710231    19 2.68</span></span>
+<span><span class="co">#&gt; 3:    Arizona  AZ   West    6392017   232 3.63</span></span>
+<span><span class="co">#&gt; 4:   Arkansas  AR  South    2915918    93 3.19</span></span>
+<span><span class="co">#&gt; 5: California  CA   West   37253956  1257 3.37</span></span>
+<span><span class="co">#&gt; 6:   Colorado  CO   West    5029196    65 1.29</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To define new multiple columns, we can use the <code>:=</code> function with multiple arguments:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-10_4fca73857b448da72ffec466a0195d0e">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-10_b631bb5083732359748720684fcbf0bc">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span>, <span class="st">":="</span><span class="op">(</span>rate <span class="op">=</span> <span class="va">total</span> <span class="op">/</span> <span class="va">population</span> <span class="op">*</span> <span class="fl">100000</span>, rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rank.html">rank</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="technical-detail-reference-versus-copy" class="level3" data-number="6.1.3"><h3 data-number="6.1.3" class="anchored" data-anchor-id="technical-detail-reference-versus-copy">
 <span class="header-section-number">6.1.3</span> Technical detail: reference versus copy</h3>
 <p>The <strong>data.table</strong> package is designed to avoid wasting memory. So if you make a copy of a table, like this:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-11_13449af3c6ad5575f281de4452759937">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-11_3ca98589b1ab6b597cc2acdcbdccc94c">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>y</code> is actually referencing <code>x</code>, it is not an new opject: it’s just another name for <code>x</code>. Until you change <code>y</code>, a new object will not be made. However, the <code>:=</code> function changes <em>by reference</em> so if you change <code>x</code>, a new object is not made and <code>y</code> continues to be just another name for <code>x</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-12_fd80efec0118872fff068c4d262ed1be">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-12_941fafed59ea51410f888021e6665cda">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span><span class="op">[</span>,<span class="va">a</span> <span class="op">:=</span> <span class="fl">2</span><span class="op">]</span></span>
 <span><span class="va">y</span></span>
-<span><span class="co">##    a</span></span>
-<span><span class="co">## 1: 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;    a</span></span>
+<span><span class="co">#&gt; 1: 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can also change <code>x</code> like this:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-13_c882c7fe889b4616f1dbe6545e3f65ab">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-13_839add88ba097a5753533dd120ad9baa">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">y</span><span class="op">[</span>,<span class="va">a</span> <span class="op">:=</span> <span class="fl">1</span><span class="op">]</span></span>
 <span><span class="va">x</span></span>
-<span><span class="co">##    a</span></span>
-<span><span class="co">## 1: 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;    a</span></span>
+<span><span class="co">#&gt; 1: 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To avoid this, you can use the <code>copy</code> function which forces the creation of an actual copy:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-14_9c2c165817bc23361a9d00c066d61f7d">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-14_9adfa3a9022d1cf8a7adf4b898946b4f">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/copy.html">copy</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="va">x</span><span class="op">[</span>,<span class="va">a</span> <span class="op">:=</span> <span class="fl">2</span><span class="op">]</span></span>
 <span><span class="va">y</span></span>
-<span><span class="co">##    a</span></span>
-<span><span class="co">## 1: 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;    a</span></span>
+<span><span class="co">#&gt; 1: 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that the function <code>as.data.table</code> creates a copy of the data frame being converted. However, if working with a large data frames it is helpful to avoid this, and you can do this by using <code>setDT</code>.</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-15_0e1b0a6110423be345874a39022e4ff9">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-15_8fc4f0175572d73451b43d84019959fb">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setDT.html">setDT</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>However, note that because no copy is being made, be aware that the following code does not create a new object:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-16_fda3d7a2a89c3febb76e00763f4257d0">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-16_779208a2325732a503262ab1f6da9338">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setDT.html">setDT</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The objects <code>x</code> and <code>y</code> are referencing the same data table:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-17_4581e1edc0a76fd43552336093cd6490">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-17_239396e9949c174059ca29bab791bf67">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span><span class="op">[</span>,<span class="va">a</span> <span class="op">:=</span> <span class="fl">2</span><span class="op">]</span></span>
 <span><span class="va">y</span></span>
-<span><span class="co">##    a</span></span>
-<span><span class="co">## 1: 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;    a</span></span>
+<span><span class="co">#&gt; 1: 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="subsetting" class="level3" data-number="6.1.4"><h3 data-number="6.1.4" class="anchored" data-anchor-id="subsetting">
 <span class="header-section-number">6.1.4</span> Subsetting</h3>
 <p>With <strong>dplyr</strong>, we filtered like this:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-18_4520da9ddc58766311279486585b7857">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-18_c5167120a010d6bd1c9e4f375faf9e43">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">murders</span>, <span class="va">rate</span> <span class="op">&lt;=</span> <span class="fl">0.7</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>With <strong>data.table</strong>, we again use an approach similar to subsetting matrices, except <strong>data.table</strong> knows that <code>rate</code> refers to a column name and not an object in the R environment:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-19_ea541bdd2c27a436c101d14cbf106abf">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-19_f83e3487ed68bc8dd7628354fab60476">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span><span class="va">rate</span> <span class="op">&lt;=</span> <span class="fl">0.7</span><span class="op">]</span></span>
-<span><span class="co">##            state abb        region population total  rate rank</span></span>
-<span><span class="co">## 1:        Hawaii  HI          West    1360301     7 0.515   12</span></span>
-<span><span class="co">## 2:          Iowa  IA North Central    3046355    21 0.689   22</span></span>
-<span><span class="co">## 3: New Hampshire  NH     Northeast    1316470     5 0.380   10</span></span>
-<span><span class="co">## 4:  North Dakota  ND North Central     672591     4 0.595    4</span></span>
-<span><span class="co">## 5:       Vermont  VT     Northeast     625741     2 0.320    3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;            state abb        region population total  rate rank</span></span>
+<span><span class="co">#&gt; 1:        Hawaii  HI          West    1360301     7 0.515   12</span></span>
+<span><span class="co">#&gt; 2:          Iowa  IA North Central    3046355    21 0.689   22</span></span>
+<span><span class="co">#&gt; 3: New Hampshire  NH     Northeast    1316470     5 0.380   10</span></span>
+<span><span class="co">#&gt; 4:  North Dakota  ND North Central     672591     4 0.595    4</span></span>
+<span><span class="co">#&gt; 5:       Vermont  VT     Northeast     625741     2 0.320    3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Notice that we can combine the filter and select into one succint command. Here are the state names and rates for those with rates below 0.7.</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-20_8a22a9e9e501eea6465789ccf212318f">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-20_6c1c2c3d37763efc1f4fae81c32f7063">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span><span class="va">rate</span> <span class="op">&lt;=</span> <span class="fl">0.7</span>, <span class="fu">.</span><span class="op">(</span><span class="va">state</span>, <span class="va">rate</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="co">##            state  rate</span></span>
-<span><span class="co">## 1:        Hawaii 0.515</span></span>
-<span><span class="co">## 2:          Iowa 0.689</span></span>
-<span><span class="co">## 3: New Hampshire 0.380</span></span>
-<span><span class="co">## 4:  North Dakota 0.595</span></span>
-<span><span class="co">## 5:       Vermont 0.320</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;            state  rate</span></span>
+<span><span class="co">#&gt; 1:        Hawaii 0.515</span></span>
+<span><span class="co">#&gt; 2:          Iowa 0.689</span></span>
+<span><span class="co">#&gt; 3: New Hampshire 0.380</span></span>
+<span><span class="co">#&gt; 4:  North Dakota 0.595</span></span>
+<span><span class="co">#&gt; 5:       Vermont 0.320</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Compare to the <strong>dplyr</strong> approach:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-21_9bdc90a0a7b73121cbac1669a651ee51">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-21_6c00c851d7bfa3b829aae990180869a4">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">rate</span> <span class="op">&lt;=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">select</span><span class="op">(</span><span class="va">state</span>, <span class="va">rate</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="exercises" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="exercises">
 <span class="header-section-number">6.2</span> Exercises</h2>
 <p>1. Load the <strong>data.table</strong> package and the <code>murders</code> dataset and convert it to <code>data.table</code> object:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-22_141d8a9d87a3f3f73b3363f238598657">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-22_c28014a1ee5473bad9ae16bdb26c560c">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com">data.table</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="va">murders_dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html">as.data.table</a></span><span class="op">(</span><span class="va">murders</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Remember you can add columns like this:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-23_d665c643238d7a49d136a0db3917546c">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-23_312db2f1d37cdbba61d6d7933321832f">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span>, <span class="va">population_in_millions</span> <span class="op">:=</span> <span class="va">population</span> <span class="op">/</span> <span class="fl">10</span><span class="op">^</span><span class="fl">6</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Add a <code>murders</code> column named <code>rate</code> with the per 100,000 murder rate as in the example code above.</p>
 <p>2. Add a column <code>rank</code> containing the rank, from highest to lowest murder rate.</p>
 <p>3. If we want to only show the states and population sizes, we can use:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-24_c810c653b081830ee7e0130d6fc3f697">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-24_68ea6c5090c295ec48c1f52640eb3193">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">state</span>, <span class="va">population</span><span class="op">)</span><span class="op">]</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Show the state names and abbreviations in <code>murders</code>.</p>
 <p>4. You can show just the New York row like this:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-25_ab7279ba9359478cddd20a90ac3d1f67">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-25_08a11b8ae9ef81335b3509e93cd32208">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span><span class="va">state</span> <span class="op">==</span> <span class="st">"New York"</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can use other logical vectors to filter rows.</p>
 <p>Show the top 5 states with the highest murder rates. After we add murder rate and rank, do not change the <code>murders</code> dataset, just show the result. Remember that you can filter based on the <code>rank</code> column.</p>
 <p>5. We can remove rows using the <code>!=</code> operator. For example, to remove Florida, we would do this:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-26_7f69188fdefe8055a5376919c253ca23">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-26_1aee131210a9d55fd024109588b10ea5">
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">no_florida</span> <span class="op">&lt;-</span> <span class="va">murders_dt</span><span class="op">[</span><span class="va">state</span> <span class="op">!=</span> <span class="st">"Florida"</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Create a new data frame called <code>no_south</code> that removes states from the South region. How many states are in this category? You can use the function <code>nrow</code> for this.</p>
 <p>6. We can also use <code>%in%</code> to filter. You can therefore see the data from New York and Texas as follows:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-27_0a334753dee04e5384f2a38e8fee14fa">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-27_763d54dd952a69b790e695a2ea02b443">
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span><span class="va">state</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"New York"</span>, <span class="st">"Texas"</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Create a new data frame called <code>murders_nw</code> with only the states from the Northeast and the West. How many states are in this category?</p>
 <p>7. Suppose you want to live in the Northeast or West <strong>and</strong> want the murder rate to be less than 1. We want to see the data for the states satisfying these options. Note that you can use logical operators with <code>filter</code>. Here is an example in which we filter to keep only small states in the Northeast region.</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-28_591a280ae8dd9d27ddcfe891585c50ba">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-28_947e40a786136463c1a51458f90df0e2">
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span><span class="va">population</span> <span class="op">&lt;</span> <span class="fl">5000000</span> <span class="op">&amp;</span> <span class="va">region</span> <span class="op">==</span> <span class="st">"Northeast"</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Make sure <code>murders</code> has been defined with <code>rate</code> and <code>rank</code> and still has all states. Create a table called <code>my_states</code> that contains rows for states satisfying both the conditions: they are in the Northeast or West and the murder rate is less than 1. Show only the state name, the rate, and the rank.</p>
 </section><section id="summarizing-data" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="summarizing-data">
 <span class="header-section-number">6.3</span> Summarizing data</h2>
 <p>As an example, we will use the <code>heights</code> dataset:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-29_06aee3305aee3878ec11dc63ccb01a6e">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-29_22d84c45e76caf5c1e1dc6c34367cc4d">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Attaching package: 'dplyr'</span></span>
-<span><span class="co">## The following objects are masked from 'package:data.table':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     between, first, last</span></span>
-<span><span class="co">## The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     filter, lag</span></span>
-<span><span class="co">## The following objects are masked from 'package:base':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     intersect, setdiff, setequal, union</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:data.table':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     between, first, last</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     filter, lag</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="va">heights_dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html">as.data.table</a></span><span class="op">(</span><span class="va">heights</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In <strong>data.table</strong>, we can call functions inside <code>.()</code> and they will be applied to rows. So the equivalent of:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-30_ca360b4c6fa5996b38d048cc79bac3d2">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-30_8e6280cfdfcad48e52aa070805b73011">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="va">heights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>average <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span>, standard_deviation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>in <strong>dplyr</strong> is the following in <strong>data.table</strong>:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-31_40918efe964f1c262e18a395663ac203">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-31_800443d751fd4855ef3adcbe31d66dd9">
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="va">heights_dt</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span>average <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span>, standard_deviation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that this permits a compact way of subsetting and then summarizing. Instead of:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-32_b38e9e40aa2b733ff76244eff78ced45">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-32_bc813a3aded12a288293f0eded862ecb">
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="va">heights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"Female"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>average <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span>, standard_deviation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>we can write:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-33_e5f2db518b1c00e32e3090fb772c8c2a">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-33_22c054d49c25f1ae37abf3d9a8913ce3">
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="va">heights_dt</span><span class="op">[</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"Female"</span>, <span class="fu">.</span><span class="op">(</span>average <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span>, standard_deviation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="multiple-summaries" class="level3" data-number="6.3.1"><h3 data-number="6.3.1" class="anchored" data-anchor-id="multiple-summaries">
 <span class="header-section-number">6.3.1</span> Multiple summaries</h3>
 <p>In chapter <a href="tidyverse.html"><span>Chapter&nbsp;4</span></a>, we defined the function:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-34_b54b83f32ed5d4ee1da4f36a3917963f">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-34_2da7bb39f1c98f56af3c447fd7299fec">
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">median_min_max</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="va">qs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>median <span class="op">=</span> <span class="va">qs</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, minimum <span class="op">=</span> <span class="va">qs</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, maximum <span class="op">=</span> <span class="va">qs</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Similar to <strong>dplyr</strong>, we can call this function within <code>.()</code> to obtain the three number summary:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-35_76f61ceaea413a8a66fbd3aa25d6fba4">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-35_37b3cbb3a52139db5830baa44062dfa7">
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights_dt</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="fu">median_min_max</span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="co">##    median minimum maximum</span></span>
-<span><span class="co">## 1:   68.5      50    82.7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;    median minimum maximum</span></span>
+<span><span class="co">#&gt; 1:   68.5      50    82.7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="group-then-summarize" class="level3" data-number="6.3.2"><h3 data-number="6.3.2" class="anchored" data-anchor-id="group-then-summarize">
 <span class="header-section-number">6.3.2</span> Group then summarize</h3>
 <p>The <code>group_by</code> followed by <code>summarize</code> in <strong>dplyr</strong> is performed in one line in <strong>data.table</strong>. We simply add the <code>by</code> argument to split the data into groups based on the values in categorical variable:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-36_d61f8bc3d72b611372cb4513a65d8aa5">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-36_04da2256a5e1cfce89d3f23c5e3cbd5a">
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights_dt</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span>average <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span>, standard_deviation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span>, by <span class="op">=</span> <span class="va">sex</span><span class="op">]</span></span>
-<span><span class="co">##       sex average standard_deviation</span></span>
-<span><span class="co">## 1:   Male    69.3               3.61</span></span>
-<span><span class="co">## 2: Female    64.9               3.76</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;       sex average standard_deviation</span></span>
+<span><span class="co">#&gt; 1:   Male    69.3               3.61</span></span>
+<span><span class="co">#&gt; 2: Female    64.9               3.76</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="sorting-data-frames" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="sorting-data-frames">
 <span class="header-section-number">6.4</span> Sorting data frames</h2>
 <p>We can order rows using the same approach we use for filter. Here are the states ordered by murder rate:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-37_fb858c8e56328e4a03c78e891de0ace2">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-37_e85edc2fafd0e77994389623669c3cb3">
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">##                   state abb        region population total   rate rank</span></span>
-<span><span class="co">## 1:              Wyoming  WY          West     563626     5  0.887    1</span></span>
-<span><span class="co">## 2: District of Columbia  DC         South     601723    99 16.453    2</span></span>
-<span><span class="co">## 3:              Vermont  VT     Northeast     625741     2  0.320    3</span></span>
-<span><span class="co">## 4:         North Dakota  ND North Central     672591     4  0.595    4</span></span>
-<span><span class="co">## 5:               Alaska  AK          West     710231    19  2.675    5</span></span>
-<span><span class="co">## 6:         South Dakota  SD North Central     814180     8  0.983    6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;                   state abb        region population total   rate rank</span></span>
+<span><span class="co">#&gt; 1:              Wyoming  WY          West     563626     5  0.887    1</span></span>
+<span><span class="co">#&gt; 2: District of Columbia  DC         South     601723    99 16.453    2</span></span>
+<span><span class="co">#&gt; 3:              Vermont  VT     Northeast     625741     2  0.320    3</span></span>
+<span><span class="co">#&gt; 4:         North Dakota  ND North Central     672591     4  0.595    4</span></span>
+<span><span class="co">#&gt; 5:               Alaska  AK          West     710231    19  2.675    5</span></span>
+<span><span class="co">#&gt; 6:         South Dakota  SD North Central     814180     8  0.983    6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>N To sort the table in descending order, we can order by the negative of <code>population</code> or use the <code>decreasing</code> argument:</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-38_a5ecd5fc62c1ac93503bca33ce079dc3">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-38_b8d7eb674903630cdefc0b6fe035f079">
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">population</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">]</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="nested-sorting" class="level3" data-number="6.4.1"><h3 data-number="6.4.1" class="anchored" data-anchor-id="nested-sorting">
 <span class="header-section-number">6.4.1</span> Nested sorting</h3>
 <p>Similarly, we can perform nested ordering by including more than one variable in order</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-39_ddee2bee7a35a49d29ce4e992f748319">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-39_3e06c170b47627d6c1f99909f39d1a2a">
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">region</span>, <span class="va">rate</span><span class="op">)</span><span class="op">]</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>``</p>
 </section></section><section id="exercises-1" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="exercises-1">
 <span class="header-section-number">6.5</span> Exercises</h2>
 <p>For these exercises, we will be using the <strong>NHANES</strong> data.</p>
-<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-40_57556231f9f6c75497808cc3267a0bf8">
+<div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-40_a21c496cb68b1544f498fcbcd269958c">
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">NHANES</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>1. We will provide some basic facts about blood pressure. First let’s select a group to set the standard. We will use 20-to-29-year-old females. <code>AgeDecade</code> is a categorical variable with these ages. Note that the category is coded like ” 20-29”, with a space in front! Use the <strong>data.table</strong> package to compute the average and standard deviation of systolic blood pressure as saved in the <code>BPSysAve</code> variable. Save it to a variable called <code>ref</code>.</p>

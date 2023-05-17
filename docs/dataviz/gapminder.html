@@ -400,20 +400,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Has income inequality across countries worsened during the last 40 years?</li>
 </ol>
 <p>To answer these questions, we will be using the <code>gapminder</code> dataset provided in <strong>dslabs</strong>. This dataset was created using a number of spreadsheets available from the Gapminder Foundation. You can access the table like this:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/load-libraries_1d9f4f16f745863b306d6092c9c590d8">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/load-libraries_9d5494adc4a52bafa2346bd984d48f6e">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="va">gapminder</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">## # A tibble: 10,545 × 9</span></span>
-<span><span class="co">##   country     year infant_mortality life_expectancy fertility population</span></span>
-<span><span class="co">##   &lt;fct&gt;      &lt;int&gt;            &lt;dbl&gt;           &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span></span>
-<span><span class="co">## 1 Albania     1960            115.             62.9      6.19    1636054</span></span>
-<span><span class="co">## 2 Algeria     1960            148.             47.5      7.65   11124892</span></span>
-<span><span class="co">## 3 Angola      1960            208              36.0      7.32    5270844</span></span>
-<span><span class="co">## 4 Antigua a…  1960             NA              63.0      4.43      54681</span></span>
-<span><span class="co">## 5 Argentina   1960             59.9            65.4      3.11   20619075</span></span>
-<span><span class="co">## # ℹ 10,540 more rows</span></span>
-<span><span class="co">## # ℹ 3 more variables: gdp &lt;dbl&gt;, continent &lt;fct&gt;, region &lt;fct&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # A tibble: 10,545 × 9</span></span>
+<span><span class="co">#&gt;   country     year infant_mortality life_expectancy fertility population</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;      &lt;int&gt;            &lt;dbl&gt;           &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Albania     1960            115.             62.9      6.19    1636054</span></span>
+<span><span class="co">#&gt; 2 Algeria     1960            148.             47.5      7.65   11124892</span></span>
+<span><span class="co">#&gt; 3 Angola      1960            208              36.0      7.32    5270844</span></span>
+<span><span class="co">#&gt; 4 Antigua a…  1960             NA              63.0      4.43      54681</span></span>
+<span><span class="co">#&gt; 5 Argentina   1960             59.9            65.4      3.11   20619075</span></span>
+<span><span class="co">#&gt; # ℹ 10,540 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 3 more variables: gdp &lt;dbl&gt;, continent &lt;fct&gt;, region &lt;fct&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="hans-roslings-quiz" class="level3" data-number="9.1.1"><h3 data-number="9.1.1" class="anchored" data-anchor-id="hans-roslings-quiz">
 <span class="header-section-number">9.1.1</span> Hans Rosling’s quiz</h3>
@@ -427,22 +427,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>When answering these questions without data, the non-European countries are typically picked as having higher child mortality rates: Sri Lanka over Turkey, South Korea over Poland, and Malaysia over Russia. It is also common to assume that countries considered to be part of the developing world: Pakistan, Vietnam, Thailand, and South Africa, have similarly high mortality rates.</p>
 <p>To answer these questions <strong>with data</strong>, we can use <strong>dplyr</strong>. For example, for the first comparison we see that:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/unnamed-chunk-1_0f5d6820f057ffc36924f6982c4b7a55">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/unnamed-chunk-1_6a16cefe9db6999300c96179105bfc8d">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2015</span> <span class="op">&amp;</span> <span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sri Lanka"</span>,<span class="st">"Turkey"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">country</span>, <span class="va">infant_mortality</span><span class="op">)</span></span>
-<span><span class="co">##     country infant_mortality</span></span>
-<span><span class="co">## 1 Sri Lanka              8.4</span></span>
-<span><span class="co">## 2    Turkey             11.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;     country infant_mortality</span></span>
+<span><span class="co">#&gt; 1 Sri Lanka              8.4</span></span>
+<span><span class="co">#&gt; 2    Turkey             11.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Turkey has the higher infant mortality rate.</p>
 <p>We can use this code on all comparisons and find the following:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/unnamed-chunk-2_6c1f285c71687efb24df5d66d7bd5fb7">
-<pre><code>## New names:
-## • `country` -&gt; `country...1`
-## • `infant_mortality` -&gt; `infant_mortality...2`
-## • `country` -&gt; `country...3`
-## • `infant_mortality` -&gt; `infant_mortality...4`</code></pre>
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/unnamed-chunk-2_07c3ebd2e5c70a4a3683ac4b439ce571">
+<pre><code>#&gt; New names:
+#&gt; • `country` -&gt; `country...1`
+#&gt; • `infant_mortality` -&gt; `infant_mortality...2`
+#&gt; • `country` -&gt; `country...3`
+#&gt; • `infant_mortality` -&gt; `infant_mortality...4`</code></pre>
 <div class="cell-output-display">
 
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -493,7 +493,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The reason for this stems from the preconceived notion that the world is divided into two groups: the western world (Western Europe and North America), characterized by long life spans and small families, versus the developing world (Africa, Asia, and Latin America) characterized by short life spans and large families. But do the data support this dichotomous view?</p>
 <p>The necessary data to answer this question is also available in our <code>gapminder</code> table. Using our newly learned data visualization skills, we will be able to tackle this challenge.</p>
 <p>In order to analyze this world view, our first plot is a scatterplot of life expectancy versus fertility rates (average number of children per woman). We start by looking at data from about 50 years ago, when perhaps this view was first cemented in our minds.</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/fertility-versus-life-expectancy-1962_ef0e9f3906c8ac72a8424cf1d5941c34">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/fertility-versus-life-expectancy-1962_c2de4b924677e39fc2ed89892b825a1b">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">1962</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">fertility</span>, <span class="va">life_expectancy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -510,7 +510,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Life expectancy lower than 65 years and more than 5 children per family.</li>
 </ol>
 <p>To confirm that indeed these countries are from the regions we expect, we can use color to represent continent.</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/fertility-versus-life-expectancy-1962-with-color_5ec72fd4d38490902993b45964917d4f">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/fertility-versus-life-expectancy-1962-with-color_252eadab342a1cb460fe61dc4c6a2cc9">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">1962</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">fertility</span>, <span class="va">life_expectancy</span>, color <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -526,7 +526,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">9.3</span> Faceting</h2>
 <p>We could easily plot the 2012 data in the same way we did for 1962. To make comparisons, however, side by side plots are preferable. In <strong>ggplot2</strong>, we can achieve this by <em>faceting</em> variables: we stratify the data by some variable and make the same plot for each strata.</p>
 <p>To achieve faceting, we add a layer with the function <code>facet_grid</code>, which automatically separates the plots. This function lets you facet by up to two variables using columns to represent one variable and rows to represent the other. The function expects the row and column variables to be separated by a <code>~</code>. Here is an example of a scatterplot with <code>facet_grid</code> added as the last layer:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/fertility-versus-life-expectancy-facet_57bc48f56aff135c8fdae8e6da32e542">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/fertility-versus-life-expectancy-facet_ea556e533f9c2a2f71d9170fa72b01e3">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span><span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1962</span>, <span class="fl">2012</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">fertility</span>, <span class="va">life_expectancy</span>, col <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -539,7 +539,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>We see a plot for each continent/year pair. However, this is just an example and more than what we want, which is simply to compare 1962 and 2012. In this case, there is just one variable and we use <code>.</code> to let facet know that we are not using one of the variables:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/fertility-versus-life-expectancy-two-years_a48c545dfc3f1812a1f9e6497cb905ed">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/fertility-versus-life-expectancy-two-years_ef448616a0e3944e87b501f7b23d995b">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span><span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1962</span>, <span class="fl">2012</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">fertility</span>, <span class="va">life_expectancy</span>, col <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -556,7 +556,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">9.3.1</span> <code>facet_wrap</code>
 </h3>
 <p>To explore how this transformation happened through the years, we can make the plot for several years. For example, we can add 1970, 1980, 1990, and 2000. If we do this, we will not want all the plots on the same row, the default behavior of <code>facet_grid</code>, since they will become too thin to show the data. Instead, we will want to use multiple rows and columns. The function <code>facet_wrap</code> permits us to do this by automatically wrapping the series of plots so that each display has viewable dimensions:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/fertility-versus-life-expectancy-five-years_498233ebe4d74dbb4f3290ec0ff364f0">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/fertility-versus-life-expectancy-five-years_69479675c37e4da7ad56bc674e7743ff">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">years</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1962</span>, <span class="fl">1980</span>, <span class="fl">1990</span>, <span class="fl">2000</span>, <span class="fl">2012</span><span class="op">)</span></span>
 <span><span class="va">continents</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Europe"</span>, <span class="st">"Asia"</span><span class="op">)</span></span>
 <span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
@@ -575,7 +575,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="fixed-scales-for-better-comparisons" class="level3" data-number="9.3.2"><h3 data-number="9.3.2" class="anchored" data-anchor-id="fixed-scales-for-better-comparisons">
 <span class="header-section-number">9.3.2</span> Fixed scales for better comparisons</h3>
 <p>The default choice of the range of the axes is important. When not using <code>facet</code>, this range is determined by the data shown in the plot. When using <code>facet</code>, this range is determined by the data shown in all plots and therefore kept fixed across plots. This makes comparisons across plots much easier. For example, in the above plot, we can see that life expectancy has increased and the fertility has decreased across most countries. We see this because the cloud of points moves. This is not the case if we adjust the scales:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/facet-without-fixed-scales_f5d264a355ffbc0e7f43cf99019e7521">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/facet-without-fixed-scales_87e726d3ce0f933aead133008d556faf">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span><span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1962</span>, <span class="fl">2012</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">fertility</span>, <span class="va">life_expectancy</span>, col <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -592,7 +592,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">9.4</span> Time series plots</h2>
 <p>The visualizations above effectively illustrate that data no longer supports the western versus developing world view. Once we see these plots, new questions emerge. For example, which countries are improving more and which ones less? Was the improvement constant during the last 50 years or was it more accelerated during certain periods? For a closer look that may help answer these questions, we introduce <em>time series plots</em>.</p>
 <p>Time series plots have time in the x-axis and an outcome or measurement of interest on the y-axis. For example, here is a trend plot of United States fertility rates:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/fertility-time-series-plot-points_73dd12a8e54372e1c1b792b52fa2246a">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/fertility-time-series-plot-points_1e9ac1f608114a6ce4e74ed4feab3e71">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="st">"United States"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">fertility</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -606,7 +606,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>We see that the trend is not linear at all. Instead there is sharp drop during the 1960s and 1970s to below 2. Then the trend comes back to 2 and stabilizes during the 1990s.</p>
 <p>When the points are regularly and densely spaced, as they are here, we create curves by joining the points with lines, to convey that these data are from a single series, here a country. To do this, we use the <code>geom_line</code> function instead of <code>geom_point</code>.</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/fertility-time-series-plot-curve_d7fe423755d711456fdaf3ccc8e56536">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/fertility-time-series-plot-curve_11d43c6f698e5c6d6110f4a36d005fb3">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="st">"United States"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">fertility</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -619,7 +619,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>This is particularly helpful when we look at two countries. If we subset the data to include two countries, one from Europe and one from Asia, then adapt the code above:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/wrong-time-series-plot_38f59bbfdf37b9c8902b4cca578e4be8">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/wrong-time-series-plot_090f088eb851bf74d67594d4674e4ce3">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"South Korea"</span>,<span class="st">"Germany"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">gapminder</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">countries</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -633,7 +633,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Unfortunately, this is <strong>not</strong> the plot that we want. Rather than a line for each country, the points for both countries are joined. This is actually expected since we have not told <code>ggplot</code> anything about wanting two separate lines. To let <code>ggplot</code> know that there are two curves that need to be made separately, we assign each point to a <code>group</code>, one for each country:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/time-series-two-curves_77b0a2d3c1cf34209a25117cf624534b">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/time-series-two-curves_4b754d252912a584ed8ba4ff47dd31c8">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"South Korea"</span>,<span class="st">"Germany"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">gapminder</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">countries</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">fertility</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -647,7 +647,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>But which line goes with which country? We can assign colors to make this distinction. A useful side-effect of using the <code>color</code> argument to assign different colors to the different countries is that the data is automatically grouped:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/fertility-time-series-plot_a6a1c2444c5826517b34f91606be57e4">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/fertility-time-series-plot_83c08a0a5c9c9d622de58f3e6ccb5d32">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"South Korea"</span>,<span class="st">"Germany"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">gapminder</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">countries</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">fertility</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -665,7 +665,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">9.4.1</span> Labels instead of legends</h3>
 <p>For trend plots we recommend labeling the lines rather than using legends since the viewer can quickly see which line is which country. This suggestion actually applies to most plots: labeling is usually preferred over legends.</p>
 <p>We demonstrate how we can do this using the <code>geomtextpath</code> package. We define a data table with the label locations and then use a second mapping just for these labels:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/labels-better-than-legends_6f869b9c546ff331453b740e573c9429">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/labels-better-than-legends_078f9e5e4587b7d4f1cb1fb289016eb9">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allancameron.github.io/geomtextpath/">geomtextpath</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
@@ -685,14 +685,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">9.5</span> Data transformations</h2>
 <p>We now shift our attention to the second question related to the commonly held notion that wealth distribution across the world has become worse during the last decades. When general audiences are asked if poor countries have become poorer and rich countries become richer, the majority answers yes. By using stratification, histograms, smooth densities, and boxplots, we will be able to understand if this is in fact the case. First we learn how transformations can sometimes help provide more informative summaries and plots.</p>
 <p>The <code>gapminder</code> data table includes a column with the countries’ gross domestic product (GDP). GDP measures the market value of goods and services produced by a country in a year. The GDP per person is often used as a rough summary of a country’s wealth. Here we divide this quantity by 365 to obtain the more interpretable measure <em>dollars per day</em>. Using current US dollars as a unit, a person surviving on an income of less than $2 a day is defined to be living in <em>absolute poverty</em>. We add this variable to the data table:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/unnamed-chunk-3_8cf519d2fc4e075ab723a8f3be01df26">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/unnamed-chunk-3_4eef2b63946c035d55bbe70fd563b2f7">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>dollars_per_day <span class="op">=</span> <span class="va">gdp</span><span class="op">/</span><span class="va">population</span><span class="op">/</span><span class="fl">365</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The GDP values are adjusted for inflation and represent current US dollars, so these values are meant to be comparable across the years. Of course, these are country averages and within each country there is much variability. All the graphs and insights described below relate to country averages and not to individuals.</p>
 <section id="log-transformation" class="level3" data-number="9.5.1"><h3 data-number="9.5.1" class="anchored" data-anchor-id="log-transformation">
 <span class="header-section-number">9.5.1</span> Log transformation</h3>
 <p>Here is a histogram of per day incomes from 1970:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/dollars-per-day-distribution_214e812328b6413c96a8044d47333358">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/dollars-per-day-distribution_3e91875be246e49b278aeaa45f27f6c0">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">past_year</span> <span class="op">&lt;-</span> <span class="fl">1970</span></span>
 <span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">past_year</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">gdp</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -709,7 +709,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this plot, we see that for the majority of countries, averages are below $10 a day. However, the majority of the x-axis is dedicated to the 35 countries with averages above $10. So the plot is not very informative about countries with values below $10 a day.</p>
 <p>It might be more informative to quickly be able to see how many countries have average daily incomes of about $1 (extremely poor), $2 (very poor), $4 (poor), $8 (middle), $16 (well off), $32 (rich), $64 (very rich) per day. These changes are multiplicative and log transformations convert multiplicative changes into additive ones: when using base 2, a doubling of a value turns into an increase by 1.</p>
 <p>Here is the distribution if we apply a log base 2 transform:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/dollars-per-day-distribution-log_ef1207054d88167b46d75bfa0a1cf2e5">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/dollars-per-day-distribution-log_9681aa99528b316f2a7f4b8c9f442c88">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">past_year</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">gdp</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log2</a></span><span class="op">(</span><span class="va">dollars_per_day</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -729,14 +729,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In the dollars per day example, we used base 2 instead of base 10 because the resulting range is easier to interpret. The range of the values being plotted is 0.3269426, 48.8852142.</p>
 <p>In base 10, this turns into a range that includes very few integers: just 0 and 1. With base two, our range includes -2, -1, 0, 1, 2, 3, 4, and 5. It is easier to compute <span class="math inline">\(2^x\)</span> and <span class="math inline">\(10^x\)</span> when <span class="math inline">\(x\)</span> is an integer and between -10 and 10, so we prefer to have smaller integers in the scale. Another consequence of a limited range is that choosing the binwidth is more challenging. With log base 2, we know that a binwidth of 1 will translate to a bin with range <span class="math inline">\(x\)</span> to <span class="math inline">\(2x\)</span>.</p>
 <p>For an example in which base 10 makes more sense, consider population sizes. A log base 10 is preferable since the range for these is:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/unnamed-chunk-4_7fe2670420cc91771e3df6fbdc048430">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/unnamed-chunk-4_03da1d1d80038d45ee929b1c81594bff">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="va">past_year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span>, max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">##     min      max</span></span>
-<span><span class="co">## 1 46075 8.09e+08</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;     min      max</span></span>
+<span><span class="co">#&gt; 1 46075 8.09e+08</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here is the histogram of the transformed values:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/population-histogram-log10_e75861a6f4f135288e8ec04852051f20">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/population-histogram-log10_a7f16f16b37433033d2827a40d7c15cd">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">past_year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -757,7 +757,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>----10---x---100------1000---</code></p>
 <p>then, to determine <code>x</code>, we need to compute <span class="math inline">\(10^{1.5}\)</span>, which is not easy to do in our heads. The advantage of using logged scales is that we see the original values on the axes. However, the advantage of showing logged scales is that the original values are displayed in the plot, which are easier to interpret. For example, we would see “32 dollars a day” instead of “5 log base 2 dollars a day”.</p>
 <p>As we learned earlier, if we want to scale the axis with logs, we can use the <code>scale_x_continuous</code> function. Instead of logging the values first, we apply this layer:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/dollars-per-day-log-scale_6e4d6406adc4b3d8f2e1726e8ecd5bc0">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/dollars-per-day-log-scale_06bfc5f7e77aee43c3aa205a97d9e553">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">past_year</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">gdp</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">dollars_per_day</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -780,7 +780,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">9.7</span> Comparing multiple distributions with boxplots and ridge plots</h2>
 <p>A histogram showed us that the 1970 income distribution values show a dichotomy. However, the histogram does not show us if the two groups of countries are <em>west</em> versus the <em>developing</em> world.</p>
 <p>Let’s start by quickly examining the data by region. We reorder the regions by the median value and use a log scale.</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/dollars-per-day-points_2b68644df7d796d39e5a0959b398cce9">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/dollars-per-day-points_71990d4e037121c34275c6c4a4658247">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">past_year</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">gdp</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">region</span>, <span class="va">dollars_per_day</span>, FUN <span class="op">=</span> <span class="va">median</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -795,7 +795,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>We can already see that there is indeed a “west versus the rest” dichotomy: we see two clear groups, with the rich group composed of North America, Northern and Western Europe, New Zealand and Australia. We define groups based on this observation:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/unnamed-chunk-5_68aa3eaef42b9007b0bf703a320a469f">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/unnamed-chunk-5_06f0e913b4e25943dce21bd424a7e47e">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>group <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
 <span>    <span class="va">region</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Western Europe"</span>, <span class="st">"Northern Europe"</span>,<span class="st">"Southern Europe"</span>, </span>
@@ -809,7 +809,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span>    <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"Others"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We turn this <code>group</code> variable into a factor to control the order of the levels:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/unnamed-chunk-6_8fea772871517e2d13aaa98da9c6d1de">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/unnamed-chunk-6_67e753fe4b28f9eb11f50d9d85d99820">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">group</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Others"</span>, <span class="st">"Latin America"</span>, </span>
 <span>                                          <span class="st">"East Asia"</span>, <span class="st">"Sub-Saharan"</span>,</span>
@@ -819,7 +819,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="boxplots" class="level3" data-number="9.7.1"><h3 data-number="9.7.1" class="anchored" data-anchor-id="boxplots">
 <span class="header-section-number">9.7.1</span> Boxplots</h3>
 <p>The exploratory data analysis above has revealed two characteristics about average income distribution in 1970. Using a histogram, we found a bimodal distribution with the modes relating to poor and rich countries. We now want to compare the distribution across these five groups to confirm the “west versus the rest” dichotomy. The number of points in each category is large enough that a summary plot may be useful. We could generate five histograms or five density plots, but it may be more practical to have all the visual summaries in one plot. We therefore start by stacking boxplots next to each other. Note that we add the layer <code>theme(axis.text.x = element_text(angle = 90, hjust = 1))</code> to turn the group labels vertical, since they do not fit if we show them horizontally, and remove the axis label to make space.</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/dollars-per-day-boxplot_e9331945c99afbb9b998e26ca785d7e4">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/dollars-per-day-boxplot_759c8504edebb41a4546335e05f3f4fa">
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">past_year</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">gdp</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">group</span>, <span class="va">dollars_per_day</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -836,7 +836,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Boxplots have the limitation that by summarizing the data into five numbers, we might miss important characteristics of the data. One way to avoid this is by showing the data.</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/dollars-per-day-boxplot-with-data_4a128e048600f70d9ea0a980f981492f">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/dollars-per-day-boxplot-with-data_0b526a95729945676b8893f133404a00">
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -848,7 +848,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="ridge-plots" class="level3" data-number="9.7.2"><h3 data-number="9.7.2" class="anchored" data-anchor-id="ridge-plots">
 <span class="header-section-number">9.7.2</span> Ridge plots</h3>
 <p>Showing each individual point does not always reveal important characteristics of the distribution. Although not the case here, when the number of data points is so large that there is over-plotting, showing the data can be counterproductive. Boxplots help with this by providing a five-number summary, but this has limitations too. For example, boxplots will not permit us to discover bimodal distributions. To see this, note that the two plots below are summarizing the same dataset:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/boxplot-dont-show-bimodal_db20dabb8d29f7d3e2c557555d60f745">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/boxplot-dont-show-bimodal_53aad32054fcb0b76b16edfcbae13b92">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="gapminder_files/figure-html/boxplot-dont-show-bimodal-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -857,7 +857,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>In cases in which we are concerned that the boxplot summary is too simplistic, we can show stacked smooth densities or histograms. We refer to these as <em>ridge plots</em>. Because we are used to visualizing densities with values in the x-axis, we stack them vertically. Also, because more space is needed in this approach, it is convenient to overlay them. The package <strong>ggridges</strong> provides a convenient function for doing this. Here is the income data shown above with boxplots but with a <em>ridge plot</em>.</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/ridge-plot_ffdd590990415d7b77894baadfb762cf">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/ridge-plot_da6395e539d36b9256fd21facaa84f2e">
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/ggridges/">ggridges</a></span><span class="op">)</span></span>
 <span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">past_year</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">dollars_per_day</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -873,7 +873,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Note that we have to invert the <code>x</code> and <code>y</code> used for the boxplot. A useful <code>geom_density_ridges</code> parameter is <code>scale</code>, which lets you determine the amount of overlap, with <code>scale = 1</code> meaning no overlap and larger values resulting in more overlap.</p>
 <p>If the number of data points is small enough, we can add them to the ridge plot using the following code:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/ridge-plot-with-points_f8ae501aec96a0bc958cff5ea259785a">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/ridge-plot-with-points_008d556840ca93c9ecac17d5cf4ea60c">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://wilkelab.org/ggridges/reference/geom_density_ridges.html">geom_density_ridges</a></span><span class="op">(</span>jittered_points <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -883,7 +883,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>By default, the height of the points is jittered and should not be interpreted in any way. To show data points, but without using jitter we can use the following code to add what is referred to as a <em>rug representation</em> of the data.</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/ridge-plot-with-rug_697ea956c8f1585c7a59d1cd2ea10ec7">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/ridge-plot-with-rug_6fdab964596adf8e03db5b93dcc98136">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://wilkelab.org/ggridges/reference/geom_density_ridges.html">geom_density_ridges</a></span><span class="op">(</span>jittered_points <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>                        position <span class="op">=</span> <span class="fu"><a href="https://wilkelab.org/ggridges/reference/position_points_jitter.html">position_points_jitter</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
 <span>                        point_shape <span class="op">=</span> <span class="st">'|'</span>, point_size <span class="op">=</span> <span class="fl">3</span>, </span>
@@ -898,7 +898,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="example-1970-versus-2010-income-distributions" class="level3" data-number="9.7.3"><h3 data-number="9.7.3" class="anchored" data-anchor-id="example-1970-versus-2010-income-distributions">
 <span class="header-section-number">9.7.3</span> Example: 1970 versus 2010 income distributions</h3>
 <p>Data exploration clearly shows that in 1970 there was a “west versus the rest” dichotomy. But does this dichotomy persist? Let’s use <code>facet_grid</code> see how the distributions have changed. To start, we will focus on two groups: the west and the rest. We make four histograms.</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-hist-west-v-developing-two-years_cf9cf938249f3dd8cad9844db586531f">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-hist-west-v-developing-two-years_5289647dd48d8843928e3e28bb0eab40">
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">past_year</span> <span class="op">&lt;-</span> <span class="fl">1970</span></span>
 <span><span class="va">present_year</span> <span class="op">&lt;-</span> <span class="fl">2010</span></span>
 <span><span class="va">years</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">past_year</span>, <span class="va">present_year</span><span class="op">)</span></span>
@@ -918,7 +918,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Before we interpret the findings of this plot, we notice that there are more countries represented in the 2010 histograms than in 1970: the total counts are larger. One reason for this is that several countries were founded after 1970. For example, the Soviet Union divided into several countries during the 1990s. Another reason is that data was available for more countries in 2010.</p>
 <p>We remake the plots using only countries with data available for both years. In the data wrangling part of this book, we will learn <strong>tidyverse</strong> tools that permit us to write efficient code for this, but here we can use simple code using the <code>intersect</code> function:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/unnamed-chunk-7_eab078ec05eac5bc95acd33b9733e8e0">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/unnamed-chunk-7_0666d468323cab2221041c8ab35dac30">
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">country_list_1</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">past_year</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">dollars_per_day</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">country</span><span class="op">)</span></span>
@@ -931,7 +931,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>These 108 account for 86% of the world population, so this subset should be representative.</p>
 <p>Let’s remake the plot, but only for this subset by simply adding <code>country %in% country_list</code> to the <code>filter</code> function:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-histogram-west-v-devel_2ad939d27df69b70fe735f9627698000">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-histogram-west-v-devel_38899c4d9339ea852520531daf8059ee">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="gapminder_files/figure-html/income-histogram-west-v-devel-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -941,7 +941,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>We now see that the rich countries have become a bit richer, but percentage-wise, the poor countries appear to have improved more. In particular, we see that the proportion of <em>developing</em> countries earning more than $16 a day increased substantially.</p>
 <p>To see which specific regions improved the most, we can remake the boxplots we made above, but now adding the year 2010 and then using facet to compare the two years.</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-histogram-by-region_58f6a4ce2404f83b38d5f8c5708b5ed4">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-histogram-by-region_8007db9f257331d9061ef56c4aa56005">
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">years</span> <span class="op">&amp;</span> <span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">country_list</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">group</span>, <span class="va">dollars_per_day</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -959,7 +959,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Here, we pause to introduce another powerful <strong>ggplot2</strong> feature. Because we want to compare each region before and after, it would be convenient to have the 1970 boxplot next to the 2010 boxplot for each region. In general, comparisons are easier when data are plotted next to each other.</p>
 <p>So instead of faceting, we keep the data from each year together and ask to color (or fill) them depending on the year. Note that groups are automatically separated by year and each pair of boxplots drawn next to each other. Because year is a number, we turn it into a factor since <strong>ggplot2</strong> automatically assigns a color to each category of a factor. Note that we have to convert the year columns from numeric to factor.</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-histogram-west-v-devel-by-year_e811995ec311eb711fdf343bae3dd4c2">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-histogram-west-v-devel-by-year_3924c5d52dd7a642e7d81cf137c89c59">
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">years</span> <span class="op">&amp;</span> <span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">country_list</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -976,7 +976,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Finally, we point out that if what we are most interested in is comparing before and after values, it might make more sense to plot the percentage increases. We are still not ready to learn to code this, but here is what the plot would look like:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-west-v-devel-before-after-ratio_5707da71f0599012f416790916eae6c1">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-west-v-devel-before-after-ratio_22d5afd4f3c33a9c2ffba788fd6411db">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="gapminder_files/figure-html/income-west-v-devel-before-after-ratio-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -986,7 +986,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The previous data exploration suggested that the income gap between rich and poor countries has narrowed considerably during the last 40 years. We used a series of histograms and boxplots to see this. We suggest a succinct way to convey this message with just one plot.</p>
 <p>Let’s start by noting that density plots for income distribution in 1970 and 2010 deliver the message that the gap is closing:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-smooth-density-by-year_420ed16cbf06ae584b763bf4e6f12613">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-smooth-density-by-year_84deb11a5abe8b1e94899970f106d818">
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">years</span> <span class="op">&amp;</span> <span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">country_list</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">dollars_per_day</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1003,7 +1003,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In the 1970 plot, we see two clear modes: poor and rich countries. In 2010, it appears that some of the poor countries have shifted towards the right, closing the gap.</p>
 <p>The next message we need to convey is that the reason for this change in distribution is that several poor countries became richer, rather than some rich countries becoming poorer. To do this, we can assign a color to the groups we identified during data exploration.</p>
 <p>However, we first need to learn how to make these smooth densities in a way that preserves information on the number of countries in each group. To understand why we need this, note the discrepancy in the size of each group:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/unnamed-chunk-8_155edfc2e877a25cc7232ea043b01fa7">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/unnamed-chunk-8_94340779a2e300bae4b6422a132991a5">
 <div class="cell-output-display">
 
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -1019,7 +1019,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>But when we overlay two densities, the default is to have the area represented by each distribution add up to 1, regardless of the size of each group:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-smooth-density-by-year-west-v-developing_02f0532df28ece949cba030fe7fff9db">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-smooth-density-by-year-west-v-developing_7e0b6cc5a98c0ffec4c2a07b6726c4f1">
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">years</span> <span class="op">&amp;</span> <span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">country_list</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">group</span> <span class="op">==</span> <span class="st">"West"</span>, <span class="st">"West"</span>, <span class="st">"Developing"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1039,11 +1039,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">9.7.4</span> Accessing computed variables</h3>
 <p>To have the areas of these densities be proportional to the size of the groups, we can simply multiply the y-axis values by the size of the group. From the <code>geom_density</code> help file, we see that the functions compute a variable called <code>count</code> that does exactly this. We want this variable to be on the y-axis rather than the density.</p>
 <p>In <strong>ggplot2</strong>, we access these variables by surrounding the name with two dots. We will therefore use the following mapping:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/unnamed-chunk-9_57c8918e4e201539cb60439d0834b275">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/unnamed-chunk-9_7659706a9da858f34a071e5a66341320">
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dollars_per_day</span>, y <span class="op">=</span> <span class="va">..count..</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can now create the desired plot by simply changing the mapping in the previous code chunk. We will also expand the limits of the x-axis.</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-smooth-density-counts_6960fdbe7d2fb1b37b22f4bb845409bb">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-smooth-density-counts_5f1733263741bb5ea6edd565bf7ccd56">
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">years</span> <span class="op">&amp;</span> <span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">country_list</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">group</span> <span class="op">==</span> <span class="st">"West"</span>, <span class="st">"West"</span>, <span class="st">"Developing"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1052,8 +1052,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span></span>
 <span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span><span class="va">year</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span>
-<span><span class="co">## Warning: The dot-dot notation (`..count..`) was deprecated in ggplot2 3.4.0.</span></span>
-<span><span class="co">## ℹ Please use `after_stat(count)` instead.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; Warning: The dot-dot notation (`..count..`) was deprecated in ggplot2 3.4.0.</span></span>
+<span><span class="co">#&gt; ℹ Please use `after_stat(count)` instead.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="gapminder_files/figure-html/income-smooth-density-counts-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -1062,7 +1062,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>If we want the densities to be smoother, we use the <code>bw</code> argument so that the same bandwidth is used in each density. We selected 0.75 after trying out several values.</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-smooth-density-counts-by-year_4334e4d43f46346fc48f301ae4dfd423">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-smooth-density-counts-by-year_a3bc4b4e50f04dc7bffd3fb366b4771e">
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.2</span>, bw <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span><span class="va">year</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1073,7 +1073,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>This plot now shows what is happening very clearly. The developing world distribution is changing. A third mode appears consisting of the countries that most narrowed the gap.</p>
 <p>To visualize if any of the groups defined above are driving this we can quickly make a ridge plot:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/ridge-plot-income-five-regions_054840d7566ae6b432c1b4be6b618564">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/ridge-plot-income-five-regions_b58093f290d3b81267a9a4cb7e47e755">
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">years</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">dollars_per_day</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">dollars_per_day</span>, <span class="va">group</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -1088,7 +1088,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Another way to achieve this is by stacking the densities on top of each other:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-smooth-density-counts-by-region-and-year_d3082b1e431b9405182f51a29dd64fcf">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-smooth-density-counts-by-region-and-year_0696913d8740d5ded268051eb503ad50">
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">years</span> <span class="op">&amp;</span> <span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">country_list</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1110,7 +1110,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="weighted-densities" class="level3" data-number="9.7.5"><h3 data-number="9.7.5" class="anchored" data-anchor-id="weighted-densities">
 <span class="header-section-number">9.7.5</span> Weighted densities</h3>
 <p>As a final point, we note that these distributions weigh every country the same. So if most of the population is improving, but living in a very large country, such as China, we might not appreciate this. We can actually weight the smooth densities using the <code>weight</code> mapping argument. The plot then looks like this:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-smooth-density-counts-by-region-year-weighted_f93bfb67f533456cd3eff1d2931888b4">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/income-smooth-density-counts-by-region-year-weighted_ec48e8d8242cf8655be72528e7c60a85">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="gapminder_files/figure-html/income-smooth-density-counts-by-region-year-weighted-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -1123,7 +1123,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">9.8</span> The ecological fallacy and importance of showing the data</h2>
 <p>Throughout this section, we have been comparing regions of the world. We have seen that, on average, some regions do better than others. In this section, we focus on describing the importance of variability within the groups when examining the relationship between a country’s infant mortality rates and average income.</p>
 <p>We define a few more regions and compare the averages across regions:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/ecological-fallacy-averages_d2aa5bcfbb05d6047e612b7999cc8dad">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/ecological-fallacy-averages_4705d0d390ceb6ccee40ce348241c4e5">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="gapminder_files/figure-html/ecological-fallacy-averages-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -1143,7 +1143,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">9.8.2</span> Show the data</h3>
 <p>Now, back to our plot. Based on the plot above, do we conclude that a country with a low income is destined to have low survival rate? Do we conclude that survival rates in Sub-Saharan Africa are all lower than in Southern Asia, which in turn are lower than in the Pacific Islands, and so on?</p>
 <p>Jumping to this conclusion based on a plot showing averages is referred to as the <em>ecological fallacy</em>. The almost perfect relationship between survival rates and income is only observed for the averages at the region level. Once we show all the data, we see a somewhat more complicated story:</p>
-<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/ecological-fallacy-all-data_d9c14cdd2e718aaa93bd8f6d4db02ca3">
+<div class="cell" data-layout-align="center" data-hash="gapminder_cache/html/ecological-fallacy-all-data_2eefbaaf4fd67e457427a23e915d32fe">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="gapminder_files/figure-html/ecological-fallacy-all-data-1.png" class="img-fluid figure-img" style="width:70.0%"></p>

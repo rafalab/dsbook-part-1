@@ -368,57 +368,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header><div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-1_8fbf5e627fcd654e96c77cb780826fe5">
+</header><div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-1_6d206e0d162b730124c98d6e8351650c">
 
 </div>
 <p>The information we need for a given analysis may not be just in one table. For example, when forecasting elections we used the function <code>left_join</code> to combine the information from two tables. Here we use a simpler example to illustrate the general challenge of combining tables.</p>
 <p>Suppose we want to explore the relationship between population size for US states and electoral votes. We have the population size in this table:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-2_9ef5eb737ca638fcd3b9f93d501c9c59">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-2_d13696c5efa42919881aa9fd96ccd3a5">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">murders</span><span class="op">)</span></span>
-<span><span class="co">##        state abb region population total</span></span>
-<span><span class="co">## 1    Alabama  AL  South    4779736   135</span></span>
-<span><span class="co">## 2     Alaska  AK   West     710231    19</span></span>
-<span><span class="co">## 3    Arizona  AZ   West    6392017   232</span></span>
-<span><span class="co">## 4   Arkansas  AR  South    2915918    93</span></span>
-<span><span class="co">## 5 California  CA   West   37253956  1257</span></span>
-<span><span class="co">## 6   Colorado  CO   West    5029196    65</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;        state abb region population total</span></span>
+<span><span class="co">#&gt; 1    Alabama  AL  South    4779736   135</span></span>
+<span><span class="co">#&gt; 2     Alaska  AK   West     710231    19</span></span>
+<span><span class="co">#&gt; 3    Arizona  AZ   West    6392017   232</span></span>
+<span><span class="co">#&gt; 4   Arkansas  AR  South    2915918    93</span></span>
+<span><span class="co">#&gt; 5 California  CA   West   37253956  1257</span></span>
+<span><span class="co">#&gt; 6   Colorado  CO   West    5029196    65</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and electoral votes in this one:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-3_7f6911a600e44c02fba7db56920be8f1">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-3_cd642a47f773a9e1b76c09646b3f26b2">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results_us_election_2016</span><span class="op">)</span></span>
-<span><span class="co">##          state electoral_votes clinton trump others</span></span>
-<span><span class="co">## 1   California              55    61.7  31.6    6.7</span></span>
-<span><span class="co">## 2        Texas              38    43.2  52.2    4.5</span></span>
-<span><span class="co">## 3      Florida              29    47.8  49.0    3.2</span></span>
-<span><span class="co">## 4     New York              29    59.0  36.5    4.5</span></span>
-<span><span class="co">## 5     Illinois              20    55.8  38.8    5.4</span></span>
-<span><span class="co">## 6 Pennsylvania              20    47.9  48.6    3.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;          state electoral_votes clinton trump others</span></span>
+<span><span class="co">#&gt; 1   California              55    61.7  31.6    6.7</span></span>
+<span><span class="co">#&gt; 2        Texas              38    43.2  52.2    4.5</span></span>
+<span><span class="co">#&gt; 3      Florida              29    47.8  49.0    3.2</span></span>
+<span><span class="co">#&gt; 4     New York              29    59.0  36.5    4.5</span></span>
+<span><span class="co">#&gt; 5     Illinois              20    55.8  38.8    5.4</span></span>
+<span><span class="co">#&gt; 6 Pennsylvania              20    47.9  48.6    3.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Just concatenating these two tables together will not work since the order of the states is not the same.</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-4_2a5b80a0df85aebdf720ec997dfaae16">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-4_18ebfcaed08fb9b387740cdd61b989d3">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/identical.html">identical</a></span><span class="op">(</span><span class="va">results_us_election_2016</span><span class="op">$</span><span class="va">state</span>, <span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op">)</span></span>
-<span><span class="co">## [1] FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <em>join</em> functions, described below, are designed to handle this challenge.</p>
 <section id="sec-joins" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="sec-joins">
 <span class="header-section-number">13.1</span> Joins</h2>
 <p>The <em>join</em> functions in the <strong>dplyr</strong> package make sure that the tables are combined so that matching rows are together. If you know SQL, you will see that the approach and syntax is very similar. The general idea is that one needs to identify one or more columns that will serve to match the two tables. Then a new table with the combined information is returned. Notice what happens if we join the two tables above by state using <code>left_join</code> (we will remove the <code>others</code> column and rename <code>electoral_votes</code> so that the tables fit on the page):</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-5_527f8027ae8f8846622be56f5be6b096">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-5_a5568422ed3aab3d932b7414919589c7">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">murders</span>, <span class="va">results_us_election_2016</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">others</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>ev <span class="op">=</span> <span class="va">electoral_votes</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span></span>
-<span><span class="co">##        state abb region population total ev clinton trump</span></span>
-<span><span class="co">## 1    Alabama  AL  South    4779736   135  9    34.4  62.1</span></span>
-<span><span class="co">## 2     Alaska  AK   West     710231    19  3    36.6  51.3</span></span>
-<span><span class="co">## 3    Arizona  AZ   West    6392017   232 11    45.1  48.7</span></span>
-<span><span class="co">## 4   Arkansas  AR  South    2915918    93  6    33.7  60.6</span></span>
-<span><span class="co">## 5 California  CA   West   37253956  1257 55    61.7  31.6</span></span>
-<span><span class="co">## 6   Colorado  CO   West    5029196    65  9    48.2  43.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;        state abb region population total ev clinton trump</span></span>
+<span><span class="co">#&gt; 1    Alabama  AL  South    4779736   135  9    34.4  62.1</span></span>
+<span><span class="co">#&gt; 2     Alaska  AK   West     710231    19  3    36.6  51.3</span></span>
+<span><span class="co">#&gt; 3    Arizona  AZ   West    6392017   232 11    45.1  48.7</span></span>
+<span><span class="co">#&gt; 4   Arkansas  AR  South    2915918    93  6    33.7  60.6</span></span>
+<span><span class="co">#&gt; 5 California  CA   West   37253956  1257 55    61.7  31.6</span></span>
+<span><span class="co">#&gt; 6   Colorado  CO   West    5029196    65  9    48.2  43.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The data has been successfully joined and we can now, for example, make a plot to explore the relationship:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/ev-vs-population_bc1eb0050621dadd8bf96760f4a857be">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/ev-vs-population_7cde06b5bf41477d5e69ee17d868f1af">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span></span>
 <span><span class="va">tab</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">ev</span>, label <span class="op">=</span> <span class="va">abb</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -435,109 +435,109 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>We see the relationship is close to linear with about 2 electoral votes for every million persons, but with very small states getting higher ratios.</p>
 <p>In practice, it is not always the case that each row in one table has a matching row in the other. For this reason, we have several versions of join. To illustrate this challenge, we will take subsets of the tables above. We create the tables <code>tab1</code> and <code>tab2</code> so that they have some states in common but not all:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-6_b3be34911ec56cb83bfb32bc5b054936">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-6_ff9f28b9f007746b8a082c2f47eecdb3">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">murders</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">state</span>, <span class="va">population</span><span class="op">)</span></span>
 <span><span class="va">tab_1</span></span>
-<span><span class="co">##        state population</span></span>
-<span><span class="co">## 1    Alabama    4779736</span></span>
-<span><span class="co">## 2     Alaska     710231</span></span>
-<span><span class="co">## 3    Arizona    6392017</span></span>
-<span><span class="co">## 4   Arkansas    2915918</span></span>
-<span><span class="co">## 5 California   37253956</span></span>
-<span><span class="co">## 6   Colorado    5029196</span></span>
+<span><span class="co">#&gt;        state population</span></span>
+<span><span class="co">#&gt; 1    Alabama    4779736</span></span>
+<span><span class="co">#&gt; 2     Alaska     710231</span></span>
+<span><span class="co">#&gt; 3    Arizona    6392017</span></span>
+<span><span class="co">#&gt; 4   Arkansas    2915918</span></span>
+<span><span class="co">#&gt; 5 California   37253956</span></span>
+<span><span class="co">#&gt; 6   Colorado    5029196</span></span>
 <span><span class="va">tab_2</span> <span class="op">&lt;-</span> <span class="va">results_us_election_2016</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">state</span><span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Alabama"</span>, <span class="st">"Alaska"</span>, <span class="st">"Arizona"</span>, </span>
 <span>                    <span class="st">"California"</span>, <span class="st">"Connecticut"</span>, <span class="st">"Delaware"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">state</span>, <span class="va">electoral_votes</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>ev <span class="op">=</span> <span class="va">electoral_votes</span><span class="op">)</span></span>
 <span><span class="va">tab_2</span></span>
-<span><span class="co">##         state ev</span></span>
-<span><span class="co">## 1  California 55</span></span>
-<span><span class="co">## 2     Arizona 11</span></span>
-<span><span class="co">## 3     Alabama  9</span></span>
-<span><span class="co">## 4 Connecticut  7</span></span>
-<span><span class="co">## 5      Alaska  3</span></span>
-<span><span class="co">## 6    Delaware  3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;         state ev</span></span>
+<span><span class="co">#&gt; 1  California 55</span></span>
+<span><span class="co">#&gt; 2     Arizona 11</span></span>
+<span><span class="co">#&gt; 3     Alabama  9</span></span>
+<span><span class="co">#&gt; 4 Connecticut  7</span></span>
+<span><span class="co">#&gt; 5      Alaska  3</span></span>
+<span><span class="co">#&gt; 6    Delaware  3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We will use these two tables as examples in the next sections.</p>
 <section id="left-join" class="level3" data-number="13.1.1"><h3 data-number="13.1.1" class="anchored" data-anchor-id="left-join">
 <span class="header-section-number">13.1.1</span> Left join</h3>
 <p>Suppose we want a table like <code>tab_1</code>, but adding electoral votes to whatever states we have available. For this, we use <code>left_join</code> with <code>tab_1</code> as the first argument. We specify which column to use to match with the <code>by</code> argument.</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-7_ecb2ab25f53d9eeaa732edb0c04fcf73">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-7_781be1d984946ccf717a86786414a522">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
-<span><span class="co">##        state population ev</span></span>
-<span><span class="co">## 1    Alabama    4779736  9</span></span>
-<span><span class="co">## 2     Alaska     710231  3</span></span>
-<span><span class="co">## 3    Arizona    6392017 11</span></span>
-<span><span class="co">## 4   Arkansas    2915918 NA</span></span>
-<span><span class="co">## 5 California   37253956 55</span></span>
-<span><span class="co">## 6   Colorado    5029196 NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;        state population ev</span></span>
+<span><span class="co">#&gt; 1    Alabama    4779736  9</span></span>
+<span><span class="co">#&gt; 2     Alaska     710231  3</span></span>
+<span><span class="co">#&gt; 3    Arizona    6392017 11</span></span>
+<span><span class="co">#&gt; 4   Arkansas    2915918 NA</span></span>
+<span><span class="co">#&gt; 5 California   37253956 55</span></span>
+<span><span class="co">#&gt; 6   Colorado    5029196 NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that <code>NA</code>s are added to the two states not appearing in <code>tab_2</code>. Also, notice that this function, as well as all the other joins, can receive the first arguments through the pipe:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-8_744b6b7d4ee4799b0329edeae9a3d39d">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-8_8e18c082e2335f9e60904ba7c287aeba">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="right-join" class="level3" data-number="13.1.2"><h3 data-number="13.1.2" class="anchored" data-anchor-id="right-join">
 <span class="header-section-number">13.1.2</span> Right join</h3>
 <p>If instead of a table with the same rows as first table, we want one with the same rows as second table, we can use <code>right_join</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-9_d0dd7ce11bf44bc42ba3edf582cbcd16">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-9_058657a827f132a8186a00acaa2f2877">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join</a></span><span class="op">(</span><span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
-<span><span class="co">##         state population ev</span></span>
-<span><span class="co">## 1     Alabama    4779736  9</span></span>
-<span><span class="co">## 2      Alaska     710231  3</span></span>
-<span><span class="co">## 3     Arizona    6392017 11</span></span>
-<span><span class="co">## 4  California   37253956 55</span></span>
-<span><span class="co">## 5 Connecticut         NA  7</span></span>
-<span><span class="co">## 6    Delaware         NA  3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;         state population ev</span></span>
+<span><span class="co">#&gt; 1     Alabama    4779736  9</span></span>
+<span><span class="co">#&gt; 2      Alaska     710231  3</span></span>
+<span><span class="co">#&gt; 3     Arizona    6392017 11</span></span>
+<span><span class="co">#&gt; 4  California   37253956 55</span></span>
+<span><span class="co">#&gt; 5 Connecticut         NA  7</span></span>
+<span><span class="co">#&gt; 6    Delaware         NA  3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now the NAs are in the column coming from <code>tab_1</code>.</p>
 </section><section id="inner-join" class="level3" data-number="13.1.3"><h3 data-number="13.1.3" class="anchored" data-anchor-id="inner-join">
 <span class="header-section-number">13.1.3</span> Inner join</h3>
 <p>If we want to keep only the rows that have information in both tables, we use <code>inner_join</code>. You can think of this as an intersection:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-10_950fb751d3c6f308fbe0752011dad4f0">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-10_28c973e510f0abab10b363d196d43467">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
-<span><span class="co">##        state population ev</span></span>
-<span><span class="co">## 1    Alabama    4779736  9</span></span>
-<span><span class="co">## 2     Alaska     710231  3</span></span>
-<span><span class="co">## 3    Arizona    6392017 11</span></span>
-<span><span class="co">## 4 California   37253956 55</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;        state population ev</span></span>
+<span><span class="co">#&gt; 1    Alabama    4779736  9</span></span>
+<span><span class="co">#&gt; 2     Alaska     710231  3</span></span>
+<span><span class="co">#&gt; 3    Arizona    6392017 11</span></span>
+<span><span class="co">#&gt; 4 California   37253956 55</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="full-join" class="level3" data-number="13.1.4"><h3 data-number="13.1.4" class="anchored" data-anchor-id="full-join">
 <span class="header-section-number">13.1.4</span> Full join</h3>
 <p>If we want to keep all the rows and fill the missing parts with NAs, we can use <code>full_join</code>. You can think of this as a union:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-11_cee721f6d2f4cd1a7f3d59e436f5f7b7">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-11_cd4eee7c2926f1a3ecfe42278879d97b">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
-<span><span class="co">##         state population ev</span></span>
-<span><span class="co">## 1     Alabama    4779736  9</span></span>
-<span><span class="co">## 2      Alaska     710231  3</span></span>
-<span><span class="co">## 3     Arizona    6392017 11</span></span>
-<span><span class="co">## 4    Arkansas    2915918 NA</span></span>
-<span><span class="co">## 5  California   37253956 55</span></span>
-<span><span class="co">## 6    Colorado    5029196 NA</span></span>
-<span><span class="co">## 7 Connecticut         NA  7</span></span>
-<span><span class="co">## 8    Delaware         NA  3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;         state population ev</span></span>
+<span><span class="co">#&gt; 1     Alabama    4779736  9</span></span>
+<span><span class="co">#&gt; 2      Alaska     710231  3</span></span>
+<span><span class="co">#&gt; 3     Arizona    6392017 11</span></span>
+<span><span class="co">#&gt; 4    Arkansas    2915918 NA</span></span>
+<span><span class="co">#&gt; 5  California   37253956 55</span></span>
+<span><span class="co">#&gt; 6    Colorado    5029196 NA</span></span>
+<span><span class="co">#&gt; 7 Connecticut         NA  7</span></span>
+<span><span class="co">#&gt; 8    Delaware         NA  3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="semi-join" class="level3" data-number="13.1.5"><h3 data-number="13.1.5" class="anchored" data-anchor-id="semi-join">
 <span class="header-section-number">13.1.5</span> Semi join</h3>
 <p>The <code>semi_join</code> function lets us keep the part of first table for which we have information in the second. It does not add the columns of the second:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-12_372385e19520f426b0227374618d480c">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-12_0c06b3128138946ea942a91d9e9cb655">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
-<span><span class="co">##        state population</span></span>
-<span><span class="co">## 1    Alabama    4779736</span></span>
-<span><span class="co">## 2     Alaska     710231</span></span>
-<span><span class="co">## 3    Arizona    6392017</span></span>
-<span><span class="co">## 4 California   37253956</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;        state population</span></span>
+<span><span class="co">#&gt; 1    Alabama    4779736</span></span>
+<span><span class="co">#&gt; 2     Alaska     710231</span></span>
+<span><span class="co">#&gt; 3    Arizona    6392017</span></span>
+<span><span class="co">#&gt; 4 California   37253956</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="anti-join" class="level3" data-number="13.1.6"><h3 data-number="13.1.6" class="anchored" data-anchor-id="anti-join">
 <span class="header-section-number">13.1.6</span> Anti join</h3>
 <p>The function <code>anti_join</code> is the opposite of <code>semi_join</code>. It keeps the elements of the first table for which there is no information in the second:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-13_f37320e31bb85b1b78b89265f7c4cff7">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-13_5c5eac69ab303a034a7b910a44ea105d">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
-<span><span class="co">##      state population</span></span>
-<span><span class="co">## 1 Arkansas    2915918</span></span>
-<span><span class="co">## 2 Colorado    5029196</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;      state population</span></span>
+<span><span class="co">#&gt; 1 Arkansas    2915918</span></span>
+<span><span class="co">#&gt; 2 Colorado    5029196</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The following diagram summarizes the above joins:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-14_efa2ba5d622183618988dfb36786f4e0">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-14_d55a7f3531f23cd9272fd6c2f85354bc">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="img/joins.png" class="img-fluid figure-img" style="width:40.0%"></p>
@@ -552,44 +552,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="binding-columns" class="level3" data-number="13.2.1"><h3 data-number="13.2.1" class="anchored" data-anchor-id="binding-columns">
 <span class="header-section-number">13.2.1</span> Binding columns</h3>
 <p>The <strong>dplyr</strong> function <em>bind_cols</em> binds two objects by making them columns in a tibble. For example, we quickly want to make a data frame consisting of numbers we can use.</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-15_825827218e17661355cd8d9069bd0885">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-15_90c8ecab7b14b39f553be0b8fe259a47">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, b <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
-<span><span class="co">## # A tibble: 3 × 2</span></span>
-<span><span class="co">##       a     b</span></span>
-<span><span class="co">##   &lt;int&gt; &lt;int&gt;</span></span>
-<span><span class="co">## 1     1     4</span></span>
-<span><span class="co">## 2     2     5</span></span>
-<span><span class="co">## 3     3     6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
+<span><span class="co">#&gt;       a     b</span></span>
+<span><span class="co">#&gt;   &lt;int&gt; &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1     1     4</span></span>
+<span><span class="co">#&gt; 2     2     5</span></span>
+<span><span class="co">#&gt; 3     3     6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This function requires that we assign names to the columns. Here we chose <code>a</code> and <code>b</code>.</p>
 <p>Note that there is an R-base function <code>cbind</code> with the exact same functionality. An important difference is that <code>cbind</code> can create different types of objects, while <code>bind_cols</code> always produces a data frame.</p>
 <p><code>bind_cols</code> can also bind two different data frames. For example, here we break up the <code>tab</code> data frame and then bind them back together:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-16_2cccb0b716c9e5c17089f2c660a1167e">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-16_febb1bf70a97b3cc8be6b898c3c7edce">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="va">tab_2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span>, <span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span>
 <span><span class="va">tab_3</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span>, <span class="fl">7</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span></span>
 <span><span class="va">new_tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, <span class="va">tab_3</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">new_tab</span><span class="op">)</span></span>
-<span><span class="co">##        state abb region population total ev clinton trump</span></span>
-<span><span class="co">## 1    Alabama  AL  South    4779736   135  9    34.4  62.1</span></span>
-<span><span class="co">## 2     Alaska  AK   West     710231    19  3    36.6  51.3</span></span>
-<span><span class="co">## 3    Arizona  AZ   West    6392017   232 11    45.1  48.7</span></span>
-<span><span class="co">## 4   Arkansas  AR  South    2915918    93  6    33.7  60.6</span></span>
-<span><span class="co">## 5 California  CA   West   37253956  1257 55    61.7  31.6</span></span>
-<span><span class="co">## 6   Colorado  CO   West    5029196    65  9    48.2  43.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;        state abb region population total ev clinton trump</span></span>
+<span><span class="co">#&gt; 1    Alabama  AL  South    4779736   135  9    34.4  62.1</span></span>
+<span><span class="co">#&gt; 2     Alaska  AK   West     710231    19  3    36.6  51.3</span></span>
+<span><span class="co">#&gt; 3    Arizona  AZ   West    6392017   232 11    45.1  48.7</span></span>
+<span><span class="co">#&gt; 4   Arkansas  AR  South    2915918    93  6    33.7  60.6</span></span>
+<span><span class="co">#&gt; 5 California  CA   West   37253956  1257 55    61.7  31.6</span></span>
+<span><span class="co">#&gt; 6   Colorado  CO   West    5029196    65  9    48.2  43.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="binding-by-rows" class="level3" data-number="13.2.2"><h3 data-number="13.2.2" class="anchored" data-anchor-id="binding-by-rows">
 <span class="header-section-number">13.2.2</span> Binding by rows</h3>
 <p>The <code>bind_rows</code> function is similar to <code>bind_cols</code>, but binds rows instead of columns:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-17_e362725669bdc91b7c79fa92bef4abcd">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-17_7ee2a15661007be0e80c5ee613687e6b">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>,<span class="op">]</span></span>
 <span><span class="va">tab_2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">4</span>,<span class="op">]</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span><span class="op">)</span></span>
-<span><span class="co">##      state abb region population total ev clinton trump</span></span>
-<span><span class="co">## 1  Alabama  AL  South    4779736   135  9    34.4  62.1</span></span>
-<span><span class="co">## 2   Alaska  AK   West     710231    19  3    36.6  51.3</span></span>
-<span><span class="co">## 3  Arizona  AZ   West    6392017   232 11    45.1  48.7</span></span>
-<span><span class="co">## 4 Arkansas  AR  South    2915918    93  6    33.7  60.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;      state abb region population total ev clinton trump</span></span>
+<span><span class="co">#&gt; 1  Alabama  AL  South    4779736   135  9    34.4  62.1</span></span>
+<span><span class="co">#&gt; 2   Alaska  AK   West     710231    19  3    36.6  51.3</span></span>
+<span><span class="co">#&gt; 3  Arizona  AZ   West    6392017   232 11    45.1  48.7</span></span>
+<span><span class="co">#&gt; 4 Arkansas  AR  South    2915918    93  6    33.7  60.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This is based on an R-base function <code>rbind</code>.</p>
 </section></section><section id="set-operators" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="set-operators">
@@ -598,90 +598,90 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="intersect" class="level3" data-number="13.3.1"><h3 data-number="13.3.1" class="anchored" data-anchor-id="intersect">
 <span class="header-section-number">13.3.1</span> Intersect</h3>
 <p>You can take intersections of vectors of any type, such as numeric:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-18_2866474db618661f36162006245c7d26">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-18_0494021461fb4a31f090e4b9b2df427e">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">intersect</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">6</span><span class="op">:</span><span class="fl">15</span><span class="op">)</span></span>
-<span><span class="co">## [1]  6  7  8  9 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1]  6  7  8  9 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>or characters:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-19_dae9e38830e7cc28fae7c41791ce947d">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-19_ec306a8dd977e6af543adc616de13ac2">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">intersect</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>,<span class="st">"b"</span>,<span class="st">"c"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"b"</span>,<span class="st">"c"</span>,<span class="st">"d"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## [1] "b" "c"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "b" "c"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <strong>dplyr</strong> package includes an <code>intersect</code> function that can be applied to tables with the same column names. This function returns the rows in common between two tables. To make sure we use the <strong>dplyr</strong> version of <code>intersect</code> rather than the base package version, we can use <code><a href="https://generics.r-lib.org/reference/setops.html">dplyr::intersect</a></code> like this:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-20_968f5d119af35bf4fd4c1c1e54fa45e7">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-20_7232cafa995664321148dc7268161f82">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span></span>
 <span><span class="va">tab_2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">7</span>,<span class="op">]</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">intersect</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span><span class="op">)</span></span>
-<span><span class="co">##        state abb region population total ev clinton trump</span></span>
-<span><span class="co">## 1    Arizona  AZ   West    6392017   232 11    45.1  48.7</span></span>
-<span><span class="co">## 2   Arkansas  AR  South    2915918    93  6    33.7  60.6</span></span>
-<span><span class="co">## 3 California  CA   West   37253956  1257 55    61.7  31.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;        state abb region population total ev clinton trump</span></span>
+<span><span class="co">#&gt; 1    Arizona  AZ   West    6392017   232 11    45.1  48.7</span></span>
+<span><span class="co">#&gt; 2   Arkansas  AR  South    2915918    93  6    33.7  60.6</span></span>
+<span><span class="co">#&gt; 3 California  CA   West   37253956  1257 55    61.7  31.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="union" class="level3" data-number="13.3.2"><h3 data-number="13.3.2" class="anchored" data-anchor-id="union">
 <span class="header-section-number">13.3.2</span> Union</h3>
 <p>Similarly <em>union</em> takes the union of vectors. For example:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-21_33781fbac6dc1285bfce2ceef6a56919">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-21_171461e83f03183d70b9c22778fd7a42">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">union</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">6</span><span class="op">:</span><span class="fl">15</span><span class="op">)</span></span>
-<span><span class="co">##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15</span></span>
+<span><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15</span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">union</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>,<span class="st">"b"</span>,<span class="st">"c"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"b"</span>,<span class="st">"c"</span>,<span class="st">"d"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## [1] "a" "b" "c" "d"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "a" "b" "c" "d"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <strong>dplyr</strong> package includes a version of <code>union</code> that combines all the rows of two tables with the same column names.</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-22_aeb8c33f762b7be5c3292460d9dcdbf3">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-22_c6dbdd65e77e599395acb2a994b80a78">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span></span>
 <span><span class="va">tab_2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">7</span>,<span class="op">]</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">union</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span><span class="op">)</span> </span>
-<span><span class="co">##         state abb    region population total ev clinton trump</span></span>
-<span><span class="co">## 1     Alabama  AL     South    4779736   135  9    34.4  62.1</span></span>
-<span><span class="co">## 2      Alaska  AK      West     710231    19  3    36.6  51.3</span></span>
-<span><span class="co">## 3     Arizona  AZ      West    6392017   232 11    45.1  48.7</span></span>
-<span><span class="co">## 4    Arkansas  AR     South    2915918    93  6    33.7  60.6</span></span>
-<span><span class="co">## 5  California  CA      West   37253956  1257 55    61.7  31.6</span></span>
-<span><span class="co">## 6    Colorado  CO      West    5029196    65  9    48.2  43.3</span></span>
-<span><span class="co">## 7 Connecticut  CT Northeast    3574097    97  7    54.6  40.9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;         state abb    region population total ev clinton trump</span></span>
+<span><span class="co">#&gt; 1     Alabama  AL     South    4779736   135  9    34.4  62.1</span></span>
+<span><span class="co">#&gt; 2      Alaska  AK      West     710231    19  3    36.6  51.3</span></span>
+<span><span class="co">#&gt; 3     Arizona  AZ      West    6392017   232 11    45.1  48.7</span></span>
+<span><span class="co">#&gt; 4    Arkansas  AR     South    2915918    93  6    33.7  60.6</span></span>
+<span><span class="co">#&gt; 5  California  CA      West   37253956  1257 55    61.7  31.6</span></span>
+<span><span class="co">#&gt; 6    Colorado  CO      West    5029196    65  9    48.2  43.3</span></span>
+<span><span class="co">#&gt; 7 Connecticut  CT Northeast    3574097    97  7    54.6  40.9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="setdiff" class="level3" data-number="13.3.3"><h3 data-number="13.3.3" class="anchored" data-anchor-id="setdiff">
 <span class="header-section-number">13.3.3</span> <code>setdiff</code>
 </h3>
 <p>The set difference between a first and second argument can be obtained with <code>setdiff</code>. Unlike <code>intersect</code> and <code>union</code>, this function is not symmetric:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-23_dd72ee78d10b02a6a246b97e88c6eeea">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-23_4c26fe5a2280646163c85b44a9b51580">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">6</span><span class="op">:</span><span class="fl">15</span><span class="op">)</span></span>
-<span><span class="co">## [1] 1 2 3 4 5</span></span>
+<span><span class="co">#&gt; [1] 1 2 3 4 5</span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="fl">6</span><span class="op">:</span><span class="fl">15</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
-<span><span class="co">## [1] 11 12 13 14 15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 11 12 13 14 15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As with the functions shown above, <strong>dplyr</strong> has a version for data frames:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-24_7635535700e50a9cc0fdb141ac955332">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-24_040e86e07d83ff2266088cc7b4cfc592">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span></span>
 <span><span class="va">tab_2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">7</span>,<span class="op">]</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span><span class="op">)</span></span>
-<span><span class="co">##     state abb region population total ev clinton trump</span></span>
-<span><span class="co">## 1 Alabama  AL  South    4779736   135  9    34.4  62.1</span></span>
-<span><span class="co">## 2  Alaska  AK   West     710231    19  3    36.6  51.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;     state abb region population total ev clinton trump</span></span>
+<span><span class="co">#&gt; 1 Alabama  AL  South    4779736   135  9    34.4  62.1</span></span>
+<span><span class="co">#&gt; 2  Alaska  AK   West     710231    19  3    36.6  51.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="setequal" class="level3" data-number="13.3.4"><h3 data-number="13.3.4" class="anchored" data-anchor-id="setequal">
 <span class="header-section-number">13.3.4</span> <code>setequal</code>
 </h3>
 <p>Finally, the function <code>setequal</code> tells us if two sets are the same, regardless of order. So notice that:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-25_c154a95a32daf629e601bbd417300fbc">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-25_3db0953f0e6b4ab6fc65118813672e29">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setequal</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
-<span><span class="co">## [1] FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>but:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-26_a10f55d442946a65f471cadea3fb3c00">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-26_e8fc4455e99638e133b63436d3014e5f">
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setequal</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span></span>
-<span><span class="co">## [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>When applied to data frames that are not equal, regardless of order, the <strong>dplyr</strong> version provides a useful message letting us know how the sets are different:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-27_4eb8be9ce7ae9b691fb7c9c3b6f2a324">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-27_7ad0e5eb8d08f20345e60ae00a7bfcad">
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setequal</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span><span class="op">)</span></span>
-<span><span class="co">## [1] FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="exercises" class="level2" data-number="13.4"><h2 data-number="13.4" class="anchored" data-anchor-id="exercises">
 <span class="header-section-number">13.4</span> Exercises</h2>
 <p>1. Install and load the <strong>Lahman</strong> library. This database includes data related to baseball teams. It includes summary statistics about how the players performed on offense and defense for several years. It also includes personal information about the players.</p>
 <p>The <code>Batting</code> data frame contains the offensive statistics for all players for many years. You can see, for example, the top 10 hitters by running this code:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-28_f2ec17bc229cb51b54ecb3261e7151aa">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-28_378c305fb0837b02cab41943543b4a8e">
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://CRAN.R-project.org/package=Lahman">Lahman</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">top</span> <span class="op">&lt;-</span> <span class="va">Batting</span> <span class="op">|&gt;</span> </span>
@@ -692,13 +692,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="va">top</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>But who are these players? We see an ID, but not the names. The player names are in this table</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-29_56d1f8f1d37f95215dd7c1c5bcee3486">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-29_2028bc5fe53e07b50a92f66bac047b5b">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Master</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can see column names <code>nameFirst</code> and <code>nameLast</code>. Use the <code>left_join</code> function to create a table of the top home run hitters. The table should have <code>playerID</code>, first name, last name, and number of home runs (HR). Rewrite the object <code>top</code> with this new table.</p>
 <p>2. Now use the <code>Salaries</code> data frame to add each player’s salary to the table you created in exercise 1. Note that salaries are different every year so make sure to filter for the year 2016, then use <code>right_join</code>. This time show first name, last name, team, HR, and salary.</p>
 <p>3. In a previous exercise, we created a tidy version of the <code>co2</code> dataset:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-30_150d636421a4d193e1055efa9a939971">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-30_b4cf2a9b85ad1637b5c306f67ef0f4c2">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">co2_wide</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">co2</span>, ncol <span class="op">=</span> <span class="fl">12</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">1959</span><span class="op">:</span><span class="fl">1997</span><span class="op">)</span> <span class="op">|&gt;</span></span>

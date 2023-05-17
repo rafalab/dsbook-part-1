@@ -345,12 +345,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header><div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-1_1a876dbfc747c842ad58b41b87d32540">
+</header><div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-1_c993c08ad668af37d6aeef3fa539e1b9">
 
 </div>
 <p>As we have seen through the book, having data in <em>tidy</em> format is what makes the tidyverse flow. After the first step in the data analysis process, importing data, a common next step is to reshape the data into a form that facilitates the rest of the analysis. The <strong>tidyr</strong> package includes several functions that are useful for tidying data.</p>
 <p>We will use the fertility wide format dataset described in Section <a href="../R/tidyverse.html#sec-tidy-data"><span>Section&nbsp;4.1</span></a> as an example in this section.</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-2_4c56a56606650be9cfdc0c8e0cf23852">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-2_777cbd6b1a6feb4891441542e515456a">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> </span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package<span class="op">=</span><span class="st">"dslabs"</span><span class="op">)</span></span>
@@ -363,54 +363,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>One of the most used functions in the <strong>tidyr</strong> package is <code>pivot_longer</code>, which is useful for converting wide data into tidy data.</p>
 <p>As with most tidyverse functions, the <code>pivot_longer</code> function’s first argument is the data frame that will be converted. Here we want to reshape the <code>wide_data</code> dataset so that each row represents a fertility observation, which implies we need three columns to store the year, country, and the observed value. In its current form, data from different years are in different columns with the year values stored in the column names. Through the <code>names_to</code> and <code>values_to</code> argument we will tell <code>pivot_longer</code> the column names we want to assign to the columns containing the current column names and observations, respectively. The default names are <code>name</code> and <code>value</code>, which are often usable choices. In this case a better choice for these two arguments would be <code>year</code> and <code>fertility</code>. Note that nowhere in the data file does it tell us this is fertility data. Instead, we deciphered this from the file name. Through <code>cols</code>,the second argument we specify the columns containing observed values; these are the columns that will be <em>pivoted</em>. The default is to pivot all columns so, in most cases, we have to specify the columns. In our example we want columns <code>1960</code>, <code>1961</code> up to <code>2015</code>.</p>
 <p>The code to pivot the fertility data therefore looks like this:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-3_60199b941b4c948bc26755d971778cbc">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-3_6d62f2a0613e20acbdd35c252aa27483">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_tidy_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="va">wide_data</span>, <span class="va">`1960`</span><span class="op">:</span><span class="va">`2015`</span>, names_to <span class="op">=</span> <span class="st">"year"</span>, values_to <span class="op">=</span> <span class="st">"fertility"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also use the pipe like this:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-4_69b98be23a774de9bd0794974b0f51c4">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-4_8b81ea3d9fcd264c4f210398adadfe6e">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_tidy_data</span> <span class="op">&lt;-</span> <span class="va">wide_data</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="va">`1960`</span><span class="op">:</span><span class="va">`2015`</span>, names_to <span class="op">=</span> <span class="st">"year"</span>, values_to <span class="op">=</span> <span class="st">"fertility"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can see that the data have been converted to tidy format with columns <code>year</code> and <code>fertility</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-5_3bc57eeba9f49c503fe69c9545553d32">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-5_2552a6f3a1a8a4aa8b70f5d0dcf253a3">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">new_tidy_data</span><span class="op">)</span></span>
-<span><span class="co">## # A tibble: 6 × 3</span></span>
-<span><span class="co">##   country year  fertility</span></span>
-<span><span class="co">##   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;</span></span>
-<span><span class="co">## 1 Germany 1960       2.41</span></span>
-<span><span class="co">## 2 Germany 1961       2.44</span></span>
-<span><span class="co">## 3 Germany 1962       2.47</span></span>
-<span><span class="co">## 4 Germany 1963       2.49</span></span>
-<span><span class="co">## 5 Germany 1964       2.49</span></span>
-<span><span class="co">## # ℹ 1 more row</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span><span class="co">#&gt;   country year  fertility</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Germany 1960       2.41</span></span>
+<span><span class="co">#&gt; 2 Germany 1961       2.44</span></span>
+<span><span class="co">#&gt; 3 Germany 1962       2.47</span></span>
+<span><span class="co">#&gt; 4 Germany 1963       2.49</span></span>
+<span><span class="co">#&gt; 5 Germany 1964       2.49</span></span>
+<span><span class="co">#&gt; # ℹ 1 more row</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and that each year resulted in two rows since we have two countries and this column was not pivoted. A somewhat quicker way to write this code is to specify which column will <strong>not</strong> include in the pivot, rather than all the columns that will be pivoted:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-6_88853ad19572eb2481509b2b0bdbbbbd">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-6_756f32d78ced64b95e18b06a79e330df">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_tidy_data</span> <span class="op">&lt;-</span> <span class="va">wide_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="op">-</span><span class="va">country</span>, names_to <span class="op">=</span> <span class="st">"year"</span>, values_to <span class="op">=</span> <span class="st">"fertility"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>new_tidy_data</code> object looks like the original <code>tidy_data</code> we defined this way</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-7_3bf1d391422df100e19d840e26427add">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-7_3fa7f707ff96a939705be78b7e16132c">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tidy_data</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"South Korea"</span>, <span class="st">"Germany"</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">fertility</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">country</span>, <span class="va">year</span>, <span class="va">fertility</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>with just one minor difference. Can you spot it? Look at the data type of the year column:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-8_685d430e3dbdad9d076ed153d8433c7e">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-8_0b0d7cb46408e8c91cee0f753dfc5cb6">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">tidy_data</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span>
-<span><span class="co">## [1] "integer"</span></span>
+<span><span class="co">#&gt; [1] "integer"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">new_tidy_data</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span>
-<span><span class="co">## [1] "character"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "character"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>pivot_longer</code> function assumes that column names are characters. So we need a bit more wrangling before we are ready to make a plot. We need to convert the year column to be numbers:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-9_7180d18df352212fecfceac6bc444b03">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-9_b6bb6a786014103bdb9e54a159b909ae">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_tidy_data</span> <span class="op">&lt;-</span> <span class="va">wide_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="op">-</span><span class="va">country</span>, names_to <span class="op">=</span> <span class="st">"year"</span>, values_to <span class="op">=</span> <span class="st">"fertility"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that we could have also used the <code>mutate</code> and <code>as.numeric</code>.</p>
 <p>Now that the data is tidy, we can use this relatively simple ggplot code:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/fertility-year-check_66ddcd85c94d5f5ba1ef05b8f88259b4">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/fertility-year-check_6bbb83b1901cf9336242ff704d7e90c4">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_tidy_data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">fertility</span>, color <span class="op">=</span> <span class="va">country</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -418,21 +418,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">12.2</span> <code>pivot_wider</code>
 </h2>
 <p>As we will see in later examples, it is sometimes useful for data wrangling purposes to convert tidy data into wide data. We often use this as an intermediate step in tidying up data. The <code>pivot_wider</code> function is basically the inverse of <code>pivot_longer</code>. The first argument is for the data, but since we are using the pipe, we don’t show it. The <code>names_from</code> argument tells <code>pivot_wider</code> which variable will be used as the column names. The <code>values_from</code> argument specifies which variable to use to fill out the cells.</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-10_6bc803ace7f791213551af6261ea9339">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-10_04ef020095eed19540d6ea0132d30d83">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_wide_data</span> <span class="op">&lt;-</span> <span class="va">new_tidy_data</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">year</span>, values_from <span class="op">=</span> <span class="va">fertility</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">new_wide_data</span>, <span class="va">country</span>, <span class="va">`1960`</span><span class="op">:</span><span class="va">`1967`</span><span class="op">)</span></span>
-<span><span class="co">## # A tibble: 2 × 9</span></span>
-<span><span class="co">##   country     `1960` `1961` `1962` `1963` `1964` `1965` `1966` `1967`</span></span>
-<span><span class="co">##   &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span><span class="co">## 1 Germany       2.41   2.44   2.47   2.49   2.49   2.48   2.44   2.37</span></span>
-<span><span class="co">## 2 South Korea   6.16   5.99   5.79   5.57   5.36   5.16   4.99   4.85</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # A tibble: 2 × 9</span></span>
+<span><span class="co">#&gt;   country     `1960` `1961` `1962` `1963` `1964` `1965` `1966` `1967`</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Germany       2.41   2.44   2.47   2.49   2.49   2.48   2.44   2.37</span></span>
+<span><span class="co">#&gt; 2 South Korea   6.16   5.99   5.79   5.57   5.36   5.16   4.99   4.85</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Similar to <code>pivot_wider</code>, <code>names_from</code> and <code>values_from</code> default to <code>name</code> and <code>value</code>.</p>
 <!--
 The following diagram can help remind you how these two functions work:
 
-::: {.cell layout-align="center" hash='reshaping-data_cache/html/unnamed-chunk-11_0da229d7053ba0195173a654b17715e6'}
+::: {.cell layout-align="center" hash='reshaping-data_cache/html/unnamed-chunk-11_8721007dccf513fe7aaeba4a75819960'}
 ::: {.cell-output-display}
 ![](img//gather-spread.png){fig-align='center' width=70%}
 :::
@@ -446,7 +446,7 @@ The following diagram can help remind you how these two functions work:
 <span class="header-section-number">12.3</span> <code>separate</code>
 </h2>
 <p>The data wrangling shown above was simple compared to what is usually required. In our example spreadsheet files, we include an illustration that is slightly more complicated. It contains two variables: life expectancy and fertility. However, the way it is stored is not tidy and, as we will explain, not optimal.</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-12_8c2d1fd5c4ecf433fa34480c60e719ef">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-12_ebd2a754a6b7ad9cea52073f81a41e98">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"dslabs"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="st">"life-expectancy-and-fertility-two-countries-example.csv"</span></span>
@@ -454,146 +454,146 @@ The following diagram can help remind you how these two functions work:
 <span></span>
 <span><span class="va">raw_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">raw_dat</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></span>
-<span><span class="co">## # A tibble: 2 × 5</span></span>
-<span><span class="co">##   country     `1960_fertility` `1960_life_expectancy` `1961_fertility`</span></span>
-<span><span class="co">##   &lt;chr&gt;                  &lt;dbl&gt;                  &lt;dbl&gt;            &lt;dbl&gt;</span></span>
-<span><span class="co">## 1 Germany                 2.41                   69.3             2.44</span></span>
-<span><span class="co">## 2 South Korea             6.16                   53.0             5.99</span></span>
-<span><span class="co">## # ℹ 1 more variable: `1961_life_expectancy` &lt;dbl&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # A tibble: 2 × 5</span></span>
+<span><span class="co">#&gt;   country     `1960_fertility` `1960_life_expectancy` `1961_fertility`</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                  &lt;dbl&gt;                  &lt;dbl&gt;            &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Germany                 2.41                   69.3             2.44</span></span>
+<span><span class="co">#&gt; 2 South Korea             6.16                   53.0             5.99</span></span>
+<span><span class="co">#&gt; # ℹ 1 more variable: `1961_life_expectancy` &lt;dbl&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>First, note that the data is in wide format. Second, notice that this table includes values for two variables, fertility and life expectancy, with the column name encoding which column represents which variable. Encoding information in the column names is not recommended but, unfortunately, it is quite common. We will put our wrangling skills to work to extract this information and store it in a tidy fashion.</p>
 <p>We can start the data wrangling with the <code>pivot_longer</code> function, but we should no longer use the column name <code>year</code> for the new column since it also contains the variable type. We will call it <code>name</code>, the default, for now:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-13_16917ee4d949a76f1b964b8644319bc0">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-13_11e76a8e32f00c67f4fa24fccdb27a5d">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">raw_dat</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="op">-</span><span class="va">country</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
-<span><span class="co">## # A tibble: 6 × 3</span></span>
-<span><span class="co">##   country name                 value</span></span>
-<span><span class="co">##   &lt;chr&gt;   &lt;chr&gt;                &lt;dbl&gt;</span></span>
-<span><span class="co">## 1 Germany 1960_fertility        2.41</span></span>
-<span><span class="co">## 2 Germany 1960_life_expectancy 69.3 </span></span>
-<span><span class="co">## 3 Germany 1961_fertility        2.44</span></span>
-<span><span class="co">## 4 Germany 1961_life_expectancy 69.8 </span></span>
-<span><span class="co">## 5 Germany 1962_fertility        2.47</span></span>
-<span><span class="co">## # ℹ 1 more row</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span><span class="co">#&gt;   country name                 value</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;                &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Germany 1960_fertility        2.41</span></span>
+<span><span class="co">#&gt; 2 Germany 1960_life_expectancy 69.3 </span></span>
+<span><span class="co">#&gt; 3 Germany 1961_fertility        2.44</span></span>
+<span><span class="co">#&gt; 4 Germany 1961_life_expectancy 69.8 </span></span>
+<span><span class="co">#&gt; 5 Germany 1962_fertility        2.47</span></span>
+<span><span class="co">#&gt; # ℹ 1 more row</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The result is not exactly what we refer to as tidy since each observation is associated with two, not one, rows. We want to have the values from the two variables, fertility and life expectancy, in two separate columns. The first challenge to achieve this is to separate the <code>name</code> column into the year and the variable type. Notice that the entries in this column separate the year from the variable name with an underscore:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-14_771e80d5ce417cdb94bab5208a18ed90">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-14_4b97a691abe6820dadefcd57e88edfde">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
-<span><span class="co">## [1] "1960_fertility"       "1960_life_expectancy" "1961_fertility"      </span></span>
-<span><span class="co">## [4] "1961_life_expectancy" "1962_fertility"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "1960_fertility"       "1960_life_expectancy" "1961_fertility"      </span></span>
+<span><span class="co">#&gt; [4] "1961_life_expectancy" "1962_fertility"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Encoding multiple variables in a column name is such a common problem that the <strong>readr</strong> package includes a function to separate these columns into two or more. Apart from the data, the <code>separate</code> function takes three arguments: the name of the column to be separated, the names to be used for the new columns, and the character that separates the variables. So, a first attempt at this is:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-15_a103270facd8bbfaa0eebd6bb2002978">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-15_bf76d2bf19e124343ba132d6da60e13b">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">name</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"name"</span><span class="op">)</span>, <span class="st">"_"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Because <code>_</code> is the default separator assumed by <code>separate</code>, we do not have to include it in the code:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-16_b7bed3da271ce3200da88c737798e92a">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-16_c31782ab81ba19903f39c990d0e027e0">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">name</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"name"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Warning: Expected 2 pieces. Additional pieces discarded in 112 rows [2, 4, 6, 8,</span></span>
-<span><span class="co">## 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, ...].</span></span>
-<span><span class="co">## # A tibble: 224 × 4</span></span>
-<span><span class="co">##   country year  name      value</span></span>
-<span><span class="co">##   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;</span></span>
-<span><span class="co">## 1 Germany 1960  fertility  2.41</span></span>
-<span><span class="co">## 2 Germany 1960  life      69.3 </span></span>
-<span><span class="co">## 3 Germany 1961  fertility  2.44</span></span>
-<span><span class="co">## 4 Germany 1961  life      69.8 </span></span>
-<span><span class="co">## 5 Germany 1962  fertility  2.47</span></span>
-<span><span class="co">## # ℹ 219 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; Warning: Expected 2 pieces. Additional pieces discarded in 112 rows [2, 4, 6, 8,</span></span>
+<span><span class="co">#&gt; 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, ...].</span></span>
+<span><span class="co">#&gt; # A tibble: 224 × 4</span></span>
+<span><span class="co">#&gt;   country year  name      value</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Germany 1960  fertility  2.41</span></span>
+<span><span class="co">#&gt; 2 Germany 1960  life      69.3 </span></span>
+<span><span class="co">#&gt; 3 Germany 1961  fertility  2.44</span></span>
+<span><span class="co">#&gt; 4 Germany 1961  life      69.8 </span></span>
+<span><span class="co">#&gt; 5 Germany 1962  fertility  2.47</span></span>
+<span><span class="co">#&gt; # ℹ 219 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The function does separate the values, but we run into a new problem. We receive the warning <code>Too many values at 112 locations:</code> and that the <code>life_expectancy</code> variable is truncated to <code>life</code>. This is because the <code>_</code> is used to separate <code>life</code> and <code>expectancy</code>, not just year and variable name! We could add a third column to catch this and let the <code>separate</code> function know which column to <em>fill in</em> with missing values, <code>NA</code>, when there is no third value. Here we tell it to fill the column on the right:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-17_17f48b4a1dcc86dff08fd5f295ead30e">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-17_d8cd158215fe78ed2d623a8446d8553c">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">var_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"first_variable_name"</span>, <span class="st">"second_variable_name"</span><span class="op">)</span></span>
 <span><span class="va">dat</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">var_names</span>, fill <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span></span>
-<span><span class="co">## # A tibble: 224 × 5</span></span>
-<span><span class="co">##   country year  first_variable_name second_variable_name value</span></span>
-<span><span class="co">##   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;               &lt;chr&gt;                &lt;dbl&gt;</span></span>
-<span><span class="co">## 1 Germany 1960  fertility           &lt;NA&gt;                  2.41</span></span>
-<span><span class="co">## 2 Germany 1960  life                expectancy           69.3 </span></span>
-<span><span class="co">## 3 Germany 1961  fertility           &lt;NA&gt;                  2.44</span></span>
-<span><span class="co">## 4 Germany 1961  life                expectancy           69.8 </span></span>
-<span><span class="co">## 5 Germany 1962  fertility           &lt;NA&gt;                  2.47</span></span>
-<span><span class="co">## # ℹ 219 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # A tibble: 224 × 5</span></span>
+<span><span class="co">#&gt;   country year  first_variable_name second_variable_name value</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;               &lt;chr&gt;                &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Germany 1960  fertility           &lt;NA&gt;                  2.41</span></span>
+<span><span class="co">#&gt; 2 Germany 1960  life                expectancy           69.3 </span></span>
+<span><span class="co">#&gt; 3 Germany 1961  fertility           &lt;NA&gt;                  2.44</span></span>
+<span><span class="co">#&gt; 4 Germany 1961  life                expectancy           69.8 </span></span>
+<span><span class="co">#&gt; 5 Germany 1962  fertility           &lt;NA&gt;                  2.47</span></span>
+<span><span class="co">#&gt; # ℹ 219 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>However, if we read the <code>separate</code> help file, we find that a better approach is to merge the last two variables when there is an extra separation:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-18_a3c27c2d996092fd76a59e86d59db250">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-18_c50c55b1d79b7aa325af9de85c833d5c">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">name</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"name"</span><span class="op">)</span>, extra <span class="op">=</span> <span class="st">"merge"</span><span class="op">)</span></span>
-<span><span class="co">## # A tibble: 224 × 4</span></span>
-<span><span class="co">##   country year  name            value</span></span>
-<span><span class="co">##   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;           &lt;dbl&gt;</span></span>
-<span><span class="co">## 1 Germany 1960  fertility        2.41</span></span>
-<span><span class="co">## 2 Germany 1960  life_expectancy 69.3 </span></span>
-<span><span class="co">## 3 Germany 1961  fertility        2.44</span></span>
-<span><span class="co">## 4 Germany 1961  life_expectancy 69.8 </span></span>
-<span><span class="co">## 5 Germany 1962  fertility        2.47</span></span>
-<span><span class="co">## # ℹ 219 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # A tibble: 224 × 4</span></span>
+<span><span class="co">#&gt;   country year  name            value</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;           &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Germany 1960  fertility        2.41</span></span>
+<span><span class="co">#&gt; 2 Germany 1960  life_expectancy 69.3 </span></span>
+<span><span class="co">#&gt; 3 Germany 1961  fertility        2.44</span></span>
+<span><span class="co">#&gt; 4 Germany 1961  life_expectancy 69.8 </span></span>
+<span><span class="co">#&gt; 5 Germany 1962  fertility        2.47</span></span>
+<span><span class="co">#&gt; # ℹ 219 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This achieves the separation we wanted. However, we are not done yet. We need to create a column for each variable. As we learned, the <code>pivot_wider</code> function can do this:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-19_ba59c7c57d1627ebb49a0fcb4ffa3513">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-19_a4fc65eb5d2de022732773ae19795646">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">name</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"name"</span><span class="op">)</span>, extra <span class="op">=</span> <span class="st">"merge"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">## # A tibble: 112 × 4</span></span>
-<span><span class="co">##   country year  fertility life_expectancy</span></span>
-<span><span class="co">##   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;           &lt;dbl&gt;</span></span>
-<span><span class="co">## 1 Germany 1960       2.41            69.3</span></span>
-<span><span class="co">## 2 Germany 1961       2.44            69.8</span></span>
-<span><span class="co">## 3 Germany 1962       2.47            70.0</span></span>
-<span><span class="co">## 4 Germany 1963       2.49            70.1</span></span>
-<span><span class="co">## 5 Germany 1964       2.49            70.7</span></span>
-<span><span class="co">## # ℹ 107 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # A tibble: 112 × 4</span></span>
+<span><span class="co">#&gt;   country year  fertility life_expectancy</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;           &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Germany 1960       2.41            69.3</span></span>
+<span><span class="co">#&gt; 2 Germany 1961       2.44            69.8</span></span>
+<span><span class="co">#&gt; 3 Germany 1962       2.47            70.0</span></span>
+<span><span class="co">#&gt; 4 Germany 1963       2.49            70.1</span></span>
+<span><span class="co">#&gt; 5 Germany 1964       2.49            70.7</span></span>
+<span><span class="co">#&gt; # ℹ 107 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The data is now in tidy format with one row for each observation with three variables: year, fertility, and life expectancy.</p>
 </section><section id="unite" class="level2" data-number="12.4"><h2 data-number="12.4" class="anchored" data-anchor-id="unite">
 <span class="header-section-number">12.4</span> <code>unite</code>
 </h2>
 <p>It is sometimes useful to do the inverse of <code>separate</code>, unite two columns into one. To demonstrate how to use <code>unite</code>, we show code that, although <em>not</em> the optimal approach, serves as an illustration. Suppose that we did not know about <code>extra</code> and used this command to separate:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-20_a4ffbfe0e0deb016e9e62b8625778f9e">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-20_b367d16d3b8908d37f8a459cb0ed8787">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">var_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"first_variable_name"</span>, <span class="st">"second_variable_name"</span><span class="op">)</span></span>
 <span><span class="va">dat</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">var_names</span>, fill <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span></span>
-<span><span class="co">## # A tibble: 224 × 5</span></span>
-<span><span class="co">##   country year  first_variable_name second_variable_name value</span></span>
-<span><span class="co">##   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;               &lt;chr&gt;                &lt;dbl&gt;</span></span>
-<span><span class="co">## 1 Germany 1960  fertility           &lt;NA&gt;                  2.41</span></span>
-<span><span class="co">## 2 Germany 1960  life                expectancy           69.3 </span></span>
-<span><span class="co">## 3 Germany 1961  fertility           &lt;NA&gt;                  2.44</span></span>
-<span><span class="co">## 4 Germany 1961  life                expectancy           69.8 </span></span>
-<span><span class="co">## 5 Germany 1962  fertility           &lt;NA&gt;                  2.47</span></span>
-<span><span class="co">## # ℹ 219 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # A tibble: 224 × 5</span></span>
+<span><span class="co">#&gt;   country year  first_variable_name second_variable_name value</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;               &lt;chr&gt;                &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Germany 1960  fertility           &lt;NA&gt;                  2.41</span></span>
+<span><span class="co">#&gt; 2 Germany 1960  life                expectancy           69.3 </span></span>
+<span><span class="co">#&gt; 3 Germany 1961  fertility           &lt;NA&gt;                  2.44</span></span>
+<span><span class="co">#&gt; 4 Germany 1961  life                expectancy           69.8 </span></span>
+<span><span class="co">#&gt; 5 Germany 1962  fertility           &lt;NA&gt;                  2.47</span></span>
+<span><span class="co">#&gt; # ℹ 219 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can achieve the same final result by uniting the second and third columns, then pivoting the columns and renaming <code>fertility_NA</code> to <code>fertility</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-21_30c870b3e15b8cf66912e28d61e2155f">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-21_d4a7127907b4de46bda1b0ed8741bc1f">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">var_names</span>, fill <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">first_variable_name</span>, <span class="va">second_variable_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>fertility <span class="op">=</span> <span class="va">fertility_NA</span><span class="op">)</span></span>
-<span><span class="co">## # A tibble: 112 × 4</span></span>
-<span><span class="co">##   country year  fertility life_expectancy</span></span>
-<span><span class="co">##   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;           &lt;dbl&gt;</span></span>
-<span><span class="co">## 1 Germany 1960       2.41            69.3</span></span>
-<span><span class="co">## 2 Germany 1961       2.44            69.8</span></span>
-<span><span class="co">## 3 Germany 1962       2.47            70.0</span></span>
-<span><span class="co">## 4 Germany 1963       2.49            70.1</span></span>
-<span><span class="co">## 5 Germany 1964       2.49            70.7</span></span>
-<span><span class="co">## # ℹ 107 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # A tibble: 112 × 4</span></span>
+<span><span class="co">#&gt;   country year  fertility life_expectancy</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;           &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Germany 1960       2.41            69.3</span></span>
+<span><span class="co">#&gt; 2 Germany 1961       2.44            69.8</span></span>
+<span><span class="co">#&gt; 3 Germany 1962       2.47            70.0</span></span>
+<span><span class="co">#&gt; 4 Germany 1963       2.49            70.1</span></span>
+<span><span class="co">#&gt; 5 Germany 1964       2.49            70.7</span></span>
+<span><span class="co">#&gt; # ℹ 107 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="exercises" class="level2" data-number="12.5"><h2 data-number="12.5" class="anchored" data-anchor-id="exercises">
 <span class="header-section-number">12.5</span> Exercises</h2>
 <p>1. Run the following command to define the <code>co2_wide</code> object:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-22_5ba11449b7946644ca3d67c73a024b3e">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-22_e908505d70d52a6abccb9f4e9acc3ba4">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">co2_wide</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">co2</span>, ncol <span class="op">=</span> <span class="fl">12</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fl">1959</span><span class="op">:</span><span class="fl">1997</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Use the <code>pivot_longer</code> function to wrangle this into a tidy dataset. Call the column with the CO2 measurements <code>co2</code> and call the month column <code>month</code>. Call the resulting object <code>co2_tidy</code>.</p>
 <p>2. Plot CO2 versus month with a different curve for each year using this code:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-23_6c8154137d622d9b6ac1928633b7827b">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-23_2c34ea35ee235a889bb83c13ed1d2703">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">co2_tidy</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">month</span>, <span class="va">co2</span>, color <span class="op">=</span> <span class="va">year</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If the expected plot is not made, it is probably because <code>co2_tidy$month</code> is not numeric:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-24_7102f9c30c977772117e552eab516e45">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-24_c01b688376e3a4b75359bc24ff8a862f">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">co2_tidy</span><span class="op">$</span><span class="va">month</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Rewrite your code to make sure the month column is numeric. Then make the plot.</p>
@@ -605,7 +605,7 @@ The following diagram can help remind you how these two functions work:
 <li>CO2 measures do not have a seasonal trend.</li>
 </ol>
 <p>4. Now load the <code>admissions</code> data set, which contains admission information for men and women across six majors and keep only the admitted percentage column:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-25_623f3c4325c3665b1c3e61750811790b">
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-25_6831c74572d5b135faa6a1447778228a">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="va">admissions</span><span class="op">)</span></span>
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">admissions</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">applicants</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>

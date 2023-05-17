@@ -369,13 +369,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header><div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-1_d53b6a09894490d8bf03905244fe4f64">
+</header><div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-1_5c84bfba36decb73ec5cd0cf54d0d457">
 
 </div>
 <p>We have already provided some rules to follow as we created plots for our examples. Here, we aim to provide some general principles we can use as a guide for effective data visualization. Much of this section is based on a talk by Karl Broman<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> titled “Creating Effective Figures and Tables”<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> and includes some of the figures which were made with code that Karl makes available on his GitHub repository<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, as well as class notes from Peter Aldhous’ Introduction to Data Visualization course<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Following Karl’s approach, we show some examples of plot styles we should avoid, explain how to improve them, and use these as motivation for a list of principles. We compare and contrast plots that follow these principles to those that don’t.</p>
 <p>The principles are mostly based on research related to how humans detect patterns and make visual comparisons. The preferred approaches are those that best fit the way our brains process visual information. When deciding on a visualization approach, it is also important to keep our goal in mind. We may be comparing a viewable number of quantities, describing distributions for categories or numeric values, comparing the data from two groups, or describing the relationship between two variables. As a final note, we want to emphasize that for a data scientist it is important to adapt and optimize graphs to the audience. For example, an exploratory plot made for ourselves will be different than a chart intended to communicate a finding to a general audience.</p>
 <p>We will be using these libraries:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-2_3d535a70f74a375a02c9603d62294a81">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-2_8dc3eb3365b7d45077772c7799181f5c">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">gridExtra</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -383,11 +383,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="encoding-data-using-visual-cues" class="level2" data-number="10.1"><h2 data-number="10.1" class="anchored" data-anchor-id="encoding-data-using-visual-cues">
 <span class="header-section-number">10.1</span> Encoding data using visual cues</h2>
 <p>We start by describing some principles for encoding data. There are several approaches at our disposal including position, aligned lengths, angles, area, brightness, and color hue.</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-3_279b1259bc1dbbf7b629db4099eba45f">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-3_faec21c12b1c9301adf6fee902550d3b">
 
 </div>
 <p>To illustrate how some of these strategies compare, let’s suppose we want to report the results from two hypothetical polls regarding browser preference taken in 2000 and then 2015. For each year, we are simply comparing five quantities – the five percentages. A widely used graphical representation of percentages, popularized by Microsoft Excel, is the pie chart:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/piechart_b624b3a7d73422dafd12cd21b64eddca">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/piechart_63261f229097e0162035dd811aa887c4">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/piechart-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -396,7 +396,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Here we are representing quantities with both areas and angles, since both the angle and area of each pie slice are proportional to the quantity the slice represents. This turns out to be a sub-optimal choice since, as demonstrated by perception studies, humans are not good at precisely quantifying angles and are even worse when area is the only available visual cue. The donut chart is an example of a plot that uses only area:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/donutchart_4dbef9a152f2e4c1a368421ddfd58c6d">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/donutchart_9d2bf289853f42224fee28fa385cc369">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/donutchart-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -409,7 +409,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Pie charts are a very bad way of displaying information. The eye is good at judging linear measures and bad at judging relative areas. A bar chart or dot chart is a preferable way of displaying this type of data.</p>
 </blockquote>
 <p>In this case, simply showing the numbers is not only clearer, but would also save on printing costs if printing a paper copy:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-4_22d5aa294e7ceaf2c705b73f661be05c">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-4_03bf29a7e3fd0e9bde294c5e43f28a99">
 <div class="cell-output-display">
 
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -449,7 +449,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>The preferred way to plot these quantities is to use length and position as visual cues, since humans are much better at judging linear measures. The barplot uses this approach by using bars of length proportional to the quantities of interest. By adding horizontal lines at strategically chosen values, in this case at every multiple of 10, we ease the visual burden of quantifying through the position of the top of the bars. Compare and contrast the information we can extract from the two figures.</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/two-barplots_051793b682e6bf999b7bba5a72550e2f">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/two-barplots_0f7f28ed7f482fe3679f80f762982aca">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/two-barplots-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -459,7 +459,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Notice how much easier it is to see the differences in the barplot. In fact, we can now determine the actual percentages by following a horizontal line to the x-axis.</p>
 <p>If for some reason you need to make a pie chart, label each pie slice with its respective percentage so viewers do not have to infer them from the angles or area:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/excel-barplot_484620eec2bae31f923467b68d5966b1">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/excel-barplot_89063d808c1959681a266d0051f2227f">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/excel-barplot-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -471,7 +471,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="know-when-to-include-0" class="level2" data-number="10.2"><h2 data-number="10.2" class="anchored" data-anchor-id="know-when-to-include-0">
 <span class="header-section-number">10.2</span> Know when to include 0</h2>
 <p>When using barplots, it is misinformative not to start the bars at 0. This is because, by using a barplot, we are implying the length is proportional to the quantities being displayed. By avoiding 0, relatively small differences can be made to look much bigger than they actually are. This approach is often used by politicians or media organizations trying to exaggerate a difference. Below is an illustrative example used by Peter Aldhous in this lecture: <a href="http://paldhous.github.io/ucb/2016/dataviz/week2.html">http://paldhous.github.io/ucb/2016/dataviz/week2.html</a>.</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-5_81c848e777bb5cf2f3dcc9c22b50fa17">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-5_ecdbb02f4429034f0ff39adaab2d81d6">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="img/class2_8.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -481,7 +481,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>(Source: Fox News, via Media Matters<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.)</p>
 <p>From the plot above, it appears that apprehensions have almost tripled when, in fact, they have only increased by about 16%. Starting the graph at 0 illustrates this clearly:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/barplot-from-zero-1_87d15293383e17cc78b17b267484ca13">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/barplot-from-zero-1_ae595075aa9f688b4303f0e0b2c50811">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/barplot-from-zero-1-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -490,7 +490,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Here is another example, described in detail in a Flowing Data blog post:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-6_d3c057b4c3c33bf3624f6c6345224207">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-6_f801b3b14d34ad389f4fa2ad3caa6233">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="img/Bush-cuts.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -500,7 +500,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>(Source: Fox News, via Flowing Data<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.)</p>
 <p>This plot makes a 13% increase look like a five fold change. Here is the appropriate plot:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/barplot-from-zero-2_b95bd074a1601342ef97d5b7e98d3b04">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/barplot-from-zero-2_ae39c33a07e45332dadb51d5e4c91777">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/barplot-from-zero-2-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -509,7 +509,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Finally, here is an extreme example that makes a very small difference of under 2% look like a 10-100 fold change:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-7_9facdb439ea540f4f8493d5aa071f2a1">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-7_c6ef0c729910eeeda3003e12209a01ac">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="img/venezuela-election.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -519,7 +519,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>(Source: Venezolana de Televisión via Pakistan Today<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> and Diego Mariano.)</p>
 <p>Here is the appropriate plot:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/barplot-from-zero-3_f3de01aed75666bc6609756286bf0083">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/barplot-from-zero-3_ad9c9d30d9f75ecf19d805f82280a432">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/barplot-from-zero-3-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -528,7 +528,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>When using position rather than length, it is then not necessary to include 0. This is particularly the case when we want to compare differences between groups relative to the within-group variability. Here is an illustrative example showing country average life expectancy stratified across continents in 2012:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/points-plot-not-from-zero_ce6d283f058907854b7c08e8813b4bf8">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/points-plot-not-from-zero_b233b3052f1f3067e7b6fba5612449fe">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/points-plot-not-from-zero-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -540,7 +540,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="do-not-distort-quantities" class="level2" data-number="10.3"><h2 data-number="10.3" class="anchored" data-anchor-id="do-not-distort-quantities">
 <span class="header-section-number">10.3</span> Do not distort quantities</h2>
 <p>During President Barack Obama’s 2011 State of the Union Address, the following chart was used to compare the US GDP to the GDP of four competing nations:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-8_044077621f8a67918b5d09884e120179">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-8_377f64d7328809de76c917368e37e0ec">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="img/state-of-the-union.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -550,7 +550,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>(Source: The 2011 State of the Union Address<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>)</p>
 <p>Judging by the area of the circles, the US appears to have an economy over five times larger than China’s and over 30 times larger than France’s. However, if we look at the actual numbers, we see that this is not the case. The actual ratios are 2.6 and 5.8 times bigger than China and France, respectively. The reason for this distortion is that the radius, rather than the area, was made to be proportional to the quantity, which implies that the proportion between the areas is squared: 2.6 turns into 6.5 and 5.8 turns into 34.1. Here is a comparison of the circles we get if we make the value proportional to the radius and to the area:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/area-not-radius_19c42c89a9840af907eca8acc9bd69f5">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/area-not-radius_d36c01f496f99d4fb2b0aba825498d14">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/area-not-radius-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -559,7 +559,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Not surprisingly, <strong>ggplot2</strong> defaults to using area rather than radius. Of course, in this case, we really should not be using area at all since we can use position and length:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/barplot-better-than-area_d124531028a03320fd382fe0bc3754d4">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/barplot-better-than-area_9dc21504f21027d961cb90893bb078a5">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/barplot-better-than-area-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
@@ -571,7 +571,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">10.4</span> Order categories by a meaningful value</h2>
 <p>When one of the axes is used to show categories, as is done in barplots, the default <strong>ggplot2</strong> behavior is to order the categories alphabetically when they are defined by character strings. If they are defined by factors, they are ordered by the factor levels. We rarely want to use alphabetical order. Instead, we should order by a meaningful quantity. In all the cases above, the barplots were ordered by the values being displayed. The exception was the graph showing barplots comparing browsers. In this case, we kept the order the same across the barplots to ease the comparison. Specifically, instead of ordering the browsers separately in the two years, we ordered both years by the average value of 2000 and 2015.</p>
 <p>We previously learned how to use the <code>reorder</code> function, which helps us achieve this goal. To appreciate how the right order can help convey a message, suppose we want to create a plot to compare the murder rate across states. We are particularly interested in the most dangerous and safest states. Note the difference when we order alphabetically (the default) versus when we order by the actual rate:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/do-not-order-alphabetically_daddbad8c37877681822a77cf5889652">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/do-not-order-alphabetically_74013da82d18b088c5f0651cb95b0831">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/do-not-order-alphabetically-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -580,7 +580,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>We can make the second plot like this:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-9_398bfc6d0d0af41c039541e846a09678">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-9_4d7736de3697704a334a4388d11a5b70">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>murder_rate <span class="op">=</span> <span class="va">total</span> <span class="op">/</span> <span class="va">population</span> <span class="op">*</span> <span class="fl">100000</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">state</span>, <span class="va">murder_rate</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">state</span>, <span class="va">murder_rate</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -590,7 +590,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>reorder</code> function lets us reorder groups as well. Earlier we saw an example related to income distributions across regions. Here are the two versions plotted against each other:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/reorder-boxplot-example_1bf709cbf84f08625c33e4c72c0acb21">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/reorder-boxplot-example_869fac626c0bfc66d03d6202395d0347">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/reorder-boxplot-example-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -603,7 +603,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">10.5</span> Show the data</h2>
 <p>We have focused on displaying single quantities across categories. We now shift our attention to displaying data, with a focus on comparing groups.</p>
 <p>To motivate our first principle, “show the data”, we go back to our artificial example of describing heights to ET, an extraterrestrial. This time let’s assume ET is interested in the difference in heights between males and females. A commonly seen plot used for comparisons between groups, popularized by software such as Microsoft Excel, is the dynamite plot, which shows the average and standard errors (standard errors are defined in a later chapter, but do not confuse them with the standard deviation of the data). The plot looks like this:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/show-data-1_fb84636be4c4952022aece43273d296c">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/show-data-1_c8c19b4c961ec8400e8e8bd40a78dc61">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/show-data-1-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -613,7 +613,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The average of each group is represented by the top of each bar and the antennae extend out from the average to the average plus two standard errors. If all ET receives is this plot, he will have little information on what to expect if he meets a group of human males and females. The bars go to 0: does this mean there are tiny humans measuring less than one foot? Are all males taller than the tallest females? Is there a range of heights? ET can’t answer these questions since we have provided almost no information on the height distribution.</p>
 <p>This brings us to our first principle: show the data. This simple <strong>ggplot2</strong> code already generates a more informative plot than the barplot by simply showing all the data points:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/show-data-2_f325a4029eda51fb3fe4d99b47a7be7b">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/show-data-2_7c4f29db0ca6a870bc9610474cdc8a29">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -626,7 +626,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>For example, this plot gives us an idea of the range of the data. However, this plot has limitations as well, since we can’t really see all the 238 and 812 points plotted for females and males, respectively, and many points are plotted on top of each other. As we have previously described, visualizing the distribution is much more informative. But before doing this, we point out two ways we can improve a plot showing all the points.</p>
 <p>The first is to add <em>jitter</em>, which adds a small random shift to each point. In this case, adding horizontal jitter does not alter the interpretation, since the point heights do not change, but we minimize the number of points that fall on top of each other and, therefore, get a better visual sense of how the data is distributed. A second improvement comes from using <em>alpha blending</em>: making the points somewhat transparent. The more points fall on top of each other, the darker the plot, which also helps us get a sense of how the points are distributed. Here is the same plot with jitter and alpha blending:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/show-points-with-jitter_7a8ba7101919cbb7e07310aeb50eb0ac">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/show-points-with-jitter_826f59e4147f2fe49c70efa2ef5a4a03">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.1</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -643,9 +643,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="use-common-axes" class="level3" data-number="10.6.1"><h3 data-number="10.6.1" class="anchored" data-anchor-id="use-common-axes">
 <span class="header-section-number">10.6.1</span> Use common axes</h3>
 <p>Since there are so many points, it is more effective to show distributions rather than individual points. We therefore show histograms for each group:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/common-axes-histograms-wrong_ceba872ea9c57e09950be427d39b748d">
-<pre><code>## Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
-## ℹ Please use `after_stat(density)` instead.</code></pre>
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/common-axes-histograms-wrong_ee10ff324738797cb63fa44265913146">
+<pre><code>#&gt; Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
+#&gt; ℹ Please use `after_stat(density)` instead.</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/common-axes-histograms-wrong-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -654,7 +654,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>However, from this plot it is not immediately obvious that males are, on average, taller than females. We have to look carefully to notice that the x-axis has a higher range of values in the male histogram. An important principle here is to <strong>keep the axes the same</strong> when comparing data across two plots. Below we see how the comparison becomes easier:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/common-axes-histograms-right_4472c252496a8e1b08ecb6b8d9ea7ea3">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/common-axes-histograms-right_20654e907b74e4ddbae66d8f325075ed">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/common-axes-histograms-right-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -665,7 +665,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="align-plots-vertically-to-see-horizontal-changes-and-horizontally-to-see-vertical-changes" class="level3" data-number="10.6.2"><h3 data-number="10.6.2" class="anchored" data-anchor-id="align-plots-vertically-to-see-horizontal-changes-and-horizontally-to-see-vertical-changes">
 <span class="header-section-number">10.6.2</span> Align plots vertically to see horizontal changes and horizontally to see vertical changes</h3>
 <p>In these histograms, the visual cue related to decreases or increases in height are shifts to the left or right, respectively: horizontal changes. Aligning the plots vertically helps us see this change when the axes are fixed:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/common-axes-histograms-right-2_8d7434a6e7926e97df0c79052ead69bd">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/common-axes-histograms-right-2_0514879c20ee9960d556f1e1c5fb6a29">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/common-axes-histograms-right-2-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -673,7 +673,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-10_5f77e8e6f60fb1ccf774d2ab4fa627be">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-10_50a27d17c83e4eed5ad04bfcdcd9e844">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">height</span>, <span class="va">..density..</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1</span>, color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -681,7 +681,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>This plot makes it much easier to notice that men are, on average, taller.</p>
 <p>If , we want the more compact summary provided by boxplots, we then align them horizontally since, by default, boxplots move up and down with changes in height. Following our <em>show the data</em> principle, we then overlay all the data points:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/boxplot-with-points-with-jitter_38750930204674f2a0733e4cd33598d0">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/boxplot-with-points-with-jitter_3921d99f79d45744ce42d937ba83a3f5">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/boxplot-with-points-with-jitter-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -689,7 +689,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-11_45c34bf97f495390af55ad6a9664c39a">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-11_ef154cffd8c7a5183945458310d226b7">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="va">heights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>coef<span class="op">=</span><span class="fl">3</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -697,7 +697,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Height in inches"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now contrast and compare these three plots, based on exactly the same data:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/show-the-data-comparison_c66704c8b115a195566dbad81a2aedd6">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/show-the-data-comparison_99ce661a6a073143fe612e5e2605dd2e">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/show-the-data-comparison-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -710,7 +710,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">10.6.3</span> Consider transformations</h3>
 <p>We have motivated the use of the log transformation in cases where the changes are multiplicative. Population size was an example in which we found a log transformation to yield a more informative transformation.</p>
 <p>The combination of an incorrectly chosen barplot and a failure to use a log transformation when one is merited can be particularly distorting. As an example, consider this barplot showing the average population sizes for each continent in 2015:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/no-transformations-wrong-use-of-barplot_7c7b9a1318b815f4de3f07d2a46c3041">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/no-transformations-wrong-use-of-barplot_5d731de8538108e1f05f50efe985168c">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/no-transformations-wrong-use-of-barplot-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -719,7 +719,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>From this plot, one would conclude that countries in Asia are much more populous than in other continents. Following the <em>show the data</em> principle, we quickly notice that this is due to two very large countries, which we assume are India and China:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/no-transformation_6b5b42e2d0b8268385ca0b7f3ac51424">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/no-transformation_f664e4a15b9958d8fa9dfcbcc614b28c">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/no-transformation-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -728,7 +728,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Using a log transformation here provides a much more informative plot. We compare the original barplot to a boxplot using the log scale transformation for the y-axis:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/correct-transformation_b84c061978d32d275a0e900f80d7ed1b">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/correct-transformation_b01e8f7fd7e1cfba80f3321b7a434a12">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/correct-transformation-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -741,7 +741,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="visual-cues-to-be-compared-should-be-adjacent" class="level3" data-number="10.6.4"><h3 data-number="10.6.4" class="anchored" data-anchor-id="visual-cues-to-be-compared-should-be-adjacent">
 <span class="header-section-number">10.6.4</span> Visual cues to be compared should be adjacent</h3>
 <p>For each continent, let’s compare income in 1970 versus 2010. When comparing income data across regions between 1970 and 2010, we made a figure similar to the one below, but this time we investigate continents rather than regions.</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/boxplots-not-adjacent_d750f0a9efbdf05a619f63c7eaa3743f">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/boxplots-not-adjacent_00afa7e27df1e2462750ec5b4124977d">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/boxplots-not-adjacent-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -750,7 +750,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>The default in <strong>ggplot2</strong> is to order labels alphabetically so the labels with 1970 come before the labels with 2010, making the comparisons challenging because a continent’s distribution in 1970 is visually far from its distribution in 2010. It is much easier to make the comparison between 1970 and 2010 for each continent when the boxplots for that continent are next to each other:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/boxplot-adjacent-comps_407dc7d27b44ce0ae5f7ce1353ea9efe">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/boxplot-adjacent-comps_f02800fb6b4fa8ddb4ff0d90d23231d1">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/boxplot-adjacent-comps-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -761,7 +761,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="use-color" class="level3" data-number="10.6.5"><h3 data-number="10.6.5" class="anchored" data-anchor-id="use-color">
 <span class="header-section-number">10.6.5</span> Use color</h3>
 <p>The comparison becomes even easier to make if we use color to denote the two things we want to compare:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/boxplot-adjacent-comps-with-color_9df3f4217eb204f1644f69e7f312e5de">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/boxplot-adjacent-comps-with-color_643ff0e4f659ed0efc35a38cb28181a0">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/boxplot-adjacent-comps-with-color-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -772,13 +772,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section></section><section id="think-of-the-color-blind" class="level2" data-number="10.7"><h2 data-number="10.7" class="anchored" data-anchor-id="think-of-the-color-blind">
 <span class="header-section-number">10.7</span> Think of the color blind</h2>
 <p>About 10% of the population is color blind. Unfortunately, the default colors used in <strong>ggplot2</strong> are not optimal for this group. However, <strong>ggplot2</strong> does make it easy to change the color palette used in the plots. An example of how we can use a color blind friendly palette is described here: <a href="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette">http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette</a>:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-12_5899130c92ff6346b61879a69b540876">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-12_68564cb29b13d2f52df99da59c04a7e5">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">color_blind_friendly_cols</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#999999"</span>, <span class="st">"#E69F00"</span>, <span class="st">"#56B4E9"</span>, <span class="st">"#009E73"</span>, </span>
 <span>    <span class="st">"#F0E442"</span>, <span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"#CC79A7"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here are the colors</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/color-blind-friendly-colors_1411486505f621cdb4b2259449618295">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/color-blind-friendly-colors_2ac264ad165b90e4bed07b4ec2ce2dd1">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/color-blind-friendly-colors-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -794,7 +794,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">10.8.1</span> Slope charts</h3>
 <p>One exception where another type of plot may be more informative is when you are comparing variables of the same type, but at different time points and for a relatively small number of comparisons. For example, comparing life expectancy between 2010 and 2015. In this case, we might recommend a <em>slope chart</em>.</p>
 <p>There is no geometry for slope charts in <strong>ggplot2</strong>, but we can construct one using <code>geom_line</code>. We need to do some tinkering to add labels. Below is an example comparing 2010 to 2015 for large western countries:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/slope-plot_b3ecaa03a2051ff7250e189c31b780a0">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/slope-plot_222081ae07fc3776e57e584c0c7dfe52">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">west</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Western Europe"</span>,<span class="st">"Northern Europe"</span>,<span class="st">"Southern Europe"</span>,</span>
 <span>          <span class="st">"Northern America"</span>,<span class="st">"Australia and New Zealand"</span><span class="op">)</span></span>
 <span></span>
@@ -822,7 +822,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>An advantage of the slope chart is that it permits us to quickly get an idea of changes based on the slope of the lines. Although we are using angle as the visual cue, we also have position to determine the exact values. Comparing the improvements is a bit harder with a scatterplot:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/scatter-plot-instead-of-slope_906e40a25c26073860900ca6dd578618">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/scatter-plot-instead-of-slope_434a2021eab957bca97c6dd41702e61b">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/scatter-plot-instead-of-slope-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -834,7 +834,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="bland-altman-plot" class="level3" data-number="10.8.2"><h3 data-number="10.8.2" class="anchored" data-anchor-id="bland-altman-plot">
 <span class="header-section-number">10.8.2</span> Bland-Altman plot</h3>
 <p>Since we are primarily interested in the difference, it makes sense to dedicate one of our axes to it. The Bland-Altman plot, also known as the Tukey mean-difference plot and the MA-plot, shows the difference versus the average:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/bland-altman_f76ce6e46cbd8845e654c7a3d69c8e8b">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/bland-altman_666020b962ddfb2c70ec6e4fd0e9ba3a">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span></span>
 <span><span class="va">dat</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"life_expectancy_"</span>, <span class="va">year</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -859,7 +859,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section></section><section id="encoding-a-third-variable" class="level2" data-number="10.9"><h2 data-number="10.9" class="anchored" data-anchor-id="encoding-a-third-variable">
 <span class="header-section-number">10.9</span> Encoding a third variable</h2>
 <p>An earlier scatterplot showed the relationship between infant survival and average income. Below is a version of this plot that encodes three variables: OPEC membership, region, and population.</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/encoding-third-variable_27050ba310a85fca75d317fd47badb02">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/encoding-third-variable_3032856503a96e79be181db6fe835519">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/encoding-third-variable-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -868,7 +868,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>We encode categorical variables with color and shape. These shapes can be controlled with <code>shape</code> argument. Below are the shapes available for use in R. For the last five, the color goes inside.</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/available-shapes_d6dba5e84cab388bdaaf4124fcf9f417">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/available-shapes_f911c00d01d8e83e87caf905c0138efd">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/available-shapes-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -878,11 +878,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>For continuous variables, we can use color, intensity, or size. We now show an example of how we do this with a case study.</p>
 <p>When selecting colors to quantify a numeric variable, we choose between two options: sequential and diverging. Sequential colors are suited for data that goes from high to low. High values are clearly distinguished from low values. Here are some examples offered by the package <code>RColorBrewer</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-13_e720b741007478496e80d35369e0e394">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-13_772ef3a27ee501785ab3c692d01b9702">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">display.brewer.all</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"seq"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/r-color-brewer-seq_5539772b789a28e218e8e4035393a88a">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/r-color-brewer-seq_944e66898226730609080e975c9ac4cb">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/r-color-brewer-seq-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -891,11 +891,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Diverging colors are used to represent values that diverge from a center. We put equal emphasis on both ends of the data range: higher than the center and lower than the center. An example of when we would use a divergent pattern would be if we were to show height in standard deviations away from the average. Here are some examples of divergent patterns:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-14_45ffb9aabf6809685f1b8c429b5609af">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-14_3806701d5e5982b286e6daeb63f130f9">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">display.brewer.all</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"div"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/r-color-brewer-div_c66a7977a3c48ee3cd144cae7e73210a">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/r-color-brewer-div_d2ae090f0b0579f89fcd7830cf7b74e6">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/r-color-brewer-div-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -906,7 +906,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="avoid-pseudo-three-dimensional-plots" class="level2" data-number="10.10"><h2 data-number="10.10" class="anchored" data-anchor-id="avoid-pseudo-three-dimensional-plots">
 <span class="header-section-number">10.10</span> Avoid pseudo-three-dimensional plots</h2>
 <p>The figure below, taken from the scientific literature<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>, shows three variables: dose, drug type and survival. Although your screen/book page is flat and two-dimensional, the plot tries to imitate three dimensions and assigned a dimension to each variable.</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-15_5ec619d68981baa847362b119ee1e83d">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-15_75d7ab2843f6929aee6ac1d678443545">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="img/fig8b.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -916,7 +916,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>(Image courtesy of Karl Broman)</p>
 <p>Humans are not good at seeing in three dimensions (which explains why it is hard to parallel park) and our limitation is even worse with regard to pseudo-three-dimensions. To see this, try to determine the values of the survival variable in the plot above. Can you tell when the purple ribbon intersects the red one? This is an example in which we can easily use color to represent the categorical variable instead of using a pseudo-3D:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/colors-for-different-lines_ece2c4ae09d82166761b630c99f8ecb3">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/colors-for-different-lines_64e860e362388e844e7674554881e8b9">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/colors-for-different-lines-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -926,7 +926,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Notice how much easier it is to determine the survival values.</p>
 <p>Pseudo-3D is sometimes used completely gratuitously: plots are made to look 3D even when the 3rd dimension does not represent a quantity. This only adds confusion and makes it harder to relay your message. Here are two examples:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-16_c88c247c368fb0899d3939e7bad82da5">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-16_117c68329ab724e8c047244b4835ea11">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="img/fig1e.png" class="img-fluid figure-img" style="width:45.0%"></p>
@@ -944,7 +944,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="avoid-too-many-significant-digits" class="level2" data-number="10.11"><h2 data-number="10.11" class="anchored" data-anchor-id="avoid-too-many-significant-digits">
 <span class="header-section-number">10.11</span> Avoid too many significant digits</h2>
 <p>By default, statistical software like R returns many significant digits. The default behavior in R is to show 7 significant digits. That many digits often adds no information and the added visual clutter can make it hard for the viewer to understand the message. As an example, here are the per 10,000 disease rates, computed from totals and population in R, for California across the five decades:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-17_e545a6469a24cff17a51c6978ece6b19">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-17_8412c45b9f069a169af0cc873f535c15">
 <div class="cell-output-display">
 
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -996,7 +996,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>We are reporting precision up to 0.00001 cases per 10,000, a very small value in the context of the changes that are occurring across the dates. In this case, two significant figures is more than enough and clearly makes the point that rates are decreasing:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-18_ee9ff6a7ccd3531f37b4321985cd561e">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-18_66a30fb7c3c683d9262277ae226aaede">
 <div class="cell-output-display">
 
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -1049,7 +1049,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Useful ways to change the number of significant digits or to round numbers are <code>signif</code> and <code>round</code>. You can define the number of significant digits globally by setting options like this: <code>options(digits = 3)</code>.</p>
 <p>Another principle related to displaying tables is to place values being compared on columns rather than rows. Note that our table above is easier to read than this one:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-19_d20dce3c4589e0b49209af78c44dda6d">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-19_862b09e6d33b5aae59b1f051a7146d0f">
 <div class="cell-output-display">
 
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -1101,7 +1101,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="exercises" class="level2" data-number="10.13"><h2 data-number="10.13" class="anchored" data-anchor-id="exercises">
 <span class="header-section-number">10.13</span> Exercises</h2>
 <p>For these exercises, we will be using the vaccines data in the <strong>dslabs</strong> package:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-20_51486ce699c5505f400b32d128f938fd">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-20_9bf64f9e32a28b2ca98f406add783741">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>1. Pie charts are appropriate:</p>
@@ -1112,7 +1112,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Never. Barplots and tables are always better.</li>
 </ol>
 <p>2. What is the problem with the plot below:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/baplot-not-from-zero-exercises_697431115d76a44e5593dbff796d85f6">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/baplot-not-from-zero-exercises_f442c360bb486bb0617b2a1e60b3e3e3">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/baplot-not-from-zero-exercises-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -1127,7 +1127,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Percentages should be shown as a pie chart.</li>
 </ol>
 <p>3. Take a look at the following two plots. They show the same information: 1928 rates of measles across the 50 states.</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/measels-exercise_322ca7f6ac1d284b47172c1357816c71">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/measels-exercise_08d848e9542702b230dcc70832df74ca">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/measels-exercise-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -1143,13 +1143,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Both plots should be a pie chart.</li>
 </ol>
 <p>4. To make the plot on the left, we have to reorder the levels of the states’ variables.</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-21_565df64ab5138b47581ea0b707d2c23e">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-21_fc63ebda370ae60e9be19f144faaeff1">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">us_contagious_diseases</span> <span class="op">|&gt;</span>  </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">1967</span> <span class="op">&amp;</span> <span class="va">disease</span><span class="op">==</span><span class="st">"Measles"</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>rate <span class="op">=</span> <span class="va">count</span> <span class="op">/</span> <span class="va">population</span> <span class="op">*</span> <span class="fl">10000</span> <span class="op">*</span> <span class="fl">52</span> <span class="op">/</span> <span class="va">weeks_reporting</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note what happens when we make a barplot:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/barplot-plot-exercise-example_11b19f6338403138fb69fdb7704e0bc4">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/barplot-plot-exercise-example_9c523a9a316a6b94a4258c00533914b7">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">state</span>, <span class="va">rate</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1161,14 +1161,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Define these objects:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-22_6b8f38862fd1222f30717ce9b01b83d4">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-22_1369bce082cd53c42f9df7b2bba585fb">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">state</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">$</span><span class="va">state</span></span>
 <span><span class="va">rate</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">$</span><span class="va">count</span><span class="op">/</span><span class="va">dat</span><span class="op">$</span><span class="va">population</span><span class="op">*</span><span class="fl">10000</span><span class="op">*</span><span class="fl">52</span><span class="op">/</span><span class="va">dat</span><span class="op">$</span><span class="va">weeks_reporting</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Redefine the <code>state</code> object so that the levels are re-ordered. Print the new object <code>state</code> and its levels so you can see that the vector is not re-ordered by the levels.</p>
 <p>5. Now with one line of code, define the <code>dat</code> table as done above, but change the use mutate to create a rate variable and re-order the state variable so that the levels are re-ordered by this variable. Then make a barplot using the code above, but for this new <code>dat</code>.</p>
 <p>6. Say we are interested in comparing gun homicide rates across regions of the US. We see this plot:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/us-murders-barplot_66f62db81e5423fec1eb60c461355be2">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/us-murders-barplot_570136d61ea2a42a84666e3bb9345f09">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>rate <span class="op">=</span> <span class="va">total</span><span class="op">/</span><span class="va">population</span><span class="op">*</span><span class="fl">100000</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1192,12 +1192,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The Northeast has the lowest average.</li>
 </ol>
 <p>7. Make a boxplot of the murder rates defined as</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-23_9a772b78625f2fcb7ca63d1d2e8c5714">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-23_7becb072d50fa3bf766702251189fbff">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>rate <span class="op">=</span> <span class="va">total</span><span class="op">/</span><span class="va">population</span><span class="op">*</span><span class="fl">100000</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>by region, showing all the points and ordering the regions by their median rate.</p>
 <p>8. The plots below show three continuous variables.</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/pseudo-3d-exercise_009019408a6073d6a2adfa5ba539caeb">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/pseudo-3d-exercise_e62d352d991eb01faaa7f74126b316f0">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/pseudo-3d-exercise-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -1206,7 +1206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>The line <span class="math inline">\(x=2\)</span> appears to separate the points. But it is actually not the case, which we can see by plotting the data in a couple of two-dimensional points.</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/pseud-3d-exercise-2_809e6f131e0a203537fad5e92339e2a1">
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/pseud-3d-exercise-2_6b38ec5f454ef9df0fcb7f5a5f70e4bd">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/pseud-3d-exercise-2-1.png" class="img-fluid figure-img" style="width:70.0%"></p>

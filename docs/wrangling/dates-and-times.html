@@ -348,30 +348,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We have described three main types of vectors: numeric, character, and logical. In data science projects, we very often encounter variables that are dates. Although we can represent a date with a string, for example <code>November 2, 2017</code>, once we pick a reference day, referred to as the <em>epoch</em>, they can be converted to numbers by calculating the number of days since the epoch. Computer languages usually use January 1, 1970, as the epoch. So, for example, January 2, 2017 is day 1, December 31, 1969 is day -1, and November 2, 2017, is day 17,204.</p>
 <p>Now how should we represent dates and times when analyzing data in R? We could just use days since the epoch, but then it is almost impossible to interpret. If I tell you it’s November 2, 2017, you know what this means immediately. If I tell you it’s day 17,204, you will be quite confused. Similar problems arise with times and even more complications can appear due to time zones.</p>
 <p>For this reason, R defines a data type just for dates and times. We saw an example in the polls data:</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-1_cbf1e9290efa73d98d0b2454b10d0376">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-1_54a29bf863d9fd7c6ca1031092b1c5f6">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="va">polls_us_election_2016</span><span class="op">$</span><span class="va">startdate</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">## [1] "2016-11-03" "2016-11-01" "2016-11-02" "2016-11-04" "2016-11-03"</span></span>
-<span><span class="co">## [6] "2016-11-03"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "2016-11-03" "2016-11-01" "2016-11-02" "2016-11-04" "2016-11-03"</span></span>
+<span><span class="co">#&gt; [6] "2016-11-03"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>These look like strings, but they are not:</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-2_f2f2385a5b80bb37c48b1c14a5723604">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-2_ddf5ca432ee56ffcf12c3071fd30d1fd">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">polls_us_election_2016</span><span class="op">$</span><span class="va">startdate</span><span class="op">)</span></span>
-<span><span class="co">## [1] "Date"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "Date"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Look at what happens when we convert them to numbers:</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-3_4ece686418b2938cb63d3a173434f3ea">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-3_b6ebc3d8338a0a5043b874c89eb56c85">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">polls_us_election_2016</span><span class="op">$</span><span class="va">startdate</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">## [1] 17108 17106 17107 17109 17108 17108</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 17108 17106 17107 17109 17108 17108</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>It turns them into days since the epoch. The <code>as.Date</code> function can convert a character into a date. So to see that the epoch is day 0 we can type</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-4_b2d7d72266539bbeac55b5cbcfbd7420">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-4_c99e675c39d7597f088e2ba750310230">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"1970-01-01"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">## [1] 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Plotting functions, such as those in ggplot, are aware of the date format. This means that, for example, a scatterplot can use the numeric representation to decide on the position of the point, but include the string in the labels:</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/rawpolls-vs-time_a7d0446152f734b4ac62947d1e32d249">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/rawpolls-vs-time_2ba98e038b2618ab18f03d02c7fa5edc">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">polls_us_election_2016</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">pollster</span> <span class="op">==</span> <span class="st">"Ipsos"</span> <span class="op">&amp;</span> <span class="va">state</span> <span class="op">==</span><span class="st">"U.S."</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">startdate</span>, <span class="va">rawpoll_trump</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -386,116 +386,116 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="sec-lubridate" class="level2" data-number="16.2"><h2 data-number="16.2" class="anchored" data-anchor-id="sec-lubridate">
 <span class="header-section-number">16.2</span> The lubridate package</h2>
 <p>The <strong>tidyverse</strong> includes functionality for dealing with dates through the <strong>lubridate</strong> package.</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-5_2493312e8ae9395b4e25a0efe8ffa9fe">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-5_ba7fddd38580f75584f3057b82159d22">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We will take a random sample of dates to show some of the useful things one can do:</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-6_22473b64014ea07cd4f4d629d6c7f360">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-6_c6527694464fdbd65693ee6007729019">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2002</span><span class="op">)</span></span>
 <span><span class="va">dates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">polls_us_election_2016</span><span class="op">$</span><span class="va">startdate</span>, <span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">dates</span></span>
-<span><span class="co">##  [1] "2016-05-31" "2016-08-08" "2016-08-19" "2016-09-22" "2016-09-27"</span></span>
-<span><span class="co">##  [6] "2016-10-12" "2016-10-24" "2016-10-26" "2016-10-29" "2016-10-30"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;  [1] "2016-05-31" "2016-08-08" "2016-08-19" "2016-09-22" "2016-09-27"</span></span>
+<span><span class="co">#&gt;  [6] "2016-10-12" "2016-10-24" "2016-10-26" "2016-10-29" "2016-10-30"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The functions <code>year</code>, <code>month</code> and <code>day</code> extract those values:</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-7_25b5b2bcf9cf9f0a35675fb799c13b48">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-7_367053a974fb0ff8bd56ad2e1b8af353">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>date <span class="op">=</span> <span class="va">dates</span>, </span>
 <span>       month <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html">month</a></span><span class="op">(</span><span class="va">dates</span><span class="op">)</span>,</span>
 <span>       day <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">day</a></span><span class="op">(</span><span class="va">dates</span><span class="op">)</span>,</span>
 <span>       year <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html">year</a></span><span class="op">(</span><span class="va">dates</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## # A tibble: 10 × 4</span></span>
-<span><span class="co">##   date       month   day  year</span></span>
-<span><span class="co">##   &lt;date&gt;     &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">## 1 2016-05-31     5    31  2016</span></span>
-<span><span class="co">## 2 2016-08-08     8     8  2016</span></span>
-<span><span class="co">## 3 2016-08-19     8    19  2016</span></span>
-<span><span class="co">## 4 2016-09-22     9    22  2016</span></span>
-<span><span class="co">## 5 2016-09-27     9    27  2016</span></span>
-<span><span class="co">## # ℹ 5 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # A tibble: 10 × 4</span></span>
+<span><span class="co">#&gt;   date       month   day  year</span></span>
+<span><span class="co">#&gt;   &lt;date&gt;     &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 2016-05-31     5    31  2016</span></span>
+<span><span class="co">#&gt; 2 2016-08-08     8     8  2016</span></span>
+<span><span class="co">#&gt; 3 2016-08-19     8    19  2016</span></span>
+<span><span class="co">#&gt; 4 2016-09-22     9    22  2016</span></span>
+<span><span class="co">#&gt; 5 2016-09-27     9    27  2016</span></span>
+<span><span class="co">#&gt; # ℹ 5 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also extract the month labels:</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-8_e60344b8897ca75c1e381b92a6275eb0">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-8_59a943ef6f2167180e5581f88b81bfdd">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html">month</a></span><span class="op">(</span><span class="va">dates</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-9_735b85f818fdb9ce888040d7a11f15b9">
-<pre><code>##  [1] May Aug Aug Sep Sep Oct Oct Oct Oct Oct
-## 12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; ... &lt; Dec</code></pre>
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-9_6f3dcf091e65b9a125a8324fd3a4ae01">
+<pre><code>#&gt;  [1] May Aug Aug Sep Sep Oct Oct Oct Oct Oct
+#&gt; 12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; ... &lt; Dec</code></pre>
 </div>
 <p>Another useful set of functions are the <em>parsers</em> that convert strings into dates. The function <code>ymd</code> assumes the dates are in the format YYYY-MM-DD and tries to parse as well as possible.</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-10_dee7b0098775ca7ac65c029bbf789f21">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-10_238009c17ba86d8993256fe9ad6c7f10">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20090101</span>, <span class="st">"2009-01-02"</span>, <span class="st">"2009 01 03"</span>, <span class="st">"2009-1-4"</span>,</span>
 <span>       <span class="st">"2009-1, 5"</span>, <span class="st">"Created on 2009 1 6"</span>, <span class="st">"200901 !!! 07"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">ymd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co">## [1] "2009-01-01" "2009-01-02" "2009-01-03" "2009-01-04" "2009-01-05"</span></span>
-<span><span class="co">## [6] "2009-01-06" "2009-01-07"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "2009-01-01" "2009-01-02" "2009-01-03" "2009-01-04" "2009-01-05"</span></span>
+<span><span class="co">#&gt; [6] "2009-01-06" "2009-01-07"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A further complication comes from the fact that dates often come in different formats in which the order of year, month, and day are different. The preferred format is to show year (with all four digits), month (two digits), and then day, or what is called the ISO 8601. Specifically we use YYYY-MM-DD so that if we order the string, it will be ordered by date. You can see the function <code>ymd</code> returns them in this format.</p>
 <p>But, what if you encounter dates such as “09/01/02”? This could be September 1, 2002 or January 2, 2009 or January 9, 2002. In these cases, examining the entire vector of dates will help you determine what format it is by process of elimination. Once you know, you can use the many parses provided by <strong>lubridate</strong>.</p>
 <p>For example, if the string is:</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-11_0ebac3278e5b4d39726cb40cf64f97ac">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-11_190e288312add55f479101f82e50d2eb">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="st">"09/01/02"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>ymd</code> function assumes the first entry is the year, the second is the month, and the third is the day, so it converts it to:</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-12_e37d8b115bf8ff14605c7a88bb8f667b">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-12_7a7c7e5ce888fecc1cd10a9a62f1591c">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">ymd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co">## [1] "2009-01-02"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "2009-01-02"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>mdy</code> function assumes the first entry is the month, then the day, then the year:</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-13_bfb1b3349fe5c4e03f095bc1150c26c8">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-13_9609faa230e80d0ff3a0137ce64b8306">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">mdy</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co">## [1] "2002-09-01"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "2002-09-01"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <em>lubridate</em> package provides a function for every possibility:</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-14_23c48e15cefb3c236f34e12c62b88b09">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-14_1377176331b36fbb18c758fd78d79e65">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">ydm</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co">## [1] "2009-02-01"</span></span>
+<span><span class="co">#&gt; [1] "2009-02-01"</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">myd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co">## [1] "2001-09-02"</span></span>
+<span><span class="co">#&gt; [1] "2001-09-02"</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">dmy</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co">## [1] "2002-01-09"</span></span>
+<span><span class="co">#&gt; [1] "2002-01-09"</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">dym</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co">## [1] "2001-02-09"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "2001-02-09"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <strong>lubridate</strong> package is also useful for dealing with times. In R base, you can get the current time typing <code><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time()</a></code>. The <strong>lubridate</strong> package provides a slightly more advanced function, <code>now</code>, that permits you to define the time zone:</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-15_d56edeab106270a491c7609640e0f79e">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-15_0a188e891a9c6e41161e71e6bb6d5944">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">## [1] "2023-05-17 15:36:20 EDT"</span></span>
+<span><span class="co">#&gt; [1] "2023-05-17 16:56:32 EDT"</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="st">"GMT"</span><span class="op">)</span></span>
-<span><span class="co">## [1] "2023-05-17 19:36:20 GMT"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "2023-05-17 20:56:32 GMT"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can see all the available time zones with <code><a href="https://rdrr.io/r/base/timezones.html">OlsonNames()</a></code> function.</p>
 <p>We can also extract hours, minutes, and seconds:</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-16_a80347506ae17bddfc719f85548725de">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-16_bf4642ae527f9ed4f048afa7b2a2d9ef">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/hour.html">hour</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">## [1] 15</span></span>
+<span><span class="co">#&gt; [1] 16</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/minute.html">minute</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">## [1] 36</span></span>
+<span><span class="co">#&gt; [1] 56</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/second.html">second</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">## [1] 20.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 32.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The package also includes a function to parse strings into times as well as parsers for time objects that include dates:</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-17_e1b922b0e5d8957630242ac8d015c629">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-17_28a10b5c88fe005fc35d3f51da70d8f8">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"12:34:56"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/hms.html">hms</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co">## [1] "12H 34M 56S"</span></span>
+<span><span class="co">#&gt; [1] "12H 34M 56S"</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="st">"Nov/2/2012 12:34:56"</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html">mdy_hms</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co">## [1] "2012-11-02 12:34:56 UTC"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "2012-11-02 12:34:56 UTC"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This package has many other useful functions. We describe two of these here that we find particularly useful.</p>
 <p>The <code>make_date</code> function can be used to quickly create a date object. It takes three arguments: year, month, day, hour, minute, seconds, and time zone defaulting to the epoch values on UTC time. So create an date object representing, for example, July 6, 2019 we write:</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-18_48070f1874066bed85460f9b0ace9876">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-18_e23134fd853cf7b707fd5cdc8094cd47">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/make_datetime.html">make_date</a></span><span class="op">(</span><span class="fl">2019</span>, <span class="fl">7</span>, <span class="fl">6</span><span class="op">)</span></span>
-<span><span class="co">## [1] "2019-07-06"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "2019-07-06"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To make a vector of January 1 for the 80s we write:</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-19_ce3a960247ac7bb770cc3abaf31410bd">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-19_6b48bb2338d5ee2714d01ab4c7601eb3">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/make_datetime.html">make_date</a></span><span class="op">(</span><span class="fl">1980</span><span class="op">:</span><span class="fl">1989</span><span class="op">)</span></span>
-<span><span class="co">##  [1] "1980-01-01" "1981-01-01" "1982-01-01" "1983-01-01" "1984-01-01"</span></span>
-<span><span class="co">##  [6] "1985-01-01" "1986-01-01" "1987-01-01" "1988-01-01" "1989-01-01"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;  [1] "1980-01-01" "1981-01-01" "1982-01-01" "1983-01-01" "1984-01-01"</span></span>
+<span><span class="co">#&gt;  [6] "1985-01-01" "1986-01-01" "1987-01-01" "1988-01-01" "1989-01-01"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Another very useful function is the <code>round_date</code>. It can be used to <em>round</em> dates to nearest year, quarter, month, week, day, hour, minutes, or seconds. So if we want to group all the polls by week of the year we can do the following:</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/poll-margin-versus-week_5d5adc6c26709785f4a06634ef6763a7">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/poll-margin-versus-week_9cb9240d6caa0b4252ba4b6e9bd6d560">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">polls_us_election_2016</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>week <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/round_date.html">round_date</a></span><span class="op">(</span><span class="va">startdate</span>, <span class="st">"week"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">week</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -512,7 +512,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="exercises" class="level2" data-number="16.3"><h2 data-number="16.3" class="anchored" data-anchor-id="exercises">
 <span class="header-section-number">16.3</span> Exercises</h2>
 <p>In the previous exercise section, we wrangled data from a PDF file containing vital statistics from Puerto Rico. We did this for the month of September. Below we include code that does it for all 12 months.</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-20_fed94c4c2bc9c819a127b89d4c9af608">
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-20_527e4a44c2600bc7d72ef1f6ae826966">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>

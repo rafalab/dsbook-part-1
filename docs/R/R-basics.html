@@ -417,14 +417,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header><div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-1_1bca70dffa1ae30c4309830bb1a1bc00">
+</header><div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-1_5181c4ac3ef380d42dd4f8445ba09c85">
 
 </div>
 <p>In this book, we will be using the R software environment for all our analysis. You will learn R and data analysis techniques simultaneously. To follow along you will therefore need access to R. We also recommend the use of an <em>integrated development environment</em> (IDE), such as RStudio, to save your work. Note that it is common for a course or workshop to offer access to an R environment and an IDE through your web browser, as done by RStudio cloud<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. If you have access to such a resource, you don’t need to install R and RStudio. However, if you intend on becoming an advanced data analyst, we highly recommend installing these tools on your computer<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Both R and RStudio are free and available online.</p>
 <section id="case-study-us-gun-murders" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="case-study-us-gun-murders">
 <span class="header-section-number">2.1</span> Case study: US Gun Murders</h2>
 <p>Imagine you live in Europe and are offered a job in a US company with many locations across all states. It is a great job, but news with headlines such as <strong>US Gun Homicide Rate Higher Than Other Developed Countries</strong><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> have you worried. Charts like this may concern you even more:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/murder-rate-example-1_f80b9dfe807189dcb9683b5efc6bcecc">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/murder-rate-example-1_fe3a7b7a1ad3002189b3a552759e2ffc">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="R-basics_files/figure-html/murder-rate-example-1-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -435,7 +435,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!--(Source:
 [Ma’ayan Rosenzweigh/ABC News](https://abcnews.go.com/blogs/headlines/2012/12/us-gun-ownership-homicide-rate-higher-than-other-developed-countries/), Data from UNODC Homicide Statistics) -->
 <p>Or even worse, this version from <a href="https://everytownresearch.org">everytown.org</a>:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/murder-rate-example-2_b4898a9799eeaebe51ec86e3aec4de5b">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/murder-rate-example-2_f1f200117ee2bf08b3158fd9154d4cfe">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="R-basics_files/figure-html/murder-rate-example-2-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -445,7 +445,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <!--(Source  [everytown.org](https://everytownresearch.org))-->
 <p>But then you remember that the US is a large and diverse country with 50 very different states as well as the District of Columbia (DC).</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/us-murders-by-state-map_fe0a99e385986dc309289f04e6d35ae6">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/us-murders-by-state-map_5628643359371893a63c29abb4b8a1a2">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="R-basics_files/figure-html/us-murders-by-state-map-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -464,7 +464,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[
 \frac{-b - \sqrt{b^2 - 4ac}}{2a}\,\, \mbox{ and } \frac{-b + \sqrt{b^2 - 4ac}}{2a}
 \]</span> which of course change depending on the values of <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, and <span class="math inline">\(c\)</span>. One advantage of programming languages is that we can define variables and write expressions with these variables, similar to how we do so in math, but obtain a numeric solution. We will write out general code for the quadratic equation below, but if we are asked to solve <span class="math inline">\(x^2 + x -1 = 0\)</span>, then we define:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-2_e0e0305cf6465d275d628ab500577bbe">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-2_2a7352cefada16f0c3ed48c2d321a2a7">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span><span class="va">c</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -473,25 +473,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can also assign values using <code>=</code> instead of <code>&lt;-</code>, but we recommend against using <code>=</code> to avoid confusion.</p>
 <p>Copy and paste the code above into your console to define the three variables. Note that R does not print anything when we make this assignment. This means the objects were defined successfully. Had you made a mistake, you would have received an error message.</p>
 <p>To see the value stored in a variable, we simply ask R to evaluate <code>a</code> and it shows the stored value:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-3_74d36e5e01af44dea65e1b92a8c89933">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-3_febd0faf6e7b12f65e3a122f278a1a46">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span></span>
-<span><span class="co">## [1] 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A more explicit way to ask R to show us the value stored in <code>a</code> is using <code>print</code> like this:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-4_cd2727b810ace37bbf52709028b8931b">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-4_91f848fa8ec8cacd02a69dfca93c1a4b">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></span>
-<span><span class="co">## [1] 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We use the term <em>object</em> to describe stuff that is stored in R. Variables are examples, but objects can also be more complicated entities such as functions, which are described later.</p>
 </section><section id="the-workspace" class="level3" data-number="2.2.2"><h3 data-number="2.2.2" class="anchored" data-anchor-id="the-workspace">
 <span class="header-section-number">2.2.2</span> The workspace</h3>
 <p>As we define objects in the console, we are actually changing the <em>workspace</em>. You can see all the variables saved in your workspace by typing:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-5_08cf490894dff69ed7e448ece9489418">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-5_cd9f10c16d1b2a2ba6eb3f47b0eedc1b">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">## [1] "a"        "b"        "c"        "dat"      "img_path" "murders"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "a"        "b"        "c"        "dat"      "img_path" "murders"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In RStudio, the <em>Environment</em> tab shows the values:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-6_95bcc9f899600c54e2c9c2a86d305415">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-6_fdd7760e29fb6b7f84cb1ea2326fe835">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="img/rstudio-environment.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -501,11 +501,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>We should see <code>a</code>, <code>b</code>, and <code>c</code>. If you try to recover the value of a variable that is not in your workspace, you receive an error. For example, if you type <code>x</code> you will receive the following message: <code>Error: object 'x' not found</code>.</p>
 <p>Now since these values are saved in variables, to obtain a solution to our equation, we use the quadratic formula:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-7_91140d6f23825719dd92b9b098556e6b">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-7_76b0e150354ba904a2e739bb25cc6db9">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="op">-</span><span class="va">b</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">b</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">4</span><span class="op">*</span><span class="va">a</span><span class="op">*</span><span class="va">c</span><span class="op">)</span> <span class="op">)</span> <span class="op">/</span> <span class="op">(</span> <span class="fl">2</span><span class="op">*</span><span class="va">a</span> <span class="op">)</span></span>
-<span><span class="co">## [1] 0.618</span></span>
+<span><span class="co">#&gt; [1] 0.618</span></span>
 <span><span class="op">(</span><span class="op">-</span><span class="va">b</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">b</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">4</span><span class="op">*</span><span class="va">a</span><span class="op">*</span><span class="va">c</span><span class="op">)</span> <span class="op">)</span> <span class="op">/</span> <span class="op">(</span> <span class="fl">2</span><span class="op">*</span><span class="va">a</span> <span class="op">)</span></span>
-<span><span class="co">## [1] -1.62</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] -1.62</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="functions" class="level3" data-number="2.2.3"><h3 data-number="2.2.3" class="anchored" data-anchor-id="functions">
 <span class="header-section-number">2.2.3</span> Functions</h3>
@@ -513,92 +513,92 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We already used the <code>install.packages</code>, <code>library</code>, and <code>ls</code> functions. We also used the function <code>sqrt</code> to solve the quadratic equation above. There are many more prebuilt functions and even more can be added through packages. These functions do not appear in the workspace because you did not define them, but they are available for immediate use.</p>
 <p>In general, we need to use parentheses to evaluate a function. If you type <code>ls</code>, the function is not evaluated and instead R shows you the code that defines the function. If you type <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code> the function is evaluated and, as seen above, we see objects in the workspace.</p>
 <p>Unlike <code>ls</code>, most functions require one or more <em>arguments</em>. Below is an example of how we assign an object to the argument of the function <code>log</code>. Remember that we earlier defined <code>a</code> to be 1:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-8_9b717c12d763ff3bc04f763823a45baf">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-8_0797420cfc2a28801a46eec000a898d5">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">8</span><span class="op">)</span></span>
-<span><span class="co">## [1] 2.08</span></span>
+<span><span class="co">#&gt; [1] 2.08</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span> </span>
-<span><span class="co">## [1] 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can find out what the function expects and what it does by reviewing the very useful manuals included in R. You can get help by using the <code>help</code> function like this:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-9_6b9c72a066fe6bf7007fe3cf6e299694">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-9_4f2c76a0cfe618ec7bc7db2b3ec1744b">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span><span class="op">(</span><span class="st">"log"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For most functions, we can also use this shorthand:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-10_da8e4cfcdf1ea6b13ee459aaed3c59f5">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-10_574fe01386110578a714cc5b36f3ddbb">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">log</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The help page will show you what arguments the function is expecting. For example, <code>log</code> needs <code>x</code> and <code>base</code> to run. However, some arguments are required and others are optional. You can determine which arguments are optional by noting in the help document that a default value is assigned with <code>=</code>. Defining these is optional. For example, the base of the function <code>log</code> defaults to <code>base = exp(1)</code> making <code>log</code> the natural log by default.</p>
 <p>If you want a quick look at the arguments without opening the help system, you can type:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-11_06e87ce9f068ba866a89fd63eae56b20">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-11_1bda38667758cfe496ac2c4a6d9cca91">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/args.html">args</a></span><span class="op">(</span><span class="va">log</span><span class="op">)</span></span>
-<span><span class="co">## function (x, base = exp(1)) </span></span>
-<span><span class="co">## NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; function (x, base = exp(1)) </span></span>
+<span><span class="co">#&gt; NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can change the default values by simply assigning another object:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-12_6cc401c1413bccaeb1536c9d4c1700e4">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-12_d301fe8ab60441e818da1a1ecd328791">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">8</span>, base <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">## [1] 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that we have not been specifying the argument <code>x</code> as such:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-13_952d0b1d9181e7656070f9a36f23b6d6">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-13_f4f06af15e8646c1b62778cec1325e24">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">8</span>, base <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">## [1] 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The above code works, but we can save ourselves some typing: if no argument name is used, R assumes you are entering arguments in the order shown in the help file or by <code>args</code>. So by not using the names, it assumes the arguments are <code>x</code> followed by <code>base</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-14_33607b67fa7d5a206da5fd06bd892258">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-14_9dcab7763c863ea48626fa0ff90b4df8">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">8</span>,<span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">## [1] 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If using the arguments’ names, then we can include them in whatever order we want:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-15_0583f8f6b2a997bba3306216b4d66c52">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-15_09c1547d36c6b2a944d1314a3c3e849c">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span>base <span class="op">=</span> <span class="fl">2</span>, x <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
-<span><span class="co">## [1] 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To specify arguments, we must use <code>=</code>, and cannot use <code>&lt;-</code>.</p>
 <p>There are some exceptions to the rule that functions need the parentheses to be evaluated. Among these, the most commonly used are the arithmetic and relational operators. For example:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-16_61d18a6951ad6793b30fe321e94241a0">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-16_d96d980c3be7f988b5cef45e02ea4adf">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">^</span> <span class="fl">3</span></span>
-<span><span class="co">## [1] 8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can see the arithmetic operators by typing:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-17_5d8d9a2aa96ed97079f444a36ac4651d">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-17_5a2c21bc9d82a2e8a28dc89db2621e3c">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span><span class="op">(</span><span class="st">"+"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>or</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-18_d60344442b47d928c79d842e8bc3157b">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-18_30ff9f6e2413c0aaebfb1233dcec7bb0">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="st">"+"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and the relational operators by typing:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-19_666a3b4ce7ad2a8f5d75b9cd7fb1fd25">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-19_4d756c9c34b41a6c0fbeb6a8dffae325">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span><span class="op">(</span><span class="st">"&gt;"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>or</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-20_fdda5b24e72098d6a4ce633bbe9a8d4e">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-20_1b8a14b0d64c8535fd6c10cb55fa85c2">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="st">"&gt;"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="other-prebuilt-objects" class="level3" data-number="2.2.4"><h3 data-number="2.2.4" class="anchored" data-anchor-id="other-prebuilt-objects">
 <span class="header-section-number">2.2.4</span> Other prebuilt objects</h3>
 <p>There are several datasets that are included for users to practice and test out functions. You can see all the available datasets by typing:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-21_e217394b4a2a0beb46097819d7df51ff">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-21_1a57ce5ec9fd21281d4e423199a8593e">
 
 </div>
 <p>This shows you the object name for these datasets. These datasets are objects that can be used by simply typing the name. For example, if you type:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-22_990a00f216bfc77b55e23ba71dca1b3b">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-22_ec8ac6f6852f7108bfdfebab82e54233">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">co2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>R will show you Mauna Loa atmospheric CO2 concentration data.</p>
 <p>Other prebuilt objects are mathematical quantities, such as the constant <span class="math inline">\(\pi\)</span> and <span class="math inline">\(\infty\)</span>:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-23_d13957ce01cd039df47f511ce8d2130b">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-23_09da48ebcdd001f224b961d6f77d30c0">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pi</span></span>
-<span><span class="co">## [1] 3.14</span></span>
+<span><span class="co">#&gt; [1] 3.14</span></span>
 <span><span class="cn">Inf</span><span class="op">+</span><span class="fl">1</span></span>
-<span><span class="co">## [1] Inf</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] Inf</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="variable-names" class="level3" data-number="2.2.5"><h3 data-number="2.2.5" class="anchored" data-anchor-id="variable-names">
 <span class="header-section-number">2.2.5</span> Variable names</h3>
 <p>We have used the letters <code>a</code>, <code>b</code>, and <code>c</code> as variable names, but variable names can be almost anything. Some basic rules in R are that variable names have to start with a letter, can’t contain spaces, and should not be variables that are predefined in R. For example, don’t name one of your variables <code>install.packages</code> by typing something like <code>install.packages &lt;- 2</code>.</p>
 <p>A nice convention to follow is to use meaningful words that describe what is stored, use only lower case, and use underscores as a substitute for spaces. For the quadratic equations, we could use something like this:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-24_7372639030c17c38ec0ed5da6e1e0bcb">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-24_a7638f695f7cd88714f74e4ad7cb480b">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">solution_1</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="op">-</span><span class="va">b</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">b</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">4</span><span class="op">*</span><span class="va">a</span><span class="op">*</span><span class="va">c</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">a</span><span class="op">)</span></span>
 <span><span class="va">solution_2</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="op">-</span><span class="va">b</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">b</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">4</span><span class="op">*</span><span class="va">a</span><span class="op">*</span><span class="va">c</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -610,7 +610,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="motivating-scripts" class="level3" data-number="2.2.7"><h3 data-number="2.2.7" class="anchored" data-anchor-id="motivating-scripts">
 <span class="header-section-number">2.2.7</span> Motivating scripts</h3>
 <p>To solve another equation such as <span class="math inline">\(3x^2 + 2x -1\)</span>, we can copy and paste the code above and then redefine the variables and recompute the solution:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-25_796979fb39fa8445b0d66f286e68a1e0">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-25_dda9f8783400b9ec5df57c2e2a981a85">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
 <span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
 <span><span class="va">c</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">1</span></span>
@@ -621,7 +621,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="commenting-your-code" class="level3" data-number="2.2.8"><h3 data-number="2.2.8" class="anchored" data-anchor-id="commenting-your-code">
 <span class="header-section-number">2.2.8</span> Commenting your code</h3>
 <p>If a line of R code starts with the symbol <code>#</code>, it is not evaluated. We can use this to write reminders of why we wrote particular code. For example, in the script above we could add:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-26_c17642d272aa8f0f933aa2c62a130ba8">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-26_ff113f1c1e723cdbe3b9b46f68a0dccc">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Code to compute solution to quadratic equation of the form ax^2 + bx + c</span></span>
 <span><span class="co">## define the variables</span></span>
 <span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">3</span> </span>
@@ -637,7 +637,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>1. What is the sum of the first 100 positive integers? The formula for the sum of integers <span class="math inline">\(1\)</span> through <span class="math inline">\(n\)</span> is <span class="math inline">\(n(n+1)/2\)</span>. Define <span class="math inline">\(n=100\)</span> and then use R to compute the sum of <span class="math inline">\(1\)</span> through <span class="math inline">\(100\)</span> using the formula. What is the sum?</p>
 <p>2. Now use the same formula to compute the sum of the integers from 1 through 1,000.</p>
 <p>3. Look at the result of typing the following code into R:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-27_561066df2eefbb374b906e001ac9d208">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-27_0fe4710ff3d5a0ad2a765e9100e83b4d">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">n</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -663,53 +663,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol></section><section id="data-types" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="data-types">
 <span class="header-section-number">2.4</span> Data types</h2>
 <p>Variables in R can be of different types. For example, we need to distinguish numbers from character strings and tables from simple lists of numbers. The function <code>class</code> helps us determine what type of object we have:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-28_aea8dad18cfe116cfa81904ef5e68017">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-28_1b3dcb3f3def04c3a2351fe45ae034a3">
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></span>
-<span><span class="co">## [1] "numeric"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "numeric"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To work efficiently in R, it is important to learn the different types of variables and what we can do with these.</p>
 <section id="sec-data-frames" class="level3" data-number="2.4.1"><h3 data-number="2.4.1" class="anchored" data-anchor-id="sec-data-frames">
 <span class="header-section-number">2.4.1</span> Data frames</h3>
 <p>Up to now, the variables we have defined are just one number. This is not very useful for storing data. The most common way of storing a dataset in R is in a <em>data frame</em>. Conceptually, we can think of a data frame as a table with rows representing observations and the different variables reported for each observation defining the columns. Data frames are particularly useful for datasets because we can combine different data types into one object.</p>
 <p>A large proportion of data analysis challenges start with data stored in a data frame. For example, we stored the data for our motivating example in a data frame. You can access this dataset by loading the <strong>dslabs</strong> library and loading the <code>murders</code> dataset using the <code>data</code> function:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-29_73dd43da9a11e3f51c48e5a1b5139416">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-29_38ec14f04b202fffe7dd7db4e288f5b0">
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To see that this is in fact a data frame, we type:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-30_ad8a8e2bc664187651d0818b8183cde2">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-30_9730c4ec4fa559c93cee7ad71bf2a545">
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">murders</span><span class="op">)</span></span>
-<span><span class="co">## [1] "data.frame"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "data.frame"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="examining-an-object" class="level3" data-number="2.4.2"><h3 data-number="2.4.2" class="anchored" data-anchor-id="examining-an-object">
 <span class="header-section-number">2.4.2</span> Examining an object</h3>
 <p>The function <code>str</code> is useful for finding out more about the structure of an object:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-31_ad52c5c86cbe311c9583f906e3a8bdf3">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-31_003a28d9ceafa2ba53292bb0cef978ad">
 
 </div>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-32_1180b13994dca24dd11f36f36096c04a">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-32_61a11973295a6e91f3bbd96aed57025a">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">murders</span><span class="op">)</span></span>
-<span><span class="co">## 'data.frame':    51 obs. of  5 variables:</span></span>
-<span><span class="co">## $ state : chr "Alabama" "Alaska" "Arizona" "Arkansas" ...</span></span>
-<span><span class="co">## $ abb : chr "AL" "AK" "AZ" "AR" ...</span></span>
-<span><span class="co">## $ region : Factor w/ 4 levels "Northeast","South",..: 2 4 4 2 4 4 1 2 2</span></span>
-<span><span class="co">##    2 ...</span></span>
-<span><span class="co">## $ population: num 4779736 710231 6392017 2915918 37253956 ...</span></span>
-<span><span class="co">## $ total : num 135 19 232 93 1257 ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 'data.frame':    51 obs. of  5 variables:</span></span>
+<span><span class="co">#&gt; $ state : chr "Alabama" "Alaska" "Arizona" "Arkansas" ...</span></span>
+<span><span class="co">#&gt; $ abb : chr "AL" "AK" "AZ" "AR" ...</span></span>
+<span><span class="co">#&gt; $ region : Factor w/ 4 levels "Northeast","South",..: 2 4 4 2 4 4 1 2 2</span></span>
+<span><span class="co">#&gt;    2 ...</span></span>
+<span><span class="co">#&gt; $ population: num 4779736 710231 6392017 2915918 37253956 ...</span></span>
+<span><span class="co">#&gt; $ total : num 135 19 232 93 1257 ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-33_fb5a86abcbcb535d4b6945c7276e95ae">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-33_bd88d3834d3b012705d6ebf56684f229">
 
 </div>
 <p>This tells us much more about the object. We see that the table has 51 rows (50 states plus DC) and five variables. We can show the first six lines using the function <code>head</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-34_440b94ba70a5cc868506668155e4c827">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-34_ef4dd3dae73a019f10c5624bb06bc6bf">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">murders</span><span class="op">)</span></span>
-<span><span class="co">##        state abb region population total</span></span>
-<span><span class="co">## 1    Alabama  AL  South    4779736   135</span></span>
-<span><span class="co">## 2     Alaska  AK   West     710231    19</span></span>
-<span><span class="co">## 3    Arizona  AZ   West    6392017   232</span></span>
-<span><span class="co">## 4   Arkansas  AR  South    2915918    93</span></span>
-<span><span class="co">## 5 California  CA   West   37253956  1257</span></span>
-<span><span class="co">## 6   Colorado  CO   West    5029196    65</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;        state abb region population total</span></span>
+<span><span class="co">#&gt; 1    Alabama  AL  South    4779736   135</span></span>
+<span><span class="co">#&gt; 2     Alaska  AK   West     710231    19</span></span>
+<span><span class="co">#&gt; 3    Arizona  AZ   West    6392017   232</span></span>
+<span><span class="co">#&gt; 4   Arkansas  AR  South    2915918    93</span></span>
+<span><span class="co">#&gt; 5 California  CA   West   37253956  1257</span></span>
+<span><span class="co">#&gt; 6   Colorado  CO   West    5029196    65</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In this dataset, each state is considered an observation and five variables are reported for each state.</p>
 <p>Before we go any further in answering our original question about different states, let’s learn more about the components of this object.</p>
@@ -717,55 +717,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">2.4.3</span> The accessor: <code>$</code>
 </h3>
 <p>For our analysis, we will need to access the different variables represented by columns included in this data frame. To do this, we use the accessor operator <code>$</code> in the following way:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-35_84c2f9f8ad9efaa975bcd4f6e66d05b7">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-35_b2c367c6a30270c3dae416c408db7ff7">
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span><span class="op">$</span><span class="va">population</span></span>
-<span><span class="co">##  [1]  4779736   710231  6392017  2915918 37253956  5029196  3574097</span></span>
-<span><span class="co">##  [8]   897934   601723 19687653  9920000  1360301  1567582 12830632</span></span>
-<span><span class="co">## [15]  6483802  3046355  2853118  4339367  4533372  1328361  5773552</span></span>
-<span><span class="co">## [22]  6547629  9883640  5303925  2967297  5988927   989415  1826341</span></span>
-<span><span class="co">## [29]  2700551  1316470  8791894  2059179 19378102  9535483   672591</span></span>
-<span><span class="co">## [36] 11536504  3751351  3831074 12702379  1052567  4625364   814180</span></span>
-<span><span class="co">## [43]  6346105 25145561  2763885   625741  8001024  6724540  1852994</span></span>
-<span><span class="co">## [50]  5686986   563626</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;  [1]  4779736   710231  6392017  2915918 37253956  5029196  3574097</span></span>
+<span><span class="co">#&gt;  [8]   897934   601723 19687653  9920000  1360301  1567582 12830632</span></span>
+<span><span class="co">#&gt; [15]  6483802  3046355  2853118  4339367  4533372  1328361  5773552</span></span>
+<span><span class="co">#&gt; [22]  6547629  9883640  5303925  2967297  5988927   989415  1826341</span></span>
+<span><span class="co">#&gt; [29]  2700551  1316470  8791894  2059179 19378102  9535483   672591</span></span>
+<span><span class="co">#&gt; [36] 11536504  3751351  3831074 12702379  1052567  4625364   814180</span></span>
+<span><span class="co">#&gt; [43]  6346105 25145561  2763885   625741  8001024  6724540  1852994</span></span>
+<span><span class="co">#&gt; [50]  5686986   563626</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>But how did we know to use <code>population</code>? Previously, by applying the function <code>str</code> to the object <code>murders</code>, we revealed the names for each of the five variables stored in this table. We can quickly access the variable names using:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-36_daabc36bcc652083feb813b09483ad8d">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-36_4ee6d0d6f298b2a9ee9ed50f1949a538">
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">murders</span><span class="op">)</span></span>
-<span><span class="co">## [1] "state"      "abb"        "region"     "population" "total"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "state"      "abb"        "region"     "population" "total"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>It is important to know that the order of the entries in <code>murders$population</code> preserves the order of the rows in our data table. This will later permit us to manipulate one variable based on the results of another. For example, we will be able to order the state names by the number of murders.</p>
 <p><strong>Tip</strong>: R comes with a very nice auto-complete functionality that saves us the trouble of typing out all the names. Try typing <code>murders$p</code> then hitting the <em>tab</em> key on your keyboard. This functionality and many other useful auto-complete features are available when working in RStudio.</p>
 </section><section id="vectors-numerics-characters-and-logical" class="level3" data-number="2.4.4"><h3 data-number="2.4.4" class="anchored" data-anchor-id="vectors-numerics-characters-and-logical">
 <span class="header-section-number">2.4.4</span> Vectors: numerics, characters, and logical</h3>
 <p>The object <code>murders$population</code> is not one number but several. We call these types of objects <em>vectors</em>. A single number is technically a vector of length 1, but in general we use the term vectors to refer to objects with several entries. The function <code>length</code> tells you how many entries are in the vector:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-37_31d568551511eda40aea8abdd908a31d">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-37_ec1547b47c4b369e04443124a1e0cbfe">
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pop</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">population</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">pop</span><span class="op">)</span></span>
-<span><span class="co">## [1] 51</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 51</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This particular vector is <em>numeric</em> since population sizes are numbers:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-38_4c11679567a70e1d56736123027173bb">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-38_66572061ac4246731dfd076f295a027f">
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">pop</span><span class="op">)</span></span>
-<span><span class="co">## [1] "numeric"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "numeric"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In a numeric vector, every entry must be a number.</p>
 <p>To store character strings, vectors can also be of class <em>character</em>. For example, the state names are characters:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-39_28e8010288da55656d1e55f01f6500a5">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-39_177bcfaab9982837f94e54e9f914f24f">
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op">)</span></span>
-<span><span class="co">## [1] "character"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "character"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As with numeric vectors, all entries in a character vector need to be a character.</p>
 <p>Another important type of vectors are <em>logical vectors</em>. These must be either <code>TRUE</code> or <code>FALSE</code>.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-40_418ff3a63bb362cfbc19436aa7ddd499">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-40_ed13218c5654c386eb2c0bbfa56e2758">
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fl">3</span> <span class="op">==</span> <span class="fl">2</span></span>
 <span><span class="va">z</span></span>
-<span><span class="co">## [1] FALSE</span></span>
+<span><span class="co">#&gt; [1] FALSE</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span></span>
-<span><span class="co">## [1] "logical"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "logical"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here the <code>==</code> is a relational operator asking if 3 is equal to 2. In R, if you just use one <code>=</code>, you actually assign a variable, but if you use two <code>==</code> you test for equality.</p>
 <p>You can see the other <em>relational operators</em> by typing:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-41_9f74274481bd2a3ada4aebff0505f2a0">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-41_4181b6a80d6968d473ee0f1cd6aae9ca">
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">Comparison</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In future sections, you will see how useful relational operators can be.</p>
@@ -774,31 +774,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="sec-factors" class="level3" data-number="2.4.5"><h3 data-number="2.4.5" class="anchored" data-anchor-id="sec-factors">
 <span class="header-section-number">2.4.5</span> Factors</h3>
 <p>In the <code>murders</code> dataset, we might expect the region to also be a character vector. However, it is not:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-42_ff35fddaabdcfe57283110d1ec42170d">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-42_be81b8577f3c47df9bf330c632572225">
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">region</span><span class="op">)</span></span>
-<span><span class="co">## [1] "factor"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "factor"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>It is a <em>factor</em>. Factors are useful for storing categorical data. We can see that there are only 4 regions by using the <code>levels</code> function:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-43_c2703f4a3c23e26b5b456a289f784877">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-43_1fd9f60421a9924acffeff696f6c4187">
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">region</span><span class="op">)</span></span>
-<span><span class="co">## [1] "Northeast"     "South"         "North Central" "West"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "Northeast"     "South"         "North Central" "West"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In the background, R stores these <em>levels</em> as integers and keeps a map to keep track of the labels. This is more memory efficient than storing all the characters.</p>
 <p>Note that the levels have an order that is different from the order of appearance in the factor object. The default in R is for the levels to follow alphabetical order. However, often we want the levels to follow a different order. You can specify an order through the <code>levels</code> argument when creating the factor with the <code>factor</code> function. For example, in the murders dataset regions are ordered from east to west. The function <code>reorder</code> lets us change the order of the levels of a factor variable based on a summary computed on a numeric vector. We will demonstrate this with a simple example, and will see more advanced ones in the Data Visualization part of the book.</p>
 <p>Suppose we want the levels of the region by the total number of murders rather than alphabetical order. If there are values associated with each level, we can use the <code>reorder</code> and specify a data summary to determine the order. The following code takes the sum of the total murders in each region, and reorders the factor following these sums.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-44_0fb8709c0781f6622e32bb0f1ba107fc">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-44_f445fdfd2c1c6b59bcdf17d9ffb7e983">
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">region</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">region</span></span>
 <span><span class="va">value</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">total</span></span>
 <span><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">region</span>, <span class="va">value</span>, FUN <span class="op">=</span> <span class="va">sum</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span></span>
-<span><span class="co">## [1] "Northeast"     "North Central" "West"          "South"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "Northeast"     "North Central" "West"          "South"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The new order is in agreement with the fact that the Northeast has the least murders and the South has the most.</p>
 <p><strong>Warning</strong>: Factors can be a source of confusion since sometimes they behave like characters and sometimes they do not. As a result, confusing factors and characters are a common source of bugs.</p>
 </section><section id="lists" class="level3" data-number="2.4.6"><h3 data-number="2.4.6" class="anchored" data-anchor-id="lists">
 <span class="header-section-number">2.4.6</span> Lists</h3>
 <p>Data frames are a special case of <em>lists</em>. Lists are useful because you can store any combination of different types. You can create a list using the <code>list</code> function like this:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-45_3227ad21bd754a3b40f7331006baa980">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-45_a7231f794911083445cbd23aedc263c8">
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">record</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"John Doe"</span>,</span>
 <span>             student_id <span class="op">=</span> <span class="fl">1234</span>,</span>
 <span>             grades <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">95</span>, <span class="fl">82</span>, <span class="fl">91</span>, <span class="fl">97</span>, <span class="fl">93</span><span class="op">)</span>,</span>
@@ -806,47 +806,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The function <code>c</code> is described in Section <a href="#sec-vectors"><span>Section&nbsp;2.6</span></a>.</p>
 <p>This list includes a character, a number, a vector with five numbers, and another character.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-46_0e4a88c58f3f74e2c97fae5946502513">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-46_3165682dfaab27ebe1bd117623329393">
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">record</span></span>
-<span><span class="co">## $name</span></span>
-<span><span class="co">## [1] "John Doe"</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $student_id</span></span>
-<span><span class="co">## [1] 1234</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $grades</span></span>
-<span><span class="co">## [1] 95 82 91 97 93</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $final_grade</span></span>
-<span><span class="co">## [1] "A"</span></span>
+<span><span class="co">#&gt; $name</span></span>
+<span><span class="co">#&gt; [1] "John Doe"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $student_id</span></span>
+<span><span class="co">#&gt; [1] 1234</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $grades</span></span>
+<span><span class="co">#&gt; [1] 95 82 91 97 93</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $final_grade</span></span>
+<span><span class="co">#&gt; [1] "A"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">record</span><span class="op">)</span></span>
-<span><span class="co">## [1] "list"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "list"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As with data frames, you can extract the components of a list with the accessor <code>$</code>.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-47_b4828300f60276c937370f8f84c15181">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-47_413416dd970fe50a14ca7deed340e06b">
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">record</span><span class="op">$</span><span class="va">student_id</span></span>
-<span><span class="co">## [1] 1234</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 1234</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also use double square brackets (<code>[[</code>) like this:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-48_ae662c4d4b2d8fe24fa9d959bc7c5368">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-48_d2214aabc334cb79318aa2105e352a76">
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">record</span><span class="op">[[</span><span class="st">"student_id"</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="co">## [1] 1234</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 1234</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You should get used to the fact that in R, there are often several ways to do the same thing, such as accessing entries.</p>
 <p>You might also encounter lists without variable names.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-49_244e26ae852622bffceb2ccb39ac1370">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-49_791dff621cbbe17c08f40cc4d0988c88">
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">record2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"John Doe"</span>, <span class="fl">1234</span><span class="op">)</span></span>
 <span><span class="va">record2</span></span>
-<span><span class="co">## [[1]]</span></span>
-<span><span class="co">## [1] "John Doe"</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## [[2]]</span></span>
-<span><span class="co">## [1] 1234</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt; [1] "John Doe"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt; [1] 1234</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If a list does not have names, you cannot extract the elements with <code>$</code>, but you can still use the brackets method and instead of providing the variable name, you provide the list index, like this:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-50_2baf7efb218bee67f43c1ea3fe5af57e">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-50_fd703aa46a70f6d6983a16c2fab9d4ba">
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">record2</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="co">## [1] "John Doe"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "John Doe"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We won’t be using lists until later, but you might encounter one in your own exploration of R. For this reason, we show you some basics here.</p>
 </section><section id="sec-matrices" class="level3" data-number="2.4.7"><h3 data-number="2.4.7" class="anchored" data-anchor-id="sec-matrices">
@@ -855,70 +855,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Yet matrices have a major advantage over data frames: we can perform matrix algebra operations, a powerful type of mathematical technique. We do not describe these operations in this book, but much of what happens in the background when you perform a data analysis involves matrices. We only cover matrices briefly here since some of the functions we will learn return matrices. However, if you plan to perform more advanced work, we highly recommend learning more as they are widely used in data analysis.</p>
 <!--We cover matrices in more detail in Chapter @sec-matrix-algebra but describe them briefly here since some of the functions we will learn return matrices. -->
 <p>We can define a matrix using the <code>matrix</code> function. We need to specify the number of rows and columns.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-51_10287f6017ff9c16749ec5c1fac064c1">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-51_76730479511e5fddcdb333a1a6ffa61c">
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, <span class="fl">4</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">mat</span></span>
-<span><span class="co">##      [,1] [,2] [,3]</span></span>
-<span><span class="co">## [1,]    1    5    9</span></span>
-<span><span class="co">## [2,]    2    6   10</span></span>
-<span><span class="co">## [3,]    3    7   11</span></span>
-<span><span class="co">## [4,]    4    8   12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;      [,1] [,2] [,3]</span></span>
+<span><span class="co">#&gt; [1,]    1    5    9</span></span>
+<span><span class="co">#&gt; [2,]    2    6   10</span></span>
+<span><span class="co">#&gt; [3,]    3    7   11</span></span>
+<span><span class="co">#&gt; [4,]    4    8   12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can access specific entries in a matrix using square brackets (<code>[</code>). If you want the second row, third column, you use:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-52_caa57cabcfc2a04bb50514981533b08a">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-52_9a78683847d36554261374b4f4adf105">
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mat</span><span class="op">[</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">]</span></span>
-<span><span class="co">## [1] 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If you want the entire second row, you leave the column spot empty:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-53_ae65c18e1d945f393335a83d91fce75d">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-53_6b2f4c32a88b17466c6755b62b1872e2">
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mat</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span></span>
-<span><span class="co">## [1]  2  6 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1]  2  6 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Notice that this returns a vector, not a matrix.</p>
 <p>Similarly, if you want the entire third column, you leave the row spot empty:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-54_43024ad0d2ae3a6174f24cc574488ff6">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-54_81e27dc8e968e52299d5d3636c19df54">
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mat</span><span class="op">[</span>, <span class="fl">3</span><span class="op">]</span></span>
-<span><span class="co">## [1]  9 10 11 12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1]  9 10 11 12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This is also a vector, not a matrix.</p>
 <p>You can access more than one column or more than one row if you like. This will give you a new matrix.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-55_c66de22e6becd69684c8ac69398fdd4c">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-55_c90afa8240fe1ea5426b22699788f030">
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mat</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
-<span><span class="co">##      [,1] [,2]</span></span>
-<span><span class="co">## [1,]    5    9</span></span>
-<span><span class="co">## [2,]    6   10</span></span>
-<span><span class="co">## [3,]    7   11</span></span>
-<span><span class="co">## [4,]    8   12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;      [,1] [,2]</span></span>
+<span><span class="co">#&gt; [1,]    5    9</span></span>
+<span><span class="co">#&gt; [2,]    6   10</span></span>
+<span><span class="co">#&gt; [3,]    7   11</span></span>
+<span><span class="co">#&gt; [4,]    8   12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can subset both rows and columns:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-56_5226468e36423f22f0ee1445bc6ec72b">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-56_2716c5463e27a43b5ce33302c0d0b00f">
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
-<span><span class="co">##      [,1] [,2]</span></span>
-<span><span class="co">## [1,]    5    9</span></span>
-<span><span class="co">## [2,]    6   10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;      [,1] [,2]</span></span>
+<span><span class="co">#&gt; [1,]    5    9</span></span>
+<span><span class="co">#&gt; [2,]    6   10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can convert matrices into data frames using the function <code>as.data.frame</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-57_76219a24037e38a1b44dd34c85d2a946">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-57_63836db3b942a7a9888674505519f5e2">
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">mat</span><span class="op">)</span></span>
-<span><span class="co">##   V1 V2 V3</span></span>
-<span><span class="co">## 1  1  5  9</span></span>
-<span><span class="co">## 2  2  6 10</span></span>
-<span><span class="co">## 3  3  7 11</span></span>
-<span><span class="co">## 4  4  8 12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   V1 V2 V3</span></span>
+<span><span class="co">#&gt; 1  1  5  9</span></span>
+<span><span class="co">#&gt; 2  2  6 10</span></span>
+<span><span class="co">#&gt; 3  3  7 11</span></span>
+<span><span class="co">#&gt; 4  4  8 12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can also use single square brackets (<code>[</code>) to access rows and columns of a data frame:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-58_60d341fe16c058f3def815939168219e">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-58_edb12468ec4244311905378d1398810c">
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span><span class="op">[</span><span class="fl">25</span>, <span class="fl">1</span><span class="op">]</span></span>
-<span><span class="co">## [1] "Mississippi"</span></span>
+<span><span class="co">#&gt; [1] "Mississippi"</span></span>
 <span><span class="va">murders</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">3</span>, <span class="op">]</span></span>
-<span><span class="co">##     state abb region population total</span></span>
-<span><span class="co">## 2  Alaska  AK   West     710231    19</span></span>
-<span><span class="co">## 3 Arizona  AZ   West    6392017   232</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;     state abb region population total</span></span>
+<span><span class="co">#&gt; 2  Alaska  AK   West     710231    19</span></span>
+<span><span class="co">#&gt; 3 Arizona  AZ   West    6392017   232</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="exercises-1" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="exercises-1">
 <span class="header-section-number">2.5</span> Exercises</h2>
 <p>1. Load the US murders dataset.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-59_dc7a21b1a1b2f592e72ed6d5acf81d97">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-59_82d8c6c788be3ef97408f537273899d4">
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Use the function <code>str</code> to examine the structure of the <code>murders</code> object. Which of the following best describes the variables represented in this data frame?</p>
@@ -933,7 +933,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>3. Use the accessor <code>$</code> to extract the state abbreviations and assign them to the object <code>a</code>. What is the class of this object?</p>
 <p>4. Now use the square brackets to extract the state abbreviations and assign them to the object <code>b</code>. Use the <code>identical</code> function to determine if <code>a</code> and <code>b</code> are the same.</p>
 <p>5. We saw that the <code>region</code> column stores a factor. You can corroborate this by typing:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-60_c2dc229a1729a3e0bbde4e6a28571d5f">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-60_5b21c62bc44b25865e9dd178ac74f4b5">
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">region</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>With one line of code, use the function <code>levels</code> and <code>length</code> to determine the number of regions defined by this dataset.</p>
@@ -944,153 +944,153 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="creating-vectors" class="level3" data-number="2.6.1"><h3 data-number="2.6.1" class="anchored" data-anchor-id="creating-vectors">
 <span class="header-section-number">2.6.1</span> Creating vectors</h3>
 <p>We can create vectors using the function <code>c</code>, which stands for <em>concatenate</em>. We use <code>c</code> to concatenate entries in the following way:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-61_6f8e0817065e2e3fba373e2e44afb9ef">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-61_37f7d3c70d4f51fd4583776c2c357d1a">
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">codes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">380</span>, <span class="fl">124</span>, <span class="fl">818</span><span class="op">)</span></span>
 <span><span class="va">codes</span></span>
-<span><span class="co">## [1] 380 124 818</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 380 124 818</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also create character vectors. We use the quotes to denote that the entries are characters rather than variable names.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-62_15a4dd47d597294d4be810dd6cf4a81b">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-62_3b303adf0fe9bff182de9ec9a9f54578">
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"italy"</span>, <span class="st">"canada"</span>, <span class="st">"egypt"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In R you can also use single quotes:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-63_7fc0dd93d4999ac6e4d8bc0ea0b202fa">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-63_56680f8e0274a903ab7d48be303eee7e">
 <div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'italy'</span>, <span class="st">'canada'</span>, <span class="st">'egypt'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>But be careful not to confuse the single quote ’ with the <em>back quote</em> `.</p>
 <p>By now you should know that if you type:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-64_010dd0886d28c2a9bbab4205d1c332fc">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-64_6be2f977bf3cf78e32de4009a4201429">
 <div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">italy</span>, <span class="va">canada</span>, <span class="va">egypt</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>you receive an error because the variables <code>italy</code>, <code>canada</code>, and <code>egypt</code> are not defined. If we do not use the quotes, R looks for variables with those names and returns an error.</p>
 </section><section id="names" class="level3" data-number="2.6.2"><h3 data-number="2.6.2" class="anchored" data-anchor-id="names">
 <span class="header-section-number">2.6.2</span> Names</h3>
 <p>Sometimes it is useful to name the entries of a vector. For example, when defining a vector of country codes, we can use the names to connect the two:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-65_f6ff3cf84b878bba76f21a16e232f868">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-65_5a7480202de8062c239b06c112282924">
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">codes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>italy <span class="op">=</span> <span class="fl">380</span>, canada <span class="op">=</span> <span class="fl">124</span>, egypt <span class="op">=</span> <span class="fl">818</span><span class="op">)</span></span>
 <span><span class="va">codes</span></span>
-<span><span class="co">##  italy canada  egypt </span></span>
-<span><span class="co">##    380    124    818</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;  italy canada  egypt </span></span>
+<span><span class="co">#&gt;    380    124    818</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The object <code>codes</code> continues to be a numeric vector:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-66_8f9504e25d85aa9907a3372252bd79bd">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-66_96ca413baed9675b47cf150f9e8bc3d0">
 <div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">codes</span><span class="op">)</span></span>
-<span><span class="co">## [1] "numeric"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "numeric"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>but with names:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-67_568744ba7cc4356a1cdc7cb26a4b980d">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-67_1354c34828c0691080ac08f2c4c12bdd">
 <div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">codes</span><span class="op">)</span></span>
-<span><span class="co">## [1] "italy"  "canada" "egypt"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "italy"  "canada" "egypt"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If the use of strings without quotes looks confusing, know that you can use the quotes as well:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-68_4fc11c03b4c417e717d6da6f77acb575">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-68_8489afed0513c820852c3dd712029feb">
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">codes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"italy"</span> <span class="op">=</span> <span class="fl">380</span>, <span class="st">"canada"</span> <span class="op">=</span> <span class="fl">124</span>, <span class="st">"egypt"</span> <span class="op">=</span> <span class="fl">818</span><span class="op">)</span></span>
 <span><span class="va">codes</span></span>
-<span><span class="co">##  italy canada  egypt </span></span>
-<span><span class="co">##    380    124    818</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;  italy canada  egypt </span></span>
+<span><span class="co">#&gt;    380    124    818</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There is no difference between this function call and the previous one. This is one of the many ways in which R is quirky compared to other languages.</p>
 <p>We can also assign names using the <code>names</code> functions:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-69_ad73dc677659b8e85d0a5a55e3ef37f8">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-69_8db30112c74beb145f2533db177ed5e5">
 <div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">codes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">380</span>, <span class="fl">124</span>, <span class="fl">818</span><span class="op">)</span></span>
 <span><span class="va">country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"italy"</span>,<span class="st">"canada"</span>,<span class="st">"egypt"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">codes</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">country</span></span>
 <span><span class="va">codes</span></span>
-<span><span class="co">##  italy canada  egypt </span></span>
-<span><span class="co">##    380    124    818</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;  italy canada  egypt </span></span>
+<span><span class="co">#&gt;    380    124    818</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="sequences" class="level3" data-number="2.6.3"><h3 data-number="2.6.3" class="anchored" data-anchor-id="sequences">
 <span class="header-section-number">2.6.3</span> Sequences</h3>
 <p>Another useful function for creating vectors generates sequences:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-70_c64b4f8a21e0645c2a4c1d6440370e9a">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-70_e3fa0447a87fdff0d808f6df519c0b88">
 <div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="co">##  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The first argument defines the start, and the second defines the end which is included. The default is to go up in increments of 1, but a third argument lets us tell it how much to jump by:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-71_392cc0f8bf25c3746fba827cc1268137">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-71_3de78280804ad5835a45bcd0bb9c8395">
 <div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">## [1] 1 3 5 7 9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 1 3 5 7 9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If we want consecutive integers, we can use the following shorthand:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-72_23a7ea6633ccb0cae3acffaf1cb388b9">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-72_58c65fa3f951c8d0d4d4a7496ed0b465">
 <div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span></span>
-<span><span class="co">##  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>When we use these functions, R produces integers, not numerics, because they are typically used to index something:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-73_8113aaedadbded83cb0d12e9fd099ad2">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-73_5d99103ec67fbbb3c14bd76eb31aea78">
 <div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
-<span><span class="co">## [1] "integer"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "integer"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>However, if we create a sequence including non-integers, the class changes:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-74_ab2c1bcc4bf88d708d5d53e545f1a4ce">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-74_98d2174bc0dae6d886a9c241091dbd3c">
 <div class="sourceCode" id="cb69"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## [1] "numeric"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "numeric"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="subsetting" class="level3" data-number="2.6.4"><h3 data-number="2.6.4" class="anchored" data-anchor-id="subsetting">
 <span class="header-section-number">2.6.4</span> Subsetting</h3>
 <p>We use square brackets to access specific elements of a vector. For the vector <code>codes</code> we defined above, we can access the second element using:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-75_4173ca5447c13fd4fb22ee77d8aa550b">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-75_1fa531327121e34d61781863cc8f2bba">
 <div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">codes</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
-<span><span class="co">## canada </span></span>
-<span><span class="co">##    124</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; canada </span></span>
+<span><span class="co">#&gt;    124</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can get more than one entry by using a multi-entry vector as an index:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-76_216ad700c923bc64cc4c7c9d855c5d53">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-76_7ebb307246dd4319b9de2ca4173979d3">
 <div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">codes</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="co">## italy egypt </span></span>
-<span><span class="co">##   380   818</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; italy egypt </span></span>
+<span><span class="co">#&gt;   380   818</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The sequences defined above are particularly useful if we want to access, say, the first two elements:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-77_67cdc2097aa95ecfb907cb837a788c3c">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-77_eb9bdd40b394e0dae97d7a5c6f84b90d">
 <div class="sourceCode" id="cb72"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">codes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span>
-<span><span class="co">##  italy canada </span></span>
-<span><span class="co">##    380    124</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;  italy canada </span></span>
+<span><span class="co">#&gt;    380    124</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If the elements have names, we can also access the entries using these names. Below are two examples.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-78_e1d6d07268645cbc9cb1cf801fd78ed9">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-78_ca7a8010b48e0327ef9b9928aef78fdf">
 <div class="sourceCode" id="cb73"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">codes</span><span class="op">[</span><span class="st">"canada"</span><span class="op">]</span></span>
-<span><span class="co">## canada </span></span>
-<span><span class="co">##    124</span></span>
+<span><span class="co">#&gt; canada </span></span>
+<span><span class="co">#&gt;    124</span></span>
 <span><span class="va">codes</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"egypt"</span>,<span class="st">"italy"</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="co">## egypt italy </span></span>
-<span><span class="co">##   818   380</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; egypt italy </span></span>
+<span><span class="co">#&gt;   818   380</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="coercion" class="level2" data-number="2.7"><h2 data-number="2.7" class="anchored" data-anchor-id="coercion">
 <span class="header-section-number">2.7</span> Coercion</h2>
 <p>In general, <em>coercion</em> is an attempt by R to be flexible with data types. When an entry does not match the expected, some of the prebuilt R functions try to guess what was meant before throwing an error. This can also lead to confusion. Failing to understand <em>coercion</em> can drive programmers crazy when attempting to code in R since it behaves quite differently from most other languages in this regard. Let’s learn about it with some examples.</p>
 <p>We said that vectors must be all of the same type. So if we try to combine, say, numbers and characters, you might expect an error:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-79_600f11ee83a1afa32ecc92a535a6ccaa">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-79_d422ac4cebb14187dec5c86fffd32565">
 <div class="sourceCode" id="cb74"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="st">"canada"</span>, <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>But we don’t get one, not even a warning! What happened? Look at <code>x</code> and its class:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-80_25eebfd691840579bc4b26d51300a73b">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-80_5be6e2a425ad778c7b3b723117e42767">
 <div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span></span>
-<span><span class="co">## [1] "1"      "canada" "3"</span></span>
+<span><span class="co">#&gt; [1] "1"      "canada" "3"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co">## [1] "character"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "character"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>R <em>coerced</em> the data into characters. It guessed that because you put a character string in the vector, you meant the 1 and 3 to actually be character strings <code>"1"</code> and “<code>3</code>”. The fact that not even a warning is issued is an example of how coercion can cause many unnoticed errors in R.</p>
 <p>R also offers functions to change from one type to another. For example, you can turn numbers into characters with:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-81_8e03a133d90c70cf97f4fc3d816c934d">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-81_dc37c609e088e9b3cc193eb6caa5178b">
 <div class="sourceCode" id="cb76"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="va">y</span></span>
-<span><span class="co">## [1] "1" "2" "3" "4" "5"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "1" "2" "3" "4" "5"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can turn it back with <code>as.numeric</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-82_0bc4c0648b6428f7c3ff37634f4bfc37">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-82_8bdd989dfee0655bee2137f23058638f">
 <div class="sourceCode" id="cb77"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
-<span><span class="co">## [1] 1 2 3 4 5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 1 2 3 4 5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This function is actually quite useful since datasets that include numbers as character strings are common.</p>
 </section><section id="not-availables-na" class="level2" data-number="2.8"><h2 data-number="2.8" class="anchored" data-anchor-id="not-availables-na">
 <span class="header-section-number">2.8</span> Not availables (NA)</h2>
 <p>When a function tries to coerce one type to another and encounters an impossible case, it usually gives us a warning and turns the entry into a special value called an <code>NA</code> for “not available”. For example:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-83_37b469d7b894de305a3f270e97b4a283">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-83_ed259b16175559c19a413ab2f9b18e1f">
 <div class="sourceCode" id="cb78"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="st">"b"</span>, <span class="st">"3"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co">## Warning: NAs introduced by coercion</span></span>
-<span><span class="co">## [1]  1 NA  3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; Warning: NAs introduced by coercion</span></span>
+<span><span class="co">#&gt; [1]  1 NA  3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>R does not have any guesses for what number you want when you type <code>b</code>, so it does not try.</p>
 <p>As a data scientist you will encounter the <code>NA</code>s often as they are generally used for missing data, a common problem in real-world datasets.</p>
@@ -1108,7 +1108,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>10. What is the class of the following object <code>a &lt;- seq(1, 10)</code>?</p>
 <p>11. The class of <code>class(a&lt;-1)</code> is numeric, not integer. R defaults to numeric and to force an integer, you need to add the letter <code>L</code>. Confirm that the class of <code>1L</code> is integer.</p>
 <p>12. Define the following vector:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-84_b74d9e0ad7f576c6878e636f61ca408e">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-84_915cb8df52eb10ee80a25cd044e47192">
 <div class="sourceCode" id="cb79"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="st">"3"</span>, <span class="st">"5"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and coerce it to get integers.</p>
@@ -1119,69 +1119,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">2.10.1</span> <code>sort</code>
 </h3>
 <p>Say we want to rank the states from least to most gun murders. The function <code>sort</code> sorts a vector in increasing order. We can therefore see the largest number of gun murders by typing:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-85_d5c992495e50a06d21f0b20137fe3f81">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-85_565c4205e67f999f01c8df3478a5ce53">
 <div class="sourceCode" id="cb80"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span>
-<span><span class="co">##  [1]    2    4    5    5    7    8   11   12   12   16   19   21   22</span></span>
-<span><span class="co">## [14]   27   32   36   38   53   63   65   67   84   93   93   97   97</span></span>
-<span><span class="co">## [27]   99  111  116  118  120  135  142  207  219  232  246  250  286</span></span>
-<span><span class="co">## [40]  293  310  321  351  364  376  413  457  517  669  805 1257</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;  [1]    2    4    5    5    7    8   11   12   12   16   19   21   22</span></span>
+<span><span class="co">#&gt; [14]   27   32   36   38   53   63   65   67   84   93   93   97   97</span></span>
+<span><span class="co">#&gt; [27]   99  111  116  118  120  135  142  207  219  232  246  250  286</span></span>
+<span><span class="co">#&gt; [40]  293  310  321  351  364  376  413  457  517  669  805 1257</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>However, this does not give us information about which states have which murder totals. For example, we don’t know which state had 1257.</p>
 </section><section id="order" class="level3" data-number="2.10.2"><h3 data-number="2.10.2" class="anchored" data-anchor-id="order">
 <span class="header-section-number">2.10.2</span> <code>order</code>
 </h3>
 <p>The function <code>order</code> is closer to what we want. It takes a vector as input and returns the vector of indexes that sorts the input vector. This may sound confusing so let’s look at a simple example. We can create a vector and sort it:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-86_09d4c3714d0b0188378019605961f5b0">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-86_4bd4632d188d2c789eecac2226ef10f9">
 <div class="sourceCode" id="cb81"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">31</span>, <span class="fl">4</span>, <span class="fl">15</span>, <span class="fl">92</span>, <span class="fl">65</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co">## [1]  4 15 31 65 92</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1]  4 15 31 65 92</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Rather than sort the input vector, the function <code>order</code> returns the index that sorts input vector:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-87_e3a91cbd85400d01b5f87f3f483b193a">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-87_58dc84068a144edfc87c318489a4c5ac">
 <div class="sourceCode" id="cb82"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">index</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="va">x</span><span class="op">[</span><span class="va">index</span><span class="op">]</span></span>
-<span><span class="co">## [1]  4 15 31 65 92</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1]  4 15 31 65 92</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This is the same output as that returned by <code>sort(x)</code>. If we look at this index, we see why it works:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-88_8910b98c493006025582e51b5416365e">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-88_f03f4051690aa362d4714bec7d43b912">
 <div class="sourceCode" id="cb83"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span></span>
-<span><span class="co">## [1] 31  4 15 92 65</span></span>
+<span><span class="co">#&gt; [1] 31  4 15 92 65</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co">## [1] 2 3 1 5 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 2 3 1 5 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The second entry of <code>x</code> is the smallest, so <code>order(x)</code> starts with <code>2</code>. The next smallest is the third entry, so the second entry is <code>3</code> and so on.</p>
 <p>How does this help us order the states by murders? First, remember that the entries of vectors you access with <code>$</code> follow the same order as the rows in the table. For example, these two vectors containing state names and abbreviations, respectively, are matched by their order:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-89_41e0b533ce2345aca7e6c85d732166cd">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-89_0614d6e8e17855a7c80181445c4858c4">
 <div class="sourceCode" id="cb84"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span>
-<span><span class="co">## [1] "Alabama"    "Alaska"     "Arizona"    "Arkansas"   "California"</span></span>
-<span><span class="co">## [6] "Colorado"</span></span>
+<span><span class="co">#&gt; [1] "Alabama"    "Alaska"     "Arizona"    "Arkansas"   "California"</span></span>
+<span><span class="co">#&gt; [6] "Colorado"</span></span>
 <span><span class="va">murders</span><span class="op">$</span><span class="va">abb</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span>
-<span><span class="co">## [1] "AL" "AK" "AZ" "AR" "CA" "CO"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "AL" "AK" "AZ" "AR" "CA" "CO"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This means we can order the state names by their total murders. We first obtain the index that orders the vectors according to murder totals and then index the state names vector:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-90_e193cba99f4f879ffc37e7213a149e07">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-90_30fe32a9dfe39c29e62993329c0a04e0">
 <div class="sourceCode" id="cb85"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">total</span><span class="op">)</span> </span>
 <span><span class="va">murders</span><span class="op">$</span><span class="va">abb</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span> </span>
-<span><span class="co">##  [1] "VT" "ND" "NH" "WY" "HI" "SD" "ME" "ID" "MT" "RI" "AK" "IA" "UT"</span></span>
-<span><span class="co">## [14] "WV" "NE" "OR" "DE" "MN" "KS" "CO" "NM" "NV" "AR" "WA" "CT" "WI"</span></span>
-<span><span class="co">## [27] "DC" "OK" "KY" "MA" "MS" "AL" "IN" "SC" "TN" "AZ" "NJ" "VA" "NC"</span></span>
-<span><span class="co">## [40] "MD" "OH" "MO" "LA" "IL" "GA" "MI" "PA" "NY" "FL" "TX" "CA"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;  [1] "VT" "ND" "NH" "WY" "HI" "SD" "ME" "ID" "MT" "RI" "AK" "IA" "UT"</span></span>
+<span><span class="co">#&gt; [14] "WV" "NE" "OR" "DE" "MN" "KS" "CO" "NM" "NV" "AR" "WA" "CT" "WI"</span></span>
+<span><span class="co">#&gt; [27] "DC" "OK" "KY" "MA" "MS" "AL" "IN" "SC" "TN" "AZ" "NJ" "VA" "NC"</span></span>
+<span><span class="co">#&gt; [40] "MD" "OH" "MO" "LA" "IL" "GA" "MI" "PA" "NY" "FL" "TX" "CA"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>According to the above, California had the most murders.</p>
 </section><section id="max-and-which.max" class="level3" data-number="2.10.3"><h3 data-number="2.10.3" class="anchored" data-anchor-id="max-and-which.max">
 <span class="header-section-number">2.10.3</span> <code>max</code> and <code>which.max</code>
 </h3>
 <p>If we are only interested in the entry with the largest value, we can use <code>max</code> for the value:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-91_268238d85481627ceed79a6bce02a35b">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-91_c36b811b1057d978f6bb2603d23f2faf">
 <div class="sourceCode" id="cb86"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span>
-<span><span class="co">## [1] 1257</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 1257</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and <code>which.max</code> for the index of the largest value:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-92_c0a082882a302269f1f1d69c71e4d485">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-92_4ef56e2d6530c57a14f40b6de2df4b1d">
 <div class="sourceCode" id="cb87"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">i_max</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span>
 <span><span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op">[</span><span class="va">i_max</span><span class="op">]</span></span>
-<span><span class="co">## [1] "California"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "California"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For the minimum, we can use <code>min</code> and <code>which.min</code> in the same way.</p>
 <p>Does this mean California is the most dangerous state? In an upcoming section, we argue that we should be considering rates instead of totals. Before doing that, we introduce one last order-related function: <code>rank</code>.</p>
@@ -1189,13 +1189,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">2.10.4</span> <code>rank</code>
 </h3>
 <p>Although not as frequently used as <code>order</code> and <code>sort</code>, the function <code>rank</code> is also related to order and can be useful. For any given vector it returns a vector with the rank of the first entry, second entry, etc., of the input vector. Here is a simple example:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-93_e59fc53f67e168465a5f00276adaebf8">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-93_9ce6d95744e1b8e128ef96242707b668">
 <div class="sourceCode" id="cb88"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">31</span>, <span class="fl">4</span>, <span class="fl">15</span>, <span class="fl">92</span>, <span class="fl">65</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/rank.html">rank</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co">## [1] 3 1 2 5 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 3 1 2 5 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To summarize, let’s look at the results of the three functions we have introduced:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-94_d1b37ef8df19d005373e0aa1a8ba1a39">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-94_f536baeeac108d141a2c2c63a062e126">
 <div class="cell-output-display">
 
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -1243,19 +1243,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="beware-of-recycling" class="level3" data-number="2.10.5"><h3 data-number="2.10.5" class="anchored" data-anchor-id="beware-of-recycling">
 <span class="header-section-number">2.10.5</span> Beware of recycling</h3>
 <p>Another common source of unnoticed errors in R is the use of <em>recycling</em>. We saw that vectors are added elementwise. So if the vectors don’t match in length, it is natural to assume that we should get an error. But we don’t. Notice what happens:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-95_c5a2bfc29602a7cd91c3ed52e29b151e">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-95_5178e4f5c897909ed8ec7036a8d89107">
 <div class="sourceCode" id="cb89"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">50</span>, <span class="fl">60</span>, <span class="fl">70</span><span class="op">)</span></span>
 <span><span class="va">x</span><span class="op">+</span><span class="va">y</span></span>
-<span><span class="co">## Warning in x + y: longer object length is not a multiple of shorter</span></span>
-<span><span class="co">## object length</span></span>
-<span><span class="co">## [1] 11 22 33 41 52 63 71</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; Warning in x + y: longer object length is not a multiple of shorter</span></span>
+<span><span class="co">#&gt; object length</span></span>
+<span><span class="co">#&gt; [1] 11 22 33 41 52 63 71</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We do get a warning, but no error. For the output, R has recycled the numbers in <code>x</code>. Notice the last digit of numbers in the output.</p>
 </section></section><section id="exercises-3" class="level2" data-number="2.11"><h2 data-number="2.11" class="anchored" data-anchor-id="exercises-3">
 <span class="header-section-number">2.11</span> Exercises</h2>
 <p>For these exercises we will use the US murders dataset. Make sure you load it prior to starting.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-96_5629b9e6f14093fa295f9b5e202bb638">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-96_cf51166a685e9fcfa5d609dcef112775">
 <div class="sourceCode" id="cb90"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>1. Use the <code>$</code> operator to access the population size data and store it as the object <code>pop</code>. Then use the <code>sort</code> function to redefine <code>pop</code> so that it is sorted. Finally, use the <code>[</code> operator to report the smallest population size.</p>
@@ -1263,7 +1263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>3. We can actually perform the same operation as in the previous exercise using the function <code>which.min</code>. Write one line of code that does this.</p>
 <p>4. Now we know how small the smallest state is and we know which row represents it. Which state is it? Define a variable <code>states</code> to be the state names from the <code>murders</code> data frame. Report the name of the state with the smallest population.</p>
 <p>5. You can create a data frame using the <code>data.frame</code> function. Here is a quick example:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-97_8a3b62f83e68c72677513c1ae5a49af5">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-97_197303f5fb29375ba77af3378cb9e8e5">
 <div class="sourceCode" id="cb91"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">35</span>, <span class="fl">88</span>, <span class="fl">42</span>, <span class="fl">84</span>, <span class="fl">81</span>, <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="va">city</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Beijing"</span>, <span class="st">"Lagos"</span>, <span class="st">"Paris"</span>, <span class="st">"Rio de Janeiro"</span>, </span>
 <span>          <span class="st">"San Juan"</span>, <span class="st">"Toronto"</span><span class="op">)</span></span>
@@ -1272,41 +1272,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Use the <code>rank</code> function to determine the population rank of each state from smallest population size to biggest. Save these ranks in an object called <code>ranks</code>, then create a data frame with the state name and its rank. Call the data frame <code>my_df</code>.</p>
 <p>6. Repeat the previous exercise, but this time order <code>my_df</code> so that the states are ordered from least populous to most populous. Hint: create an object <code>ind</code> that stores the indexes needed to order the population values. Then use the bracket operator <code>[</code> to re-order each column in the data frame.</p>
 <p>7. The <code>na_example</code> vector represents a series of counts. You can quickly examine the object using:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-98_3dac3f196f41c8e37adcbba85b4b5452">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-98_610eb37c835e8d4c22360c6cd40d48b9">
 <div class="sourceCode" id="cb92"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">na_example</span><span class="op">)</span></span>
-<span><span class="co">##  int [1:1000] 2 1 3 2 1 3 1 4 3 2 ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;  int [1:1000] 2 1 3 2 1 3 1 4 3 2 ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>However, when we compute the average with the function <code>mean</code>, we obtain an <code>NA</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-99_b460520eec185f59d5115d0a02af019a">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-99_da92fd3c907b526172c3b58e8661e00c">
 <div class="sourceCode" id="cb93"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">na_example</span><span class="op">)</span></span>
-<span><span class="co">## [1] NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>is.na</code> function returns a logical vector that tells us which entries are <code>NA</code>. Assign this logical vector to an object called <code>ind</code> and determine how many <code>NA</code>s does <code>na_example</code> have.</p>
 <p>8. Now compute the average again, but only for the entries that are not <code>NA</code>. Hint: remember the <code>!</code> operator.</p>
 </section><section id="vector-arithmetics" class="level2" data-number="2.12"><h2 data-number="2.12" class="anchored" data-anchor-id="vector-arithmetics">
 <span class="header-section-number">2.12</span> Vector arithmetics</h2>
 <p>California had the most murders, but does this mean it is the most dangerous state? What if it just has many more people than any other state? We can quickly confirm that California indeed has the largest population:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-100_19cf670512363430c90417346909bbb7">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-100_91c69e125ba2402c0060de403632d87b">
 <div class="sourceCode" id="cb94"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">population</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="co">## [1] "California"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "California"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>with over 37 million inhabitants. It is therefore unfair to compare the totals if we are interested in learning how safe the state is. What we really should be computing is the murders per capita. The reports we describe in the motivating section used murders per 100,000 as the unit. To compute this quantity, the powerful vector arithmetic capabilities of R come in handy.</p>
 <section id="rescaling-a-vector" class="level3" data-number="2.12.1"><h3 data-number="2.12.1" class="anchored" data-anchor-id="rescaling-a-vector">
 <span class="header-section-number">2.12.1</span> Rescaling a vector</h3>
 <p>In R, arithmetic operations on vectors occur <em>element-wise</em>. For a quick example, suppose we have height in inches:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-101_bb009a0d299286361094ebb1ae7e3383">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-101_cf59e1acd652565264ae2bf08aa0b311">
 <div class="sourceCode" id="cb95"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">inches</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">69</span>, <span class="fl">62</span>, <span class="fl">66</span>, <span class="fl">70</span>, <span class="fl">70</span>, <span class="fl">73</span>, <span class="fl">67</span>, <span class="fl">73</span>, <span class="fl">67</span>, <span class="fl">70</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and want to convert to centimeters. Notice what happens when we multiply <code>inches</code> by 2.54:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-102_08636c6b5b0da35d46bfa7caf18bb48a">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-102_fc2d800abc9d34009da3d7cded8bec4f">
 <div class="sourceCode" id="cb96"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">inches</span> <span class="op">*</span> <span class="fl">2.54</span></span>
-<span><span class="co">##  [1] 175 157 168 178 178 185 170 185 170 178</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;  [1] 175 157 168 178 178 185 170 185 170 178</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In the line above, we multiplied each element by 2.54. Similarly, if for each entry we want to compute how many inches taller or shorter than 69 inches, the average height for males, we can subtract it from every entry like this:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-103_35222ce14d1178d50a50653aa94da3e0">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-103_46e8f0d07f8e788b9b176f29a12f434f">
 <div class="sourceCode" id="cb97"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">inches</span> <span class="op">-</span> <span class="fl">69</span></span>
-<span><span class="co">##  [1]  0 -7 -3  1  1  4 -2  4 -2  1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;  [1]  0 -7 -3  1  1  4 -2  4 -2  1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="two-vectors" class="level3" data-number="2.12.2"><h3 data-number="2.12.2" class="anchored" data-anchor-id="two-vectors">
 <span class="header-section-number">2.12.2</span> Two vectors</h3>
@@ -1335,21 +1335,21 @@ d + h
 \]</span></p>
 <p>The same holds for other mathematical operations, such as <code>-</code>, <code>*</code> and <code>/</code>.</p>
 <p>This implies that to compute the murder rates we can simply type:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-104_d4d8c7d5fc5e7e6ddb7b55e4b2d26188">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-104_77a11355108ac3837279f8385bed8a49">
 <div class="sourceCode" id="cb98"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murder_rate</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">total</span> <span class="op">/</span> <span class="va">murders</span><span class="op">$</span><span class="va">population</span> <span class="op">*</span> <span class="fl">100000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once we do this, we notice that California is no longer near the top of the list. In fact, we can use what we have learned to order the states by murder rate:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-105_f103012e3a772c3100613525e0d2145e">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-105_ae38c9a37f13f856bf79d23c03ee962c">
 <div class="sourceCode" id="cb99"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span><span class="op">$</span><span class="va">abb</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">murder_rate</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="co">##  [1] "VT" "NH" "HI" "ND" "IA" "ID" "UT" "ME" "WY" "OR" "SD" "MN" "MT"</span></span>
-<span><span class="co">## [14] "CO" "WA" "WV" "RI" "WI" "NE" "MA" "IN" "KS" "NY" "KY" "AK" "OH"</span></span>
-<span><span class="co">## [27] "CT" "NJ" "AL" "IL" "OK" "NC" "NV" "VA" "AR" "TX" "NM" "CA" "FL"</span></span>
-<span><span class="co">## [40] "TN" "PA" "AZ" "GA" "MS" "MI" "DE" "SC" "MD" "MO" "LA" "DC"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;  [1] "VT" "NH" "HI" "ND" "IA" "ID" "UT" "ME" "WY" "OR" "SD" "MN" "MT"</span></span>
+<span><span class="co">#&gt; [14] "CO" "WA" "WV" "RI" "WI" "NE" "MA" "IN" "KS" "NY" "KY" "AK" "OH"</span></span>
+<span><span class="co">#&gt; [27] "CT" "NJ" "AL" "IL" "OK" "NC" "NV" "VA" "AR" "TX" "NM" "CA" "FL"</span></span>
+<span><span class="co">#&gt; [40] "TN" "PA" "AZ" "GA" "MS" "MI" "DE" "SC" "MD" "MO" "LA" "DC"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="exercises-4" class="level2" data-number="2.13"><h2 data-number="2.13" class="anchored" data-anchor-id="exercises-4">
 <span class="header-section-number">2.13</span> Exercises</h2>
 <p>1. Previously we created this data frame:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-106_29355b027ebeeb88a9b063e2afb363c2">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-106_bf1fc22f8382a2d40ae6b673093e554b">
 <div class="sourceCode" id="cb100"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">35</span>, <span class="fl">88</span>, <span class="fl">42</span>, <span class="fl">84</span>, <span class="fl">81</span>, <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="va">city</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Beijing"</span>, <span class="st">"Lagos"</span>, <span class="st">"Paris"</span>, <span class="st">"Rio de Janeiro"</span>, </span>
 <span>          <span class="st">"San Juan"</span>, <span class="st">"Toronto"</span><span class="op">)</span></span>
@@ -1361,99 +1361,99 @@ d + h
 </section><section id="indexing" class="level2" data-number="2.14"><h2 data-number="2.14" class="anchored" data-anchor-id="indexing">
 <span class="header-section-number">2.14</span> Indexing</h2>
 <p>R provides a powerful and convenient way of indexing vectors. We can, for example, subset a vector based on properties of another vector. In this section, we continue working with our US murders example, which we can load like this:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-107_0e9d73dd1e1d7216f14a4c04992ea970">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-107_97b38daaaa2b8b292504a1c5cb393724">
 <div class="sourceCode" id="cb101"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="subsetting-with-logicals" class="level3" data-number="2.14.1"><h3 data-number="2.14.1" class="anchored" data-anchor-id="subsetting-with-logicals">
 <span class="header-section-number">2.14.1</span> Subsetting with logicals</h3>
 <p>We have now calculated the murder rate using:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-108_ed516004f71922496b303c264bb40f6f">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-108_37f28ec70edda1a4a8ccd2edd052873f">
 <div class="sourceCode" id="cb102"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murder_rate</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">total</span> <span class="op">/</span> <span class="va">murders</span><span class="op">$</span><span class="va">population</span> <span class="op">*</span> <span class="fl">100000</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Imagine you are moving from Italy where, according to an ABC news report, the murder rate is only 0.71 per 100,000. You would prefer to move to a state with a similar murder rate. Another powerful feature of R is that we can use logicals to index vectors. If we compare a vector to a single number, it actually performs the test for each entry. The following is an example related to the question above:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-109_b66ccf3f773ebc7df29e8dcd753721d0">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-109_f264be2d83835b32623e120f497603c0">
 <div class="sourceCode" id="cb103"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="va">murder_rate</span> <span class="op">&lt;</span> <span class="fl">0.71</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If we instead want to know if a value is less or equal, we can use:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-110_624e6bf3159e50576326c74bdf0e1321">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-110_740989c67414959551728e823ad543f6">
 <div class="sourceCode" id="cb104"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="va">murder_rate</span> <span class="op">&lt;=</span> <span class="fl">0.71</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that we get back a logical vector with <code>TRUE</code> for each entry smaller than or equal to 0.71. To see which states these are, we can leverage the fact that vectors can be indexed with logicals.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-111_538c8adde4b3194ca34b3c55f623e2b3">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-111_19e71efe900909ce62edfc2c9ff4a925">
 <div class="sourceCode" id="cb105"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span></span>
-<span><span class="co">## [1] "Hawaii"        "Iowa"          "New Hampshire" "North Dakota" </span></span>
-<span><span class="co">## [5] "Vermont"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "Hawaii"        "Iowa"          "New Hampshire" "North Dakota" </span></span>
+<span><span class="co">#&gt; [5] "Vermont"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In order to count how many are TRUE, the function <code>sum</code> returns the sum of the entries of a vector and logical vectors get <em>coerced</em> to numeric with <code>TRUE</code> coded as 1 and <code>FALSE</code> as 0. Thus we can count the states using:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-112_c2bcbc423a2d6abe8305a7d817d92b9c">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-112_79f6900ff70758399154d63dbe3ed91d">
 <div class="sourceCode" id="cb106"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">ind</span><span class="op">)</span></span>
-<span><span class="co">## [1] 5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="logical-operators" class="level3" data-number="2.14.2"><h3 data-number="2.14.2" class="anchored" data-anchor-id="logical-operators">
 <span class="header-section-number">2.14.2</span> Logical operators</h3>
 <p>Suppose we like the mountains and we want to move to a safe state in the western region of the country. We want the murder rate to be at most 1. In this case, we want two different things to be true. Here we can use the logical operator <em>and</em>, which in R is represented with <code>&amp;</code>. This operation results in <code>TRUE</code> only when both logicals are <code>TRUE</code>. To see this, consider this example:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-113_3e930bb542413413188f3bbc5876d96e">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-113_5814700824303e537e7bd1adc0223bd0">
 <div class="sourceCode" id="cb107"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="cn">TRUE</span> <span class="op">&amp;</span> <span class="cn">TRUE</span></span>
-<span><span class="co">## [1] TRUE</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
 <span><span class="cn">TRUE</span> <span class="op">&amp;</span> <span class="cn">FALSE</span></span>
-<span><span class="co">## [1] FALSE</span></span>
+<span><span class="co">#&gt; [1] FALSE</span></span>
 <span><span class="cn">FALSE</span> <span class="op">&amp;</span> <span class="cn">FALSE</span></span>
-<span><span class="co">## [1] FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For our example, we can form two logicals:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-114_4a6fcd42c87adab29d5480ec5d11dc84">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-114_c741477f3d5da61da9349d293f8d75cc">
 <div class="sourceCode" id="cb108"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">west</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">region</span> <span class="op">==</span> <span class="st">"West"</span></span>
 <span><span class="va">safe</span> <span class="op">&lt;-</span> <span class="va">murder_rate</span> <span class="op">&lt;=</span> <span class="fl">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and we can use the <code>&amp;</code> to get a vector of logicals that tells us which states satisfy both conditions:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-115_8752c2fe8c8d010a8fba1b150d683894">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-115_4aa584e6e478e3aa383df8bc437bc670">
 <div class="sourceCode" id="cb109"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="va">safe</span> <span class="op">&amp;</span> <span class="va">west</span></span>
 <span><span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span></span>
-<span><span class="co">## [1] "Hawaii"  "Idaho"   "Oregon"  "Utah"    "Wyoming"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "Hawaii"  "Idaho"   "Oregon"  "Utah"    "Wyoming"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="which" class="level3" data-number="2.14.3"><h3 data-number="2.14.3" class="anchored" data-anchor-id="which">
 <span class="header-section-number">2.14.3</span> <code>which</code>
 </h3>
 <p>Suppose we want to look up California’s murder rate. For this type of operation, it is convenient to convert vectors of logicals into indexes instead of keeping long vectors of logicals. The function <code>which</code> tells us which entries of a logical vector are TRUE. So we can type:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-116_729316d6d3f88aef9b27297481cd61ef">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-116_628429835d97f49a4309ef23b5fcf724">
 <div class="sourceCode" id="cb110"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">state</span> <span class="op">==</span> <span class="st">"California"</span><span class="op">)</span></span>
 <span><span class="va">murder_rate</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span></span>
-<span><span class="co">## [1] 3.37</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 3.37</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="match" class="level3" data-number="2.14.4"><h3 data-number="2.14.4" class="anchored" data-anchor-id="match">
 <span class="header-section-number">2.14.4</span> <code>match</code>
 </h3>
 <p>If instead of just one state we want to find out the murder rates for several states, say New York, Florida, and Texas, we can use the function <code>match</code>. This function tells us which indexes of a second vector match each of the entries of a first vector:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-117_a99bc82269a5bc1e1b952d458e2312fe">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-117_b54f7ea0f592500921729f6402b79a62">
 <div class="sourceCode" id="cb111"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/match.html">match</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"New York"</span>, <span class="st">"Florida"</span>, <span class="st">"Texas"</span><span class="op">)</span>, <span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op">)</span></span>
 <span><span class="va">ind</span></span>
-<span><span class="co">## [1] 33 10 44</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 33 10 44</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we can look at the murder rates:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-118_187025dd766fc6116e2a11505df2038d">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-118_21a4e87df8113984864b65bb77d405e4">
 <div class="sourceCode" id="cb112"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murder_rate</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span></span>
-<span><span class="co">## [1] 2.67 3.40 3.20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 2.67 3.40 3.20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="in" class="level3" data-number="2.14.5"><h3 data-number="2.14.5" class="anchored" data-anchor-id="in">
 <span class="header-section-number">2.14.5</span> <code>%in%</code>
 </h3>
 <p>If rather than an index we want a logical that tells us whether or not each element of a first vector is in a second, we can use the function <code>%in%</code>. Let’s imagine you are not sure if Boston, Dakota, and Washington are states. You can find out like this:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-119_23fbb5dc5489dbf91a7bd41d76d802a0">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-119_31188257ba926edc4c40b7d5a6ed0421">
 <div class="sourceCode" id="cb113"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Boston"</span>, <span class="st">"Dakota"</span>, <span class="st">"Washington"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">murders</span><span class="op">$</span><span class="va">state</span></span>
-<span><span class="co">## [1] FALSE FALSE  TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] FALSE FALSE  TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that we will be using <code>%in%</code> often throughout the book.</p>
 <p><strong>Advanced</strong>: There is a connection between <code>match</code> and <code>%in%</code> through <code>which</code>. To see this, notice that the following two lines produce the same index (although in different order):</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-120_4b2ee379e2ad60c7af0d5f861365ff27">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-120_964bcfb6f4f004675dc82ae0c662c23d">
 <div class="sourceCode" id="cb114"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/match.html">match</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"New York"</span>, <span class="st">"Florida"</span>, <span class="st">"Texas"</span><span class="op">)</span>, <span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op">)</span></span>
-<span><span class="co">## [1] 33 10 44</span></span>
+<span><span class="co">#&gt; [1] 33 10 44</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"New York"</span>, <span class="st">"Florida"</span>, <span class="st">"Texas"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## [1] 10 33 44</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 10 33 44</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="exercises-5" class="level2" data-number="2.15"><h2 data-number="2.15" class="anchored" data-anchor-id="exercises-5">
 <span class="header-section-number">2.15</span> Exercises</h2>
 <p>Start by loading the library and data.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-121_8b7b9af4f45942a3117cd7abad969ded">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-121_c20f5f7badacc809cb25f29d29f596b1">
 <div class="sourceCode" id="cb115"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>1. Compute the per 100,000 murder rate for each state and store it in an object called <code>murder_rate</code>. Then use logical operators to create a logical vector named <code>low</code> that tells us which entries of <code>murder_rate</code> are lower than 1.</p>
@@ -1471,12 +1471,12 @@ d + h
 <span class="header-section-number">2.16.1</span> <code>plot</code>
 </h3>
 <p>The <code>plot</code> function can be used to make scatterplots. Here is a plot of total murders versus population.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-122_0f46b8f11020d85193bc6e2cec2f4902">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-122_c7951b76e535fcbac25cb156e13b82bd">
 <div class="sourceCode" id="cb116"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">population</span> <span class="op">/</span> <span class="fl">10</span><span class="op">^</span><span class="fl">6</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">total</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/first-plot_3d641e41ed335b5c6222c7078b06262d">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/first-plot_de542da7e9a0bde30345dcb47e3621d2">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="R-basics_files/figure-html/first-plot-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
@@ -1485,7 +1485,7 @@ d + h
 </div>
 </div>
 <p>For a quick plot that avoids accessing variables twice, we can use the <code>with</code> function:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-123_79d682d103c6b0e9cc113b56c1badf53">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-123_18f0fa53e8ecfd4e33d0999c1b7d0deb">
 <div class="sourceCode" id="cb117"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">murders</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">population</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The function <code>with</code> lets us use the <code>murders</code> column names in the <code>plot</code> function. It also works with any data frames and any function.</p>
@@ -1493,11 +1493,11 @@ d + h
 <span class="header-section-number">2.16.2</span> <code>hist</code>
 </h3>
 <p>We will describe histograms as they relate to distributions in the Data Visualization part of the book. Here we will simply note that histograms are a powerful graphical summary of a list of numbers that gives you a general overview of the types of values you have. We can make a histogram of our murder rates by simply typing:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-124_c2249a935e41eff51daeb9474d749117">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-124_344cd8f993510d6a131ded831324b634">
 <div class="sourceCode" id="cb118"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">murders</span>, <span class="va">total</span> <span class="op">/</span> <span class="va">population</span> <span class="op">*</span> <span class="fl">100000</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/r-base-hist_8f9ed188c69bc6036f724112f52ee807">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/r-base-hist_a55741d30aaa6c3ae1b1d4a01d13b723">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="R-basics_files/figure-html/r-base-hist-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
@@ -1506,19 +1506,19 @@ d + h
 </div>
 </div>
 <p>We can see that there is a wide range of values with most of them between 2 and 3 and one very extreme case with a murder rate of more than 15:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-125_693d82d55054058ceb6f896424fcc12e">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-125_97d36c1349e235758e90bba43837a3a3">
 <div class="sourceCode" id="cb119"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="co">## [1] "District of Columbia"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "District of Columbia"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="boxplot" class="level3" data-number="2.16.3"><h3 data-number="2.16.3" class="anchored" data-anchor-id="boxplot">
 <span class="header-section-number">2.16.3</span> <code>boxplot</code>
 </h3>
 <p>Boxplots will also be described in the Data Visualization part of the book. They provide a more terse summary than histograms, but they are easier to stack with other boxplots. For example, here we can use them to compare the different regions:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-126_7bf2731fd3227fde92cd06ab355baa48">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-126_a7ca3185be630824d2ac037d08c71b6d">
 <div class="sourceCode" id="cb120"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span><span class="op">$</span><span class="va">rate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">murders</span>, <span class="va">total</span> <span class="op">/</span> <span class="va">population</span> <span class="op">*</span> <span class="fl">100000</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">rate</span><span class="op">~</span><span class="va">region</span>, data <span class="op">=</span> <span class="va">murders</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/r-base-boxplot_1587df867360e9f933ed1866a9fe9a68">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/r-base-boxplot_cb2666f4d7627f0318eb7a997df3d325">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="R-basics_files/figure-html/r-base-boxplot-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
@@ -1531,11 +1531,11 @@ d + h
 <span class="header-section-number">2.16.4</span> <code>image</code>
 </h3>
 <p>The image function displays the values in a matrix using color. Here is a quick example:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-127_f48f02cde32f7cc79169868267b44b4a">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-127_7c6cc556f1ea817fca0feab6ded25f7d">
 <div class="sourceCode" id="cb121"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">120</span>, <span class="fl">12</span>, <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/image.html">image</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/image-first-example_438ec8141fbf38b6c6e100190a679db5">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/image-first-example_ed0c10991dabbff8d08fad9664b5ae03">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="R-basics_files/figure-html/image-first-example-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
@@ -1546,7 +1546,7 @@ d + h
 </section></section><section id="exercises-6" class="level2" data-number="2.17"><h2 data-number="2.17" class="anchored" data-anchor-id="exercises-6">
 <span class="header-section-number">2.17</span> Exercises</h2>
 <p>1. We made a plot of total murders versus population and noted a strong relationship. Not surprisingly, states with larger populations had more murders.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-128_6c8bbcf249aa866c0833c2d1be64ed82">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-128_86a961e2cb02cf7ad9a0ce223d177a7d">
 <div class="sourceCode" id="cb122"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="va">population_in_millions</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span></span>
 <span><span class="va">total_gun_murders</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">total</span></span>

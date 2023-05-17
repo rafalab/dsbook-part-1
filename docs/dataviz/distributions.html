@@ -373,7 +373,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">8.2</span> Case study: describing student heights</h2>
 <p>We introduce a new motivating problem. It is an artificial one, but it will help us illustrate the concepts needed to understand distributions.</p>
 <p>Pretend that we have to describe the heights of our classmates to ET, an extraterrestrial that has never seen humans. As a first step, we need to collect data. To do this, we ask students to report their heights in inches. We ask them to provide sex information because we know there are two different distributions by sex. We collect the data and save it in the <code>heights</code> data frame:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/load-heights_67911c5001f7c8cbcf9dd284d3131c24">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/load-heights_f38577eaf9b3e436eef9ec02d2f93662">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">heights</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -382,13 +382,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="distributions" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="distributions">
 <span class="header-section-number">8.3</span> Distributions</h2>
 <p>The most basic statistical summary of a list of objects or numbers is its <em>distribution</em>. The simplest way to think of a distribution is as a compact description of a list with many entries. This concept should not be new for readers of this book. For example, with categorical data, the distribution simply describes the proportion of each unique category. The sex represented in the heights dataset is:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-1_7088c2064cf0ea1a8d3ab0d2f23bd890">
-<pre><code>## 
-## Female   Male 
-##  0.227  0.773</code></pre>
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-1_f06946d48cdf38883402796f54090018">
+<pre><code>#&gt; 
+#&gt; Female   Male 
+#&gt;  0.227  0.773</code></pre>
 </div>
 <p>This two-category <em>frequency table</em> is the simplest form of a distribution. We don’t really need to visualize it since one number describes everything we need to know: 23% are females and the rest are males. When there are more categories, then a simple barplot describes the distribution. Here is an example with US state regions:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/state-region-distribution_83dad5035d4ce5d1f08be1c255e2305c">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/state-region-distribution_07151d3e62a25021e4f310f59b356f77">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="distributions_files/figure-html/state-region-distribution-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -401,7 +401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">8.3.1</span> Histograms</h3>
 <p>Numerical data that are not categorical also have distributions. However, in general, when data is not categorical, reporting the frequency of each entry, as we did for categorical data, is not an effective summary since most entries are unique. or example, in our case study, while several students reported a height of 68 inches, only one student reported a height of <code>68.503937007874</code> inches and only one student reported a height <code>68.8976377952756</code> inches. We assume that they converted from 174 and 175 centimeters, respectively.</p>
 <p>Statistics textbooks teach us that a more useful way to define a distribution for numeric data is to define a function that reports the proportion of the data below <span class="math inline">\(a\)</span> for all possible values of <span class="math inline">\(a\)</span>. This function is called the emipirical cumulative distribution function (eCDF), it can be plotted, and it provides a full description of the distribution of our data. Here is the eCDF for male student heights:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/ecdf_c0178416ca31ff9734e2248c2380a4a5">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/ecdf_d9aa307b750a2e7b4f77248de9622eba">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="distributions_files/figure-html/ecdf-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -411,7 +411,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>However, summarizing data by plotting the eCDF is actually not very popular in practice. The main reason is that it does not easily convey characteristics of interest such as: at what value is the distribution centered? Is the distribution symmetric? What ranges contain 95% of the values?</p>
 <p><em>Histograms</em>, are much preferred because they greatly facilitate answering such questions. Histograms sacrifice just a bit of information to produce plots that are much easier to interpret. The simplest way to make a histogram is to divide the span of our data into non-overlapping bins of the same size. Then, for each bin, we count the number of values that fall in that interval. The histogram plots these counts as bars with the base of the bar defined by the intervals. Here is the histogram for the height data splitting the range of values into one inch intervals: <span class="math inline">\((49.5, 50.5],(50.5, 51.5],(51.5,52.5],(52.5,53.5],...,(82.5,83.5]\)</span></p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/height-histogram_3aee3aaae80b4c2997621cb768a82d68">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/height-histogram_9753c7c87d69562d3cd7a8ff5e7cde9a">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="distributions_files/figure-html/height-histogram-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -426,7 +426,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="smoothed-density" class="level3" data-number="8.3.2"><h3 data-number="8.3.2" class="anchored" data-anchor-id="smoothed-density">
 <span class="header-section-number">8.3.2</span> Smoothed density</h3>
 <p><em>Smooth density</em> plots relay the same information as a histogram but are aesthetically more appealing. Here is what a smooth density plot looks like for our heights data:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/example-of-smoothed-density_33e9b21c8197e419b2cd79a68ad21873">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/example-of-smoothed-density_32498626c0c4b846a267825d832535ab">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="distributions_files/figure-html/example-of-smoothed-density-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -436,7 +436,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>In this plot, we no longer have sharp edges at the interval boundaries and many of the local peaks have been removed. Also, the scale of the y-axis changed from counts to <em>density</em>. To fully understand smooth densities, we have to understand <em>estimates</em>, a topic we don’t cover until later. Here we simply describe them as making the histograms prettier by drawing a curve that goes through the top of the histogream bars and then removing the bars. The values shown y-axis are chosen so that the area under the curve at up to 1. This implies that for any interval, the area under the curve for that interval gives us an approximation of how what proportion of the data is in the interval.</p>
 <p>An advantage of smooth densities over histograms for visualization purposes is that densities make it easier to compare two distributions. This is in large part because the jagged edges of the histogram add clutter. Here is an example comparing male and female heights:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/two-densities-one-plot_f7740ba8b7714de416b69a023ed8f7a2">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/two-densities-one-plot_903810e3c5a504773183fe515a02dd6e">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="distributions_files/figure-html/two-densities-one-plot-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -449,7 +449,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">8.3.3</span> The normal distribution</h3>
 <p>Histograms and density plots provide excellent summaries of a distribution. But can we summarize even further? We often see the average and standard deviation used as summary statistics: a two-number summary! To understand what these summaries are and why they are so widely used, we need to understand the normal distribution.</p>
 <p>The normal distribution, also known as the bell curve and as the Gaussian distribution. Here is what the normal distribution looks like:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/normal-distribution-density_e57f4e585d67e9da16ef49d3c8e294dc">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/normal-distribution-density_26ba49116719277e2e37cc3640e09747">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="distributions_files/figure-html/normal-distribution-density-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -459,29 +459,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The normal distribution is one of the most famous mathematical concepts in history. A reason for this is that the distribution of many datasets can be approximated with normal distributions. These include including gambling winnings, heights, weights, blood pressure, standardized test scores, and experimental measurement errors. Statistical textbooks offer explanations for why this is the case. But how can the same distribution approximate datasets with completely different ranges for values, for example heights and weights? A second important characteristic of the normal distribution is that it can be adapted to different datasets by just adjusting two numbers, refered to as the <em>average</em> or <em>mean</em> and the standard deviation (SD). The normal distribution is symmetric, centered at what we refer to as the average, and most values (about 95%) are within 2 SDs from the average. The plot above shows a normal distribution with average 0 and SD 1, often referred to as a <em>standard normal</em>. Note that the fact that vecause only two numbers are needed to adapt the normal distribution to a dataset, implies that if our data distribution is approximated by a normal distribution, all the information needed to describe the distribution can be encoded in just two numbers. We now define these values for an arbitrary list of numbers.</p>
 <p>Once we are convinced that our data, say it is stored in the vector <code>x</code>, has a distribution that is <em>approximately normal</em> we can find the specifc one that matches our data by matching the average and SD of the data to the average and SD of the normal distribution, respectively. For a list of numbers contained in a vector <code>x</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-2_4602db79543eb41693249269c36db726">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-2_f196cc20097509ee29f9803d1b6782fa">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">index</span> <span class="op">&lt;-</span> <span class="va">heights</span><span class="op">$</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"Male"</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">heights</span><span class="op">$</span><span class="va">height</span><span class="op">[</span><span class="va">index</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>the average is defined as</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-3_12fc5c77f826e885f8ac8fa07f40835c">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-3_94534c920df876a17207c22acd26aeea">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and the SD is defined as</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-4_1a56ea5869af0f82f889089d25dfad87">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-4_cab93d7408e61264f6a9a0f25e693cd4">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">x</span><span class="op">-</span><span class="va">mu</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>which can be interpreted as the average distance between values and their average.</p>
 <p>The pre-built functions <code>mean</code> and <code>sd</code> (note that, for reasons explained in statistics textbooks,<code>sd</code> divides by <code>length(x)-1</code> rather than <code>length(x)</code>) can be used here:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-5_c5b70d32bd9dc3066868b671ba7e047c">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-5_01c97882b066b135b78a3549795275d2">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>average <span class="op">=</span> <span class="va">m</span>, sd <span class="op">=</span> <span class="va">s</span><span class="op">)</span></span>
-<span><span class="co">## average      sd </span></span>
-<span><span class="co">##   69.31    3.61</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; average      sd </span></span>
+<span><span class="co">#&gt;   69.31    3.61</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here is a plot of the smooth density and the normal distribution with mean = 69.3 and SD = 3.6 plotted as a black line with our student height smooth density in blue:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/data-and-normal-densities_3a276177e65343726434a45862601f14">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/data-and-normal-densities_b198cb8d8815bddbfc28c80638c2e246">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="distributions_files/figure-html/data-and-normal-densities-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -494,12 +494,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To understand boxplots we need to define some terms that are commonly used in exploratory data analysis.</p>
 <p>The <em>percentiles</em> are the values for which <span class="math inline">\(p = 0.01, 0.02, ..., 0.99\)</span> of the data are less then or equal to that value, respectively. We call, for example, the case of <span class="math inline">\(p=0.10\)</span> the 10th percentile, which gives us a number for which 10% of the data is below. The most famous percentile is the 50th, also known as the <em>median</em>. Another special case that receives a name are the <em>quartiles</em>, which are obtained when setting <span class="math inline">\(p=0.25,0.50\)</span>, and <span class="math inline">\(0.75\)</span>, which are used by the boxplot.</p>
 <p>To motivate boxplots we will go back to the US murder data. Suppose we want to summarize the murder rate distribution. Using the data visualization technique we have learned, we can quickly see that the normal approximation does not apply here:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/hist-non-normal-data_536afc17bc2e896ae5492be5e135dfab">
-<pre><code>## 
-## Attaching package: 'gridExtra'
-## The following object is masked from 'package:dplyr':
-## 
-##     combine</code></pre>
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/hist-non-normal-data_c9a608219f211ccca27aa5f8f545f549">
+<pre><code>#&gt; 
+#&gt; Attaching package: 'gridExtra'
+#&gt; The following object is masked from 'package:dplyr':
+#&gt; 
+#&gt;     combine</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="distributions_files/figure-html/hist-non-normal-data-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -510,7 +510,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this case, the histogram above or a smooth density plot would serve as a relatively succinct summary.</p>
 <p>Now suppose those used to receiving just two numbers as summaries ask us for a more compact numerical summary.</p>
 <p>The <em>boxplot</em> provides a five-number summary composed of the range along with the <em>quartiles</em> (the 25th, 50th, and 75th percentiles). The R implementation of boxplots ignore <em>outliers</em> when computing the range and instead plot these as independent points. The help file provides a specific definition of outliers. The boxplot shows these numbers as a “box” with “whiskers”</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/first-boxplot_6010bdd789374d56ace09ddcdcee34b7">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/first-boxplot_10790c8c1655bfe56a8eec928b9f3724">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="distributions_files/figure-html/first-boxplot-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -529,7 +529,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">8.6</span> Case study: describing student heights (continued)</h2>
 <p>Using the histogram, density plots, and QQ-plots, we have become convinced that the male height data is well approximated with a normal distribution. In this case, we report back to ET a very succinct summary: male heights follow a normal distribution with an average of 69.3 inches and a SD of 3.6 inches. With this information, ET will have a good idea of what to expect when he meets our male students. However, to provide a complete picture we need to also provide a summary of the female heights.</p>
 <p>We learned that boxplots are useful when we want to quickly compare two or more distributions. Here are the heights for men and women:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/female-male-boxplots_c826b02ac3fb7509bb4c3c67916b1a12">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/female-male-boxplots_48c4f824e4e85d72ce4f2cb69d7a5e41">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="distributions_files/figure-html/female-male-boxplots-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -538,7 +538,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>The plot immediately reveals that males are, on average, taller than females. The standard deviations appear to be similar. But does the normal approximation also work for the female height data collected by the survey? We expect that they will follow a normal distribution, just like males. However, exploratory plots reveal that the approximation is not as useful:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/histogram-qqplot-female-heights_1063de9a6dbb0c44cc85624a77cdd435">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/histogram-qqplot-female-heights_6c372c6c38224f17e99b187576b59e05">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="distributions_files/figure-html/histogram-qqplot-female-heights-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -549,17 +549,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We see something we did not see for the males: the density plot has a second “bump”. Also, the highest points tend to be taller than expected by the normal than expected heights for a normal distribution. When reporting back to ET, we might need to provide a histogram rather than just the average and standard deviation for the female heights.</p>
 <p>However, go back and read Tukey’s quote. We have noticed what we didn’t expect to see. If we look at other female height distributions, we do find that they are well approximated with a normal distribution. So why are our female students different? Is our class a requirement for the female basketball team? Are small proportions of females claiming to be taller than they are? Another, perhaps more likely, explanation is that in the form students used to enter their heights, <code>FEMALE</code> was the default sex and some males entered their heights, but forgot to change the sex variable. In any case, data visualization has helped discover a potential flaw in our data.</p>
 <p>Regarding the five smallest values, note that these values are:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-6_8e9e48ebec9bcfa9ea0d1a8b9cba7f14">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-6_45390df756a59adbe6cb306c7702eff5">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"Female"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/top_n.html">top_n</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span></span>
-<span><span class="co">## [1] 51 53 55 52 52</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 51 53 55 52 52</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Because these are reported heights, a possibility is that the student meant to enter <code>5'1"</code>, <code>5'2"</code>, <code>5'3"</code> or <code>5'5"</code>.</p>
 </section><section id="exercises" class="level2" data-number="8.7"><h2 data-number="8.7" class="anchored" data-anchor-id="exercises">
 <span class="header-section-number">8.7</span> Exercises</h2>
 <p>1. Define variables containing the heights of males and females like this:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-7_952883577c5ae00168df2ef9c4a7bd02">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-7_9c2178bf7a8fd24ee883ae8e6de52f51">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="va">male</span> <span class="op">&lt;-</span> <span class="va">heights</span><span class="op">$</span><span class="va">height</span><span class="op">[</span><span class="va">heights</span><span class="op">$</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"Male"</span><span class="op">]</span></span>
 <span><span class="va">female</span> <span class="op">&lt;-</span> <span class="va">heights</span><span class="op">$</span><span class="va">height</span><span class="op">[</span><span class="va">heights</span><span class="op">$</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"Female"</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -567,7 +567,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>How many measurements do we have for each?</p>
 <p>2. Suppose we can’t make a plot and want to compare the distributions side by side. We can’t just list all the numbers. Instead, we will look at the percentiles. Create a five row table showing <code>female_percentiles</code> and <code>male_percentiles</code> with the 10th, 30th, 50th, 70th, &amp; 90th percentiles for each sex. Then create a data frame with these two as columns.</p>
 <p>3. Study the following boxplots showing population sizes by country:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/boxplot-exercise_75fde10d91dfc25d33ea638372b79246">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/boxplot-exercise_17cde6c001170dcae19057b9b1c459ee">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="distributions_files/figure-html/boxplot-exercise-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -587,7 +587,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>7. If we use a log transformation, which continent shown above has the largest interquartile range?</p>
 <p>8. Load the height data set and create a vector <code>x</code> with just the male heights:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-8_f3faa3d108eb6e1cad4f15c63f46da1b">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-8_b2128f834e68c06120c720350a1a37d9">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">heights</span><span class="op">$</span><span class="va">height</span><span class="op">[</span><span class="va">heights</span><span class="op">$</span><span class="va">sex</span><span class="op">==</span><span class="st">"Male"</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -598,7 +598,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="barplots" class="level3" data-number="8.8.1"><h3 data-number="8.8.1" class="anchored" data-anchor-id="barplots">
 <span class="header-section-number">8.8.1</span> Barplots</h3>
 <p>To generate a barplot we can use the <code>geom_bar</code> geometry. The default is to count the number of each category and draw a bar. Here is the plot for the regions of the US.</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/barplot-geom_e58a7db5ec48bcdeec02bbe43a127e6d">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/barplot-geom_bcb390d85b1ff9f88e00b745f670dddd">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -608,19 +608,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>We often already have a table with a distribution that we want to present as a barplot. Here is an example of such a table:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-9_00eafc99fb0d21016e89dc6ef334aaff">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-9_d199dc6c232be718224a7be4351773d8">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">murders</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>proportion <span class="op">=</span> <span class="va">n</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">tab</span></span>
-<span><span class="co">##          region  n proportion</span></span>
-<span><span class="co">## 1     Northeast  9      0.176</span></span>
-<span><span class="co">## 2         South 17      0.333</span></span>
-<span><span class="co">## 3 North Central 12      0.235</span></span>
-<span><span class="co">## 4          West 13      0.255</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;          region  n proportion</span></span>
+<span><span class="co">#&gt; 1     Northeast  9      0.176</span></span>
+<span><span class="co">#&gt; 2         South 17      0.333</span></span>
+<span><span class="co">#&gt; 3 North Central 12      0.235</span></span>
+<span><span class="co">#&gt; 4          West 13      0.255</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We no longer want <code>geom_bar</code> to count, but rather just plot a bar to the height provided by the <code>proportion</code> variable. For this we need to provide <code>x</code> (the categories) and <code>y</code> (the values) and use the <code>stat="identity"</code> option.</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/region-freq-barplot_ad48e431c4167dc9e0b53ba6cb4749d1">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/region-freq-barplot_c6c6aa2d25479c5c9d9fa0549cb6a0be">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">region</span>, <span class="va">proportion</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -632,7 +632,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="histograms-1" class="level3" data-number="8.8.2"><h3 data-number="8.8.2" class="anchored" data-anchor-id="histograms-1">
 <span class="header-section-number">8.8.2</span> Histograms</h3>
 <p>To generate histograms we use <code>geom_histogram</code>. By looking at the help file for this function, we learn that the only required argument is <code>x</code>, the variable for which we will construct a histogram. We dropped the <code>x</code> because we know it is the first argument. The code looks like this:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-10_827d50d8327633b2ab8dcd92387fde41">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-10_ef1fb8d5ffc55bea99ce5cc3a18272ca">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"Female"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -643,14 +643,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">stat_bin()</a></code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>.</p>
 </blockquote>
 <p>We previously used a bin size of 1 inch, so the code looks like this:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-11_23f3c32fbef8b6bdc6e999c0521c0921">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-11_96bd63158abd83f20c4d4243f8fcd31f">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"Female"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Finally, if for aesthetic reasons we want to add color, we use the arguments described in the help file. We also add labels and a title:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/height-histogram-geom_7ace233c755475035c39026c7f72274c">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/height-histogram-geom_26751150b2dcd232c6143899e2500009">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"Female"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -667,14 +667,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="density-plots" class="level3" data-number="8.8.3"><h3 data-number="8.8.3" class="anchored" data-anchor-id="density-plots">
 <span class="header-section-number">8.8.3</span> Density plots</h3>
 <p>To create a smooth density, we use the <code>geom_density</code>. To make a smooth density plot with the data previously shown as a histogram we can use this code:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-12_23eed2b610426d404188223a9232fb5a">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-12_ee18bc840e0f41083fe39140609bcd0c">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"Female"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To fill in with color, we can use the <code>fill</code> argument.</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/ggplot-density_7bd3a977b8a554fb31ce813e39a59720">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/ggplot-density_d39b17b8bd94b2565ef9c1b2c2de8f2d">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"Female"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -687,7 +687,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>To change the smoothness of the density, we use the <code>adjust</code> argument to multiply the default value by that <code>adjust</code>. For example, if we want the bandwidth to be twice as big we use:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-13_134df5b0e6395db6cdf247e6c7d7e8dc">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-13_7da04fded05185697935bdaf56fc4dae">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"Female"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -696,7 +696,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="boxplots-1" class="level3" data-number="8.8.4"><h3 data-number="8.8.4" class="anchored" data-anchor-id="boxplots-1">
 <span class="header-section-number">8.8.4</span> Boxplots</h3>
 <p>The geometry for boxplot is <code>geom_boxplot</code>. As discussed, boxplots are useful for comparing distributions. For example, below are the previously shown heights for women, but compared to men. For this geometry, we need arguments <code>x</code> as the categories, and <code>y</code> as the values.</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/female-male-boxplots-geom_a0d9809fa6a9b06e26e62330065eea1d">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/female-male-boxplots-geom_41473937f6fc5747949132c5b098f96f">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="distributions_files/figure-html/female-male-boxplots-geom-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -709,7 +709,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 For qq-plots we use the `geom_qq` geometry. From the help file, we learn that we need to specify the `sample` (we will learn about samples in a later chapter). Here is the qqplot for men heights.
 
-::: {.cell layout-align="center" hash='distributions_cache/html/ggplot-qq_bbf08643fe4faf26d5251c3a4755339c'}
+::: {.cell layout-align="center" hash='distributions_cache/html/ggplot-qq_1d79fbd9bd2c47c1525998c01f7c10b1'}
 
 ```{.r .cell-code}
 heights |> filter(sex=="Male") |>
@@ -727,7 +727,7 @@ heights |> filter(sex=="Male") |>
 By default, the sample variable is compared to a normal distribution with average 0 and standard deviation 1. To change this, we use the `dparams` arguments based on the help file. Adding an identity line is as simple as assigning another layer. For straight lines, we use the `geom_abline` function. The default line is the identity line (slope = 1, intercept = 0).
 
 
-::: {.cell layout-align="center" hash='distributions_cache/html/ggplot-qq-dparams_4cd9d015b35633da765dd26f46767eb8'}
+::: {.cell layout-align="center" hash='distributions_cache/html/ggplot-qq-dparams_30d068070f0bb46ca1d8955ed4c7a8c4'}
 
 ```{.r .cell-code}
 params <- heights |> filter(sex=="Male") |>
@@ -744,7 +744,7 @@ heights |> filter(sex=="Male") |>
 Another option here is to scale the data first and then make a qqplot against the standard normal. 
 
 
-::: {.cell layout-align="center" hash='distributions_cache/html/ggplot-qq-standard-units_4d567e28dfe3ae7e6c3d52450de348b7'}
+::: {.cell layout-align="center" hash='distributions_cache/html/ggplot-qq-standard-units_69a82f0fcf88cc593ff842ff71c3f0c5'}
 
 ```{.r .cell-code}
 heights |> 
@@ -760,17 +760,17 @@ heights |>
 </section><section id="images" class="level3" data-number="8.8.5"><h3 data-number="8.8.5" class="anchored" data-anchor-id="images">
 <span class="header-section-number">8.8.5</span> Images</h3>
 <p>Images were not needed for the concepts described in this chapter, but we will use images in Section <a href="vaccines.html"><span>Chapter&nbsp;11</span></a>, so we introduce the two geometries used to create images: <strong>geom_tile</strong> and <strong>geom_raster</strong>. They behave similarly; to see how they differ, please consult the help file. To create an image in <strong>ggplot2</strong> we need a data frame with the x and y coordinates as well as the values associated with each of these. Here is a data frame.</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-14_f63ef5647b9d8dd883949b61cf9a9cdd">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-14_60d53bdca7110a09937b14373ec2cc41">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html">expand.grid</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>z <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">120</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that this is the tidy version of a matrix, <code>matrix(1:120, 12, 10)</code>. To plot the image we use the following code:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-15_b05bfd8ddfb97c4fb93706c19ac5922c">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-15_bb81ad134bd80666f411f41110d448ef">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, fill <span class="op">=</span> <span class="va">z</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_raster</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>With these images you will often want to change the color scale. This can be done through the <code>scale_fill_gradientn</code> layer.</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/ggplot2-image-new-colors_04d2f6a2e3986c2a17e80216e0600916">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/ggplot2-image-new-colors_d03ddc399a97480e640ff694ab1c84e2">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, fill <span class="op">=</span> <span class="va">z</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_raster</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradientn</a></span><span class="op">(</span>colors <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">terrain.colors</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -799,7 +799,7 @@ heights |>
 <p>6. Now we are going to make a density plot for males and females separately. We can do this using the <code>group</code> argument. We assign groups via the aesthetic mapping as each point needs to a group before making the calculations needed to estimate a density.</p>
 <p>7. We can also assign groups through the <code>color</code> argument. This has the added benefit that it uses color to distinguish the groups. Change the code above to use color.</p>
 <p>8. We can also assign groups through the <code>fill</code> argument. This has the added benefit that it uses colors to distinguish the groups, like this:</p>
-<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-16_291d649d7bfdabc78f2eec58815c5e5d">
+<div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-16_c0cc78a052cd2ffc7d480b014b861daa">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">height</span>, fill <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

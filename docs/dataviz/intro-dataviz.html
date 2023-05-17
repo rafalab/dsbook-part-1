@@ -333,23 +333,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header><div class="cell" data-layout-align="center" data-hash="intro-dataviz_cache/html/unnamed-chunk-1_ec6c571d97f408e2ebb7a5f55ec73eeb">
+</header><div class="cell" data-layout-align="center" data-hash="intro-dataviz_cache/html/unnamed-chunk-1_ca9e1a0339e0d3bc3335ee1d2f849293">
 
 </div>
 <p>Looking at the numbers and character strings that define a dataset is rarely useful. To convince yourself, print and stare at the US murders data table:</p>
-<div class="cell" data-layout-align="center" data-hash="intro-dataviz_cache/html/unnamed-chunk-2_8c2cdf617d17aec58acbc0e406fc1f1d">
+<div class="cell" data-layout-align="center" data-hash="intro-dataviz_cache/html/unnamed-chunk-2_9580e29f19102fae2aff5806683da685">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">murders</span><span class="op">)</span></span>
-<span><span class="co">##        state abb region population total</span></span>
-<span><span class="co">## 1    Alabama  AL  South    4779736   135</span></span>
-<span><span class="co">## 2     Alaska  AK   West     710231    19</span></span>
-<span><span class="co">## 3    Arizona  AZ   West    6392017   232</span></span>
-<span><span class="co">## 4   Arkansas  AR  South    2915918    93</span></span>
-<span><span class="co">## 5 California  CA   West   37253956  1257</span></span>
-<span><span class="co">## 6   Colorado  CO   West    5029196    65</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;        state abb region population total</span></span>
+<span><span class="co">#&gt; 1    Alabama  AL  South    4779736   135</span></span>
+<span><span class="co">#&gt; 2     Alaska  AK   West     710231    19</span></span>
+<span><span class="co">#&gt; 3    Arizona  AZ   West    6392017   232</span></span>
+<span><span class="co">#&gt; 4   Arkansas  AR  South    2915918    93</span></span>
+<span><span class="co">#&gt; 5 California  CA   West   37253956  1257</span></span>
+<span><span class="co">#&gt; 6   Colorado  CO   West    5029196    65</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What do you learn from staring at this table? How quickly can you determine which states have the largest populations? Which states have the smallest? How large is a typical state? Is there a relationship between population size and total murders? How do murder rates vary across regions of the country? For most human brains, it is quite difficult to extract this information just by looking at the numbers. In contrast, the answer to all the questions above are readily available from examining this plot:</p>
-<div class="cell" data-layout-align="center" data-hash="intro-dataviz_cache/html/ggplot-example-plot-0_82bd9ef215f76bbb65429d2914834ce9">
+<div class="cell" data-layout-align="center" data-hash="intro-dataviz_cache/html/ggplot-example-plot-0_d30bc035a3d8328feb6a015e16d0c3ed">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="intro-dataviz_files/figure-html/ggplot-example-plot-0-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -360,7 +360,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We are reminded of the saying “a picture is worth a thousand words”. Data visualization provides a powerful way to communicate a data-driven finding. In some cases, the visualization is so convincing that no follow-up analysis is required.</p>
 <p>The growing availability of informative datasets and software tools has led to increased reliance on data visualizations across many industries, academia, and government. A salient example is news organizations, which are increasingly embracing <em>data journalism</em> and including effective <em>infographics</em> as part of their reporting.</p>
 <p>A particularly effective example is a Wall Street Journal article<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> showing data related to the impact of vaccines on battling infectious diseases. One of the graphs shows measles cases by US state through the years with a vertical line demonstrating when the vaccine was introduced.</p>
-<div class="cell" data-layout-align="center" data-hash="intro-dataviz_cache/html/wsj-vaccines-example_b52665d516bf9f11a5b482b6361e28e7">
+<div class="cell" data-layout-align="center" data-hash="intro-dataviz_cache/html/wsj-vaccines-example_d70f1f85478538ca1dc6fe4f417c373c">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="intro-dataviz_files/figure-html/wsj-vaccines-example-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -370,7 +370,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <!--(Source: [Wall Street Journal](http://graphics.wsj.com/infectious-diseases-and-vaccines/))-->
 <p>Another striking example comes from a New York Times chart<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, which summarizes scores from the NYC Regents Exams. As described in the article<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, these scores are collected for several reasons, including to determine if a student graduates from high school. In New York City you need a 65 to pass. The distribution of the test scores forces us to notice something somewhat problematic:</p>
-<div class="cell" data-layout-align="center" data-hash="intro-dataviz_cache/html/regents-exams-example_3049f4a6c9938906ca4d53852c5c5a4d">
+<div class="cell" data-layout-align="center" data-hash="intro-dataviz_cache/html/regents-exams-example_f598da0c22d2cd85c9f9f7d10a371ba5">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="intro-dataviz_files/figure-html/regents-exams-example-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
@@ -388,7 +388,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>Many widely used data analysis tools were initiated by discoveries made via EDA. EDA is perhaps the most important part of data analysis, yet it is one that is often overlooked.</p>
 <p>Data visualization is also now pervasive in philanthropic and educational organizations. In the talks New Insights on Poverty<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> and The Best Stats You’ve Ever Seen<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>, Hans Rosling forces us to notice the unexpected with a series of plots related to world health and economics. In his videos, he uses animated graphs to show us how the world is changing and how old narratives are no longer true.</p>
-<div class="cell" data-layout-align="center" data-hash="intro-dataviz_cache/html/gampnider-example-plot_df35de5fddaf421327a417158cab814f">
+<div class="cell" data-layout-align="center" data-hash="intro-dataviz_cache/html/gampnider-example-plot_5c0992270a329b796cfb6dfb6b4d8500">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="intro-dataviz_files/figure-html/gampnider-example-plot-1.gif" class="img-fluid figure-img" style="width:70.0%"></p>
