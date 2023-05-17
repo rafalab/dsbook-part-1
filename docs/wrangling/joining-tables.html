@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.2.475">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
-<title>joining-tables</title>
+<title>Introduction to Data Science - 13&nbsp; Joining tables</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -84,11 +84,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../wrangling/web-scraping.html" rel="next">
+<link href="../wrangling/reshaping-data.html" rel="prev">
+<link href="../cover.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,17 +121,254 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 </head>
-<body class="fullcontent">
+<body class="nav-sidebar floating">
+
 
 <div id="quarto-search-results"></div>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">
+<span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Joining tables</span>
+</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Introduction to Data Science</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../R/intro-to-R.html" class="sidebar-item-text sidebar-link">R</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/getting-started.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/R-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/programming-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Programming basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/tidyverse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The tidyverse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/importing-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importing data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/data_table.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">data.table</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../dataviz/intro-dataviz.html" class="sidebar-item-text sidebar-link">Data Visualization</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/gapminder.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization in practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/dataviz-principles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data visualization principles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/vaccines.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Case study: vaccines and infectious diseases</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../wrangling/intro-to-wrangling.html" class="sidebar-item-text sidebar-link">Data Wrangling</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/reshaping-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/joining-tables.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Joining tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web scraping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">String processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/dates-and-times.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/text-mining.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text mining</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../productivity/intro-productivity.html" class="sidebar-item-text sidebar-link">Productivity Tools</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/installing-r-and-rstudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Installing R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Accessing the terminal and installing Git</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/unix.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Git and GitHub</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/reproducible-projects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects with markdown</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li>
+<a href="#sec-joins" id="toc-sec-joins" class="nav-link active" data-scroll-target="#sec-joins"><span class="toc-section-number">13.1</span>  Joins</a>
+  <ul class="collapse">
+<li><a href="#left-join" id="toc-left-join" class="nav-link" data-scroll-target="#left-join"><span class="toc-section-number">13.1.1</span>  Left join</a></li>
+  <li><a href="#right-join" id="toc-right-join" class="nav-link" data-scroll-target="#right-join"><span class="toc-section-number">13.1.2</span>  Right join</a></li>
+  <li><a href="#inner-join" id="toc-inner-join" class="nav-link" data-scroll-target="#inner-join"><span class="toc-section-number">13.1.3</span>  Inner join</a></li>
+  <li><a href="#full-join" id="toc-full-join" class="nav-link" data-scroll-target="#full-join"><span class="toc-section-number">13.1.4</span>  Full join</a></li>
+  <li><a href="#semi-join" id="toc-semi-join" class="nav-link" data-scroll-target="#semi-join"><span class="toc-section-number">13.1.5</span>  Semi join</a></li>
+  <li><a href="#anti-join" id="toc-anti-join" class="nav-link" data-scroll-target="#anti-join"><span class="toc-section-number">13.1.6</span>  Anti join</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#binding" id="toc-binding" class="nav-link" data-scroll-target="#binding"><span class="toc-section-number">13.2</span>  Binding</a>
+  <ul class="collapse">
+<li><a href="#binding-columns" id="toc-binding-columns" class="nav-link" data-scroll-target="#binding-columns"><span class="toc-section-number">13.2.1</span>  Binding columns</a></li>
+  <li><a href="#binding-by-rows" id="toc-binding-by-rows" class="nav-link" data-scroll-target="#binding-by-rows"><span class="toc-section-number">13.2.2</span>  Binding by rows</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#set-operators" id="toc-set-operators" class="nav-link" data-scroll-target="#set-operators"><span class="toc-section-number">13.3</span>  Set operators</a>
+  <ul class="collapse">
+<li><a href="#intersect" id="toc-intersect" class="nav-link" data-scroll-target="#intersect"><span class="toc-section-number">13.3.1</span>  Intersect</a></li>
+  <li><a href="#union" id="toc-union" class="nav-link" data-scroll-target="#union"><span class="toc-section-number">13.3.2</span>  Union</a></li>
+  <li><a href="#setdiff" id="toc-setdiff" class="nav-link" data-scroll-target="#setdiff"><span class="toc-section-number">13.3.3</span>  <code>setdiff</code></a></li>
+  <li><a href="#setequal" id="toc-setequal" class="nav-link" data-scroll-target="#setequal"><span class="toc-section-number">13.3.4</span>  <code>setequal</code></a></li>
+  </ul>
+</li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">13.4</span>  Exercises</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/edit/main/wrangling/joining-tables.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><section id="joining-tables" class="level1"><h1>Joining tables</h1>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-1_8fbf5e627fcd654e96c77cb780826fe5">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title d-none d-lg-block">
+<span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Joining tables</span>
+</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-1_8fbf5e627fcd654e96c77cb780826fe5">
 
 </div>
 <p>The information we need for a given analysis may not be just in one table. For example, when forecasting elections we used the function <code>left_join</code> to combine the information from two tables. Here we use a simpler example to illustrate the general challenge of combining tables.</p>
@@ -161,7 +402,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## [1] FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <em>join</em> functions, described below, are designed to handle this challenge.</p>
-<section id="sec-joins" class="level2"><h2 class="anchored" data-anchor-id="sec-joins">Joins</h2>
+<section id="sec-joins" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="sec-joins">
+<span class="header-section-number">13.1</span> Joins</h2>
 <p>The <em>join</em> functions in the <strong>dplyr</strong> package make sure that the tables are combined so that matching rows are together. If you know SQL, you will see that the approach and syntax is very similar. The general idea is that one needs to identify one or more columns that will serve to match the two tables. Then a new table with the combined information is returned. Notice what happens if we join the two tables above by state using <code>left_join</code> (we will remove the <code>others</code> column and rename <code>electoral_votes</code> so that the tables fit on the page):</p>
 <div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-5_527f8027ae8f8846622be56f5be6b096">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">murders</span>, <span class="va">results_us_election_2016</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -217,7 +459,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## 6    Delaware  3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We will use these two tables as examples in the next sections.</p>
-<section id="left-join" class="level3"><h3 class="anchored" data-anchor-id="left-join">Left join</h3>
+<section id="left-join" class="level3" data-number="13.1.1"><h3 data-number="13.1.1" class="anchored" data-anchor-id="left-join">
+<span class="header-section-number">13.1.1</span> Left join</h3>
 <p>Suppose we want a table like <code>tab_1</code>, but adding electoral votes to whatever states we have available. For this, we use <code>left_join</code> with <code>tab_1</code> as the first argument. We specify which column to use to match with the <code>by</code> argument.</p>
 <div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-7_ecb2ab25f53d9eeaa732edb0c04fcf73">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
@@ -233,7 +476,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-8_744b6b7d4ee4799b0329edeae9a3d39d">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="right-join" class="level3"><h3 class="anchored" data-anchor-id="right-join">Right join</h3>
+</section><section id="right-join" class="level3" data-number="13.1.2"><h3 data-number="13.1.2" class="anchored" data-anchor-id="right-join">
+<span class="header-section-number">13.1.2</span> Right join</h3>
 <p>If instead of a table with the same rows as first table, we want one with the same rows as second table, we can use <code>right_join</code>:</p>
 <div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-9_d0dd7ce11bf44bc42ba3edf582cbcd16">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join</a></span><span class="op">(</span><span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
@@ -246,7 +490,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## 6    Delaware         NA  3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now the NAs are in the column coming from <code>tab_1</code>.</p>
-</section><section id="inner-join" class="level3"><h3 class="anchored" data-anchor-id="inner-join">Inner join</h3>
+</section><section id="inner-join" class="level3" data-number="13.1.3"><h3 data-number="13.1.3" class="anchored" data-anchor-id="inner-join">
+<span class="header-section-number">13.1.3</span> Inner join</h3>
 <p>If we want to keep only the rows that have information in both tables, we use <code>inner_join</code>. You can think of this as an intersection:</p>
 <div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-10_950fb751d3c6f308fbe0752011dad4f0">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
@@ -256,7 +501,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## 3    Arizona    6392017 11</span></span>
 <span><span class="co">## 4 California   37253956 55</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="full-join" class="level3"><h3 class="anchored" data-anchor-id="full-join">Full join</h3>
+</section><section id="full-join" class="level3" data-number="13.1.4"><h3 data-number="13.1.4" class="anchored" data-anchor-id="full-join">
+<span class="header-section-number">13.1.4</span> Full join</h3>
 <p>If we want to keep all the rows and fill the missing parts with NAs, we can use <code>full_join</code>. You can think of this as a union:</p>
 <div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-11_cee721f6d2f4cd1a7f3d59e436f5f7b7">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
@@ -270,7 +516,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## 7 Connecticut         NA  7</span></span>
 <span><span class="co">## 8    Delaware         NA  3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="semi-join" class="level3"><h3 class="anchored" data-anchor-id="semi-join">Semi join</h3>
+</section><section id="semi-join" class="level3" data-number="13.1.5"><h3 data-number="13.1.5" class="anchored" data-anchor-id="semi-join">
+<span class="header-section-number">13.1.5</span> Semi join</h3>
 <p>The <code>semi_join</code> function lets us keep the part of first table for which we have information in the second. It does not add the columns of the second:</p>
 <div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-12_372385e19520f426b0227374618d480c">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
@@ -280,7 +527,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## 3    Arizona    6392017</span></span>
 <span><span class="co">## 4 California   37253956</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="anti-join" class="level3"><h3 class="anchored" data-anchor-id="anti-join">Anti join</h3>
+</section><section id="anti-join" class="level3" data-number="13.1.6"><h3 data-number="13.1.6" class="anchored" data-anchor-id="anti-join">
+<span class="header-section-number">13.1.6</span> Anti join</h3>
 <p>The function <code>anti_join</code> is the opposite of <code>semi_join</code>. It keeps the elements of the first table for which there is no information in the second:</p>
 <div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-13_f37320e31bb85b1b78b89265f7c4cff7">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
@@ -298,9 +546,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>(Image courtesy of RStudio<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. CC-BY-4.0 license<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Cropped from original.)</p>
-</section></section><section id="binding" class="level2"><h2 class="anchored" data-anchor-id="binding">Binding</h2>
+</section></section><section id="binding" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="binding">
+<span class="header-section-number">13.2</span> Binding</h2>
 <p>Although we have yet to use it in this book, another common way in which datasets are combined is by <em>binding</em> them. Unlike the join function, the binding functions do not try to match by a variable, but instead simply combine datasets. If the datasets don’t match by the appropriate dimensions, one obtains an error.</p>
-<section id="binding-columns" class="level3"><h3 class="anchored" data-anchor-id="binding-columns">Binding columns</h3>
+<section id="binding-columns" class="level3" data-number="13.2.1"><h3 data-number="13.2.1" class="anchored" data-anchor-id="binding-columns">
+<span class="header-section-number">13.2.1</span> Binding columns</h3>
 <p>The <strong>dplyr</strong> function <em>bind_cols</em> binds two objects by making them columns in a tibble. For example, we quickly want to make a data frame consisting of numbers we can use.</p>
 <div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-15_825827218e17661355cd8d9069bd0885">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, b <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
@@ -328,7 +578,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## 5 California  CA   West   37253956  1257 55    61.7  31.6</span></span>
 <span><span class="co">## 6   Colorado  CO   West    5029196    65  9    48.2  43.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="binding-by-rows" class="level3"><h3 class="anchored" data-anchor-id="binding-by-rows">Binding by rows</h3>
+</section><section id="binding-by-rows" class="level3" data-number="13.2.2"><h3 data-number="13.2.2" class="anchored" data-anchor-id="binding-by-rows">
+<span class="header-section-number">13.2.2</span> Binding by rows</h3>
 <p>The <code>bind_rows</code> function is similar to <code>bind_cols</code>, but binds rows instead of columns:</p>
 <div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-17_e362725669bdc91b7c79fa92bef4abcd">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>,<span class="op">]</span></span>
@@ -341,9 +592,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## 4 Arkansas  AR  South    2915918    93  6    33.7  60.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This is based on an R-base function <code>rbind</code>.</p>
-</section></section><section id="set-operators" class="level2"><h2 class="anchored" data-anchor-id="set-operators">Set operators</h2>
+</section></section><section id="set-operators" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="set-operators">
+<span class="header-section-number">13.3</span> Set operators</h2>
 <p>Another set of commands useful for combining datasets are the set operators. When applied to vectors, these behave as their names suggest. Examples are <code>intersect</code>, <code>union</code>, <code>setdiff</code>, and <code>setequal</code>. However, if the <strong>tidyverse</strong>, or more specifically <strong>dplyr</strong>, is loaded, these functions can be used on data frames as opposed to just on vectors.</p>
-<section id="intersect" class="level3"><h3 class="anchored" data-anchor-id="intersect">Intersect</h3>
+<section id="intersect" class="level3" data-number="13.3.1"><h3 data-number="13.3.1" class="anchored" data-anchor-id="intersect">
+<span class="header-section-number">13.3.1</span> Intersect</h3>
 <p>You can take intersections of vectors of any type, such as numeric:</p>
 <div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-18_2866474db618661f36162006245c7d26">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">intersect</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">6</span><span class="op">:</span><span class="fl">15</span><span class="op">)</span></span>
@@ -364,7 +617,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## 2   Arkansas  AR  South    2915918    93  6    33.7  60.6</span></span>
 <span><span class="co">## 3 California  CA   West   37253956  1257 55    61.7  31.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="union" class="level3"><h3 class="anchored" data-anchor-id="union">Union</h3>
+</section><section id="union" class="level3" data-number="13.3.2"><h3 data-number="13.3.2" class="anchored" data-anchor-id="union">
+<span class="header-section-number">13.3.2</span> Union</h3>
 <p>Similarly <em>union</em> takes the union of vectors. For example:</p>
 <div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-21_33781fbac6dc1285bfce2ceef6a56919">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">union</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">6</span><span class="op">:</span><span class="fl">15</span><span class="op">)</span></span>
@@ -386,7 +640,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## 6    Colorado  CO      West    5029196    65  9    48.2  43.3</span></span>
 <span><span class="co">## 7 Connecticut  CT Northeast    3574097    97  7    54.6  40.9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="setdiff" class="level3"><h3 class="anchored" data-anchor-id="setdiff"><code>setdiff</code></h3>
+</section><section id="setdiff" class="level3" data-number="13.3.3"><h3 data-number="13.3.3" class="anchored" data-anchor-id="setdiff">
+<span class="header-section-number">13.3.3</span> <code>setdiff</code>
+</h3>
 <p>The set difference between a first and second argument can be obtained with <code>setdiff</code>. Unlike <code>intersect</code> and <code>union</code>, this function is not symmetric:</p>
 <div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-23_dd72ee78d10b02a6a246b97e88c6eeea">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">6</span><span class="op">:</span><span class="fl">15</span><span class="op">)</span></span>
@@ -403,7 +659,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## 1 Alabama  AL  South    4779736   135  9    34.4  62.1</span></span>
 <span><span class="co">## 2  Alaska  AK   West     710231    19  3    36.6  51.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="setequal" class="level3"><h3 class="anchored" data-anchor-id="setequal"><code>setequal</code></h3>
+</section><section id="setequal" class="level3" data-number="13.3.4"><h3 data-number="13.3.4" class="anchored" data-anchor-id="setequal">
+<span class="header-section-number">13.3.4</span> <code>setequal</code>
+</h3>
 <p>Finally, the function <code>setequal</code> tells us if two sets are the same, regardless of order. So notice that:</p>
 <div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-25_c154a95a32daf629e601bbd417300fbc">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setequal</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
@@ -419,7 +677,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setequal</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span><span class="op">)</span></span>
 <span><span class="co">## [1] FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="exercises" class="level2"><h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+</section></section><section id="exercises" class="level2" data-number="13.4"><h2 data-number="13.4" class="anchored" data-anchor-id="exercises">
+<span class="header-section-number">13.4</span> Exercises</h2>
 <p>1. Install and load the <strong>Lahman</strong> library. This database includes data related to baseball teams. It includes summary statistics about how the players performed on offense and defense for several years. It also includes personal information about the players.</p>
 <p>The <code>Batting</code> data frame contains the offensive statistics for all players for many years. You can see, for example, the top 10 hitters by running this code:</p>
 <div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-28_f2ec17bc229cb51b54ecb3261e7151aa">
@@ -451,7 +710,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>5. Make a plot of the seasonal trends by year but only after removing the year effect.</p>
 
 
-</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p>https://github.com/rstudio/cheatsheets<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>https://github.com/rstudio/cheatsheets/blob/master/LICENSE<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
@@ -587,9 +846,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="../wrangling/reshaping-data.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../wrangling/web-scraping.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web scraping</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
-
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">Introduction to Data Science was written by Rafael A. Irizarry</div>   
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
 
 
 </body></html>

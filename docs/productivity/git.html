@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.2.475">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
-<title>git</title>
+<title>Introduction to Data Science - 21&nbsp; Git and GitHub</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -84,11 +84,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../productivity/reproducible-projects.html" rel="next">
+<link href="../productivity/unix.html" rel="prev">
+<link href="../cover.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,17 +121,233 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 </head>
-<body class="fullcontent">
+<body class="nav-sidebar floating">
+
 
 <div id="quarto-search-results"></div>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Git and GitHub</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Introduction to Data Science</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../R/intro-to-R.html" class="sidebar-item-text sidebar-link">R</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/getting-started.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/R-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/programming-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Programming basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/tidyverse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The tidyverse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/importing-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importing data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/data_table.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">data.table</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../dataviz/intro-dataviz.html" class="sidebar-item-text sidebar-link">Data Visualization</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/gapminder.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization in practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/dataviz-principles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data visualization principles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/vaccines.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Case study: vaccines and infectious diseases</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../wrangling/intro-to-wrangling.html" class="sidebar-item-text sidebar-link">Data Wrangling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/reshaping-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/joining-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Joining tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web scraping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">String processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/dates-and-times.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/text-mining.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text mining</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../productivity/intro-productivity.html" class="sidebar-item-text sidebar-link">Productivity Tools</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/installing-r-and-rstudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Installing R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Accessing the terminal and installing Git</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/unix.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/git.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Git and GitHub</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/reproducible-projects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects with markdown</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#why-use-git-and-github" id="toc-why-use-git-and-github" class="nav-link active" data-scroll-target="#why-use-git-and-github"><span class="toc-section-number">21.1</span>  Why use Git and GitHub?</a></li>
+  <li><a href="#github-accounts" id="toc-github-accounts" class="nav-link" data-scroll-target="#github-accounts"><span class="toc-section-number">21.2</span>  GitHub accounts</a></li>
+  <li><a href="#sec-github-repos" id="toc-sec-github-repos" class="nav-link" data-scroll-target="#sec-github-repos"><span class="toc-section-number">21.3</span>  GitHub repositories</a></li>
+  <li>
+<a href="#sec-git-overview" id="toc-sec-git-overview" class="nav-link" data-scroll-target="#sec-git-overview"><span class="toc-section-number">21.4</span>  Overview of Git</a>
+  <ul class="collapse">
+<li><a href="#clone" id="toc-clone" class="nav-link" data-scroll-target="#clone"><span class="toc-section-number">21.4.1</span>  Clone</a></li>
+  </ul>
+</li>
+  <li><a href="#sec-init" id="toc-sec-init" class="nav-link" data-scroll-target="#sec-init"><span class="toc-section-number">21.5</span>  Initializing a Git directory</a></li>
+  <li><a href="#sec-rstudio-git" id="toc-sec-rstudio-git" class="nav-link" data-scroll-target="#sec-rstudio-git"><span class="toc-section-number">21.6</span>  Using Git and GitHub in RStudio</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/edit/main/productivity/git.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><section id="sec-git" class="level1"><h1>Git and GitHub</h1>
-<div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-2_0dbaa789c9ffa217530cc2b8b812e2f2">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="sec-git" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Git and GitHub</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-2_0dbaa789c9ffa217530cc2b8b812e2f2">
 
 </div>
 <p>Here we provide some details on Git and GitHub. However, we are only scratching the surface. To learn more about this topic, we highly recommend the following resources:</p>
@@ -141,7 +361,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Happy Git and GitHub for the useR: <a href="http://happygitwithr.com/">http://happygitwithr.com/</a>
 </li>
 </ul>
-<section id="why-use-git-and-github" class="level2"><h2 class="anchored" data-anchor-id="why-use-git-and-github">Why use Git and GitHub?</h2>
+<section id="why-use-git-and-github" class="level2" data-number="21.1"><h2 data-number="21.1" class="anchored" data-anchor-id="why-use-git-and-github">
+<span class="header-section-number">21.1</span> Why use Git and GitHub?</h2>
 <p>There are three main reasons to use Git and GitHub.</p>
 <ol type="1">
 <li><p>Sharing: Even if we do not take advantage of the advanced and powerful version control functionality, we can still use Git and GitHub to share our code.</p></li>
@@ -149,7 +370,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Version control: The version control capabilities of Git permit us to keep track of changes we make to our code. We can also revert back to previous versions of files. Git also permits us to create <em>branches</em> in which we can test out ideas, then decide if we <em>merge</em> the new branch with the original.</p></li>
 </ol>
 <p>Here we focus on the sharing aspects of Git and GitHub and refer the reader to the links above to learn more about this powerful tool.</p>
-</section><section id="github-accounts" class="level2"><h2 class="anchored" data-anchor-id="github-accounts">GitHub accounts</h2>
+</section><section id="github-accounts" class="level2" data-number="21.2"><h2 data-number="21.2" class="anchored" data-anchor-id="github-accounts">
+<span class="header-section-number">21.2</span> GitHub accounts</h2>
 <p>After installing git<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, the first step is to get a GitHub account. Basic GitHub accounts are free. To do this, go to <a href="github.com">GitHub</a> where you will see a box in which you can sign up.</p>
 <!--
 
@@ -243,7 +465,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Git, RStudio and GitHub should now be able to connect and we are ready to create a first GitHub code repository.</p>
-</section><section id="sec-github-repos" class="level2"><h2 class="anchored" data-anchor-id="sec-github-repos">GitHub repositories</h2>
+</section><section id="sec-github-repos" class="level2" data-number="21.3"><h2 data-number="21.3" class="anchored" data-anchor-id="sec-github-repos">
+<span class="header-section-number">21.3</span> GitHub repositories</h2>
 <p>You are now ready to create a GitHub repository (repo). The general idea is that you will have at least two copies of your code: one on your computer and one on GitHub. If you add collaborators to this project, then each will have a copy on their computer. The GitHub copy is usually considered the <em>main</em> (previously called <em>master</em>) copy that each collaborator syncs to. Git will help you keep all the different copies synced.</p>
 <p>As mentioned, one of the advantages of keeping code on a GitHub repository is that you can easily share it with potential employers interested in seeing examples of your work. Because many data science companies use version control systems, like Git, to collaborate on projects, they might also be impressed that you already know at least the basics.</p>
 <p>The first step in creating a repo for your code is to initialize on GitHub. Because you already created an account, you will have a page on GitHub with the URL <code>http://github.com/username</code>.</p>
@@ -299,7 +522,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-</section><section id="sec-git-overview" class="level2"><h2 class="anchored" data-anchor-id="sec-git-overview">Overview of Git</h2>
+</section><section id="sec-git-overview" class="level2" data-number="21.4"><h2 data-number="21.4" class="anchored" data-anchor-id="sec-git-overview">
+<span class="header-section-number">21.4</span> Overview of Git</h2>
 <p>The main actions in Git are to:</p>
 <ol type="1">
 <li>
@@ -321,7 +545,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>But how does it all get started? There are two ways: we can clone an existing repo or initialize one. We will explore cloning first.</p>
-<section id="clone" class="level3"><h3 class="anchored" data-anchor-id="clone">Clone</h3>
+<section id="clone" class="level3" data-number="21.4.1"><h3 data-number="21.4.1" class="anchored" data-anchor-id="clone">
+<span class="header-section-number">21.4.1</span> Clone</h3>
 <p>We are going to <em>clone</em> an existing <em>Upstream Repository</em>. You can see it on GitHub here: <a href="https://github.com/rairizarry/murders">https://github.com/rairizarry/murders</a>. By visiting this page, you can see multiple files and directories. This is the Upstream Repository. By clicking the green clone button, we can copy the repo’s URL <code>https://github.com/rairizarry/murders.git</code>.</p>
 <p>But what does <em>clone</em> mean? Rather than download all these files to your computer, we are going to actually copy the entire Git structure, which means we will add the files and directories to each of the three local stages: Working Directory, Staging Area, and Local Repository. When you clone, all three are exactly the same to start.</p>
 <p>You can quickly see an example of this by doing the following. Open a terminal and type:</p>
@@ -415,7 +640,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Because <code>new-file.txt</code> is staged, the current version of the file will get added to the local repository next time we commit, which we do as follows:</p>
 <div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-34_32c7ef05ca613aee9f7c7aae41eb1da1">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"adding a new file"</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">## [master ff066f4] adding a new file</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">## [master c456f79] adding a new file</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">##  Committer: Rafael A. Irizarry &lt;rafa@macrafa-2.local&gt;</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Your name and email address were configured automatically based</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">## on your username and hostname. Please check that they are accurate.</span></span>
@@ -449,7 +674,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"adding a line"</span> <span class="op">&gt;&gt;</span> new-file.txt</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add new-file.txt</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"adding a new line to new-file"</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">## [master 7ed4969] adding a new line to new-file</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">## [master d32dc4a] adding a new line to new-file</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">##  Committer: Rafael A. Irizarry &lt;rafa@macrafa-2.local&gt;</span></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">## Your name and email address were configured automatically based</span></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">## on your username and hostname. Please check that they are accurate.</span></span>
@@ -469,7 +694,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-41_36fa556eeaa14c996309bbc814f40b66">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"adding a second line"</span> <span class="op">&gt;&gt;</span> new-file.txt</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"minor change to new-file"</span> new-file.txt</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">## [master 2542707] minor change to new-file</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">## [master a4b45b7] minor change to new-file</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">##  Committer: Rafael A. Irizarry &lt;rafa@macrafa-2.local&gt;</span></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">## Your name and email address were configured automatically based</span></span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">## on your username and hostname. Please check that they are accurate.</span></span>
@@ -488,21 +713,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can keep track of all the changes we have made with:</p>
 <div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-42_7720b4eb630c22e7fd9dad82c26b753f">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log new-file.txt</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">## commit 25427074b6806d1861f169bb1f5c9e5d74a91780</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">## commit a4b45b7789f3f61234b899f0fe24570b6d0fc289</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Author: Rafael A. Irizarry &lt;rafa@macrafa-2.local&gt;</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Date:   Wed May 17 15:18:35 2023 -0400</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Date:   Wed May 17 15:36:41 2023 -0400</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">##     minor change to new-file</span></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">## commit 7ed4969dc49d41e0ef3b59c965bca71a55120603</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">## commit d32dc4a46870d801f788b949cb167a04258edbb6</span></span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">## Author: Rafael A. Irizarry &lt;rafa@macrafa-2.local&gt;</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">## Date:   Wed May 17 15:18:35 2023 -0400</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">## Date:   Wed May 17 15:36:41 2023 -0400</span></span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">##     adding a new line to new-file</span></span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">## commit ff066f44ca60fde881382c255bf1620117953db5</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">## commit c456f7905c76ef3f938d74a04ca80ffbe4c84248</span></span>
 <span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">## Author: Rafael A. Irizarry &lt;rafa@macrafa-2.local&gt;</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">## Date:   Wed May 17 15:18:35 2023 -0400</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">## Date:   Wed May 17 15:36:41 2023 -0400</span></span>
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">## </span></span>
 <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">##     adding a new file</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -555,11 +780,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>We will learn in Section <a href="#sec-rstudio-git">Section&nbsp;1.6</a> how RStudio has buttons to do all this. The details provided here should help you understand what happens in the background.</p>
-</section></section><section id="sec-init" class="level2"><h2 class="anchored" data-anchor-id="sec-init">Initializing a Git directory</h2>
+<p>We will learn in Section <a href="#sec-rstudio-git"><span>Section&nbsp;21.6</span></a> how RStudio has buttons to do all this. The details provided here should help you understand what happens in the background.</p>
+</section></section><section id="sec-init" class="level2" data-number="21.5"><h2 data-number="21.5" class="anchored" data-anchor-id="sec-init">
+<span class="header-section-number">21.5</span> Initializing a Git directory</h2>
 <p>Now let’s learn the second way we can get started: by initializing a directory on our own computer rather than cloning.</p>
 <p>Suppose we already have a populated local directory and we want to turn this directory into a collaborative GitHub repository. The most efficient way of achieving this is by <em>initializing</em> the local directory.</p>
-<p>To demonstrate how to do this we will initialize the gun murders directory we created in Section <strong>?@sec-prep-project</strong>. Note that we already created a directory with several subdirectories on our computer but we do not yet have a Git local repo or GitHub upstream repo.</p>
+<p>To demonstrate how to do this we will initialize the gun murders directory we created in Section <a href="unix.html#sec-prep-project"><span>Section&nbsp;20.7</span></a>. Note that we already created a directory with several subdirectories on our computer but we do not yet have a Git local repo or GitHub upstream repo.</p>
 <p>We start by creating a new repo on our GitHub page. We click on the <em>New</em> button:</p>
 <div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-52_a4aa80894dd7394cd08c067b2c32db8f">
 <div class="cell-output-display">
@@ -617,11 +843,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-59_9c737635063941fa4340547cad36e2e0">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In Section <strong>?@sec-organizing</strong> we continue to work with this example, as we demonstrate how we can use RStudio to work with Git and keep a project synced on GitHub.</p>
+<p>In Section <a href="reproducible-projects.html#sec-organizing"><span>Section&nbsp;22.3</span></a> we continue to work with this example, as we demonstrate how we can use RStudio to work with Git and keep a project synced on GitHub.</p>
 <div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-60_08acb68d8d15a9b820ecd5a3608d10a8">
 
 </div>
-</section><section id="sec-rstudio-git" class="level2"><h2 class="anchored" data-anchor-id="sec-rstudio-git">Using Git and GitHub in RStudio</h2>
+</section><section id="sec-rstudio-git" class="level2" data-number="21.6"><h2 data-number="21.6" class="anchored" data-anchor-id="sec-rstudio-git">
+<span class="header-section-number">21.6</span> Using Git and GitHub in RStudio</h2>
 <p>While command line Git is a powerful and flexible tool, it can be somewhat daunting when we are getting started. RStudio provides a graphical interface that facilitates the use of Git in the context of a data analysis project. We describe how to use this RStudio feature to do this here.</p>
 <p>Now we are ready to start an RStudio project that uses version control and stores the code on a GitHub repo. To do this, we start a project but, instead of <em>New Directory</em>, we will select <em>Version Control</em> and then we will select <em>Git</em> as our version control system:</p>
 <div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-61_94c6d4ed6b5b0e3c6f3d5bb02df6da64">
@@ -638,7 +865,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>The repository URL is the link you used to clone. In Section <a href="#sec-github-repos">Section&nbsp;1.3</a>, we used <code>https://github.com/username/homework-0.git</code> as an example. In the project directory name, you need to put the name of the folder that was generated, which in our example will be the name of the repo <code>homework-0</code>. This will create a folder called <code>homework-0</code> on your local system. Once you do this, the project is created and it is aware of the connection to a GitHub repo. You will see on the top right corner the name and type of project as well as a new tab on the upper right pane titled <em>Git</em>.</p>
+<p>The repository URL is the link you used to clone. In Section <a href="#sec-github-repos"><span>Section&nbsp;21.3</span></a>, we used <code>https://github.com/username/homework-0.git</code> as an example. In the project directory name, you need to put the name of the folder that was generated, which in our example will be the name of the repo <code>homework-0</code>. This will create a folder called <code>homework-0</code> on your local system. Once you do this, the project is created and it is aware of the connection to a GitHub repo. You will see on the top right corner the name and type of project as well as a new tab on the upper right pane titled <em>Git</em>.</p>
 <div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-62_60b195623bdecf972d370958dfd50f1d">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
@@ -662,7 +889,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>We now need to pay attention to the Git pane. It is important to know that <strong>your local files and the GitHub repo will not be synced automatically</strong>. As described in Section <a href="#sec-git-overview">Section&nbsp;1.4</a>, you have to sync using git push when you are ready. We show you can do this through RStudio rather than the terminal below.</p>
+<p>We now need to pay attention to the Git pane. It is important to know that <strong>your local files and the GitHub repo will not be synced automatically</strong>. As described in Section <a href="#sec-git-overview"><span>Section&nbsp;21.4</span></a>, you have to sync using git push when you are ready. We show you can do this through RStudio rather than the terminal below.</p>
 <p>Before we start working on a collaborative project, usually the first thing we do is <em>pull</em> in the changes from the remote repo, in our case the one on GitHub. However, for the example shown here, since we are starting with an empty repo and we are the only ones making changes, we don’t need to start by pulling.</p>
 <p>In RStudio, the status of the file as it relates to the remote and local repos are represented in the status symbols with colors. A yellow square means that Git knows nothing about this file. To sync with the GitHub repo, we need to <em>add</em> the file, then <em>commit</em> the change to our local Git repo, then <em>push</em> the change to the GitHub repo. Right now, the file is just on our computer. To add the file using RStudio, we click the <em>Stage</em> box. You will see that the status icon now changes to a green A.</p>
 <div class="cell" data-layout-align="center" data-hash="git_cache/html/unnamed-chunk-64_c4d99772109f77e35e75ae3e23aab6a6">
@@ -726,7 +953,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Congratulations, you have successfully shared code on a GitHub repository!</p>
 
 
-</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p>https://rafalab.github.io/dsbook/accessing-the-terminal-and-installing-git.html<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>http://rafalab.org<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
@@ -863,9 +1090,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="../productivity/unix.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../productivity/reproducible-projects.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects with markdown</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
-
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">Introduction to Data Science was written by Rafael A. Irizarry</div>   
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
 
 
 </body></html>

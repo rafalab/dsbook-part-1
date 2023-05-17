@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.2.475">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
-<title>getting-started</title>
+<title>Introduction to Data Science - 1&nbsp; Getting started with R and RStudio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -84,11 +84,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../R/R-basics.html" rel="next">
+<link href="../R/intro-to-R.html" rel="prev">
+<link href="../cover.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,23 +121,242 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 </head>
-<body class="fullcontent">
+<body class="nav-sidebar floating">
+
 
 <div id="quarto-search-results"></div>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with R and RStudio</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Introduction to Data Science</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../R/intro-to-R.html" class="sidebar-item-text sidebar-link">R</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/getting-started.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/R-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/programming-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Programming basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/tidyverse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The tidyverse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/importing-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importing data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/data_table.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">data.table</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../dataviz/intro-dataviz.html" class="sidebar-item-text sidebar-link">Data Visualization</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/gapminder.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization in practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/dataviz-principles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data visualization principles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/vaccines.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Case study: vaccines and infectious diseases</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../wrangling/intro-to-wrangling.html" class="sidebar-item-text sidebar-link">Data Wrangling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/reshaping-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/joining-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Joining tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web scraping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">String processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/dates-and-times.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/text-mining.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text mining</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../productivity/intro-productivity.html" class="sidebar-item-text sidebar-link">Productivity Tools</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/installing-r-and-rstudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Installing R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Accessing the terminal and installing Git</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/unix.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Git and GitHub</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/reproducible-projects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects with markdown</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#why-r" id="toc-why-r" class="nav-link active" data-scroll-target="#why-r"><span class="toc-section-number">1.1</span>  Why R?</a></li>
+  <li><a href="#the-r-console" id="toc-the-r-console" class="nav-link" data-scroll-target="#the-r-console"><span class="toc-section-number">1.2</span>  The R console</a></li>
+  <li><a href="#scripts" id="toc-scripts" class="nav-link" data-scroll-target="#scripts"><span class="toc-section-number">1.3</span>  Scripts</a></li>
+  <li>
+<a href="#sec-rstudio" id="toc-sec-rstudio" class="nav-link" data-scroll-target="#sec-rstudio"><span class="toc-section-number">1.4</span>  RStudio</a>
+  <ul class="collapse">
+<li><a href="#the-panes" id="toc-the-panes" class="nav-link" data-scroll-target="#the-panes"><span class="toc-section-number">1.4.1</span>  The panes</a></li>
+  <li><a href="#key-bindings" id="toc-key-bindings" class="nav-link" data-scroll-target="#key-bindings"><span class="toc-section-number">1.4.2</span>  Key bindings</a></li>
+  <li><a href="#running-commands-while-editing-scripts" id="toc-running-commands-while-editing-scripts" class="nav-link" data-scroll-target="#running-commands-while-editing-scripts"><span class="toc-section-number">1.4.3</span>  Running commands while editing scripts</a></li>
+  <li><a href="#changing-global-options" id="toc-changing-global-options" class="nav-link" data-scroll-target="#changing-global-options"><span class="toc-section-number">1.4.4</span>  Changing global options</a></li>
+  </ul>
+</li>
+  <li><a href="#installing-r-packages" id="toc-installing-r-packages" class="nav-link" data-scroll-target="#installing-r-packages"><span class="toc-section-number">1.5</span>  Installing R packages</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/edit/main/R/getting-started.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><section id="sec-getting-started" class="level1"><h1>Getting started with R and RStudio</h1>
-<div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-2_c63002afa3c0fbf88ddc8987c05c5602">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="sec-getting-started" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with R and RStudio</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-2_c63002afa3c0fbf88ddc8987c05c5602">
 
 </div>
 <div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-3_8e0d15b4af6b99355c389b66ff14af35">
 
 </div>
-<section id="why-r" class="level2"><h2 class="anchored" data-anchor-id="why-r">Why R?</h2>
+<section id="why-r" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="why-r">
+<span class="header-section-number">1.1</span> Why R?</h2>
 <p>R is not a programming language like C or Java. It was not created by software engineers for software development. Instead, it was developed by statisticians as an interactive environment for data analysis. You can read the full history in the paper A Brief History of S<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. The interactivity is an indispensable feature in data science because, as you will soon learn, the ability to quickly explore data is a necessity for success in this field. However, like in other programming languages, you can save your work as scripts that can be easily executed at any moment. These scripts serve as a record of the analysis you performed, a key feature that facilitates reproducible work. If you are an expert programmer, you should not expect R to follow the conventions you are used to since you will be disappointed. If you are patient, you will come to appreciate the unequal power of R when it comes to data analysis and, specifically, data visualization.</p>
 <p>Other attractive features of R are:</p>
 <ol type="1">
@@ -142,7 +365,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Scripts and data objects can be shared seamlessly across platforms.</li>
 <li>There is a large, growing, and active community of R users and, as a result, there are numerous resources for learning and asking questions<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</li>
 <li>It is easy for others to contribute add-ons which enables developers to share software implementations of new data science methodologies. This gives R users early access to the latest methods and to tools which are developed for a wide variety of disciplines, including ecology, molecular biology, social sciences, and geography, just to name a few examples.</li>
-</ol></section><section id="the-r-console" class="level2"><h2 class="anchored" data-anchor-id="the-r-console">The R console</h2>
+</ol></section><section id="the-r-console" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="the-r-console">
+<span class="header-section-number">1.2</span> The R console</h2>
 <p>Interactive data analysis usually occurs on the <em>R console</em> that executes commands as you type them. There are several ways to gain access to an R console. One way is to simply start R on your computer. The console looks something like this:</p>
 <div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-4_f47faefc571bf5b1d5e7e3dbb2d15edc">
 <div class="cell-output-display">
@@ -158,7 +382,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## [1] 2.96</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Note that in this book, grey boxes are used to show R code typed into the R console. The symbol <code>#&gt;</code> is used to denote what the R console outputs.</strong></p>
-</section><section id="scripts" class="level2"><h2 class="anchored" data-anchor-id="scripts">Scripts</h2>
+</section><section id="scripts" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="scripts">
+<span class="header-section-number">1.3</span> Scripts</h2>
 <p>One of the great advantages of R over point-and-click analysis software is that you can save your work as scripts. You can edit and save these scripts using a text editor. The material in this book was developed using the interactive <em>integrated development environment</em> (IDE) RStudio<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. RStudio includes an editor with many R specific features, a console to execute your code, and other useful panes, including one to show figures.</p>
 <div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-5_f19cb5a3667c06b9b5856b35b02882ac">
 <div class="cell-output-display">
@@ -170,9 +395,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Most web-based R consoles also provide a pane to edit scripts, but not all permit you to save the scripts for later use.</p>
 <p>All the R scripts used to generate this book can be found on GitHub<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p>
-</section><section id="sec-rstudio" class="level2"><h2 class="anchored" data-anchor-id="sec-rstudio">RStudio</h2>
+</section><section id="sec-rstudio" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="sec-rstudio">
+<span class="header-section-number">1.4</span> RStudio</h2>
 <p>RStudio will be our launching pad for data science projects. It not only provides an editor for us to create and edit our scripts but also provides many other useful tools. In this section, we go over some of the basics.</p>
-<section id="the-panes" class="level3"><h3 class="anchored" data-anchor-id="the-panes">The panes</h3>
+<section id="the-panes" class="level3" data-number="1.4.1"><h3 data-number="1.4.1" class="anchored" data-anchor-id="the-panes">
+<span class="header-section-number">1.4.1</span> The panes</h3>
 <p>When you start RStudio for the first time, you will see three panes. The left pane shows the R console. On the right, the top pane includes tabs such as <em>Environment</em> and <em>History</em>, while the bottom pane shows five tabs: <em>File</em>, <em>Plots</em>, <em>Packages</em>, <em>Help</em>, and <em>Viewer</em> (these tabs may change in new versions). You can click on each tab to move across the different features.</p>
 <div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-6_b6a811698fa2a9454f966805c4de2dfd">
 <div class="cell-output-display">
@@ -200,7 +427,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-</section><section id="key-bindings" class="level3"><h3 class="anchored" data-anchor-id="key-bindings">Key bindings</h3>
+</section><section id="key-bindings" class="level3" data-number="1.4.2"><h3 data-number="1.4.2" class="anchored" data-anchor-id="key-bindings">
+<span class="header-section-number">1.4.2</span> Key bindings</h3>
 <p>Many tasks we perform with the mouse can be achieved with a combination of key strokes instead. These keyboard versions for performing tasks are referred to as <em>key bindings</em>. For example, we just showed how to use the mouse to start a new script, but you can also use a key binding: Ctrl+Shift+N on Windows and command+shift+N on the Mac.</p>
 <p>Although in this tutorial we often show how to use the mouse, <strong>we highly recommend that you memorize key bindings for the operations you use most</strong>. RStudio provides a useful cheat sheet with the most widely used commands. You can get it from RStudio directly:</p>
 <div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-9_4487b87abe71b5a7aa346062514b98b5">
@@ -221,7 +449,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 -->
 <p>You might want to keep this handy so you can look up key-bindings when you find yourself performing repetitive point-and-clicking.</p>
-</section><section id="running-commands-while-editing-scripts" class="level3"><h3 class="anchored" data-anchor-id="running-commands-while-editing-scripts">Running commands while editing scripts</h3>
+</section><section id="running-commands-while-editing-scripts" class="level3" data-number="1.4.3"><h3 data-number="1.4.3" class="anchored" data-anchor-id="running-commands-while-editing-scripts">
+<span class="header-section-number">1.4.3</span> Running commands while editing scripts</h3>
 <p>There are many editors specifically made for coding. These are useful because color and indentation are automatically added to make code more readable. RStudio is one of these editors, and it was specifically developed for R. One of the main advantages provided by RStudio over other editors is that we can test our code easily as we edit our scripts. Below we show an example.</p>
 <p>Let’s start by opening a new script as we did before. A next step is to give the script a name. We can do this through the editor by saving the current new unnamed script. To do this, click on the save icon or use the key binding Ctrl+S on Windows and command+S on the Mac.<br><!--
 ::: {.cell layout-align="center" hash='getting-started_cache/html/unnamed-chunk-11_ee5514021840005ea2b8398d32ec9c7d'}
@@ -267,7 +496,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>To run one line at a time instead of the entire script, you can use Control-Enter on Windows and command-return on the Mac.</p>
-</section><section id="changing-global-options" class="level3"><h3 class="anchored" data-anchor-id="changing-global-options">Changing global options</h3>
+</section><section id="changing-global-options" class="level3" data-number="1.4.4"><h3 data-number="1.4.4" class="anchored" data-anchor-id="changing-global-options">
+<span class="header-section-number">1.4.4</span> Changing global options</h3>
 <p>You can change the look and functionality of RStudio quite a bit.</p>
 <p>To change the global options you click on <em>Tools</em> then <em>Global Options…</em>. <!--
 
@@ -319,7 +549,8 @@ As a second example,
 </div>
 </div>
 </div>
-</section></section><section id="installing-r-packages" class="level2"><h2 class="anchored" data-anchor-id="installing-r-packages">Installing R packages</h2>
+</section></section><section id="installing-r-packages" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="installing-r-packages">
+<span class="header-section-number">1.5</span> Installing R packages</h2>
 <p>The functionality provided by a fresh install of R is only a small fraction of what is possible. In fact, we refer to what you get after your first install as <em>base R</em>. The extra functionality comes from add-ons available from developers. There are currently hundreds of these available from CRAN and many others shared via other repositories such as GitHub. However, because not everybody needs all available functionality, R instead makes different components available via <em>packages</em>. R makes it very easy to install packages from within R. For example, to install the <strong>dslabs</strong> package, which we use to share datasets and code related to this book, you would type:</p>
 <div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-21_2a36e9cc58e032fac7e1c49abb65ca44">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"dslabs"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -377,7 +608,7 @@ Once you select your package, we recommend selecting all the defaults:
 </div>
 
 
-</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p>https://pdfs.semanticscholar.org/9b48/46f192aa37ca122cfabb1ed1b59866d8bfda.pdf<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>https://opensource.org/history<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
@@ -518,9 +749,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="../R/intro-to-R.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">R</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../R/R-basics.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
-
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">Introduction to Data Science was written by Rafael A. Irizarry</div>   
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
 
 
 </body></html>

@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.2.475">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
-<title>ggplot2</title>
+<title>Introduction to Data Science - 7&nbsp; ggplot2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -84,11 +84,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../dataviz/distributions.html" rel="next">
+<link href="../dataviz/intro-dataviz.html" rel="prev">
+<link href="../cover.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,17 +121,241 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
-<body class="fullcontent">
+<body class="nav-sidebar floating">
+
 
 <div id="quarto-search-results"></div>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Introduction to Data Science</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../R/intro-to-R.html" class="sidebar-item-text sidebar-link">R</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/getting-started.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/R-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/programming-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Programming basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/tidyverse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The tidyverse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/importing-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importing data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/data_table.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">data.table</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../dataviz/intro-dataviz.html" class="sidebar-item-text sidebar-link">Data Visualization</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/ggplot2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/gapminder.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization in practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/dataviz-principles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data visualization principles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/vaccines.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Case study: vaccines and infectious diseases</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../wrangling/intro-to-wrangling.html" class="sidebar-item-text sidebar-link">Data Wrangling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/reshaping-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/joining-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Joining tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web scraping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">String processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/dates-and-times.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/text-mining.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text mining</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../productivity/intro-productivity.html" class="sidebar-item-text sidebar-link">Productivity Tools</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/installing-r-and-rstudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Installing R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Accessing the terminal and installing Git</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/unix.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Git and GitHub</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/reproducible-projects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects with markdown</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#the-components-of-a-graph" id="toc-the-components-of-a-graph" class="nav-link active" data-scroll-target="#the-components-of-a-graph"><span class="toc-section-number">7.1</span>  The components of a graph</a></li>
+  <li><a href="#ggplot-objects" id="toc-ggplot-objects" class="nav-link" data-scroll-target="#ggplot-objects"><span class="toc-section-number">7.2</span>  <code>ggplot</code> objects</a></li>
+  <li><a href="#geometries" id="toc-geometries" class="nav-link" data-scroll-target="#geometries"><span class="toc-section-number">7.3</span>  Geometries</a></li>
+  <li><a href="#aesthetic-mappings" id="toc-aesthetic-mappings" class="nav-link" data-scroll-target="#aesthetic-mappings"><span class="toc-section-number">7.4</span>  Aesthetic mappings</a></li>
+  <li>
+<a href="#layers" id="toc-layers" class="nav-link" data-scroll-target="#layers"><span class="toc-section-number">7.5</span>  Layers</a>
+  <ul class="collapse">
+<li><a href="#tinkering-with-arguments" id="toc-tinkering-with-arguments" class="nav-link" data-scroll-target="#tinkering-with-arguments"><span class="toc-section-number">7.5.1</span>  Tinkering with arguments</a></li>
+  </ul>
+</li>
+  <li><a href="#global-versus-local-aesthetic-mappings" id="toc-global-versus-local-aesthetic-mappings" class="nav-link" data-scroll-target="#global-versus-local-aesthetic-mappings"><span class="toc-section-number">7.6</span>  Global versus local aesthetic mappings</a></li>
+  <li><a href="#scales" id="toc-scales" class="nav-link" data-scroll-target="#scales"><span class="toc-section-number">7.7</span>  Scales</a></li>
+  <li><a href="#labels-and-titles" id="toc-labels-and-titles" class="nav-link" data-scroll-target="#labels-and-titles"><span class="toc-section-number">7.8</span>  Labels and titles</a></li>
+  <li><a href="#categories-as-colors" id="toc-categories-as-colors" class="nav-link" data-scroll-target="#categories-as-colors"><span class="toc-section-number">7.9</span>  Categories as colors</a></li>
+  <li><a href="#annotation-shapes-and-adjustments" id="toc-annotation-shapes-and-adjustments" class="nav-link" data-scroll-target="#annotation-shapes-and-adjustments"><span class="toc-section-number">7.10</span>  Annotation, shapes, and adjustments</a></li>
+  <li><a href="#sec-add-on-packages" id="toc-sec-add-on-packages" class="nav-link" data-scroll-target="#sec-add-on-packages"><span class="toc-section-number">7.11</span>  Add-on packages</a></li>
+  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together"><span class="toc-section-number">7.12</span>  Putting it all together</a></li>
+  <li><a href="#grids-of-plots" id="toc-grids-of-plots" class="nav-link" data-scroll-target="#grids-of-plots"><span class="toc-section-number">7.13</span>  Grids of plots</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">7.14</span>  Exercises</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/edit/main/dataviz/ggplot2.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><section id="sec-ggplot2" class="level1"><h1>ggplot2</h1>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-1_63707dbe3c02133e95c4fdd00276e2c6">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="sec-ggplot2" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-1_63707dbe3c02133e95c4fdd00276e2c6">
 
 </div>
 <p>Exploratory data visualization is perhaps the greatest strength of R. One can quickly go from idea to data to plot with a unique balance of flexibility and ease. For example, Excel may be easier than R for some plots, but it is nowhere near as flexible. D3.js may be more flexible and powerful than R, but it takes much longer to generate a plot.</p>
@@ -141,7 +369,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Another reason <strong>ggplot2</strong> is easy for beginners is that its default behavior is carefully chosen to satisfy the great majority of cases and is visually pleasing. As a result, it is possible to create informative and elegant graphs with relatively simple and readable code.</p>
 <p>One limitation is that <strong>ggplot2</strong> is designed to work exclusively with data tables in tidy format (where rows are observations and columns are variables). However, a substantial percentage of datasets that beginners work with are in, or can be converted into, this format. An advantage of this approach is that, assuming that our data is tidy, <strong>ggplot2</strong> simplifies plotting code and the learning of grammar for a variety of plots.</p>
 <p>To use <strong>ggplot2</strong> you will have to learn several functions and arguments. These are hard to memorize, so we highly recommend you have the ggplot2 cheat sheet handy. You can get a copy here: <a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf</a> or simply perform an internet search for “ggplot2 cheat sheet”.</p>
-<section id="the-components-of-a-graph" class="level2"><h2 class="anchored" data-anchor-id="the-components-of-a-graph">The components of a graph</h2>
+<section id="the-components-of-a-graph" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="the-components-of-a-graph">
+<span class="header-section-number">7.1</span> The components of a graph</h2>
 <p>We will construct a graph that summarizes the US murders dataset that looks like this:</p>
 <div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-plot_b8ea0a277f5848cbfed8f315e3258c78">
 <div class="cell-output-display">
@@ -173,8 +402,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-3_827646edcb572404083952c9c4f67f8a">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="ggplot-objects" class="level2"><h2 class="anchored" data-anchor-id="ggplot-objects">
-<code>ggplot</code> objects</h2>
+</section><section id="ggplot-objects" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="ggplot-objects">
+<span class="header-section-number">7.2</span> <code>ggplot</code> objects</h2>
 <div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-4_476208506db2ba1806067447b52b4ce2">
 
 </div>
@@ -204,7 +433,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
 <span><span class="va">p</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="geometries" class="level2"><h2 class="anchored" data-anchor-id="geometries">Geometries</h2>
+</section><section id="geometries" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="geometries">
+<span class="header-section-number">7.3</span> Geometries</h2>
 <p>In <code>ggplot2</code> we create graphs by adding <em>layers</em>. Layers can define geometries, compute summary statistics, define what scales to use, or even change styles. To add layers, we use the symbol <code>+</code>. In general, a line of code will look like this:</p>
 <blockquote class="blockquote">
 <blockquote class="blockquote">
@@ -243,7 +473,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 &gt;
 &gt; colour</code></pre>
 <p>and, as expected, we see that at least two arguments are required <code>x</code> and <code>y</code>.</p>
-</section><section id="aesthetic-mappings" class="level2"><h2 class="anchored" data-anchor-id="aesthetic-mappings">Aesthetic mappings</h2>
+</section><section id="aesthetic-mappings" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="aesthetic-mappings">
+<span class="header-section-number">7.4</span> Aesthetic mappings</h2>
 <p><strong>Aesthetic mappings</strong> describe how properties of the data connect with features of the graph, such as distance along an axis, size, or color. The <code>aes</code> function connects data with what we see on the graph by defining aesthetic mappings and will be one of the functions you use most often when plotting. The outcome of the <code>aes</code> function is often used as the argument of a geometry function. This example produces a scatterplot of total murders versus population in millions:</p>
 <div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-8_6695b9340aae242ae3010b3c5108267d">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -261,7 +492,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>The scale and labels are defined by default when adding this layer. Like <strong>dplyr</strong> functions, <code>aes</code> also uses the variable names from the object component: we can use <code>population</code> and <code>total</code> without having to call them as <code>murders$population</code> and <code>murders$total</code>. The behavior of recognizing the variables from the data component is quite specific to <code>aes</code>. With most functions, if you try to access the values of <code>population</code> or <code>total</code> outside of <code>aes</code> you receive an error.</p>
-</section><section id="layers" class="level2"><h2 class="anchored" data-anchor-id="layers">Layers</h2>
+</section><section id="layers" class="level2" data-number="7.5"><h2 data-number="7.5" class="anchored" data-anchor-id="layers">
+<span class="header-section-number">7.5</span> Layers</h2>
 <p>A second layer in the plot we wish to make involves adding a label to each point to identify the state. The <code>geom_label</code> and <code>geom_text</code> functions permit us to add text to the plot with and without a rectangle behind the text, respectively.</p>
 <p>Because each point (each state in this case) has a label, we need an aesthetic mapping to make the connection between points and labels. By reading the help file, we learn that we supply the mapping between point and label through the <code>label</code> argument of <code>aes</code>. So the code looks like this:</p>
 <div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-4_db833690bfe60e69688159cf1f38d764">
@@ -284,7 +516,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p_test</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span><span class="op">)</span>, label <span class="op">=</span> <span class="va">abb</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>will give you an error since <code>abb</code> is not found because it is outside of the <code>aes</code> function. The layer <code>geom_text</code> does not know where to find <code>abb</code> since it is a column name and not a global variable.</p>
-<section id="tinkering-with-arguments" class="level3"><h3 class="anchored" data-anchor-id="tinkering-with-arguments">Tinkering with arguments</h3>
+<section id="tinkering-with-arguments" class="level3" data-number="7.5.1"><h3 data-number="7.5.1" class="anchored" data-anchor-id="tinkering-with-arguments">
+<span class="header-section-number">7.5.1</span> Tinkering with arguments</h3>
 <p>Each geometry function has many arguments other than <code>aes</code> and <code>data</code>. They tend to be specific to the function. For example, in the plot we wish to make, the points are larger than the default size. In the help file we see that <code>size</code> is an aesthetic and we can change it like this:</p>
 <div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-5_e068b80705e6368dd2bc4a82d90f8fa1">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
@@ -308,8 +541,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>This is preferred as it makes it easier to read the text. In Section <a href="#sec-add-on-packages">Section&nbsp;1.11</a> we learn a better way of assuring we can see the points and the labels.</p>
-</section></section><section id="global-versus-local-aesthetic-mappings" class="level2"><h2 class="anchored" data-anchor-id="global-versus-local-aesthetic-mappings">Global versus local aesthetic mappings</h2>
+<p>This is preferred as it makes it easier to read the text. In Section <a href="#sec-add-on-packages"><span>Section&nbsp;7.11</span></a> we learn a better way of assuring we can see the points and the labels.</p>
+</section></section><section id="global-versus-local-aesthetic-mappings" class="level2" data-number="7.6"><h2 data-number="7.6" class="anchored" data-anchor-id="global-versus-local-aesthetic-mappings">
+<span class="header-section-number">7.6</span> Global versus local aesthetic mappings</h2>
 <p>In the previous line of code, we define the mapping <code>aes(population/10^6, total)</code> twice, once in each geometry. We can avoid this by using a <em>global</em> aesthetic mapping. We can do this when we define the blank slate <code>ggplot</code> object. Remember that the function <code>ggplot</code> contains an argument that permits us to define aesthetic mappings:</p>
 <div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-11_bc4eb791a6d4405b602ab75f639652f5">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/args.html">args</a></span><span class="op">(</span><span class="va">ggplot</span><span class="op">)</span></span>
@@ -338,7 +572,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Clearly, the second call to <code>geom_text</code> does not use <code>population</code> and <code>total</code>.</p>
-</section><section id="scales" class="level2"><h2 class="anchored" data-anchor-id="scales">Scales</h2>
+</section><section id="scales" class="level2" data-number="7.7"><h2 data-number="7.7" class="anchored" data-anchor-id="scales">
+<span class="header-section-number">7.7</span> Scales</h2>
 <p>First, our desired scales are in log-scale. This is not the default, so this change needs to be added through a <em>scales</em> layer. A quick look at the cheat sheet reveals the <code>scale_x_continuous</code> function lets us control the behavior of scales. We use them like this:</p>
 <div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-9_f51e717cb0b8dce5b4edb635ada7964e">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span>  </span>
@@ -360,7 +595,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_log10</a></span><span class="op">(</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="labels-and-titles" class="level2"><h2 class="anchored" data-anchor-id="labels-and-titles">Labels and titles</h2>
+</section><section id="labels-and-titles" class="level2" data-number="7.8"><h2 data-number="7.8" class="anchored" data-anchor-id="labels-and-titles">
+<span class="header-section-number">7.8</span> Labels and titles</h2>
 <p>Similarly, the cheat sheet quickly reveals that to change labels and add a title, we use the following functions:</p>
 <div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-10_325075b5c734e978d5bba109466ea5b4">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span>  </span>
@@ -378,7 +614,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>We are almost there! All we have left to do is add color, a legend, and optional changes to the style.</p>
-</section><section id="categories-as-colors" class="level2"><h2 class="anchored" data-anchor-id="categories-as-colors">Categories as colors</h2>
+</section><section id="categories-as-colors" class="level2" data-number="7.9"><h2 data-number="7.9" class="anchored" data-anchor-id="categories-as-colors">
+<span class="header-section-number">7.9</span> Categories as colors</h2>
 <p>We can change the color of the points using the <code>col</code> argument in the <code>geom_point</code> function. To facilitate demonstration of new features, we will redefine <code>p</code> to be everything except the points layer:</p>
 <div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-14_e089956d6531c1eb45d5e1d564b2e13f">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span>  <span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span>, label <span class="op">=</span> <span class="va">abb</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>   </span>
@@ -412,7 +649,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The <code>x</code> and <code>y</code> mappings are inherited from those already defined in <code>p</code>, so we do not redefine them. We also move <code>aes</code> to the first argument since that is where mappings are expected in this function call.</p>
 <p>Here we see yet another useful default behavior: <strong>ggplot2</strong> automatically adds a legend that maps color to region. To avoid adding this legend we set the <code>geom_point</code> argument <code>show.legend = FALSE</code>.</p>
-</section><section id="annotation-shapes-and-adjustments" class="level2"><h2 class="anchored" data-anchor-id="annotation-shapes-and-adjustments">Annotation, shapes, and adjustments</h2>
+</section><section id="annotation-shapes-and-adjustments" class="level2" data-number="7.10"><h2 data-number="7.10" class="anchored" data-anchor-id="annotation-shapes-and-adjustments">
+<span class="header-section-number">7.10</span> Annotation, shapes, and adjustments</h2>
 <p>We often want to add shapes or annotation to figures that are not derived directly from the aesthetic mapping; examples include labels, boxes, shaded areas, and lines.</p>
 <p>Here we want to add a line that represents the average murder rate for the entire country. Once we determine the per million rate to be <span class="math inline">\(r\)</span>, this line is defined by the formula: <span class="math inline">\(y = r x\)</span>, with <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> our axes: total murders and population in millions, respectively. In the log-scale this line turns into: <span class="math inline">\(\log(y) = \log(r) + \log(x)\)</span>. So in our plot it’s a line with slope 1 and intercept <span class="math inline">\(\log(r)\)</span>. To compute this value, we use our <strong>dplyr</strong> skills:</p>
 <div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-15_ad745ab0d700a4663b89c42d9e00cde8">
@@ -443,7 +681,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-17_1815ec33dc69ac0a93971059436f84cc">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html">scale_color_discrete</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Region"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="sec-add-on-packages" class="level2"><h2 class="anchored" data-anchor-id="sec-add-on-packages">Add-on packages</h2>
+</section><section id="sec-add-on-packages" class="level2" data-number="7.11"><h2 data-number="7.11" class="anchored" data-anchor-id="sec-add-on-packages">
+<span class="header-section-number">7.11</span> Add-on packages</h2>
 <p>The power of <strong>ggplot2</strong> is augmented further due to the availability of add-on packages. The remaining changes needed to put the finishing touches on our plot require the <strong>ggthemes</strong> and <strong>ggrepel</strong> packages.</p>
 <p>The style of a <strong>ggplot2</strong> graph can be changed using the <code>theme</code> functions. Several themes are included as part of the <strong>ggplot2</strong> package. In fact, for most of the plots in this book, we use a function in the <strong>dslabs</strong> package that automatically sets a default theme:</p>
 <div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/eval_3a5108be959780bd7412b628ed502fc9">
@@ -456,7 +695,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>You can see how some of the other themes look by simply changing the function. For instance, you might try the <code><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight()</a></code> theme instead.</p>
 <p>The final difference has to do with the position of the labels. In our plot, some of the labels fall on top of each other. The add-on package <strong>ggrepel</strong> includes a geometry that adds labels while ensuring that they don’t fall on top of each other. We simply change <code>geom_text</code> with <code>geom_text_repel</code>.</p>
-</section><section id="putting-it-all-together" class="level2"><h2 class="anchored" data-anchor-id="putting-it-all-together">Putting it all together</h2>
+</section><section id="putting-it-all-together" class="level2" data-number="7.12"><h2 data-number="7.12" class="anchored" data-anchor-id="putting-it-all-together">
+<span class="header-section-number">7.12</span> Putting it all together</h2>
 <p>Now that we are done testing, we can write one piece of code that produces our desired plot from scratch.</p>
 <div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/final-ggplot-example_d71c075f244c53f6a60d05b00856f03b">
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span></span>
@@ -487,7 +727,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-19_0e1d9ec37516029c496c91d03f6e2cf6">
 
 </div>
-</section><section id="grids-of-plots" class="level2"><h2 class="anchored" data-anchor-id="grids-of-plots">Grids of plots</h2>
+</section><section id="grids-of-plots" class="level2" data-number="7.13"><h2 data-number="7.13" class="anchored" data-anchor-id="grids-of-plots">
+<span class="header-section-number">7.13</span> Grids of plots</h2>
 <p>There are often reasons to graph plots next to each other. The <strong>gridExtra</strong> package permits us to do that:</p>
 <div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/gridExtra-example_804eb8f2ba7a83fc6e6935d043b30e7b">
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">gridExtra</span><span class="op">)</span></span>
@@ -501,7 +742,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-</section><section id="exercises" class="level2"><h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+</section><section id="exercises" class="level2" data-number="7.14"><h2 data-number="7.14" class="anchored" data-anchor-id="exercises">
+<span class="header-section-number">7.14</span> Exercises</h2>
 <p>Start by loading the <strong>dplyr</strong> and <strong>ggplot2</strong> library as well as the <code>murders</code> and <code>heights</code> data.</p>
 <div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-20_5f7d4099ea7632b91dc09abd0afd40dd">
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
@@ -594,7 +836,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>16. Now edit the code above to add the title “Gun murder data” to the plot. Hint: use the <code>ggtitle</code> function.</p>
 
 
-</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p>https://ggplot2.tidyverse.org/<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>http://www.springer.com/us/book/9780387245447<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
@@ -732,9 +974,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="../dataviz/intro-dataviz.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Data Visualization</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../dataviz/distributions.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
-
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">Introduction to Data Science was written by Rafael A. Irizarry</div>   
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
 
 
 </body></html>

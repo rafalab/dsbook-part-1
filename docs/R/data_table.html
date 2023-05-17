@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.2.475">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
-<title>data_table</title>
+<title>Introduction to Data Science - 6&nbsp; data.table</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -84,11 +84,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../dataviz/intro-dataviz.html" rel="next">
+<link href="../R/importing-data.html" rel="prev">
+<link href="../cover.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,23 +121,253 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 </head>
-<body class="fullcontent">
+<body class="nav-sidebar floating">
+
 
 <div id="quarto-search-results"></div>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">data.table</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Introduction to Data Science</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../R/intro-to-R.html" class="sidebar-item-text sidebar-link">R</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/getting-started.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/R-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/programming-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Programming basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/tidyverse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The tidyverse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/importing-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importing data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/data_table.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">data.table</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../dataviz/intro-dataviz.html" class="sidebar-item-text sidebar-link">Data Visualization</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/gapminder.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization in practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/dataviz-principles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data visualization principles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/vaccines.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Case study: vaccines and infectious diseases</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../wrangling/intro-to-wrangling.html" class="sidebar-item-text sidebar-link">Data Wrangling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/reshaping-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/joining-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Joining tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web scraping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">String processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/dates-and-times.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/text-mining.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text mining</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../productivity/intro-productivity.html" class="sidebar-item-text sidebar-link">Productivity Tools</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/installing-r-and-rstudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Installing R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Accessing the terminal and installing Git</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/unix.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Git and GitHub</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/reproducible-projects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects with markdown</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li>
+<a href="#manipulating-data-tables" id="toc-manipulating-data-tables" class="nav-link active" data-scroll-target="#manipulating-data-tables"><span class="toc-section-number">6.1</span>  Manipulating data tables</a>
+  <ul class="collapse">
+<li><a href="#selecting" id="toc-selecting" class="nav-link" data-scroll-target="#selecting"><span class="toc-section-number">6.1.1</span>  Selecting</a></li>
+  <li><a href="#adding-a-column-or-changing-columns" id="toc-adding-a-column-or-changing-columns" class="nav-link" data-scroll-target="#adding-a-column-or-changing-columns"><span class="toc-section-number">6.1.2</span>  Adding a column or changing columns</a></li>
+  <li><a href="#technical-detail-reference-versus-copy" id="toc-technical-detail-reference-versus-copy" class="nav-link" data-scroll-target="#technical-detail-reference-versus-copy"><span class="toc-section-number">6.1.3</span>  Technical detail: reference versus copy</a></li>
+  <li><a href="#subsetting" id="toc-subsetting" class="nav-link" data-scroll-target="#subsetting"><span class="toc-section-number">6.1.4</span>  Subsetting</a></li>
+  </ul>
+</li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">6.2</span>  Exercises</a></li>
+  <li>
+<a href="#summarizing-data" id="toc-summarizing-data" class="nav-link" data-scroll-target="#summarizing-data"><span class="toc-section-number">6.3</span>  Summarizing data</a>
+  <ul class="collapse">
+<li><a href="#multiple-summaries" id="toc-multiple-summaries" class="nav-link" data-scroll-target="#multiple-summaries"><span class="toc-section-number">6.3.1</span>  Multiple summaries</a></li>
+  <li><a href="#group-then-summarize" id="toc-group-then-summarize" class="nav-link" data-scroll-target="#group-then-summarize"><span class="toc-section-number">6.3.2</span>  Group then summarize</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#sorting-data-frames" id="toc-sorting-data-frames" class="nav-link" data-scroll-target="#sorting-data-frames"><span class="toc-section-number">6.4</span>  Sorting data frames</a>
+  <ul class="collapse">
+<li><a href="#nested-sorting" id="toc-nested-sorting" class="nav-link" data-scroll-target="#nested-sorting"><span class="toc-section-number">6.4.1</span>  Nested sorting</a></li>
+  </ul>
+</li>
+  <li><a href="#exercises-1" id="toc-exercises-1" class="nav-link" data-scroll-target="#exercises-1"><span class="toc-section-number">6.5</span>  Exercises</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/edit/main/R/data_table.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><section id="sec-data.table" class="level1"><h1>data.table</h1>
-<p>In this book, we use tidyverse packages to illustrate because beginners find the code readable and this permits us to focus on data analysis and statistical concepts. However, there are other approaches to wrangling and analyzing data in R that are faster and better at handling large objects. The <strong>data.table</strong> package, for example, is one of the most popular and we therefore provide a very quick introduction in this chapter . There are several online resources, including this introduction<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> for those wanting to learn more.</p>
-<section id="manipulating-data-tables" class="level2"><h2 class="anchored" data-anchor-id="manipulating-data-tables">Manipulating data tables</h2>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="sec-data.table" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">data.table</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><p>In this book, we use tidyverse packages to illustrate because beginners find the code readable and this permits us to focus on data analysis and statistical concepts. However, there are other approaches to wrangling and analyzing data in R that are faster and better at handling large objects. The <strong>data.table</strong> package, for example, is one of the most popular and we therefore provide a very quick introduction in this chapter . There are several online resources, including this introduction<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> for those wanting to learn more.</p>
+<section id="manipulating-data-tables" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="manipulating-data-tables">
+<span class="header-section-number">6.1</span> Manipulating data tables</h2>
 <p><code>data.table</code> is a separate package that needs to be installed. Once installed, we then need to load it:</p>
 <div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-1_72bcf26d0644100863313b0b1de392f9">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com">data.table</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We will provide example code showing the <strong>data.table</strong> approaches to <strong>dplyr</strong>’s <code>mutate</code>, <code>filter</code>, <code>select</code>, <code>group_by</code>, and <code>summarize</code> shown in Chapter <strong>?@sec-tidyverse</strong>. As in that chapter, we will use the <code>murders</code> dataset:</p>
+<p>We will provide example code showing the <strong>data.table</strong> approaches to <strong>dplyr</strong>’s <code>mutate</code>, <code>filter</code>, <code>select</code>, <code>group_by</code>, and <code>summarize</code> shown in Chapter <a href="tidyverse.html"><span>Chapter&nbsp;4</span></a>. As in that chapter, we will use the <code>murders</code> dataset:</p>
 <div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-2_4ed0a94cd16e9ac5a0bb6989df115151">
 
 </div>
@@ -142,7 +376,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html">as.data.table</a></span><span class="op">(</span><span class="va">murders</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Without this initial step, most of the approaches shown below will not work.</p>
-<section id="selecting" class="level3"><h3 class="anchored" data-anchor-id="selecting">Selecting</h3>
+<section id="selecting" class="level3" data-number="6.1.1"><h3 data-number="6.1.1" class="anchored" data-anchor-id="selecting">
+<span class="header-section-number">6.1.1</span> Selecting</h3>
 <p>Selecting with <strong>data.table</strong> is done in a similar way to subsetting matrices. While with <strong>dplyr</strong> we write:</p>
 <div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-4_4637a8409885ff96300dc530341a9990">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">select</span><span class="op">(</span><span class="va">murders</span>, <span class="va">state</span>, <span class="va">region</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -169,7 +404,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## 5: California   West</span></span>
 <span><span class="co">## 6:   Colorado   West</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="adding-a-column-or-changing-columns" class="level3"><h3 class="anchored" data-anchor-id="adding-a-column-or-changing-columns">Adding a column or changing columns</h3>
+</section><section id="adding-a-column-or-changing-columns" class="level3" data-number="6.1.2"><h3 data-number="6.1.2" class="anchored" data-anchor-id="adding-a-column-or-changing-columns">
+<span class="header-section-number">6.1.2</span> Adding a column or changing columns</h3>
 <p>We learned to use the <strong>dplyr</strong> <code>mutate</code> function with this example:</p>
 <div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-7_2c9852671cf0b5fe67b719b2cbf1c52b">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">&lt;-</span> <span class="fu">mutate</span><span class="op">(</span><span class="va">murders</span>, rate <span class="op">=</span> <span class="va">total</span> <span class="op">/</span> <span class="va">population</span> <span class="op">*</span> <span class="fl">100000</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -194,7 +430,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-10_4fca73857b448da72ffec466a0195d0e">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span>, <span class="st">":="</span><span class="op">(</span>rate <span class="op">=</span> <span class="va">total</span> <span class="op">/</span> <span class="va">population</span> <span class="op">*</span> <span class="fl">100000</span>, rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rank.html">rank</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="technical-detail-reference-versus-copy" class="level3"><h3 class="anchored" data-anchor-id="technical-detail-reference-versus-copy">Technical detail: reference versus copy</h3>
+</section><section id="technical-detail-reference-versus-copy" class="level3" data-number="6.1.3"><h3 data-number="6.1.3" class="anchored" data-anchor-id="technical-detail-reference-versus-copy">
+<span class="header-section-number">6.1.3</span> Technical detail: reference versus copy</h3>
 <p>The <strong>data.table</strong> package is designed to avoid wasting memory. So if you make a copy of a table, like this:</p>
 <div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-11_13449af3c6ad5575f281de4452759937">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
@@ -240,7 +477,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">##    a</span></span>
 <span><span class="co">## 1: 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="subsetting" class="level3"><h3 class="anchored" data-anchor-id="subsetting">Subsetting</h3>
+</section><section id="subsetting" class="level3" data-number="6.1.4"><h3 data-number="6.1.4" class="anchored" data-anchor-id="subsetting">
+<span class="header-section-number">6.1.4</span> Subsetting</h3>
 <p>With <strong>dplyr</strong>, we filtered like this:</p>
 <div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-18_4520da9ddc58766311279486585b7857">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">murders</span>, <span class="va">rate</span> <span class="op">&lt;=</span> <span class="fl">0.7</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -269,7 +507,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-21_9bdc90a0a7b73121cbac1669a651ee51">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">rate</span> <span class="op">&lt;=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">select</span><span class="op">(</span><span class="va">state</span>, <span class="va">rate</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="exercises" class="level2"><h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+</section></section><section id="exercises" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="exercises">
+<span class="header-section-number">6.2</span> Exercises</h2>
 <p>1. Load the <strong>data.table</strong> package and the <code>murders</code> dataset and convert it to <code>data.table</code> object:</p>
 <div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-22_141d8a9d87a3f3f73b3363f238598657">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com">data.table</a></span><span class="op">)</span></span>
@@ -308,7 +547,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span><span class="va">population</span> <span class="op">&lt;</span> <span class="fl">5000000</span> <span class="op">&amp;</span> <span class="va">region</span> <span class="op">==</span> <span class="st">"Northeast"</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Make sure <code>murders</code> has been defined with <code>rate</code> and <code>rank</code> and still has all states. Create a table called <code>my_states</code> that contains rows for states satisfying both the conditions: they are in the Northeast or West and the murder rate is less than 1. Show only the state name, the rate, and the rank.</p>
-</section><section id="summarizing-data" class="level2"><h2 class="anchored" data-anchor-id="summarizing-data">Summarizing data</h2>
+</section><section id="summarizing-data" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="summarizing-data">
+<span class="header-section-number">6.3</span> Summarizing data</h2>
 <p>As an example, we will use the <code>heights</code> dataset:</p>
 <div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-29_06aee3305aee3878ec11dc63ccb01a6e">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
@@ -345,8 +585,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-33_e5f2db518b1c00e32e3090fb772c8c2a">
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="va">heights_dt</span><span class="op">[</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"Female"</span>, <span class="fu">.</span><span class="op">(</span>average <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span>, standard_deviation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="multiple-summaries" class="level3"><h3 class="anchored" data-anchor-id="multiple-summaries">Multiple summaries</h3>
-<p>In chapter <strong>?@sec-tidyverse</strong>, we defined the function:</p>
+<section id="multiple-summaries" class="level3" data-number="6.3.1"><h3 data-number="6.3.1" class="anchored" data-anchor-id="multiple-summaries">
+<span class="header-section-number">6.3.1</span> Multiple summaries</h3>
+<p>In chapter <a href="tidyverse.html"><span>Chapter&nbsp;4</span></a>, we defined the function:</p>
 <div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-34_b54b83f32ed5d4ee1da4f36a3917963f">
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">median_min_max</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="va">qs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
@@ -359,7 +600,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">##    median minimum maximum</span></span>
 <span><span class="co">## 1:   68.5      50    82.7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="group-then-summarize" class="level3"><h3 class="anchored" data-anchor-id="group-then-summarize">Group then summarize</h3>
+</section><section id="group-then-summarize" class="level3" data-number="6.3.2"><h3 data-number="6.3.2" class="anchored" data-anchor-id="group-then-summarize">
+<span class="header-section-number">6.3.2</span> Group then summarize</h3>
 <p>The <code>group_by</code> followed by <code>summarize</code> in <strong>dplyr</strong> is performed in one line in <strong>data.table</strong>. We simply add the <code>by</code> argument to split the data into groups based on the values in categorical variable:</p>
 <div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-36_d61f8bc3d72b611372cb4513a65d8aa5">
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights_dt</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span>average <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span>, standard_deviation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span>, by <span class="op">=</span> <span class="va">sex</span><span class="op">]</span></span>
@@ -367,7 +609,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## 1:   Male    69.3               3.61</span></span>
 <span><span class="co">## 2: Female    64.9               3.76</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="sorting-data-frames" class="level2"><h2 class="anchored" data-anchor-id="sorting-data-frames">Sorting data frames</h2>
+</section></section><section id="sorting-data-frames" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="sorting-data-frames">
+<span class="header-section-number">6.4</span> Sorting data frames</h2>
 <p>We can order rows using the same approach we use for filter. Here are the states ordered by murder rate:</p>
 <div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-37_fb858c8e56328e4a03c78e891de0ace2">
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -383,13 +626,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-38_a5ecd5fc62c1ac93503bca33ce079dc3">
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">population</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">]</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="nested-sorting" class="level3"><h3 class="anchored" data-anchor-id="nested-sorting">Nested sorting</h3>
+<section id="nested-sorting" class="level3" data-number="6.4.1"><h3 data-number="6.4.1" class="anchored" data-anchor-id="nested-sorting">
+<span class="header-section-number">6.4.1</span> Nested sorting</h3>
 <p>Similarly, we can perform nested ordering by including more than one variable in order</p>
 <div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-39_ddee2bee7a35a49d29ce4e992f748319">
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">region</span>, <span class="va">rate</span><span class="op">)</span><span class="op">]</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>``</p>
-</section></section><section id="exercises-1" class="level2"><h2 class="anchored" data-anchor-id="exercises-1">Exercises</h2>
+</section></section><section id="exercises-1" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="exercises-1">
+<span class="header-section-number">6.5</span> Exercises</h2>
 <p>For these exercises, we will be using the <strong>NHANES</strong> data.</p>
 <div class="cell" data-layout-align="center" data-hash="data_table_cache/html/unnamed-chunk-40_57556231f9f6c75497808cc3267a0bf8">
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">NHANES</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -401,7 +646,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>5. For males between the ages of 40-49, compare systolic blood pressure across race as reported in the <code>Race1</code> variable. Order the resulting table from lowest to highest average systolic blood pressure.</p>
 
 
-</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p>https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -536,9 +781,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="../R/importing-data.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importing data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../dataviz/intro-dataviz.html" class="pagination-link">
+        <span class="nav-page-text">Data Visualization</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
-
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">Introduction to Data Science was written by Rafael A. Irizarry</div>   
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
 
 
 </body></html>

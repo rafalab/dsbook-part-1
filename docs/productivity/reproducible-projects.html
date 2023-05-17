@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.2.475">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
-<title>reproducible-projects</title>
+<title>Introduction to Data Science - 22&nbsp; Reproducible projects with markdown</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -84,11 +84,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../productivity/git.html" rel="prev">
+<link href="../cover.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,25 +120,258 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 </head>
-<body class="fullcontent">
+<body class="nav-sidebar floating">
+
 
 <div id="quarto-search-results"></div>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">
+<span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects with markdown</span>
+</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Introduction to Data Science</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../R/intro-to-R.html" class="sidebar-item-text sidebar-link">R</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/getting-started.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/R-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/programming-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Programming basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/tidyverse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The tidyverse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/importing-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importing data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/data_table.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">data.table</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../dataviz/intro-dataviz.html" class="sidebar-item-text sidebar-link">Data Visualization</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/gapminder.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization in practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/dataviz-principles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data visualization principles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/vaccines.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Case study: vaccines and infectious diseases</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../wrangling/intro-to-wrangling.html" class="sidebar-item-text sidebar-link">Data Wrangling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/reshaping-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/joining-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Joining tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web scraping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">String processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/dates-and-times.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/text-mining.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text mining</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../productivity/intro-productivity.html" class="sidebar-item-text sidebar-link">Productivity Tools</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/installing-r-and-rstudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Installing R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Accessing the terminal and installing Git</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/unix.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Git and GitHub</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/reproducible-projects.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects with markdown</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#rstudio-projects" id="toc-rstudio-projects" class="nav-link active" data-scroll-target="#rstudio-projects"><span class="toc-section-number">22.1</span>  RStudio projects</a></li>
+  <li>
+<a href="#markdown" id="toc-markdown" class="nav-link" data-scroll-target="#markdown"><span class="toc-section-number">22.2</span>  Markdown</a>
+  <ul class="collapse">
+<li><a href="#the-header" id="toc-the-header" class="nav-link" data-scroll-target="#the-header"><span class="toc-section-number">22.2.1</span>  The header</a></li>
+  <li><a href="#r-code-chunks" id="toc-r-code-chunks" class="nav-link" data-scroll-target="#r-code-chunks"><span class="toc-section-number">22.2.2</span>  R code chunks</a></li>
+  <li><a href="#global-excecution-options" id="toc-global-excecution-options" class="nav-link" data-scroll-target="#global-excecution-options"><span class="toc-section-number">22.2.3</span>  Global excecution options</a></li>
+  <li><a href="#sec-knitr" id="toc-sec-knitr" class="nav-link" data-scroll-target="#sec-knitr"><span class="toc-section-number">22.2.4</span>  knitR</a></li>
+  <li><a href="#more-on-markdown" id="toc-more-on-markdown" class="nav-link" data-scroll-target="#more-on-markdown"><span class="toc-section-number">22.2.5</span>  More on markdown</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#sec-organizing" id="toc-sec-organizing" class="nav-link" data-scroll-target="#sec-organizing"><span class="toc-section-number">22.3</span>  Organizing a data science project</a>
+  <ul class="collapse">
+<li><a href="#create-directories-in-unix" id="toc-create-directories-in-unix" class="nav-link" data-scroll-target="#create-directories-in-unix"><span class="toc-section-number">22.3.1</span>  Create directories in Unix</a></li>
+  <li><a href="#create-an-rstudio-project" id="toc-create-an-rstudio-project" class="nav-link" data-scroll-target="#create-an-rstudio-project"><span class="toc-section-number">22.3.2</span>  Create an RStudio project</a></li>
+  <li><a href="#edit-some-r-scripts" id="toc-edit-some-r-scripts" class="nav-link" data-scroll-target="#edit-some-r-scripts"><span class="toc-section-number">22.3.3</span>  Edit some R scripts</a></li>
+  <li><a href="#create-some-more-directories-using-unix" id="toc-create-some-more-directories-using-unix" class="nav-link" data-scroll-target="#create-some-more-directories-using-unix"><span class="toc-section-number">22.3.4</span>  Create some more directories using Unix</a></li>
+  <li><a href="#add-a-readme-file" id="toc-add-a-readme-file" class="nav-link" data-scroll-target="#add-a-readme-file"><span class="toc-section-number">22.3.5</span>  Add a README file</a></li>
+  <li><a href="#initializing-a-git-directory" id="toc-initializing-a-git-directory" class="nav-link" data-scroll-target="#initializing-a-git-directory"><span class="toc-section-number">22.3.6</span>  Initializing a Git directory</a></li>
+  <li><a href="#add-commit-and-push-files-using-rstudio" id="toc-add-commit-and-push-files-using-rstudio" class="nav-link" data-scroll-target="#add-commit-and-push-files-using-rstudio"><span class="toc-section-number">22.3.7</span>  Add, commit, and push files using RStudio</a></li>
+  </ul>
+</li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/edit/main/productivity/reproducible-projects.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><section id="reproducible-projects-with-markdown" class="level1"><h1>Reproducible projects with markdown</h1>
-<p>The final product of a data analysis project is often a report. Many scientific publications can be thought of as a final report of a data analysis. The same is true for news articles based on data, an analysis report for your company, or lecture notes for a class on how to analyze data. The reports are often on paper or in a PDF that includes a textual description of the findings along with some figures and tables resulting from the analysis.</p>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title d-none d-lg-block">
+<span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects with markdown</span>
+</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><p>The final product of a data analysis project is often a report. Many scientific publications can be thought of as a final report of a data analysis. The same is true for news articles based on data, an analysis report for your company, or lecture notes for a class on how to analyze data. The reports are often on paper or in a PDF that includes a textual description of the findings along with some figures and tables resulting from the analysis.</p>
 <p>Imagine that after you finish the analysis and the report, you are told that you were given the wrong dataset, you are sent a new one and you are asked to run the same analysis with this new dataset. Or what if you realize that a mistake was made and need to re-examine the code, fix the error, and re-run the analysis? Or imagine that someone you are training wants to see your code and be able to reproduce the results to learn about your approach?</p>
 <p>Situations like the ones just described are actually quite common for a data scientist. Here, we describe how you can keep your data science projects organized with RStudio so that re-running an analysis is straight-forward. We then demonstrate how to generate reproducible reports with quarto, or R markdown, and the <strong>knitR</strong> package in a way that will greatly help with recreating reports with minimal work. This is possible due to the fact that R markdown documents permit code and textual descriptions to be combined into the same document, and the figures and tables produced by the code are automatically added to the document.</p>
 <div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-2_98d228bba0dd3c008fe0ca31258196bf">
 
 </div>
-<section id="rstudio-projects" class="level2"><h2 class="anchored" data-anchor-id="rstudio-projects">RStudio projects</h2>
-<p>RStudio provides a way to keep all the components of a data analysis project organized into one folder and to keep track of information about this project, such as the Git status of files, in one file. In Section <strong>?@sec-rstudio-git</strong> we demonstrate how RStudio facilitates the use of Git and GitHub through RStudio projects. In this section we quickly demonstrate how to start a new a project and some recommendations on how to keep these organized. RStudio projects also permit you to have several RStudio sessions open and keep track of which is which.</p>
-<p>To start a project, click on <em>File</em> and then <em>New Project</em>. Often we have already created a folder to save the work, as we did in Section <strong>?@sec-prep-project</strong> and we select <em>Existing Directory</em>. Here we show an example in which we have not yet created a folder and select the <em>New Directory</em> option.</p>
+<section id="rstudio-projects" class="level2" data-number="22.1"><h2 data-number="22.1" class="anchored" data-anchor-id="rstudio-projects">
+<span class="header-section-number">22.1</span> RStudio projects</h2>
+<p>RStudio provides a way to keep all the components of a data analysis project organized into one folder and to keep track of information about this project, such as the Git status of files, in one file. In Section <a href="git.html#sec-rstudio-git"><span>Section&nbsp;21.6</span></a> we demonstrate how RStudio facilitates the use of Git and GitHub through RStudio projects. In this section we quickly demonstrate how to start a new a project and some recommendations on how to keep these organized. RStudio projects also permit you to have several RStudio sessions open and keep track of which is which.</p>
+<p>To start a project, click on <em>File</em> and then <em>New Project</em>. Often we have already created a folder to save the work, as we did in Section <a href="unix.html#sec-prep-project"><span>Section&nbsp;20.7</span></a> and we select <em>Existing Directory</em>. Here we show an example in which we have not yet created a folder and select the <em>New Directory</em> option.</p>
 <div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-3_fc4bf318c0667a9fbe124e19293874dc">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
@@ -168,7 +404,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>You will be given options on where this folder should be on your filesystem. In this example, we will place it in our home folder, but this is generally not good practice. As we described in Section <strong>?@sec-prep-project</strong> in the Unix chapter, you want to organize your filesystem following a hierarchical approach and with a folder called <em>projects</em> where you keep a folder for each project.</p>
+<p>You will be given options on where this folder should be on your filesystem. In this example, we will place it in our home folder, but this is generally not good practice. As we described in Section <a href="unix.html#sec-prep-project"><span>Section&nbsp;20.7</span></a> in the Unix chapter, you want to organize your filesystem following a hierarchical approach and with a folder called <em>projects</em> where you keep a folder for each project.</p>
 <div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-6_781049a43c8474d8131a8a48207b695a">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
@@ -203,9 +439,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Another advantage is that if you click on two or more different Rproj files, you start new RStudio and R sessions for each.</p>
-</section><section id="markdown" class="level2"><h2 class="anchored" data-anchor-id="markdown">Markdown</h2>
+</section><section id="markdown" class="level2" data-number="22.2"><h2 data-number="22.2" class="anchored" data-anchor-id="markdown">
+<span class="header-section-number">22.2</span> Markdown</h2>
 <p>Markdown is a format for <em>literate programming</em> documents that is widely used to generate html pages or pdf documents. Literate programming weaves instructions, documentation, and detailed comments in between machine executable code, producing a document that describes the program that is best for human understanding (Knuth 1984). You can learn more about markdown here: <a href="https://www.markdowntutorial.com/" class="uri">https://www.markdowntutorial.com/</a>. Unlike a word processor, such as Microsoft Word, where what you see is what you get, with markdown, you need to <em>compile</em> the document into the final report. The markdown document looks different than the final product. This approach seems like a disadvantage at first, but it can save you time in the long run. For example, instead of producing plots and inserting them one by one into the word processing document, the plots are automatically added when the document is compiled. If you need to change the plots, you just recompile the document after editing the code that produces the plot.</p>
-<p>In R, we can produce literate programming documents using Quarto or R Markdown. We recommend using Quarto because it is a newer and more flexible version of R markdown that permits the use of languages other than R. Because R markdown preceded Quarto by several years, many public and educational literate programming documents are written in R markdown. However, because the format is similar and both use the <strong>knitr</strong> package, described in Section <a href="#sec-knitr">Section&nbsp;1.2.4</a>, to execute the R code, most existing R markdown files can be rendered with Quarto, without modification.</p>
+<p>In R, we can produce literate programming documents using Quarto or R Markdown. We recommend using Quarto because it is a newer and more flexible version of R markdown that permits the use of languages other than R. Because R markdown preceded Quarto by several years, many public and educational literate programming documents are written in R markdown. However, because the format is similar and both use the <strong>knitr</strong> package, described in Section <a href="#sec-knitr"><span>Section&nbsp;22.2.4</span></a>, to execute the R code, most existing R markdown files can be rendered with Quarto, without modification.</p>
 <p>In RStudio, you can start either a Quarto or R markdown document by clicking on <em>File</em>, <em>New File</em>, then <em>Quarto Document</em> or <em>R Markdown</em>, respectively. You will then be asked to enter a title and author for your document. We are going to prepare a report on gun murders so we will give it an appropriate name. You can also decide what format you would like the final report to be in: HTML, PDF, or Microsoft Word. Later, we can easily change this, but here we select html as it is the preferred format for debugging purposes:</p>
 <div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-9_5b7d7d67a940d1b04ae25757425ae43f">
 <div class="cell-output-display">
@@ -233,7 +470,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As a convention, we use <code>qmd</code> and <code>Rmd</code> suffixes for Quarto and R markdown files, respectively.</p>
 <p>Once you gain experience with markdown, you will be able to do this without the template and can simply start from a blank template.</p>
 <p>In the template, you will see several things to note.</p>
-<section id="the-header" class="level3"><h3 class="anchored" data-anchor-id="the-header">The header</h3>
+<section id="the-header" class="level3" data-number="22.2.1"><h3 data-number="22.2.1" class="anchored" data-anchor-id="the-header">
+<span class="header-section-number">22.2.1</span> The header</h3>
 <p>At the top you see:</p>
 <pre><code>---
 title: "Report on Gun Murders"
@@ -241,7 +479,8 @@ author: "Rafael Irizarry"
 format: html
 ---</code></pre>
 <p>The things between the <code>---</code> is the <em>YAML</em> header. YAML is a widely used language mainly used for providing configuration data. With Quarto and R markdown it is mainly used to define options for the document. You can define many other things in the header than what is included in the template. We don’t discuss those here, but much information is available online. The one parameter that we will highlight is <code>format</code>. By changing this to, say, <code>pdf</code>, we can control the type of output that is produced when we compile. The title and author parameters are automatically filled because we filled in the blanks in the RStudio diaglog box that pops up when starting a new document.</p>
-</section><section id="r-code-chunks" class="level3"><h3 class="anchored" data-anchor-id="r-code-chunks">R code chunks</h3>
+</section><section id="r-code-chunks" class="level3" data-number="22.2.2"><h3 data-number="22.2.2" class="anchored" data-anchor-id="r-code-chunks">
+<span class="header-section-number">22.2.2</span> R code chunks</h3>
 <p>In various places in the document, we see something like this:</p>
 <pre><code>```{r}
 1 + 1
@@ -264,12 +503,14 @@ plot(1)
 
 1+1
 ```</code></pre>
-</section><section id="global-excecution-options" class="level3"><h3 class="anchored" data-anchor-id="global-excecution-options">Global excecution options</h3>
+</section><section id="global-excecution-options" class="level3" data-number="22.2.3"><h3 data-number="22.2.3" class="anchored" data-anchor-id="global-excecution-options">
+<span class="header-section-number">22.2.3</span> Global excecution options</h3>
 <p>If you want to apply an option globally, you can include in the header, under <code>execute</code>. For example adding the following line to the header make code not shou up, by default:</p>
 <pre><code>execute:
   echo: false</code></pre>
 <p>We will not cover more details here, but as you become more experienced with R Markdown, you will learn the advantages of setting global options for the compilation process.</p>
-</section><section id="sec-knitr" class="level3"><h3 class="anchored" data-anchor-id="sec-knitr">knitR</h3>
+</section><section id="sec-knitr" class="level3" data-number="22.2.4"><h3 data-number="22.2.4" class="anchored" data-anchor-id="sec-knitr">
+<span class="header-section-number">22.2.4</span> knitR</h3>
 <p>We use the <strong>knitR</strong> package to compile Quarto or R markdown documents. The specific function used to compile is the <code>knit</code> function, which takes a filename as input. RStudio provides a button that makes it easier to compile the document. For the screenshot below, we have edited the document so that a report on gun murders is produced. You can see the file here: <a href="https://raw.githubusercontent.com/rairizarry/murders/master/report.qmd" class="uri">https://raw.githubusercontent.com/rairizarry/murders/master/report.qmd</a>. You can now click on the <code>Render</code> button:</p>
 <div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-11_6130612a335083dbcc84fddd0c42de39">
 <div class="cell-output-display">
@@ -318,17 +559,20 @@ plot(1)
 </div>
 </div>
 <p>This is a convenient way to share your reports.</p>
-</section><section id="more-on-markdown" class="level3"><h3 class="anchored" data-anchor-id="more-on-markdown">More on markdown</h3>
+</section><section id="more-on-markdown" class="level3" data-number="22.2.5"><h3 data-number="22.2.5" class="anchored" data-anchor-id="more-on-markdown">
+<span class="header-section-number">22.2.5</span> More on markdown</h3>
 <p>There is a lot more you can do with R markdown. We highly recommend you continue learning as you gain more experience writing reports in R. There are many free resources on the internet including:</p>
 <ul>
 <li>RStudio’s tutorial: <a href="https://quarto.org/docs/get-started/hello/rstudio.html" class="uri">https://quarto.org/docs/get-started/hello/rstudio.html</a>
 </li>
 <li>The knitR book: <a href="https://yihui.name/knitr/" class="uri">https://yihui.name/knitr/</a>
 </li>
-</ul></section></section><section id="sec-organizing" class="level2"><h2 class="anchored" data-anchor-id="sec-organizing">Organizing a data science project</h2>
+</ul></section></section><section id="sec-organizing" class="level2" data-number="22.3"><h2 data-number="22.3" class="anchored" data-anchor-id="sec-organizing">
+<span class="header-section-number">22.3</span> Organizing a data science project</h2>
 <p>In this section we put it all together to create the US murders project and share it on GitHub.</p>
-<section id="create-directories-in-unix" class="level3"><h3 class="anchored" data-anchor-id="create-directories-in-unix">Create directories in Unix</h3>
-<p>In Section <strong>?@sec-prep-project</strong>) we demonstrated how to use Unix to prepare for a data science project using an example. Here we continue this example and show how to use RStudio. In Section @ref(prep-project we created the following directories using Unix:</p>
+<section id="create-directories-in-unix" class="level3" data-number="22.3.1"><h3 data-number="22.3.1" class="anchored" data-anchor-id="create-directories-in-unix">
+<span class="header-section-number">22.3.1</span> Create directories in Unix</h3>
+<p>In Section <a href="unix.html#sec-prep-project"><span>Section&nbsp;20.7</span></a>) we demonstrated how to use Unix to prepare for a data science project using an example. Here we continue this example and show how to use RStudio. In Section @ref(prep-project we created the following directories using Unix:</p>
 <div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-16_b81b484fd5351362e0943f904d2ad148">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> projects</span>
@@ -336,7 +580,8 @@ plot(1)
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> murders</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> data rdas </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="create-an-rstudio-project" class="level3"><h3 class="anchored" data-anchor-id="create-an-rstudio-project">Create an RStudio project</h3>
+</section><section id="create-an-rstudio-project" class="level3" data-number="22.3.2"><h3 data-number="22.3.2" class="anchored" data-anchor-id="create-an-rstudio-project">
+<span class="header-section-number">22.3.2</span> Create an RStudio project</h3>
 <p>In the next section we will use create an RStudio project. In RStudio we go to <em>File</em> and then <em>New Project…</em> and when given the options we pick <em>Existing Directory</em>. We then write the full path of the <code>murders</code> directory created above.</p>
 <div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-17_912e37d41a319abcdb1a5940aeeca77f">
 <div class="cell-output-display">
@@ -362,7 +607,8 @@ plot(1)
 </div>
 </div>
 <p>Keep in mind that when we are in this project, our default working directory will be <code>~/projects/murders</code>. You can confirm this by typing <code><a href="https://rdrr.io/r/base/getwd.html">getwd()</a></code> into your R session. This is important because it will help us organize the code when we need to write file paths. <strong>Pro tip: always use relative paths in code for data science projects. These should be relative to the default working directory.</strong> The problem with using full paths is that your code is unlikely to work on filesystems other than yours since the directory structures will be different. This includes using the home directory <code>~</code> as part of your path.</p>
-</section><section id="edit-some-r-scripts" class="level3"><h3 class="anchored" data-anchor-id="edit-some-r-scripts">Edit some R scripts</h3>
+</section><section id="edit-some-r-scripts" class="level3" data-number="22.3.3"><h3 data-number="22.3.3" class="anchored" data-anchor-id="edit-some-r-scripts">
+<span class="header-section-number">22.3.3</span> Edit some R scripts</h3>
 <p>Let’s now write a script that downloads a file into the data directory. We will call this file <code>download-data.R</code>.</p>
 <p>The content of this file will be:</p>
 <div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-19_b5ba386cd0281f2722ea1e0d2d0f3c87">
@@ -395,7 +641,8 @@ plot(1)
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If you run this analysis, you will see that it generates a plot.</p>
-</section><section id="create-some-more-directories-using-unix" class="level3"><h3 class="anchored" data-anchor-id="create-some-more-directories-using-unix">Create some more directories using Unix</h3>
+</section><section id="create-some-more-directories-using-unix" class="level3" data-number="22.3.4"><h3 data-number="22.3.4" class="anchored" data-anchor-id="create-some-more-directories-using-unix">
+<span class="header-section-number">22.3.4</span> Create some more directories using Unix</h3>
 <p>Now suppose we want to save the generated plot for use in a report or presentation. We can do this with the <strong>ggplot</strong> command <code>ggsave</code>. But where do we put the graph? We should be systematically organized so we will save plots to a directory called <code>figs</code>. Start by creating a directory by typing the following in the terminal:</p>
 <div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-22_ba86453193edbfa811d7de0231373ee9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> figs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -405,7 +652,8 @@ plot(1)
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"figs/barplot.png"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>to your R script. If you run the script now, a png file will be saved into the <code>figs</code> directory. If we wanted to copy that file to some other directory where we are developing a presentation, we can avoid using the mouse by using the <code>cp</code> command in our terminal.</p>
-</section><section id="add-a-readme-file" class="level3"><h3 class="anchored" data-anchor-id="add-a-readme-file">Add a README file</h3>
+</section><section id="add-a-readme-file" class="level3" data-number="22.3.5"><h3 data-number="22.3.5" class="anchored" data-anchor-id="add-a-readme-file">
+<span class="header-section-number">22.3.5</span> Add a README file</h3>
 <p>You now have a self-contained analysis in one directory. One final recommendation is to create a <code>README.txt</code> file describing what each of these files does for the benefit of others reading your code, including your future self. This would not be a script but just some notes. One of the options provided when opening a new file in RStudio is a text file. You can save something like this into the text file:</p>
 <pre><code>We analyze US gun murder data collected by the FBI.
 
@@ -415,8 +663,9 @@ wrangle-data.R - Creates a derived dataset and saves as R object in rdas
 directory
 
 analysis.R - A plot is generated and saved in the figs directory.</code></pre>
-</section><section id="initializing-a-git-directory" class="level3"><h3 class="anchored" data-anchor-id="initializing-a-git-directory">Initializing a Git directory</h3>
-<p>In Section <strong>?@sec-init</strong> we demonstrated how to initialize a Git directory and connect it to the upstream repository on GitHub, which we already created in that section.</p>
+</section><section id="initializing-a-git-directory" class="level3" data-number="22.3.6"><h3 data-number="22.3.6" class="anchored" data-anchor-id="initializing-a-git-directory">
+<span class="header-section-number">22.3.6</span> Initializing a Git directory</h3>
+<p>In Section <a href="git.html#sec-init"><span>Section&nbsp;21.5</span></a> we demonstrated how to initialize a Git directory and connect it to the upstream repository on GitHub, which we already created in that section.</p>
 <p>We can do this in the Unix terminal:</p>
 <div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-24_37fe5d1fb71ee6b69e2efd2b9290d6a0">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/projects/murders</span>
@@ -426,7 +675,8 @@ analysis.R - A plot is generated and saved in the figs directory.</code></pre>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin <span class="kw">`</span><span class="ex">https://github.com/rairizarry/murders.git</span><span class="kw">`</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="add-commit-and-push-files-using-rstudio" class="level3"><h3 class="anchored" data-anchor-id="add-commit-and-push-files-using-rstudio">Add, commit, and push files using RStudio</h3>
+</section><section id="add-commit-and-push-files-using-rstudio" class="level3" data-number="22.3.7"><h3 data-number="22.3.7" class="anchored" data-anchor-id="add-commit-and-push-files-using-rstudio">
+<span class="header-section-number">22.3.7</span> Add, commit, and push files using RStudio</h3>
 <p>We can continue adding and committing each file, but it might be easier to use RStudio. To do this, start the project by opening the Rproj file. The git icons should appear and you can add, commit and push using these.</p>
 <div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-25_4e35ab379b5d63c5b12f63e3f746623c">
 <div class="cell-output-display">
@@ -460,7 +710,7 @@ analysis.R - A plot is generated and saved in the figs directory.</code></pre>
 </div>
 
 
-</section></section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p>https://github.com/rairizarry/murders<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -595,9 +845,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="../productivity/git.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Git and GitHub</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
-
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">Introduction to Data Science was written by Rafael A. Irizarry</div>   
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
 
 
 </body></html>

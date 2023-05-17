@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.2.475">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
-<title>distributions</title>
+<title>Introduction to Data Science - 8&nbsp; Visualizing data distributions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -84,11 +84,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../dataviz/gapminder.html" rel="next">
+<link href="../dataviz/ggplot2.html" rel="prev">
+<link href="../cover.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,24 +121,256 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
-<body class="fullcontent">
+<body class="nav-sidebar floating">
+
 
 <div id="quarto-search-results"></div>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Introduction to Data Science</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../R/intro-to-R.html" class="sidebar-item-text sidebar-link">R</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/getting-started.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/R-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/programming-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Programming basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/tidyverse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The tidyverse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/importing-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importing data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/data_table.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">data.table</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../dataviz/intro-dataviz.html" class="sidebar-item-text sidebar-link">Data Visualization</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/distributions.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/gapminder.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization in practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/dataviz-principles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data visualization principles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/vaccines.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Case study: vaccines and infectious diseases</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../wrangling/intro-to-wrangling.html" class="sidebar-item-text sidebar-link">Data Wrangling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/reshaping-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/joining-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Joining tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web scraping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">String processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/dates-and-times.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/text-mining.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text mining</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../productivity/intro-productivity.html" class="sidebar-item-text sidebar-link">Productivity Tools</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/installing-r-and-rstudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Installing R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Accessing the terminal and installing Git</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/unix.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Git and GitHub</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/reproducible-projects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects with markdown</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#variable-types" id="toc-variable-types" class="nav-link active" data-scroll-target="#variable-types"><span class="toc-section-number">8.1</span>  Variable types</a></li>
+  <li><a href="#case-study-describing-student-heights" id="toc-case-study-describing-student-heights" class="nav-link" data-scroll-target="#case-study-describing-student-heights"><span class="toc-section-number">8.2</span>  Case study: describing student heights</a></li>
+  <li>
+<a href="#distributions" id="toc-distributions" class="nav-link" data-scroll-target="#distributions"><span class="toc-section-number">8.3</span>  Distributions</a>
+  <ul class="collapse">
+<li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms"><span class="toc-section-number">8.3.1</span>  Histograms</a></li>
+  <li><a href="#smoothed-density" id="toc-smoothed-density" class="nav-link" data-scroll-target="#smoothed-density"><span class="toc-section-number">8.3.2</span>  Smoothed density</a></li>
+  <li><a href="#sec-dataviz-normal-distribution" id="toc-sec-dataviz-normal-distribution" class="nav-link" data-scroll-target="#sec-dataviz-normal-distribution"><span class="toc-section-number">8.3.3</span>  The normal distribution</a></li>
+  </ul>
+</li>
+  <li><a href="#boxplots" id="toc-boxplots" class="nav-link" data-scroll-target="#boxplots"><span class="toc-section-number">8.4</span>  Boxplots</a></li>
+  <li><a href="#sec-dataviz-stratification" id="toc-sec-dataviz-stratification" class="nav-link" data-scroll-target="#sec-dataviz-stratification"><span class="toc-section-number">8.5</span>  Stratification</a></li>
+  <li><a href="#sec-student-height-cont" id="toc-sec-student-height-cont" class="nav-link" data-scroll-target="#sec-student-height-cont"><span class="toc-section-number">8.6</span>  Case study: describing student heights (continued)</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">8.7</span>  Exercises</a></li>
+  <li>
+<a href="#sec-other-geometries" id="toc-sec-other-geometries" class="nav-link" data-scroll-target="#sec-other-geometries"><span class="toc-section-number">8.8</span>  ggplot2 geometries</a>
+  <ul class="collapse">
+<li><a href="#barplots" id="toc-barplots" class="nav-link" data-scroll-target="#barplots"><span class="toc-section-number">8.8.1</span>  Barplots</a></li>
+  <li><a href="#histograms-1" id="toc-histograms-1" class="nav-link" data-scroll-target="#histograms-1"><span class="toc-section-number">8.8.2</span>  Histograms</a></li>
+  <li><a href="#density-plots" id="toc-density-plots" class="nav-link" data-scroll-target="#density-plots"><span class="toc-section-number">8.8.3</span>  Density plots</a></li>
+  <li><a href="#boxplots-1" id="toc-boxplots-1" class="nav-link" data-scroll-target="#boxplots-1"><span class="toc-section-number">8.8.4</span>  Boxplots</a></li>
+  <li><a href="#images" id="toc-images" class="nav-link" data-scroll-target="#images"><span class="toc-section-number">8.8.5</span>  Images</a></li>
+  </ul>
+</li>
+  <li><a href="#exercises-1" id="toc-exercises-1" class="nav-link" data-scroll-target="#exercises-1"><span class="toc-section-number">8.9</span>  Exercises</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/edit/main/dataviz/distributions.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><section id="sec-dataviz-distributions" class="level1"><h1>Visualizing data distributions</h1>
-<p>You may have noticed that numerical data is often summarized with the <em>average</em> value. For example, the quality of a high school is sometimes summarized with one number: the average score on a standardized test. Occasionally, a second number is reported: the <em>standard deviation</em>. For example, you might read a report stating that scores were 680 plus or minus 50 (the standard deviation). The report has summarized an entire vector of scores with just two numbers. Is this appropriate? Is there any important piece of information that we are missing by only looking at this summary rather than the entire list?</p>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="sec-dataviz-distributions" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><p>You may have noticed that numerical data is often summarized with the <em>average</em> value. For example, the quality of a high school is sometimes summarized with one number: the average score on a standardized test. Occasionally, a second number is reported: the <em>standard deviation</em>. For example, you might read a report stating that scores were 680 plus or minus 50 (the standard deviation). The report has summarized an entire vector of scores with just two numbers. Is this appropriate? Is there any important piece of information that we are missing by only looking at this summary rather than the entire list?</p>
 <p>Our first data visualization building block is learning to summarize lists of factors or numeric vectors. More often than not, the best way to share or explore this summary is through data visualization. The most basic statistical summary of a list of objects or numbers is its distribution. Once a data has been summarized as a distribution, there are several data visualization techniques to effectively relay this information. For this reason, it is important to have a deep understand the concept of a distribution.</p>
-<p>In this chapter, we first discuss properties of a variety of distributions and how to visualize distributions using a motivating example of student heights. We then discuss the <strong>ggplot2</strong> geometries for these visualizations in Section <a href="#sec-other-geometries">Section&nbsp;1.8</a>.</p>
-<section id="variable-types" class="level2"><h2 class="anchored" data-anchor-id="variable-types">Variable types</h2>
+<p>In this chapter, we first discuss properties of a variety of distributions and how to visualize distributions using a motivating example of student heights. We then discuss the <strong>ggplot2</strong> geometries for these visualizations in Section <a href="#sec-other-geometries"><span>Section&nbsp;8.8</span></a>.</p>
+<section id="variable-types" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="variable-types">
+<span class="header-section-number">8.1</span> Variable types</h2>
 <p>The two main variables types are <em>categorical</em> and <em>numeric</em>. Each can be divided into two other groups: categorical can be ordinal or not, whereas numerical variables can be discrete or continuous. When each entry in a dataset comes from one of a small number of groups, we refer to the data as <em>categorical data</em>. Two simple examples are sex (male or female) and US regions (Northeast, South, North Central, West). Some categorical data can be ordered even if they are not numbers per se, such as spiciness (mild, medium, hot). In statistics textbooks, ordered categorical data are referred to as <em>ordinal</em> data. Examples of numerical data are population sizes, murder rates, and heights. Some numerical data can be treated as ordered categorical. We can further divide numerical data into continuous and discrete. Continuous variables are those that can take any value, such as heights, if measured with enough precision. For example, a pair of twins may be 68.12 and 68.11 inches, respectively. Counts, such as population sizes, are discrete because they have to be round numbers.</p>
 <p>Keep in mind that discrete numeric data can be considered ordinal. Although this is technically true, we usually reserve the term ordinal data for variables belonging to a small number of different groups, with each group having many members. In contrast, when we have many groups with few cases in each group, we typically refer to them as discrete numerical variables. So, for example, the number of packs of cigarettes a person smokes a day, rounded to the closest pack, would be considered ordinal, while the actual number of cigarettes would be considered a numerical variable. But, indeed, there are examples that can be considered both numerical and ordinal when it comes to visualizing data.</p>
 <p>Here we focus on numeric variables because visualizing this data type is substantially more complex. However, we start by describing data visualization and summarization approaches for categorical data.</p>
-</section><section id="case-study-describing-student-heights" class="level2"><h2 class="anchored" data-anchor-id="case-study-describing-student-heights">Case study: describing student heights</h2>
+</section><section id="case-study-describing-student-heights" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="case-study-describing-student-heights">
+<span class="header-section-number">8.2</span> Case study: describing student heights</h2>
 <p>We introduce a new motivating problem. It is an artificial one, but it will help us illustrate the concepts needed to understand distributions.</p>
 <p>Pretend that we have to describe the heights of our classmates to ET, an extraterrestrial that has never seen humans. As a first step, we need to collect data. To do this, we ask students to report their heights in inches. We ask them to provide sex information because we know there are two different distributions by sex. We collect the data and save it in the <code>heights</code> data frame:</p>
 <div class="cell" data-layout-align="center" data-hash="distributions_cache/html/load-heights_67911c5001f7c8cbcf9dd284d3131c24">
@@ -142,8 +378,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">heights</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>One way to convey the heights to ET is to simply send him this list of 1050 heights. But there are much more effective ways to convey this information, and understanding the concept of a distribution will be key. To simplify the explanation, we first focus on male heights. We examine the female height data in Section <a href="#sec-student-height-cont">Section&nbsp;1.6</a>.</p>
-</section><section id="distributions" class="level2"><h2 class="anchored" data-anchor-id="distributions">Distributions</h2>
+<p>One way to convey the heights to ET is to simply send him this list of 1050 heights. But there are much more effective ways to convey this information, and understanding the concept of a distribution will be key. To simplify the explanation, we first focus on male heights. We examine the female height data in Section <a href="#sec-student-height-cont"><span>Section&nbsp;8.6</span></a>.</p>
+</section><section id="distributions" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="distributions">
+<span class="header-section-number">8.3</span> Distributions</h2>
 <p>The most basic statistical summary of a list of objects or numbers is its <em>distribution</em>. The simplest way to think of a distribution is as a compact description of a list with many entries. This concept should not be new for readers of this book. For example, with categorical data, the distribution simply describes the proportion of each unique category. The sex represented in the heights dataset is:</p>
 <div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-1_7088c2064cf0ea1a8d3ab0d2f23bd890">
 <pre><code>## 
@@ -160,7 +397,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>This particular plot simply shows us four numbers, one for each category. We usually use barplots to display a few numbers. Although this particular plot does not provide much more insight than a frequency table itself, it is a first example of how we convert a vector into a plot that succinctly summarizes all the information in the vector. When the data is numerical, the task of displaying distributions is more challenging.</p>
-<section id="histograms" class="level3"><h3 class="anchored" data-anchor-id="histograms">Histograms</h3>
+<section id="histograms" class="level3" data-number="8.3.1"><h3 data-number="8.3.1" class="anchored" data-anchor-id="histograms">
+<span class="header-section-number">8.3.1</span> Histograms</h3>
 <p>Numerical data that are not categorical also have distributions. However, in general, when data is not categorical, reporting the frequency of each entry, as we did for categorical data, is not an effective summary since most entries are unique. or example, in our case study, while several students reported a height of 68 inches, only one student reported a height of <code>68.503937007874</code> inches and only one student reported a height <code>68.8976377952756</code> inches. We assume that they converted from 174 and 175 centimeters, respectively.</p>
 <p>Statistics textbooks teach us that a more useful way to define a distribution for numeric data is to define a function that reports the proportion of the data below <span class="math inline">\(a\)</span> for all possible values of <span class="math inline">\(a\)</span>. This function is called the emipirical cumulative distribution function (eCDF), it can be plotted, and it provides a full description of the distribution of our data. Here is the eCDF for male student heights:</p>
 <div class="cell" data-layout-align="center" data-hash="distributions_cache/html/ecdf_c0178416ca31ff9734e2248c2380a4a5">
@@ -184,8 +422,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As you can see in the figure above, a histogram is similar to a barplot, but it differs in that the x-axis is numerical, not categorical.</p>
 <p>If we send this plot to ET, he will immediately learn some important properties about our data. First, the range of the data is from 50 to 84 with the majority (more than 95%) between 63 and 75 inches. Second, the heights are close to symmetric around 69 inches. Also, by adding up counts, ET could obtain a very good approximation of the proportion of the data in any interval. Therefore, the histogram above is not only easy to interpret, but also provides almost all the information contained in the raw list of 812 heights with about 30 bin counts.</p>
 <p>What information do we lose? Note that all values in each interval are treated the same when computing bin heights. So, for example, the histogram does not distinguish between 64, 64.1, and 64.2 inches. Given that these differences are almost unnoticeable to the eye, the practical implications are negligible and we were able to summarize the data to just 23 numbers.</p>
-<p>We discuss how to code histograms in Section <a href="#sec-other-geometries">Section&nbsp;1.8</a>.</p>
-</section><section id="smoothed-density" class="level3"><h3 class="anchored" data-anchor-id="smoothed-density">Smoothed density</h3>
+<p>We discuss how to code histograms in Section <a href="#sec-other-geometries"><span>Section&nbsp;8.8</span></a>.</p>
+</section><section id="smoothed-density" class="level3" data-number="8.3.2"><h3 data-number="8.3.2" class="anchored" data-anchor-id="smoothed-density">
+<span class="header-section-number">8.3.2</span> Smoothed density</h3>
 <p><em>Smooth density</em> plots relay the same information as a histogram but are aesthetically more appealing. Here is what a smooth density plot looks like for our heights data:</p>
 <div class="cell" data-layout-align="center" data-hash="distributions_cache/html/example-of-smoothed-density_33e9b21c8197e419b2cd79a68ad21873">
 <div class="cell-output-display">
@@ -205,8 +444,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>With the right argument, <code>ggplot</code> automatically shades the intersecting region with a different color. We will show examples of <strong>ggplot2</strong> code for densities in Section <strong>?@sec-gapminder</strong>) as well as Section @ref(other-geometries.</p>
-</section><section id="sec-dataviz-normal-distribution" class="level3"><h3 class="anchored" data-anchor-id="sec-dataviz-normal-distribution">The normal distribution</h3>
+<p>With the right argument, <code>ggplot</code> automatically shades the intersecting region with a different color. We will show examples of <strong>ggplot2</strong> code for densities in Section <a href="gapminder.html"><span>Chapter&nbsp;9</span></a>) as well as Section @ref(other-geometries.</p>
+</section><section id="sec-dataviz-normal-distribution" class="level3" data-number="8.3.3"><h3 data-number="8.3.3" class="anchored" data-anchor-id="sec-dataviz-normal-distribution">
+<span class="header-section-number">8.3.3</span> The normal distribution</h3>
 <p>Histograms and density plots provide excellent summaries of a distribution. But can we summarize even further? We often see the average and standard deviation used as summary statistics: a two-number summary! To understand what these summaries are and why they are so widely used, we need to understand the normal distribution.</p>
 <p>The normal distribution, also known as the bell curve and as the Gaussian distribution. Here is what the normal distribution looks like:</p>
 <div class="cell" data-layout-align="center" data-hash="distributions_cache/html/normal-distribution-density_e57f4e585d67e9da16ef49d3c8e294dc">
@@ -249,7 +489,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-</section></section><section id="boxplots" class="level2"><h2 class="anchored" data-anchor-id="boxplots">Boxplots</h2>
+</section></section><section id="boxplots" class="level2" data-number="8.4"><h2 data-number="8.4" class="anchored" data-anchor-id="boxplots">
+<span class="header-section-number">8.4</span> Boxplots</h2>
 <p>To understand boxplots we need to define some terms that are commonly used in exploratory data analysis.</p>
 <p>The <em>percentiles</em> are the values for which <span class="math inline">\(p = 0.01, 0.02, ..., 0.99\)</span> of the data are less then or equal to that value, respectively. We call, for example, the case of <span class="math inline">\(p=0.10\)</span> the 10th percentile, which gives us a number for which 10% of the data is below. The most famous percentile is the 50th, also known as the <em>median</em>. Another special case that receives a name are the <em>quartiles</em>, which are obtained when setting <span class="math inline">\(p=0.25,0.50\)</span>, and <span class="math inline">\(0.75\)</span>, which are used by the boxplot.</p>
 <p>To motivate boxplots we will go back to the US murder data. Suppose we want to summarize the murder rate distribution. Using the data visualization technique we have learned, we can quickly see that the normal approximation does not apply here:</p>
@@ -279,11 +520,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>with the box defined by the 25% and 75% percentile and the whiskers showing the range. The distance between these two is called the <em>interquartile</em> range. The two points are outliers according to the R implementation. The median is shown with a horizontal line.</p>
 <p>From just this simple plot, we know that the median is about 2.5, that the distribution is not symmetric, and that the range is 0 to 5 for the great majority of states with two exceptions.</p>
-<p>We discuss how to make boxplots in Section <a href="#sec-other-geometries">Section&nbsp;1.8</a>.</p>
-</section><section id="sec-dataviz-stratification" class="level2"><h2 class="anchored" data-anchor-id="sec-dataviz-stratification">Stratification</h2>
+<p>We discuss how to make boxplots in Section <a href="#sec-other-geometries"><span>Section&nbsp;8.8</span></a>.</p>
+</section><section id="sec-dataviz-stratification" class="level2" data-number="8.5"><h2 data-number="8.5" class="anchored" data-anchor-id="sec-dataviz-stratification">
+<span class="header-section-number">8.5</span> Stratification</h2>
 <p>In data analysis we often divide observations into groups based on the values of one or more variables associated with those observations. For example in the next section we divide the height values into groups based on a sex variable: females and males. We call this procedure <em>stratification</em> and refer to the resulting groups as <em>strata</em>.</p>
 <p>Stratification is common in data visualization because we are often interested in how the distribution of variables differs across different subgroups. We will see several examples throughout this part of the book.</p>
-</section><section id="sec-student-height-cont" class="level2"><h2 class="anchored" data-anchor-id="sec-student-height-cont">Case study: describing student heights (continued)</h2>
+</section><section id="sec-student-height-cont" class="level2" data-number="8.6"><h2 data-number="8.6" class="anchored" data-anchor-id="sec-student-height-cont">
+<span class="header-section-number">8.6</span> Case study: describing student heights (continued)</h2>
 <p>Using the histogram, density plots, and QQ-plots, we have become convinced that the male height data is well approximated with a normal distribution. In this case, we report back to ET a very succinct summary: male heights follow a normal distribution with an average of 69.3 inches and a SD of 3.6 inches. With this information, ET will have a good idea of what to expect when he meets our male students. However, to provide a complete picture we need to also provide a summary of the female heights.</p>
 <p>We learned that boxplots are useful when we want to quickly compare two or more distributions. Here are the heights for men and women:</p>
 <div class="cell" data-layout-align="center" data-hash="distributions_cache/html/female-male-boxplots_c826b02ac3fb7509bb4c3c67916b1a12">
@@ -313,7 +556,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## [1] 51 53 55 52 52</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Because these are reported heights, a possibility is that the student meant to enter <code>5'1"</code>, <code>5'2"</code>, <code>5'3"</code> or <code>5'5"</code>.</p>
-</section><section id="exercises" class="level2"><h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+</section><section id="exercises" class="level2" data-number="8.7"><h2 data-number="8.7" class="anchored" data-anchor-id="exercises">
+<span class="header-section-number">8.7</span> Exercises</h2>
 <p>1. Define variables containing the heights of males and females like this:</p>
 <div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-7_952883577c5ae00168df2ef9c4a7bd02">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
@@ -348,9 +592,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">heights</span><span class="op">$</span><span class="va">height</span><span class="op">[</span><span class="va">heights</span><span class="op">$</span><span class="va">sex</span><span class="op">==</span><span class="st">"Male"</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What proportion of the data is between 69 and 72 inches (taller than 69, but shorter or equal to 72)? Hint: use a logical operator and <code>mean</code>.</p>
-</section><section id="sec-other-geometries" class="level2"><h2 class="anchored" data-anchor-id="sec-other-geometries">ggplot2 geometries</h2>
-<p>In Chapter <strong>?@sec-ggplot2</strong>, we introduced the <strong>ggplot2</strong> package for data visualization. Here we demonstrate how to generate plots related to distributions, specifically the plots shown earlier in this chapter.</p>
-<section id="barplots" class="level3"><h3 class="anchored" data-anchor-id="barplots">Barplots</h3>
+</section><section id="sec-other-geometries" class="level2" data-number="8.8"><h2 data-number="8.8" class="anchored" data-anchor-id="sec-other-geometries">
+<span class="header-section-number">8.8</span> ggplot2 geometries</h2>
+<p>In Chapter <a href="ggplot2.html"><span>Chapter&nbsp;7</span></a>, we introduced the <strong>ggplot2</strong> package for data visualization. Here we demonstrate how to generate plots related to distributions, specifically the plots shown earlier in this chapter.</p>
+<section id="barplots" class="level3" data-number="8.8.1"><h3 data-number="8.8.1" class="anchored" data-anchor-id="barplots">
+<span class="header-section-number">8.8.1</span> Barplots</h3>
 <p>To generate a barplot we can use the <code>geom_bar</code> geometry. The default is to count the number of each category and draw a bar. Here is the plot for the regions of the US.</p>
 <div class="cell" data-layout-align="center" data-hash="distributions_cache/html/barplot-geom_e58a7db5ec48bcdeec02bbe43a127e6d">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -383,7 +629,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-</section><section id="histograms-1" class="level3"><h3 class="anchored" data-anchor-id="histograms-1">Histograms</h3>
+</section><section id="histograms-1" class="level3" data-number="8.8.2"><h3 data-number="8.8.2" class="anchored" data-anchor-id="histograms-1">
+<span class="header-section-number">8.8.2</span> Histograms</h3>
 <p>To generate histograms we use <code>geom_histogram</code>. By looking at the help file for this function, we learn that the only required argument is <code>x</code>, the variable for which we will construct a histogram. We dropped the <code>x</code> because we know it is the first argument. The code looks like this:</p>
 <div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-10_827d50d8327633b2ab8dcd92387fde41">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights</span> <span class="op">|&gt;</span> </span>
@@ -417,7 +664,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-</section><section id="density-plots" class="level3"><h3 class="anchored" data-anchor-id="density-plots">Density plots</h3>
+</section><section id="density-plots" class="level3" data-number="8.8.3"><h3 data-number="8.8.3" class="anchored" data-anchor-id="density-plots">
+<span class="header-section-number">8.8.3</span> Density plots</h3>
 <p>To create a smooth density, we use the <code>geom_density</code>. To make a smooth density plot with the data previously shown as a histogram we can use this code:</p>
 <div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-12_23eed2b610426d404188223a9232fb5a">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights</span> <span class="op">|&gt;</span> </span>
@@ -445,7 +693,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>fill<span class="op">=</span><span class="st">"blue"</span>, adjust <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="boxplots-1" class="level3"><h3 class="anchored" data-anchor-id="boxplots-1">Boxplots</h3>
+</section><section id="boxplots-1" class="level3" data-number="8.8.4"><h3 data-number="8.8.4" class="anchored" data-anchor-id="boxplots-1">
+<span class="header-section-number">8.8.4</span> Boxplots</h3>
 <p>The geometry for boxplot is <code>geom_boxplot</code>. As discussed, boxplots are useful for comparing distributions. For example, below are the previously shown heights for women, but compared to men. For this geometry, we need arguments <code>x</code> as the categories, and <code>y</code> as the values.</p>
 <div class="cell" data-layout-align="center" data-hash="distributions_cache/html/female-male-boxplots-geom_a0d9809fa6a9b06e26e62330065eea1d">
 <div class="cell-output-display">
@@ -508,8 +757,9 @@ heights |>
 
 
 -->
-</section><section id="images" class="level3"><h3 class="anchored" data-anchor-id="images">Images</h3>
-<p>Images were not needed for the concepts described in this chapter, but we will use images in Section <strong>?@sec-vaccines</strong>, so we introduce the two geometries used to create images: <strong>geom_tile</strong> and <strong>geom_raster</strong>. They behave similarly; to see how they differ, please consult the help file. To create an image in <strong>ggplot2</strong> we need a data frame with the x and y coordinates as well as the values associated with each of these. Here is a data frame.</p>
+</section><section id="images" class="level3" data-number="8.8.5"><h3 data-number="8.8.5" class="anchored" data-anchor-id="images">
+<span class="header-section-number">8.8.5</span> Images</h3>
+<p>Images were not needed for the concepts described in this chapter, but we will use images in Section <a href="vaccines.html"><span>Chapter&nbsp;11</span></a>, so we introduce the two geometries used to create images: <strong>geom_tile</strong> and <strong>geom_raster</strong>. They behave similarly; to see how they differ, please consult the help file. To create an image in <strong>ggplot2</strong> we need a data frame with the x and y coordinates as well as the values associated with each of these. Here is a data frame.</p>
 <div class="cell" data-layout-align="center" data-hash="distributions_cache/html/unnamed-chunk-14_f63ef5647b9d8dd883949b61cf9a9cdd">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html">expand.grid</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>z <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">120</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -531,7 +781,8 @@ heights |>
 </div>
 </div>
 </div>
-</section></section><section id="exercises-1" class="level2"><h2 class="anchored" data-anchor-id="exercises-1">Exercises</h2>
+</section></section><section id="exercises-1" class="level2" data-number="8.9"><h2 data-number="8.9" class="anchored" data-anchor-id="exercises-1">
+<span class="header-section-number">8.9</span> Exercises</h2>
 <p>1. Now we are going to use the <code>geom_histogram</code> function to make a histogram of the heights in the <code>height</code> data frame. When reading the documentation for this function we see that it requires just one mapping, the values to be used for the histogram. Make a histogram of all the plots.</p>
 <p>What is the variable containing the heights?</p>
 <ol type="a">
@@ -556,7 +807,7 @@ heights |>
 <p>However, here the second density is drawn over the other. We can make the curves more visible by using alpha blending to add transparency. Set the alpha parameter to 0.2 in the <code>geom_density</code> function to make this change.</p>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -688,9 +939,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="../dataviz/ggplot2.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../dataviz/gapminder.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization in practice</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
-
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">Introduction to Data Science was written by Rafael A. Irizarry</div>   
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
 
 
 </body></html>

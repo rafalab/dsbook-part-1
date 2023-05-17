@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.2.475">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
-<title>string-processing</title>
+<title>Introduction to Data Science - 15&nbsp; String processing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -84,11 +84,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../wrangling/dates-and-times.html" rel="next">
+<link href="../wrangling/web-scraping.html" rel="prev">
+<link href="../cover.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,31 +121,280 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 </head>
-<body class="fullcontent">
+<body class="nav-sidebar floating">
+
 
 <div id="quarto-search-results"></div>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">
+<span class="chapter-number">15</span>&nbsp; <span class="chapter-title">String processing</span>
+</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Introduction to Data Science</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../R/intro-to-R.html" class="sidebar-item-text sidebar-link">R</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/getting-started.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/R-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/programming-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Programming basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/tidyverse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The tidyverse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/importing-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importing data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/data_table.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">data.table</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../dataviz/intro-dataviz.html" class="sidebar-item-text sidebar-link">Data Visualization</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/gapminder.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization in practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/dataviz-principles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data visualization principles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dataviz/vaccines.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Case study: vaccines and infectious diseases</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../wrangling/intro-to-wrangling.html" class="sidebar-item-text sidebar-link">Data Wrangling</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/reshaping-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/joining-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Joining tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web scraping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">String processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/dates-and-times.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/text-mining.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text mining</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../productivity/intro-productivity.html" class="sidebar-item-text sidebar-link">Productivity Tools</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/installing-r-and-rstudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Installing R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Accessing the terminal and installing Git</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/unix.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Git and GitHub</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../productivity/reproducible-projects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects with markdown</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#sec-stringr" id="toc-sec-stringr" class="nav-link active" data-scroll-target="#sec-stringr"><span class="toc-section-number">15.1</span>  The stringr package</a></li>
+  <li><a href="#case-study-1-us-murders-data" id="toc-case-study-1-us-murders-data" class="nav-link" data-scroll-target="#case-study-1-us-murders-data"><span class="toc-section-number">15.2</span>  Case study 1: US murders data</a></li>
+  <li><a href="#case-study-2-self-reported-heights" id="toc-case-study-2-self-reported-heights" class="nav-link" data-scroll-target="#case-study-2-self-reported-heights"><span class="toc-section-number">15.3</span>  Case study 2: self-reported heights</a></li>
+  <li><a href="#how-to-escape-when-defining-strings" id="toc-how-to-escape-when-defining-strings" class="nav-link" data-scroll-target="#how-to-escape-when-defining-strings"><span class="toc-section-number">15.4</span>  How to <em>escape</em> when defining strings</a></li>
+  <li>
+<a href="#regular-expressions" id="toc-regular-expressions" class="nav-link" data-scroll-target="#regular-expressions"><span class="toc-section-number">15.5</span>  Regular expressions</a>
+  <ul class="collapse">
+<li><a href="#strings-are-a-regexp" id="toc-strings-are-a-regexp" class="nav-link" data-scroll-target="#strings-are-a-regexp"><span class="toc-section-number">15.5.1</span>  Strings are a regexp</a></li>
+  <li><a href="#special-characters" id="toc-special-characters" class="nav-link" data-scroll-target="#special-characters"><span class="toc-section-number">15.5.2</span>  Special characters</a></li>
+  <li><a href="#character-classes" id="toc-character-classes" class="nav-link" data-scroll-target="#character-classes"><span class="toc-section-number">15.5.3</span>  Character classes</a></li>
+  <li><a href="#anchors" id="toc-anchors" class="nav-link" data-scroll-target="#anchors"><span class="toc-section-number">15.5.4</span>  Anchors</a></li>
+  <li><a href="#quantifiers" id="toc-quantifiers" class="nav-link" data-scroll-target="#quantifiers"><span class="toc-section-number">15.5.5</span>  Quantifiers</a></li>
+  <li><a href="#white-space-s" id="toc-white-space-s" class="nav-link" data-scroll-target="#white-space-s"><span class="toc-section-number">15.5.6</span>  White space <code>\s</code></a></li>
+  <li><a href="#quantifiers-1" id="toc-quantifiers-1" class="nav-link" data-scroll-target="#quantifiers-1"><span class="toc-section-number">15.5.7</span>  Quantifiers: <code>*</code>, <code>?</code>, <code>+</code></a></li>
+  <li><a href="#not" id="toc-not" class="nav-link" data-scroll-target="#not"><span class="toc-section-number">15.5.8</span>  Not</a></li>
+  <li><a href="#lookarounds" id="toc-lookarounds" class="nav-link" data-scroll-target="#lookarounds"><span class="toc-section-number">15.5.9</span>  Lookarounds</a></li>
+  <li><a href="#sec-groups" id="toc-sec-groups" class="nav-link" data-scroll-target="#sec-groups"><span class="toc-section-number">15.5.10</span>  Groups</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#search-and-replace-with-regex" id="toc-search-and-replace-with-regex" class="nav-link" data-scroll-target="#search-and-replace-with-regex"><span class="toc-section-number">15.6</span>  Search and replace with regex</a>
+  <ul class="collapse">
+<li><a href="#search-and-replace-using-groups" id="toc-search-and-replace-using-groups" class="nav-link" data-scroll-target="#search-and-replace-using-groups"><span class="toc-section-number">15.6.1</span>  Search and replace using groups</a></li>
+  </ul>
+</li>
+  <li><a href="#testing-and-improving" id="toc-testing-and-improving" class="nav-link" data-scroll-target="#testing-and-improving"><span class="toc-section-number">15.7</span>  Testing and improving</a></li>
+  <li><a href="#trimming" id="toc-trimming" class="nav-link" data-scroll-target="#trimming"><span class="toc-section-number">15.8</span>  Trimming</a></li>
+  <li><a href="#changing-lettercase" id="toc-changing-lettercase" class="nav-link" data-scroll-target="#changing-lettercase"><span class="toc-section-number">15.9</span>  Changing lettercase</a></li>
+  <li>
+<a href="#case-study-2-self-reported-heights-continued" id="toc-case-study-2-self-reported-heights-continued" class="nav-link" data-scroll-target="#case-study-2-self-reported-heights-continued"><span class="toc-section-number">15.10</span>  Case study 2: self-reported heights (continued)</a>
+  <ul class="collapse">
+<li><a href="#the-extract-function" id="toc-the-extract-function" class="nav-link" data-scroll-target="#the-extract-function"><span class="toc-section-number">15.10.1</span>  The <code>extract</code> function</a></li>
+  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together"><span class="toc-section-number">15.10.2</span>  Putting it all together</a></li>
+  </ul>
+</li>
+  <li><a href="#string-splitting" id="toc-string-splitting" class="nav-link" data-scroll-target="#string-splitting"><span class="toc-section-number">15.11</span>  String splitting</a></li>
+  <li><a href="#case-study-3-extracting-tables-from-a-pdf" id="toc-case-study-3-extracting-tables-from-a-pdf" class="nav-link" data-scroll-target="#case-study-3-extracting-tables-from-a-pdf"><span class="toc-section-number">15.12</span>  Case study 3: extracting tables from a PDF</a></li>
+  <li><a href="#sec-recode" id="toc-sec-recode" class="nav-link" data-scroll-target="#sec-recode"><span class="toc-section-number">15.13</span>  Recoding</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">15.14</span>  Exercises</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/edit/main/wrangling/string-processing.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><section id="string-processing" class="level1"><h1>String processing</h1>
-<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-1_a22e712304468d432b2439e0de52df5a">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title d-none d-lg-block">
+<span class="chapter-number">15</span>&nbsp; <span class="chapter-title">String processing</span>
+</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-1_a22e712304468d432b2439e0de52df5a">
 
 </div>
 <p>One of the most common data wrangling challenges involves extracting numeric data contained in character strings and converting them into the numeric representations required to make plots, compute summaries, or fit models in R. Also common is processing unorganized text into meaningful variable names or categorical variables. Many of the string processing challenges a data scientist faces are unique and often unexpected. It is therefore quite ambitious to write a comprehensive section on this topic. Here we use a series of case studies that help us demonstrate how string processing is a necessary step for many data wrangling challenges. Specifically, we describe the process of converting the not yet shown original <em>raw</em> data from which we extracted the <code>murders</code>, <code>heights</code>, and <code>research_funding_rates</code> example into the data frames we have studied in this book.</p>
 <p>By going over these case studies, we will cover some of the most common tasks in string processing including extracting numbers from strings, removing unwanted characters from text, finding and replacing characters, extracting specific parts of strings, converting free form text to more uniform formats, and splitting strings into multiple values.</p>
 <p>Base R includes functions to perform all these tasks. However, they don’t follow a unifying convention, which makes them a bit hard to memorize and use. The <strong>stringr</strong> package basically repackages this functionality, but uses a more consistent approach of naming functions and ordering their arguments. For example, in <strong>stringr</strong>, all the string processing functions start with <code>str_</code>. This means that if you type <code>str_</code> and hit tab, R will auto-complete and show all the available functions. As a result, we don’t necessarily have to memorize all the function names. Another advantage is that in the functions in this package the string being processed is always the first argument, which means we can more easily use the pipe. Therefore, we will start by describing how to use the functions in the <strong>stringr</strong> package.</p>
 <p>Most of the examples will come from the second case study which deals with self-reported heights by students and most of the chapter is dedicated to learning regular expressions (regex), and functions in the <strong>stringr</strong> package.</p>
-<section id="sec-stringr" class="level2"><h2 class="anchored" data-anchor-id="sec-stringr">The stringr package</h2>
+<section id="sec-stringr" class="level2" data-number="15.1"><h2 data-number="15.1" class="anchored" data-anchor-id="sec-stringr">
+<span class="header-section-number">15.1</span> The stringr package</h2>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-2_451bf86f4ba952bcd5f84d602a9b9d66">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org">stringr</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In general, string processing tasks can be divided into <strong>detecting</strong>, <strong>locating</strong>, <strong>extracting</strong>, or <strong>replacing</strong> patterns in strings. We will see several examples. The table below includes the functions available to you in the <strong>stringr</strong> package. We split them by task. We also include the R-base equivalent when available.</p>
 <p>All these functions take a character vector as first argument. Also, for each function, operations are vectorized: the operation gets applied to each string in the vector.</p>
-<p>Finally, note that in this table we mention <em>groups</em>. These will be explained in Section <a href="#sec-groups">Section&nbsp;1.5.10</a>.</p>
+<p>Finally, note that in this table we mention <em>groups</em>. These will be explained in Section <a href="#sec-groups"><span>Section&nbsp;15.5.10</span></a>.</p>
 <table class="table">
 <colgroup>
 <col style="width: 19%">
@@ -355,7 +608,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td><code>sprintf</code></td>
 </tr>
 </tbody>
-</table></section><section id="case-study-1-us-murders-data" class="level2"><h2 class="anchored" data-anchor-id="case-study-1-us-murders-data">Case study 1: US murders data</h2>
+</table></section><section id="case-study-1-us-murders-data" class="level2" data-number="15.2"><h2 data-number="15.2" class="anchored" data-anchor-id="case-study-1-us-murders-data">
+<span class="header-section-number">15.2</span> Case study 1: US murders data</h2>
 <p>In this section we introduce some of the more simple string processing challenges with the following datasets as an example:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-3_1a07e02b171b7790c1979f5e54a4ff7f">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span></span>
@@ -419,7 +673,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## # ℹ 1 more row</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This case is relatively simple compared to the string processing challenges that we typically face in data science. The next example is a rather complex one and it provides several challenges that will permit us to learn many string processing techniques.</p>
-</section><section id="case-study-2-self-reported-heights" class="level2"><h2 class="anchored" data-anchor-id="case-study-2-self-reported-heights">Case study 2: self-reported heights</h2>
+</section><section id="case-study-2-self-reported-heights" class="level2" data-number="15.3"><h2 data-number="15.3" class="anchored" data-anchor-id="case-study-2-self-reported-heights">
+<span class="header-section-number">15.3</span> Case study 2: self-reported heights</h2>
 <p>The <strong>dslabs</strong> package includes the raw data from which the heights dataset was obtained. You can load it like this:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-11_fdacd73bb619168dadd31f96653670c0">
 
@@ -500,7 +755,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Plan of attack</strong>: we will convert entries fitting the first two patterns into a standardized one. We will then leverage the standardization to extract the feet and inches and convert to inches. We will then define a procedure for identifying entries that are in centimeters and convert them to inches. After applying these steps, we will then check again to see what entries were not fixed and see if we can tweak our approach to be more comprehensive.</p>
 <p>At the end, we hope to have a script that makes web-based data collection methods robust to the most common user mistakes.</p>
 <p>To achieve our goal, we will use a technique that enables us to accurately detect patterns and extract the parts we want: <em>regular expressions</em> (regex). But first, we quickly describe how to <em>escape</em> the function of certain characters so that they can be included in strings.</p>
-</section><section id="how-to-escape-when-defining-strings" class="level2"><h2 class="anchored" data-anchor-id="how-to-escape-when-defining-strings">How to <em>escape</em> when defining strings</h2>
+</section><section id="how-to-escape-when-defining-strings" class="level2" data-number="15.4"><h2 data-number="15.4" class="anchored" data-anchor-id="how-to-escape-when-defining-strings">
+<span class="header-section-number">15.4</span> How to <em>escape</em> when defining strings</h2>
 <p>To define strings in R, we can use either double quotes:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-23_647702c4e5902b24093bf7d9fb6ed26d">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">"Hello!"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -564,11 +820,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## 5'10"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Escaping characters is something we often have to use when processing strings.</p>
-</section><section id="regular-expressions" class="level2"><h2 class="anchored" data-anchor-id="regular-expressions">Regular expressions</h2>
+</section><section id="regular-expressions" class="level2" data-number="15.5"><h2 data-number="15.5" class="anchored" data-anchor-id="regular-expressions">
+<span class="header-section-number">15.5</span> Regular expressions</h2>
 <p>A regular expression (regex) is a way to describe specific patterns of characters of text. They can be used to determine if a given string matches the pattern. A set of rules has been defined to do this efficiently and precisely and here we show some examples. We can learn more about these rules by reading a detailed tutorials<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. This RStudio cheat sheet<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> is also very useful.</p>
 <p>The patterns supplied to the <strong>stringr</strong> functions can be a regex rather than a standard string. We will learn how this works through a series of examples.</p>
 <p>Throughout this section you will see that we create strings to test out our regex. To do this, we define patterns that we know should match and also patterns that we know should not. We will call them <code>yes</code> and <code>no</code>, respectively. This permits us to check for the two types of errors: failing to match and incorrectly matching.</p>
-<section id="strings-are-a-regexp" class="level3"><h3 class="anchored" data-anchor-id="strings-are-a-regexp">Strings are a regexp</h3>
+<section id="strings-are-a-regexp" class="level3" data-number="15.5.1"><h3 data-number="15.5.1" class="anchored" data-anchor-id="strings-are-a-regexp">
+<span class="header-section-number">15.5.1</span> Strings are a regexp</h3>
 <p>Technically any string is a regex, perhaps the simplest example is a single character. So the comma <code>,</code> used in the next code example is a simple example of searching with regex.</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-36_e63e388cf06efc5c1102271f218bec45">
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">","</span></span>
@@ -580,7 +838,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset</a></span><span class="op">(</span><span class="va">reported_heights</span><span class="op">$</span><span class="va">height</span>, <span class="st">"cm"</span><span class="op">)</span></span>
 <span><span class="co">## [1] "165cm"  "170 cm"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="special-characters" class="level3"><h3 class="anchored" data-anchor-id="special-characters">Special characters</h3>
+</section><section id="special-characters" class="level3" data-number="15.5.2"><h3 data-number="15.5.2" class="anchored" data-anchor-id="special-characters">
+<span class="header-section-number">15.5.2</span> Special characters</h3>
 <p>Now let’s consider a slightly more complicated example. Which of the following strings contain the pattern <code>cm</code> or <code>inches</code>?</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-38_e8902f00b077ad4170337e91636d5d89">
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">yes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"180 cm"</span>, <span class="st">"70 inches"</span><span class="op">)</span></span>
@@ -632,7 +891,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>There are many other special characters. We will learn some others below, but you can see most or all of them in the cheat sheet<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> mentioned earlier.</p>
 <p>Finally, a useful special character is <code>\w</code> which stands for <em>word character</em> and it matches any letter, number, or underscore. It is equivalent to <code>[a-zA-Z0-9_]</code>.</p>
-</section><section id="character-classes" class="level3"><h3 class="anchored" data-anchor-id="character-classes">Character classes</h3>
+</section><section id="character-classes" class="level3" data-number="15.5.3"><h3 data-number="15.5.3" class="anchored" data-anchor-id="character-classes">
+<span class="header-section-number">15.5.3</span> Character classes</h3>
 <p>Character classes are used to define a series of characters that can be matched. We define character classes with square brackets <code>[]</code>. So, for example, if we want the pattern to match only if we have a <code>5</code> or a <code>6</code>, we use the regex <code>[56]</code>:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-46_f24450ea1ac6970de9a29bb130536f83">
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">"[56]"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -655,7 +915,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>However, it is important to know that in regex everything is a character; there are no numbers. So <code>4</code> is the character <code>4</code> not the number four. Notice, for example, that <code>[1-20]</code> does <strong>not</strong> mean 1 through 20, it means the characters 1 through 2 or the character 0. So <code>[1-20]</code> simply means the character class composed of 0, 1, and 2.</p>
 <p>Keep in mind that characters do have an order and the digits do follow the numeric order. So <code>0</code> comes before <code>1</code> which comes before <code>2</code> and so on. For the same reason, we can define lower case letters as <code>[a-z]</code>, upper case letters as <code>[A-Z]</code>, and <code>[a-zA-z]</code> as both.</p>
-</section><section id="anchors" class="level3"><h3 class="anchored" data-anchor-id="anchors">Anchors</h3>
+</section><section id="anchors" class="level3" data-number="15.5.4"><h3 data-number="15.5.4" class="anchored" data-anchor-id="anchors">
+<span class="header-section-number">15.5.4</span> Anchors</h3>
 <p>What if we want a match when we have exactly 1 digit? This will be useful in our case study since feet are never more than 1 digit so a restriction will help us. One way to do this with regex is by using <em>anchors</em>, which let us define patterns that must start or end at a specific place. The two most common anchors are <code>^</code> and <code>$</code> which represent the beginning and end of a string, respectively. So the pattern <code>^\\d$</code> is read as “start of the string followed by one digit followed by end of string”.</p>
 <p>This pattern now only detects the strings with exactly one digit:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-49_fe4fd1918156f5eda8e5dee9dd579cd2">
@@ -674,7 +935,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>The <code>1</code> does not match because it does not start with the digit but rather with a space, which is actually not easy to see.</p>
-</section><section id="quantifiers" class="level3"><h3 class="anchored" data-anchor-id="quantifiers">Quantifiers</h3>
+</section><section id="quantifiers" class="level3" data-number="15.5.5"><h3 data-number="15.5.5" class="anchored" data-anchor-id="quantifiers">
+<span class="header-section-number">15.5.5</span> Quantifiers</h3>
 <p>For the inches part, we can have one or two digits. This can be specified in regex with <em>quantifiers</em>. This is done by following the pattern with curly brackets containing the number of times the previous entry can be repeated. We use an example to illustrate. The pattern for one or two digits is:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-51_df2b788ff4f6181eb7af207ad0f5f2ae">
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"^\\d{1,2}$"</span></span>
@@ -720,7 +982,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## [1] FALSE FALSE FALSE FALSE FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For now, we are permitting the inches to be 12 or larger. We will add a restriction later as the regex for this is a bit more complex than we are ready to show.</p>
-</section><section id="white-space-s" class="level3"><h3 class="anchored" data-anchor-id="white-space-s">White space <code>\s</code>
+</section><section id="white-space-s" class="level3" data-number="15.5.6"><h3 data-number="15.5.6" class="anchored" data-anchor-id="white-space-s">
+<span class="header-section-number">15.5.6</span> White space <code>\s</code>
 </h3>
 <p>Another problem we have are spaces. For example, our pattern does not match <code>5' 4"</code> because there is a space between <code>'</code> and <code>4</code> which our pattern does not permit. Spaces are characters and R does not ignore them:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-55_0c376a499c5c029f1fc62e13ed12cd46">
@@ -734,7 +997,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## [1] "5' 4\""  "5' 11\"" "5' 7\""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>However, this will not match the patterns with no space. So do we need more than one regex pattern? It turns out we can use a quantifier for this as well.</p>
-</section><section id="quantifiers-1" class="level3"><h3 class="anchored" data-anchor-id="quantifiers-1">Quantifiers: <code>*</code>, <code>?</code>, <code>+</code>
+</section><section id="quantifiers-1" class="level3" data-number="15.5.7"><h3 data-number="15.5.7" class="anchored" data-anchor-id="quantifiers-1">
+<span class="header-section-number">15.5.7</span> Quantifiers: <code>*</code>, <code>?</code>, <code>+</code>
 </h3>
 <p>We want the pattern to permit spaces but not require them. Even if there are several spaces, like in this example <code>5'   4</code>, we still want it to match. There is a quantifier for exactly this purpose. In regex, the character <code>*</code> means zero or more instances of the previous character. Here is an example:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-57_6ffa581490a9b238953fae1d4dc45408">
@@ -760,7 +1024,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## 5 A1111B         TRUE        FALSE         TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We will actually use all three in our reported heights example, but we will see these in a later section.</p>
-</section><section id="not" class="level3"><h3 class="anchored" data-anchor-id="not">Not</h3>
+</section><section id="not" class="level3" data-number="15.5.8"><h3 data-number="15.5.8" class="anchored" data-anchor-id="not">
+<span class="header-section-number">15.5.8</span> Not</h3>
 <p>To specify patterns that we do <strong>not</strong> want to detect, we can use the <code>^</code> symbol but only <strong>inside</strong> square brackets. Remember that outside the square bracket <code>^</code> means the start of the string. So, for example, if we want to detect digits that are preceded by anything except a letter we can do the following:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-59_f0ed951e8589ff5ad5bbf26bfffb3ce2">
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"[^a-zA-Z]\\d"</span></span>
@@ -772,7 +1037,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## [1] FALSE FALSE FALSE FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Another way to generate a pattern that searches for <em>everything except</em> is to use the upper case of the special character. For example <code>\\D</code> means anything other than a digit, <code>\\S</code> means anything except a space, and so on.</p>
-</section><section id="lookarounds" class="level3"><h3 class="anchored" data-anchor-id="lookarounds">Lookarounds</h3>
+</section><section id="lookarounds" class="level3" data-number="15.5.9"><h3 data-number="15.5.9" class="anchored" data-anchor-id="lookarounds">
+<span class="header-section-number">15.5.9</span> Lookarounds</h3>
 <p>Lookarounds provide a way to ask for one or more conditions to be satisfied without moving the search forward or matching it. For example, you might want to check for multiple conditions and if they are matched, then return the pattern or part of the pattern that matched. An example: check if a string satisfies the conditions for a password and if it does return the password. Suppose the conditions are 1) 8-16 word characters, 2) starts with a letter, and 3) has at least one digit.</p>
 <p>There are four types of lookarounds: lookahead <code>(?=pattern)</code>, lookbehind <code>(?&lt;=pattern)</code>, negative lookahead <code>(?!pattern)</code>, and negative lookbehind <code>(?&lt;!pattern)</code>. You can concatenate them to check for multiple conditions so for our example we can write it like this:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-60_e1244debb337b3770bc4c43ebb845f19">
@@ -786,7 +1052,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract</a></span><span class="op">(</span><span class="va">yes</span>, <span class="va">pattern</span><span class="op">)</span></span>
 <span><span class="co">## [1] "Ihatepasswords1" "password1234"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="sec-groups" class="level3"><h3 class="anchored" data-anchor-id="sec-groups">Groups</h3>
+</section><section id="sec-groups" class="level3" data-number="15.5.10"><h3 data-number="15.5.10" class="anchored" data-anchor-id="sec-groups">
+<span class="header-section-number">15.5.10</span> Groups</h3>
 <p><em>Groups</em> are a powerful aspect of regex that permits the extraction of values. Groups are defined using parentheses. They don’t affect the pattern matching per se. Instead, it permits tools to identify specific parts of the pattern so we can extract them.</p>
 <p>We want to change heights written like <code>5.6</code> to <code>5'6</code>.</p>
 <p>To avoid changing patterns such as <code>70.2</code>, we will require that the first digit be between 4 and 7 <code>[4-7]</code> and that the second be none or more digits <code>\\d*</code>. Let’s start by defining a simple pattern that matches this:</p>
@@ -826,7 +1093,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern_with_groups</span><span class="op">)</span></span>
 <span><span class="co">## [1] "5,9"  "5,11" "6,"   "6,1"  NA     NA     NA     NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="search-and-replace-with-regex" class="level2"><h2 class="anchored" data-anchor-id="search-and-replace-with-regex">Search and replace with regex</h2>
+</section></section><section id="search-and-replace-with-regex" class="level2" data-number="15.6"><h2 data-number="15.6" class="anchored" data-anchor-id="search-and-replace-with-regex">
+<span class="header-section-number">15.6</span> Search and replace with regex</h2>
 <p>Earlier we defined the object <code>problems</code> containing the strings that do not appear to be in inches. We can see that not too many of our problematic strings match the pattern:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-66_ae6d6144f85997c04e43eb4191c7908a">
 <div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"^[4-7]'\\d{1,2}\"$"</span></span>
@@ -885,7 +1153,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>We might be tempted to avoid doing this by removing all the spaces with <code>str_replace_all</code>. However, when doing such an operation we need to make sure that it does not have unintended effects. In our reported heights examples, this will be a problem because some entries are of the form <code>x y</code> with space separating the feet from the inches. If we remove all spaces, we will incorrectly turn <code>x y</code> into <code>xy</code> which implies that a <code>6 1</code> would become <code>61</code> inches instead of <code>73</code> inches.</p>
 <p>The second large type of problematic entries were of the form <code>x.y</code>, <code>x,y</code> and <code>x y</code>. We want to change all these to our common format <code>x'y</code>. But we can’t just do a search and replace because we would change values such as <code>70.5</code> into <code>70'5</code>. Our strategy will therefore be to search for a very specific pattern that assures us feet and inches are being provided and then, for those that match, replace appropriately.</p>
-<section id="search-and-replace-using-groups" class="level3"><h3 class="anchored" data-anchor-id="search-and-replace-using-groups">Search and replace using groups</h3>
+<section id="search-and-replace-using-groups" class="level3" data-number="15.6.1"><h3 data-number="15.6.1" class="anchored" data-anchor-id="search-and-replace-using-groups">
+<span class="header-section-number">15.6.1</span> Search and replace using groups</h3>
 <p>Another powerful aspect of groups is that you can refer to the extracted values in a regex when searching and replacing.</p>
 <p>The regex special character for the <code>i</code>-th group is <code>\\i</code>. So <code>\\1</code> is the value extracted from the first group, <code>\\2</code> the value from the second and so on. As a simple example, note that the following code will replace a comma with period, but only if it is between two digits:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-74_77e52827b09baca47af962e79c674be4">
@@ -930,7 +1199,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## [1] "5'3"  "5'25" "5'5"  "6'5"  "5'8"  "5'6"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Again, we will deal with the inches-larger-than-twelve challenge later.</p>
-</section></section><section id="testing-and-improving" class="level2"><h2 class="anchored" data-anchor-id="testing-and-improving">Testing and improving</h2>
+</section></section><section id="testing-and-improving" class="level2" data-number="15.7"><h2 data-number="15.7" class="anchored" data-anchor-id="testing-and-improving">
+<span class="header-section-number">15.7</span> Testing and improving</h2>
 <p>Developing the right regex on the first try is often difficult. Trial and error is a common approach to finding the regex pattern that satisfies all desired conditions. In the previous sections, we have developed a powerful string processing technique that can help us catch many of the problematic entries. Here we will test our approach, search for further problems, and tweak our approach for possible improvements. Let’s write a function that captures all the entries that can’t be converted into numbers remembering that some are in centimeters (we will deal with those later):</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-78_1be375aa6d3fb826adc1df77f3d7068f">
 <div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">not_inches_or_cm</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">smallest</span> <span class="op">=</span> <span class="fl">50</span>, <span class="va">tallest</span> <span class="op">=</span> <span class="fl">84</span><span class="op">)</span><span class="op">{</span></span>
@@ -1026,7 +1296,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## [1] "1.7"   "1.8"   "2."    "5,8"   "5,3,2" "1.7"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We will later check if the entries are meters using their numeric values. We will come back to the case study after introducing two widely used functions in string processing that will come in handy when developing our final solution for the self-reported heights.</p>
-</section><section id="trimming" class="level2"><h2 class="anchored" data-anchor-id="trimming">Trimming</h2>
+</section><section id="trimming" class="level2" data-number="15.8"><h2 data-number="15.8" class="anchored" data-anchor-id="trimming">
+<span class="header-section-number">15.8</span> Trimming</h2>
 <p>In general, spaces at the start or end of the string are uninformative. These can be particularly deceptive because sometimes they can be hard to see:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-85_6f00a9245400424aa229ce5f507bf50e">
 <div class="sourceCode" id="cb77"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">"Hi "</span></span>
@@ -1040,7 +1311,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb78"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim</a></span><span class="op">(</span><span class="st">"5 ' 9 "</span><span class="op">)</span></span>
 <span><span class="co">## [1] "5 ' 9"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="changing-lettercase" class="level2"><h2 class="anchored" data-anchor-id="changing-lettercase">Changing lettercase</h2>
+</section><section id="changing-lettercase" class="level2" data-number="15.9"><h2 data-number="15.9" class="anchored" data-anchor-id="changing-lettercase">
+<span class="header-section-number">15.9</span> Changing lettercase</h2>
 <p>Notice that regex is case sensitive. Often we want to match a word regardless of case. One approach to doing this is to first change everything to lower case and then proceeding ignoring case. As an example, note that one of the entries writes out numbers as words <code>Five foot eight inches</code>. Although not efficient, we could add 13 extra <code>str_replace</code> calls to convert <code>zero</code> to <code>0</code>, <code>one</code> to <code>1</code>, and so on. To avoid having to write two separate operations for <code>Zero</code> and <code>zero</code>, <code>One</code> and <code>one</code>, etc., we can use the <code>str_to_lower</code> function to make all works lower case first:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-87_ea644da5c783e27592868758ac97a4f0">
 <div class="sourceCode" id="cb79"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Five feet eight inches"</span><span class="op">)</span></span>
@@ -1048,7 +1320,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## [1] "five feet eight inches"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Other related functions are <code>str_to_upper</code> and <code>str_to_title</code>. We are now ready to define a procedure that converts all the problematic cases to inches.</p>
-</section><section id="case-study-2-self-reported-heights-continued" class="level2"><h2 class="anchored" data-anchor-id="case-study-2-self-reported-heights-continued">Case study 2: self-reported heights (continued)</h2>
+</section><section id="case-study-2-self-reported-heights-continued" class="level2" data-number="15.10"><h2 data-number="15.10" class="anchored" data-anchor-id="case-study-2-self-reported-heights-continued">
+<span class="header-section-number">15.10</span> Case study 2: self-reported heights (continued)</h2>
 <p>We now put all of what we have learned together into a function that takes a string vector and tries to convert as many strings as possible to one format. We write a function that puts together what we have done above.</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-88_f3bfa026c956974f4ced84724f5b6915">
 <div class="sourceCode" id="cb80"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">convert_format</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">s</span><span class="op">)</span><span class="op">{</span></span>
@@ -1071,7 +1344,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span>  <span class="va">s</span></span>
 <span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Note that we can perform the above operation more efficiently with the function <code>recode</code>, which we learn about in Section <a href="#sec-recode">Section&nbsp;1.13</a>. Now we can see which problematic entries remain:</p>
+<p>Note that we can perform the above operation more efficiently with the function <code>recode</code>, which we learn about in Section <a href="#sec-recode"><span>Section&nbsp;15.13</span></a>. Now we can see which problematic entries remain:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-90_782b88a389c4703f31aca8646dd539f4">
 <div class="sourceCode" id="cb82"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">converted</span> <span class="op">&lt;-</span> <span class="va">problems</span> <span class="op">|&gt;</span> <span class="fu">words_to_numbers</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">convert_format</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">remaining_problems</span> <span class="op">&lt;-</span> <span class="va">converted</span><span class="op">[</span><span class="fu">not_inches_or_cm</span><span class="op">(</span><span class="va">converted</span><span class="op">)</span><span class="op">]</span></span>
@@ -1089,14 +1362,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## [41] "7,283,465" "34"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>apart from the cases reported as meters, which we will fix below, they all seem to be cases that are impossible to fix.</p>
-<section id="the-extract-function" class="level3"><h3 class="anchored" data-anchor-id="the-extract-function">The <code>extract</code> function</h3>
+<section id="the-extract-function" class="level3" data-number="15.10.1"><h3 data-number="15.10.1" class="anchored" data-anchor-id="the-extract-function">
+<span class="header-section-number">15.10.1</span> The <code>extract</code> function</h3>
 <p>The <code>extract</code> function is a useful <strong>tidyverse</strong> function for string processing that we will use in our final solution, so we introduce it here. In a previous section, we constructed a regex that lets us identify which elements of a character vector match the feet and inches pattern. However, we want to do more. We want to extract and save the feet and number values so that we can convert them to inches when appropriate.</p>
 <p>If we have a simpler case like this:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-91_8b9dcffbe3fd6ec640c230ba315ff3a5">
 <div class="sourceCode" id="cb83"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"5'10"</span>, <span class="st">"6'1"</span><span class="op">)</span></span>
 <span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">s</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In Section <strong>?@sec-separate</strong> we learned about the <code>separate</code> function, which can be used to achieve our current goal:</p>
+<p>In Section <a href="reshaping-data.html#sec-separate"><span>Section&nbsp;12.3</span></a> we learned about the <code>separate</code> function, which can be used to achieve our current goal:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-92_0a943ef023d9e2a85cd193337bc4e1b1">
 <div class="sourceCode" id="cb84"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"feet"</span>, <span class="st">"inches"</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">"'"</span><span class="op">)</span></span>
 <span><span class="co">##   feet inches</span></span>
@@ -1132,7 +1406,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## 2    6      1</span></span>
 <span><span class="co">## 3    5      8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="putting-it-all-together" class="level3"><h3 class="anchored" data-anchor-id="putting-it-all-together">Putting it all together</h3>
+</section><section id="putting-it-all-together" class="level3" data-number="15.10.2"><h3 data-number="15.10.2" class="anchored" data-anchor-id="putting-it-all-together">
+<span class="header-section-number">15.10.2</span> Putting it all together</h3>
 <p>We are now ready to put it all together and wrangle our reported heights data to try to recover as many heights as possible. The code is complex, but we will break it down into parts.</p>
 <p>We start by cleaning up the <code>height</code> column so that the heights are closer to a feet’inches format. We added an original heights column so we can compare before and after.</p>
 <p>Now we are ready to wrangle our reported heights dataset:</p>
@@ -1179,7 +1454,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## 7 2015-01-07 08:57:29   Male   53.8   NA     NA    53.77</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We see heights of 53, 54, and 55. In the originals, we also have 51 and 52. These short heights are rare and it is likely that the students actually meant <code>5'1</code>, <code>5'2</code>, <code>5'3</code>, <code>5'4</code>, and <code>5'5</code>. Because we are not completely sure, we will leave them as reported. The object <code>new_heights</code> contains our final solution for this case study.</p>
-</section></section><section id="string-splitting" class="level2"><h2 class="anchored" data-anchor-id="string-splitting">String splitting</h2>
+</section></section><section id="string-splitting" class="level2" data-number="15.11"><h2 data-number="15.11" class="anchored" data-anchor-id="string-splitting">
+<span class="header-section-number">15.11</span> String splitting</h2>
 <p>Another very common data wrangling operation is string splitting. To illustrate how this comes up, we start with an illustrative example. Suppose we did not have the function <code>read_csv</code> or <code>read.csv</code> available to us. We instead have to read a csv file using the base R function <code>readLines</code> like this:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-100_4bb61b68fb8baa071457a0b91275d7b6">
 <div class="sourceCode" id="cb92"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/murders.csv"</span>, package <span class="op">=</span> <span class="st">"dslabs"</span><span class="op">)</span></span>
@@ -1270,7 +1546,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">## 4 Arkansas   AR    South     2915918    93</span></span>
 <span><span class="co">## 5 California CA    West     37253956  1257</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="case-study-3-extracting-tables-from-a-pdf" class="level2"><h2 class="anchored" data-anchor-id="case-study-3-extracting-tables-from-a-pdf">Case study 3: extracting tables from a PDF</h2>
+</section><section id="case-study-3-extracting-tables-from-a-pdf" class="level2" data-number="15.12"><h2 data-number="15.12" class="anchored" data-anchor-id="case-study-3-extracting-tables-from-a-pdf">
+<span class="header-section-number">15.12</span> Case study 3: extracting tables from a PDF</h2>
 <p>One of the datasets provided in <strong>dslabs</strong> shows scientific funding rates by gender in the Netherlands:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-109_6e6c343a047d4d9c32813bc99be644a5">
 <div class="sourceCode" id="cb101"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
@@ -1398,7 +1675,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb113"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/identical.html">identical</a></span><span class="op">(</span><span class="va">research_funding_rates</span>, <span class="va">new_research_funding_rates</span><span class="op">)</span></span>
 <span><span class="co">## [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="sec-recode" class="level2"><h2 class="anchored" data-anchor-id="sec-recode">Recoding</h2>
+</section><section id="sec-recode" class="level2" data-number="15.13"><h2 data-number="15.13" class="anchored" data-anchor-id="sec-recode">
+<span class="header-section-number">15.13</span> Recoding</h2>
 <p>Another common operation involving strings is recoding the names of categorical variables. Let’s say you have really long names for your levels and you will be displaying them in plots, you might want to use shorter versions of these names. For example, in character vectors with country names, you might want to change “United States of America” to “USA” and “United Kingdom” to UK, and so on. We can do this with <code>case_when</code>, although the <strong>tidyverse</strong> offers an option that is specifically designed for this task: the <code>recode</code> function.</p>
 <p>Here is an example that shows how to rename countries with long names:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-124_565e1394dd384d0f031d1603344bd2d1">
@@ -1452,7 +1730,8 @@ gapminder |>
 </div>
 </div>
 <p>There are other similar functions in other R packages, such as <code>recode_factor</code> and <code>fct_recoder</code> in the <strong>forcats</strong> package.</p>
-</section><section id="exercises" class="level2"><h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+</section><section id="exercises" class="level2" data-number="15.14"><h2 data-number="15.14" class="anchored" data-anchor-id="exercises">
+<span class="header-section-number">15.14</span> Exercises</h2>
 <p>1. Complete all lessons and exercises in the <a href="https://regexone.com/">https://regexone.com/</a> online interactive tutorial.</p>
 <p>2. In the <code>extdata</code> directory of the <strong>dslabs</strong> package, you will find a PDF file containing daily mortality data for Puerto Rico from Jan 1, 2015 to May 31, 2018. You can find the file like this:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-126_567c1d91e746f399f543f55bd2db855a">
@@ -1510,7 +1789,7 @@ gapminder |>
 <p>19. Advanced: let’s return to the MLB Payroll example from the web scraping section. Use what you have learned in the web scraping and string processing chapters to extract the payroll for the New York Yankees, Boston Red Sox, and Oakland A’s and plot them as a function of time.</p>
 
 
-</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p>https://www.regular-expressions.info/tutorial.html<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>http://r4ds.had.co.nz/strings.html#matching-patterns-with-regular-expressions<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
@@ -1650,9 +1929,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="../wrangling/web-scraping.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web scraping</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../wrangling/dates-and-times.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
-
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">Introduction to Data Science was written by Rafael A. Irizarry</div>   
+    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
 
 
 </body></html>
