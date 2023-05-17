@@ -1,0 +1,193 @@
+# Data Visualization {.unnumbered}
+
+```{r, echo=FALSE}
+img_path <- "img"
+```
+
+Looking at the numbers and character strings that define a dataset is rarely useful. To convince yourself, print and stare at the US murders data table:
+
+```{r, message=FALSE, warning=FALSE}
+library(dslabs)
+head(murders)
+```
+
+What do you learn from staring at this table? How quickly can you determine which states have the largest populations? Which states have the smallest? How large is a typical state? Is there a relationship between population size and total murders? How do murder rates vary across regions of the country? For most human brains, it is quite difficult to extract this information just by looking at the numbers. In contrast, the answer to all the questions above are readily available from examining this plot:
+
+```{r ggplot-example-plot-0, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(ggthemes)
+library(ggrepel)
+
+r <- murders |> 
+  summarize(pop=sum(population), tot=sum(total)) |> 
+  mutate(rate = tot/pop*10^6) |> pull(rate)
+
+murders |> ggplot(aes(x = population/10^6, y = total, label = abb)) +  
+  geom_abline(intercept = log10(r), lty=2, col="darkgrey") +
+  geom_point(aes(color=region), size = 3) +
+  geom_text_repel() + 
+  scale_x_log10() +
+  scale_y_log10() +
+  xlab("Populations in millions (log scale)") + 
+  ylab("Total number of murders (log scale)") +
+  ggtitle("US Gun Murders in 2010") +
+  scale_color_discrete(name="Region") +
+  theme_economist()
+```
+
+We are reminded of the saying "a picture is worth a thousand words". Data visualization provides a powerful way to communicate a data-driven finding. In some cases, the visualization is so convincing that no follow-up analysis is required.
+
+The growing availability of informative datasets and software tools has led to increased reliance on data visualizations across many industries, academia, and government. A salient example is news organizations, which are increasingly embracing *data journalism* and including effective *infographics* as part of their reporting.
+
+A particularly effective example is a Wall Street Journal article[^intro-dataviz-1] showing data related to the impact of vaccines on battling infectious diseases. One of the graphs shows measles cases by US state through the years with a vertical line demonstrating when the vaccine was introduced.
+
+[^intro-dataviz-1]: http://graphics.wsj.com/infectious-diseases-and-vaccines/?mc_cid=711ddeb86e
+
+```{r wsj-vaccines-example, echo=FALSE, out.width="100%", fig.height=5}
+#knitr::include_graphics(file.path(img_path,"wsj-vaccines.png"))
+the_disease <- "Measles"
+dat <- us_contagious_diseases |>
+  filter(!state%in%c("Hawaii","Alaska") & disease == the_disease) |>
+  mutate(rate = count / population * 10000 * 52 / weeks_reporting) |>
+  mutate(state = reorder(state, rate))
+
+jet.colors <-
+colorRampPalette(c("#F0FFFF", "cyan", "#007FFF", "yellow", "#FFBF00", "orange", "red", "#7F0000"), bias = 2.25)
+
+dat |> ggplot(aes(year, state, fill = rate)) +
+  geom_tile(color = "white", linewidth=0.35) +
+  scale_x_continuous(expand=c(0,0)) +
+  scale_fill_gradientn(colors = jet.colors(16), na.value = 'white') +
+  geom_vline(xintercept=1963, col = "black") +
+  theme_minimal() + 
+  theme(panel.grid = element_blank()) +
+  coord_cartesian(clip = 'off') +
+  ggtitle(the_disease) +
+  ylab("") +
+  xlab("") +  
+  theme(legend.position = "bottom", text = element_text(size = 8)) + 
+  annotate(geom = "text", x = 1963, y = 50.5, label = "Vaccine introduced", size = 3, hjust=0)
+```
+
+<!--(Source: [Wall Street Journal](http://graphics.wsj.com/infectious-diseases-and-vaccines/))-->
+
+Another striking example comes from a New York Times chart[^intro-dataviz-2], which summarizes scores from the NYC Regents Exams. As described in the article[^intro-dataviz-3], these scores are collected for several reasons, including to determine if a student graduates from high school. In New York City you need a 65 to pass. The distribution of the test scores forces us to notice something somewhat problematic:
+
+[^intro-dataviz-2]: http://graphics8.nytimes.com/images/2011/02/19/nyregion/19schoolsch/19schoolsch-popup.gif
+
+[^intro-dataviz-3]: https://www.nytimes.com/2011/02/19/nyregion/19schools.html
+
+```{r regents-exams-example, echo=FALSE, warning=FALSE, out.width="80%", fig.height=2.5}
+#knitr::include_graphics(file.path(img_path,"nythist.png"))
+nyc_regents_scores$total <- rowSums(nyc_regents_scores[,-1], na.rm=TRUE)
+
+nyc_regents_scores |> 
+  filter(!is.na(score)) |>
+  ggplot(aes(score, total)) + 
+  annotate("rect", xmin = 65, xmax = 99, ymin = 0, ymax = 35000, alpha = .5) +
+  geom_bar(stat = "identity", color = "black", fill = "#C4843C") + 
+  annotate("text", x = 66, y = 28000, label = "MINIMUM\nREGENTS DIPLOMA\nSCORE IS 65", hjust = 0, size = 3) +
+  annotate("text", x = 0, y = 12000, label = "2010 Regents scores on\nthe five most common tests", hjust = 0, size = 3) +
+  scale_x_continuous(breaks = seq(5, 95, 5), limit = c(0,99)) + 
+  scale_y_continuous(position = "right") +
+  ggtitle("Scraping by") + 
+  xlab("") + ylab("Number of tests") + 
+  theme_minimal() + 
+  theme(panel.grid.major.x = element_blank(), 
+        panel.grid.minor.x = element_blank(),
+        axis.ticks.length = unit(-0.2, "cm"),
+        plot.title = element_text(face = "bold"))
+```
+
+<!--(Source: [New York Times](http://graphics8.nytimes.com/images/2011/02/19/nyregion/19schoolsch/19schoolsch-popup.gif) via Amanda Cox)-->
+
+The most common test score is the minimum passing grade, with very few scores just below the threshold. This unexpected result is consistent with students close to passing having their scores bumped up.
+
+This is an example of how data visualization can lead to discoveries which would otherwise be missed if we simply subjected the data to a battery of data analysis tools or procedures. Data visualization is the strongest tool of what we call *exploratory data analysis* (EDA). John W. Tukey[^intro-dataviz-4], considered the father of EDA, once said,
+
+[^intro-dataviz-4]: https://en.wikipedia.org/wiki/John_Tukey
+
+> > "The greatest value of a picture is when it forces us to notice what we never expected to see."
+
+Many widely used data analysis tools were initiated by discoveries made via EDA. EDA is perhaps the most important part of data analysis, yet it is one that is often overlooked.
+
+Data visualization is also now pervasive in philanthropic and educational organizations. In the talks New Insights on Poverty[^intro-dataviz-5] and The Best Stats You've Ever Seen[^intro-dataviz-6], Hans Rosling forces us to notice the unexpected with a series of plots related to world health and economics. In his videos, he uses animated graphs to show us how the world is changing and how old narratives are no longer true.
+
+[^intro-dataviz-5]: https://www.ted.com/talks/hans_rosling_reveals_new_insights_on_poverty?language=en
+
+[^intro-dataviz-6]: https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen
+
+```{r gampnider-example-plot, echo=FALSE, warning=FALSE}
+
+west <- c("Western Europe","Northern Europe","Southern Europe",
+          "Northern America","Australia and New Zealand")
+
+gapminder <- gapminder |> 
+  mutate(group = case_when(
+    region %in% west ~ "The West",
+    region %in% c("Eastern Asia", "South-Eastern Asia") ~ "East Asia",
+    region %in% c("Caribbean", "Central America", "South America") ~ "Latin America",
+    continent == "Africa" & region != "Northern Africa" ~ "Sub-Saharan Africa",
+    TRUE ~ "Others"))
+gapminder <- gapminder |> 
+  mutate(group = factor(group, levels = rev(c("Others", "Latin America", "East Asia","Sub-Saharan Africa", "The West"))))
+
+if(knitr::is_html_output()){
+  library(gganimate)
+  years <- c(1960:2016)
+  p <- filter(gapminder, year%in%years & !is.na(group) & 
+                !is.na(fertility) & !is.na(life_expectancy)) |>
+    mutate(population_in_millions = population/10^6) |>
+    ggplot( aes(fertility, y=life_expectancy, col = group, size = population_in_millions)) +
+    geom_point(alpha = 0.8) +
+    guides(size = "none") +
+    theme(legend.title = element_blank()) + 
+    coord_cartesian(ylim = c(30, 85)) + 
+    labs(title = 'Year: {frame_time}', 
+         x = 'Fertility rate (births per woman)', y = 'Life expectancy') +
+    transition_time(year) +
+    ease_aes('linear')
+  
+  animate(p, end_pause = 15)
+} else{
+  years <- c(1962, 2013)
+  p <- filter(gapminder, year%in%years & !is.na(group) & 
+                !is.na(fertility) & !is.na(life_expectancy)) |>
+    mutate(population_in_millions = population/10^6) |>
+    ggplot( aes(fertility, y=life_expectancy, col = group, size = population_in_millions)) +
+    geom_point(alpha = 0.8) +
+    guides(size = "none") +
+    theme(plot.title = element_blank(), legend.title = element_blank()) + 
+    coord_cartesian(ylim = c(30, 85)) + 
+    xlab("Fertility rate (births per woman)") +
+    ylab("Life Expectancy") + 
+    geom_text(aes(x=7, y=82, label=year), cex=12, color="grey") +
+    facet_grid(. ~ year)
+  
+  p + theme(strip.background = element_blank(),
+            strip.text.x = element_blank(),
+            strip.text.y = element_blank(),
+            legend.position = "top")
+}
+```
+
+It is also important to note that mistakes, biases, systematic errors and other unexpected problems often lead to data that should be handled with care. Failure to discover these problems can give rise to flawed analyses and false discoveries. As an example, consider that measurement devices sometimes fail and that most data analysis procedures are not designed to detect these. Yet these data analysis procedures will still give you an answer. The fact that it can be difficult or impossible to notice an error just from the reported results makes data visualization particularly important.
+
+In this part of the book, we will learn the basics of data visualization and exploratory data analysis by using three motivating examples. We will use the **ggplot2** package to code. To learn the very basics, we will start with a somewhat artificial example: heights reported by students. Then we will cover the two examples mentioned above: 1) world health and economics and 2) infectious disease trends in the United States.
+
+Of course, there is much more to data visualization than what we cover here. The following are references for those who wish to learn more:
+
+-   ER Tufte (1983) The visual display of quantitative information. Graphics Press.
+-   ER Tufte (1990) Envisioning information. Graphics Press.
+-   ER Tufte (1997) Visual explanations. Graphics Press.
+-   WS Cleveland (1993) Visualizing data. Hobart Press.
+-   WS Cleveland (1994) The elements of graphing data. CRC Press.
+-   A Gelman, C Pasarica, R Dodhia (2002) Let's practice what we preach: Turning tables into graphs. The American Statistician 56:121-130.
+-   NB Robbins (2004) Creating more effective graphs. Wiley.
+-   A Cairo (2013) The functional art: An introduction to information graphics and visualization. New Riders.
+-   N Yau (2013) Data points: Visualization that means something. Wiley.
+
+We also do not cover interactive graphics, a topic that is too advanced for this book. Some useful resources for those interested in learning more can be found below:
+
+-   <https://shiny.rstudio.com/>
+-   <https://d3js.org/>

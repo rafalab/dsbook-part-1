@@ -1,0 +1,96 @@
+project:
+  type: website
+  output-dir: docs
+
+execute:
+  cache: true
+  
+book:
+  title: Introduction to Data Science
+  subtitle: Data wrangling and visualization with R
+  reader-mode: true
+  page-footer:
+    left: |
+      Introduction to Data Science was written by Rafael A. Irizarry
+    right: |
+      This book was built with <a href=https://quarto.org/>Quarto</a>.
+  cover-image: cover.png
+  favicon: cover.png
+  site-url: http://rafalab.dfci.harvard.edu/dsbook-part-1
+  repo-url: https://github.com/rafalab/dsbook-part-1
+  repo-branch: main
+  repo-actions: [edit, issue]
+  sidebar:
+    collapse-level: 1
+
+  chapters:
+    - index.qmd
+
+    - intro.qmd
+    
+    - part: R/intro-to-R.qmd
+      chapters:
+        - R/getting-started.qmd
+        - R/R-basics.qmd
+        - R/programming-basics.qmd
+        - R/tidyverse.qmd
+        - R/importing-data.qmd
+        - R/data_table.qmd
+    
+    - part:  dataviz/intro-dataviz.qmd
+      chapters:
+        - dataviz/ggplot2.qmd
+        - dataviz/distributions.qmd
+        - dataviz/gapminder.qmd
+        - dataviz/dataviz-principles.qmd
+        - dataviz/vaccines.qmd
+  
+    - part: wrangling/intro-to-wrangling.qmd
+      chapters:
+        - wrangling/reshaping-data.qmd
+        - wrangling/joining-tables.qmd
+        - wrangling/web-scraping.qmd
+        - wrangling/string-processing.qmd
+        - wrangling/dates-and-times.qmd
+        - wrangling/text-mining.qmd
+  
+    - part: productivity/intro-productivity.qmd
+      chapters:
+        - R/installing-r-and-rstudio.qmd
+        - productivity/installing-git.qmd
+        - productivity/unix.qmd
+        - productivity/git.qmd
+        - productivity/reproducible-projects.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - r4ds.scss
+    code-link: true
+    author-meta: Rafael A. Irizarry
+    include-in-header: plausible.html
+    callout-appearance: simple
+
+knitr:
+  opts_chunk:
+    comment: #>
+    collapse: TRUE
+    cache: TRUE
+    width: 72
+    tidy.opts: list(width.cutoff=72, tidy=TRUE)
+    out.width: 70%
+    fig.align: 'center'
+    fig.width: 6
+    fig.height: 3.708  # width * 1 / phi
+    fig.show: hold
+    R.options:
+      digits: 3
+      width: 72
+      formatR.indent: 2
+      dplyr.summarise.inform: FALSE
+      dplyr.print_min: 5 
+      dplyr.print_max: 5
+      ggrepel.max.overlaps: 100
+
+editor: source
