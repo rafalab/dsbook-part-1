@@ -387,6 +387,9 @@ murders |>
   summarize(median_min_max(rate))
 ```
 
+:::{.callout-tip, title = "Advanced"}
+If the function begin called inside `summarize` returns a data frame, it must have only one row. If the function returns more than one row, you can use the function `reframe`.
+:::
 
 ## `pull`
 

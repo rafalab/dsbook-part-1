@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.353">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
 <title>Introduction to Data Science - 17&nbsp; Text mining</title>
@@ -15,9 +15,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -44,43 +45,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -125,22 +96,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">
-<span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text mining</span>
-</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../wrangling/intro-to-wrangling.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="../wrangling/text-mining.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text mining</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Introduction to Data Science</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
-  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -148,188 +122,218 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  <a href="../intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../R/intro-to-R.html" class="sidebar-item-text sidebar-link">R</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <a href="../R/intro-to-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/getting-started.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with R and RStudio</span></a>
+  <a href="../R/getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with R and RStudio</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/R-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></a>
+  <a href="../R/R-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/programming-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Programming basics</span></a>
+  <a href="../R/programming-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Programming basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/tidyverse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The tidyverse</span></a>
+  <a href="../R/tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The tidyverse</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/importing-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importing data</span></a>
+  <a href="../R/importing-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importing data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/data_table.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">data.table</span></a>
+  <a href="../R/data_table.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">data.table</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../dataviz/intro-dataviz.html" class="sidebar-item-text sidebar-link">Data Visualization</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a href="../dataviz/intro-dataviz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Visualization</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataviz/ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></a>
+  <a href="../dataviz/ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataviz/distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></a>
+  <a href="../dataviz/distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataviz/gapminder.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization in practice</span></a>
+  <a href="../dataviz/gapminder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization in practice</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataviz/dataviz-principles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data visualization principles</span></a>
+  <a href="../dataviz/dataviz-principles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data visualization principles</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataviz/vaccines.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Case study: vaccines and infectious diseases</span></a>
+  <a href="../dataviz/vaccines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Case study: vaccines and infectious diseases</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../wrangling/intro-to-wrangling.html" class="sidebar-item-text sidebar-link">Data Wrangling</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a href="../wrangling/intro-to-wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../wrangling/reshaping-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></a>
+  <a href="../wrangling/reshaping-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../wrangling/joining-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Joining tables</span></a>
+  <a href="../wrangling/joining-tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Joining tables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web scraping</span></a>
+  <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web scraping</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">String processing</span></a>
+  <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">String processing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../wrangling/dates-and-times.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></a>
+  <a href="../wrangling/dates-and-times.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../wrangling/text-mining.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text mining</span></a>
+  <a href="../wrangling/text-mining.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text mining</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../productivity/intro-productivity.html" class="sidebar-item-text sidebar-link">Productivity Tools</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a href="../productivity/intro-productivity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Productivity Tools</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/installing-r-and-rstudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Installing R and RStudio</span></a>
+  <a href="../R/installing-r-and-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Installing R and RStudio</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Accessing the terminal and installing Git</span></a>
+  <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Accessing the terminal and installing Git</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../productivity/unix.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></a>
+  <a href="../productivity/unix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../productivity/git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Git and GitHub</span></a>
+  <a href="../productivity/git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Git and GitHub</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../productivity/reproducible-projects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects with markdown</span></a>
+  <a href="../productivity/reproducible-projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects with markdown</span></span></a>
   </div>
 </li>
       </ul>
 </li>
     </ul>
 </div>
-</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#case-study-trump-tweets" id="toc-case-study-trump-tweets" class="nav-link active" data-scroll-target="#case-study-trump-tweets"><span class="toc-section-number">17.1</span>  Case study: Trump tweets</a></li>
-  <li><a href="#text-as-data" id="toc-text-as-data" class="nav-link" data-scroll-target="#text-as-data"><span class="toc-section-number">17.2</span>  Text as data</a></li>
-  <li><a href="#sentiment-analysis" id="toc-sentiment-analysis" class="nav-link" data-scroll-target="#sentiment-analysis"><span class="toc-section-number">17.3</span>  Sentiment analysis</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">17.4</span>  Exercises</a></li>
+<li><a href="#case-study-trump-tweets" id="toc-case-study-trump-tweets" class="nav-link active" data-scroll-target="#case-study-trump-tweets"><span class="header-section-number">17.1</span> Case study: Trump tweets</a></li>
+  <li><a href="#text-as-data" id="toc-text-as-data" class="nav-link" data-scroll-target="#text-as-data"><span class="header-section-number">17.2</span> Text as data</a></li>
+  <li><a href="#sentiment-analysis" id="toc-sentiment-analysis" class="nav-link" data-scroll-target="#sentiment-analysis"><span class="header-section-number">17.3</span> Sentiment analysis</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">17.4</span> Exercises</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/edit/main/wrangling/text-mining.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title d-none d-lg-block">
+<h1 class="title">
 <span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text mining</span>
 </h1>
 </div>
@@ -348,9 +352,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="case-study-trump-tweets" class="level2" data-number="17.1"><h2 data-number="17.1" class="anchored" data-anchor-id="case-study-trump-tweets">
 <span class="header-section-number">17.1</span> Case study: Trump tweets</h2>
 <p>During the 2016 US presidential election, then candidate Donald J. Trump used his twitter account as a way to communicate with potential voters. On August 6, 2016, Todd Vaziri tweeted<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> about Trump that “Every non-hyperbolic tweet is from iPhone (his staff). Every hyperbolic tweet is from Android (from him).” Data scientist David Robinson conducted an analysis<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> to determine if data supported this assertion. Here, we go through David’s analysis to learn some of the basics of text mining. To learn more about text mining in R, we recommend the Text Mining with R book<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> by Julia Silge and David Robinson.</p>
-<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-1_e3803794261b634a6995be8fdc1b6bd6">
-
-</div>
 <p>We will use the following libraries:</p>
 <div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-2_e3520824f8f14afab4d65861d214a5a1">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
@@ -559,64 +560,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>word <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span><span class="va">word</span>, <span class="st">"^'"</span>, <span class="st">""</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now that we have all our words in a table, along with information about what device was used to compose the tweet they came from, we can start exploring which words are more common when comparing Android to iPhone.</p>
-<p>For each word, we want to know if it is more likely to come from an Android tweet or an iPhone tweet. Odds ratio are a summary statistic useful for quantifying these differences. .For each device and a given word, let’s call it <code>y</code>, we compute the odds or the ratio between the proportion of words that are <code>y</code> and not <code>y</code> and compute the ratio of those odds. Here we will have many proportions that are 0, so we use the 0.5 correction. You can learn more about odds ratio in an statistics or epidemiology textbook.</p>
-<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-20_f78334ecbf38a62b829e0912087dc99d">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">android_iphone_or</span> <span class="op">&lt;-</span> <span class="va">tweet_words</span> <span class="op">|&gt;</span></span>
+<p>For each word, we want to know if it is more likely to come from an Android tweet or an iPhone tweet. We therefore compute, for each word, what proportion of all words it represent for Android and iPhone, respectively.</p>
+<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-20_861e2170d964b7cb347b1bdc7a7446a6">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">android_vs_iphone</span> <span class="op">&lt;-</span> <span class="va">tweet_words</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">source</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">"source"</span>, values_from <span class="op">=</span> <span class="st">"n"</span>, values_fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>or <span class="op">=</span> <span class="op">(</span><span class="va">Android</span> <span class="op">+</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Android</span><span class="op">)</span> <span class="op">-</span> <span class="va">Android</span> <span class="op">+</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">/</span> </span>
-<span>           <span class="op">(</span> <span class="op">(</span><span class="va">iPhone</span> <span class="op">+</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">iPhone</span><span class="op">)</span> <span class="op">-</span> <span class="va">iPhone</span> <span class="op">+</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>p_a <span class="op">=</span> <span class="va">Android</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Android</span><span class="op">)</span>, p_i <span class="op">=</span> <span class="va">iPhone</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">iPhone</span><span class="op">)</span>,</span>
+<span>         percent_diff <span class="op">=</span> <span class="op">(</span><span class="va">p_a</span> <span class="op">-</span> <span class="va">p_i</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="op">(</span><span class="va">p_a</span> <span class="op">+</span> <span class="va">p_i</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span> <span class="op">*</span> <span class="fl">100</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here are the highest odds ratios for Android</p>
-<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-21_20af3f418d210b5e9eb55256ca2411b2">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">android_iphone_or</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">or</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 5,607 × 4</span></span>
-<span><span class="co">#&gt;   word  Android iPhone    or</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;   &lt;int&gt;  &lt;int&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 a.m        65      0 113. </span></span>
-<span><span class="co">#&gt; 2 p.m        39      0  68.0</span></span>
-<span><span class="co">#&gt; 3 mails      22      0  38.7</span></span>
-<span><span class="co">#&gt; 4 poor       13      0  23.2</span></span>
-<span><span class="co">#&gt; 5 t.v        13      0  23.2</span></span>
-<span><span class="co">#&gt; # ℹ 5,602 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For words appearing at least 100 times in total, here are the highest percent differences for Android</p>
+<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-21_535ed28c5190b8370e67fd2908691e2e">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">android_vs_iphone</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Android</span> <span class="op">+</span> <span class="va">iPhone</span> <span class="op">&gt;=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">percent_diff</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 30 × 6</span></span>
+<span><span class="co">#&gt;   word        Android iPhone     p_a     p_i percent_diff</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt;  &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;        &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 bad             104     26 0.00645 0.00188        110. </span></span>
+<span><span class="co">#&gt; 2 crooked         156     49 0.00968 0.00354         92.9</span></span>
+<span><span class="co">#&gt; 3 cnn             116     37 0.00720 0.00267         91.7</span></span>
+<span><span class="co">#&gt; 4 ted              86     28 0.00533 0.00202         90.1</span></span>
+<span><span class="co">#&gt; 5 interviewed      76     25 0.00471 0.00180         89.3</span></span>
+<span><span class="co">#&gt; # ℹ 25 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and the top for iPhone:</p>
-<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-22_8aad73fbe2c104fbee86e525db2e5878">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">android_iphone_or</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">or</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 5,607 × 4</span></span>
-<span><span class="co">#&gt;   word                  Android iPhone      or</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;                   &lt;int&gt;  &lt;int&gt;   &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 makeamericagreatagain       0    298 0.00141</span></span>
-<span><span class="co">#&gt; 2 americafirst                0     71 0.00598</span></span>
-<span><span class="co">#&gt; 3 draintheswamp               0     63 0.00673</span></span>
-<span><span class="co">#&gt; 4 trump2016                   3    412 0.00707</span></span>
-<span><span class="co">#&gt; 5 votetrump                   0     56 0.00757</span></span>
-<span><span class="co">#&gt; # ℹ 5,602 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Given that several of these words are overall low frequency words, we can impose a filter based on the total frequency like this:</p>
-<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-23_d29343fccf2ecd2a0776c60c7e139714">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">android_iphone_or</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Android</span><span class="op">+</span><span class="va">iPhone</span> <span class="op">&gt;</span> <span class="fl">100</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">or</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 30 × 4</span></span>
-<span><span class="co">#&gt;   word        Android iPhone    or</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt;  &lt;int&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 bad             104     26  3.40</span></span>
-<span><span class="co">#&gt; 2 crooked         156     49  2.73</span></span>
-<span><span class="co">#&gt; 3 cnn             116     37  2.68</span></span>
-<span><span class="co">#&gt; 4 ted              86     28  2.62</span></span>
-<span><span class="co">#&gt; 5 interviewed      76     25  2.59</span></span>
-<span><span class="co">#&gt; # ℹ 25 more rows</span></span>
-<span></span>
-<span><span class="va">android_iphone_or</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Android</span><span class="op">+</span><span class="va">iPhone</span> <span class="op">&gt;</span> <span class="fl">100</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">or</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 30 × 4</span></span>
-<span><span class="co">#&gt;   word                  Android iPhone      or</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;                   &lt;int&gt;  &lt;int&gt;   &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 makeamericagreatagain       0    298 0.00141</span></span>
-<span><span class="co">#&gt; 2 trump2016                   3    412 0.00707</span></span>
-<span><span class="co">#&gt; 3 join                        1    157 0.00809</span></span>
-<span><span class="co">#&gt; 4 tomorrow                   24    101 0.206  </span></span>
-<span><span class="co">#&gt; 5 vote                       46     67 0.591  </span></span>
+<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-22_f3cec9a0171d86fff8510a3059ea8b76">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">android_vs_iphone</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Android</span> <span class="op">+</span> <span class="va">iPhone</span> <span class="op">&gt;=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">percent_diff</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 30 × 6</span></span>
+<span><span class="co">#&gt;   word                  Android iPhone       p_a     p_i percent_diff</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                   &lt;int&gt;  &lt;int&gt;     &lt;dbl&gt;   &lt;dbl&gt;        &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 makeamericagreatagain       0    298 0         0.0215        -200  </span></span>
+<span><span class="co">#&gt; 2 join                        1    157 0.0000620 0.0113        -198. </span></span>
+<span><span class="co">#&gt; 3 trump2016                   3    412 0.000186  0.0297        -198. </span></span>
+<span><span class="co">#&gt; 4 tomorrow                   24    101 0.00149   0.00729       -132. </span></span>
+<span><span class="co">#&gt; 5 vote                       46     67 0.00285   0.00484        -51.6</span></span>
 <span><span class="co">#&gt; # ℹ 25 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We already see somewhat of a pattern in the types of words that are being tweeted more from one device versus the other. However, we are not interested in specific words but rather in the tone. Vaziri’s assertion is that the Android tweets are more hyperbolic. So how can we check this with data? <em>Hyperbolic</em> is a hard sentiment to extract from words as it relies on interpreting phrases. However, words can be associated to more basic sentiment such as anger, fear, joy, and surprise. In the next section, we demonstrate basic sentiment analysis.</p>
@@ -624,21 +601,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">17.3</span> Sentiment analysis</h2>
 <p>In sentiment analysis, we assign a word to one or more “sentiments”. Although this approach will miss context-dependent sentiments, such as sarcasm, when performed on large numbers of words, summaries can provide insights.</p>
 <p>The first step in sentiment analysis is to assign a sentiment to each word. As we demonstrate, the <strong>tidytext</strong> package includes several maps or lexicons. We will also be using the <strong>textdata</strong> package.</p>
-<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-24_2a53546d95c6afd53dbffc91b271276c">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-23_4bf91a6d7e4985ee82270a1c20788845">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EmilHvitfeldt/textdata">textdata</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>bing</code> lexicon divides words into <code>positive</code> and <code>negative</code> sentiments. We can see this using the <em>tidytext</em> function <code>get_sentiments</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-25_8c5bbbb4d43a1f1fce13939200f3bcd2">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"bing"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-24_b7c037c4a0f0471fe50385ee4cce4e3d">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"bing"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>AFINN</code> lexicon assigns a score between -5 and 5, with -5 the most negative and 5 the most positive. Note that this lexicon needs to be downloaded the first time you call the function <code>get_sentiment</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-26_4aaa240d9d0f4d5a6fdaf774a8357934">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"afinn"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-25_b3de65e990395d8b08d8fa863acfa881">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"afinn"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>loughran</code> and <code>nrc</code> lexicons provide several different sentiments. Note that these also have to be downloaded the first time you use them.</p>
-<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-27_cbb18dacbb3f0efaebac28fbaac57bd1">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"loughran"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">sentiment</span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-26_509d212bbdb9221355fd4f14c5d187d2">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"loughran"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">sentiment</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 2</span></span>
 <span><span class="co">#&gt;   sentiment        n</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;        &lt;int&gt;</span></span>
@@ -649,8 +626,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">#&gt; 5 superfluous     56</span></span>
 <span><span class="co">#&gt; # ℹ 1 more row</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-28_f6cf8f93e6f8e16c830efba3654f1342">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"nrc"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">sentiment</span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-27_9fbc85ec4ac1afc9b346658ee3cd0a64">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"nrc"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">sentiment</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 10 × 2</span></span>
 <span><span class="co">#&gt;   sentiment        n</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;        &lt;int&gt;</span></span>
@@ -662,13 +639,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">#&gt; # ℹ 5 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For our analysis, we are interested in exploring the different sentiments of each tweet so we will use the <code>nrc</code> lexicon:</p>
-<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-29_7ca69b31875b1b51893a71745af23b7c">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nrc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"nrc"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-28_48dc434095e5a51ca2aba30b67754eba">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nrc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"nrc"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">sentiment</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can combine the words and sentiments using <code>inner_join</code>, which will only keep words associated with a sentiment. Here are 10 random words extracted from the tweets:</p>
-<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-30_ada609152896595cddc1fd71014fd58b">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tweet_words</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">nrc</span>, by <span class="op">=</span> <span class="st">"word"</span>, relationship <span class="op">=</span> <span class="st">"many-to-many"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-29_33103e59c4943181281d4bf8e21a9f9a">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tweet_words</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">nrc</span>, by <span class="op">=</span> <span class="st">"word"</span>, relationship <span class="op">=</span> <span class="st">"many-to-many"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">source</span>, <span class="va">word</span>, <span class="va">sentiment</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 5 × 3</span></span>
@@ -681,8 +658,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">#&gt; 5 iPhone  change   fear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we are ready to perform a quantitative analysis comparing Android and iPhone by comparing the sentiments of the tweets posted from each device. Here we could perform a tweet-by-tweet analysis, assigning a sentiment to each tweet. However, this will be challenging since each tweet will have several sentiments attached to it, one for each word appearing in the lexicon. For illustrative purposes, we will perform a much simpler analysis: we will count and compare the frequencies of each sentiment appearing in each device.</p>
-<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-31_dce6bd8e63b162ea22bd582fe3c7b039">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sentiment_counts</span> <span class="op">&lt;-</span> <span class="va">tweet_words</span> <span class="op">|&gt;</span></span>
+<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-30_388623a9fd90a9df1fb628f77331f8d4">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sentiment_counts</span> <span class="op">&lt;-</span> <span class="va">tweet_words</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">nrc</span>, by <span class="op">=</span> <span class="st">"word"</span>, relationship <span class="op">=</span> <span class="st">"many-to-many"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">source</span>, <span class="va">sentiment</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">"source"</span>, values_from <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -698,93 +675,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">#&gt; 5 joy              695    536</span></span>
 <span><span class="co">#&gt; # ℹ 6 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>For each sentiment, we can compute the odds of being in the device: proportion of words with sentiment versus proportion of words without, and then compute the odds ratio comparing the two devices.</p>
-<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-32_3fe04133e452f374dc561895f012fa5c">
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sentiment_counts</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Android <span class="op">=</span> <span class="va">Android</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Android</span><span class="op">)</span> <span class="op">-</span> <span class="va">Android</span><span class="op">)</span> , </span>
-<span>         iPhone <span class="op">=</span> <span class="va">iPhone</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">iPhone</span><span class="op">)</span> <span class="op">-</span> <span class="va">iPhone</span><span class="op">)</span>, </span>
-<span>         or <span class="op">=</span> <span class="va">Android</span><span class="op">/</span><span class="va">iPhone</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">or</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 11 × 4</span></span>
-<span><span class="co">#&gt;   sentiment Android iPhone    or</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 disgust    0.0299 0.0181  1.65</span></span>
-<span><span class="co">#&gt; 2 anger      0.0457 0.0307  1.49</span></span>
-<span><span class="co">#&gt; 3 negative   0.0814 0.0556  1.46</span></span>
-<span><span class="co">#&gt; 4 sadness    0.0427 0.0300  1.42</span></span>
-<span><span class="co">#&gt; 5 fear       0.0377 0.0283  1.33</span></span>
+<p>For each sentiment, we can compute the percent difference in proportion for Android compared to iPhone:</p>
+<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-31_44af93dff795a42ef7bec970127599c3">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sentiment_counts</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>p_a <span class="op">=</span> <span class="va">Android</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Android</span><span class="op">)</span> , </span>
+<span>         p_i <span class="op">=</span> <span class="va">iPhone</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">iPhone</span><span class="op">)</span>, </span>
+<span>         percent_diff <span class="op">=</span> <span class="op">(</span><span class="va">p_a</span> <span class="op">-</span> <span class="va">p_i</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="op">(</span><span class="va">p_a</span> <span class="op">+</span> <span class="va">p_i</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span> <span class="op">*</span> <span class="fl">100</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">percent_diff</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 11 × 6</span></span>
+<span><span class="co">#&gt;   sentiment Android iPhone    p_a    p_i percent_diff</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;        &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 disgust       639    314 0.0290 0.0178         48.1</span></span>
+<span><span class="co">#&gt; 2 anger         962    527 0.0437 0.0298         37.8</span></span>
+<span><span class="co">#&gt; 3 negative     1657    931 0.0753 0.0527         35.3</span></span>
+<span><span class="co">#&gt; 4 sadness       901    514 0.0409 0.0291         33.8</span></span>
+<span><span class="co">#&gt; 5 fear          799    486 0.0363 0.0275         27.6</span></span>
 <span><span class="co">#&gt; # ℹ 6 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>So we do see some differences and the order is interesting: the largest three sentiments are disgust, anger, and negative! But are these differences just due to chance? How does this compare if we are just assigning sentiments at random? To answer this question we can compute, for each sentiment, an odds ratio and a confidence interval. We will add the two values we need to form a two-by-two table and the odds ratio:</p>
-<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-33_d598ab212c9f8b6ced52844ee0e69de4">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span>
-<span><span class="va">log_or</span> <span class="op">&lt;-</span> <span class="va">sentiment_counts</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>log_or <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="op">(</span><span class="va">Android</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Android</span><span class="op">)</span> <span class="op">-</span> <span class="va">Android</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> </span>
-<span>      <span class="op">(</span><span class="va">iPhone</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">iPhone</span><span class="op">)</span> <span class="op">-</span> <span class="va">iPhone</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>          se <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="va">Android</span> <span class="op">+</span> <span class="fl">1</span><span class="op">/</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Android</span><span class="op">)</span> <span class="op">-</span> <span class="va">Android</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>                      <span class="fl">1</span><span class="op">/</span><span class="va">iPhone</span> <span class="op">+</span> <span class="fl">1</span><span class="op">/</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">iPhone</span><span class="op">)</span> <span class="op">-</span> <span class="va">iPhone</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>          conf.low <span class="op">=</span> <span class="va">log_or</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.975</span><span class="op">)</span><span class="op">*</span><span class="va">se</span>,</span>
-<span>          conf.high <span class="op">=</span> <span class="va">log_or</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.975</span><span class="op">)</span><span class="op">*</span><span class="va">se</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">log_or</span><span class="op">)</span><span class="op">)</span></span>
-<span>  </span>
-<span><span class="va">log_or</span></span>
-<span><span class="co">#&gt; # A tibble: 11 × 7</span></span>
-<span><span class="co">#&gt;   sentiment Android iPhone log_or     se conf.low conf.high</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 disgust       639    314  0.502 0.0697    0.366     0.639</span></span>
-<span><span class="co">#&gt; 2 anger         962    527  0.397 0.0552    0.288     0.505</span></span>
-<span><span class="co">#&gt; 3 negative     1657    931  0.381 0.0423    0.298     0.464</span></span>
-<span><span class="co">#&gt; 4 sadness       901    514  0.354 0.0562    0.244     0.464</span></span>
-<span><span class="co">#&gt; 5 fear          799    486  0.287 0.0584    0.172     0.401</span></span>
-<span><span class="co">#&gt; # ℹ 6 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>A graphical visualization shows some sentiments that are clearly overrepresented:</p>
-<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/tweets-log-odds-ratio_741cd5d96c8af3569ee0fe6c104697f4">
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">log_or</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>sentiment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">sentiment</span>, <span class="va">log_or</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sentiment</span>, ymin <span class="op">=</span> <span class="va">conf.low</span>, ymax <span class="op">=</span> <span class="va">conf.high</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">sentiment</span>, <span class="va">log_or</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Log odds ratio for association between Android and sentiment"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="text-mining_files/figure-html/tweets-log-odds-ratio-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>We see that the disgust, anger, negative, sadness, and fear sentiments are associated with the Android in a way that is hard to explain by chance alone. Words not associated to a sentiment were strongly associated with the iPhone source, which is in agreement with the original claim about hyperbolic tweets.</p>
+<p>So we do see some differences and the order is interesting: the largest three sentiments are disgust, anger, and negative!</p>
 <p>If we are interested in exploring which specific words are driving these differences, we can refer back to our <code>android_iphone_or</code> object:</p>
-<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-34_76f5c0af8ccffb0a0a46ae92693372ff">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">android_iphone_or</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">nrc</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sentiment</span> <span class="op">==</span> <span class="st">"disgust"</span> <span class="op">&amp;</span> <span class="va">Android</span> <span class="op">+</span> <span class="va">iPhone</span> <span class="op">&gt;</span> <span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">or</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Joining with `by = join_by(word)`</span></span>
-<span><span class="co">#&gt; # A tibble: 20 × 5</span></span>
-<span><span class="co">#&gt;   word    Android iPhone    or sentiment</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;     &lt;int&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;    </span></span>
-<span><span class="co">#&gt; 1 mess         15      2  5.33 disgust  </span></span>
-<span><span class="co">#&gt; 2 finally      12      2  4.30 disgust  </span></span>
-<span><span class="co">#&gt; 3 unfair       12      2  4.30 disgust  </span></span>
-<span><span class="co">#&gt; 4 bad         104     26  3.40 disgust  </span></span>
-<span><span class="co">#&gt; 5 lie          13      3  3.32 disgust  </span></span>
-<span><span class="co">#&gt; # ℹ 15 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-32_816fe055167d56819d394e09cacd220d">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">android_vs_iphone</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">nrc</span>, by <span class="op">=</span> <span class="st">"word"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sentiment</span> <span class="op">==</span> <span class="st">"disgust"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">percent_diff</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 157 × 7</span></span>
+<span><span class="co">#&gt;   word      Android iPhone       p_a   p_i percent_diff sentiment</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;    </span></span>
+<span><span class="co">#&gt; 1 abuse           1      0 0.0000620     0          200 disgust  </span></span>
+<span><span class="co">#&gt; 2 angry          10      0 0.000620      0          200 disgust  </span></span>
+<span><span class="co">#&gt; 3 arrogant        2      0 0.000124      0          200 disgust  </span></span>
+<span><span class="co">#&gt; 4 attacking       5      0 0.000310      0          200 disgust  </span></span>
+<span><span class="co">#&gt; 5 belittle        2      0 0.000124      0          200 disgust  </span></span>
+<span><span class="co">#&gt; # ℹ 152 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and we can make a graph:</p>
-<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/log-odds-by-word_026d89d9382b6fcdb9375f2d300e56e4">
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">android_iphone_or</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">nrc</span>, by <span class="op">=</span> <span class="st">"word"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>sentiment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">sentiment</span>, levels <span class="op">=</span> <span class="va">log_or</span><span class="op">$</span><span class="va">sentiment</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>log_or <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">or</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Android</span> <span class="op">+</span> <span class="va">iPhone</span> <span class="op">&gt;</span> <span class="fl">10</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">log_or</span><span class="op">)</span><span class="op">&gt;</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>word <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">log_or</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">log_or</span>, fill <span class="op">=</span> <span class="va">log_or</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">sentiment</span>, scales <span class="op">=</span> <span class="st">"free_x"</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/percent-diff-by-word_12172609754ce67f4e7bb1bedfcf67a1">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="text-mining_files/figure-html/log-odds-by-word-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="text-mining_files/figure-html/percent-diff-by-word-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -794,13 +722,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">17.4</span> Exercises</h2>
 <p>Project Gutenberg is a digital archive of public domain books. The R package <strong>gutenbergr</strong> facilitates the importation of these texts into R.</p>
 <p>You can install and load by typing:</p>
-<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-35_627f6a1fd2669770a9a226dbbf2b4c70">
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"gutenbergr"</span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-33_588d848226986bdd0ceeffa763474cc1">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"gutenbergr"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/gutenbergr/">gutenbergr</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can see the books that are available like this:</p>
-<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-36_53409c00e74b4371ddf4c90bed0d8d5f">
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gutenberg_metadata</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="text-mining_cache/html/unnamed-chunk-34_7d7245a9c1dbca78a777a890a8199ac9">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gutenberg_metadata</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>1. Use <code>str_detect</code> to find the ID of the novel <em>Pride and Prejudice</em>.</p>
 <p>2. We notice that there are several versions. The <code><a href="https://docs.ropensci.org/gutenbergr/reference/gutenberg_works.html">gutenberg_works()</a></code> function filters this table to remove replicates and include only English language works. Read the help file and use this function to find the ID for <em>Pride and Prejudice</em>.</p>
@@ -846,9 +774,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -913,6 +855,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -965,6 +993,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Introduction to Data Science was written by Rafael A. Irizarry</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>

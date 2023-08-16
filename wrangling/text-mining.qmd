@@ -2,7 +2,6 @@
 
 With the exception of labels used to represent categorical data, we have focused on numerical data. But in many applications, data starts as text. Well-known examples are spam filtering, cyber-crime prevention, counter-terrorism and sentiment analysis. In all these cases, the raw data is composed of free form text. Our task is to extract insights from these data. In this section, we learn how to generate useful numerical summaries from text data to which we can apply some of the powerful data visualization and analysis techniques we have learned.  
 
-
 ## Case study: Trump tweets
 
 During the 2016 US presidential election, then candidate Donald J. Trump used his twitter account as a way to communicate with potential voters. On August 6, 2016, Todd Vaziri tweeted^[https://twitter.com/tvaziri/status/762005541388378112/photo/1] about Trump that "Every non-hyperbolic tweet is from iPhone (his staff). Every hyperbolic tweet is from Android (from him)." 
@@ -191,36 +190,31 @@ tweet_words <- campaign_tweets |>
 
 Now that we have all our words in a table, along with information about what device was used to compose the tweet they came from, we can start exploring which words are more common when comparing Android to iPhone. 
 
-For each word, we want to know if it is more likely to come from an Android tweet or an iPhone tweet. Odds ratio are a summary statistic useful for quantifying these differences. .For each device and a given word, let's call it `y`, we compute the odds or the ratio between the proportion of words that are `y` and not `y` and compute the ratio of those odds. Here we will have many proportions that are 0, so we use the 0.5 correction. You can learn more about odds ratio in an statistics or epidemiology textbook.
+For each word, we want to know if it is more likely to come from an Android tweet or an iPhone tweet. We therefore compute, for each word, what proportion of all words it represent for Android and iPhone, respectively. 
+
 
 ```{r}
-android_iphone_or <- tweet_words |>
+android_vs_iphone <- tweet_words |>
   count(word, source) |>
   pivot_wider(names_from = "source", values_from = "n", values_fill = 0) |>
-  mutate(or = (Android + 0.5) / (sum(Android) - Android + 0.5) / 
-           ( (iPhone + 0.5) / (sum(iPhone) - iPhone + 0.5)))
+  mutate(p_a = Android / sum(Android), p_i = iPhone / sum(iPhone),
+         percent_diff = (p_a - p_i) / ((p_a + p_i)/2) * 100)
 ```
 
-Here are the highest odds ratios for Android
+
+
+For words appearing at least 100 times in total, here are the highest percent differences for Android
 
 ```{r}
-android_iphone_or |> arrange(desc(or))
+android_vs_iphone |> filter(Android + iPhone >= 100) |>
+  arrange(desc(percent_diff))
 ```
 
 and the top for iPhone:
 ```{r}
-android_iphone_or |> arrange(or)
+android_vs_iphone |> filter(Android + iPhone >= 100) |> 
+  arrange(percent_diff)
 ```  
-
-Given that several of these words are overall low frequency words, we can impose a filter based on the total frequency like this:
-
-```{r}
-android_iphone_or |> filter(Android+iPhone > 100) |>
-  arrange(desc(or))
-
-android_iphone_or |> filter(Android+iPhone > 100) |>
-  arrange(or)
-```
 
 We already see somewhat of a pattern in the types of words that are being tweeted more from one device versus the other. However, we are not interested in specific words but rather in the tone. Vaziri's assertion is that the Android tweets are more hyperbolic. So how can we check this with data? _Hyperbolic_ is a hard sentiment to extract from words as it relies on interpreting phrases. However, words can be associated to more basic sentiment such as anger, fear, joy, and surprise. In the next section, we demonstrate basic sentiment analysis. 
 
@@ -285,65 +279,43 @@ sentiment_counts <- tweet_words |>
 sentiment_counts
 ```
 
-For each sentiment, we can compute the odds of being in the device: proportion of words with sentiment versus proportion of words without, and then compute the odds ratio comparing the two devices.
+For each sentiment, we can compute the percent difference in proportion for Android compared to iPhone:
 
 ```{r}
 sentiment_counts |>
-  mutate(Android = Android / (sum(Android) - Android) , 
-         iPhone = iPhone / (sum(iPhone) - iPhone), 
-         or = Android/iPhone) |>
-  arrange(desc(or))
+  mutate(p_a = Android / sum(Android) , 
+         p_i = iPhone / sum(iPhone), 
+         percent_diff = (p_a - p_i) / ((p_a + p_i)/2) * 100) |>
+  arrange(desc(percent_diff))
 ```
  
-So we do see some differences and the order is interesting: the largest three sentiments are disgust, anger, and negative! But are these differences just due to chance? How does this compare if we are just assigning sentiments at random? To answer this question we can compute, for each sentiment, an odds ratio and a confidence interval. We will add the two values we need to form a two-by-two table and the odds ratio:
-
-```{r}
-library(broom)
-log_or <- sentiment_counts |>
-  mutate(log_or = log((Android / (sum(Android) - Android)) / 
-      (iPhone / (sum(iPhone) - iPhone))),
-          se = sqrt(1/Android + 1/(sum(Android) - Android) + 
-                      1/iPhone + 1/(sum(iPhone) - iPhone)),
-          conf.low = log_or - qnorm(0.975)*se,
-          conf.high = log_or + qnorm(0.975)*se) |>
-  arrange(desc(log_or))
-  
-log_or
-```
-
-A graphical visualization shows some sentiments that are clearly overrepresented:
-
-```{r tweets-log-odds-ratio}
-log_or |>
-  mutate(sentiment = reorder(sentiment, log_or)) |>
-  ggplot(aes(x = sentiment, ymin = conf.low, ymax = conf.high)) +
-  geom_errorbar() +
-  geom_point(aes(sentiment, log_or)) +
-  ylab("Log odds ratio for association between Android and sentiment") +
-  coord_flip() 
-```
-
-We see that the disgust, anger, negative, sadness, and fear sentiments are associated with the Android in a way that is hard to explain by chance alone. Words not associated to a sentiment were strongly associated with the iPhone source, which is in agreement with the original claim about hyperbolic tweets.
+So we do see some differences and the order is interesting: the largest three sentiments are disgust, anger, and negative! 
 
 If we are interested in exploring which specific words are driving these differences, we can refer  back to our `android_iphone_or` object:
 
 ```{r}
-android_iphone_or |> inner_join(nrc) |>
-  filter(sentiment == "disgust" & Android + iPhone > 10) |>
-  arrange(desc(or))
+android_vs_iphone |> inner_join(nrc, by = "word") |>
+  filter(sentiment == "disgust") |>
+  arrange(desc(percent_diff))
 ``` 
 
 and we can make a graph:
 
-```{r log-odds-by-word, out.width="100%"}
-android_iphone_or |> inner_join(nrc, by = "word") |>
-  mutate(sentiment = factor(sentiment, levels = log_or$sentiment)) |>
-  mutate(log_or = log(or)) |>
-  filter(Android + iPhone > 10 & abs(log_or)>1) |>
-  mutate(word = reorder(word, log_or)) |>
-  ggplot(aes(word, log_or, fill = log_or < 0)) +
+```{r percent-diff-by-word, out.width="100%", echo=FALSE}
+levels <- sentiment_counts |>
+  mutate(p_a = Android / sum(Android) , 
+         p_i = iPhone / sum(iPhone), 
+         percent_diff = (p_a - p_i) / ((p_a + p_i)/2) * 100) |>
+  arrange(desc(percent_diff)) |>
+  pull(sentiment)
+
+android_vs_iphone |> inner_join(nrc, by = "word") |>
+  mutate(sentiment = factor(sentiment, levels = levels)) |>
+  filter(Android + iPhone > 25 & abs(percent_diff) > 25) |>
+  mutate(word = reorder(word, percent_diff)) |>
+  ggplot(aes(word, percent_diff, fill = percent_diff < 0)) +
   facet_wrap(~sentiment, scales = "free_x", nrow = 2) + 
-  geom_bar(stat="identity", show.legend = FALSE) +
+  geom_col(show.legend = FALSE) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
 ```
 

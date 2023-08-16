@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.353">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
 <title>Introduction to Data Science - 2&nbsp; R basics</title>
@@ -15,9 +15,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -44,43 +45,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -120,26 +91,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script><script src="../site_libs/kePrint-0.0.1/kePrint.js"></script><link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
 <body class="nav-sidebar floating">
 
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../R/intro-to-R.html">R</a></li><li class="breadcrumb-item"><a href="../R/R-basics.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Introduction to Data Science</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
-  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -147,264 +123,294 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  <a href="../intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../R/intro-to-R.html" class="sidebar-item-text sidebar-link">R</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a href="../R/intro-to-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/getting-started.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with R and RStudio</span></a>
+  <a href="../R/getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with R and RStudio</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/R-basics.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></a>
+  <a href="../R/R-basics.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/programming-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Programming basics</span></a>
+  <a href="../R/programming-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Programming basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/tidyverse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The tidyverse</span></a>
+  <a href="../R/tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The tidyverse</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/importing-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importing data</span></a>
+  <a href="../R/importing-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importing data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/data_table.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">data.table</span></a>
+  <a href="../R/data_table.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">data.table</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../dataviz/intro-dataviz.html" class="sidebar-item-text sidebar-link">Data Visualization</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a href="../dataviz/intro-dataviz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Visualization</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataviz/ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></a>
+  <a href="../dataviz/ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataviz/distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></a>
+  <a href="../dataviz/distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataviz/gapminder.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization in practice</span></a>
+  <a href="../dataviz/gapminder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization in practice</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataviz/dataviz-principles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data visualization principles</span></a>
+  <a href="../dataviz/dataviz-principles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data visualization principles</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataviz/vaccines.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Case study: vaccines and infectious diseases</span></a>
+  <a href="../dataviz/vaccines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Case study: vaccines and infectious diseases</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../wrangling/intro-to-wrangling.html" class="sidebar-item-text sidebar-link">Data Wrangling</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a href="../wrangling/intro-to-wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../wrangling/reshaping-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></a>
+  <a href="../wrangling/reshaping-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../wrangling/joining-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Joining tables</span></a>
+  <a href="../wrangling/joining-tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Joining tables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web scraping</span></a>
+  <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web scraping</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">String processing</span></a>
+  <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">String processing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../wrangling/dates-and-times.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></a>
+  <a href="../wrangling/dates-and-times.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../wrangling/text-mining.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text mining</span></a>
+  <a href="../wrangling/text-mining.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text mining</span></span></a>
   </div>
 </li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../productivity/intro-productivity.html" class="sidebar-item-text sidebar-link">Productivity Tools</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a href="../productivity/intro-productivity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Productivity Tools</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/installing-r-and-rstudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Installing R and RStudio</span></a>
+  <a href="../R/installing-r-and-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Installing R and RStudio</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Accessing the terminal and installing Git</span></a>
+  <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Accessing the terminal and installing Git</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../productivity/unix.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></a>
+  <a href="../productivity/unix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../productivity/git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Git and GitHub</span></a>
+  <a href="../productivity/git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Git and GitHub</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../productivity/reproducible-projects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects with markdown</span></a>
+  <a href="../productivity/reproducible-projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects with markdown</span></span></a>
   </div>
 </li>
       </ul>
 </li>
     </ul>
 </div>
-</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#case-study-us-gun-murders" id="toc-case-study-us-gun-murders" class="nav-link active" data-scroll-target="#case-study-us-gun-murders"><span class="toc-section-number">2.1</span>  Case study: US Gun Murders</a></li>
+<li><a href="#case-study-us-gun-murders" id="toc-case-study-us-gun-murders" class="nav-link active" data-scroll-target="#case-study-us-gun-murders"><span class="header-section-number">2.1</span> Case study: US Gun Murders</a></li>
   <li>
-<a href="#the-very-basics" id="toc-the-very-basics" class="nav-link" data-scroll-target="#the-very-basics"><span class="toc-section-number">2.2</span>  The very basics</a>
+<a href="#the-very-basics" id="toc-the-very-basics" class="nav-link" data-scroll-target="#the-very-basics"><span class="header-section-number">2.2</span> The very basics</a>
   <ul class="collapse">
-<li><a href="#objects" id="toc-objects" class="nav-link" data-scroll-target="#objects"><span class="toc-section-number">2.2.1</span>  Objects</a></li>
-  <li><a href="#the-workspace" id="toc-the-workspace" class="nav-link" data-scroll-target="#the-workspace"><span class="toc-section-number">2.2.2</span>  The workspace</a></li>
-  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="toc-section-number">2.2.3</span>  Functions</a></li>
-  <li><a href="#other-prebuilt-objects" id="toc-other-prebuilt-objects" class="nav-link" data-scroll-target="#other-prebuilt-objects"><span class="toc-section-number">2.2.4</span>  Other prebuilt objects</a></li>
-  <li><a href="#variable-names" id="toc-variable-names" class="nav-link" data-scroll-target="#variable-names"><span class="toc-section-number">2.2.5</span>  Variable names</a></li>
-  <li><a href="#saving-your-workspace" id="toc-saving-your-workspace" class="nav-link" data-scroll-target="#saving-your-workspace"><span class="toc-section-number">2.2.6</span>  Saving your workspace</a></li>
-  <li><a href="#motivating-scripts" id="toc-motivating-scripts" class="nav-link" data-scroll-target="#motivating-scripts"><span class="toc-section-number">2.2.7</span>  Motivating scripts</a></li>
-  <li><a href="#commenting-your-code" id="toc-commenting-your-code" class="nav-link" data-scroll-target="#commenting-your-code"><span class="toc-section-number">2.2.8</span>  Commenting your code</a></li>
+<li><a href="#objects" id="toc-objects" class="nav-link" data-scroll-target="#objects"><span class="header-section-number">2.2.1</span> Objects</a></li>
+  <li><a href="#the-workspace" id="toc-the-workspace" class="nav-link" data-scroll-target="#the-workspace"><span class="header-section-number">2.2.2</span> The workspace</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="header-section-number">2.2.3</span> Functions</a></li>
+  <li><a href="#other-prebuilt-objects" id="toc-other-prebuilt-objects" class="nav-link" data-scroll-target="#other-prebuilt-objects"><span class="header-section-number">2.2.4</span> Other prebuilt objects</a></li>
+  <li><a href="#variable-names" id="toc-variable-names" class="nav-link" data-scroll-target="#variable-names"><span class="header-section-number">2.2.5</span> Variable names</a></li>
+  <li><a href="#saving-your-workspace" id="toc-saving-your-workspace" class="nav-link" data-scroll-target="#saving-your-workspace"><span class="header-section-number">2.2.6</span> Saving your workspace</a></li>
+  <li><a href="#motivating-scripts" id="toc-motivating-scripts" class="nav-link" data-scroll-target="#motivating-scripts"><span class="header-section-number">2.2.7</span> Motivating scripts</a></li>
+  <li><a href="#commenting-your-code" id="toc-commenting-your-code" class="nav-link" data-scroll-target="#commenting-your-code"><span class="header-section-number">2.2.8</span> Commenting your code</a></li>
   </ul>
 </li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">2.3</span>  Exercises</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">2.3</span> Exercises</a></li>
   <li>
-<a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"><span class="toc-section-number">2.4</span>  Data types</a>
+<a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"><span class="header-section-number">2.4</span> Data types</a>
   <ul class="collapse">
-<li><a href="#sec-data-frames" id="toc-sec-data-frames" class="nav-link" data-scroll-target="#sec-data-frames"><span class="toc-section-number">2.4.1</span>  Data frames</a></li>
-  <li><a href="#examining-an-object" id="toc-examining-an-object" class="nav-link" data-scroll-target="#examining-an-object"><span class="toc-section-number">2.4.2</span>  Examining an object</a></li>
-  <li><a href="#the-accessor" id="toc-the-accessor" class="nav-link" data-scroll-target="#the-accessor"><span class="toc-section-number">2.4.3</span>  The accessor: <code>$</code></a></li>
-  <li><a href="#vectors-numerics-characters-and-logical" id="toc-vectors-numerics-characters-and-logical" class="nav-link" data-scroll-target="#vectors-numerics-characters-and-logical"><span class="toc-section-number">2.4.4</span>  Vectors: numerics, characters, and logical</a></li>
-  <li><a href="#sec-factors" id="toc-sec-factors" class="nav-link" data-scroll-target="#sec-factors"><span class="toc-section-number">2.4.5</span>  Factors</a></li>
-  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="toc-section-number">2.4.6</span>  Lists</a></li>
-  <li><a href="#sec-matrices" id="toc-sec-matrices" class="nav-link" data-scroll-target="#sec-matrices"><span class="toc-section-number">2.4.7</span>  Matrices</a></li>
+<li><a href="#sec-data-frames" id="toc-sec-data-frames" class="nav-link" data-scroll-target="#sec-data-frames"><span class="header-section-number">2.4.1</span> Data frames</a></li>
+  <li><a href="#examining-an-object" id="toc-examining-an-object" class="nav-link" data-scroll-target="#examining-an-object"><span class="header-section-number">2.4.2</span> Examining an object</a></li>
+  <li><a href="#the-accessor" id="toc-the-accessor" class="nav-link" data-scroll-target="#the-accessor"><span class="header-section-number">2.4.3</span> The accessor: <code>$</code></a></li>
+  <li><a href="#vectors-numerics-characters-and-logical" id="toc-vectors-numerics-characters-and-logical" class="nav-link" data-scroll-target="#vectors-numerics-characters-and-logical"><span class="header-section-number">2.4.4</span> Vectors: numerics, characters, and logical</a></li>
+  <li><a href="#sec-factors" id="toc-sec-factors" class="nav-link" data-scroll-target="#sec-factors"><span class="header-section-number">2.4.5</span> Factors</a></li>
+  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">2.4.6</span> Lists</a></li>
+  <li><a href="#sec-matrices" id="toc-sec-matrices" class="nav-link" data-scroll-target="#sec-matrices"><span class="header-section-number">2.4.7</span> Matrices</a></li>
   </ul>
 </li>
-  <li><a href="#exercises-1" id="toc-exercises-1" class="nav-link" data-scroll-target="#exercises-1"><span class="toc-section-number">2.5</span>  Exercises</a></li>
+  <li><a href="#exercises-1" id="toc-exercises-1" class="nav-link" data-scroll-target="#exercises-1"><span class="header-section-number">2.5</span> Exercises</a></li>
   <li>
-<a href="#sec-vectors" id="toc-sec-vectors" class="nav-link" data-scroll-target="#sec-vectors"><span class="toc-section-number">2.6</span>  Vectors</a>
+<a href="#sec-vectors" id="toc-sec-vectors" class="nav-link" data-scroll-target="#sec-vectors"><span class="header-section-number">2.6</span> Vectors</a>
   <ul class="collapse">
-<li><a href="#creating-vectors" id="toc-creating-vectors" class="nav-link" data-scroll-target="#creating-vectors"><span class="toc-section-number">2.6.1</span>  Creating vectors</a></li>
-  <li><a href="#names" id="toc-names" class="nav-link" data-scroll-target="#names"><span class="toc-section-number">2.6.2</span>  Names</a></li>
-  <li><a href="#sequences" id="toc-sequences" class="nav-link" data-scroll-target="#sequences"><span class="toc-section-number">2.6.3</span>  Sequences</a></li>
-  <li><a href="#subsetting" id="toc-subsetting" class="nav-link" data-scroll-target="#subsetting"><span class="toc-section-number">2.6.4</span>  Subsetting</a></li>
+<li><a href="#creating-vectors" id="toc-creating-vectors" class="nav-link" data-scroll-target="#creating-vectors"><span class="header-section-number">2.6.1</span> Creating vectors</a></li>
+  <li><a href="#names" id="toc-names" class="nav-link" data-scroll-target="#names"><span class="header-section-number">2.6.2</span> Names</a></li>
+  <li><a href="#sequences" id="toc-sequences" class="nav-link" data-scroll-target="#sequences"><span class="header-section-number">2.6.3</span> Sequences</a></li>
+  <li><a href="#subsetting" id="toc-subsetting" class="nav-link" data-scroll-target="#subsetting"><span class="header-section-number">2.6.4</span> Subsetting</a></li>
   </ul>
 </li>
-  <li><a href="#coercion" id="toc-coercion" class="nav-link" data-scroll-target="#coercion"><span class="toc-section-number">2.7</span>  Coercion</a></li>
-  <li><a href="#not-availables-na" id="toc-not-availables-na" class="nav-link" data-scroll-target="#not-availables-na"><span class="toc-section-number">2.8</span>  Not availables (NA)</a></li>
-  <li><a href="#exercises-2" id="toc-exercises-2" class="nav-link" data-scroll-target="#exercises-2"><span class="toc-section-number">2.9</span>  Exercises</a></li>
+  <li><a href="#coercion" id="toc-coercion" class="nav-link" data-scroll-target="#coercion"><span class="header-section-number">2.7</span> Coercion</a></li>
+  <li><a href="#not-availables-na" id="toc-not-availables-na" class="nav-link" data-scroll-target="#not-availables-na"><span class="header-section-number">2.8</span> Not availables (NA)</a></li>
+  <li><a href="#exercises-2" id="toc-exercises-2" class="nav-link" data-scroll-target="#exercises-2"><span class="header-section-number">2.9</span> Exercises</a></li>
   <li>
-<a href="#sorting" id="toc-sorting" class="nav-link" data-scroll-target="#sorting"><span class="toc-section-number">2.10</span>  Sorting</a>
+<a href="#sorting" id="toc-sorting" class="nav-link" data-scroll-target="#sorting"><span class="header-section-number">2.10</span> Sorting</a>
   <ul class="collapse">
-<li><a href="#sort" id="toc-sort" class="nav-link" data-scroll-target="#sort"><span class="toc-section-number">2.10.1</span>  <code>sort</code></a></li>
-  <li><a href="#order" id="toc-order" class="nav-link" data-scroll-target="#order"><span class="toc-section-number">2.10.2</span>  <code>order</code></a></li>
-  <li><a href="#max-and-which.max" id="toc-max-and-which.max" class="nav-link" data-scroll-target="#max-and-which.max"><span class="toc-section-number">2.10.3</span>  <code>max</code> and <code>which.max</code></a></li>
-  <li><a href="#rank" id="toc-rank" class="nav-link" data-scroll-target="#rank"><span class="toc-section-number">2.10.4</span>  <code>rank</code></a></li>
-  <li><a href="#beware-of-recycling" id="toc-beware-of-recycling" class="nav-link" data-scroll-target="#beware-of-recycling"><span class="toc-section-number">2.10.5</span>  Beware of recycling</a></li>
+<li><a href="#sort" id="toc-sort" class="nav-link" data-scroll-target="#sort"><span class="header-section-number">2.10.1</span> <code>sort</code></a></li>
+  <li><a href="#order" id="toc-order" class="nav-link" data-scroll-target="#order"><span class="header-section-number">2.10.2</span> <code>order</code></a></li>
+  <li><a href="#max-and-which.max" id="toc-max-and-which.max" class="nav-link" data-scroll-target="#max-and-which.max"><span class="header-section-number">2.10.3</span> <code>max</code> and <code>which.max</code></a></li>
+  <li><a href="#rank" id="toc-rank" class="nav-link" data-scroll-target="#rank"><span class="header-section-number">2.10.4</span> <code>rank</code></a></li>
+  <li><a href="#beware-of-recycling" id="toc-beware-of-recycling" class="nav-link" data-scroll-target="#beware-of-recycling"><span class="header-section-number">2.10.5</span> Beware of recycling</a></li>
   </ul>
 </li>
-  <li><a href="#exercises-3" id="toc-exercises-3" class="nav-link" data-scroll-target="#exercises-3"><span class="toc-section-number">2.11</span>  Exercises</a></li>
+  <li><a href="#exercises-3" id="toc-exercises-3" class="nav-link" data-scroll-target="#exercises-3"><span class="header-section-number">2.11</span> Exercises</a></li>
   <li>
-<a href="#vector-arithmetics" id="toc-vector-arithmetics" class="nav-link" data-scroll-target="#vector-arithmetics"><span class="toc-section-number">2.12</span>  Vector arithmetics</a>
+<a href="#vector-arithmetics" id="toc-vector-arithmetics" class="nav-link" data-scroll-target="#vector-arithmetics"><span class="header-section-number">2.12</span> Vector arithmetics</a>
   <ul class="collapse">
-<li><a href="#rescaling-a-vector" id="toc-rescaling-a-vector" class="nav-link" data-scroll-target="#rescaling-a-vector"><span class="toc-section-number">2.12.1</span>  Rescaling a vector</a></li>
-  <li><a href="#two-vectors" id="toc-two-vectors" class="nav-link" data-scroll-target="#two-vectors"><span class="toc-section-number">2.12.2</span>  Two vectors</a></li>
+<li><a href="#rescaling-a-vector" id="toc-rescaling-a-vector" class="nav-link" data-scroll-target="#rescaling-a-vector"><span class="header-section-number">2.12.1</span> Rescaling a vector</a></li>
+  <li><a href="#two-vectors" id="toc-two-vectors" class="nav-link" data-scroll-target="#two-vectors"><span class="header-section-number">2.12.2</span> Two vectors</a></li>
   </ul>
 </li>
-  <li><a href="#exercises-4" id="toc-exercises-4" class="nav-link" data-scroll-target="#exercises-4"><span class="toc-section-number">2.13</span>  Exercises</a></li>
+  <li><a href="#exercises-4" id="toc-exercises-4" class="nav-link" data-scroll-target="#exercises-4"><span class="header-section-number">2.13</span> Exercises</a></li>
   <li>
-<a href="#indexing" id="toc-indexing" class="nav-link" data-scroll-target="#indexing"><span class="toc-section-number">2.14</span>  Indexing</a>
+<a href="#indexing" id="toc-indexing" class="nav-link" data-scroll-target="#indexing"><span class="header-section-number">2.14</span> Indexing</a>
   <ul class="collapse">
-<li><a href="#subsetting-with-logicals" id="toc-subsetting-with-logicals" class="nav-link" data-scroll-target="#subsetting-with-logicals"><span class="toc-section-number">2.14.1</span>  Subsetting with logicals</a></li>
-  <li><a href="#logical-operators" id="toc-logical-operators" class="nav-link" data-scroll-target="#logical-operators"><span class="toc-section-number">2.14.2</span>  Logical operators</a></li>
-  <li><a href="#which" id="toc-which" class="nav-link" data-scroll-target="#which"><span class="toc-section-number">2.14.3</span>  <code>which</code></a></li>
-  <li><a href="#match" id="toc-match" class="nav-link" data-scroll-target="#match"><span class="toc-section-number">2.14.4</span>  <code>match</code></a></li>
-  <li><a href="#in" id="toc-in" class="nav-link" data-scroll-target="#in"><span class="toc-section-number">2.14.5</span>  <code>%in%</code></a></li>
+<li><a href="#subsetting-with-logicals" id="toc-subsetting-with-logicals" class="nav-link" data-scroll-target="#subsetting-with-logicals"><span class="header-section-number">2.14.1</span> Subsetting with logicals</a></li>
+  <li><a href="#logical-operators" id="toc-logical-operators" class="nav-link" data-scroll-target="#logical-operators"><span class="header-section-number">2.14.2</span> Logical operators</a></li>
+  <li><a href="#which" id="toc-which" class="nav-link" data-scroll-target="#which"><span class="header-section-number">2.14.3</span> <code>which</code></a></li>
+  <li><a href="#match" id="toc-match" class="nav-link" data-scroll-target="#match"><span class="header-section-number">2.14.4</span> <code>match</code></a></li>
+  <li><a href="#in" id="toc-in" class="nav-link" data-scroll-target="#in"><span class="header-section-number">2.14.5</span> <code>%in%</code></a></li>
   </ul>
 </li>
-  <li><a href="#exercises-5" id="toc-exercises-5" class="nav-link" data-scroll-target="#exercises-5"><span class="toc-section-number">2.15</span>  Exercises</a></li>
+  <li><a href="#exercises-5" id="toc-exercises-5" class="nav-link" data-scroll-target="#exercises-5"><span class="header-section-number">2.15</span> Exercises</a></li>
   <li>
-<a href="#basic-plots" id="toc-basic-plots" class="nav-link" data-scroll-target="#basic-plots"><span class="toc-section-number">2.16</span>  Basic plots</a>
+<a href="#basic-plots" id="toc-basic-plots" class="nav-link" data-scroll-target="#basic-plots"><span class="header-section-number">2.16</span> Basic plots</a>
   <ul class="collapse">
-<li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot"><span class="toc-section-number">2.16.1</span>  <code>plot</code></a></li>
-  <li><a href="#hist" id="toc-hist" class="nav-link" data-scroll-target="#hist"><span class="toc-section-number">2.16.2</span>  <code>hist</code></a></li>
-  <li><a href="#boxplot" id="toc-boxplot" class="nav-link" data-scroll-target="#boxplot"><span class="toc-section-number">2.16.3</span>  <code>boxplot</code></a></li>
-  <li><a href="#image" id="toc-image" class="nav-link" data-scroll-target="#image"><span class="toc-section-number">2.16.4</span>  <code>image</code></a></li>
+<li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot"><span class="header-section-number">2.16.1</span> <code>plot</code></a></li>
+  <li><a href="#hist" id="toc-hist" class="nav-link" data-scroll-target="#hist"><span class="header-section-number">2.16.2</span> <code>hist</code></a></li>
+  <li><a href="#boxplot" id="toc-boxplot" class="nav-link" data-scroll-target="#boxplot"><span class="header-section-number">2.16.3</span> <code>boxplot</code></a></li>
+  <li><a href="#image" id="toc-image" class="nav-link" data-scroll-target="#image"><span class="header-section-number">2.16.4</span> <code>image</code></a></li>
   </ul>
 </li>
-  <li><a href="#exercises-6" id="toc-exercises-6" class="nav-link" data-scroll-target="#exercises-6"><span class="toc-section-number">2.17</span>  Exercises</a></li>
+  <li><a href="#exercises-6" id="toc-exercises-6" class="nav-link" data-scroll-target="#exercises-6"><span class="header-section-number">2.17</span> Exercises</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/edit/main/R/R-basics.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-r-basics" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></span></h1>
+<h1 class="title"><span id="sec-r-basics" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></span></h1>
 </div>
 
 
@@ -417,10 +423,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header><div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-1_5181c4ac3ef380d42dd4f8445ba09c85">
-
-</div>
-<p>In this book, we will be using the R software environment for all our analysis. You will learn R and data analysis techniques simultaneously. To follow along you will therefore need access to R. We also recommend the use of an <em>integrated development environment</em> (IDE), such as RStudio, to save your work. Note that it is common for a course or workshop to offer access to an R environment and an IDE through your web browser, as done by RStudio cloud<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. If you have access to such a resource, you don’t need to install R and RStudio. However, if you intend on becoming an advanced data analyst, we highly recommend installing these tools on your computer<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Both R and RStudio are free and available online.</p>
+</header><p>In this book, we will be using the R software environment for all our analysis. You will learn R and data analysis techniques simultaneously. To follow along you will therefore need access to R. We also recommend the use of an <em>integrated development environment</em> (IDE), such as RStudio, to save your work. Note that it is common for a course or workshop to offer access to an R environment and an IDE through your web browser, as done by RStudio cloud<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. If you have access to such a resource, you don’t need to install R and RStudio. However, if you intend on becoming an advanced data analyst, we highly recommend installing these tools on your computer<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Both R and RStudio are free and available online.</p>
 <section id="case-study-us-gun-murders" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="case-study-us-gun-murders">
 <span class="header-section-number">2.1</span> Case study: US Gun Murders</h2>
 <p>Imagine you live in Europe and are offered a job in a US company with many locations across all states. It is a great job, but news with headlines such as <strong>US Gun Homicide Rate Higher Than Other Developed Countries</strong><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> have you worried. Charts like this may concern you even more:</p>
@@ -488,7 +491,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As we define objects in the console, we are actually changing the <em>workspace</em>. You can see all the variables saved in your workspace by typing:</p>
 <div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-5_cd9f10c16d1b2a2ba6eb3f47b0eedc1b">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "a"        "b"        "c"        "dat"      "img_path" "murders"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "a"               "b"               "c"              </span></span>
+<span><span class="co">#&gt; [4] "dat"             "has_annotations" "img_path"       </span></span>
+<span><span class="co">#&gt; [7] "murders"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In RStudio, the <em>Environment</em> tab shows the values:</p>
 <div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-6_fdd7760e29fb6b7f84cb1ea2326fe835">
@@ -579,9 +584,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="other-prebuilt-objects" class="level3" data-number="2.2.4"><h3 data-number="2.2.4" class="anchored" data-anchor-id="other-prebuilt-objects">
 <span class="header-section-number">2.2.4</span> Other prebuilt objects</h3>
 <p>There are several datasets that are included for users to practice and test out functions. You can see all the available datasets by typing:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-21_1a57ce5ec9fd21281d4e423199a8593e">
-
-</div>
 <p>This shows you the object name for these datasets. These datasets are objects that can be used by simply typing the name. For example, if you type:</p>
 <div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-22_ec8ac6f6852f7108bfdfebab82e54233">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">co2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -684,9 +686,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="examining-an-object" class="level3" data-number="2.4.2"><h3 data-number="2.4.2" class="anchored" data-anchor-id="examining-an-object">
 <span class="header-section-number">2.4.2</span> Examining an object</h3>
 <p>The function <code>str</code> is useful for finding out more about the structure of an object:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-31_003a28d9ceafa2ba53292bb0cef978ad">
-
-</div>
 <div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-32_61a11973295a6e91f3bbd96aed57025a">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">murders</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    51 obs. of  5 variables:</span></span>
@@ -696,9 +695,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="co">#&gt;    2 ...</span></span>
 <span><span class="co">#&gt; $ population: num 4779736 710231 6392017 2915918 37253956 ...</span></span>
 <span><span class="co">#&gt; $ total : num 135 19 232 93 1257 ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-33_bd88d3834d3b012705d6ebf56684f229">
-
 </div>
 <p>This tells us much more about the object. We see that the table has 51 rows (50 states plus DC) and five variables. We can show the first six lines using the function <code>head</code>:</p>
 <div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-34_ef4dd3dae73a019f10c5624bb06bc6bf">
@@ -1197,45 +1193,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To summarize, let’s look at the results of the three functions we have introduced:</p>
 <div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-94_f536baeeac108d141a2c2c63a062e126">
 <div class="cell-output-display">
-
-<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead><tr>
-<th style="text-align:right;"> original </th>
-   <th style="text-align:right;"> sort </th>
-   <th style="text-align:right;"> order </th>
-   <th style="text-align:right;"> rank </th>
-  </tr></thead>
+<table class="table table-striped table-sm small" data-quarto-postprocess="true">
+<thead><tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">original</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">sort</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">order</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">rank</th>
+</tr></thead>
 <tbody>
-<tr>
-<td style="text-align:right;"> 31 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-<tr>
-<td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 15 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-<tr>
-<td style="text-align:right;"> 15 </td>
-   <td style="text-align:right;"> 31 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-<tr>
-<td style="text-align:right;"> 92 </td>
-   <td style="text-align:right;"> 65 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-<tr>
-<td style="text-align:right;"> 65 </td>
-   <td style="text-align:right;"> 92 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1590,9 +1585,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1657,6 +1666,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1709,6 +1804,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Introduction to Data Science was written by Rafael A. Irizarry</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>
