@@ -23,7 +23,7 @@ Most of the examples will come from the second case study which deals with self-
 
 ## The stringr package {#sec-stringr}
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, cache=FALSE}
 library(tidyverse)
 library(stringr)
 ```
@@ -142,7 +142,8 @@ This case is relatively simple compared to the string processing challenges that
 
 The __dslabs__ package includes the raw data from which the heights dataset was obtained. You can load it like this:
 
-```{r}
+```{r, cache=FALSE}
+library(dslabs)
 ```
 
 These heights were obtained using a web form in which students were asked to enter their heights. They could enter anything, but the instructions asked for _height in inches_, a number. We compiled `r prettyNum(nrow(reported_heights), big.mark=",")` submissions, but unfortunately the column vector with the reported heights had several non-numeric entries and as a result became a character vector:
