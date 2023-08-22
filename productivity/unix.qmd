@@ -220,7 +220,9 @@ pwd
 
 Our working directory should now be `~/projects`. Note that on your computer the home directory `~` will be spelled out to something like `/c/Users/yourusername`). 
 
-**Important Pro Tip**: In Unix you can auto-complete by hitting tab. This means that we can type `cd d` then hit tab. Unix will either auto-complete if `docs` is the only directory/file starting with `d` or show you the options. Try it out! Using Unix without auto-complete will make it unbearable. 
+:::{.callout-tip}
+In Unix you can auto-complete by hitting tab. This means that we can type `cd d` then hit tab. Unix will either auto-complete if `docs` is the only directory/file starting with `d` or show you the options. Try it out! Using Unix without auto-complete will make it unbearable. 
+:::
 
 When using `cd`, we can either type a full path, which will start with `/` or `~`, or a _relative path_. In the example above, in which we typed `cd projects`, we used a relative path. **If the path you type does not start with `/` or `~`, Unix will assume you are typing a relative path, meaning that it will look for the directory in your current working directory**. So something like this will give you an error:
 
@@ -352,7 +354,9 @@ cd ~/projects/project-2
 
 In a point-and-click system, we move files from one directory to another by dragging and dropping. In Unix, we use the `mv` command. 
 
-**Warning**: `mv` will not ask "are you sure?" if your move results in overwriting a file.  
+:::{.callout-warning}
+`mv` will not ask "are you sure?" if your move results in overwriting a file.  
+:::
 
 Now that you know how to use full and relative paths, using `mv` is relatively straightforward. The general form is:
 
@@ -416,7 +420,9 @@ So in all the `mv` examples above, you can switch `mv` to `cp` and they will cop
 
 In point-and-click systems, we remove files by dragging and dropping them into the trash or using a special click on the mouse. In Unix, we use the `rm` command. 
 
-**Warning**: Unlike throwing files into the trash, `rm` is permanent. Be careful!
+:::{.callout-warning}
+Unlike throwing files into the trash, `rm` is permanent. Be careful!
+:::
 
 The general way it works is as follows:
 ```{bash, eval=FALSE}
@@ -606,7 +612,9 @@ We can combine wild cards. For example, to remove all files with the name `file-
 rm file-001.* 
 ```
 
-__Warning: Combining rm with the `*` wild card can be dangerous. There are combinations of these commands that will erase your entire filesystem without asking "are you sure?". Make sure you understand how it works before using this wild card with the rm command.__
+:::{.callout-warning}
+Combining rm with the `*` wild card can be dangerous. There are combinations of these commands that will erase your entire filesystem without asking "are you sure?". Make sure you understand how it works before using this wild card with the rm command.
+:::
 
 ### Environment variables
 
@@ -636,11 +644,15 @@ echo $SHELL
 
 The most common one is `bash`.
 
-Once you know the shell, you can change environmental variables. In Bash Shell, we do it using `export variable value`. To change the path, described in more detail soon, type: (**Don't actually run this command though!**)
+Once you know the shell, you can change environmental variables. In Bash Shell, we do it using `export variable value`. To change the path, described in more detail soon, you would type: 
 
 ```{bash, eval=FALSE}
 export PATH = /usr/bin/
 ```
+
+:::{.callout-warning}
+Don't actually run this command though!
+:::
 
 There is a program that is run before each terminal starts where you can edit variables so they change whenever you call the terminal. This changes in different implementations, but if using bash, you can create a file called  `.bashrc`, `.bash_profile`,`.bash_login`, or `.profile`. You might already have one. 
 
@@ -697,16 +709,17 @@ There are many commands that we do not teach in this book, but we want to make y
 
 - nano - A bare-bones text editor.
 
-- ln - create a symbolic link. We do not recommend its use, but you should be familiar with it.
-
 - tar - archive files and subdirectories of a directory into one file.
 
 - ssh - connect to another computer.
+
+- find - find files by filename on your system.
 
 - grep - search for patterns in a file.
 
 - awk/sed - These are two very powerful commands that permit you to find specific strings in files and change them.
 
+- ln - create a symbolic link. We do not recommend its use, but you should be familiar with it.
 
 ### File manipulation in R
 
