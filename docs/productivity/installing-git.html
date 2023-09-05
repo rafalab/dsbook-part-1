@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.353">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="author" content="Rafael A. Irizarry">
-<title>Introduction to Data Science - 19&nbsp; Accessing the terminal and installing Git</title>
+
+<title>Introduction to Data Science - 19&nbsp; Installing Git</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,41 +21,8 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
+
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
@@ -62,7 +32,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../productivity/unix.html" rel="next">
-<link href="../R/installing-r-and-rstudio.html" rel="prev">
+<link href="../productivity/installing-r-and-rstudio.html" rel="prev">
 <link href="../cover.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -72,7 +42,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -91,25 +62,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit"
   }
 }</script>
+
+
 </head>
+
 <body class="nav-sidebar floating">
 
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../productivity/intro-productivity.html">Productivity Tools</a></li><li class="breadcrumb-item"><a href="../productivity/installing-git.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Accessing the terminal and installing Git</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../productivity/intro-productivity.html">Productivity Tools</a></li><li class="breadcrumb-item"><a href="../productivity/installing-git.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Installing Git</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Introduction to Data Science</a> 
         <div class="sidebar-tools-main">
@@ -129,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
@@ -149,8 +129,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../R/getting-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with R and RStudio</span></span></a>
@@ -187,7 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../dataviz/intro-dataviz.html" class="sidebar-item-text sidebar-link">
@@ -196,8 +176,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../dataviz/ggplot2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></span></a>
@@ -228,7 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../wrangling/intro-to-wrangling.html" class="sidebar-item-text sidebar-link">
@@ -237,8 +217,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/reshaping-data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
@@ -275,7 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../productivity/intro-productivity.html" class="sidebar-item-text sidebar-link">
@@ -284,17 +264,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/installing-r-and-rstudio.html" class="sidebar-item-text sidebar-link">
+  <a href="../productivity/installing-r-and-rstudio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Installing R and RStudio</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Accessing the terminal and installing Git</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Installing Git</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -316,26 +296,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-</li>
+  </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#sec-terminal-on-mac" id="toc-sec-terminal-on-mac" class="nav-link active" data-scroll-target="#sec-terminal-on-mac"><span class="header-section-number">19.1</span> Accessing the terminal on a Mac</a></li>
+  <li><a href="#sec-terminal-on-mac" id="toc-sec-terminal-on-mac" class="nav-link active" data-scroll-target="#sec-terminal-on-mac"><span class="header-section-number">19.1</span> Accessing the terminal on a Mac</a></li>
   <li><a href="#installing-git-on-the-mac" id="toc-installing-git-on-the-mac" class="nav-link" data-scroll-target="#installing-git-on-the-mac"><span class="header-section-number">19.2</span> Installing Git on the Mac</a></li>
   <li><a href="#installing-git-and-git-bash-on-windows" id="toc-installing-git-and-git-bash-on-windows" class="nav-link" data-scroll-target="#installing-git-and-git-bash-on-windows"><span class="header-section-number">19.3</span> Installing Git and Git Bash on Windows</a></li>
   <li><a href="#sec-terminal-on-windows" id="toc-sec-terminal-on-windows" class="nav-link" data-scroll-target="#sec-terminal-on-windows"><span class="header-section-number">19.4</span> Accessing the terminal on Windows</a></li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/blob/main/productivity/installing-git.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/blob/main/productivity/installing-git.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">
-<span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Accessing the terminal and installing Git</span>
-</h1>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Installing Git</span></h1>
 </div>
 
 
@@ -348,257 +332,159 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header><p>Before getting started, we need to make sure you have access to a <em>terminal</em> and that Git is installed. The terminal is integrated into Mac and Linux systems, but Windows users will have to install an <em>emulator</em>. There are many emulator options available, but here we show how to install Git Bash because it can be done as part of the Windows Git installation. Because of the differences in Mac and Windows, the sections in this chapter are divided accordingly.</p>
-<section id="sec-terminal-on-mac" class="level2" data-number="19.1"><h2 data-number="19.1" class="anchored" data-anchor-id="sec-terminal-on-mac">
-<span class="header-section-number">19.1</span> Accessing the terminal on a Mac</h2>
-<p>In Chapter <a href="unix.html"><span>Chapter&nbsp;20</span></a> we describe how the terminal is our window into the Unix world. On a Mac you can access a terminal by opening the application in the Utilities folder:</p>
-<div class="cell" data-layout-align="center" data-hash="installing-git_cache/html/unnamed-chunk-2_bca8f183b9c6b613f6b41bd7f003ed90">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
-<figure class="figure"><p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.35.44-AM.png" class="img-fluid figure-img" style="width:45.0%"></p>
-</figure>
+</header>
+
+<p>Before getting started, we need to make sure you have access to a <em>terminal</em> and that Git is installed. The terminal is integrated into Mac and Linux systems, but Windows users will have to install an <em>emulator</em>. There are many emulator options available, but here we show how to install Git Bash because it can be done as part of the Windows Git installation. Because of the differences in Mac and Windows, the sections in this chapter are divided accordingly.</p>
+<section id="sec-terminal-on-mac" class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="sec-terminal-on-mac"><span class="header-section-number">19.1</span> Accessing the terminal on a Mac</h2>
+<p>In Chapter <a href="unix.html"><span>Chapter&nbsp;20</span></a> we will show how the terminal is our window into the Unix world. On a Mac you can access a terminal by opening the application in the Utilities folder:</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 28.6%;justify-content: center;">
+<p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.35.44-AM.png" class="img-fluid"></p>
 </div>
-</div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
-<figure class="figure"><p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.36.29-AM.png" class="img-fluid figure-img" style="width:45.0%"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
-<figure class="figure"><p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.36.48-AM.png" class="img-fluid figure-img" style="width:45.0%"></p>
-</figure>
+<div class="quarto-layout-cell" style="flex-basis: 71.4%;justify-content: center;">
+<p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.36.29-AM.png" class="img-fluid"></p>
 </div>
 </div>
 </div>
 <p>You can also use the Spotlight feature on the Mac by typing command-spacebar, then type <em>Terminal</em>.</p>
 <p>Yet another way to access the terminal is from RStudio. In the <em>Console</em> pane you should see a <em>Terminal</em> tab. If you click on this tab you will open a terminal window.</p>
-</section><section id="installing-git-on-the-mac" class="level2" data-number="19.2"><h2 data-number="19.2" class="anchored" data-anchor-id="installing-git-on-the-mac">
-<span class="header-section-number">19.2</span> Installing Git on the Mac</h2>
-<p><strong>Warning: The instructions in this subsection are not for Windows users.</strong></p>
+</section>
+<section id="installing-git-on-the-mac" class="level2" data-number="19.2">
+<h2 data-number="19.2" class="anchored" data-anchor-id="installing-git-on-the-mac"><span class="header-section-number">19.2</span> Installing Git on the Mac</h2>
+<div class="calout-warning">
+<p>The instructions in this subsection are not for Windows users.</p>
+</div>
 <ol type="1">
 <li><p>Start by opening a terminal as described in the previous section.</p></li>
 <li><p>Once you start the terminal, you will see a console like this:</p></li>
 </ol>
-<div class="cell" data-layout-align="center" data-hash="installing-git_cache/html/unnamed-chunk-3_2e26a49588e4a5ee8360552ae27a149d">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
-<figure class="figure"><p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.36.48-AM.png" class="img-fluid figure-img" width="500"></p>
-</figure>
-</div>
-</div>
-</div>
+<p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.36.48-AM.png" class="img-fluid" style="width:70.0%"></p>
 <ol start="3" type="1">
 <li>You might have Git installed already. One way to check is by asking for the version by typing:</li>
 </ol>
-<div class="cell" data-layout-align="center" data-hash="installing-git_cache/html/unnamed-chunk-4_4ef8cf8db5d9ef5c1fed4e6abfa6534d">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<pre><code>git --version</code></pre>
 <p>If you get a version number back, it is already installed. If not, you will get the following message:</p>
-<div class="cell" data-layout-align="center" data-hash="installing-git_cache/html/unnamed-chunk-5_d2e18d3aa2d71aa8e514e54bb4aa2118">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
-<figure class="figure"><p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.39.31-AM.png" class="img-fluid figure-img" width="500"></p>
-</figure>
-</div>
-</div>
-</div>
+<p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.39.31-AM.png" class="img-fluid" style="width:70.0%"></p>
 <p>and you will be asked if you want to install it. You should click <em>Install</em>:</p>
-<div class="cell" data-layout-align="center" data-hash="installing-git_cache/html/unnamed-chunk-6_5b39be32d57f684955c4b508b3ac3afe">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
-<figure class="figure"><p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.39.44-AM.png" class="img-fluid figure-img" width="500"></p>
-</figure>
-</div>
-</div>
-</div>
+<p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.39.44-AM.png" class="img-fluid" style="width:70.0%"></p>
 <ol start="4" type="1">
 <li>This will take you through the installation process:</li>
 </ol>
-<div class="cell" data-layout-align="center" data-hash="installing-git_cache/html/unnamed-chunk-7_3f8ffbc20b4ee403fbcbc5723b91d391">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.40.09-AM.png" class="img-fluid figure-img" style="width:45.0%"></p>
-</figure>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.40.09-AM.png" class="img-fluid"></p>
 </div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.40.15-AM.png" class="img-fluid"></p>
 </div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.40.15-AM.png" class="img-fluid figure-img" style="width:45.0%"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-11.10.29-AM.png" class="img-fluid figure-img" style="width:45.0%"></p>
-</figure>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-11.10.29-AM.png" class="img-fluid"></p>
 </div>
 </div>
 </div>
 <ol start="5" type="1">
 <li>Once installed, you can check for the version again and it should show you something like this:</li>
 </ol>
-<div class="cell" data-layout-align="center" data-hash="installing-git_cache/html/unnamed-chunk-8_ecca70247b7582fb581de769ae73d807">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
-<figure class="figure"><p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-11.10.47-AM.png" class="img-fluid figure-img" width="500"></p>
-</figure>
-</div>
-</div>
-</div>
+<p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-11.10.47-AM.png" class="img-fluid" style="width:70.0%"></p>
 <p>Congratulations. You have installed Git on your Mac.</p>
-</section><section id="installing-git-and-git-bash-on-windows" class="level2" data-number="19.3"><h2 data-number="19.3" class="anchored" data-anchor-id="installing-git-and-git-bash-on-windows">
-<span class="header-section-number">19.3</span> Installing Git and Git Bash on Windows</h2>
-<p><strong>Warning: The instructions in this subsection are not for Mac users.</strong></p>
+</section>
+<section id="installing-git-and-git-bash-on-windows" class="level2" data-number="19.3">
+<h2 data-number="19.3" class="anchored" data-anchor-id="installing-git-and-git-bash-on-windows"><span class="header-section-number">19.3</span> Installing Git and Git Bash on Windows</h2>
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The instructions in this section are not for Mac users.</p>
+</div>
+</div>
+</div>
 <p>There are several pieces of software that will permit you to perform Unix commands on Windows. We will be using Git Bash as it interfaces with RStudio and it is automatically installed when we install Git for Windows.</p>
 <ol type="1">
 <li>Start by searching for <em>Git for Windows</em> on your browser and clicking on the link from <em>git-scm.com</em>.</li>
 </ol>
-<div class="cell" data-layout-align="center" data-hash="installing-git_cache/html/unnamed-chunk-9_6260086d61932ad2719f98b4e9d2e575">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_31_15.png" class="img-fluid figure-img" width="500"></p>
-</figure>
-</div>
-</div>
-</div>
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_31_15.png" class="img-fluid" style="width:70.0%"></p>
 <ol start="2" type="1">
 <li>This will take you to the <em>Download Git</em> page from which you can download the <em>most recent maintained build</em>:</li>
 </ol>
-<div class="cell" data-layout-align="center" data-hash="installing-git_cache/html/unnamed-chunk-10_c634a240fbd46c1c3acf0314fbdf3140">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_31_45.png" class="img-fluid figure-img" width="500"></p>
-</figure>
-</div>
-</div>
-</div>
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_31_45.png" class="img-fluid" style="width:70.0%"></p>
 <ol start="3" type="1">
 <li>You can then accept to run the installer and agree to the license:</li>
 </ol>
-<div class="cell" data-layout-align="center" data-hash="installing-git_cache/html/unnamed-chunk-11_eefad1d04681e317b103f5023395b9d2">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_32_01.png" class="img-fluid figure-img" style="width:45.0%"></p>
-</figure>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_32_01.png" class="img-fluid"></p>
 </div>
-</div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_32_10.png" class="img-fluid figure-img" style="width:45.0%"></p>
-</figure>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_32_10.png" class="img-fluid"></p>
 </div>
 </div>
 </div>
 <ol start="4" type="1">
 <li>In one of the installation steps, you will be asked to pick the default editor for Git. Unless you are already a <em>vi</em> or <em>vim</em> user, we recommend against selecting <em>vim</em> which might be the default. If you do not recognize an editor you are familiar with among the options given, we recommend that you select <em>nano</em> as your default editor for Git since it is the easiest to learn:</li>
 </ol>
-<div class="cell" data-layout-align="center" data-hash="installing-git_cache/html/unnamed-chunk-12_b2dd06a4dae6742dee66a1ef0b5711d1">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_32_55.png" class="img-fluid figure-img" width="500"></p>
-</figure>
-</div>
-</div>
-</div>
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_32_55.png" class="img-fluid" style="width:70.0%"></p>
 <ol start="5" type="1">
 <li>The next installation decision is actually an <strong>important one</strong>. This installation process installs Git Bash. We recommend that you select <em>Git and optional Unix tools from the Windows Command Prompt</em> as this will permit you to learn Unix from within RStudio. However, if you do this, <strong>some commands that run on your Windows command line will stop working</strong>. If you do not use your Windows command line, then this should not be a problem. Also, most, if not all, of these Windows command lines have a Unix equivalent that you will be able to use now.</li>
 </ol>
-<div class="cell" data-layout-align="center" data-hash="installing-git_cache/html/unnamed-chunk-13_221b1573b42b840965c5b15af31fe099">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_34_52.png" class="img-fluid figure-img" width="500"></p>
-</figure>
-</div>
-</div>
-</div>
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_34_52.png" class="img-fluid" style="width:70.0%"></p>
 <ol start="6" type="1">
 <li>You can now continue selecting the default options.</li>
 </ol>
-<div class="cell" data-layout-align="center" data-hash="installing-git_cache/html/unnamed-chunk-14_b694dfb427680e93afe5f93558f171ae">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_35_03.png" class="img-fluid figure-img" style="width:45.0%"></p>
-</figure>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_35_03.png" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_35_29.png" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_35_42.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_35_29.png" class="img-fluid figure-img" style="width:45.0%"></p>
-</figure>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_35_57.png" class="img-fluid"></p>
 </div>
-</div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_35_42.png" class="img-fluid figure-img" style="width:45.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell" data-layout-align="center" data-hash="installing-git_cache/html/unnamed-chunk-15_4ddc214043330129ee7a877cb9d6c6ff">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_35_57.png" class="img-fluid figure-img" style="width:45.0%"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_36_43.png" class="img-fluid figure-img" style="width:45.0%"></p>
-</figure>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_36_43.png" class="img-fluid"></p>
 </div>
 </div>
 </div>
 <p>You have now installed Git on Windows.</p>
-</section><section id="sec-terminal-on-windows" class="level2" data-number="19.4"><h2 data-number="19.4" class="anchored" data-anchor-id="sec-terminal-on-windows">
-<span class="header-section-number">19.4</span> Accessing the terminal on Windows</h2>
+</section>
+<section id="sec-terminal-on-windows" class="level2" data-number="19.4">
+<h2 data-number="19.4" class="anchored" data-anchor-id="sec-terminal-on-windows"><span class="header-section-number">19.4</span> Accessing the terminal on Windows</h2>
 <p>Now that Git Bash is installed, we can access the terminal either through RStudio or by opening Git Bash directly.</p>
 <p>To access the terminal through RStudio, we need to change a preference so that Git Bash becomes the default Unix shell in RStudio. In RStudio, go to preferences (under the File pull down menu), then select <em>Terminal</em>, then select <em>Git Bash</em>:</p>
-<div class="cell" data-layout-align="center" data-hash="installing-git_cache/html/unnamed-chunk-16_3a5c44f5ecbcdb8df5748570f2b8897d">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_38_00.png" class="img-fluid figure-img" width="500"></p>
-</figure>
-</div>
-</div>
-</div>
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_38_00.png" class="img-fluid" style="width:70.0%"></p>
 <p>To check that you in fact are using Git Bash in RStudio, you can open a <em>New Terminal</em> in RStudio:</p>
-<div class="cell" data-layout-align="center" data-hash="installing-git_cache/html/unnamed-chunk-17_01982263e7f0988988c522fff15a237b">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_10_49_44.png" class="img-fluid figure-img" width="500"></p>
-</figure>
-</div>
-</div>
-</div>
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_10_49_44.png" class="img-fluid" style="width:70.0%"></p>
 <p>It should look something like this:</p>
-<div class="cell" data-layout-align="center" data-hash="installing-git_cache/html/unnamed-chunk-18_358ecc8ac872c389e612a4889149306f">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_10_49_51.png" class="img-fluid figure-img" width="500"></p>
-</figure>
-</div>
-</div>
-</div>
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_10_49_51.png" class="img-fluid" style="width:70.0%"></p>
 <p>Often we want access to the terminal, but do not need RStudio. You can do this by running the Git Bash program directly:</p>
-<div class="cell" data-layout-align="center" data-hash="installing-git_cache/html/unnamed-chunk-19_b1b7186c14b0b270e5dfbc1dcb75ad4a">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_10.png" class="img-fluid figure-img" style="width:45.0%"></p>
-</figure>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_10.png" class="img-fluid"></p>
 </div>
-</div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_12.png" class="img-fluid figure-img" style="width:45.0%"></p>
-</figure>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_12.png" class="img-fluid"></p>
 </div>
 </div>
 </div>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -830,8 +716,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="../R/installing-r-and-rstudio.html" class="pagination-link">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../productivity/installing-r-and-rstudio.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Installing R and RStudio</span></span>
       </a>          
   </div>
@@ -842,7 +730,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">Introduction to Data Science was written by Rafael A. Irizarry</div>   
     <div class="nav-footer-center">
       &nbsp;
@@ -850,6 +739,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>
+
 
 
 </body></html>

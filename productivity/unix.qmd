@@ -1,21 +1,4 @@
-```{r, include=FALSE}
-if(knitr::is_html_output()){
-  knitr::opts_chunk$set(out.width = "500px", 
-                        out.extra='style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;"')
-} else{
-  knitr::opts_chunk$set(out.width = "70%")
-}
-```
-
 # Organizing with Unix {#sec-unix}
-
-```{r, echo=FALSE}
-img_path <- "img/"
-screenshots <- list.files(file.path(img_path, "windows-screenshots"))
-screenshots <- file.path(img_path, "windows-screenshots", screenshots)
-mac_screenshots <- list.files(file.path(img_path, "mac-screenshots"))
-mac_screenshots <- file.path(img_path,"mac-screenshots", mac_screenshots)
-```
 
 Unix is the operating system of choice in data science. We will introduce you to the Unix way of thinking using an example: how to keep a data analysis project organized. We will learn some of the most commonly used commands along the way. However, we won't go into the details here. We highly encourage you to learn more, especially when you find yourself using the mouse too much or performing a repetitive task often. In those cases, there is probably a more efficient way to do it in Unix. Here are some basic courses to get you started:
 
@@ -56,7 +39,7 @@ You will need access to a terminal^[https://rafalab.github.io/dsbook/accessing-t
 Once you have a terminal open, you can start typing commands. You should see a blinking cursor at the spot where what you type will show up. This position is called the _command line_. Once you type something and hit enter on Windows or return on the Mac, Unix will try to execute this command. If you want to try out an example, type this command into your command line:
 
 
-```{bash, eval=FALSE}
+```
 echo "hello world"
 ```
 
@@ -77,10 +60,7 @@ The first concept you need to grasp to become a Unix user is how your filesystem
 
 Here is a visual representation of the structure we are describing:
 
-```{r, echo=FALSE}
-knitr::include_graphics(file.path(img_path, "unix/filesystem.png"))
-```
-
+![](img/unix/filesystem.png)
 
 In Unix, we refer to folders as _directories_. Directories that are inside other directories are often referred to as _subdirectories_. So, for example, in the figure above, the directory _docs_ has two subdirectories: _reports_ and _resumes_, and _docs_ is a subdirectory of _home_.
 
@@ -88,34 +68,26 @@ In Unix, we refer to folders as _directories_. Directories that are inside other
 
 The _home_ directory is where all your stuff is kept, as opposed to the system files that come with your computer, which are kept elsewhere. In the figure above, the directory called _home_ represents your home directory, but that is rarely the name used. On your system, the name of your home directory is likely the same as your username on that system. Below are an example on Windows and Mac showing a home directory, in this case, named _rafa_:
 
-```{r, out.width="45%", echo=FALSE}
-knitr::include_graphics(c(screenshots[100], mac_screenshots[42])) 
-```
+::: {layout-ncol=2}
+![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_13.png){width=35%}
 
-<!--
-Here is an example from a Mac:
+![](img/mac-screenshots/Screen-Shot-2018-04-13-at-4.34.01-PM.png){width=35%}
+:::
 
-```{r, echo=FALSE}
-knitr::include_graphics(mac_screenshots[42]) 
-```
--->
 
 Now, look back at the figure showing a filesystem. Suppose you are using a point-and-click system and you want to remove the file _cv.tex_. Imagine that on your screen you can see the _home_ directory. To erase this file, you would double click on the _home_ directory, then _docs_, then  _resumes_, and then drag _cv.tex_ to the trash. Here you are experiencing the hierarchical nature of the system: _cv.tex_ is a file inside the _resumes_ directory, which is a subdirectory inside the _docs_ directory, which is a subdirectory of the _home_ directory. 
 
 Now suppose you can't see your home directory on your screen. You would somehow need to make it appear on your screen. One way to do this is to navigate from what is called the _root_ directory all the way to your home directory. Any filesystem will have what is called a _root_ directory, which is the directory that contains all directories. The _home_ directory shown in the figure above will usually be two or more levels from the root. On Windows, you will have a structure like this:
 
-```{r, echo=FALSE}
-knitr::include_graphics(file.path(img_path, "unix/windows-filesystem-from-root.png"))
-```
+![](img/unix/windows-filesystem-from-root.png)
 
 while on the Mac, it will be like this:
 
-```{r, echo=FALSE}
-knitr::include_graphics(file.path(img_path,"unix/mac-filesystem-from-root.png")) 
-```
+![](img/unix/mac-filesystem-from-root.png)
 
-
-**Note for Windows Users:** The typical R installation will make your _Documents_ directory your home directory in R. This will likely be different from your home directory in Git Bash. Generally, when we discuss home directories, we refer to the Unix home directory which for Windows, in this book, is the Git Bash Unix directory.
+:::{.callout-warning}
+On Windows, the typical R installation will make your _Documents_ directory your home directory in R. This will likely be different from your home directory in Git Bash. Generally, when we discuss home directories, we refer to the Unix home directory which for Windows, in this book, is the Git Bash Unix directory.
+:::
 
 ### Working directory {#sec-working-directory}
 
@@ -127,7 +99,7 @@ How do we know what is our working directory? To answer this, we learn our first
 
 Open a terminal and type:
 
-```{bash, eval=FALSE}
+```
 pwd
 ```
 
@@ -153,7 +125,7 @@ In a point-and-click system, we know what is in a directory because we see it. I
 
 To see the content of your home directory, open a terminal and type:
 
-```{bash, eval=FALSE}
+```
 ls
 ```
 
@@ -167,7 +139,7 @@ Because you will soon be working on several projects, we highly recommend creati
 
 You can try this particular example on your system. Open a terminal and type:
 
-```{bash, eval=FALSE}
+```
 mkdir projects
 ```
 
@@ -175,20 +147,20 @@ If you do this correctly, nothing will happen: no news is good news. If the dire
 
 To confirm that you created these directories, you can list the directories:
 
-```{bash, eval=FALSE}
+```
 ls
 ```
 You should see the directories we just created listed. Perhaps you can also see many other directories that come pre-installed on your computer.
 
 For illustrative purposes, let's make a few more directories. You can list more than one directory name like this:
 
-```{bash, eval=FALSE}
+```
 mkdir docs teaching
 ```
 
 You can check to see if the three directories were created:
 
-```{bash, eval=FALSE}
+```
 ls
 ```
 
@@ -196,7 +168,7 @@ If you made a mistake and need to remove the directory, you can use the command 
 
 
 
-```{bash, eval=FALSE}
+```
 mkdir junk
 rmdir junk
 ```
@@ -209,47 +181,47 @@ Next we want to create directories inside directories that we have already creat
 
 Suppose we open a terminal and our working directory is our home directory. We want to change our working directory to `projects`. We do this using the `cd` command, which stands for _change directory_:
 
-```{bash, eval=FALSE}
+```
 cd projects
 ```
 
 To check that the working directory changed, we can use a command we previously learned to see our location:
-```{bash, eval=FALSE}
+```
 pwd
 ```
 
-Our working directory should now be `~/projects`. Note that on your computer the home directory `~` will be spelled out to something like `/c/Users/yourusername`). 
+Our working directory should now be `~/projects`. Note that on your computer the home directory `~` will be spelled out to something like `/c/Users/yourusername`. 
 
 :::{.callout-tip}
 In Unix you can auto-complete by hitting tab. This means that we can type `cd d` then hit tab. Unix will either auto-complete if `docs` is the only directory/file starting with `d` or show you the options. Try it out! Using Unix without auto-complete will make it unbearable. 
 :::
 
-When using `cd`, we can either type a full path, which will start with `/` or `~`, or a _relative path_. In the example above, in which we typed `cd projects`, we used a relative path. **If the path you type does not start with `/` or `~`, Unix will assume you are typing a relative path, meaning that it will look for the directory in your current working directory**. So something like this will give you an error:
+When using `cd`, we can either type a full path, which will start with `/` or `~`, or a _relative path_. In the example above, in which we typed `cd projects`, we used a relative path. If the path you type does not start with `/` or `~`, Unix will assume you are typing a relative path, meaning that it will look for the directory in your current working directory. So something like this will give you an error:
 
-```{bash, eval=FALSE}
+```
 cd Users
 ```
 
 because there is no `Users` directory in your working directory.
 
-Now suppose we want to move back to the directory in which `projects` is a subdirectory, referred to as the _parent directory_. We could use the full path of the parent directory, but Unix provides a shortcut for this: the parent directory of the working directory is represented with two dots: `..`, so to move back we simply type:
+Now suppose we want to move back to the directory in which `projects` is a subdirectory, referred to as the _parent directory_. We could use the full path of the parent directory, but Unix provides a shortcut for this: the parent directory of the working directory is represented with two dots: `..` so to move back we simply type:
 
-```{bash, eval=FALSE}
+```
 cd ..
 ```
 
 You should now be back in your home directory which you can confirm using `pwd`. 
 
 Because we can use full paths with `cd`, the following command:
-```{bash, eval=FALSE}
+```
 cd ~
 ```
 
 will always take us back to the home directory, no matter where we are in the filesystem. 
 
-The working directory also has a nickname, which is a single `.`, so if you type
+The working directory also has a nickname, which is a single `.` so if you type
 
-```{bash, eval=FALSE}
+```
 cd .
 ```
 
@@ -259,13 +231,13 @@ In summary, we have learned that when using `cd` we either stay put, move to a n
 
 When typing directory names, we can concatenate directories with the forward-slashes. So if we want a command that takes us to the `projects` directory no matter where we are in the filesystem, we can type:
 
-```{bash, eval=FALSE}
+```
 cd ~/projects
 ```
 
 which is equivalent to writing the entire path out. For example, in Windows we would write something like
 
-```{bash, eval=FALSE}
+```
 cd /c/Users/yourusername/projects
 ```
 
@@ -274,20 +246,20 @@ The last two commands are equivalent and in both cases we are typing the full pa
 
 When typing out the path of the directory we want, either full or relative, we can concatenate directories with the forward-slashes. We already saw that we can move to the `projects` directory regardless of where we are by typing the full path like this:  
 
-```{bash, eval=FALSE}
+```
 cd ~/projects
 ```
 
 
 We can also concatenate directory names for relative paths. For instance, if we want to move back to the parent directory of the parent directory of the working directory, we can type:
 
-```{bash, eval=FALSE}
+```
 cd ../..
 ```
 
 Here are a couple of final tips related to the  `cd` command. First, you can go back to whatever directory you just left by typing:
 
-```{bash, eval=FALSE}
+```
 cd -
 ```
 
@@ -295,7 +267,7 @@ This can be useful if you type a very long path and then realize you want to go 
 
 Second, if you just type: 
 
-```{bash, eval=FALSE}
+```
 cd
 ```
 
@@ -306,15 +278,14 @@ you will be returned to your home directory.
 
 Let's explore some examples of using `cd`. To help visualize, we will show the graphical representation of our filesystem vertically:
 
-```{r, echo=FALSE, out.width="40%"}
-knitr::include_graphics(file.path(img_path, "unix/filesystem-vertical.png"))
-```
+![](img/unix/filesystem-vertical.png){width=50%}
+
 
 Suppose our working directory is `~/projects` and we want to move to `figs` in `project-1`.
 
 Here it is convenient to use relative paths:
 
-```{bash, eval=FALSE}
+```
 cd project-1/figs
 ```
 
@@ -322,13 +293,13 @@ Now suppose our working directory is `~/projects` and we want to move to `report
 
 One way is to use relative paths:
 
-```{bash, eval=FALSE}
+```
 cd ../docs/reports
 ```
 
 Another is to use the full path:
 
-```{bash, eval=FALSE}
+```
 cd ~/docs/reports
 ```
 
@@ -338,13 +309,13 @@ Let's examine one more example. Suppose we are in `~/projects/project-1/figs` an
 
 With relative paths:
 
-```{bash, eval=FALSE}
+```
 cd ../../proejct-2
 ```
 
 and with full paths:
 
-```{bash, eval=FALSE}
+```
 cd ~/projects/project-2
 ```
 
@@ -360,26 +331,26 @@ In a point-and-click system, we move files from one directory to another by drag
 
 Now that you know how to use full and relative paths, using `mv` is relatively straightforward. The general form is:
 
-```{bash, eval=FALSE}
+```
 mv path-to-file path-to-destination-directory
 ```
 
 For example, if we want to move the file `cv.tex` from `resumes` to `reports`, you could use the full paths like this:
 
-```{bash, eval=FALSE}
+```
 mv ~/docs/resumes/cv.tex ~/docs/reports/
 ```
 
 You can also use relative paths. So you could do this:
 
-```{bash, eval=FALSE}
+```
 cd ~/docs/resumes
 mv cv.tex ../reports/
 ```
 
 or this:
 
-```{bash, eval=FALSE}
+```
 cd ~/docs/reports/
 mv ../resumes/cv.tex ./
 ```
@@ -388,7 +359,7 @@ Notice that in the last one we used the working directory shortcut `.` to give a
 
 We can also use `mv` to change the name of a file. To do this, instead of the second argument being the destination directory, it also includes a filename. So, for example, to change the name from `cv.tex` to `resume.tex`, we simply type:
 
-```{bash, eval=FALSE}
+```
 cd ~/docs/resumes
 mv cv.tex resume.tex
 ```
@@ -396,7 +367,7 @@ mv cv.tex resume.tex
 We can also combine the move and a rename. For example:
 
 
-```{bash, eval=FALSE}
+```
 cd ~/docs/resumes
 mv cv.tex ../reports/resume.tex
 ```
@@ -404,7 +375,7 @@ mv cv.tex ../reports/resume.tex
 And we can move entire directories. To move the `resumes` directory into `reports`, we do as follows:
 
 
-```{bash, eval=FALSE}
+```
 mv ~/docs/resumes ~/docs/reports/
 ```
 
@@ -425,13 +396,13 @@ Unlike throwing files into the trash, `rm` is permanent. Be careful!
 :::
 
 The general way it works is as follows:
-```{bash, eval=FALSE}
+```
 rm filename
 ```
 
 You can actually list files as well like this:
 
-```{bash, eval=FALSE}
+```
 rm filename-1 filename-2 filename-3
 ```
 
@@ -441,7 +412,7 @@ You can use full or relative paths. To remove directories, you will have to lear
 
 Often you want to quickly look at the content of a file. If this file is a text file, the quickest way to do is by using the command `less`. To look a the file `cv.tex`, you do this:  
 
-```{bash, eval=FALSE}
+```
 cd ~/docs/resumes
 less cv.tex 
 ```
@@ -456,7 +427,7 @@ We are now ready to prepare a directory for a project. We will use the US murder
 
 You should start by creating a directory where you will keep all your projects. We recommend a directory called _projects_ in your home directory. To do this you would type:
 
-```{bash, eval=FALSE}
+```
 cd ~
 mkdir projects
 ```
@@ -465,13 +436,13 @@ Our project relates to gun violence murders so we will call the directory for ou
 
 Open a terminal and make sure you are in the home directory:
 
-```{bash, eval=FALSE}
+```
 cd ~
 ```
 
 Now run the following commands to create the directory structure we want. At the end, we use `ls` and `pwd` to confirm we have generated the correct directories in the correct working directory:
 
-```{bash, eval=FALSE}
+```
 cd projects
 mkdir murders
 cd murders
@@ -484,7 +455,7 @@ Note that the full path of our `murders` dataset is `~/projects/murders`.
 
 So if we open a new terminal and want to navigate into that directory we type:
 
-```{bash, eval=FALSE}
+```
 cd projects/murders
 ```
 
@@ -499,7 +470,7 @@ Most Unix implementations include a large number of powerful tools and utilities
 
 Most Unix commands can be run with arguments. Arguments are typically defined by using a dash `-` or two dashes `--` (depending on the command) followed by a letter or a word. An example of an argument is the `-r` behind `rm`. The `r` stands for recursive and the result is that files and directories are removed recursively, which means that if you type:
 
-```{bash, eval=FALSE}
+```
 rm -r directory-name
 ```
 
@@ -507,7 +478,7 @@ all files, subdirectories, files in subdirectories, subdirectories in subdirecto
 
 You can also combine arguments. For instance, to remove a directory regardless of protected files, you type:
 
-```{bash, eval=FALSE}
+```
 rm -rf directory-name
 ```
 
@@ -515,14 +486,14 @@ Remember that once you remove there is no going back, so use this command very c
 
 A command that is often called with argument is `ls`. Here are some examples:
 
-```{bash, eval=FALSE}
+```
 ls -a 
 ```
 The `a` stands for all. This argument makes `ls` show you all files in the directory, including hidden files. In Unix, all files starting with a `.` are hidden. Many applications create hidden directories to store important information without getting in the way of your work. An example is `git` (which we cover in depth later). Once you initialize a directory as a git directory with `git init`, a hidden directory called `.git` is created. Another hidden file is the `.gitignore` file. 
 
 Another example of using an argument is:
  
-```{bash, eval=FALSE}
+```
 ls -l 
 ```
 
@@ -530,19 +501,19 @@ The `l` stands for long and the result is that more information about the files 
 
 It is often useful to see files in chronological order. For that we use:
 
-```{bash, eval=FALSE}
+```
 ls -t 
 ```
 
 and to reverse the order of how files are shown you can use:
 
-```{bash, eval=FALSE}
+```
 ls -r 
 ```
 
 We can combine all these arguments to show more information for all files in reverse chronological order:
 
-```{bash, eval=FALSE}
+```
 ls -lart 
 ```
 
@@ -552,13 +523,13 @@ Each command has a different set of arguments. In the next section, we learn how
 
 As you may have noticed, Unix uses an extreme version of abbreviations. This makes it very efficient, but hard to guess how to call commands. To make up for this weakness, Unix includes complete help files or _man pages_ (man is short for manual). In most systems, you can type `man` followed by the command name to get help. So for `ls`, we would type:
 
-```{bash, eval=FALSE}
+```
 man ls
 ```
 
 This command is not available in some of the compact implementations of Unix, such as Git Bash. An alternative way to get help that works on Git Bash is to type the command followed by `--help`. So for `ls`, it would be as follows:
 
-```{bash, eval=FALSE}
+```
 ls --help
 ```
 
@@ -566,19 +537,19 @@ ls --help
 
 The help pages are typically long and if you type the commands above to see the help, it scrolls all the way to the end. It would be useful if we could save the help to a file and then use `less` to see it. The `pipe`, written like this `|`, does something similar. It _pipes_ the results of a command to the command after the `pipe`. This is similar to the pipe `|>` that we use in R. To get more help we thus can type:
 
-```{bash, eval=FALSE}
+```
 man ls | less
 ```
 
 or in Git Bash:
 
-```{bash, eval=FALSE}
+```
 ls --help | less 
 ```
 
 This is also useful when listing files with many files. We can type:
 
-```{bash, eval=FALSE}
+```
 ls -lart | less 
 ```
 
@@ -586,7 +557,7 @@ ls -lart | less
 
 Some of the most powerful aspects of Unix are the _wild cards_. Suppose we want to remove all the temporary html files produced while trouble shooting for a project. Imagine there are dozens of files. It would be quite painful to remove them one by one. In Unix, we can actually write an expression that means all the files that end in `.html`. To do this we type _wild card_: `*`. As discussed in the data wrangling part of this book, this character means any number of any combination of characters. Specifically, to list all html files, we would type:
 
-```{bash, eval=FALSE}
+```
 ls *.html
 ```
 
@@ -599,7 +570,7 @@ rm *.html
 The other useful wild card is the `?` symbol. This means any single character. So if all the files we want to erase have the form 
 `file-001.html` with the numbers going from 1 to 999, we can type:
 
-```{bash, eval=FALSE}
+```
 rm file-???.html
 ```
 
@@ -608,7 +579,7 @@ This will only remove files with that format.
 We can combine wild cards. For example, to remove all files with the name `file-001` regardless of suffix, we can type:
 
 
-```{bash, eval=FALSE}
+```
 rm file-001.* 
 ```
 
@@ -622,13 +593,13 @@ Unix has settings that affect your command line _environment_. These are called 
 
 Earlier we saw that `echo` is the Unix command for print. So we can see our home directory by typing:
 
-```{bash, eval=FALSE}
+```
 echo $HOME 
 ```
 
 You can see them all by typing:
 
-```{bash, eval=FALSE}
+```
 env
 ```
 
@@ -638,7 +609,7 @@ You can change some of these environment variables. But their names vary across 
 
 Much of what we use in this chapter is part of what is called the _Unix shell_. There are actually different shells, but the differences are almost unnoticeable.  They are also important, although we do not cover those here. You can see what shell you are using by typing:
 
-```{bash, eval=FALSE}
+```
 echo $SHELL
 ```
 
@@ -646,7 +617,7 @@ The most common one is `bash`.
 
 Once you know the shell, you can change environmental variables. In Bash Shell, we do it using `export variable value`. To change the path, described in more detail soon, you would type: 
 
-```{bash, eval=FALSE}
+```
 export PATH = /usr/bin/
 ```
 
@@ -667,7 +638,7 @@ which git
 
 That directory is probably full of program files. The directory `/usr/bin` usually holds many program files. If you type:
 
-```{bash, eval=FALSE}
+```
 ls /usr/bin
 ```
 
@@ -677,7 +648,7 @@ There are other directories that usually hold program files. The Application dir
 
 When you type `ls`, Unix knows to run a program which is an executable that is stored in some other directory. So how does Unix know where to find it? This information is included in the environmental variable `$PATH`. If you type:
 
-```{bash, eval=FALSE}
+```
 echo $PATH
 ```
 
@@ -685,7 +656,7 @@ you will see a list of directories separated by `:`. The directory `/usr/bin` is
 
 Unix looks for program files in those directories in that order. Although we don't teach it here, you can actually create executables yourself. However, if you put it in your working directory and this directory is not on the path, you can't run it just by typing the command. You get around this by typing the full path. So if your command is called my-ls, you can type:
 
-```{bash, eval=FALSE}
+```
 ./my-ls
 ```
 
@@ -695,7 +666,7 @@ Once you have mastered the basics of Unix, you should consider learning to write
 
 If you type: 
 
-```{bash, eval=FALSE}
+```
 ls -l
 ```
 
