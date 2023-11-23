@@ -1,10 +1,6 @@
 # Joining tables
 
-```{r, echo=FALSE}
-img_path <- "img"
-```
-
-The information we need for a given analysis may not be just in one table. For example, when forecasting elections we used the function `left_join` to combine the information from two tables. Here we use a simpler example to illustrate the general challenge of combining tables.
+The information we need for a given analysis may not be just in one table. Here we use a simple examples to illustrate the general challenge of combining tables.
 
 Suppose we want to explore the relationship between population size for US states and electoral votes. We have the population size in this table:
 
@@ -40,13 +36,12 @@ head(tab)
 
 The data has been successfully joined and we can now, for example, make a plot to explore the relationship:
 
-```{r ev-vs-population, message=FALSE, warning=FALSE}
+```{r ev-vs-population, message=FALSE, warning=FALSE, echo=FALSE}
 library(ggrepel)
 tab |> ggplot(aes(population/10^6, ev, label = abb)) +
   geom_point() +
+  scale_x_log10() + scale_y_log10() +
   geom_text_repel() + 
-  scale_x_continuous(trans = "log2") +
-  scale_y_continuous(trans = "log2") +
   geom_smooth(method = "lm", se = FALSE)
 ```
 
@@ -57,12 +52,10 @@ In practice, it is not always the case that each row in one table has a matching
 
 ```{r}
 tab_1 <- slice(murders, 1:6) |> select(state, population)
-tab_1
 tab_2 <- results_us_election_2016 |> 
-  filter(state%in%c("Alabama", "Alaska", "Arizona", 
+  filter(state %in% c("Alabama", "Alaska", "Arizona", 
                     "California", "Connecticut", "Delaware")) |> 
   select(state, electoral_votes) |> rename(ev = electoral_votes)
-tab_2
 ```
 
 
@@ -128,10 +121,8 @@ anti_join(tab_1, tab_2, by = "state")
 
 The following diagram summarizes the above joins:
 
+![](img/joins.png)
 
-```{r, echo=FALSE, out.width = "40%"}
-knitr::include_graphics(file.path(img_path,"joins.png"))
-```
 (Image courtesy of RStudio^[https://github.com/rstudio/cheatsheets]. CC-BY-4.0 license^[https://github.com/rstudio/cheatsheets/blob/master/LICENSE]. Cropped from original.)
 
 ## Binding

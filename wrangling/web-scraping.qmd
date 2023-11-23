@@ -1,8 +1,5 @@
 # Web scraping 
 
-```{r, echo=FALSE}
-img_path <- "img/"
-```
 
 The data we need to answer a question is not always in a spreadsheet ready for us to read. For example, the US murders dataset we used in the R Basics chapter originally comes from this Wikipedia page: 
 
@@ -14,18 +11,15 @@ url <- paste0("https://en.wikipedia.org/w/index.php?title=",
 
 You can see the data table when you visit the webpage:
 
-```{r, echo=FALSE}
-knitr::include_graphics(file.path(img_path,"murders-data-wiki-page.png"))
-```
+![](img/murders-data-wiki-page.png)
 
 (Web page courtesy of Wikipedia^[https://en.wikipedia.org/w/index.php?title=Gun_violence_in_the_United_States_by_state&direction=prev&oldid=810166167]. CC-BY-SA-3.0 license^[https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License]. Screenshot of part of the page.)
 
 
 _Web scraping_, or _web harvesting_, is the term we use to describe the process of extracting data from a website. The reason we can do this is because the information used by a browser to render webpages is received as a text file from a server. The text is code written in hyper text markup language (HTML). Every browser has a way to show the html source code for a page, each one different. On Chrome, you can use Control-U on a PC and command+alt+U on a Mac. You will see something like this:
 
-```{r, echo=FALSE}
-knitr::include_graphics(file.path(img_path,"html-code.png"))
-```
+![](img/html-code.png)
+
 
 ## HTML
 
@@ -69,7 +63,7 @@ title="List of U.S. states and territories by population">Population</a><br />
 
 You can actually see the data, except data values are surrounded by html code such as `<td>`. We can also see a pattern of how it is stored. If you know HTML, you can write programs that leverage knowledge of these patterns to extract what we want. We also take advantage of a language widely used to make webpages look "pretty" called Cascading Style Sheets (CSS). We say more about this in Section @sec-css-selectors.
 
-Although we provide tools that make it possible to scrape data without knowing HTML, as a data scientist it is quite useful to learn some HTML and CSS. Not only does this improve your scraping skills, but it might come in handy if you are creating a webpage to showcase your work. There are plenty of online courses and tutorials for learning these. Two examples are Codeacademy^[https://www.codecademy.com/learn/learn-html] and W3schools^[https://www.w3schools.com/].
+Although we provide tools that make it possible to scrape data without knowing HTML, it is useful to learn some HTML and CSS. Not only does this improve your scraping skills, but it might come in handy if you are creating a webpage to showcase your work. There are plenty of online courses and tutorials for learning these. Two examples are Codeacademy^[https://www.codecademy.com/learn/learn-html] and W3schools^[https://www.w3schools.com/].
 
 ## The rvest package
 
@@ -141,6 +135,7 @@ We still have some wrangling to do. For example, we need to remove the commas an
 
 
 ## CSS selectors {#sec-css-selectors}
+
 The default look of a webpage made with the most basic HTML is quite unattractive. The aesthetically pleasing pages we see today are made using CSS to define the look and style of webpages. The fact that all pages for a company have the same style usually results from their use of the same CSS file to define the style. The general way these CSS files work is by defining how each of the elements of a webpage will look. The title, headings, itemized lists, tables, and links, for example, each receive their own style including font, color, size, and distance from the margin. CSS does this by leveraging patterns used to define these elements, referred to as _selectors_. An example of such a pattern, which we used above, is `table`, but there are many, many more. 
 
 If we want to grab data from a webpage and we happen to know a selector that is unique to the part of the page containing this data, we can use the `html_nodes` function. However, knowing which selector can be quite complicated. 
@@ -151,11 +146,12 @@ vignette^[https://cran.r-project.org/web/packages/rvest/vignettes/selectorgadget
 
 ## JSON
 
-Sharing data on the internet has become more and more common. Unfortunately, providers use different formats, which makes it harder for data scientists to wrangle data into R. Yet there are some standards that are also becoming more common. Currently, a format that is widely being adopted is the JavaScript Object Notation or JSON. Because this format is very general, it is nothing like a spreadsheet. This JSON file looks more like the code you use to define a list. Here is an example of information stored in a JSON format:
+Sharing data on the internet has become more and more common. Unfortunately, providers use different formats, which makes it harder for data analysts to wrangle data into R. Yet there are some standards that are also becoming more common. Currently, a format that is widely being adopted is the JavaScript Object Notation or JSON. Because this format is very general, it is nothing like a spreadsheet. This JSON file looks more like the code you use to define a list. Here is an example of information stored in a JSON format:
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE}
 library(jsonlite)
-example <- data.frame(name= c("Miguel", "Sofia", "Aya", "Cheng"), student_id = 1:4, exam_1 = c(85, 94, 87, 90), exam_2 = c(86, 93, 88, 91))
+example <- data.frame(name = c("Miguel", "Sofia", "Aya", "Cheng"), 
+                      student_id = 1:4, exam_1 = c(85, 94, 87, 90), exam_2 = c(86, 93, 88, 91))
 json <- toJSON(example, pretty = TRUE) 
 json
 ```
@@ -174,6 +170,97 @@ filter(nobel$prize, category == "literature" & year == "1971") |> pull(laureates
 
 You can learn much more by examining tutorials and help files from the __jsonlite__ package. This package is intended for relatively simple tasks such as converting data into tables. For more flexibility, we recommend `rjson`.
 
+
+
+## Data APIs
+
+An Application Programming Interface (API) is a set of rules and protocols that allows different software entities to communicate with each other. It defines methods and data formats that software components should use when requesting and exchanging information. APIs play a crucial role in enabling the integration that make today's software so interconnected and versatile.
+
+There are several types of APIs. The main ones related to retrieving data are:
+
+* **Web Services** - Often built using protocols like HTTP/HTTPS. Commonly used to enable applications to communicate with each other over the web. For instance, a weather application for a smartphone may use a web API to request weather data from a remote server.
+
+* **Database APIs** - Enable communication between an application and a database, SQL-based calls for example.
+
+Key concepts associated with APIs:
+
+- **Endpoints**: Specific functions available through the API. For web APIs, an endpoint is usually a specific URL where the API can be accessed.
+
+- **Methods**: Actions that can be performed. In web APIs, these often correspond to HTTP methods like GET, POST, PUT, or DELETE.
+
+- **Requests and Responses**: The act of asking the API to perform its function is a _request_. The data it returns is the _response_.
+
+- **Rate Limits**: Restrictions on how often you can call the API, often used to prevent abuse or overloading of the service.
+
+- **Authentication and Authorization**: Mechanisms to ensure that only approved users or applications can use the API. Common methods include _API keys_, _OAuth_, or _Jason Web Tokens_ (JWT).
+
+- **Data Formats**: Many web APIs exchange data in a specific format, often JSON or CSV.
+
+
+## The httr2 package 
+
+HTTP is the most widely used protocol for data sharing through the internet. The **httr2** package provides functions to work with HTTP requests. One of the core functions in this package is `request`, which is used to form request to send to web services. The `req_perform` function sends the request.
+
+This `request` function forms an HTTP GET request to the specified URL. Typically, HTTP GET requests are used to retrieve information from a server based on the provided URL.
+
+The function returns an object of class `response`. This object contains all the details of the server's response, including status code, headers, and content. You can then use other **httr2** functions to extract or interpret information from this response.
+
+
+Let's say you want to retrieve COVID-19 deaths by state from the CDC. By visiting <https://data.cdc.gov> you can search for 
+datasets and find that the data is provided through this API:
+
+```{r}
+url <- "https://data.cdc.gov/resource/muzy-jte6.csv"
+```
+
+We cam then make create and perform a request like this:
+
+
+```{r}
+library(httr2)
+response <- request(url) |> req_perform()
+```
+
+We can see the results of the request by looking at the returned object.
+
+```{r}
+response
+```
+
+To extract the body, which is where the data are, we can use `resp_body_string` and send the result, a comma delimited string, to `read_csv`
+
+```{r}
+#| message: false
+library(readr)
+tab <- response |> resp_body_string() |> read_csv()
+```
+
+We note that the returned object is only `r nrow(tab)` entries. API often limit how much you can download. 
+The documentation for this API^[https://dev.socrata.com/docs/queries/] explains that we can change this limit through the 
+`$limit` parameters. We can use the `req_url_path_append` to add this to our request:
+
+```{r}
+response <- request(url) |> req_url_path_append("?$limit=100000") |> req_perform() 
+```
+
+
+The CDC service returns data in csv format but a more common format used by web services is JSON. The CDC also provides data in json format through a the url:
+
+```{r}
+url <- "https://data.cdc.gov/resource/muzy-jte6.json"
+```
+
+To extract the data table we use the `fromJSON` function from the **jsonlite** package.
+
+```{r}
+tab <- request(url) |> 
+   req_perform() |> 
+   resp_body_string() |> 
+   fromJSON(flatten = TRUE)
+```
+
+
+When working with APIs, it's essential to check the API's documentation for rate limits, required headers, or authentication methods. The `httr2` package provides tools to handle these requirements, such as setting headers or authentication parameters.
 
 
 ## Exercises
@@ -236,7 +323,7 @@ Remove the first component and then use `sapply` and `html_table` to convert eac
 10\. Use a `full_join` function to combine these two tables. Before you do this you will have to fix the missing header problem. You will also need to make the names match.
  
 
-11\. After joining the tables, you see several NAs. This is because some teams are in one table and not the other. Use the `anti_join` function to get a better idea of why this is happening.
+11\. After joining the tables, you see several `NA`s. This is because some teams are in one table and not the other. Use the `anti_join` function to get a better idea of why this is happening.
 
 
 12\. We see see that one of the problems is that Yankees are listed as both _N.Y. Yankees_ and _NY Yankees_. In the next section, we will learn efficient approaches to fixing problems like this. Here we can do it "by hand" as follows:

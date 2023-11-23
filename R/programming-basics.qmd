@@ -1,7 +1,7 @@
 # Programming basics
 
 
-We teach R because it greatly facilitates data analysis, the main topic of this book. By coding in R, we can efficiently perform exploratory data analysis, build data analysis pipelines, and prepare data visualization to communicate results. However, R is not just a data analysis environment but a programming language. Advanced R programmers can develop complex packages and even improve R itself, but we do not cover advanced programming in this book. Nonetheless, in this section, we introduce three key programming concepts: conditional expressions, for-loops, and functions. These are not just key building blocks for advanced programming, but are sometimes useful during data analysis. We also note that there are several functions that are widely used to program in R but that we will not cover in this book. These include `split`, `cut`, `do.call`, and `Reduce`, as well as the __data.table__ package. These are worth learning if you plan to become an expert R programmer.
+We teach R because it greatly facilitates data analysis, the main topic of this book. By coding in R, we can efficiently perform exploratory data analysis, build data analysis pipelines, and prepare data visualization to communicate results. However, R is not just a data analysis environment but a programming language. Advanced R programmers can develop complex packages and even improve R itself, but we do not cover advanced programming in this book. Nonetheless, in this section, we introduce three key programming concepts: conditional expressions, for-loops, and functions. These are not just key building blocks for advanced programming, but are sometimes useful during data analysis. We also note that there are several functions that are widely used to program in R but that we will not cover in this book. These include `split`, `cut`, `do.call`, and `Reduce`. These are worth learning if you plan to become an expert R programmer.
 
 ## Conditional expressions {#sec-conditionals}
 
@@ -12,7 +12,7 @@ Here is a very simple example showing the general structure of an if-else statem
 ```{r}
 a <- 0
 
-if(a!=0){
+if (a != 0) {
   print(1/a)
 } else{
   print("No reciprocal for 0.")
@@ -33,7 +33,7 @@ Here is a very simple example that tells us which states, if any, have a murder 
 ```{r}
 ind <- which.min(murder_rate)
 
-if(murder_rate[ind] < 0.5){
+if (murder_rate[ind] < 0.5) {
   print(murders$state[ind]) 
 } else{
   print("No state has murder rate that low")
@@ -43,7 +43,7 @@ if(murder_rate[ind] < 0.5){
 If we try it again with a rate of 0.25, we get a different answer:
 
 ```{r}
-if(murder_rate[ind] < 0.25){
+if (murder_rate[ind] < 0.25) {
   print(murders$state[ind]) 
 } else{
   print("No state has a murder rate that low.")
@@ -156,7 +156,7 @@ The following objects are masked from ‘package:base’:
     intersect, setdiff, setequal, union
 ```
 
-So what does R do when we type `filter`? Does it use the __dplyr__ function or the __stats__ function? From our previous work we know it uses the __dplyr__ one. But what if we want to use the __stats__ version?
+Now when we type `filter` it uses the __dplyr__ one. But what if we want to use the __stats__ version?
 
 These functions live in different _namespaces_. R will follow a certain order when searching for a function in these _namespaces_. You can see the order by typing:
 
@@ -180,6 +180,10 @@ dplyr::filter
 
 Also note that if we want to use a function in a package without loading the entire package, we can use the double colon as well.
 
+:::{.callout-tip}
+If you want to see all the packages that have function called, for example `filter`, you can use double questions marks: `??filter`.
+:::
+
 For more on this more advanced topic we recommend the R packages book^[http://r-pkgs.had.co.nz/namespace.html].
 
 ## For-loops
@@ -187,17 +191,17 @@ For more on this more advanced topic we recommend the R packages book^[http://r-
 The formula for the sum of the series $1+2+\dots+n$ is $n(n+1)/2$. What if we weren't sure that was the right function? How could we check? Using what we learned about functions we can create one that computes the $S_n$:
 
 ```{r}
-compute_s_n <- function(n){
-  x <- 1:n
-  sum(x)
+compute_s_n <- function(n) { 
+  sum(1:n)
 }
 ```
+
 
 How can we compute $S_n$ for various values of $n$, say $n=1,\dots,25$? Do we write 25 lines of code calling `compute_s_n`? No, that is what for-loops are for in programming. In this case, we are performing exactly the same task over and over, and the only thing that is changing is the value of $n$. For-loops let us define the range that our variable takes (in our example $n=1,\dots,10$), then change the value and evaluate expression as you _loop_. 
 
 Perhaps the simplest example of a for-loop is this useless piece of code:
 ```{r}
-for(i in 1:5){
+for (i in 1:5) {
   print(i)
 }
 ```
@@ -207,7 +211,7 @@ Here is the for-loop we would write for our $S_n$ example:
 ```{r}
 m <- 25
 s_n <- vector(length = m) # create an empty vector
-for(n in 1:m){
+for (n in 1:m) {
   s_n[n] <- compute_s_n(n)
 }
 ```
@@ -228,21 +232,6 @@ plot(n, s_n)
 
 
 If you noticed that it appears to be a quadratic, you are on the right track because the formula is $n(n+1)/2$.
-<!--
-which we can confirm with a table:
-
-```{r show_s_n_table}
-head(data.frame(s_n = s_n, formula = n*(n+1)/2))
-```
-
-We can also overlay the two results by using the function `lines` to draw a line over the previously plotted points:
-
-```{r s_n-v-n}
-plot(n, s_n)
-lines(n, n*(n+1)/2)
-```
-
--->
 
 ## Vectorization and functionals {#sec-vectorization}
 

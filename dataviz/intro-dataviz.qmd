@@ -1,9 +1,5 @@
 # Data Visualization {.unnumbered}
 
-```{r, echo=FALSE}
-img_path <- "img"
-```
-
 Looking at the numbers and character strings that define a dataset is rarely useful. To convince yourself, print and stare at the US murders data table:
 
 ```{r, message=FALSE, warning=FALSE}
@@ -19,19 +15,19 @@ library(ggthemes)
 library(ggrepel)
 
 r <- murders |> 
-  summarize(pop=sum(population), tot=sum(total)) |> 
+  summarize(pop = sum(population), tot = sum(total)) |> 
   mutate(rate = tot/pop*10^6) |> pull(rate)
 
 murders |> ggplot(aes(x = population/10^6, y = total, label = abb)) +  
-  geom_abline(intercept = log10(r), lty=2, col="darkgrey") +
-  geom_point(aes(color=region), size = 3) +
+  geom_abline(intercept = log10(r), lty = 2, col = "darkgrey") +
+  geom_point(aes(color = region), size = 3) +
   geom_text_repel() + 
   scale_x_log10() +
   scale_y_log10() +
   xlab("Populations in millions (log scale)") + 
   ylab("Total number of murders (log scale)") +
   ggtitle("US Gun Murders in 2010") +
-  scale_color_discrete(name="Region") +
+  scale_color_discrete(name = "Region") +
   theme_economist()
 ```
 
@@ -55,10 +51,10 @@ jet.colors <-
 colorRampPalette(c("#F0FFFF", "cyan", "#007FFF", "yellow", "#FFBF00", "orange", "red", "#7F0000"), bias = 2.25)
 
 dat |> ggplot(aes(year, state, fill = rate)) +
-  geom_tile(color = "white", linewidth=0.35) +
-  scale_x_continuous(expand=c(0,0)) +
+  geom_tile(color = "white", linewidth = 0.35) +
+  scale_x_continuous(expand = c(0,0)) +
   scale_fill_gradientn(colors = jet.colors(16), na.value = 'white') +
-  geom_vline(xintercept=1963, col = "black") +
+  geom_vline(xintercept = 1963, col = "black") +
   theme_minimal() + 
   theme(panel.grid = element_blank()) +
   coord_cartesian(clip = 'off') +
@@ -66,12 +62,12 @@ dat |> ggplot(aes(year, state, fill = rate)) +
   ylab("") +
   xlab("") +  
   theme(legend.position = "bottom", text = element_text(size = 8)) + 
-  annotate(geom = "text", x = 1963, y = 50.5, label = "Vaccine introduced", size = 3, hjust=0)
+  annotate(geom = "text", x = 1963, y = 50.5, label = "Vaccine introduced", size = 3, hjust = 0)
 ```
 
 <!--(Source: [Wall Street Journal](http://graphics.wsj.com/infectious-diseases-and-vaccines/))-->
 
-Another striking example comes from a New York Times chart[^intro-dataviz-2], which summarizes scores from the NYC Regents Exams. As described in the article[^intro-dataviz-3], these scores are collected for several reasons, including to determine if a student graduates from high school. In New York City you need a 65 to pass. The distribution of the test scores forces us to notice something somewhat problematic:
+A New York Times chart provides a compelling example by summarizing scores from the NYC Regents Exams[^intro-dataviz-2]. According to the accompanying article[^intro-dataviz-3], these scores are collected for various purposes, one of which is to determine a student's eligibility for high school graduation. In New York City, a score of 65 is required to pass. The pattern of these test scores suggests something unusual.
 
 [^intro-dataviz-2]: http://graphics8.nytimes.com/images/2011/02/19/nyregion/19schoolsch/19schoolsch-popup.gif
 
@@ -79,7 +75,7 @@ Another striking example comes from a New York Times chart[^intro-dataviz-2], wh
 
 ```{r regents-exams-example, echo=FALSE, warning=FALSE, out.width="80%", fig.height=2.5}
 #knitr::include_graphics(file.path(img_path,"nythist.png"))
-nyc_regents_scores$total <- rowSums(nyc_regents_scores[,-1], na.rm=TRUE)
+nyc_regents_scores$total <- rowSums(nyc_regents_scores[,-1], na.rm = TRUE)
 
 nyc_regents_scores |> 
   filter(!is.na(score)) |>
@@ -88,8 +84,8 @@ nyc_regents_scores |>
   geom_bar(stat = "identity", color = "black", fill = "#C4843C") + 
   annotate("text", x = 66, y = 28000, label = "MINIMUM\nREGENTS DIPLOMA\nSCORE IS 65", hjust = 0, size = 3) +
   annotate("text", x = 0, y = 12000, label = "2010 Regents scores on\nthe five most common tests", hjust = 0, size = 3) +
-  scale_x_continuous(breaks = seq(5, 95, 5), limit = c(0,99)) + 
-  scale_y_continuous(position = "right") +
+  scale_x_continuous(breaks = seq(5, 95, 5), limits = c(0,99)) + 
+  scale_y_continuous(position = "right", labels = scales::comma) +
   ggtitle("Scraping by") + 
   xlab("") + ylab("Number of tests") + 
   theme_minimal() + 
@@ -98,8 +94,6 @@ nyc_regents_scores |>
         axis.ticks.length = unit(-0.2, "cm"),
         plot.title = element_text(face = "bold"))
 ```
-
-<!--(Source: [New York Times](http://graphics8.nytimes.com/images/2011/02/19/nyregion/19schoolsch/19schoolsch-popup.gif) via Amanda Cox)-->
 
 The most common test score is the minimum passing grade, with very few scores just below the threshold. This unexpected result is consistent with students close to passing having their scores bumped up.
 
@@ -132,13 +126,13 @@ gapminder <- gapminder |>
 gapminder <- gapminder |> 
   mutate(group = factor(group, levels = rev(c("Others", "Latin America", "East Asia","Sub-Saharan Africa", "The West"))))
 
-if(knitr::is_html_output()){
+if (knitr::is_html_output()) {
   library(gganimate)
   years <- c(1960:2016)
-  p <- filter(gapminder, year%in%years & !is.na(group) & 
+  p <- filter(gapminder, year %in% years & !is.na(group) & 
                 !is.na(fertility) & !is.na(life_expectancy)) |>
     mutate(population_in_millions = population/10^6) |>
-    ggplot( aes(fertility, y=life_expectancy, col = group, size = population_in_millions)) +
+    ggplot(aes(fertility, y = life_expectancy, col = group, size = population_in_millions)) +
     geom_point(alpha = 0.8) +
     guides(size = "none") +
     theme(legend.title = element_blank()) + 
@@ -151,17 +145,17 @@ if(knitr::is_html_output()){
   animate(p, end_pause = 15)
 } else{
   years <- c(1962, 2013)
-  p <- filter(gapminder, year%in%years & !is.na(group) & 
+  p <- filter(gapminder, year %in% years & !is.na(group) & 
                 !is.na(fertility) & !is.na(life_expectancy)) |>
     mutate(population_in_millions = population/10^6) |>
-    ggplot( aes(fertility, y=life_expectancy, col = group, size = population_in_millions)) +
+    ggplot(aes(fertility, y = life_expectancy, col = group, size = population_in_millions)) +
     geom_point(alpha = 0.8) +
     guides(size = "none") +
     theme(plot.title = element_blank(), legend.title = element_blank()) + 
     coord_cartesian(ylim = c(30, 85)) + 
     xlab("Fertility rate (births per woman)") +
     ylab("Life Expectancy") + 
-    geom_text(aes(x=7, y=82, label=year), cex=12, color="grey") +
+    geom_text(aes(x = 7, y = 82, label = year), cex = 12, color = "grey") +
     facet_grid(. ~ year)
   
   p + theme(strip.background = element_blank(),
@@ -173,21 +167,7 @@ if(knitr::is_html_output()){
 
 It is also important to note that mistakes, biases, systematic errors and other unexpected problems often lead to data that should be handled with care. Failure to discover these problems can give rise to flawed analyses and false discoveries. As an example, consider that measurement devices sometimes fail and that most data analysis procedures are not designed to detect these. Yet these data analysis procedures will still give you an answer. The fact that it can be difficult or impossible to notice an error just from the reported results makes data visualization particularly important.
 
-In this part of the book, we will learn the basics of data visualization and exploratory data analysis by using three motivating examples. We will use the **ggplot2** package to code. To learn the very basics, we will start with a somewhat artificial example: heights reported by students. Then we will cover the two examples mentioned above: 1) world health and economics and 2) infectious disease trends in the United States.
+In this part of the book, we will learn the basics of data visualization and exploratory data analysis by using three motivating examples. We will use the **ggplot2** package to code. To learn the very basics, we will start with a somewhat artificial example: heights reported by students. Then we will focus on two cases studies: 1) world health and economics and 2) infectious disease trends in the United States. Note that we do not cover interactive graphics. For those interested in creating interactive plots we highly recommend learning to use the __plotly__ package or Shiny [^shiny], both build on top of R. For more advanced challenges consider learning to program in D3.js[^d3].
 
-Of course, there is much more to data visualization than what we cover here. The following are references for those who wish to learn more:
-
--   ER Tufte (1983) The visual display of quantitative information. Graphics Press.
--   ER Tufte (1990) Envisioning information. Graphics Press.
--   ER Tufte (1997) Visual explanations. Graphics Press.
--   WS Cleveland (1993) Visualizing data. Hobart Press.
--   WS Cleveland (1994) The elements of graphing data. CRC Press.
--   A Gelman, C Pasarica, R Dodhia (2002) Let's practice what we preach: Turning tables into graphs. The American Statistician 56:121-130.
--   NB Robbins (2004) Creating more effective graphs. Wiley.
--   A Cairo (2013) The functional art: An introduction to information graphics and visualization. New Riders.
--   N Yau (2013) Data points: Visualization that means something. Wiley.
-
-We also do not cover interactive graphics, a topic that is too advanced for this book. Some useful resources for those interested in learning more can be found below:
-
--   <https://shiny.rstudio.com/>
--   <https://d3js.org/>
+[^shiny]: https://shiny.rstudio.com/
+[^d3]: https://d3js.org/

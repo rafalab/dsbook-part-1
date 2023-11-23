@@ -1,22 +1,19 @@
 # R basics {#sec-r-basics}
 
-```{r, echo=FALSE}
-img_path <- "img"
-```
-
 In this book, we will be using the R software environment for all our analysis. You will learn R and data analysis techniques simultaneously. To follow along you will therefore need access to R. We also recommend the use of an *integrated development environment* (IDE), such as RStudio, to save your work. Note that it is common for a course or workshop to offer access to an R environment and an IDE through your web browser, as done by RStudio cloud[^r-basics-1]. If you have access to such a resource, you don't need to install R and RStudio. However, if you intend on becoming an advanced data analyst, we highly recommend installing these tools on your computer[^r-basics-2]. Both R and RStudio are free and available online.
 
 [^r-basics-1]: https://rstudio.cloud
 
 [^r-basics-2]: https://rafalab.github.io/dsbook/installing-r-rstudio.html
 
-## Case study: US Gun Murders
+## Motivating example: US Gun Murders
 
 Imagine you live in Europe and are offered a job in a US company with many locations across all states. It is a great job, but news with headlines such as **US Gun Homicide Rate Higher Than Other Developed Countries**[^r-basics-3] have you worried. Charts like this may concern you even more:
 
 [^r-basics-3]: http://abcnews.go.com/blogs/headlines/2012/12/us-gun-ownership-homicide-rate-higher-than-other-developed-countries/
 
 ```{r murder-rate-example-1, echo=FALSE, warning=FALSE, message=FALSE, out.width="70%", cache=FALSE}
+## img_path <- "img"
 ##from http://abcnews.go.com/images/International/homocides_g8_countries_640x360_wmain.jpg
 ##knitr::include_graphics(file.path(img_path,"homocides_g8_countries_640x360_wmain.jpg"))
 library(tidyverse)
@@ -150,9 +147,7 @@ ls()
 
 In RStudio, the *Environment* tab shows the values:
 
-```{r, echo=FALSE}
-knitr::include_graphics(file.path(img_path,"rstudio-environment.png"))
-```
+![](img/rstudio-environment.png){width=70%}
 
 We should see `a`, `b`, and `c`. If you try to recover the value of a variable that is not in your workspace, you receive an error. For example, if you type `x` you will receive the following message: `Error: object 'x' not found`.
 
@@ -163,7 +158,7 @@ Now since these values are saved in variables, to obtain a solution to our equat
 (-b - sqrt(b^2 - 4*a*c))/(2*a)
 ```
 
-### Functions
+### Prebuilt functions
 
 Once you define variables, the data analysis process can usually be described as a series of *functions* applied to the data. R includes several predefined functions and most of the analysis pipelines we construct make extensive use of these.
 
@@ -213,7 +208,7 @@ log(x = 8, base = 2)
 The above code works, but we can save ourselves some typing: if no argument name is used, R assumes you are entering arguments in the order shown in the help file or by `args`. So by not using the names, it assumes the arguments are `x` followed by `base`:
 
 ```{r}
-log(8,2)
+log(8, 2)
 ```
 
 If using the arguments' names, then we can include them in whatever order we want:
@@ -259,6 +254,9 @@ or
 There are several datasets that are included for users to practice and test out functions. You can see all the available datasets by typing:
 
 ```{r}
+#| eval: false
+
+data()
 ```
 
 This shows you the object name for these datasets. These datasets are objects that can be used by simply typing the name. For example, if you type:
@@ -273,7 +271,7 @@ Other prebuilt objects are mathematical quantities, such as the constant $\pi$ a
 
 ```{r}
 pi
-Inf+1
+Inf + 1
 ```
 
 ### Variable names
@@ -316,8 +314,9 @@ By creating and saving a script with the code above, we would not need to retype
 If a line of R code starts with the symbol `#`, it is not evaluated. We can use this to write reminders of why we wrote particular code. For example, in the script above we could add:
 
 ```{r, eval=FALSE}
-## Code to compute solution to quadratic equation of the form ax^2 + bx + c
-## define the variables
+## Code to compute solution to quadratic equation
+
+## Define the variables
 a <- 3 
 b <- 2
 c <- -1
@@ -329,6 +328,7 @@ c <- -1
 
 :::{.callout-note}
 You are ready to do exercises 1-5.
+:::
 
 ## Data types
 
@@ -348,6 +348,8 @@ Up to now, the variables we have defined are just one number. This is not very u
 A large proportion of data analysis challenges start with data stored in a data frame. For example, we stored the data for our motivating example in a data frame. You can access this dataset by loading the **dslabs** library and loading the `murders` dataset using the `data` function:
 
 ```{r}
+#| cache: false
+
 library(dslabs)
 ```
 
@@ -401,7 +403,9 @@ names(murders)
 
 It is important to know that the order of the entries in `murders$population` preserves the order of the rows in our data table. This will later permit us to manipulate one variable based on the results of another. For example, we will be able to order the state names by the number of murders.
 
-**Tip**: R comes with a very nice auto-complete functionality that saves us the trouble of typing out all the names. Try typing `murders$p` then hitting the *tab* key on your keyboard. This functionality and many other useful auto-complete features are available when working in RStudio.
+:::{.callout-tip}
+R comes with a very nice auto-complete functionality that saves us the trouble of typing out all the names. Try typing `murders$p` then hitting the *tab* key on your keyboard. This functionality and many other useful auto-complete features are available when working in RStudio.
+:::
 
 ### Vectors: numerics, characters, and logical
 
@@ -448,7 +452,9 @@ In future sections, you will see how useful relational operators can be.
 
 We discuss more important features of vectors after the next set of exercises.
 
-**Advanced**: Mathematically, the values in `pop` are integers and there is an integer class in R. However, by default, numbers are assigned class numeric even when they are round integers. For example, `class(1)` returns numeric. You can turn them into class integer with the `as.integer()` function or by adding an `L` like this: `1L`. Note the class by typing: `class(1L)`
+:::{.callout-note}
+Mathematically, the values in `pop` are integers and there is an integer class in R. However, by default, numbers are assigned class numeric even when they are round integers. For example, `class(1)` returns numeric. You can turn them into class integer with the `as.integer()` function or by adding an `L` like this: `1L`. Note the class by typing: `class(1L)`
+:::
 
 ### Factors {#sec-factors}
 
@@ -479,7 +485,9 @@ levels(region)
 
 The new order is in agreement with the fact that the Northeast has the least murders and the South has the most.
 
-**Warning**: Factors can be a source of confusion since sometimes they behave like characters and sometimes they do not. As a result, confusing factors and characters are a common source of bugs.
+:::{.callout-warning}
+Factors can be a source of confusion since sometimes they behave like characters and sometimes they do not. As a result, confusing factors and characters are a common source of bugs.
+:::
 
 ### Lists
 
@@ -894,8 +902,8 @@ x + y
 We do get a warning, but no error. For the output, R has recycled the numbers in `x`. Notice the last digit of numbers in the output.
 
 :::{.callout-note}
-You are now ready to do exercises 24-31
-
+You are ready to do exercises 24-31
+:::
 
 ## Vector arithmetics
 
@@ -1074,11 +1082,11 @@ c("Boston", "Dakota", "Washington") %in% murders$state
 
 Note that we will be using `%in%` often throughout the book.
 
-**Advanced**: There is a connection between `match` and `%in%` through `which`. To see this, notice that the following two lines produce the same index (although in different order):
+There is a connection between `match` and `%in%` through `which`. To see this, notice that the following two lines produce the same index (although in different order):::::
 
 ```{r}
 match(c("New York", "Florida", "Texas"), murders$state)
-which(murders$state%in%c("New York", "Florida", "Texas"))
+which(murders$state %in% c("New York", "Florida", "Texas"))
 ```
 
 :::{.callout-note}
@@ -1291,7 +1299,7 @@ The `is.na` function returns a logical vector that tells us which entries are `N
 31\. Now compute the average again, but only for the entries that are not `NA`. Hint: remember the `!` operator.
 
 
-32\. Previously we created this data frame:
+32\. In exercises 28 we created the `temp` data frame:
 
 ```{r}
 temp <- c(35, 88, 42, 84, 81, 30)

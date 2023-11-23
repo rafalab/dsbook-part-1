@@ -1,8 +1,5 @@
 # ggplot2 {#sec-ggplot2}
 
-```{r, echo=FALSE}
-img_path <- "../R/img"
-```
 
 Exploratory data visualization is perhaps the greatest strength of R. One can quickly go from idea to data to plot with a unique balance of flexibility and ease. For example, Excel may be easier than R for some plots, but it is nowhere near as flexible. D3.js may be more flexible and powerful than R, but it takes much longer to generate a plot.
 
@@ -11,6 +8,7 @@ Throughout the book, we will be creating plots using the **ggplot2**[^ggplot2-1]
 [^ggplot2-1]: https://ggplot2.tidyverse.org/
 
 ```{r, message=FALSE, warning=FALSE}
+#| cache: false
 library(dplyr)
 library(ggplot2)
 ```
@@ -23,7 +21,7 @@ One reason **ggplot2** is generally more intuitive for beginners is that it uses
 
 Another reason **ggplot2** is easy for beginners is that its default behavior is carefully chosen to satisfy the great majority of cases and is visually pleasing. As a result, it is possible to create informative and elegant graphs with relatively simple and readable code.
 
-One limitation is that **ggplot2** is designed to work exclusively with data tables in tidy format (where rows are observations and columns are variables). However, a substantial percentage of datasets that beginners work with are in, or can be converted into, this format. An advantage of this approach is that, assuming that our data is tidy, **ggplot2** simplifies plotting code and the learning of grammar for a variety of plots.
+One limitation is that **ggplot2** is designed to work exclusively with data tables in tidy format. However, a substantial percentage of datasets that beginners work with are in, or can be converted into, this format. An advantage of this approach is that, assuming that our data is tidy, **ggplot2** simplifies plotting code and the learning of grammar for a variety of plots.
 
 To use **ggplot2** you will have to learn several functions and arguments. These are hard to memorize, so we highly recommend you have the ggplot2 cheat sheet handy. You can get a copy here: <https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf> or simply perform an internet search for "ggplot2 cheat sheet".
 
@@ -37,19 +35,19 @@ library(ggthemes)
 library(ggrepel)
 
 r <- murders |> 
-  summarize(pop=sum(population), tot=sum(total)) |> 
+  summarize(pop = sum(population), tot = sum(total)) |> 
   mutate(rate = tot/pop*10^6) |> pull(rate)
 
 murders |> ggplot(aes(x = population/10^6, y = total, label = abb)) +  
-  geom_abline(intercept = log10(r), lty=2, col="darkgrey") +
-  geom_point(aes(color=region), size = 3) +
+  geom_abline(intercept = log10(r), lty = 2, col = "darkgrey") +
+  geom_point(aes(color = region), size = 3) +
   geom_text_repel() + 
   scale_x_log10() +
   scale_y_log10() +
   xlab("Populations in millions (log scale)") + 
   ylab("Total number of murders (log scale)") +
   ggtitle("US Gun Murders in 2010") +
-  scale_color_discrete(name="Region") +
+  scale_color_discrete(name = "Region") +
   theme_economist()
 ```
 
@@ -60,7 +58,8 @@ This data visualization shows us pretty much all the information in the data tab
 The first step in learning **ggplot2** is to be able to break a graph apart into components. Let's break down the plot above and introduce some of the **ggplot2** terminology. The main three components to note are:
 
 -   **Data**: The US murders data table is being summarized. We refer to this as the **data** component.
--   **Geometry**: The plot above is a scatterplot. This is referred to as the **geometry** component. Other possible geometries are barplot, histogram, smooth densities, qqplot, and boxplot. We will learn more about these in the Data Visualization part of the book.
+-   **Geometry**: The plot above is a scatterplot. This is referred to as the **geometry** component. Other possible geometries are barplot, histogram, smooth densities, qqplot, and boxplot. We will learn more about these in @sec-other-geometries.
+
 -   **Aesthetic mapping**: The plot uses several visual cues to represent the information provided by the dataset. The two most important cues in this plot are the point positions on the x-axis and y-axis, which represent population size and the total number of murders, respectively. Each point represents a different observation, and we *map* data about these observations to visual cues like x- and y-scale. Color is another visual cue that we map to region. We refer to this as the **aesthetic mapping** component. How we define the mapping depends on what **geometry** we are using.
 
 We also note that:
@@ -69,64 +68,67 @@ We also note that:
 -   The range of the x-axis and y-axis appears to be defined by the range of the data. They are both on log-scales.
 -   There are labels, a title, a legend, and we use the style of The Economist magazine.
 
-We will now construct the plot piece by piece.
+The general approach in **ggplot2** is to construct the plot part by part by adding *layers* to a `ggplot` object, created by the `ggplot` function. Layers can define geometries, compute summary statistics, define what scales to use, or change styles. To add layers, we use the symbol `+`. In general, a line of code will look like this:
 
-We start by loading the dataset:
+> > DATA \|\> `ggplot()` + LAYER 1 + LAYER 2 + ... + LAYER N
+
+ 
+We will now illustrate the basics of ggplot2 by dissecting how we construct the plot above.
+
+
+```{r, echo=FALSE}
+theme_set(theme_grey()) ## to imitate what happens with setting theme
+```
+
+## Initializing an object with data
+
+
+We start by loading the relevant dataset which is in the **dslabs package**:
 
 ```{r}
+#| cache: false
 library(dslabs)
 ```
 
-## `ggplot` objects
+The first step in creating a **ggplot2** graph is to define a `ggplot` object. Typically most or all the layers will be mapping variables from the same dataset, so we associate this object with the relevant data frame
 
-```{r, echo=FALSE}
-theme_set(theme_grey()) ## to immitate what happens with seeting theme
-```
-
-The first step in creating a **ggplot2** graph is to define a `ggplot` object. We do this with the function `ggplot`, which initializes the graph. If we read the help file for this function, we see that the first argument is used to specify what data is associated with this object:
-
-```{r ggplot-example-1, eval=FALSE}
+```{r}
+#| eval: false
 ggplot(data = murders)
 ```
 
-We can also pipe the data in as the first argument. So this line of code is equivalent to the one above:
+or equivalently
 
-```{r ggplot-example-2}
+```{r ggplot-example-1}
 murders |> ggplot()
 ```
 
-It renders a plot, in this case a blank slate since no geometry has been defined. The only style choice we see is a grey background.
-
-What has happened above is that the object was created and, because it was not assigned, it was automatically evaluated. But we can assign our plot to an object, for example like this:
+Both these lines of code render a plot, in this case a blank slate since no geometry has been defined. The only style choice we see is a grey background, the default. We see a plot because an object was created and not assigned to a variable, it was automatically evaluated and printed. But we can assign our plot to an object in the usual way:
 
 ```{r}
 p <- ggplot(data = murders)
-class(p)
 ```
 
 To render the plot associated with this object, we simply print the object `p`. The following two lines of code each produce the same plot we see above:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 print(p)
 p
 ```
 
-## Geometries
+To summarize, `p` is a `ggplot` object with the `murders` data frame as its data component. 
 
-In `ggplot2` we create graphs by adding *layers*. Layers can define geometries, compute summary statistics, define what scales to use, or even change styles. To add layers, we use the symbol `+`. In general, a line of code will look like this:
+## Adding a geometry
 
-> > DATA \|\> `ggplot()` + LAYER 1 + LAYER 2 + ... + LAYER N
+A common frist step is to let **ggplot2** know what geometry to use. We often add multiple geometries, but we at least need one. In our example, we want to make a scatterplot. Geometries are added using functions. Taking a quick look at the cheat sheet, we see that we should use the function `geom_point`.
 
-Usually, the first added layer defines the geometry. We want to make a scatterplot. What geometry do we use?
+:::{layout-ncol=2}
 
-Taking a quick look at the cheat sheet, we see that the function used to create plots with this geometry is `geom_point`.
+![](../R/img/ggplot2-cheatsheeta.png){width=50%}
 
-```{r, echo=FALSE, out.width="45%"}
-##https://ugoproto.github.io/ugo_r_doc/img/visualization_cs/ggplot2-cheatsheeta.png
-##https://ugoproto.github.io/ugo_r_doc/img/visualization_cs/ggplot2-cheatsheetb.png
-knitr::include_graphics(c(file.path(img_path,"ggplot2-cheatsheeta.png"),
-                          file.path(img_path,"ggplot2-cheatsheetb.png")))
-```
+![](../R/img/ggplot2-cheatsheetb.png){width=50%}
+:::
 
 (Image courtesy of RStudio[^ggplot2-3]. CC-BY-4.0 license[^ggplot2-4].)
 
@@ -134,11 +136,9 @@ knitr::include_graphics(c(file.path(img_path,"ggplot2-cheatsheeta.png"),
 
 [^ggplot2-4]: https://github.com/rstudio/cheatsheets/blob/master/LICENSE
 
-<!--(Source: [RStudio](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf))-->
+Note that geometry function names follow the pattern: `geom_X` where X is the name of the geometry. Some examples include `geom_histogram`, `geom_boxplot`, and `geom_col`. We will discuss these further in @sec-other-geometries.
 
-Geometry function names follow the pattern: `geom_X` where X is the name of the geometry. Some examples include `geom_point`, `geom_bar`, and `geom_histogram`.
-
-For `geom_point` to run properly we need to provide data and a mapping. We have already connected the object `p` with the `murders` data table, and if we add the layer `geom_point` it defaults to using this data. To find out what mappings are expected, we read the **Aesthetics** section of the help file `geom_point` help file:
+For `geom_point` to run properly we need to provide data and a mapping. We have already assigned with the `murders` data table to the object `p`. Next we need to add the layer `geom_point` to define the geometry. To find out what mappings are expected by this function, we read the **Aesthetics** section of the help file:
 
 ```         
 > Aesthetics
@@ -154,213 +154,159 @@ For `geom_point` to run properly we need to provide data and a mapping. We have 
 > colour
 ```
 
-and, as expected, we see that at least two arguments are required `x` and `y`.
+We see that at least two arguments are required `x` and `y`. Next explain how to map values from the dataset to the plot.
 
 ## Aesthetic mappings
 
-**Aesthetic mappings** describe how properties of the data connect with features of the graph, such as distance along an axis, size, or color. The `aes` function connects data with what we see on the graph by defining aesthetic mappings and will be one of the functions you use most often when plotting. The outcome of the `aes` function is often used as the argument of a geometry function. This example produces a scatterplot of total murders versus population in millions:
+*Aesthetic mappings* describe how properties of the data connect with features of the graph, such as distance along an axis, size, or color. The `aes` function connects data with what we see on the graph by defining aesthetic mappings and will be one of the functions you use most often when plotting. This example produces a scatterplot of total murders versus population in millions:
 
-```{r, eval = FALSE}
-murders |> ggplot() + 
-  geom_point(aes(x = population/10^6, y = total))
+
+```{r ggplot-example-2}
+murders |> ggplot() + geom_point(aes(population/10^6, total))
 ```
 
-We can drop the `x =` and `y =` if we wanted to since these are the first and second expected arguments, as seen in the help page.
+We didn't use the `x` and `y` to define the arguments because the help file showed these are the first and second expected arguments.
 
-Instead of defining our plot from scratch, we can also add a layer to the `p` object that was defined above as `p <- ggplot(data = murders)`:
+The scale and labels are defined by default when adding this layer. Like **dplyr** functions, `aes` also uses the variable names from the data component: we can use `population` and `total` without having to call them as `murders$population` and `murders$total`. The behavior of recognizing the variables from the data component is specific to `aes`. With  **ggplot2** functions` other than `aes, if you try to access the values of `population` or `total` outside of `aes` you receive an error.
 
-```{r ggplot-example-3}
-p + geom_point(aes(population/10^6, total))
-```
 
-The scale and labels are defined by default when adding this layer. Like **dplyr** functions, `aes` also uses the variable names from the object component: we can use `population` and `total` without having to call them as `murders$population` and `murders$total`. The behavior of recognizing the variables from the data component is quite specific to `aes`. With most functions, if you try to access the values of `population` or `total` outside of `aes` you receive an error.
+## Other layers
 
-## Layers
-
-A second layer in the plot we wish to make involves adding a label to each point to identify the state. The `geom_label` and `geom_text` functions permit us to add text to the plot with and without a rectangle behind the text, respectively.
+To shape the plot into its final form, we continue to add layers. A second layer in the plot we wish to make involves adding a label to each point to identify the state. The `geom_label` and `geom_text` functions permit us to add text to the plot with and without a rectangle behind the text, respectively.
 
 Because each point (each state in this case) has a label, we need an aesthetic mapping to make the connection between points and labels. By reading the help file, we learn that we supply the mapping between point and label through the `label` argument of `aes`. So the code looks like this:
 
-```{r  ggplot-example-4}
-p + geom_point(aes(population/10^6, total)) +
+```{r  ggplot-example-3}
+murders |> ggplot() + 
+  geom_point(aes(population/10^6, total)) +
   geom_text(aes(population/10^6, total, label = abb))
 ```
 
-We have successfully added a second layer to the plot.
+As an example of the unique behavior of `aes` related to variable names, note that if the added layer was
+`geom_text(aes(population/10^6, total), label = abb)`, we would result in an error since `abb` is now outside the call to `aes` and it is not object in out workspace, it is a variable name in the data component of the `ggplot` object.
 
-As an example of the unique behavior of `aes` mentioned above, note that this call:
+## Global aesthetic mappings
 
-```{r, eval=FALSE}
-p_test <- p + geom_text(aes(population/10^6, total, label = abb))
-```
-
-is fine, whereas this call:
-
-```{r, eval=FALSE}
-p_test <- p + geom_text(aes(population/10^6, total), label = abb) 
-```
-
-will give you an error since `abb` is not found because it is outside of the `aes` function. The layer `geom_text` does not know where to find `abb` since it is a column name and not a global variable.
-
-### Tinkering with arguments
-
-Each geometry function has many arguments other than `aes` and `data`. They tend to be specific to the function. For example, in the plot we wish to make, the points are larger than the default size. In the help file we see that `size` is an aesthetic and we can change it like this:
-
-```{r ggplot-example-5}
-p + geom_point(aes(population/10^6, total), size = 3) +
-  geom_text(aes(population/10^6, total, label = abb))
-```
-
-`size` is **not** a mapping: whereas mappings use data from specific observations and need to be inside `aes()`, operations we want to affect all the points the same way do not need to be included inside `aes`.
-
-Now because the points are larger it is hard to see the labels. If we read the help file for `geom_text`, we see the `nudge_x` argument, which moves the text slightly to the right or to the left:
-
-```{r ggplot-example-6}
-p + geom_point(aes(population/10^6, total), size = 3) +
-  geom_text(aes(population/10^6, total, label = abb), nudge_x = 1.5)
-```
-
-This is preferred as it makes it easier to read the text. In Section @sec-add-on-packages we learn a better way of assuring we can see the points and the labels.
-
-## Global versus local aesthetic mappings
-
-In the previous line of code, we define the mapping `aes(population/10^6, total)` twice, once in each geometry. We can avoid this by using a *global* aesthetic mapping. We can do this when we define the blank slate `ggplot` object. Remember that the function `ggplot` contains an argument that permits us to define aesthetic mappings:
+In the previous lines of code, we define the mapping `aes(population/10^6, total)` twice, once in each layer. We can avoid this by using a *global* aesthetic mapping. We can do this when we define the blank slate `ggplot` object. Remember that the `mapping` argument of  `ggplot` function permits us to define aesthetic mappings. If we define a mapping in `ggplot`, all the geometries that are added as layers will default to this mapping. So we can simply write the following code to produce the previous plot:
 
 ```{r}
-args(ggplot)
+#| eval: false
+murders |> ggplot(aes(population/10^6, total)) +
+  geom_point() +
+  geom_text(aes(label = abb))
 ```
 
-If we define a mapping in `ggplot`, all the geometries that are added as layers will default to this mapping. We redefine `p`:
-
-```{r}
-p <- murders |> ggplot(aes(population/10^6, total, label = abb))
-```
-
-and then we can simply write the following code to produce the previous plot:
-
-```{r ggplot-example-7, eval=FALSE}
-p + geom_point(size = 3) + 
-  geom_text(nudge_x = 1.5)
-```
-
-We keep the `size` and `nudge_x` arguments in `geom_point` and `geom_text`, respectively, because we want to only increase the size of points and only nudge the labels. If we put those arguments in `aes` then they would apply to both plots. Also note that the `geom_point` function does not need a `label` argument and therefore ignores that aesthetic.
+Note that the mapping for `label` is only defined in `geom_text` because `geom_point` does not use this argument.
 
 If necessary, we can override the global mapping by defining a new mapping within each layer. These *local* definitions override the *global*. Here is an example:
 
-```{r ggplot-example-8}
-p + geom_point(size = 3) +  
+```{r ggplot-example-4}
+murders |> ggplot(aes(population/10^6, total)) +
+  geom_point() +
   geom_text(aes(x = 10, y = 800, label = "Hello there!"))
 ```
 
 Clearly, the second call to `geom_text` does not use `population` and `total`.
 
-## Scales
 
-First, our desired scales are in log-scale. This is not the default, so this change needs to be added through a *scales* layer. A quick look at the cheat sheet reveals the `scale_x_continuous` function lets us control the behavior of scales. We use them like this:
+## Non-aesthetic arguments
 
-```{r ggplot-example-9}
-p + geom_point(size = 3) +  
-  geom_text(nudge_x = 0.05) + 
-  scale_x_continuous(trans = "log10") +
-  scale_y_continuous(trans = "log10") 
+Each geometry function has arguments other than `aes` and `data`. They tend to be specific to the function and are not mapped to variables in the data. For example, in the plot we wish to make, the points are larger than the default size. As another example, to avoid putting the text on top of the point, we can use the `nudge_x` argument in `geom_text`. The code, with the arguments, looks like this: 
+
+```{r ggplot-example-5}
+murders |> ggplot(aes(population/10^6, total)) +
+  geom_point(size = 3) +
+  geom_text(aes(label = abb), nudge_x = 1.5)
 ```
 
-Because we are in the log-scale now, the *nudge* must be made smaller.
-
-This particular transformation is so common that **ggplot2** provides the specialized functions `scale_x_log10` and `scale_y_log10`, which we can use to rewrite the code like this:
-
-```{r, eval=FALSE}
-p + geom_point(size = 3) +  
-  geom_text(nudge_x = 0.05) + 
-  scale_x_log10() +
-  scale_y_log10() 
-```
-
-## Labels and titles
-
-Similarly, the cheat sheet quickly reveals that to change labels and add a title, we use the following functions:
-
-```{r ggplot-example-10}
-p + geom_point(size = 3) +  
-  geom_text(nudge_x = 0.05) + 
-  scale_x_log10() +
-  scale_y_log10() +
-  xlab("Populations in millions (log scale)") + 
-  ylab("Total number of murders (log scale)") +
-  ggtitle("US Gun Murders in 2010")
-```
-
-We are almost there! All we have left to do is add color, a legend, and optional changes to the style.
+In @sec-add-on-packages we learn a better way of assuring we can see the points and the labels.
 
 ## Categories as colors
 
-We can change the color of the points using the `col` argument in the `geom_point` function. To facilitate demonstration of new features, we will redefine `p` to be everything except the points layer:
+For the final plot, we want each region to have a different color. Because this information comes from the data, it is a aesthetic mapping. For our example, we can map color to categories using the `col` mapping in the `geom_point` function as follows:
+
+```{r ggplot-example-6}
+murders |> ggplot(aes(population/10^6, total)) +
+  geom_point(aes(color = region), size = 3) 
+```
+
+Note the `geom_point` automatically assigns a different color to each category and also adds a legend! Legends are usually  desired, but to avoid adding a legend we can set the `geom_point` argument `show.legend = FALSE`.
+
+Note that `color` is also a non-aesthetic argument in several **ggplot2** functions, including `geom_point`. This argument is not used to map colors to categories, but to change the color of all the points. For example, if we wanted all the points to be blue we would change the layer to `geom_point(col = "blue", size = 3)`.
+
+```{r ggplot-example-7}
+murders |> ggplot(aes(population/10^6, total)) +
+  geom_point(color = "blue", size = 3) 
+```
+
+## Updating ggplot objects
+
+In **ggplot2** we build plots by parts. A useful feature of the package is that we can update
+existing `ggplot` objects by adding layers. For example, we can start by initializing an object with a dataset and an global aesthetic 
 
 ```{r}
-p <-  murders |> ggplot(aes(population/10^6, total, label = abb)) +   
-  geom_text(nudge_x = 0.05) + 
-  scale_x_log10() +
-  scale_y_log10() +
-  xlab("Populations in millions (log scale)") + 
-  ylab("Total number of murders (log scale)") +
-  ggtitle("US Gun Murders in 2010")
+p0 <- murders |> ggplot(aes(population/10^6, total))
 ```
 
-and then test out what happens by adding different calls to `geom_point`. We can make all the points blue by adding the `color` argument:
-
-```{r ggplot-example-11}
-p + geom_point(size = 3, color ="blue")
-```
-
-This, of course, is not what we want. We want to assign color depending on the geographical region. A nice default behavior of **ggplot2** is that if we assign a categorical variable to color, it automatically assigns a different color to each category and also adds a legend.
-
-Since the choice of color is determined by a feature of each observation, this is an aesthetic mapping. To map each point to a color, we need to use `aes`. We use the following code:
-
-```{r ggplot-example-12}
-p + geom_point(aes(col=region), size = 3)
-```
-
-The `x` and `y` mappings are inherited from those already defined in `p`, so we do not redefine them. We also move `aes` to the first argument since that is where mappings are expected in this function call.
-
-Here we see yet another useful default behavior: **ggplot2** automatically adds a legend that maps color to region. To avoid adding this legend we set the `geom_point` argument `show.legend = FALSE`.
-
-## Annotation, shapes, and adjustments
-
-We often want to add shapes or annotation to figures that are not derived directly from the aesthetic mapping; examples include labels, boxes, shaded areas, and lines.
-
-Here we want to add a line that represents the average murder rate for the entire country. Once we determine the per million rate to be $r$, this line is defined by the formula: $y = r x$, with $y$ and $x$ our axes: total murders and population in millions, respectively. In the log-scale this line turns into: $\log(y) = \log(r) + \log(x)$. So in our plot it's a line with slope 1 and intercept $\log(r)$. To compute this value, we use our **dplyr** skills:
+and then start adding layers. For example, we start by adding the scatter plot 
 
 ```{r}
-r <- murders |> 
-  summarize(rate = sum(total) /  sum(population) * 10^6) |> 
-  pull(rate)
+p1 <- p0 +  geom_point(aes(color = region), size = 3)
 ```
 
-To add a line we use the `geom_abline` function. **ggplot2** uses `ab` in the name to remind us we are supplying the intercept (`a`) and slope (`b`). The default line has slope 1 and intercept 0 so we only have to define the intercept:
-
-```{r ggplot-example-13}
-p + geom_point(aes(col=region), size = 3) + 
-  geom_abline(intercept = log10(r))
-```
-
-Here `geom_abline` does not use any information from the data object.
-
-We can change the line type and color of the lines using arguments. Also, we draw it first so it doesn't go over our points.
+and labels:
 
 ```{r}
-p <- p + geom_abline(intercept = log10(r), lty = 2, color = "darkgrey") +
-  geom_point(aes(col=region), size = 3)  
+p2 <- p1 + geom_text(aes(label = abb), nudge_x = 0.1)
 ```
 
-Note that we have redefined `p` and used this new `p` below and in the next section.
+In the next few sections, we will be building on objects created in previous sections using this approach. This facilitates improving plots as well as testing options. Note that we changed the `nudge_x` from 1.5 to 0.1 because in the next section we will apply a log transformation and a smaller value is more appropriate.
 
-The default plots created by **ggplot2** are already very useful. However, we frequently need to make minor tweaks to the default behavior. Although it is not always obvious how to make these even with the cheat sheet, **ggplot2** is very flexible.
+## Scales
 
-For example, we can make changes to the legend via the `scale_color_discrete` function. In our plot the word *region* is capitalized and we can change it like this:
+One of the strengths of **ggplot2** is that the default behavior often is good enough to achieve our visualization goals. However, it also offers ways in which we can change these defaults. Many of these are changed through the `scales` functions. 
+
+Two examples, are the `scale_x_continuous` and `scale_y_continuous` functions which let's us make adjustments to the x-axis and y-axis, respectively. In the final plot we are trying to produce scales in log-scale and this can be achieved by assigning the argument `trans = "log10"` in these functions. However, because this operation is so common, **ggplot2** includes `scale_x_log10` and `scale_y_log10` functions. We can achieve the desired transformation by adding these layers:
+
+
+```{r ggplot-example-8}
+p3 <- p2 + scale_x_log10() + scale_y_log10() 
+p3
+```
+
+Be aware that **ggplot2** offers immense flexibility, particularly through the scales functions. We've introduced just one of the many available. In subsequent chapters of this book, we'll provide examples as they become pertinent to our visualizations. However, to familiarize yourself with these functions, we recommend consulting the ggplot2 cheat sheet or conducting internet searches as specific needs arise.
+
+## Annotations
+
+We often want to add annotations to figures that are not derived directly from the aesthetic mapping.  Examples of annotation functions are  `labs`, `annotate`, and `geom_abline`. The `labs` function permits adding a title, subtitle, caption, and other labels. Note these can also be defined individually using the functions such as `xlab`, `ylab` and `ggtitle`. 
+
+The `labs` function also allows another change needed for our desired plot: changing the legend title. Because the legend for the color mapping, this is achieved with the `color = "NEW_TITLE"` argument:
+
+
+```{r ggplot-example-9}
+p4 <- p3 + labs(title = "US Gun Murders in 2010",
+                x = "Populations in millions (log scale)", 
+                y = "Total number of murders (log scale)",
+                color = "Region")
+p4
+```
+
+Our desired final plot includes a line that represents the average murder rate for the entire country. Once we determine the per million rate to be $r$, the desired line is defined by the formula: $y = r x$, with $y$ and $x$ our axes: total murders and population in millions, respectively. In the log-scale this line turns into: $\log(y) = \log(r) + \log(x)$, a line with slope 1 and intercept $\log(r)$. We can compute `r` using:
 
 ```{r}
-p <- p + scale_color_discrete(name = "Region") 
+r <- murders |> summarize(rate = sum(total)/sum(population)*10^6) |> pull(rate)
 ```
+
+To add a line we use the `geom_abline` function. The `ab` in the name reminds us we are supplying the intercept (`a`) and slope (`b`). The default line has slope 1 and intercept 0 so we only have to define the intercept. Note that he final plot has a dashed line type and is grey and these can be changed throught the `lty` (line type) and `color` non aesthetic arguments. We add the layer like this:
+
+```{r ggplot-example-10}
+p5 <- p4 + geom_abline(intercept = log10(r), lty = 2, color = "darkgrey") 
+p5
+```
+
+Note that `geom_abline` does not use any mappings from the data object, once we have the slope.
+
+We are almost there! All we have to do is add line and optional changes to the style.
 
 ## Add-on packages {#sec-add-on-packages}
 
@@ -368,24 +314,24 @@ The power of **ggplot2** is augmented further due to the availability of add-on 
 
 The style of a **ggplot2** graph can be changed using the `theme` functions. Several themes are included as part of the **ggplot2** package. In fact, for most of the plots in this book, we use a function in the **dslabs** package that automatically sets a default theme:
 
-```{r, eval}
+```{r}
 ds_theme_set()
 ```
 
 Many other themes are added by the package **ggthemes**. Among those are the `theme_economist` theme that we used. After installing the package, you can change the style by adding a layer like this:
 
-```{r, eval = FALSE}
+```{r}
 library(ggthemes)
-p + theme_economist()
+p6 <- p5 + theme_economist()
 ```
 
 You can see how some of the other themes look by simply changing the function. For instance, you might try the `theme_fivethirtyeight()` theme instead.
 
-The final difference has to do with the position of the labels. In our plot, some of the labels fall on top of each other. The add-on package **ggrepel** includes a geometry that adds labels while ensuring that they don't fall on top of each other. We simply change `geom_text` with `geom_text_repel`.
+The final chage is to better position of the labels to avoid crowding: currently. some of the labels fall on top of each other. The add-on package **ggrepel** includes a geometry that adds labels while ensuring that they don't fall on top of each other. We simply change `geom_text` with `geom_text_repel`.
 
-## Putting it all together
+## Putting it all together {#sec-putting-it-all-together}
 
-Now that we are done testing, we can write one piece of code that produces our desired plot from scratch.
+Now that we are done testing, we can write one line of code that produces our desired plot from scratch.
 
 ```{r final-ggplot-example}
 library(ggthemes)
@@ -395,16 +341,17 @@ r <- murders |>
   summarize(rate = sum(total) /  sum(population) * 10^6) |>
   pull(rate)
 
-murders |> ggplot(aes(population/10^6, total, label = abb)) +   
+murders |> 
+  ggplot(aes(population/10^6, total)) +   
   geom_abline(intercept = log10(r), lty = 2, color = "darkgrey") +
-  geom_point(aes(col=region), size = 3) +
-  geom_text_repel() + 
+  geom_point(aes(col = region), size = 3) +
+  geom_text_repel(aes(label = abb)) + 
   scale_x_log10() +
   scale_y_log10() +
-  xlab("Populations in millions (log scale)") + 
-  ylab("Total number of murders (log scale)") +
-  ggtitle("US Gun Murders in 2010") + 
-  scale_color_discrete(name = "Region") +
+  labs(title = "US Gun Murders in 2010",
+                x = "Populations in millions (log scale)", 
+                y = "Total number of murders (log scale)",
+                color = "Region") +
   theme_economist()
 ```
 
@@ -413,15 +360,109 @@ ds_theme_set()
 ```
 
 
+
+
+## Geometries {#sec-other-geometries}
+
+In our illustrative example we introduced the scatterplot geometry `geom_point`. However, **ggplot2** has many others and here we demonstrate how to generate plots related to distributions, specifically the plots shown @sec-dataviz-distributions.
+
+### Barplots
+
+To generate a barplot we can use the `geom_bar` geometry. The default is to count the number of each category and draw a bar. Here is the plot for the regions of the US.
+
+```{r barplot-geom}
+#| eval: false
+murders |> ggplot(aes(region)) + geom_bar()
+```
+
+However, we often already have a table with the numbers we want to present as a barplot. Here is an example of such a table:
+
+```{r}
+tab <- murders |> 
+  count(region) |> 
+  mutate(proportion = n/sum(n))
+```
+
+In this case, we use `geom_col` instead of `geom_bar`:
+
+```{r region-freq-barplot}
+#| eval: false
+tab |> ggplot(aes(region, proportion)) + geom_col()
+```
+
+
+### Histograms
+
+To generate histograms we use `geom_histogram`. By looking at the help file for this function, we learn that the only required argument is `x`, the variable for which we will construct a histogram. We dropped the `x` because we know it is the first argument. The code looks like this:
+
+```{r, eval=FALSE}
+heights |> filter(sex == "Female") |> 
+  ggplot(aes(height)) + 
+  geom_histogram(binwidth = 1, fill = "blue", col = "black")
+```
+
+Note that we use the optional arguments `bandwidth = 1` to change the  bin size to 1 inch. The default is to create 30 bins. We also use the optional arguments `fill = "blue"` and `col = "black"` to fill the bars with colors and use a different color to distinguish the bars.
+
+
+### Density plots
+
+To create a smooth density, we use the `geom_density`. To make a smooth density plot with the data previously shown as a histogram we can use this code:
+
+```{r, eval=FALSE}
+heights |> 
+  filter(sex == "Female") |>
+  ggplot(aes(height)) +
+  geom_density(fill = "blue")
+```
+
+Note that we use the optional argument `fill` to change the color. To change the smoothness of the density, we use the `adjust` argument to multiply the default value by that `adjust`. For example, if we want the bandwidth to be twice as big we use:
+
+```{r eval = FALSE}
+heights |> 
+  filter(sex == "Female") |>
+  ggplot(aes(height)) +
+  geom_density(fill="blue", adjust = 2)
+```
+
+### Boxplots
+
+The geometry for boxplot is `geom_boxplot`. As discussed, boxplots are useful for comparing distributions. For example, below are the previously shown heights for women, but compared to men. For this geometry, we need arguments `x` as the categories, and `y` as the values.
+
+```{r female-male-boxplots-geom, eval=FALSE}
+heights |> ggplot(aes(sex, height)) +
+  geom_boxplot()
+```
+
+### Images
+
+Images were not needed for the concepts described in this chapter, but we will use images in @sec-vaccines, so we introduce the two geometries used to create images: **geom_tile** and **geom_raster**. They behave similarly; to see how they differ, please consult the help file. To create an image in **ggplot2** we need a data frame with the x and y coordinates as well as the values associated with each of these. Here is a data frame.
+
+```{r}
+x <- expand.grid(x = 1:12, y = 1:10) |> mutate(z = 1:120) 
+```
+
+Note that this is the tidy version of a matrix, `matrix(1:120, 12, 10)`. To plot the image we use the following code:
+
+```{r, eval=FALSE}
+x |> ggplot(aes(x, y, fill = z)) + geom_raster()
+```
+
+With these images you will often want to change the color scale. This can be done through the `scale_fill_gradientn` layer.
+
+```{r ggplot2-image-new-colors}
+x |> ggplot(aes(x, y, fill = z)) + 
+  geom_raster() + 
+  scale_fill_gradientn(colors =  terrain.colors(10, 1))
+```
+
+
 ## Grids of plots
 
-There are often reasons to graph plots next to each other. The **gridExtra** package permits us to do that:
+There are often reasons to graph plots next to each other. The **gridExtra** package permits us to do that. Here are the graphs `p5` and `p6` created in the previous sections:
 
-```{r gridExtra-example, warning=FALSE, message=FALSE, fig.height=2.5, fig.width=5}
+```{r gridExtra-example, warning=FALSE, message=FALSE, fig.height=4, fig.width=12, out.width="100%"}
 library(gridExtra)
-p1 <- murders |> ggplot(aes(log10(population))) + geom_histogram()
-p2 <- murders |> ggplot(aes(log10(population), log10(total))) + geom_point()
-grid.arrange(p1, p2, ncol = 2)
+grid.arrange(p5, p6, ncol = 2)
 ```
 
 ## Exercises
@@ -538,3 +579,37 @@ To change the y-axis to a log scale we learned about the `scale_x_log10()` funct
 15\. Repeat the previous exercise but now change both axes to be in the log scale.
 
 16\. Now edit the code above to add the title "Gun murder data" to the plot. Hint: use the `ggtitle` function.
+
+
+17\. Now we are going to use the `geom_histogram` function to make a histogram of the heights in the `height` data frame. When reading the documentation for this function we see that it requires just one mapping, the values to be used for the histogram. Make a histogram of all the plots.
+
+What is the variable containing the heights?
+
+a.  `sex`
+b.  `heights`
+c.  `height`
+d.  `heights$height`
+
+18\. Now create a ggplot object using the pipe to assign the heights data to a ggplot object. Assign `height` to the x values through the `aes` function.
+
+19\. Now we are ready to add a layer to actually make the histogram. Use the object created in the previous exercise and the `geom_histogram` function to make the histogram.
+
+20\. Note that when we run the code in the previous exercise we get the warning: `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\`
+
+Use the `binwidth` argument to change the histogram made in the previous exercise to use bins of size 1 inch.
+
+21\. Instead of a histogram, we are going to make a smooth density plot. In this case we will not make an object, but instead render the plot with one line of code. Change the geometry in the code previously used to make a smooth density instead of a histogram.
+
+22\. Now we are going to make a density plot for males and females separately. We can do this using the `group` argument. We assign groups via the aesthetic mapping as each point needs to a group before making the calculations needed to estimate a density.
+
+23\. We can also assign groups through the `color` argument. This has the added benefit that it uses color to distinguish the groups. Change the code above to use color.
+
+24\. We can also assign groups through the `fill` argument. This has the added benefit that it uses colors to distinguish the groups, like this:
+
+```{r, eval=FALSE}
+heights |> 
+  ggplot(aes(height, fill = sex)) + 
+  geom_density() 
+```
+
+However, here the second density is drawn over the other. We can make the curves more visible by using alpha blending to add transparency. Set the alpha parameter to 0.2 in the `geom_density` function to make this change.

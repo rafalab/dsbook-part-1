@@ -1,10 +1,10 @@
 # Visualizing data distributions {#sec-dataviz-distributions}
 
-You may have noticed that numerical data is often summarized with the *average* value. For example, the quality of a high school is sometimes summarized with one number: the average score on a standardized test. Occasionally, a second number is reported: the *standard deviation*. For example, you might read a report stating that scores were 680 plus or minus 50 (the standard deviation). The report has summarized an entire vector of scores with just two numbers. Is this appropriate? Is there any important piece of information that we are missing by only looking at this summary rather than the entire list?
+Summarizing complex datasets is crucial in data analysis, allowing us to share insights drawn from the data more effectively. One common method is to use the *average* value to summarize a list of numbers. For instance, a high school's quality might be represented by the average score in a standardized test. Sometimes, an additional value, the *standard deviation*, is added. So, a report might say the scores were 680 $\pm$ 50, boiling down a full set of scores to just two numbers. But is this enough? Are we overlooking crucial information by relying solely on these summaries instead of the complete data?
 
-Our first data visualization building block is learning to summarize lists of factors or numeric vectors. More often than not, the best way to share or explore this summary is through data visualization. The most basic statistical summary of a list of objects or numbers is its distribution. Once a data has been summarized as a distribution, there are several data visualization techniques to effectively relay this information. For this reason, it is important to have a deep understand the concept of a distribution.
+Our first data visualization building block is learning to summarize lists of numbers or categories. Mo∂re often than not, the best way to share or explore these summaries is through data visualization. The most basic statistical summary of a list of objects or numbers is its distribution. Once a data has been summarized as a distribution, there are several data visualization techniques to effectively relay this information. For this reason, it is important to have a deep understand of the concept of a distribution.
 
-In this chapter, we first discuss properties of a variety of distributions and how to visualize distributions using a motivating example of student heights. We then discuss the **ggplot2** geometries for these visualizations in Section @sec-other-geometries.
+In this chapter, we discuss properties of a variety of distributions and how to visualize distributions using a motivating example of student heights. 
 
 ## Variable types
 
@@ -20,13 +20,13 @@ We introduce a new motivating problem. It is an artificial one, but it will help
 
 Pretend that we have to describe the heights of our classmates to ET, an extraterrestrial that has never seen humans. As a first step, we need to collect data. To do this, we ask students to report their heights in inches. We ask them to provide sex information because we know there are two different distributions by sex. We collect the data and save it in the `heights` data frame:
 
-```{r load-heights, warning=FALSE, message=FALSE}
+```{r load-heights, warning=FALSE, message=FALSE, cache=FALSE}
 library(tidyverse)
 library(dslabs)
-data(heights)
+head(heights)
 ```
 
-One way to convey the heights to ET is to simply send him this list of `r nrow(heights)` heights. But there are much more effective ways to convey this information, and understanding the concept of a distribution will be key. To simplify the explanation, we first focus on male heights. We examine the female height data in Section @sec-student-height-cont.
+One way to convey the heights to ET is to simply send him this list of `r prettyNum(nrow(heights), big.mark=",")` heights. But there are much more effective ways to convey this information, and understanding the concept of a distribution will be key. To simplify the explanation, we first focus on male heights. We examine the female height data in @sec-student-height-cont.
 
 ## Distributions
 
@@ -52,13 +52,14 @@ This particular plot simply shows us four numbers, one for each category. We usu
 
 ### Histograms
 
-Numerical data that are not categorical also have distributions. However, in general, when data is not categorical, reporting the frequency of each entry, as we did for categorical data, is not an effective summary since most entries are unique. or example, in our case study, while several students reported a height of 68 inches, only one student reported a height of `68.503937007874` inches and only one student reported a height `68.8976377952756` inches. We assume that they converted from 174 and 175 centimeters, respectively.
+Numerical data that are not categorical also have distributions. However, in general, when data is not categorical, reporting the frequency of each entry, as we did for categorical data, is not an effective summary since most entries are unique. For example, in our case study, while several students reported a height of 68 inches, only one student reported a height of `68.503937007874` inches and only one student reported a height `68.8976377952756` inches. We assume that they converted from 174 and 175 centimeters, respectively.
 
 Statistics textbooks teach us that a more useful way to define a distribution for numeric data is to define a function that reports the proportion of the data below $a$ for all possible values of $a$. This function is called the emipirical cumulative distribution function (eCDF), it can be plotted, and it provides a full description of the distribution of our data. Here is the eCDF for male student heights:
 
 ```{r ecdf, echo=FALSE}
 ds_theme_set()
-heights |> filter(sex=="Male") |> ggplot(aes(height)) + 
+heights |> filter(sex=="Male") |> 
+  ggplot(aes(height)) + 
   stat_ecdf() +
   ylab("Proportion of heights less than or equal to a") + 
   xlab("a")
@@ -77,7 +78,7 @@ heights |>
 
 As you can see in the figure above, a histogram is similar to a barplot, but it differs in that the x-axis is numerical, not categorical.
 
-If we send this plot to ET, he will immediately learn some important properties about our data. First, the range of the data is from 50 to 84 with the majority (more than 95%) between 63 and 75 inches. Second, the heights are close to symmetric around 69 inches. Also, by adding up counts, ET could obtain a very good approximation of the proportion of the data in any interval. Therefore, the histogram above is not only easy to interpret, but also provides almost all the information contained in the raw list of `r sum(heights$sex=="Male")` heights with about 30 bin counts.
+If we send this plot to ET, he will immediately learn some important properties about our data. First, the range of the data is from 50 to 84 with the majority (more than 95%) between 63 and 75 inches. Second, the heights are close to symmetric around 69 inches. Also, by adding up counts, ET could obtain a very good approximation of the proportion of the data in any interval. Therefore, the histogram above is not only easy to interpret, but also provides almost all the information contained in the raw list of `r sum(heights$sex=="Male")` male heights with about 30 bin counts.
 
 What information do we lose? Note that all values in each interval are treated the same when computing bin heights. So, for example, the histogram does not distinguish between 64, 64.1, and 64.2 inches. Given that these differences are almost unnoticeable to the eye, the practical implications are negligible and we were able to summarize the data to just 23 numbers.
 
@@ -95,7 +96,7 @@ heights |>
   geom_line(stat='density')
 ```
 
-In this plot, we no longer have sharp edges at the interval boundaries and many of the local peaks have been removed. Also, the scale of the y-axis changed from counts to *density*. To fully understand smooth densities, we have to understand *estimates*, a topic we don't cover until later. Here we simply describe them as making the histograms prettier by drawing a curve that goes through the top of the histogream bars and then removing the bars. The values shown y-axis are chosen so that the area under the curve at up to 1. This implies that for any interval, the area under the curve for that interval gives us an approximation of how what proportion of the data is in the interval.
+In this plot, we no longer have sharp edges at the interval boundaries and many of the local peaks have been removed. Also, the scale of the y-axis changed from counts to *density*. To fully understand smooth densities, we have to understand *estimates*, a topic covered in statistics our advanced data science textbooks. Here we simply describe them as making the histograms prettier by drawing a curve that goes through the top of the histogream bars and then removing the bars. The values shown y-axis are chosen so that the area under the curve at up to 1. This implies that for any interval, the area under the curve for that interval gives us an approximation of how what proportion of the data is in the interval.
 
 An advantage of smooth densities over histograms for visualization purposes is that densities make it easier to compare two distributions. This is in large part because the jagged edges of the histogram add clutter. Here is an example comparing male and female heights:
 
@@ -106,7 +107,7 @@ heights |>
   geom_line(stat='density')
 ```
 
-With the right argument, `ggplot` automatically shades the intersecting region with a different color. We will show examples of **ggplot2** code for densities in Section @sec-gapminder) as well as Section \@ref(other-geometries.
+With the right argument, `ggplot` automatically shades the intersecting region with a different color. We will show examples of **ggplot2** code for densities in Section @sec-dataviz-in-practice) as well as Section @sec-other-geometries.
 
 ### The normal distribution {#sec-dataviz-normal-distribution}
 
@@ -120,7 +121,7 @@ norm_dist <- data.frame(x=seq(-4,4,len=50)*s+mu) |> mutate(density=dnorm(x,mu,s)
 norm_dist |> ggplot(aes(x,density)) + geom_line()
 ```
 
-The normal distribution is one of the most famous mathematical concepts in history. A reason for this is that the distribution of many datasets can be approximated with normal distributions. These include including gambling winnings, heights, weights, blood pressure, standardized test scores, and experimental measurement errors. Statistical textbooks offer explanations for why this is the case. But how can the same distribution approximate datasets with completely different ranges for values, for example heights and weights? A second important characteristic of the normal distribution is that it can be adapted to different datasets by just adjusting two numbers, refered to as the *average* or *mean* and the standard deviation (SD). The normal distribution is symmetric, centered at what we refer to as the average, and most values (about 95%) are within 2 SDs from the average. The plot above shows a normal distribution with average 0 and SD 1, often referred to as a *standard normal*. Note that the fact that vecause only two numbers are needed to adapt the normal distribution to a dataset, implies that if our data distribution is approximated by a normal distribution, all the information needed to describe the distribution can be encoded in just two numbers. We now define these values for an arbitrary list of numbers.
+The normal distribution is one of the most famous mathematical concepts in history. A reason for this is that the distribution of many datasets can be approximated with normal distributions. These include gambling winnings, heights, weights, blood pressure, standardized test scores, and experimental measurement errors. Statistical textbooks offer explanations for why this is the case. But how can the same distribution approximate datasets with completely different ranges for values, for example heights and weights? A second important characteristic of the normal distribution is that it can be adapted to different datasets by just adjusting two numbers, refered to as the *average* or *mean* and the standard deviation (SD). The normal distribution is symmetric, centered at what we refer to as the average, and most values (about 95%) are within 2 SDs from the average. The plot above shows a normal distribution with average 0 and SD 1, often referred to as a *standard normal*. Note that the fact that vecause only two numbers are needed to adapt the normal distribution to a dataset, implies that if our data distribution is approximated by a normal distribution, all the information needed to describe the distribution can be encoded in just two numbers. We now define these values for an arbitrary list of numbers.
 
 Once we are convinced that our data, say it is stored in the vector `x`, has a distribution that is *approximately normal* we can find the specifc one that matches our data by matching the average and SD of the data to the average and SD of the normal distribution, respectively. For a list of numbers contained in a vector `x`:
 
@@ -138,7 +139,7 @@ m <- sum(x) / length(x)
 and the SD is defined as
 
 ```{r}
-s <- sqrt(sum((x-mu)^2) / length(x))
+s <- sqrt(sum((x - mu)^2) / length(x))
 ```
 
 which can be interpreted as the average distance between values and their average.
@@ -154,12 +155,12 @@ c(average = m, sd = s)
 Here is a plot of the smooth density and the normal distribution with mean = `r round(m,1)` and SD = `r round(s,1)` plotted as a black line with our student height smooth density in blue:
 
 ```{r data-and-normal-densities, echo=FALSE}
-norm_dist <- data.frame(x = seq(-4, 4, len=50)*s + m) |> 
+norm_dist <- data.frame(x = seq(-4, 4, len = 50)*s + m) |> 
   mutate(density = dnorm(x, m, s))
 
 heights |> filter(sex == "Male") |> ggplot(aes(height)) +
-  geom_density(fill="#0099FF") +
-  geom_line(aes(x, density),  data = norm_dist, lwd=1.5) 
+  geom_density(fill = "#0099FF") +
+  geom_line(aes(x, density),  data = norm_dist, lwd = 1.5) 
 ```
 
 ## Boxplots
@@ -172,8 +173,7 @@ To motivate boxplots we will go back to the US murder data. Suppose we want to s
 
 ```{r hist-non-normal-data, echo=FALSE}
 murders <- murders |> mutate(rate = total/population*100000)
-library(gridExtra)
-murders |> ggplot(aes(x=rate)) + geom_histogram(binwidth = 0.5, color = "black") + ggtitle("Histogram")
+murders |> ggplot(aes(x = rate)) + geom_histogram(binwidth = 0.5, color = "black") + ggtitle("Histogram")
 ```
 
 In this case, the histogram above or a smooth density plot would serve as a relatively succinct summary.
@@ -197,16 +197,16 @@ We discuss how to make boxplots in Section @sec-other-geometries.
 
 In data analysis we often divide observations into groups based on the values of one or more variables associated with those observations. For example in the next section we divide the height values into groups based on a sex variable: females and males. We call this procedure *stratification* and refer to the resulting groups as *strata*.
 
-Stratification is common in data visualization because we are often interested in how the distribution of variables differs across different subgroups. We will see several examples throughout this part of the book.
+Stratification is common in data visualization because we are often interested in how the distribution of variables differs across different subgroups. We will see several examples throughout this part of the book, starting with the next section.
 
 ## Case study: describing student heights (continued) {#sec-student-height-cont}
 
-Using the histogram, density plots, and QQ-plots, we have become convinced that the male height data is well approximated with a normal distribution. In this case, we report back to ET a very succinct summary: male heights follow a normal distribution with an average of `r round(m, 1)` inches and a SD of `r round(s,1)` inches. With this information, ET will have a good idea of what to expect when he meets our male students. However, to provide a complete picture we need to also provide a summary of the female heights.
+If we are convinved that the male height data is well approximated with a normal distribution we can report back to ET a very succinct summary: male heights follow a normal distribution with an average of `r round(m, 1)` inches and a SD of `r round(s,1)` inches. With this information, ET will have a good idea of what to expect when he meets our male students. However, to provide a complete picture we need to also provide a summary of the female heights.
 
-We learned that boxplots are useful when we want to quickly compare two or more distributions. Here are the heights for men and women:
+Boxplots are useful when we want to quickly compare two or more distributions. Here are the heights for men and women:
 
 ```{r female-male-boxplots, echo=FALSE}
-heights |> ggplot(aes(x=sex, y=height, fill=sex)) +
+heights |> ggplot(aes(x = sex, y = height, fill = sex)) +
   geom_boxplot()
 ```
 
@@ -215,7 +215,7 @@ The plot immediately reveals that males are, on average, taller than females. Th
 ```{r histogram-qqplot-female-heights, echo=FALSE}
 heights |> filter(sex == "Female") |>
   ggplot(aes(height)) +
-  geom_density(fill="#F8766D") 
+  geom_density(fill = "#F8766D") 
 ```
 
 We see something we did not see for the males: the density plot has a second "bump". Also, the highest points tend to be taller than expected by the normal than expected heights for a normal distribution. When reporting back to ET, we might need to provide a histogram rather than just the average and standard deviation for the female heights.
@@ -253,7 +253,7 @@ library(tidyverse)
 library(dslabs)
 ds_theme_set()
 tab <- gapminder |> filter(year == 2010) |> group_by(continent) |> select(continent, population)  
-tab |> ggplot(aes(x=continent, y=population/10^6)) + 
+tab |> ggplot(aes(x = continent, y = population/10^6)) + 
   geom_boxplot() + 
   scale_y_continuous(trans = "log10", breaks = c(1,10,100,1000)) + ylab("Population in millions")
 ```
@@ -282,198 +282,3 @@ x <- heights$height[heights$sex=="Male"]
 
 What proportion of the data is between 69 and 72 inches (taller than 69, but shorter or equal to 72)? Hint: use a logical operator and `mean`.
 
-## ggplot2 geometries {#sec-other-geometries}
-
-In Chapter @sec-ggplot2, we introduced the **ggplot2** package for data visualization. Here we demonstrate how to generate plots related to distributions, specifically the plots shown earlier in this chapter.
-
-### Barplots
-
-To generate a barplot we can use the `geom_bar` geometry. The default is to count the number of each category and draw a bar. Here is the plot for the regions of the US.
-
-```{r barplot-geom}
-murders |> ggplot(aes(region)) + geom_bar()
-```
-
-We often already have a table with a distribution that we want to present as a barplot. Here is an example of such a table:
-
-```{r}
-tab <- murders |> 
-  count(region) |> 
-  mutate(proportion = n/sum(n))
-tab
-```
-
-We no longer want `geom_bar` to count, but rather just plot a bar to the height provided by the `proportion` variable. For this we need to provide `x` (the categories) and `y` (the values) and use the `stat="identity"` option.
-
-```{r region-freq-barplot}
-tab |> ggplot(aes(region, proportion)) + geom_bar(stat = "identity")
-```
-
-### Histograms
-
-To generate histograms we use `geom_histogram`. By looking at the help file for this function, we learn that the only required argument is `x`, the variable for which we will construct a histogram. We dropped the `x` because we know it is the first argument. The code looks like this:
-
-```{r, eval=FALSE}
-heights |> 
-  filter(sex == "Female") |> 
-  ggplot(aes(height)) + 
-  geom_histogram()
-```
-
-If we run the code above, it gives us a message:
-
-> `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-
-We previously used a bin size of 1 inch, so the code looks like this:
-
-```{r, eval=FALSE}
-heights |> 
-  filter(sex == "Female") |> 
-  ggplot(aes(height)) + 
-  geom_histogram(binwidth = 1)
-```
-
-Finally, if for aesthetic reasons we want to add color, we use the arguments described in the help file. We also add labels and a title:
-
-```{r height-histogram-geom}
-heights |> 
-  filter(sex == "Female") |> 
-  ggplot(aes(height)) +
-  geom_histogram(binwidth = 1, fill = "blue", col = "black") +
-  xlab("Female heights in inches") + 
-  ggtitle("Histogram")
-```
-
-### Density plots
-
-To create a smooth density, we use the `geom_density`. To make a smooth density plot with the data previously shown as a histogram we can use this code:
-
-```{r, eval=FALSE}
-heights |> 
-  filter(sex == "Female") |>
-  ggplot(aes(height)) +
-  geom_density()
-```
-
-To fill in with color, we can use the `fill` argument.
-
-```{r ggplot-density}
-heights |> 
-  filter(sex == "Female") |>
-  ggplot(aes(height)) +
-  geom_density(fill="blue")
-```
-
-To change the smoothness of the density, we use the `adjust` argument to multiply the default value by that `adjust`. For example, if we want the bandwidth to be twice as big we use:
-
-```{r eval = FALSE}
-heights |> 
-  filter(sex == "Female") |>
-  ggplot(aes(height)) +
-  geom_density(fill="blue", adjust = 2)
-```
-
-### Boxplots
-
-The geometry for boxplot is `geom_boxplot`. As discussed, boxplots are useful for comparing distributions. For example, below are the previously shown heights for women, but compared to men. For this geometry, we need arguments `x` as the categories, and `y` as the values.
-
-```{r female-male-boxplots-geom, echo=FALSE}
-heights |> ggplot(aes(sex, height)) +
-  geom_boxplot()
-```
-
-````{=html}
-<!--
-### QQ-plots 
-
-For qq-plots we use the `geom_qq` geometry. From the help file, we learn that we need to specify the `sample` (we will learn about samples in a later chapter). Here is the qqplot for men heights.
-
-```{r ggplot-qq}
-heights |> filter(sex=="Male") |>
-  ggplot(aes(sample = height)) +
-  geom_qq()
-```
-
-By default, the sample variable is compared to a normal distribution with average 0 and standard deviation 1. To change this, we use the `dparams` arguments based on the help file. Adding an identity line is as simple as assigning another layer. For straight lines, we use the `geom_abline` function. The default line is the identity line (slope = 1, intercept = 0).
-
-```{r  ggplot-qq-dparams, eval=FALSE}
-params <- heights |> filter(sex=="Male") |>
-  summarize(mean = mean(height), sd = sd(height))
-
-heights |> filter(sex=="Male") |>
-  ggplot(aes(sample = height)) +
-  geom_qq(dparams = params) +
-  geom_abline()
-```
-
-Another option here is to scale the data first and then make a qqplot against the standard normal. 
-
-```{r ggplot-qq-standard-units, eval=FALSE}
-heights |> 
-  filter(sex=="Male") |>
-  ggplot(aes(sample = scale(height))) + 
-  geom_qq() +
-  geom_abline()
-```
-
--->
-````
-
-### Images
-
-Images were not needed for the concepts described in this chapter, but we will use images in Section @sec-vaccines, so we introduce the two geometries used to create images: **geom_tile** and **geom_raster**. They behave similarly; to see how they differ, please consult the help file. To create an image in **ggplot2** we need a data frame with the x and y coordinates as well as the values associated with each of these. Here is a data frame.
-
-```{r}
-x <- expand.grid(x = 1:12, y = 1:10) |> 
-  mutate(z = 1:120) 
-```
-
-Note that this is the tidy version of a matrix, `matrix(1:120, 12, 10)`. To plot the image we use the following code:
-
-```{r, eval=FALSE}
-x |> ggplot(aes(x, y, fill = z)) + 
-  geom_raster()
-```
-
-With these images you will often want to change the color scale. This can be done through the `scale_fill_gradientn` layer.
-
-```{r ggplot2-image-new-colors}
-x |> ggplot(aes(x, y, fill = z)) + 
-  geom_raster() + 
-  scale_fill_gradientn(colors =  terrain.colors(10))
-```
-
-## Exercises
-
-1\. Now we are going to use the `geom_histogram` function to make a histogram of the heights in the `height` data frame. When reading the documentation for this function we see that it requires just one mapping, the values to be used for the histogram. Make a histogram of all the plots.
-
-What is the variable containing the heights?
-
-a.  `sex`
-b.  `heights`
-c.  `height`
-d.  `heights$height`
-
-2\. Now create a ggplot object using the pipe to assign the heights data to a ggplot object. Assign `height` to the x values through the `aes` function.
-
-3\. Now we are ready to add a layer to actually make the histogram. Use the object created in the previous exercise and the `geom_histogram` function to make the histogram.
-
-4\. Note that when we run the code in the previous exercise we get the warning: `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\`
-
-Use the `binwidth` argument to change the histogram made in the previous exercise to use bins of size 1 inch.
-
-5\. Instead of a histogram, we are going to make a smooth density plot. In this case we will not make an object, but instead render the plot with one line of code. Change the geometry in the code previously used to make a smooth density instead of a histogram.
-
-6\. Now we are going to make a density plot for males and females separately. We can do this using the `group` argument. We assign groups via the aesthetic mapping as each point needs to a group before making the calculations needed to estimate a density.
-
-7\. We can also assign groups through the `color` argument. This has the added benefit that it uses color to distinguish the groups. Change the code above to use color.
-
-8\. We can also assign groups through the `fill` argument. This has the added benefit that it uses colors to distinguish the groups, like this:
-
-```{r, eval=FALSE}
-heights |> 
-  ggplot(aes(height, fill = sex)) + 
-  geom_density() 
-```
-
-However, here the second density is drawn over the other. We can make the curves more visible by using alpha blending to add transparency. Set the alpha parameter to 0.2 in the `geom_density` function to make this change.
