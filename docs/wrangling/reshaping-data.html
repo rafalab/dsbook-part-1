@@ -334,9 +334,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">
-<span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Reshaping data</span>
-</h1>
+<h1 class="title"><span id="sec-reshape" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></h1>
 </div>
 
 
@@ -473,19 +471,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 5 Germany 1962  fertility        2.47</span></span>
 <span><span class="co">#&gt; # ℹ 219 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>But we are not done yet. We need to create a column for each variable. As we learned, the <code>pivot_wider</code> function can do this:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-13_5029f55e371b147070e8fb0f639d3858">
+<p>But we are not done yet. We need to create a column for each variable and change <code>year</code> to a number. As we learned, the <code>pivot_wider</code> function can do this:</p>
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-13_28f79e46a9546c0dad30a0c9ec106507">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html">separate_wider_delim</a></span><span class="op">(</span><span class="va">name</span>, delim <span class="op">=</span> <span class="st">"_"</span>, names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"name"</span><span class="op">)</span>, too_many <span class="op">=</span> <span class="st">"merge"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 112 × 4</span></span>
-<span><span class="co">#&gt;   country year  fertility life_expectancy</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;           &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 Germany 1960       2.41            69.3</span></span>
-<span><span class="co">#&gt; 2 Germany 1961       2.44            69.8</span></span>
-<span><span class="co">#&gt; 3 Germany 1962       2.47            70.0</span></span>
-<span><span class="co">#&gt; 4 Germany 1963       2.49            70.1</span></span>
-<span><span class="co">#&gt; 5 Germany 1964       2.49            70.7</span></span>
+<span><span class="co">#&gt;   country  year fertility life_expectancy</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;int&gt;     &lt;dbl&gt;           &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Germany  1960      2.41            69.3</span></span>
+<span><span class="co">#&gt; 2 Germany  1961      2.44            69.8</span></span>
+<span><span class="co">#&gt; 3 Germany  1962      2.47            70.0</span></span>
+<span><span class="co">#&gt; 4 Germany  1963      2.49            70.1</span></span>
+<span><span class="co">#&gt; 5 Germany  1964      2.49            70.7</span></span>
 <span><span class="co">#&gt; # ℹ 107 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The data is now in tidy format with one row for each observation with three variables: year, fertility, and life expectancy.</p>

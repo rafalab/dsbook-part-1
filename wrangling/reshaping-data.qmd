@@ -1,4 +1,4 @@
-# Reshaping data
+# Reshaping data {#sec-reshape}
 
 As we have seen through the book, having data in *tidy* format is what makes the tidyverse flow. After the first step in the data analysis process, importing data, a common next step is to reshape the data into a form that facilitates the rest of the analysis. The **tidyr** package, part of **tidyverse**, includes several functions that are useful for tidying data.
 
@@ -115,12 +115,13 @@ However, this line of code will give an error. This is because the life expectan
 dat |> separate_wider_delim(name, delim = "_", names = c("year", "name"), too_many = "merge")
 ```
 
-But we are not done yet. We need to create a column for each variable. As we learned, the `pivot_wider` function can do this:
+But we are not done yet. We need to create a column for each variable and change `year` to a number. As we learned, the `pivot_wider` function can do this:
 
 ```{r}
 dat |> 
   separate_wider_delim(name, delim = "_", names = c("year", "name"), too_many = "merge") |>
-  pivot_wider()
+  pivot_wider() |>
+  mutate(year = as.integer(year))
 ```
 
 The data is now in tidy format with one row for each observation with three variables: year, fertility, and life expectancy.
