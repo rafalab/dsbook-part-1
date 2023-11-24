@@ -178,26 +178,18 @@ qnorm(1 - alpha / 2, 69.1, 2.9)
 qnorm(alpha / 2, 63.7, 2.7)
 ```
 
-```{r}
-not_inches <- function(x, smallest = 50, tallest = 84){
-  inches <- suppressWarnings(as.numeric(x))
-  ind <- is.na(inches) | inches < smallest | inches > tallest
-  ind
-}
-```
-
 We apply this function and find the number of problematic entries:
 
 ```{r}
 problems <- reported_heights |> 
-  filter(not_inches(height)) |>
+  mutate(inches = suppressWarnings(as.numeric(x))) |>
+  filter(is.na(inches) | inches < 50 | inches > 84) |>
   pull(height)
 length(problems)
 ```
 
 We can now view all the cases by simply printing them. If we do, we see
-that three patterns can be used to define three large groups within
-these exceptions.
+that three patterns can be used to define three large groups within these exceptions.
 
 1\. A pattern of the form `x'y` or `x' y''` or `x'y"` with `x` and `y`
 representing feet and inches, respectively. Here are ten examples:
@@ -330,7 +322,7 @@ chatacter itself. We can do this with `\\`. When using regular
 expression, the topic of the next section, we often have to escape the
 *special characters* used in this approach.
 
-## Regular expressions {#regex}
+## Regular expressions {#sec-regex}
 
 A regular expression (regex) is a way to describe specific patterns of
 characters of text. They can be used to determine if a given string
@@ -937,112 +929,98 @@ Other related functions are `str_to_upper` and `str_to_title`. We are
 now ready to define a procedure that converts all the problematic cases
 to inches.
 
-## Putting it all together
+## Case study 1: Putting it all together
 
-We are now ready to put it all together and wrangle our reported heights
-data to try to recover as many heights as possible. The code is complex,
-but we will break it down into parts.
+We are now ready to put it all together and wrangle our reported heights data to try to recover as many heights as possible. The code is complex, but we will break it down into parts.
 
-Let's see how many problematic entries we can recover with the approaches based on regex we have covered in @sec-regex. We will first remove entries that appear to be reported as inches or centimeters
+Let's see how many problematic entries we can recover with the approaches we covered in @sec-regex. We will first define a function that detects entries that are not reported as inches or centimeters:
 
 ```{r}
 not_inches_or_cm <- function(x, smallest = 50, tallest = 84){
   inches <- suppressWarnings(as.numeric(x))
-  ind <- !is.na(inches) & 
-    ((inches >= smallest & inches <= tallest) |
-       (inches/2.54 >= smallest & inches/2.54 <= tallest))
-  !ind
+  is.na(inches) |
+    !((inches >= smallest & inches <= tallest) |
+        (inches/2.54 >= smallest & inches/2.54 <= tallest))
 }
+```
 
+We can see how many entries are not inches or centimeters:
+
+```{r}
 problems <- reported_heights |> 
-  filter(not_inches_or_cm) |>
+  filter(not_inches_or_cm(height)) |>
   pull(height)
 length(problems)
 ```
 
-We then attempt to convert the remaining reported heights to follow the standard pattern `^[4-7]\\s*'\\s*\\d{1,2}$`. We obtain:
+Let's see how many feet`'`inches format we can recover applying the finding from @sec-regex. Specifically we replace feet/foot/ft with `'`, we remove the word inches and its abbreviations, then rewrite similar patterns into the desired feet`'`inches pattern. Once this is done we see what proportion don't fit the desired pattern
 
 ```{r}
 converted <- problems |> 
   str_replace("feet|foot|ft", "'") |> 
-  str_replace("inches|in|''|\"", "") |>  
-  str_replace("^([4-7])\\s*[,\\.\\s+]\\s*(\\d*)$", "\\1'\\2")
-
-pattern <- "^[4-7]\\s*'\\s*\\d{1,2}$"
-index <- str_detect(converted, pattern)
-mean(index)
+  str_remove_all("inches|in|''|\"") |>  
+  str_replace("^([4-7])\\s*[,\\.\\s+]\\s*(\\d*)$", "\\1'\\2") 
+index <- str_detect(converted, "^[4-7]\\s*'\\s*\\d{1,2}$")
+mean(!index)
 ```
 
-Developing the right regex on the first try is often difficult. Trial and error is a common approach to finding the regex pattern that satisfies all desired conditions. 
-We can examine the remaining cases to try to decipher if new patterns we can use to fix them:
+We see that a substantial proportion has not yet been fixed. Trial and error is a common approach to finding the regex pattern that satisfies all desired conditions. We can examine the remaining cases to try to decipher if new patterns we can use to fix them:
 
 ```{r}
 converted[!index]
 ```
 
-Three clear patterns arise:
 
-1.  Many students measuring exactly 5 or 6 feet did not enter any
-    inches, for example `6'`, and our pattern requires that inches be
-    included.
-2.  Some students measuring exactly 5 or 6 feet entered just that
-    number.
-3.  Some of the inches were entered with decimal points. For example
-    `5'7.5''`. Our pattern only looks for two digits.
-4.  Some entries have spaces at the end, for example `5 ' 9`.
-
-Although not as common, we also see the following problems:
-
-5.  Some entries are in meters and some of these use European decimals:
-    `1.6`, `1,70`.
-6.  Two students added `cm`.
-7.  A student spelled out the numbers: `Five foot eight inches`.
-
-It is not necessarily clear that it is worth writing code to handle
-these last three cases since they might be rare enough. However, some of
-them provide us with an opportunity to learn a few more regex
-techniques, so we will build a fix.
-
-```{r}
-convert_format <- function(s){
-  s |>
-    str_replace("feet|foot|ft", "'") |> 
-    str_replace_all("inches|in|''|\"|cm|and", "") |>  
-    str_replace("^([4-7])\\s*[,\\.\\s+]\\s*(\\d*)$", "\\1'\\2") |> 
-    str_replace("^([56])'?$", "\\1'0") |> 
-    str_replace("^([12])\\s*,\\s*(\\d*)$", "\\1\\.\\2") |>  
-    str_trim() 
-}
-```
-
-We can also write a function that converts words to numbers:
+We noticed that two students added `cm` and some entries have space at the end so we write incorporate this into our cleanup stage. We also notice that at least one entry wrote out numbers such as `Five foot eight inches`. We can use  the `words()` function in the **english** package to change these to actual numbers. In preparation for our final product, we define a function that cleans up previously noticed problems and these new ones:
 
 ```{r, warning=FALSE, message=FALSE}
 library(english)
-words_to_numbers <- function(s){
-  s <- str_to_lower(s)
+cleanup <- function(s){
+  s <- str_remove_all(s, "inches|in|''|\"|cm|and") |> 
+    str_trim() |>
+    str_to_lower()
   for (i in 0:11)
     s <- str_replace_all(s, words(i), as.character(i))
-  s
+  return(s)
 }
 ```
 
+Many also notice that students measuring exactly 5 or 6 feet did not enter any inches, for example `6'`, and our pattern requires that inches be included, and that some entries are in meters and some of these use European decimals, for example `1.6` and `1,70`. So we 
+create a function that add these corrections to those already identified as needed to reformat the entry as feet`'`inches:
 
+```{r}
+convert_format <- function(s){
+  s |> str_replace("feet|foot|ft", "'") |> 
+    str_replace("^([4-7])\\s*[,\\.\\s+]\\s*(\\d*)$", "\\1'\\2") |> 
+    str_replace("^([56])'?$", "\\1'0") |> 
+    str_replace("^([12])\\s*,\\s*(\\d*)$", "\\1\\.\\2")
+}
+```
 
+Now we are ready to wrangle our reported heights dataset. The strategy is as follows: 
 
+1\. We start by defining a variable to keep a copy of the original entry, we then clean up and covert the `height` entry using the functions described above. 
 
-Now we are ready to wrangle our reported heights dataset:
+2\. We use then use the `separate_wider_regex_` function to extract feet and inches when the entry matches our feet`'`inches format. 
+
+3\. We use a lookaround so make sure that entries that have numbers with no `'` following them don't match and return an `NA`. 
+
+4. Once this is done we convert the feet and inches into inches.
+
+5. Finally, we decide if the entries are in inches, centimeters or meters and convert appropriately.
+
 
 ```{r, warning=FALSE, message=FALSE}
-pattern <- "^([4-7])\\s*'\\s*(\\d+\\.?\\d*)$"
-
+patterns <- c(feet = "[4-7](?=\\s*'\\s*)", 
+              "\\s*'\\s*", 
+              inches = "\\d+\\.?\\d*")
 smallest <- 50
 tallest <- 84
 new_heights <- reported_heights |> 
   mutate(original = height, 
-         height = words_to_numbers(height) |> convert_format()) |>
-  extract(height, c("feet", "inches"), regex = pattern, remove = FALSE) |> 
-  mutate_at(c("height", "feet", "inches"), as.numeric) |>
+         height = convert_format(cleanup(height))) |>
+  separate_wider_regex(height, patterns = patterns, too_few = "align_start", cols_remove = FALSE) |> 
+  mutate(across(c(height, feet, inches), as.numeric)) |>
   mutate(guess = 12 * feet + inches) |>
   mutate(height = case_when(
     is.na(height) ~ as.numeric(NA),
@@ -1051,323 +1029,38 @@ new_heights <- reported_heights |>
     between(height*100/2.54, smallest, tallest) ~ height*100/2.54, #meters
     TRUE ~ as.numeric(NA))) |>
   mutate(height = ifelse(is.na(height) & 
-                           inches < 12 & between(guess, smallest, tallest),
+                           inches <= 12 & between(guess, smallest, tallest),
                          guess, height)) |>
-  select(-guess)
+  select(-feet, -inches, -guess)
 ```
 
-We can check all the entries we converted by typing:
+We see that we fix all but `r sum(is.na(new_heights$height))` entries. You can see that these are mostly un-fixable:
 
-```{r, eval=FALSE}
+```{r}
+new_heights |> filter(is.na(height)) |> pull(original)
+```
+
+You can review the ones we did fix by typing:
+
+```{r}
+#| eval: false
 new_heights |>
-  filter(not_inches(original)) |>
+  filter(not_inches_or_cm(original)) |>
   select(original, height) |> 
   arrange(height) |>
   View()
 ```
 
-A final observation is that if we look at the shortest students in our
-course:
+A final observation is that if we look at the shortest students in our course:
 
 ```{r}
-new_heights |> arrange(height) |> head(n=7)
+new_heights |> arrange(height) |> head(n = 6)
 ```
 
-We see heights of 53, 54, and 55. In the originals, we also have 51 and
-52. These short heights are rare and it is likely that the students
-actually meant `5'1`, `5'2`, `5'3`, `5'4`, and `5'5`. Because we are not
-completely sure, we will leave them as reported. The object
-`new_heights` contains our final solution for this case study.
+We see heights of 50, 51, 52, and so on. These short heights are rare and it is likely that the students actually meant 5'0,  5'1, 5'2 and so on. Because we are not completely sure, we will leave them as reported. The object new_heights contains our final solution for this case study.
 
 
 
-
-In the previous sections, we have developed a powerful string processing technique that can help us catch
-many of the problematic entries. Here we will test our approach, search
-for further problems, and tweak our approach for possible improvements.
-Let's write a function that captures all the entries that can't be
-converted into numbers remembering that some are in centimeters (we will
-deal with those later):
-
-```{r}
-not_inches_or_cm <- function(x, smallest = 50, tallest = 84){
-  inches <- suppressWarnings(as.numeric(x))
-  ind <- !is.na(inches) & 
-    ((inches >= smallest & inches <= tallest) |
-       (inches/2.54 >= smallest & inches/2.54 <= tallest))
-  !ind
-}
-
-problems <- reported_heights |> 
-  filter(not_inches_or_cm(height)) |>
-  pull(height)
-length(problems)
-```
-
-Let's see what proportion of these fit our pattern after the processing
-steps we developed above:
-
-```{r}
-converted <- problems |> 
-  str_replace("feet|foot|ft", "'") |> 
-  str_replace("inches|in|''|\"", "") |>  
-  str_replace("^([4-7])\\s*[,\\.\\s+]\\s*(\\d*)$", "\\1'\\2")
-
-pattern <- "^[4-7]\\s*'\\s*\\d{1,2}$"
-index <- str_detect(converted, pattern)
-mean(index)
-```
-
-Note how we leveraged the pipe, one of the advantages of using
-**stringr**. This last piece of code shows that we have matched well
-over half of the strings. Let's examine the remaining cases:
-
-```{r}
-converted[!index]
-```
-
-Four clear patterns arise:
-
-1.  Many students measuring exactly 5 or 6 feet did not enter any
-    inches, for example `6'`, and our pattern requires that inches be
-    included.
-2.  Some students measuring exactly 5 or 6 feet entered just that
-    number.
-3.  Some of the inches were entered with decimal points. For example
-    `5'7.5''`. Our pattern only looks for two digits.
-4.  Some entries have spaces at the end, for example `5 ' 9`.
-
-Although not as common, we also see the following problems:
-
-5.  Some entries are in meters and some of these use European decimals:
-    `1.6`, `1,70`.
-6.  Two students added `cm`.
-7.  A student spelled out the numbers: `Five foot eight inches`.
-
-
-
-
-
-
-
-
-
-For case 1, if we add a `'0` after the first digit, for example, convert
-all `6` to `6'0`, then our previously defined pattern will match. This
-can be done using groups:
-
-```{r}
-yes <- c("5", "6", "5")
-no <- c("5'", "5''", "5'4")
-s <- c(yes, no)
-str_replace(s, "^([4-7])$", "\\1'0")
-```
-
-The pattern says it has to start (`^`) with a digit between 4 and 7 and
-end there (`$`). The parenthesis defines the group that we pass as `\\1`
-to generate the replacement regex string.
-
-We can adapt this code slightly to handle the case 2 as well, which
-covers the entry `5'`. Note `5'` is left untouched. This is because the
-extra `'` makes the pattern not match since we have to end with a 5 or
-6. We want to permit the 5 or 6 to be followed by 0 or 1 feet sign. So
-we can simply add `'{0,1}` after the `'` to do this. However, we can use
-the none or once special character `?`. As we saw above, this is
-different from `*` which is none or more. We now see that the fourth
-case is also converted:
-
-```{r}
-str_replace(s, "^([56])'?$", "\\1'0")
-```
-
-Here we only permit 5 and 6, but not 4 and 7. This is because 5 and 6
-feet tall is quite common, so we assume those that typed 5 or 6 really
-meant `60` or `72` inches. However, `4` and `7` feet tall are so rare
-that, although we accept `84` as a valid entry, we assume `7` was
-entered in error.
-
-We can use quantifiers to deal with **case 3**. These entries are not
-matched because the inches include decimals and our pattern does not
-permit this. We need to allow the second group to include decimals not
-just digits. This means we must permit zero or one period `.` then zero
-or more digits. So we will be using both `?` and `*`. Also remember
-that, for this particular case, the period needs to be escaped since it
-is a special character (it means any character except line break). Here
-is a simple example of how we can use `*`.
-
-So we can adapt our pattern, currently `^[4-7]\\s*'\\s*\\d{1,2}$` to
-permit a decimal at the end:
-
-```{r}
-pattern <- "^[4-7]\\s*'\\s*(\\d+\\.?\\d*)$"
-```
-
-Case 4, meters using commas, we can approach similarly to how we
-converted the `x.y` to `x'y`. A difference is that we require that the
-first digit be 1 or 2:
-
-```{r}
-yes <- c("1,7", "1, 8", "2, " )
-no <- c("5,8", "5,3,2", "1.7")
-s <- c(yes, no)
-str_replace(s, "^([12])\\s*,\\s*(\\d*)$", "\\1\\.\\2")
-```
-
-We will later check if the entries are meters using their numeric
-values. We will come back to the case study after introducing two widely
-used functions in string processing that will come in handy when
-developing our final solution for the self-reported heights.
-
-
-
-We now put all of what we have learned together into a function that
-takes a string vector and tries to convert as many strings as possible
-to one format. We write a function that puts together what we have done
-above.
-
-```{r}
-convert_format <- function(s){
-  s |>
-    str_replace("feet|foot|ft", "'") |> 
-    str_replace_all("inches|in|''|\"|cm|and", "") |>  
-    str_replace("^([4-7])\\s*[,\\.\\s+]\\s*(\\d*)$", "\\1'\\2") |> 
-    str_replace("^([56])'?$", "\\1'0") |> 
-    str_replace("^([12])\\s*,\\s*(\\d*)$", "\\1\\.\\2") |>  
-    str_trim() 
-}
-```
-
-We can also write a function that converts words to numbers:
-
-```{r, warning=FALSE, message=FALSE}
-library(english)
-words_to_numbers <- function(s){
-  s <- str_to_lower(s)
-  for (i in 0:11)
-    s <- str_replace_all(s, words(i), as.character(i))
-  s
-}
-```
-
-Now we can see which problematic entries remain:
-
-```{r}
-converted <- problems |> words_to_numbers() |> convert_format()
-remaining_problems <- converted[not_inches_or_cm(converted)]
-pattern <- "^[4-7]\\s*'\\s*\\d+\\.?\\d*$"
-index <- str_detect(remaining_problems, pattern)
-remaining_problems[!index]
-```
-
-apart from the cases reported as meters, which we will fix below, they
-all seem to be cases that are impossible to fix.
-
- 
-
-### Putting it all together
-
-
-We start by cleaning up the `height` column so that the heights are
-closer to a feet'inches format. We added an original heights column so
-we can compare before and after.
-
-
-## String splitting
-
-Another very common data wrangling operation is string splitting. To
-illustrate how this comes up, we start with an illustrative example.
-Suppose we did not have the function `read_csv` or `read.csv` available
-to us. We instead have to read a csv file using the base R function
-`readLines` like this:
-
-```{r}
-filename <- system.file("extdata/murders.csv", package = "dslabs")
-lines <- readLines(filename)
-```
-
-This function reads-in the data line-by-line to create a vector of
-strings. In this case, one string for each row in the spreadsheet. The
-first six lines are:
-
-```{r}
-lines |> head()
-```
-
-We want to extract the values that are separated by a comma for each
-string in the vector. The command `str_split` does exactly this:
-
-```{r}
-x <- str_split(lines, ",") 
-x |> head(2)
-```
-
-Note that the first entry has the column names, so we can separate that
-out:
-
-```{r}
-col_names <- x[[1]]
-x <- x[-1]
-```
-
-To convert our list into a data frame, we can use a shortcut provided by
-the `map` functions in the **purrr** package. The map function applies
-the same function to each element in a list. So if we want to extract
-the first entry of each element in `x`, we can write:
-
-```{r}
-library(purrr)
-map(x, function(y) y[1]) |> head(2)
-```
-
-However, because this is such a common task, **purrr** provides a
-shortcut. If the second argument receives an integer instead of a
-function, it assumes we want that entry. So the code above can be
-written more efficiently like this:
-
-```{r, eval=FALSE}
-map(x, 1)
-```
-
-To force `map` to return a character vector instead of a list, we can
-use `map_chr`. Similarly, `map_int` returns integers. So to create our
-data frame, we can use:
-
-```{r}
-dat <- tibble(map_chr(x, 1),  
-              map_chr(x, 2),
-              map_chr(x, 3),
-              map_chr(x, 4),
-              map_chr(x, 5)) |>
-  mutate_all(parse_guess) |>
-  setNames(col_names)
-dat |> head()
-```
-
-If you learn more about the **purrr** package, you will learn that you
-perform the above with the following, more efficient, code:
-
-```{r}
-dat <- x |>
-  transpose() |>
-  map( ~ parse_guess(unlist(.))) |>
-  setNames(col_names) |> 
-  as_tibble() 
-```
-
-It turns out that we can avoid all the work shown above after the call
-to `str_split`. Specifically, if we know that the data we are extracting
-can be represented as a table, we can use the argument `simplify=TRUE`
-and `str_split` returns a matrix instead of a list:
-
-```{r}
-x <- str_split(lines, ",", simplify = TRUE) 
-col_names <- x[1,]
-x <- x[-1,]
-colnames(x) <- col_names
-x |> as_tibble() |>
-  mutate_all(parse_guess) |>
-  head(5)
-```
 
 ## Case study 3: extracting tables from a PDF
 
@@ -1416,23 +1109,15 @@ with an entry for each page. So we keep the page we want:
 raw_data_research_funding_rates <- txt[2]
 ```
 
-The steps above can actually be skipped because we include this raw data
-in the **dslabs** package as well:
+The steps above can actually be skipped because we include this raw data in the **dslabs** package as well. 
 
-```{r}
-```
-
-Examining the object `raw_data_research_funding_rates` we see that it is
-a long string and each line on the page, including the table rows, are
-separated by the symbol for newline: `\n`. We therefore can create a
-list with the lines of the text as elements as follows:
+Examining the object `raw_data_research_funding_rates` we see that it is a long string and each line on the page, including the table rows, are separated by the symbol for newline: `\n`. A first step in converting this into a data frame is to store each separate the rows in a way that will make it easy to access. For this we use the `str_split` function:
 
 ```{r}
 tab <- str_split(raw_data_research_funding_rates, "\n")
 ```
 
-Because we start off with just one element in the string, we end up with
-a list with just one entry.
+Because we start off with just one element in the string, we end up with a list with just one entry.
 
 ```{r}
 tab <- tab[[1]]
@@ -1454,11 +1139,12 @@ cat(substr(the_names_1, options()$width, nchar(the_names_1)))
 ```
 
 We want to create one vector with one name for each column. Using some
-of the functions we have just learned, we do this. Let's start with
+of the functions we have just learned, we do this. 
+
+Let's start with
 `the_names_1`, shown above. We want to remove the leading space and
 anything following the comma. We use regex for the latter. Then we can
-obtain the elements by splitting strings separated by space. We want to
-split only when there are 2 or more spaces to avoid splitting
+obtain the elements by splitting strings separated by space. We want to split only when there are 2 or more spaces to avoid splitting
 `Success rates`. So we use the regex `\\s{2,}`
 
 ```{r}
@@ -1489,7 +1175,7 @@ the_names_2
 We can then join these to generate one name for each column:
 
 ```{r}
-tmp_names <- str_c(rep(the_names_1, each = 3), the_names_2[-1], sep = "_")
+tmp_names <- paste(rep(the_names_1, each = 3), the_names_2[-1], sep = "_")
 the_names <- c(the_names_2[1], tmp_names) |>
   str_to_lower() |>
   str_replace_all("\\s", "_")
@@ -1506,7 +1192,7 @@ new_research_funding_rates <- tab[6:14] |>
   str_split("\\s{2,}", simplify = TRUE) |>
   data.frame() |>
   setNames(the_names) |>
-  mutate_at(-1, parse_number)
+  mutate(across(-1, parse_number))
 new_research_funding_rates |> as_tibble()
 ```
 
@@ -1516,16 +1202,12 @@ We can see that the objects are identical:
 identical(research_funding_rates, new_research_funding_rates)
 ```
 
-## Recoding {#sec-recode}
+## Renaming levels {#sec-recode}
 
-Another common operation involving strings is recoding the names of
-categorical variables. Let's say you have really long names for your
-levels and you will be displaying them in plots, you might want to use
-shorter versions of these names. For example, in character vectors with
-country names, you might want to change "United States of America" to
-"USA" and "United Kingdom" to UK, and so on. We can do this with
-`case_when`, although the **tidyverse** offers an option that is
-specifically designed for this task: the `recode` function.
+Another common operation involving strings is renaming the levels of  of a categorical variables. Let's say you have really long names for your levels and you will be displaying them in plots, you might want to use shorter versions of these names. For example, in character vectors with country names, you might want to change "United States of America" to "USA" and "United Kingdom" to UK, and so on. 
+
+Rather than changing each entry, a more efficient approach is to change the levels. 
+
 
 Here is an example that shows how to rename countries with long names:
 
@@ -1534,41 +1216,43 @@ library(dslabs)
 ```
 
 Suppose we want to show life expectancy time series by country for the
-Caribbean:
+Caribbean. If we make this plot
 
 ```{r caribbean}
+#| eval: false
 gapminder |> 
   filter(region == "Caribbean") |>
   ggplot(aes(year, life_expectancy, color = country)) +
   geom_line()
 ```
 
-The plot is what we want, but much of the space is wasted to accommodate
-some of the long country names. <!--
+we see that the legend takes up much of the plot because we have four countries with names longer than 12 characters. We can 
+
 ```{r}
+x <- levels(gapminder$country)
+levels(gapminder$country) <- case_when(
+  x == "Antigua and Barbuda" ~ "Barbuda",
+  x == "Dominican Republic" ~ "DR",
+  x == "St. Vincent and the Grenadines" ~ "St. Vincent",
+  x == "Trinidad and Tobago" ~ "Trinidad",
+  .default = x)
 gapminder |> 
   filter(region == "Caribbean") |>
-  filter(str_length(country) >= 12) |>
-  distinct(country) 
-```
---> We have four countries with names longer than 12 characters. These
-names appear once for each year in the Gapminder dataset. Once we pick
-nicknames, we need to change them all consistently. The `recode`
-function can be used to do this:
-
-```{r caribbean-with-nicknames}
-gapminder |> filter(region=="Caribbean") |>
-  mutate(country = recode(country, 
-                          `Antigua and Barbuda` = "Barbuda",
-                          `Dominican Republic` = "DR",
-                          `St. Vincent and the Grenadines` = "St. Vincent",
-                          `Trinidad and Tobago` = "Trinidad")) |>
   ggplot(aes(year, life_expectancy, color = country)) +
   geom_line()
+
 ```
 
-There are other similar functions in other R packages, such as
-`recode_factor` and `fct_recoder` in the **forcats** package.
+We can also use the `fct_recode` function in the **forcats** package:
+
+```{r}
+gapminder$country <- 
+  fct_recode(gapminder$country, 
+             "Barbuda" = "Antigua and Barbuda",
+             "DR" = "Dominican Republic",
+             "St. Vincent" = "St. Vincent and the Grenadines",
+             "Trinidad" = "Trinidad and Tobago")
+```
 
 ## Exercises
 

@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.3.353">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
-<title>Introduction to Data Science - 7&nbsp; ggplot2</title>
+<title>Introduction to Data Science - 8&nbsp; ggplot2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -61,8 +61,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../dataviz/distributions.html" rel="next">
-<link href="../dataviz/intro-dataviz.html" rel="prev">
+<link href="../dataviz/dataviz-principles.html" rel="next">
+<link href="../dataviz/distributions.html" rel="prev">
 <link href="../cover.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -100,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dataviz/intro-dataviz.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="../dataviz/ggplot2.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dataviz/intro-dataviz.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="../dataviz/ggplot2.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ggplot2</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -153,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../R/getting-started.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with R and RStudio</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -176,14 +176,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/importing-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importing data</span></span></a>
+  <a href="../R/data-table.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">data.table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/data_table.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">data.table</span></span></a>
+  <a href="../R/importing-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Importing data</span></span></a>
   </div>
 </li>
       </ul>
@@ -199,32 +199,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataviz/ggplot2.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../dataviz/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataviz/gapminder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization in practice</span></span></a>
+  <a href="../dataviz/ggplot2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ggplot2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../dataviz/dataviz-principles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data visualization principles</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization principles</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataviz/vaccines.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Case study: vaccines and infectious diseases</span></span></a>
+  <a href="../dataviz/dataviz-in-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data visualization in practice</span></span></a>
   </div>
 </li>
       </ul>
@@ -241,31 +235,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/reshaping-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/joining-tables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Joining tables</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web scraping</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">String processing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Joining tables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/dates-and-times.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/data-table-wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Wrangling with <code>data.table</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Web scraping</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">String processing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -312,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/reproducible-projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects with markdown</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects</span></span></a>
   </div>
 </li>
       </ul>
@@ -325,30 +325,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#the-components-of-a-graph" id="toc-the-components-of-a-graph" class="nav-link active" data-scroll-target="#the-components-of-a-graph"><span class="header-section-number">7.1</span> The components of a graph</a></li>
-  <li><a href="#ggplot-objects" id="toc-ggplot-objects" class="nav-link" data-scroll-target="#ggplot-objects"><span class="header-section-number">7.2</span> <code>ggplot</code> objects</a></li>
-  <li><a href="#geometries" id="toc-geometries" class="nav-link" data-scroll-target="#geometries"><span class="header-section-number">7.3</span> Geometries</a></li>
-  <li><a href="#aesthetic-mappings" id="toc-aesthetic-mappings" class="nav-link" data-scroll-target="#aesthetic-mappings"><span class="header-section-number">7.4</span> Aesthetic mappings</a></li>
+<li><a href="#the-components-of-a-graph" id="toc-the-components-of-a-graph" class="nav-link active" data-scroll-target="#the-components-of-a-graph"><span class="header-section-number">8.1</span> The components of a graph</a></li>
+  <li><a href="#initializing-an-object-with-data" id="toc-initializing-an-object-with-data" class="nav-link" data-scroll-target="#initializing-an-object-with-data"><span class="header-section-number">8.2</span> Initializing an object with data</a></li>
+  <li><a href="#adding-a-geometry" id="toc-adding-a-geometry" class="nav-link" data-scroll-target="#adding-a-geometry"><span class="header-section-number">8.3</span> Adding a geometry</a></li>
+  <li><a href="#aesthetic-mappings" id="toc-aesthetic-mappings" class="nav-link" data-scroll-target="#aesthetic-mappings"><span class="header-section-number">8.4</span> Aesthetic mappings</a></li>
+  <li><a href="#other-layers" id="toc-other-layers" class="nav-link" data-scroll-target="#other-layers"><span class="header-section-number">8.5</span> Other layers</a></li>
+  <li><a href="#global-aesthetic-mappings" id="toc-global-aesthetic-mappings" class="nav-link" data-scroll-target="#global-aesthetic-mappings"><span class="header-section-number">8.6</span> Global aesthetic mappings</a></li>
+  <li><a href="#non-aesthetic-arguments" id="toc-non-aesthetic-arguments" class="nav-link" data-scroll-target="#non-aesthetic-arguments"><span class="header-section-number">8.7</span> Non-aesthetic arguments</a></li>
+  <li><a href="#categories-as-colors" id="toc-categories-as-colors" class="nav-link" data-scroll-target="#categories-as-colors"><span class="header-section-number">8.8</span> Categories as colors</a></li>
+  <li><a href="#updating-ggplot-objects" id="toc-updating-ggplot-objects" class="nav-link" data-scroll-target="#updating-ggplot-objects"><span class="header-section-number">8.9</span> Updating ggplot objects</a></li>
+  <li><a href="#scales" id="toc-scales" class="nav-link" data-scroll-target="#scales"><span class="header-section-number">8.10</span> Scales</a></li>
+  <li><a href="#annotations" id="toc-annotations" class="nav-link" data-scroll-target="#annotations"><span class="header-section-number">8.11</span> Annotations</a></li>
+  <li><a href="#sec-add-on-packages" id="toc-sec-add-on-packages" class="nav-link" data-scroll-target="#sec-add-on-packages"><span class="header-section-number">8.12</span> Add-on packages</a></li>
+  <li><a href="#sec-putting-it-all-together" id="toc-sec-putting-it-all-together" class="nav-link" data-scroll-target="#sec-putting-it-all-together"><span class="header-section-number">8.13</span> Putting it all together</a></li>
   <li>
-<a href="#layers" id="toc-layers" class="nav-link" data-scroll-target="#layers"><span class="header-section-number">7.5</span> Layers</a>
+<a href="#sec-other-geometries" id="toc-sec-other-geometries" class="nav-link" data-scroll-target="#sec-other-geometries"><span class="header-section-number">8.14</span> Geometries</a>
   <ul class="collapse">
-<li><a href="#tinkering-with-arguments" id="toc-tinkering-with-arguments" class="nav-link" data-scroll-target="#tinkering-with-arguments"><span class="header-section-number">7.5.1</span> Tinkering with arguments</a></li>
+<li><a href="#barplots" id="toc-barplots" class="nav-link" data-scroll-target="#barplots"><span class="header-section-number">8.14.1</span> Barplots</a></li>
+  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms"><span class="header-section-number">8.14.2</span> Histograms</a></li>
+  <li><a href="#density-plots" id="toc-density-plots" class="nav-link" data-scroll-target="#density-plots"><span class="header-section-number">8.14.3</span> Density plots</a></li>
+  <li><a href="#boxplots" id="toc-boxplots" class="nav-link" data-scroll-target="#boxplots"><span class="header-section-number">8.14.4</span> Boxplots</a></li>
+  <li><a href="#images" id="toc-images" class="nav-link" data-scroll-target="#images"><span class="header-section-number">8.14.5</span> Images</a></li>
   </ul>
 </li>
-  <li><a href="#global-versus-local-aesthetic-mappings" id="toc-global-versus-local-aesthetic-mappings" class="nav-link" data-scroll-target="#global-versus-local-aesthetic-mappings"><span class="header-section-number">7.6</span> Global versus local aesthetic mappings</a></li>
-  <li><a href="#scales" id="toc-scales" class="nav-link" data-scroll-target="#scales"><span class="header-section-number">7.7</span> Scales</a></li>
-  <li><a href="#labels-and-titles" id="toc-labels-and-titles" class="nav-link" data-scroll-target="#labels-and-titles"><span class="header-section-number">7.8</span> Labels and titles</a></li>
-  <li><a href="#categories-as-colors" id="toc-categories-as-colors" class="nav-link" data-scroll-target="#categories-as-colors"><span class="header-section-number">7.9</span> Categories as colors</a></li>
-  <li><a href="#annotation-shapes-and-adjustments" id="toc-annotation-shapes-and-adjustments" class="nav-link" data-scroll-target="#annotation-shapes-and-adjustments"><span class="header-section-number">7.10</span> Annotation, shapes, and adjustments</a></li>
-  <li><a href="#sec-add-on-packages" id="toc-sec-add-on-packages" class="nav-link" data-scroll-target="#sec-add-on-packages"><span class="header-section-number">7.11</span> Add-on packages</a></li>
-  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together"><span class="header-section-number">7.12</span> Putting it all together</a></li>
-  <li><a href="#grids-of-plots" id="toc-grids-of-plots" class="nav-link" data-scroll-target="#grids-of-plots"><span class="header-section-number">7.13</span> Grids of plots</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">7.14</span> Exercises</a></li>
+  <li><a href="#grids-of-plots" id="toc-grids-of-plots" class="nav-link" data-scroll-target="#grids-of-plots"><span class="header-section-number">8.15</span> Grids of plots</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">8.16</span> Exercises</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/blob/main/dataviz/ggplot2.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-ggplot2" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></span></h1>
+<h1 class="title"><span id="sec-ggplot2" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ggplot2</span></span></h1>
 </div>
 
 
@@ -363,19 +369,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header><p>Exploratory data visualization is perhaps the greatest strength of R. One can quickly go from idea to data to plot with a unique balance of flexibility and ease. For example, Excel may be easier than R for some plots, but it is nowhere near as flexible. D3.js may be more flexible and powerful than R, but it takes much longer to generate a plot.</p>
 <p>Throughout the book, we will be creating plots using the <strong>ggplot2</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> package.</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-2_902455aab078ac2ae028747cca359346">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Many other approaches are available for creating plots in R. In fact, the plotting capabilities that come with a basic installation of R are already quite powerful. There are also other packages for creating graphics such as <strong>grid</strong> and <strong>lattice</strong>. We chose to use <strong>ggplot2</strong> in this book because it breaks plots into components in a way that permits beginners to create relatively complex and aesthetically pleasing plots using syntax that is intuitive and comparatively easy to remember.</p>
 <p>One reason <strong>ggplot2</strong> is generally more intuitive for beginners is that it uses a grammar of graphics<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, the <em>gg</em> in <strong>ggplot2</strong>. This is analogous to the way learning grammar can help a beginner construct hundreds of different sentences by learning just a handful of verbs, nouns and adjectives without having to memorize each specific sentence. Similarly, by learning a handful of <strong>ggplot2</strong> building blocks and its grammar, you will be able to create hundreds of different plots.</p>
 <p>Another reason <strong>ggplot2</strong> is easy for beginners is that its default behavior is carefully chosen to satisfy the great majority of cases and is visually pleasing. As a result, it is possible to create informative and elegant graphs with relatively simple and readable code.</p>
-<p>One limitation is that <strong>ggplot2</strong> is designed to work exclusively with data tables in tidy format (where rows are observations and columns are variables). However, a substantial percentage of datasets that beginners work with are in, or can be converted into, this format. An advantage of this approach is that, assuming that our data is tidy, <strong>ggplot2</strong> simplifies plotting code and the learning of grammar for a variety of plots.</p>
+<p>One limitation is that <strong>ggplot2</strong> is designed to work exclusively with data tables in tidy format. However, a substantial percentage of datasets that beginners work with are in, or can be converted into, this format. An advantage of this approach is that, assuming that our data is tidy, <strong>ggplot2</strong> simplifies plotting code and the learning of grammar for a variety of plots.</p>
 <p>To use <strong>ggplot2</strong> you will have to learn several functions and arguments. These are hard to memorize, so we highly recommend you have the ggplot2 cheat sheet handy. You can get a copy here: <a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf</a> or simply perform an internet search for “ggplot2 cheat sheet”.</p>
-<section id="the-components-of-a-graph" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="the-components-of-a-graph">
-<span class="header-section-number">7.1</span> The components of a graph</h2>
+<section id="the-components-of-a-graph" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="the-components-of-a-graph">
+<span class="header-section-number">8.1</span> The components of a graph</h2>
 <p>We will construct a graph that summarizes the US murders dataset that looks like this:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-plot_c6e719df36be5c5f18eaa46934630a68">
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-plot_8a211e1d3df5c4fed6b5a67c6069380d">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="ggplot2_files/figure-html/ggplot-example-plot-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -387,12 +393,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This data visualization shows us pretty much all the information in the data table. The code needed to make this plot is relatively simple. We will learn to create the plot part by part.</p>
 <p>The first step in learning <strong>ggplot2</strong> is to be able to break a graph apart into components. Let’s break down the plot above and introduce some of the <strong>ggplot2</strong> terminology. The main three components to note are:</p>
 <ul>
-<li>
-<strong>Data</strong>: The US murders data table is being summarized. We refer to this as the <strong>data</strong> component.</li>
-<li>
-<strong>Geometry</strong>: The plot above is a scatterplot. This is referred to as the <strong>geometry</strong> component. Other possible geometries are barplot, histogram, smooth densities, qqplot, and boxplot. We will learn more about these in the Data Visualization part of the book.</li>
-<li>
-<strong>Aesthetic mapping</strong>: The plot uses several visual cues to represent the information provided by the dataset. The two most important cues in this plot are the point positions on the x-axis and y-axis, which represent population size and the total number of murders, respectively. Each point represents a different observation, and we <em>map</em> data about these observations to visual cues like x- and y-scale. Color is another visual cue that we map to region. We refer to this as the <strong>aesthetic mapping</strong> component. How we define the mapping depends on what <strong>geometry</strong> we are using.</li>
+<li><p><strong>Data</strong>: The US murders data table is being summarized. We refer to this as the <strong>data</strong> component.</p></li>
+<li><p><strong>Geometry</strong>: The plot above is a scatterplot. This is referred to as the <strong>geometry</strong> component. Other possible geometries are barplot, histogram, smooth densities, qqplot, and boxplot. We will learn more about these in <a href="#sec-other-geometries"><span>Section&nbsp;8.14</span></a>.</p></li>
+<li><p><strong>Aesthetic mapping</strong>: The plot uses several visual cues to represent the information provided by the dataset. The two most important cues in this plot are the point positions on the x-axis and y-axis, which represent population size and the total number of murders, respectively. Each point represents a different observation, and we <em>map</em> data about these observations to visual cues like x- and y-scale. Color is another visual cue that we map to region. We refer to this as the <strong>aesthetic mapping</strong> component. How we define the mapping depends on what <strong>geometry</strong> we are using.</p></li>
 </ul>
 <p>We also note that:</p>
 <ul>
@@ -400,67 +403,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The range of the x-axis and y-axis appears to be defined by the range of the data. They are both on log-scales.</li>
 <li>There are labels, a title, a legend, and we use the style of The Economist magazine.</li>
 </ul>
-<p>We will now construct the plot piece by piece.</p>
-<p>We start by loading the dataset:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-3_9c391289f1f70f4d015348e359861962">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section><section id="ggplot-objects" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="ggplot-objects">
-<span class="header-section-number">7.2</span> <code>ggplot</code> objects</h2>
-<p>The first step in creating a <strong>ggplot2</strong> graph is to define a <code>ggplot</code> object. We do this with the function <code>ggplot</code>, which initializes the graph. If we read the help file for this function, we see that the first argument is used to specify what data is associated with this object:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-1_f5a669da104f3a83d0f99dce32087eda">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">murders</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>We can also pipe the data in as the first argument. So this line of code is equivalent to the one above:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-2_3738eed80fe5e2169bba7b6f6c29b98d">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/ggplot-example-2-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>It renders a plot, in this case a blank slate since no geometry has been defined. The only style choice we see is a grey background.</p>
-<p>What has happened above is that the object was created and, because it was not assigned, it was automatically evaluated. But we can assign our plot to an object, for example like this:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-5_6a13940aa45f9d938e9de0420b21999d">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">murders</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "gg"     "ggplot"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>To render the plot associated with this object, we simply print the object <code>p</code>. The following two lines of code each produce the same plot we see above:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-6_bc4078f1c0a4b790869292f3a723378d">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
-<span><span class="va">p</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section><section id="geometries" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="geometries">
-<span class="header-section-number">7.3</span> Geometries</h2>
-<p>In <code>ggplot2</code> we create graphs by adding <em>layers</em>. Layers can define geometries, compute summary statistics, define what scales to use, or even change styles. To add layers, we use the symbol <code>+</code>. In general, a line of code will look like this:</p>
+<p>The general approach in <strong>ggplot2</strong> is to construct the plot part by part by adding <em>layers</em> to a <code>ggplot</code> object, created by the <code>ggplot</code> function. Layers can define geometries, compute summary statistics, define what scales to use, or change styles. To add layers, we use the symbol <code>+</code>. In general, a line of code will look like this:</p>
 <blockquote class="blockquote">
 <blockquote class="blockquote">
 <p>DATA |&gt; <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> + LAYER 1 + LAYER 2 + … + LAYER N</p>
 </blockquote>
 </blockquote>
-<p>Usually, the first added layer defines the geometry. We want to make a scatterplot. What geometry do we use?</p>
-<p>Taking a quick look at the cheat sheet, we see that the function used to create plots with this geometry is <code>geom_point</code>.</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-7_647b70e07a0783916a1254fb977143ae">
+<p>We will now illustrate the basics of ggplot2 by dissecting how we construct the plot above.</p>
+</section><section id="initializing-an-object-with-data" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="initializing-an-object-with-data">
+<span class="header-section-number">8.2</span> Initializing an object with data</h2>
+<p>We start by loading the relevant dataset which is in the <strong>dslabs package</strong>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The first step in creating a <strong>ggplot2</strong> graph is to define a <code>ggplot</code> object. Typically most or all the layers will be mapping variables from the same dataset, so we associate this object with the relevant data frame</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-4_a27d36e12e5490aa80e73e1052bb8747">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">murders</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>or equivalently</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-1_2c64dfe92fe0806a856758d63c2165dd">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../R/img/ggplot2-cheatsheeta.png" class="img-fluid figure-img" style="width:45.0%"></p>
+<figure class="figure"><p><img src="ggplot2_files/figure-html/ggplot-example-1-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../R/img/ggplot2-cheatsheetb.png" class="img-fluid figure-img" style="width:45.0%"></p>
-</figure>
+</div>
+<p>Both these lines of code render a plot, in this case a blank slate since no geometry has been defined. The only style choice we see is a grey background, the default. We see a plot because an object was created and not assigned to a variable, it was automatically evaluated and printed. But we can assign our plot to an object in the usual way:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-5_a96a7433c40ab9387003937e22b6ca94">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">murders</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To render the plot associated with this object, we simply print the object <code>p</code>. The following two lines of code each produce the same plot we see above:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-6_47cbecaa4baee6cdf68de0176e984763">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
+<span><span class="va">p</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To summarize, <code>p</code> is a <code>ggplot</code> object with the <code>murders</code> data frame as its data component.</p>
+</section><section id="adding-a-geometry" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="adding-a-geometry">
+<span class="header-section-number">8.3</span> Adding a geometry</h2>
+<p>A common frist step is to let <strong>ggplot2</strong> know what geometry to use. We often add multiple geometries, but we at least need one. In our example, we want to make a scatterplot. Geometries are added using functions. Taking a quick look at the cheat sheet, we see that we should use the function <code>geom_point</code>.</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="../R/img/ggplot2-cheatsheeta.png" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="../R/img/ggplot2-cheatsheetb.png" class="img-fluid"></p>
 </div>
 </div>
 </div>
 <p>(Image courtesy of RStudio<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. CC-BY-4.0 license<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.)</p>
-<!--(Source: [RStudio](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf))-->
-<p>Geometry function names follow the pattern: <code>geom_X</code> where X is the name of the geometry. Some examples include <code>geom_point</code>, <code>geom_bar</code>, and <code>geom_histogram</code>.</p>
-<p>For <code>geom_point</code> to run properly we need to provide data and a mapping. We have already connected the object <code>p</code> with the <code>murders</code> data table, and if we add the layer <code>geom_point</code> it defaults to using this data. To find out what mappings are expected, we read the <strong>Aesthetics</strong> section of the help file <code>geom_point</code> help file:</p>
+<p>Note that geometry function names follow the pattern: <code>geom_X</code> where X is the name of the geometry. Some examples include <code>geom_histogram</code>, <code>geom_boxplot</code>, and <code>geom_col</code>. We will discuss these further in <a href="#sec-other-geometries"><span>Section&nbsp;8.14</span></a>.</p>
+<p>For <code>geom_point</code> to run properly we need to provide data and a mapping. We have already assigned with the <code>murders</code> data table to the object <code>p</code>. Next we need to add the layer <code>geom_point</code> to define the geometry. To find out what mappings are expected by this function, we read the <strong>Aesthetics</strong> section of the help file:</p>
 <pre><code>&gt; Aesthetics
 &gt; 
 &gt; geom_point understands the following aesthetics (required aesthetics are in bold):
@@ -472,18 +467,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 &gt; alpha
 &gt;
 &gt; colour</code></pre>
-<p>and, as expected, we see that at least two arguments are required <code>x</code> and <code>y</code>.</p>
-</section><section id="aesthetic-mappings" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="aesthetic-mappings">
-<span class="header-section-number">7.4</span> Aesthetic mappings</h2>
-<p><strong>Aesthetic mappings</strong> describe how properties of the data connect with features of the graph, such as distance along an axis, size, or color. The <code>aes</code> function connects data with what we see on the graph by defining aesthetic mappings and will be one of the functions you use most often when plotting. The outcome of the <code>aes</code> function is often used as the argument of a geometry function. This example produces a scatterplot of total murders versus population in millions:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-8_43382ef7bb6a2725f979fd465216bfc4">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, y <span class="op">=</span> <span class="va">total</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We see that at least two arguments are required <code>x</code> and <code>y</code>. Next explain how to map values from the dataset to the plot.</p>
+</section><section id="aesthetic-mappings" class="level2" data-number="8.4"><h2 data-number="8.4" class="anchored" data-anchor-id="aesthetic-mappings">
+<span class="header-section-number">8.4</span> Aesthetic mappings</h2>
+<p><em>Aesthetic mappings</em> describe how properties of the data connect with features of the graph, such as distance along an axis, size, or color. The <code>aes</code> function connects data with what we see on the graph by defining aesthetic mappings and will be one of the functions you use most often when plotting. This example produces a scatterplot of total murders versus population in millions:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-2_dde4e6a92802c66cc144df63585bc42b">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="ggplot2_files/figure-html/ggplot-example-2-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
 </div>
-<p>We can drop the <code>x =</code> and <code>y =</code> if we wanted to since these are the first and second expected arguments, as seen in the help page.</p>
-<p>Instead of defining our plot from scratch, we can also add a layer to the <code>p</code> object that was defined above as <code>p &lt;- ggplot(data = murders)</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-3_e3532bd39fe6908cb92141a702a495d1">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>We didn’t use the <code>x</code> and <code>y</code> to define the arguments because the help file showed these are the first and second expected arguments.</p>
+<p>The scale and labels are defined by default when adding this layer. Like <strong>dplyr</strong> functions, <code>aes</code> also uses the variable names from the data component: we can use <code>population</code> and <code>total</code> without having to call them as <code>murders$population</code> and <code>murders$total</code>. The behavior of recognizing the variables from the data component is specific to <code>aes</code>. With <strong>ggplot2</strong> functions<code>other than</code>aes, if you try to access the values of <code>population</code> or <code>total</code> outside of <code>aes</code> you receive an error.</p>
+</section><section id="other-layers" class="level2" data-number="8.5"><h2 data-number="8.5" class="anchored" data-anchor-id="other-layers">
+<span class="header-section-number">8.5</span> Other layers</h2>
+<p>To shape the plot into its final form, we continue to add layers. A second layer in the plot we wish to make involves adding a label to each point to identify the state. The <code>geom_label</code> and <code>geom_text</code> functions permit us to add text to the plot with and without a rectangle behind the text, respectively.</p>
+<p>Because each point (each state in this case) has a label, we need an aesthetic mapping to make the connection between points and labels. By reading the help file, we learn that we supply the mapping between point and label through the <code>label</code> argument of <code>aes</code>. So the code looks like this:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-3_dd4dc510f28aa43b3b4c964fef422b66">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span>, label <span class="op">=</span> <span class="va">abb</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="ggplot2_files/figure-html/ggplot-example-3-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -491,14 +497,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>The scale and labels are defined by default when adding this layer. Like <strong>dplyr</strong> functions, <code>aes</code> also uses the variable names from the object component: we can use <code>population</code> and <code>total</code> without having to call them as <code>murders$population</code> and <code>murders$total</code>. The behavior of recognizing the variables from the data component is quite specific to <code>aes</code>. With most functions, if you try to access the values of <code>population</code> or <code>total</code> outside of <code>aes</code> you receive an error.</p>
-</section><section id="layers" class="level2" data-number="7.5"><h2 data-number="7.5" class="anchored" data-anchor-id="layers">
-<span class="header-section-number">7.5</span> Layers</h2>
-<p>A second layer in the plot we wish to make involves adding a label to each point to identify the state. The <code>geom_label</code> and <code>geom_text</code> functions permit us to add text to the plot with and without a rectangle behind the text, respectively.</p>
-<p>Because each point (each state in this case) has a label, we need an aesthetic mapping to make the connection between points and labels. By reading the help file, we learn that we supply the mapping between point and label through the <code>label</code> argument of <code>aes</code>. So the code looks like this:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-4_82f76ab4c473240473868503492a117d">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span>, label <span class="op">=</span> <span class="va">abb</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As an example of the unique behavior of <code>aes</code> related to variable names, note that if the added layer was <code>geom_text(aes(population/10^6, total), label = abb)</code>, we would result in an error since <code>abb</code> is now outside the call to <code>aes</code> and it is not object in out workspace, it is a variable name in the data component of the <code>ggplot</code> object.</p>
+</section><section id="global-aesthetic-mappings" class="level2" data-number="8.6"><h2 data-number="8.6" class="anchored" data-anchor-id="global-aesthetic-mappings">
+<span class="header-section-number">8.6</span> Global aesthetic mappings</h2>
+<p>In the previous lines of code, we define the mapping <code>aes(population/10^6, total)</code> twice, once in each layer. We can avoid this by using a <em>global</em> aesthetic mapping. We can do this when we define the blank slate <code>ggplot</code> object. Remember that the <code>mapping</code> argument of <code>ggplot</code> function permits us to define aesthetic mappings. If we define a mapping in <code>ggplot</code>, all the geometries that are added as layers will default to this mapping. So we can simply write the following code to produce the previous plot:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-7_5e17a7f9dc26ba8da04f96534f3be6b8">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">abb</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that the mapping for <code>label</code> is only defined in <code>geom_text</code> because <code>geom_point</code> does not use this argument.</p>
+<p>If necessary, we can override the global mapping by defining a new mapping within each layer. These <em>local</em> definitions override the <em>global</em>. Here is an example:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-4_4dba10fb83ee9f721c128d6360b8e8fd">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">10</span>, y <span class="op">=</span> <span class="fl">800</span>, label <span class="op">=</span> <span class="st">"Hello there!"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="ggplot2_files/figure-html/ggplot-example-4-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -506,22 +519,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>We have successfully added a second layer to the plot.</p>
-<p>As an example of the unique behavior of <code>aes</code> mentioned above, note that this call:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-9_6848d8706afd6f6225f1b4e200209318">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p_test</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span>, label <span class="op">=</span> <span class="va">abb</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>is fine, whereas this call:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-10_18b6e33194a3a99952be0fc355a54914">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p_test</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span><span class="op">)</span>, label <span class="op">=</span> <span class="va">abb</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>will give you an error since <code>abb</code> is not found because it is outside of the <code>aes</code> function. The layer <code>geom_text</code> does not know where to find <code>abb</code> since it is a column name and not a global variable.</p>
-<section id="tinkering-with-arguments" class="level3" data-number="7.5.1"><h3 data-number="7.5.1" class="anchored" data-anchor-id="tinkering-with-arguments">
-<span class="header-section-number">7.5.1</span> Tinkering with arguments</h3>
-<p>Each geometry function has many arguments other than <code>aes</code> and <code>data</code>. They tend to be specific to the function. For example, in the plot we wish to make, the points are larger than the default size. In the help file we see that <code>size</code> is an aesthetic and we can change it like this:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-5_1d93f412ac4f441ad832f50cc56dda59">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span>, label <span class="op">=</span> <span class="va">abb</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Clearly, the second call to <code>geom_text</code> does not use <code>population</code> and <code>total</code>.</p>
+</section><section id="non-aesthetic-arguments" class="level2" data-number="8.7"><h2 data-number="8.7" class="anchored" data-anchor-id="non-aesthetic-arguments">
+<span class="header-section-number">8.7</span> Non-aesthetic arguments</h2>
+<p>Each geometry function has arguments other than <code>aes</code> and <code>data</code>. They tend to be specific to the function and are not mapped to variables in the data. For example, in the plot we wish to make, the points are larger than the default size. As another example, to avoid putting the text on top of the point, we can use the <code>nudge_x</code> argument in <code>geom_text</code>. The code, with the arguments, looks like this:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-5_4f1f83965e3734c242c9c9f2e9dfd2dc">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">abb</span><span class="op">)</span>, nudge_x <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="ggplot2_files/figure-html/ggplot-example-5-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -529,11 +534,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p><code>size</code> is <strong>not</strong> a mapping: whereas mappings use data from specific observations and need to be inside <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>, operations we want to affect all the points the same way do not need to be included inside <code>aes</code>.</p>
-<p>Now because the points are larger it is hard to see the labels. If we read the help file for <code>geom_text</code>, we see the <code>nudge_x</code> argument, which moves the text slightly to the right or to the left:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-6_412a3c4fa86a59db4041a33b73e950b8">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span>, label <span class="op">=</span> <span class="va">abb</span><span class="op">)</span>, nudge_x <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In <a href="#sec-add-on-packages"><span>Section&nbsp;8.12</span></a> we learn a better way of assuring we can see the points and the labels.</p>
+</section><section id="categories-as-colors" class="level2" data-number="8.8"><h2 data-number="8.8" class="anchored" data-anchor-id="categories-as-colors">
+<span class="header-section-number">8.8</span> Categories as colors</h2>
+<p>For the final plot, we want each region to have a different color. Because this information comes from the data, it is a aesthetic mapping. For our example, we can map color to categories using the <code>col</code> mapping in the <code>geom_point</code> function as follows:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-6_8b1a919bab010dd07138e36572fb3fa2">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">region</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="ggplot2_files/figure-html/ggplot-example-6-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -541,29 +548,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>This is preferred as it makes it easier to read the text. In Section <a href="#sec-add-on-packages"><span>Section&nbsp;7.11</span></a> we learn a better way of assuring we can see the points and the labels.</p>
-</section></section><section id="global-versus-local-aesthetic-mappings" class="level2" data-number="7.6"><h2 data-number="7.6" class="anchored" data-anchor-id="global-versus-local-aesthetic-mappings">
-<span class="header-section-number">7.6</span> Global versus local aesthetic mappings</h2>
-<p>In the previous line of code, we define the mapping <code>aes(population/10^6, total)</code> twice, once in each geometry. We can avoid this by using a <em>global</em> aesthetic mapping. We can do this when we define the blank slate <code>ggplot</code> object. Remember that the function <code>ggplot</code> contains an argument that permits us to define aesthetic mappings:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-11_9dd118e5f1ce18fdedad46c68d997023">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/args.html">args</a></span><span class="op">(</span><span class="va">ggplot</span><span class="op">)</span></span>
-<span><span class="co">#&gt; function (data = NULL, mapping = aes(), ..., environment = parent.frame()) </span></span>
-<span><span class="co">#&gt; NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note the <code>geom_point</code> automatically assigns a different color to each category and also adds a legend! Legends are usually desired, but to avoid adding a legend we can set the <code>geom_point</code> argument <code>show.legend = FALSE</code>.</p>
+<p>Note that <code>color</code> is also a non-aesthetic argument in several <strong>ggplot2</strong> functions, including <code>geom_point</code>. This argument is not used to map colors to categories, but to change the color of all the points. For example, if we wanted all the points to be blue we would change the layer to <code>geom_point(col = "blue", size = 3)</code>.</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-7_34ce79bd0984cb5ba67f2d6b8322db09">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"blue"</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="ggplot2_files/figure-html/ggplot-example-7-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
 </div>
-<p>If we define a mapping in <code>ggplot</code>, all the geometries that are added as layers will default to this mapping. We redefine <code>p</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-12_b25948ca59815982dbe08997013d1cc1">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span>, label <span class="op">=</span> <span class="va">abb</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>and then we can simply write the following code to produce the previous plot:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-7_33f8271f8e19d1411b36b76b6636668d">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span>nudge_x <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We keep the <code>size</code> and <code>nudge_x</code> arguments in <code>geom_point</code> and <code>geom_text</code>, respectively, because we want to only increase the size of points and only nudge the labels. If we put those arguments in <code>aes</code> then they would apply to both plots. Also note that the <code>geom_point</code> function does not need a <code>label</code> argument and therefore ignores that aesthetic.</p>
-<p>If necessary, we can override the global mapping by defining a new mapping within each layer. These <em>local</em> definitions override the <em>global</em>. Here is an example:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-8_125a401beea95abc87b3f046305311c0">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span>  </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">10</span>, y <span class="op">=</span> <span class="fl">800</span>, label <span class="op">=</span> <span class="st">"Hello there!"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="updating-ggplot-objects" class="level2" data-number="8.9"><h2 data-number="8.9" class="anchored" data-anchor-id="updating-ggplot-objects">
+<span class="header-section-number">8.9</span> Updating ggplot objects</h2>
+<p>In <strong>ggplot2</strong> we build plots by parts. A useful feature of the package is that we can update existing <code>ggplot</code> objects by adding layers. For example, we can start by initializing an object with a dataset and an global aesthetic</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-8_c6b847c08ecb7d3d5fde350240cb65b7">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p0</span> <span class="op">&lt;-</span> <span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>and then start adding layers. For example, we start by adding the scatter plot</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-9_f904a35dc3f0ccc55bd7a7ce60f0b48f">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">p0</span> <span class="op">+</span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">region</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>and labels:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-10_c2fcd8bd3a175cdb129e008660d2eb90">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">abb</span><span class="op">)</span>, nudge_x <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the next few sections, we will be building on objects created in previous sections using this approach. This facilitates improving plots as well as testing options. Note that we changed the <code>nudge_x</code> from 1.5 to 0.1 because in the next section we will apply a log transformation and a smaller value is more appropriate.</p>
+</section><section id="scales" class="level2" data-number="8.10"><h2 data-number="8.10" class="anchored" data-anchor-id="scales">
+<span class="header-section-number">8.10</span> Scales</h2>
+<p>One of the strengths of <strong>ggplot2</strong> is that the default behavior often is good enough to achieve our visualization goals. However, it also offers ways in which we can change these defaults. Many of these are changed through the <code>scales</code> functions.</p>
+<p>Two examples, are the <code>scale_x_continuous</code> and <code>scale_y_continuous</code> functions which let’s us make adjustments to the x-axis and y-axis, respectively. In the final plot we are trying to produce scales in log-scale and this can be achieved by assigning the argument <code>trans = "log10"</code> in these functions. However, because this operation is so common, <strong>ggplot2</strong> includes <code>scale_x_log10</code> and <code>scale_y_log10</code> functions. We can achieve the desired transformation by adding these layers:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-8_68e5b462c18d0409573f8e5876464620">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="va">p2</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_log10</a></span><span class="op">(</span><span class="op">)</span> </span>
+<span><span class="va">p3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="ggplot2_files/figure-html/ggplot-example-8-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -571,15 +589,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Clearly, the second call to <code>geom_text</code> does not use <code>population</code> and <code>total</code>.</p>
-</section><section id="scales" class="level2" data-number="7.7"><h2 data-number="7.7" class="anchored" data-anchor-id="scales">
-<span class="header-section-number">7.7</span> Scales</h2>
-<p>First, our desired scales are in log-scale. This is not the default, so this change needs to be added through a <em>scales</em> layer. A quick look at the cheat sheet reveals the <code>scale_x_continuous</code> function lets us control the behavior of scales. We use them like this:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-9_88e9df33b7ef125ff78e26c7197a869e">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span>  </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span>nudge_x <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>trans <span class="op">=</span> <span class="st">"log10"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>trans <span class="op">=</span> <span class="st">"log10"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Be aware that <strong>ggplot2</strong> offers immense flexibility, particularly through the scales functions. We’ve introduced just one of the many available. In subsequent chapters of this book, we’ll provide examples as they become pertinent to our visualizations. However, to familiarize yourself with these functions, we recommend consulting the ggplot2 cheat sheet or conducting internet searches as specific needs arise.</p>
+</section><section id="annotations" class="level2" data-number="8.11"><h2 data-number="8.11" class="anchored" data-anchor-id="annotations">
+<span class="header-section-number">8.11</span> Annotations</h2>
+<p>We often want to add annotations to figures that are not derived directly from the aesthetic mapping. Examples of annotation functions are <code>labs</code>, <code>annotate</code>, and <code>geom_abline</code>. The <code>labs</code> function permits adding a title, subtitle, caption, and other labels. Note these can also be defined individually using the functions such as <code>xlab</code>, <code>ylab</code> and <code>ggtitle</code>.</p>
+<p>The <code>labs</code> function also allows another change needed for our desired plot: changing the legend title. Because the legend for the color mapping, this is achieved with the <code>color = "NEW_TITLE"</code> argument:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-9_c080bc7fc8bb41f119d39423e6a6d63a">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p4</span> <span class="op">&lt;-</span> <span class="va">p3</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"US Gun Murders in 2010"</span>,</span>
+<span>                x <span class="op">=</span> <span class="st">"Populations in millions (log scale)"</span>, </span>
+<span>                y <span class="op">=</span> <span class="st">"Total number of murders (log scale)"</span>,</span>
+<span>                color <span class="op">=</span> <span class="st">"Region"</span><span class="op">)</span></span>
+<span><span class="va">p4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="ggplot2_files/figure-html/ggplot-example-9-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -587,25 +607,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Because we are in the log-scale now, the <em>nudge</em> must be made smaller.</p>
-<p>This particular transformation is so common that <strong>ggplot2</strong> provides the specialized functions <code>scale_x_log10</code> and <code>scale_y_log10</code>, which we can use to rewrite the code like this:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-13_935f0176d7112e9a5187102e232f80fd">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span>  </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span>nudge_x <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_log10</a></span><span class="op">(</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Our desired final plot includes a line that represents the average murder rate for the entire country. Once we determine the per million rate to be <span class="math inline">\(r\)</span>, the desired line is defined by the formula: <span class="math inline">\(y = r x\)</span>, with <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> our axes: total murders and population in millions, respectively. In the log-scale this line turns into: <span class="math inline">\(\log(y) = \log(r) + \log(x)\)</span>, a line with slope 1 and intercept <span class="math inline">\(\log(r)\)</span>. We can compute <code>r</code> using:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-11_867a69657724087836cf0cd7c7c6cd05">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r</span> <span class="op">&lt;-</span> <span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>rate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">total</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span><span class="op">*</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">rate</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="labels-and-titles" class="level2" data-number="7.8"><h2 data-number="7.8" class="anchored" data-anchor-id="labels-and-titles">
-<span class="header-section-number">7.8</span> Labels and titles</h2>
-<p>Similarly, the cheat sheet quickly reveals that to change labels and add a title, we use the following functions:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-10_eabb49988d5a6fae496a54066895147d">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span>  </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span>nudge_x <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Populations in millions (log scale)"</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Total number of murders (log scale)"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"US Gun Murders in 2010"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To add a line we use the <code>geom_abline</code> function. The <code>ab</code> in the name reminds us we are supplying the intercept (<code>a</code>) and slope (<code>b</code>). The default line has slope 1 and intercept 0 so we only have to define the intercept. Note that he final plot has a dashed line type and is grey and these can be changed throught the <code>lty</code> (line type) and <code>color</code> non aesthetic arguments. We add the layer like this:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-10_b9bb88c7a99cf9691cab42a744ed097b">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p5</span> <span class="op">&lt;-</span> <span class="va">p4</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span>intercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">2</span>, color <span class="op">=</span> <span class="st">"darkgrey"</span><span class="op">)</span> </span>
+<span><span class="va">p5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="ggplot2_files/figure-html/ggplot-example-10-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -613,109 +622,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>We are almost there! All we have left to do is add color, a legend, and optional changes to the style.</p>
-</section><section id="categories-as-colors" class="level2" data-number="7.9"><h2 data-number="7.9" class="anchored" data-anchor-id="categories-as-colors">
-<span class="header-section-number">7.9</span> Categories as colors</h2>
-<p>We can change the color of the points using the <code>col</code> argument in the <code>geom_point</code> function. To facilitate demonstration of new features, we will redefine <code>p</code> to be everything except the points layer:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-14_3be12cd2e068d5bf0c0a9cd0a40f176e">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span>  <span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span>, label <span class="op">=</span> <span class="va">abb</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>   </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span>nudge_x <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Populations in millions (log scale)"</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Total number of murders (log scale)"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"US Gun Murders in 2010"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>and then test out what happens by adding different calls to <code>geom_point</code>. We can make all the points blue by adding the <code>color</code> argument:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-11_85624baab77f6897f34fd54efb9417cd">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span>, color <span class="op">=</span><span class="st">"blue"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/ggplot-example-11-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>This, of course, is not what we want. We want to assign color depending on the geographical region. A nice default behavior of <strong>ggplot2</strong> is that if we assign a categorical variable to color, it automatically assigns a different color to each category and also adds a legend.</p>
-<p>Since the choice of color is determined by a feature of each observation, this is an aesthetic mapping. To map each point to a color, we need to use <code>aes</code>. We use the following code:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-12_2341d2c94a3fb1d53ef185f12e51ae01">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>col<span class="op">=</span><span class="va">region</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/ggplot-example-12-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The <code>x</code> and <code>y</code> mappings are inherited from those already defined in <code>p</code>, so we do not redefine them. We also move <code>aes</code> to the first argument since that is where mappings are expected in this function call.</p>
-<p>Here we see yet another useful default behavior: <strong>ggplot2</strong> automatically adds a legend that maps color to region. To avoid adding this legend we set the <code>geom_point</code> argument <code>show.legend = FALSE</code>.</p>
-</section><section id="annotation-shapes-and-adjustments" class="level2" data-number="7.10"><h2 data-number="7.10" class="anchored" data-anchor-id="annotation-shapes-and-adjustments">
-<span class="header-section-number">7.10</span> Annotation, shapes, and adjustments</h2>
-<p>We often want to add shapes or annotation to figures that are not derived directly from the aesthetic mapping; examples include labels, boxes, shaded areas, and lines.</p>
-<p>Here we want to add a line that represents the average murder rate for the entire country. Once we determine the per million rate to be <span class="math inline">\(r\)</span>, this line is defined by the formula: <span class="math inline">\(y = r x\)</span>, with <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> our axes: total murders and population in millions, respectively. In the log-scale this line turns into: <span class="math inline">\(\log(y) = \log(r) + \log(x)\)</span>. So in our plot it’s a line with slope 1 and intercept <span class="math inline">\(\log(r)\)</span>. To compute this value, we use our <strong>dplyr</strong> skills:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-15_0267ddd145d69d78e97b36bfa385d5d9">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r</span> <span class="op">&lt;-</span> <span class="va">murders</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>rate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">total</span><span class="op">)</span> <span class="op">/</span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span> <span class="op">*</span> <span class="fl">10</span><span class="op">^</span><span class="fl">6</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">rate</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>To add a line we use the <code>geom_abline</code> function. <strong>ggplot2</strong> uses <code>ab</code> in the name to remind us we are supplying the intercept (<code>a</code>) and slope (<code>b</code>). The default line has slope 1 and intercept 0 so we only have to define the intercept:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot-example-13_35da7fd1b65fbcd6d9482c847ff9d66b">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>col<span class="op">=</span><span class="va">region</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span>intercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/ggplot-example-13-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Here <code>geom_abline</code> does not use any information from the data object.</p>
-<p>We can change the line type and color of the lines using arguments. Also, we draw it first so it doesn’t go over our points.</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-16_d48c6ad59e3088506ceb88caac383463">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span>intercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">2</span>, color <span class="op">=</span> <span class="st">"darkgrey"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>col<span class="op">=</span><span class="va">region</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Note that we have redefined <code>p</code> and used this new <code>p</code> below and in the next section.</p>
-<p>The default plots created by <strong>ggplot2</strong> are already very useful. However, we frequently need to make minor tweaks to the default behavior. Although it is not always obvious how to make these even with the cheat sheet, <strong>ggplot2</strong> is very flexible.</p>
-<p>For example, we can make changes to the legend via the <code>scale_color_discrete</code> function. In our plot the word <em>region</em> is capitalized and we can change it like this:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-17_ceb11b5b9d8f132188fdd13c82b9b707">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html">scale_color_discrete</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Region"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section><section id="sec-add-on-packages" class="level2" data-number="7.11"><h2 data-number="7.11" class="anchored" data-anchor-id="sec-add-on-packages">
-<span class="header-section-number">7.11</span> Add-on packages</h2>
+<p>Note that <code>geom_abline</code> does not use any mappings from the data object, once we have the slope.</p>
+<p>We are almost there! All we have to do is add line and optional changes to the style.</p>
+</section><section id="sec-add-on-packages" class="level2" data-number="8.12"><h2 data-number="8.12" class="anchored" data-anchor-id="sec-add-on-packages">
+<span class="header-section-number">8.12</span> Add-on packages</h2>
 <p>The power of <strong>ggplot2</strong> is augmented further due to the availability of add-on packages. The remaining changes needed to put the finishing touches on our plot require the <strong>ggthemes</strong> and <strong>ggrepel</strong> packages.</p>
 <p>The style of a <strong>ggplot2</strong> graph can be changed using the <code>theme</code> functions. Several themes are included as part of the <strong>ggplot2</strong> package. In fact, for most of the plots in this book, we use a function in the <strong>dslabs</strong> package that automatically sets a default theme:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/eval_41cae7580b3a8679f144959a61513e62">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/dslabs/man/ds_theme_set.html">ds_theme_set</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-12_6dc7701493a3f3aaa3d0d9bbf54f7b82">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/dslabs/man/ds_theme_set.html">ds_theme_set</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Many other themes are added by the package <strong>ggthemes</strong>. Among those are the <code>theme_economist</code> theme that we used. After installing the package, you can change the style by adding a layer like this:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-18_bbc79b997f3d68e23936b96c2b3cac74">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span></span>
-<span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-13_856199a041b35e53f49c78cd0bd05d4b">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span></span>
+<span><span class="va">p6</span> <span class="op">&lt;-</span> <span class="va">p5</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can see how some of the other themes look by simply changing the function. For instance, you might try the <code><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html">theme_fivethirtyeight()</a></code> theme instead.</p>
-<p>The final difference has to do with the position of the labels. In our plot, some of the labels fall on top of each other. The add-on package <strong>ggrepel</strong> includes a geometry that adds labels while ensuring that they don’t fall on top of each other. We simply change <code>geom_text</code> with <code>geom_text_repel</code>.</p>
-</section><section id="putting-it-all-together" class="level2" data-number="7.12"><h2 data-number="7.12" class="anchored" data-anchor-id="putting-it-all-together">
-<span class="header-section-number">7.12</span> Putting it all together</h2>
-<p>Now that we are done testing, we can write one piece of code that produces our desired plot from scratch.</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/final-ggplot-example_67bd94e02903cd2a80d47dbda7cd2904">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span></span>
+<p>The final chage is to better position of the labels to avoid crowding: currently. some of the labels fall on top of each other. The add-on package <strong>ggrepel</strong> includes a geometry that adds labels while ensuring that they don’t fall on top of each other. We simply change <code>geom_text</code> with <code>geom_text_repel</code>.</p>
+</section><section id="sec-putting-it-all-together" class="level2" data-number="8.13"><h2 data-number="8.13" class="anchored" data-anchor-id="sec-putting-it-all-together">
+<span class="header-section-number">8.13</span> Putting it all together</h2>
+<p>Now that we are done testing, we can write one line of code that produces our desired plot from scratch.</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/final-ggplot-example_340a8bdc3c872b28c506186d6b8c07c7">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">r</span> <span class="op">&lt;-</span> <span class="va">murders</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>rate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">total</span><span class="op">)</span> <span class="op">/</span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span> <span class="op">*</span> <span class="fl">10</span><span class="op">^</span><span class="fl">6</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">rate</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span>, label <span class="op">=</span> <span class="va">abb</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>   </span>
+<span><span class="va">murders</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>   </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span>intercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">2</span>, color <span class="op">=</span> <span class="st">"darkgrey"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>col<span class="op">=</span><span class="va">region</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_text_repel</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">region</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_text_repel</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">abb</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Populations in millions (log scale)"</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Total number of murders (log scale)"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"US Gun Murders in 2010"</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html">scale_color_discrete</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Region"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"US Gun Murders in 2010"</span>,</span>
+<span>                x <span class="op">=</span> <span class="st">"Populations in millions (log scale)"</span>, </span>
+<span>                y <span class="op">=</span> <span class="st">"Total number of murders (log scale)"</span>,</span>
+<span>                color <span class="op">=</span> <span class="st">"Region"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html">theme_economist</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -724,40 +668,111 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="grids-of-plots" class="level2" data-number="7.13"><h2 data-number="7.13" class="anchored" data-anchor-id="grids-of-plots">
-<span class="header-section-number">7.13</span> Grids of plots</h2>
-<p>There are often reasons to graph plots next to each other. The <strong>gridExtra</strong> package permits us to do that:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/gridExtra-example_19faab7b42f85ee46b01a4474773bdc5">
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">gridExtra</span><span class="op">)</span></span>
-<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">total</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">grid.arrange</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="sec-other-geometries" class="level2" data-number="8.14"><h2 data-number="8.14" class="anchored" data-anchor-id="sec-other-geometries">
+<span class="header-section-number">8.14</span> Geometries</h2>
+<p>In our illustrative example we introduced the scatterplot geometry <code>geom_point</code>. However, <strong>ggplot2</strong> has many others and here we demonstrate how to generate plots related to distributions, specifically the plots shown <a href="distributions.html"><span>Chapter&nbsp;7</span></a>.</p>
+<section id="barplots" class="level3" data-number="8.14.1"><h3 data-number="8.14.1" class="anchored" data-anchor-id="barplots">
+<span class="header-section-number">8.14.1</span> Barplots</h3>
+<p>To generate a barplot we can use the <code>geom_bar</code> geometry. The default is to count the number of each category and draw a bar. Here is the plot for the regions of the US.</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/barplot-geom_a961ec50f61f315bf65c3442379cfbf1">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>However, we often already have a table with the numbers we want to present as a barplot. Here is an example of such a table:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-15_6a9dc0414124e5ba166177eb1f9cb0cb">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">murders</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>proportion <span class="op">=</span> <span class="va">n</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In this case, we use <code>geom_col</code> instead of <code>geom_bar</code>:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/region-freq-barplot_b9794185659291c662a15638df646acb">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">region</span>, <span class="va">proportion</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="histograms" class="level3" data-number="8.14.2"><h3 data-number="8.14.2" class="anchored" data-anchor-id="histograms">
+<span class="header-section-number">8.14.2</span> Histograms</h3>
+<p>To generate histograms we use <code>geom_histogram</code>. By looking at the help file for this function, we learn that the only required argument is <code>x</code>, the variable for which we will construct a histogram. We dropped the <code>x</code> because we know it is the first argument. The code looks like this:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-16_4fdeb9d5ff12b11f33f1c5a5505d0d4f">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"Female"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1</span>, fill <span class="op">=</span> <span class="st">"blue"</span>, col <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that we use the optional arguments <code>bandwidth = 1</code> to change the bin size to 1 inch. The default is to create 30 bins. We also use the optional arguments <code>fill = "blue"</code> and <code>col = "black"</code> to fill the bars with colors and use a different color to distinguish the bars.</p>
+</section><section id="density-plots" class="level3" data-number="8.14.3"><h3 data-number="8.14.3" class="anchored" data-anchor-id="density-plots">
+<span class="header-section-number">8.14.3</span> Density plots</h3>
+<p>To create a smooth density, we use the <code>geom_density</code>. To make a smooth density plot with the data previously shown as a histogram we can use this code:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-17_77bcfbe58f1abc5c281f5c499613ca60">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"Female"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that we use the optional argument <code>fill</code> to change the color. To change the smoothness of the density, we use the <code>adjust</code> argument to multiply the default value by that <code>adjust</code>. For example, if we want the bandwidth to be twice as big we use:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-18_3782fcc05f941e106b196ce7c465519f">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"Female"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>fill<span class="op">=</span><span class="st">"blue"</span>, adjust <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="boxplots" class="level3" data-number="8.14.4"><h3 data-number="8.14.4" class="anchored" data-anchor-id="boxplots">
+<span class="header-section-number">8.14.4</span> Boxplots</h3>
+<p>The geometry for boxplot is <code>geom_boxplot</code>. As discussed, boxplots are useful for comparing distributions. For example, below are the previously shown heights for women, but compared to men. For this geometry, we need arguments <code>x</code> as the categories, and <code>y</code> as the values.</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/female-male-boxplots-geom_69d90fee9de6827c08ad88f54bdcfc8c">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="images" class="level3" data-number="8.14.5"><h3 data-number="8.14.5" class="anchored" data-anchor-id="images">
+<span class="header-section-number">8.14.5</span> Images</h3>
+<p>Images were not needed for the concepts described in this chapter, but we will use images in <a href="dataviz-in-practice.html#sec-vaccines"><span>Section&nbsp;10.9</span></a>, so we introduce the two geometries used to create images: <strong>geom_tile</strong> and <strong>geom_raster</strong>. They behave similarly; to see how they differ, please consult the help file. To create an image in <strong>ggplot2</strong> we need a data frame with the x and y coordinates as well as the values associated with each of these. Here is a data frame.</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-19_95006469c25c3c343a4151544396f8ee">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html">expand.grid</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>z <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">120</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that this is the tidy version of a matrix, <code>matrix(1:120, 12, 10)</code>. To plot the image we use the following code:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-20_28f18fff9e52aa597df51e167ab8aeb4">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, fill <span class="op">=</span> <span class="va">z</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_raster</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>With these images you will often want to change the color scale. This can be done through the <code>scale_fill_gradientn</code> layer.</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/ggplot2-image-new-colors_5ac8c9acc28a6f2a0ade98a330313c1e">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, fill <span class="op">=</span> <span class="va">z</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_raster</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradientn</a></span><span class="op">(</span>colors <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">terrain.colors</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="ggplot2_files/figure-html/gridExtra-example-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figure class="figure"><p><img src="ggplot2_files/figure-html/ggplot2-image-new-colors-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="exercises" class="level2" data-number="7.14"><h2 data-number="7.14" class="anchored" data-anchor-id="exercises">
-<span class="header-section-number">7.14</span> Exercises</h2>
+</section></section><section id="grids-of-plots" class="level2" data-number="8.15"><h2 data-number="8.15" class="anchored" data-anchor-id="grids-of-plots">
+<span class="header-section-number">8.15</span> Grids of plots</h2>
+<p>There are often reasons to graph plots next to each other. The <strong>gridExtra</strong> package permits us to do that. Here are the graphs <code>p5</code> and <code>p6</code> created in the previous sections:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/gridExtra-example_ed5302e40a83ef81eb31dceaf8693598">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">gridExtra</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">grid.arrange</a></span><span class="op">(</span><span class="va">p5</span>, <span class="va">p6</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="ggplot2_files/figure-html/gridExtra-example-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="exercises" class="level2" data-number="8.16"><h2 data-number="8.16" class="anchored" data-anchor-id="exercises">
+<span class="header-section-number">8.16</span> Exercises</h2>
 <p>Start by loading the <strong>dplyr</strong> and <strong>ggplot2</strong> library as well as the <code>murders</code> and <code>heights</code> data.</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-20_e0b8e1eed81a1d704c8cc4720adfaea7">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-21_02de832d95b66bb4fe167592dfc98433">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>1. With <strong>ggplot2</strong> plots can be saved as objects. For example we can associate a dataset with a plot object like this</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-21_be57db3409cdb5515b8eec7a329e4cb4">
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">murders</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-22_776ca2fdb3f6b4651ebb742a06b15193">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">murders</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Because <code>data</code> is the first argument we don’t need to spell it out</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-22_6c3b77670ecc4c833b9e70d4d76ad0ac">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">murders</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-23_aba39ecd76b3d5ed15c71ac203c65513">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">murders</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and we can also use the pipe:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-23_4f04d66510bfd156fb2c7ea48f0c012b">
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-24_b99804b6aae9bc6946f76479f8cde97d">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What is class of the object <code>p</code>?</p>
 <p>2. Remember that to print an object you can use the command <code>print</code> or simply type the object. Print the object <code>p</code> defined in exercise one and describe what you see.</p>
@@ -781,20 +796,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>murders</code> and <code>size</code>.</li>
 </ol>
 <p>6. To create the scatterplot we add a layer with <code>geom_point</code>. The aesthetic mappings require us to define the x-axis and y-axis variables, respectively. So the code looks like this:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-24_5e74e2927cbc340f68d1d1cf6d6e8fae">
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> , y <span class="op">=</span> <span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-25_0ec6961ccb9341359b44de40d2f61a63">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> , y <span class="op">=</span> <span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>except we have to define the two variables <code>x</code> and <code>y</code>. Fill this out with the correct variable names.</p>
 <p>7. Note that if we don’t use argument names, we can obtain the same plot by making sure we enter the variable names in the right order like this:</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-25_2c62b90c80e48192163970dd3a40997f">
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-26_c671c5a1f103e5f644114b25a9e17664">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Remake the plot but now with total in the x-axis and population in the y-axis.</p>
 <p>8. If instead of points we want to add text, we can use the <code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label()</a></code> geometries. The following code</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-26_aabbd04f0dfbbef14b48ffedd66d30c2">
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-27_bb0f70885e23f0dd1954675ff6e3809e">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>will give us the error message: <code>Error: geom_label requires the following missing aesthetics: label</code></p>
 <p>Why is this?</p>
@@ -823,14 +838,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>13. Rewrite the code above to make the labels’ color be determined by the state’s region.</p>
 <p>14. Now we are going to change the x-axis to a log scale to account for the fact the distribution of population is skewed. Let’s start by defining an object <code>p</code> holding the plot we have made up to now</p>
-<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-27_73bcd56868cb9db3fa20b2d2b425dc6c">
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">murders</span> <span class="op">|&gt;</span> </span>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-28_e73a50f8bdc3b2ddbfc5b1e7d7861007">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">murders</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span>, <span class="va">total</span>, label <span class="op">=</span> <span class="va">abb</span>, color <span class="op">=</span> <span class="va">region</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span><span class="op">(</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To change the y-axis to a log scale we learned about the <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10()</a></code> function. Add this layer to the object <code>p</code> to change the scale and render the plot.</p>
 <p>15. Repeat the previous exercise but now change both axes to be in the log scale.</p>
 <p>16. Now edit the code above to add the title “Gun murder data” to the plot. Hint: use the <code>ggtitle</code> function.</p>
+<p>17. Now we are going to use the <code>geom_histogram</code> function to make a histogram of the heights in the <code>height</code> data frame. When reading the documentation for this function we see that it requires just one mapping, the values to be used for the histogram. Make a histogram of all the plots.</p>
+<p>What is the variable containing the heights?</p>
+<ol type="a">
+<li><code>sex</code></li>
+<li><code>heights</code></li>
+<li><code>height</code></li>
+<li><code>heights$height</code></li>
+</ol>
+<p>18. Now create a ggplot object using the pipe to assign the heights data to a ggplot object. Assign <code>height</code> to the x values through the <code>aes</code> function.</p>
+<p>19. Now we are ready to add a layer to actually make the histogram. Use the object created in the previous exercise and the <code>geom_histogram</code> function to make the histogram.</p>
+<p>20. Note that when we run the code in the previous exercise we get the warning: <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">stat_bin()</a></code> using <code>bins = 30</code>. Pick better value with <code>binwidth</code>.`</p>
+<p>Use the <code>binwidth</code> argument to change the histogram made in the previous exercise to use bins of size 1 inch.</p>
+<p>21. Instead of a histogram, we are going to make a smooth density plot. In this case we will not make an object, but instead render the plot with one line of code. Change the geometry in the code previously used to make a smooth density instead of a histogram.</p>
+<p>22. Now we are going to make a density plot for males and females separately. We can do this using the <code>group</code> argument. We assign groups via the aesthetic mapping as each point needs to a group before making the calculations needed to estimate a density.</p>
+<p>23. We can also assign groups through the <code>color</code> argument. This has the added benefit that it uses color to distinguish the groups. Change the code above to use color.</p>
+<p>24. We can also assign groups through the <code>fill</code> argument. This has the added benefit that it uses colors to distinguish the groups, like this:</p>
+<div class="cell" data-layout-align="center" data-hash="ggplot2_cache/html/unnamed-chunk-29_939ce6905489fb5e818fe325720dbb36">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">height</span>, fill <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>However, here the second density is drawn over the other. We can make the curves more visible by using alpha blending to add transparency. Set the alpha parameter to 0.2 in the <code>geom_density</code> function to make this change.</p>
 
 
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
@@ -1072,13 +1109,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="../dataviz/intro-dataviz.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Data Visualization</span>
+      <a href="../dataviz/distributions.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../dataviz/distributions.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../dataviz/dataviz-principles.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization principles</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

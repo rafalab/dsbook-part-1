@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.3.353">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
-<title>Introduction to Data Science - 13&nbsp; Joining tables</title>
+<title>Introduction to Data Science - 12&nbsp; Joining tables</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -61,7 +61,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../wrangling/web-scraping.html" rel="next">
+<link href="../wrangling/dates-and-times.html" rel="next">
 <link href="../wrangling/reshaping-data.html" rel="prev">
 <link href="../cover.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -100,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../wrangling/intro-to-wrangling.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="../wrangling/joining-tables.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Joining tables</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../wrangling/intro-to-wrangling.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="../wrangling/joining-tables.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Joining tables</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -153,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../R/getting-started.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with R and RStudio</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -176,14 +176,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/importing-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importing data</span></span></a>
+  <a href="../R/data-table.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">data.table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/data_table.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">data.table</span></span></a>
+  <a href="../R/importing-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Importing data</span></span></a>
   </div>
 </li>
       </ul>
@@ -199,32 +199,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataviz/ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../dataviz/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataviz/gapminder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization in practice</span></span></a>
+  <a href="../dataviz/ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ggplot2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../dataviz/dataviz-principles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data visualization principles</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization principles</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataviz/vaccines.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Case study: vaccines and infectious diseases</span></span></a>
+  <a href="../dataviz/dataviz-in-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data visualization in practice</span></span></a>
   </div>
 </li>
       </ul>
@@ -241,31 +235,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/reshaping-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/joining-tables.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Joining tables</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web scraping</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">String processing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Joining tables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/dates-and-times.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/data-table-wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Wrangling with <code>data.table</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Web scraping</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">String processing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -312,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/reproducible-projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects with markdown</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects</span></span></a>
   </div>
 </li>
       </ul>
@@ -326,39 +326,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#sec-joins" id="toc-sec-joins" class="nav-link active" data-scroll-target="#sec-joins"><span class="header-section-number">13.1</span> Joins</a>
+<a href="#sec-joins" id="toc-sec-joins" class="nav-link active" data-scroll-target="#sec-joins"><span class="header-section-number">12.1</span> Joins</a>
   <ul class="collapse">
-<li><a href="#left-join" id="toc-left-join" class="nav-link" data-scroll-target="#left-join"><span class="header-section-number">13.1.1</span> Left join</a></li>
-  <li><a href="#right-join" id="toc-right-join" class="nav-link" data-scroll-target="#right-join"><span class="header-section-number">13.1.2</span> Right join</a></li>
-  <li><a href="#inner-join" id="toc-inner-join" class="nav-link" data-scroll-target="#inner-join"><span class="header-section-number">13.1.3</span> Inner join</a></li>
-  <li><a href="#full-join" id="toc-full-join" class="nav-link" data-scroll-target="#full-join"><span class="header-section-number">13.1.4</span> Full join</a></li>
-  <li><a href="#semi-join" id="toc-semi-join" class="nav-link" data-scroll-target="#semi-join"><span class="header-section-number">13.1.5</span> Semi join</a></li>
-  <li><a href="#anti-join" id="toc-anti-join" class="nav-link" data-scroll-target="#anti-join"><span class="header-section-number">13.1.6</span> Anti join</a></li>
+<li><a href="#left-join" id="toc-left-join" class="nav-link" data-scroll-target="#left-join"><span class="header-section-number">12.1.1</span> Left join</a></li>
+  <li><a href="#right-join" id="toc-right-join" class="nav-link" data-scroll-target="#right-join"><span class="header-section-number">12.1.2</span> Right join</a></li>
+  <li><a href="#inner-join" id="toc-inner-join" class="nav-link" data-scroll-target="#inner-join"><span class="header-section-number">12.1.3</span> Inner join</a></li>
+  <li><a href="#full-join" id="toc-full-join" class="nav-link" data-scroll-target="#full-join"><span class="header-section-number">12.1.4</span> Full join</a></li>
+  <li><a href="#semi-join" id="toc-semi-join" class="nav-link" data-scroll-target="#semi-join"><span class="header-section-number">12.1.5</span> Semi join</a></li>
+  <li><a href="#anti-join" id="toc-anti-join" class="nav-link" data-scroll-target="#anti-join"><span class="header-section-number">12.1.6</span> Anti join</a></li>
   </ul>
 </li>
   <li>
-<a href="#binding" id="toc-binding" class="nav-link" data-scroll-target="#binding"><span class="header-section-number">13.2</span> Binding</a>
+<a href="#binding" id="toc-binding" class="nav-link" data-scroll-target="#binding"><span class="header-section-number">12.2</span> Binding</a>
   <ul class="collapse">
-<li><a href="#binding-columns" id="toc-binding-columns" class="nav-link" data-scroll-target="#binding-columns"><span class="header-section-number">13.2.1</span> Binding columns</a></li>
-  <li><a href="#binding-by-rows" id="toc-binding-by-rows" class="nav-link" data-scroll-target="#binding-by-rows"><span class="header-section-number">13.2.2</span> Binding by rows</a></li>
+<li><a href="#binding-columns" id="toc-binding-columns" class="nav-link" data-scroll-target="#binding-columns"><span class="header-section-number">12.2.1</span> Binding columns</a></li>
+  <li><a href="#binding-by-rows" id="toc-binding-by-rows" class="nav-link" data-scroll-target="#binding-by-rows"><span class="header-section-number">12.2.2</span> Binding by rows</a></li>
   </ul>
 </li>
   <li>
-<a href="#set-operators" id="toc-set-operators" class="nav-link" data-scroll-target="#set-operators"><span class="header-section-number">13.3</span> Set operators</a>
+<a href="#set-operators" id="toc-set-operators" class="nav-link" data-scroll-target="#set-operators"><span class="header-section-number">12.3</span> Set operators</a>
   <ul class="collapse">
-<li><a href="#intersect" id="toc-intersect" class="nav-link" data-scroll-target="#intersect"><span class="header-section-number">13.3.1</span> Intersect</a></li>
-  <li><a href="#union" id="toc-union" class="nav-link" data-scroll-target="#union"><span class="header-section-number">13.3.2</span> Union</a></li>
-  <li><a href="#setdiff" id="toc-setdiff" class="nav-link" data-scroll-target="#setdiff"><span class="header-section-number">13.3.3</span> <code>setdiff</code></a></li>
-  <li><a href="#setequal" id="toc-setequal" class="nav-link" data-scroll-target="#setequal"><span class="header-section-number">13.3.4</span> <code>setequal</code></a></li>
+<li><a href="#intersect" id="toc-intersect" class="nav-link" data-scroll-target="#intersect"><span class="header-section-number">12.3.1</span> Intersect</a></li>
+  <li><a href="#union" id="toc-union" class="nav-link" data-scroll-target="#union"><span class="header-section-number">12.3.2</span> Union</a></li>
+  <li><a href="#setdiff" id="toc-setdiff" class="nav-link" data-scroll-target="#setdiff"><span class="header-section-number">12.3.3</span> <code>setdiff</code></a></li>
+  <li><a href="#setequal" id="toc-setequal" class="nav-link" data-scroll-target="#setequal"><span class="header-section-number">12.3.4</span> <code>setequal</code></a></li>
   </ul>
 </li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">13.4</span> Exercises</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">12.4</span> Exercises</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/blob/main/wrangling/joining-tables.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Joining tables</span>
+<span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Joining tables</span>
 </h1>
 </div>
 
@@ -372,9 +372,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header><p>The information we need for a given analysis may not be just in one table. For example, when forecasting elections we used the function <code>left_join</code> to combine the information from two tables. Here we use a simpler example to illustrate the general challenge of combining tables.</p>
+</header><p>The information we need for a given analysis may not be just in one table. Here we use a simple examples to illustrate the general challenge of combining tables.</p>
 <p>Suppose we want to explore the relationship between population size for US states and electoral votes. We have the population size in this table:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-2_d13696c5efa42919881aa9fd96ccd3a5">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-1_14905c2b60d135d7e48ac3cd9fb77550">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">murders</span><span class="op">)</span></span>
@@ -387,7 +387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 6   Colorado  CO   West    5029196    65</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and electoral votes in this one:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-3_cd642a47f773a9e1b76c09646b3f26b2">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-2_3b961122c057386871c95878e36c1299">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results_us_election_2016</span><span class="op">)</span></span>
 <span><span class="co">#&gt;          state electoral_votes clinton trump others</span></span>
 <span><span class="co">#&gt; 1   California              55    61.7  31.6    6.7</span></span>
@@ -398,15 +398,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 6 Pennsylvania              20    47.9  48.6    3.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Just concatenating these two tables together will not work since the order of the states is not the same.</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-4_18ebfcaed08fb9b387740cdd61b989d3">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-3_b151c48f29d1306adcbd8ad37ba16f10">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/identical.html">identical</a></span><span class="op">(</span><span class="va">results_us_election_2016</span><span class="op">$</span><span class="va">state</span>, <span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <em>join</em> functions, described below, are designed to handle this challenge.</p>
-<section id="sec-joins" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="sec-joins">
-<span class="header-section-number">13.1</span> Joins</h2>
+<section id="sec-joins" class="level2" data-number="12.1"><h2 data-number="12.1" class="anchored" data-anchor-id="sec-joins">
+<span class="header-section-number">12.1</span> Joins</h2>
 <p>The <em>join</em> functions in the <strong>dplyr</strong> package make sure that the tables are combined so that matching rows are together. If you know SQL, you will see that the approach and syntax is very similar. The general idea is that one needs to identify one or more columns that will serve to match the two tables. Then a new table with the combined information is returned. Notice what happens if we join the two tables above by state using <code>left_join</code> (we will remove the <code>others</code> column and rename <code>electoral_votes</code> so that the tables fit on the page):</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-5_a5568422ed3aab3d932b7414919589c7">
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-4_eda387365242590dbe0416d34604c033">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">murders</span>, <span class="va">results_us_election_2016</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">others</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>ev <span class="op">=</span> <span class="va">electoral_votes</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span></span>
@@ -419,14 +419,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 6   Colorado  CO   West    5029196    65  9    48.2  43.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The data has been successfully joined and we can now, for example, make a plot to explore the relationship:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/ev-vs-population_7cde06b5bf41477d5e69ee17d868f1af">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span></span>
-<span><span class="va">tab</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, <span class="va">ev</span>, label <span class="op">=</span> <span class="va">abb</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_text_repel</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>trans <span class="op">=</span> <span class="st">"log2"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>trans <span class="op">=</span> <span class="st">"log2"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/ev-vs-population_2d26c0593db66d66a9e09965ffcbf488">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="joining-tables_files/figure-html/ev-vs-population-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -436,35 +429,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>We see the relationship is close to linear with about 2 electoral votes for every million persons, but with very small states getting higher ratios.</p>
 <p>In practice, it is not always the case that each row in one table has a matching row in the other. For this reason, we have several versions of join. To illustrate this challenge, we will take subsets of the tables above. We create the tables <code>tab1</code> and <code>tab2</code> so that they have some states in common but not all:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-6_ff9f28b9f007746b8a082c2f47eecdb3">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">murders</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">state</span>, <span class="va">population</span><span class="op">)</span></span>
-<span><span class="va">tab_1</span></span>
-<span><span class="co">#&gt;        state population</span></span>
-<span><span class="co">#&gt; 1    Alabama    4779736</span></span>
-<span><span class="co">#&gt; 2     Alaska     710231</span></span>
-<span><span class="co">#&gt; 3    Arizona    6392017</span></span>
-<span><span class="co">#&gt; 4   Arkansas    2915918</span></span>
-<span><span class="co">#&gt; 5 California   37253956</span></span>
-<span><span class="co">#&gt; 6   Colorado    5029196</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-5_586fd847f1896a4fe0c9944ffb28ab17">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">murders</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">state</span>, <span class="va">population</span><span class="op">)</span></span>
 <span><span class="va">tab_2</span> <span class="op">&lt;-</span> <span class="va">results_us_election_2016</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">state</span><span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Alabama"</span>, <span class="st">"Alaska"</span>, <span class="st">"Arizona"</span>, </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">state</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Alabama"</span>, <span class="st">"Alaska"</span>, <span class="st">"Arizona"</span>, </span>
 <span>                    <span class="st">"California"</span>, <span class="st">"Connecticut"</span>, <span class="st">"Delaware"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">state</span>, <span class="va">electoral_votes</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>ev <span class="op">=</span> <span class="va">electoral_votes</span><span class="op">)</span></span>
-<span><span class="va">tab_2</span></span>
-<span><span class="co">#&gt;         state ev</span></span>
-<span><span class="co">#&gt; 1  California 55</span></span>
-<span><span class="co">#&gt; 2     Arizona 11</span></span>
-<span><span class="co">#&gt; 3     Alabama  9</span></span>
-<span><span class="co">#&gt; 4 Connecticut  7</span></span>
-<span><span class="co">#&gt; 5      Alaska  3</span></span>
-<span><span class="co">#&gt; 6    Delaware  3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">state</span>, <span class="va">electoral_votes</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>ev <span class="op">=</span> <span class="va">electoral_votes</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We will use these two tables as examples in the next sections.</p>
-<section id="left-join" class="level3" data-number="13.1.1"><h3 data-number="13.1.1" class="anchored" data-anchor-id="left-join">
-<span class="header-section-number">13.1.1</span> Left join</h3>
+<section id="left-join" class="level3" data-number="12.1.1"><h3 data-number="12.1.1" class="anchored" data-anchor-id="left-join">
+<span class="header-section-number">12.1.1</span> Left join</h3>
 <p>Suppose we want a table like <code>tab_1</code>, but adding electoral votes to whatever states we have available. For this, we use <code>left_join</code> with <code>tab_1</code> as the first argument. We specify which column to use to match with the <code>by</code> argument.</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-7_781be1d984946ccf717a86786414a522">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-6_f428d3e9ceff7c7d48ea05bf792a719d">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        state population ev</span></span>
 <span><span class="co">#&gt; 1    Alabama    4779736  9</span></span>
 <span><span class="co">#&gt; 2     Alaska     710231  3</span></span>
@@ -474,14 +451,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 6   Colorado    5029196 NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that <code>NA</code>s are added to the two states not appearing in <code>tab_2</code>. Also, notice that this function, as well as all the other joins, can receive the first arguments through the pipe:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-8_8e18c082e2335f9e60904ba7c287aeba">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-7_af1a3248eb08027d7f52c5f933b55e5e">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="right-join" class="level3" data-number="13.1.2"><h3 data-number="13.1.2" class="anchored" data-anchor-id="right-join">
-<span class="header-section-number">13.1.2</span> Right join</h3>
+</section><section id="right-join" class="level3" data-number="12.1.2"><h3 data-number="12.1.2" class="anchored" data-anchor-id="right-join">
+<span class="header-section-number">12.1.2</span> Right join</h3>
 <p>If instead of a table with the same rows as first table, we want one with the same rows as second table, we can use <code>right_join</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-9_058657a827f132a8186a00acaa2f2877">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join</a></span><span class="op">(</span><span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-8_198c9b882e2cb037957c4ad91fbcd3fd">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join</a></span><span class="op">(</span><span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;         state population ev</span></span>
 <span><span class="co">#&gt; 1     Alabama    4779736  9</span></span>
 <span><span class="co">#&gt; 2      Alaska     710231  3</span></span>
@@ -491,22 +468,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 6    Delaware         NA  3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now the NAs are in the column coming from <code>tab_1</code>.</p>
-</section><section id="inner-join" class="level3" data-number="13.1.3"><h3 data-number="13.1.3" class="anchored" data-anchor-id="inner-join">
-<span class="header-section-number">13.1.3</span> Inner join</h3>
+</section><section id="inner-join" class="level3" data-number="12.1.3"><h3 data-number="12.1.3" class="anchored" data-anchor-id="inner-join">
+<span class="header-section-number">12.1.3</span> Inner join</h3>
 <p>If we want to keep only the rows that have information in both tables, we use <code>inner_join</code>. You can think of this as an intersection:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-10_28c973e510f0abab10b363d196d43467">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-9_a0a2892298e2b1a66ce236c4c3380111">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        state population ev</span></span>
 <span><span class="co">#&gt; 1    Alabama    4779736  9</span></span>
 <span><span class="co">#&gt; 2     Alaska     710231  3</span></span>
 <span><span class="co">#&gt; 3    Arizona    6392017 11</span></span>
 <span><span class="co">#&gt; 4 California   37253956 55</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="full-join" class="level3" data-number="13.1.4"><h3 data-number="13.1.4" class="anchored" data-anchor-id="full-join">
-<span class="header-section-number">13.1.4</span> Full join</h3>
+</section><section id="full-join" class="level3" data-number="12.1.4"><h3 data-number="12.1.4" class="anchored" data-anchor-id="full-join">
+<span class="header-section-number">12.1.4</span> Full join</h3>
 <p>If we want to keep all the rows and fill the missing parts with NAs, we can use <code>full_join</code>. You can think of this as a union:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-11_cd4eee7c2926f1a3ecfe42278879d97b">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-10_2748cb13865c0ee6370da455e9137828">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;         state population ev</span></span>
 <span><span class="co">#&gt; 1     Alabama    4779736  9</span></span>
 <span><span class="co">#&gt; 2      Alaska     710231  3</span></span>
@@ -517,44 +494,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 7 Connecticut         NA  7</span></span>
 <span><span class="co">#&gt; 8    Delaware         NA  3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="semi-join" class="level3" data-number="13.1.5"><h3 data-number="13.1.5" class="anchored" data-anchor-id="semi-join">
-<span class="header-section-number">13.1.5</span> Semi join</h3>
+</section><section id="semi-join" class="level3" data-number="12.1.5"><h3 data-number="12.1.5" class="anchored" data-anchor-id="semi-join">
+<span class="header-section-number">12.1.5</span> Semi join</h3>
 <p>The <code>semi_join</code> function lets us keep the part of first table for which we have information in the second. It does not add the columns of the second:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-12_0c06b3128138946ea942a91d9e9cb655">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-11_5a70e1ef79d25cbb3b64732c7f956c29">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        state population</span></span>
 <span><span class="co">#&gt; 1    Alabama    4779736</span></span>
 <span><span class="co">#&gt; 2     Alaska     710231</span></span>
 <span><span class="co">#&gt; 3    Arizona    6392017</span></span>
 <span><span class="co">#&gt; 4 California   37253956</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="anti-join" class="level3" data-number="13.1.6"><h3 data-number="13.1.6" class="anchored" data-anchor-id="anti-join">
-<span class="header-section-number">13.1.6</span> Anti join</h3>
+</section><section id="anti-join" class="level3" data-number="12.1.6"><h3 data-number="12.1.6" class="anchored" data-anchor-id="anti-join">
+<span class="header-section-number">12.1.6</span> Anti join</h3>
 <p>The function <code>anti_join</code> is the opposite of <code>semi_join</code>. It keeps the elements of the first table for which there is no information in the second:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-13_5c5eac69ab303a034a7b910a44ea105d">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-12_1a6e993ead0143d90a65460f77814d8f">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      state population</span></span>
 <span><span class="co">#&gt; 1 Arkansas    2915918</span></span>
 <span><span class="co">#&gt; 2 Colorado    5029196</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The following diagram summarizes the above joins:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-14_d55a7f3531f23cd9272fd6c2f85354bc">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/joins.png" class="img-fluid figure-img" style="width:40.0%"></p>
-</figure>
-</div>
-</div>
-</div>
+<p><img src="img/joins.png" class="img-fluid"></p>
 <p>(Image courtesy of RStudio<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. CC-BY-4.0 license<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Cropped from original.)</p>
-</section></section><section id="binding" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="binding">
-<span class="header-section-number">13.2</span> Binding</h2>
+</section></section><section id="binding" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="binding">
+<span class="header-section-number">12.2</span> Binding</h2>
 <p>Although we have yet to use it in this book, another common way in which datasets are combined is by <em>binding</em> them. Unlike the join function, the binding functions do not try to match by a variable, but instead simply combine datasets. If the datasets don’t match by the appropriate dimensions, one obtains an error.</p>
-<section id="binding-columns" class="level3" data-number="13.2.1"><h3 data-number="13.2.1" class="anchored" data-anchor-id="binding-columns">
-<span class="header-section-number">13.2.1</span> Binding columns</h3>
+<section id="binding-columns" class="level3" data-number="12.2.1"><h3 data-number="12.2.1" class="anchored" data-anchor-id="binding-columns">
+<span class="header-section-number">12.2.1</span> Binding columns</h3>
 <p>The <strong>dplyr</strong> function <em>bind_cols</em> binds two objects by making them columns in a tibble. For example, we quickly want to make a data frame consisting of numbers we can use.</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-15_90c8ecab7b14b39f553be0b8fe259a47">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, b <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-13_e3018ecc69a6c08693cb9c45aaad65cd">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, b <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
 <span><span class="co">#&gt;       a     b</span></span>
 <span><span class="co">#&gt;   &lt;int&gt; &lt;int&gt;</span></span>
@@ -565,8 +535,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This function requires that we assign names to the columns. Here we chose <code>a</code> and <code>b</code>.</p>
 <p>Note that there is an R-base function <code>cbind</code> with the exact same functionality. An important difference is that <code>cbind</code> can create different types of objects, while <code>bind_cols</code> always produces a data frame.</p>
 <p><code>bind_cols</code> can also bind two different data frames. For example, here we break up the <code>tab</code> data frame and then bind them back together:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-16_febb1bf70a97b3cc8be6b898c3c7edce">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-14_465c1803fc854d7b86cb07df57a47903">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="va">tab_2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span>, <span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span>
 <span><span class="va">tab_3</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span>, <span class="fl">7</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span></span>
 <span><span class="va">new_tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span>, <span class="va">tab_3</span><span class="op">)</span></span>
@@ -579,11 +549,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 5 California  CA   West   37253956  1257 55    61.7  31.6</span></span>
 <span><span class="co">#&gt; 6   Colorado  CO   West    5029196    65  9    48.2  43.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="binding-by-rows" class="level3" data-number="13.2.2"><h3 data-number="13.2.2" class="anchored" data-anchor-id="binding-by-rows">
-<span class="header-section-number">13.2.2</span> Binding by rows</h3>
+</section><section id="binding-by-rows" class="level3" data-number="12.2.2"><h3 data-number="12.2.2" class="anchored" data-anchor-id="binding-by-rows">
+<span class="header-section-number">12.2.2</span> Binding by rows</h3>
 <p>The <code>bind_rows</code> function is similar to <code>bind_cols</code>, but binds rows instead of columns:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-17_7ee2a15661007be0e80c5ee613687e6b">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>,<span class="op">]</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-15_c4d9bd2bd4496830e0e74e3678864783">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>,<span class="op">]</span></span>
 <span><span class="va">tab_2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">4</span>,<span class="op">]</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      state abb region population total ev clinton trump</span></span>
@@ -593,24 +563,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 4 Arkansas  AR  South    2915918    93  6    33.7  60.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This is based on an R-base function <code>rbind</code>.</p>
-</section></section><section id="set-operators" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="set-operators">
-<span class="header-section-number">13.3</span> Set operators</h2>
+</section></section><section id="set-operators" class="level2" data-number="12.3"><h2 data-number="12.3" class="anchored" data-anchor-id="set-operators">
+<span class="header-section-number">12.3</span> Set operators</h2>
 <p>Another set of commands useful for combining datasets are the set operators. When applied to vectors, these behave as their names suggest. Examples are <code>intersect</code>, <code>union</code>, <code>setdiff</code>, and <code>setequal</code>. However, if the <strong>tidyverse</strong>, or more specifically <strong>dplyr</strong>, is loaded, these functions can be used on data frames as opposed to just on vectors.</p>
-<section id="intersect" class="level3" data-number="13.3.1"><h3 data-number="13.3.1" class="anchored" data-anchor-id="intersect">
-<span class="header-section-number">13.3.1</span> Intersect</h3>
+<section id="intersect" class="level3" data-number="12.3.1"><h3 data-number="12.3.1" class="anchored" data-anchor-id="intersect">
+<span class="header-section-number">12.3.1</span> Intersect</h3>
 <p>You can take intersections of vectors of any type, such as numeric:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-18_0494021461fb4a31f090e4b9b2df427e">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">intersect</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">6</span><span class="op">:</span><span class="fl">15</span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-16_92a5fe7fbb0b3fd8609cd01c61a9bc39">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">intersect</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">6</span><span class="op">:</span><span class="fl">15</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1]  6  7  8  9 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>or characters:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-19_ec306a8dd977e6af543adc616de13ac2">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">intersect</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>,<span class="st">"b"</span>,<span class="st">"c"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"b"</span>,<span class="st">"c"</span>,<span class="st">"d"</span><span class="op">)</span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-17_f37e5f3a879f94c56ce92b6870533d69">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">intersect</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>,<span class="st">"b"</span>,<span class="st">"c"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"b"</span>,<span class="st">"c"</span>,<span class="st">"d"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "b" "c"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <strong>dplyr</strong> package includes an <code>intersect</code> function that can be applied to tables with the same column names. This function returns the rows in common between two tables. To make sure we use the <strong>dplyr</strong> version of <code>intersect</code> rather than the base package version, we can use <code><a href="https://generics.r-lib.org/reference/setops.html">dplyr::intersect</a></code> like this:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-20_7232cafa995664321148dc7268161f82">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-18_1fa02714f07d40d00359a64f018e1023">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span></span>
 <span><span class="va">tab_2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">7</span>,<span class="op">]</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">intersect</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        state abb region population total ev clinton trump</span></span>
@@ -618,18 +588,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 2   Arkansas  AR  South    2915918    93  6    33.7  60.6</span></span>
 <span><span class="co">#&gt; 3 California  CA   West   37253956  1257 55    61.7  31.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="union" class="level3" data-number="13.3.2"><h3 data-number="13.3.2" class="anchored" data-anchor-id="union">
-<span class="header-section-number">13.3.2</span> Union</h3>
+</section><section id="union" class="level3" data-number="12.3.2"><h3 data-number="12.3.2" class="anchored" data-anchor-id="union">
+<span class="header-section-number">12.3.2</span> Union</h3>
 <p>Similarly <em>union</em> takes the union of vectors. For example:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-21_171461e83f03183d70b9c22778fd7a42">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">union</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">6</span><span class="op">:</span><span class="fl">15</span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-19_e9970eb35a87585d44d1e8989c701c2b">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">union</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">6</span><span class="op">:</span><span class="fl">15</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15</span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">union</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>,<span class="st">"b"</span>,<span class="st">"c"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"b"</span>,<span class="st">"c"</span>,<span class="st">"d"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "a" "b" "c" "d"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <strong>dplyr</strong> package includes a version of <code>union</code> that combines all the rows of two tables with the same column names.</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-22_c6dbdd65e77e599395acb2a994b80a78">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-20_bd77d7a4e0054be012e22605699c8965">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span></span>
 <span><span class="va">tab_2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">7</span>,<span class="op">]</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">union</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span><span class="op">)</span> </span>
 <span><span class="co">#&gt;         state abb    region population total ev clinton trump</span></span>
@@ -641,49 +611,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 6    Colorado  CO      West    5029196    65  9    48.2  43.3</span></span>
 <span><span class="co">#&gt; 7 Connecticut  CT Northeast    3574097    97  7    54.6  40.9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="setdiff" class="level3" data-number="13.3.3"><h3 data-number="13.3.3" class="anchored" data-anchor-id="setdiff">
-<span class="header-section-number">13.3.3</span> <code>setdiff</code>
+</section><section id="setdiff" class="level3" data-number="12.3.3"><h3 data-number="12.3.3" class="anchored" data-anchor-id="setdiff">
+<span class="header-section-number">12.3.3</span> <code>setdiff</code>
 </h3>
 <p>The set difference between a first and second argument can be obtained with <code>setdiff</code>. Unlike <code>intersect</code> and <code>union</code>, this function is not symmetric:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-23_4c26fe5a2280646163c85b44a9b51580">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">6</span><span class="op">:</span><span class="fl">15</span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-21_ee3718e80030f2a2ad85859dd982a8ec">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">6</span><span class="op">:</span><span class="fl">15</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 1 2 3 4 5</span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="fl">6</span><span class="op">:</span><span class="fl">15</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 11 12 13 14 15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As with the functions shown above, <strong>dplyr</strong> has a version for data frames:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-24_040e86e07d83ff2266088cc7b4cfc592">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-22_ff5be0537e511f57b10ae54efdc4a98a">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab_1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span></span>
 <span><span class="va">tab_2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">7</span>,<span class="op">]</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     state abb region population total ev clinton trump</span></span>
 <span><span class="co">#&gt; 1 Alabama  AL  South    4779736   135  9    34.4  62.1</span></span>
 <span><span class="co">#&gt; 2  Alaska  AK   West     710231    19  3    36.6  51.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="setequal" class="level3" data-number="13.3.4"><h3 data-number="13.3.4" class="anchored" data-anchor-id="setequal">
-<span class="header-section-number">13.3.4</span> <code>setequal</code>
+</section><section id="setequal" class="level3" data-number="12.3.4"><h3 data-number="12.3.4" class="anchored" data-anchor-id="setequal">
+<span class="header-section-number">12.3.4</span> <code>setequal</code>
 </h3>
 <p>Finally, the function <code>setequal</code> tells us if two sets are the same, regardless of order. So notice that:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-25_3db0953f0e6b4ab6fc65118813672e29">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setequal</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-23_0095d923daeeafdef8289a12cdc3fe48">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setequal</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>but:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-26_e8fc4455e99638e133b63436d3014e5f">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setequal</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-24_1c934885b197d8e17a896e1db95428b2">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setequal</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>When applied to data frames that are not equal, regardless of order, the <strong>dplyr</strong> version provides a useful message letting us know how the sets are different:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-27_7ad0e5eb8d08f20345e60ae00a7bfcad">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setequal</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-25_593d7f94d8b85e3385bb6a2404c3651a">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setequal</a></span><span class="op">(</span><span class="va">tab_1</span>, <span class="va">tab_2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="exercises" class="level2" data-number="13.4"><h2 data-number="13.4" class="anchored" data-anchor-id="exercises">
-<span class="header-section-number">13.4</span> Exercises</h2>
+</section></section><section id="exercises" class="level2" data-number="12.4"><h2 data-number="12.4" class="anchored" data-anchor-id="exercises">
+<span class="header-section-number">12.4</span> Exercises</h2>
 <p>1. Install and load the <strong>Lahman</strong> library. This database includes data related to baseball teams. It includes summary statistics about how the players performed on offense and defense for several years. It also includes personal information about the players.</p>
 <p>The <code>Batting</code> data frame contains the offensive statistics for all players for many years. You can see, for example, the top 10 hitters by running this code:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-28_378c305fb0837b02cab41943543b4a8e">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://CRAN.R-project.org/package=Lahman">Lahman</a></span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-26_530ff01fcb5fe13f7701acea69b4c654">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://CRAN.R-project.org/package=Lahman">Lahman</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">top</span> <span class="op">&lt;-</span> <span class="va">Batting</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">yearID</span> <span class="op">==</span> <span class="fl">2016</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -693,14 +663,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">top</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>But who are these players? We see an ID, but not the names. The player names are in this table</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-29_f36fe44b5c8186cb910564c195dd66b4">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">People</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-27_f88e3430209c0eae1c7aded2557ff2ab">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">People</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can see column names <code>nameFirst</code> and <code>nameLast</code>. Use the <code>left_join</code> function to create a table of the top home run hitters. The table should have <code>playerID</code>, first name, last name, and number of home runs (HR). Rewrite the object <code>top</code> with this new table.</p>
 <p>2. Now use the <code>Salaries</code> data frame to add each player’s salary to the table you created in exercise 1. Note that salaries are different every year so make sure to filter for the year 2016, then use <code>right_join</code>. This time show first name, last name, team, HR, and salary.</p>
 <p>3. In a previous exercise, we created a tidy version of the <code>co2</code> dataset:</p>
-<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-30_b4cf2a9b85ad1637b5c306f67ef0f4c2">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">co2_wide</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">co2</span>, ncol <span class="op">=</span> <span class="fl">12</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<div class="cell" data-layout-align="center" data-hash="joining-tables_cache/html/unnamed-chunk-28_18dd14a9704edac53e419ccd1ff6c48e">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">co2_wide</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">co2</span>, ncol <span class="op">=</span> <span class="fl">12</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">1959</span><span class="op">:</span><span class="fl">1997</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="op">-</span><span class="va">year</span>, names_to <span class="op">=</span> <span class="st">"month"</span>, values_to <span class="op">=</span> <span class="st">"co2"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -949,12 +919,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="../wrangling/reshaping-data.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Reshaping data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../wrangling/web-scraping.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web scraping</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../wrangling/dates-and-times.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

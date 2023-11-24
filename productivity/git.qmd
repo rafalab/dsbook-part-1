@@ -1,6 +1,5 @@
 # Git and GitHub {#sec-git}
 
-
 Here we provide a brief introduction Git and GitHub. We are only scratching the surface. To learn more about Git, we highly recommend the following resources:
 
 * Codeacademy: [https://www.codecademy.com/learn/learn-git](https://www.codecademy.com/learn/learn-git)
@@ -25,18 +24,26 @@ We primarily emphasize the sharing capabilities of Git here. For a deeper dive i
 
 ## Overview of Git {#sec-git-overview}
 
-To effectively permit version control and collaboration with Git we need to understand the concept of a _repository_, often simply called _repo_. A repo is a digital storage space where you can save, edit, and track versions of files for a specific project. Think of it as a project folder combined with a detailed logbook. It holds all the files and directories related to the project and also records of every change made, who made it, and when. This allows multiple people to collaborate on a project without overwriting contributions from others. You can also easily revert to previous versions if needed.
+To effectively permit version control and collaboration with Git we need to understand the concept of a _repository_, often simply called a _repo_. A repo is a digital storage space where you can save, edit, and track versions of files for a specific project. Think of it as a project folder combined with a detailed logbook. It holds all the files and directories related to the project and also records of every change made, who made it, and when. This allows multiple people to collaborate on a project without overwriting contributions from others. You can also easily revert to previous versions if needed.
 
-Note that Git permits the creation of different _branches_ within a repository. This permits working on files in parallel which is particularly useful for testing ideas the involve big changes before incorporating with a stable version. In this book we provide only examples with just one branch. To learn more about how to define and use multiple branches please consult the resources provided above.
+Note that Git permits the creation of different _branches_ within a repository. This permits working on files in parallel which is particularly useful for testing ideas that involve big changes before incorporating with a stable version. In this book we provide only examples with just one branch. To learn more about how to define and use multiple branches please consult the resources provided above.
 
 A common practice involves hosting central _main branch_  on a GitHub 
 repository that all collaborators can access remotely. The main branch is considered the stable official version. Each collaborator also maintains a _local repository_ on their computer, allowing them to edit and test changes before committing them to the main repository. 
 
-We're going to explore how Git works step by step. First, you'll learn how to make changes on your computer in what's called the _working directory_. Once you're happy with your changes, you'll move them to the _staging area_. Think of this as preparing or packing your changes. From there, you'll save these changes to your _local repo_, this is like your personal save point on your computer and will generate a new version of the repository in the log.
+We're going to explore how Git works by following these step:
+
+1\. First, you'll learn how to make changes on your computer in what's called the _working directory_. 
+
+2.\ Once you're happy with your changes, you'll move them to the _staging area_. Think of this as preparing or packing your changes. 
+
+3\. From there, you'll save these changes to your _local repo_, this is like your personal save point on your computer and will generate a new version of the repository in the log.
+
+4\. After saving locally, you'll then send, or _push_, these changes to the main storage space where everyone can see them. In our examples, this main storage space is hosted on GitHub, and Git calls it the _upstream repo_.
+
 
 ![](img/git/git-layout.png)
 
-After saving locally, you'll then send, or _push_, these changes to the main storage space where everyone can see them. In our examples, this main storage space is hosted on GitHub, and Git calls it the _upstream repo_.
 
 Now, to work with this strategy, you'll need an account on GitHub. In the next two sections, we'll guide you on how to set up an account and create repos on GitHub.
 
@@ -50,7 +57,7 @@ You want to pick a name carefully. It should be short, easy to remember and to s
 
 ## GitHub repositories {#sec-github-repos}
 
-You are now ready to create a GitHub repository that will serve as the main or upstream repo for a project. Collaborators you add to this project, will be able to manage a local repository on their computer and push changes. Git will help you keep all the different copies synced.
+Once you have an account, you are now ready to create a GitHub repository that will serve as the main or upstream repo for a project. Collaborators you add to this project, will be able to manage a local repository on their computer and push changes. Git will help you keep all the different copies synced.
 
 To create a repo, first log in to your account by clicking the _Sign In_ button on [https://github.com](http://github.com). You might already be signed in, in which case the _Sign In_ button will not show up. If signing in, you will have to enter your username and password. We recommend you set up your browser to remember this to avoid typing it in each time.
 
@@ -66,7 +73,7 @@ Once on your account, you can click on _Repositories_ and then click on _New_ to
 
 When naming your project, pick a descriptive name that clearly tells what the project is about. Keep in mind that as you work on more projects, you'll accumulate many repositories. As an illustration, we will use the name `homework-0`.
 
-You will also be prompted to decide whether your repo should be public or private. To decide know that this is the difference:
+You will also be prompted to decide whether your repo should be public or private. To decide, know that this is the difference:
 
 - **Public repositories**: Anyone on the internet can see these. Although only collaborators can make changes.
 
@@ -76,17 +83,16 @@ While there are other settings to consider, we typically stick with the default 
 
 After creating your repo, GitHub will show you steps to link your local repo (the one on your computer) to the new one you've set up on GitHub. They'll provide some code that you can directly copy and paste into your terminal. We will break down that code so you'll know exactly what each command does.
 
-## Connecting Git and GitHub {#connecting-git-github}
+## Connecting Git and GitHub {#sec-connecting-git-github}
 
 When accessing GitHub you need credentials to verify your identity. There are two ways to connect: HTTPS or SSH, each requiring different credentials. We recommend using HTTPS, which uses a Personal Access Token (PAT). Note that **your GitHub website password isn't your access token**. 
-
 
 GitHub provides a detailed guide on obtaining an access token. You can find the guide [here](https://docs.github.com/en/enterprise-server@3.6/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens). To generate a token:
 
 1. Carefully follow the instructions in the provided link.
 2. When setting permissions for the token, choose _non-expiring_ and select the _repo_ option in the _scopes_ section.
 
-Once you complete these steps, GitHub will display your token—a lengthy string of characters:
+Once you complete these steps, GitHub will display your token—a lengthy string of characters. You should then:
 
 1. Immediately copy this token to your clipboard. Remember, this is the only time GitHub will show it to you.
 2. For security, save this token in a password manager. This ensures you can access it if needed later on.
@@ -175,8 +181,6 @@ The working directory is the same as your Unix working directory. In our example
 git status
 ```
 
-
-
 Because we have not done anything yet, you should receive a message such as 
 
 ```
@@ -244,7 +248,7 @@ If we are now ready to make a first version of our repository, which only includ
 git commit -m "Adding a new file." 
 ```
 
-We will receive a message letting us know it was committed:
+Note that `commit` requires us to add a messge. Making these informative will help us remember why this change was made. After running `commit` we will receive a message letting us know it was committed:
 
 ```
 [main (root-commit) 1735c25] adding a new file
@@ -281,8 +285,7 @@ Note that we can achieve the same results with just one line by following the co
 git commit -m "Added some lines of code." code.R
 ```
 
-This is convention when the number of files that change is small and we can list them at the end.
-
+This is convenient when the number of files that change is small and we can list them at the end.
 
 To see version control in action note what happens when we type 
 
@@ -316,7 +319,7 @@ Once we are ready to sync our local repo with the upstream GitHub repo, we can u
 git push -u origin main
 ```
 :::{.callout-note}
-If this is your first time pushing to your GitHub account, you will be asked for a password and you have to enter the personal access token we described in Section @connecting-git-github. You should only need to do this once. 
+If this is your first time pushing to your GitHub account, you will be asked for a password and you have to enter the personal access token we described in @sec-connecting-git-github. You should only need to do this once. 
 :::
 
 The `-u` flag, short for `--set-upstream` will make Git remember that in this repository you want to push to the `main` branch in the remote repo `origin` defined in the initialization. This is beneficial because the next time you want to push or pull from this branch, you can simply use 
@@ -365,13 +368,14 @@ git merge
 
 ### pull
 
+
+
+![](img/git/git-pull.png)
 We very often just want to fetch and merge without checking. For this, we use: 
 
 ```
 git pull
 ```
-
-![](img/git/git-pull.png)
 
 ### clone
 
@@ -391,7 +395,12 @@ git clone https://github.com/rairizarry/murders.git
 If you use `git clone`, you do not need to initialize as the branch and remote will already be defined. Now, to push changes you need to be added as a collaborator. Otherwise you will have to follow the more complex process of a _pull request_, which we don't cover here.
 
 
-## Using Git in RStudio {#sec-rstudio-git}
+## .gitignore
+
+When we use `git status` we obtain information about all files in our local repo. But we don't necessarily need to add all the files in our local repo to the Git repo, only the ones we want to keep track of or the ones we want to share. If our work is producing files of a certain type that we do not want to keep track of, we can add the suffix that defines these files to the .gitignore file. More details on using .gitignore are included here: [https://git-scm.com/docs/gitignore](https://git-scm.com/docs/gitignore). These files will stop appearing in your RStudio Git pane. 
+
+
+## Git in RStudio {#sec-rstudio-git}
 
 While command line Git is a powerful and flexible tool, it can be somewhat daunting when we are getting started. RStudio provides a graphical interface that facilitates the use of Git in the context of a data analysis project. 
 
@@ -427,12 +436,6 @@ Before we start working on a collaborative project, usually the first thing we d
 In RStudio, the status of the file as it relates to the remote and local repos are represented in the status symbols with colors. A yellow square means that Git knows nothing about this file. To sync with the GitHub repo, we need to _add_ the file, then _commit_ the change to our local Git repo, then _push_ the change to the GitHub repo. Right now, the file is just on our computer. To add the file using RStudio, we click the _Stage_ box. You will see that the status icon now changes to a green A. 
 
 ![](img//windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_51_31.png){width=50%}
-
-::: {.callout-note}
-
-## .gitignore
-We don't necessarily need to add all the files in our local repo to the GitHub repo, only the ones we want to keep track of or the ones we want to share. If our work is producing files of a certain type that we do not want to keep track of, we can add the suffix that defines these files to the .gitignore file. More details on using .gitignore are included here: [https://git-scm.com/docs/gitignore](https://git-scm.com/docs/gitignore). These files will stop appearing in your RStudio Git pane. 
-:::
 
 Now we are ready to commit the file to our local repo. In RStudio, we can use the _Commit_ button. This will open a new dialog window. With Git, whenever we commit a change, we are required to enter a comment describing the changes being _committed_. 
 

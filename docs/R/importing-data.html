@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.3.353">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
-<title>Introduction to Data Science - 5&nbsp; Importing data</title>
+<title>Introduction to Data Science - 6&nbsp; Importing data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -61,8 +61,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../R/data_table.html" rel="next">
-<link href="../R/tidyverse.html" rel="prev">
+<link href="../dataviz/intro-dataviz.html" rel="next">
+<link href="../R/data-table.html" rel="prev">
 <link href="../cover.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -100,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../R/intro-to-R.html">R</a></li><li class="breadcrumb-item"><a href="../R/importing-data.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importing data</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../R/intro-to-R.html">R</a></li><li class="breadcrumb-item"><a href="../R/importing-data.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Importing data</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -153,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../R/getting-started.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with R and RStudio</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -176,14 +176,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/importing-data.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importing data</span></span></a>
+  <a href="../R/data-table.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">data.table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../R/data_table.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">data.table</span></span></a>
+  <a href="../R/importing-data.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Importing data</span></span></a>
   </div>
 </li>
       </ul>
@@ -199,32 +199,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataviz/ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot2</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../dataviz/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Visualizing data distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataviz/gapminder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization in practice</span></span></a>
+  <a href="../dataviz/ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ggplot2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../dataviz/dataviz-principles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data visualization principles</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization principles</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../dataviz/vaccines.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Case study: vaccines and infectious diseases</span></span></a>
+  <a href="../dataviz/dataviz-in-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data visualization in practice</span></span></a>
   </div>
 </li>
       </ul>
@@ -241,31 +235,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/reshaping-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/joining-tables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Joining tables</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web scraping</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">String processing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Joining tables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/dates-and-times.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/data-table-wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Wrangling with <code>data.table</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Web scraping</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">String processing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -312,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/reproducible-projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects with markdown</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects</span></span></a>
   </div>
 </li>
       </ul>
@@ -326,34 +326,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#paths-and-the-working-directory" id="toc-paths-and-the-working-directory" class="nav-link active" data-scroll-target="#paths-and-the-working-directory"><span class="header-section-number">5.1</span> Paths and the working directory</a>
+<a href="#paths-and-the-working-directory" id="toc-paths-and-the-working-directory" class="nav-link active" data-scroll-target="#paths-and-the-working-directory"><span class="header-section-number">6.1</span> Paths and the working directory</a>
   <ul class="collapse">
-<li><a href="#the-filesystem" id="toc-the-filesystem" class="nav-link" data-scroll-target="#the-filesystem"><span class="header-section-number">5.1.1</span> The filesystem</a></li>
-  <li><a href="#relative-and-full-paths" id="toc-relative-and-full-paths" class="nav-link" data-scroll-target="#relative-and-full-paths"><span class="header-section-number">5.1.2</span> Relative and full paths</a></li>
-  <li><a href="#the-working-directory" id="toc-the-working-directory" class="nav-link" data-scroll-target="#the-working-directory"><span class="header-section-number">5.1.3</span> The working directory</a></li>
-  <li><a href="#generating-path-names" id="toc-generating-path-names" class="nav-link" data-scroll-target="#generating-path-names"><span class="header-section-number">5.1.4</span> Generating path names</a></li>
-  <li><a href="#copying-files-using-paths" id="toc-copying-files-using-paths" class="nav-link" data-scroll-target="#copying-files-using-paths"><span class="header-section-number">5.1.5</span> Copying files using paths</a></li>
+<li><a href="#the-filesystem" id="toc-the-filesystem" class="nav-link" data-scroll-target="#the-filesystem"><span class="header-section-number">6.1.1</span> The filesystem</a></li>
+  <li><a href="#relative-and-full-paths" id="toc-relative-and-full-paths" class="nav-link" data-scroll-target="#relative-and-full-paths"><span class="header-section-number">6.1.2</span> Relative and full paths</a></li>
+  <li><a href="#the-working-directory" id="toc-the-working-directory" class="nav-link" data-scroll-target="#the-working-directory"><span class="header-section-number">6.1.3</span> The working directory</a></li>
+  <li><a href="#generating-path-names" id="toc-generating-path-names" class="nav-link" data-scroll-target="#generating-path-names"><span class="header-section-number">6.1.4</span> Generating path names</a></li>
   </ul>
 </li>
   <li>
-<a href="#the-readr-and-readxl-packages" id="toc-the-readr-and-readxl-packages" class="nav-link" data-scroll-target="#the-readr-and-readxl-packages"><span class="header-section-number">5.2</span> The readr and readxl packages</a>
+<a href="#file-types" id="toc-file-types" class="nav-link" data-scroll-target="#file-types"><span class="header-section-number">6.2</span> File types</a>
   <ul class="collapse">
-<li><a href="#readr" id="toc-readr" class="nav-link" data-scroll-target="#readr"><span class="header-section-number">5.2.1</span> readr</a></li>
-  <li><a href="#readxl" id="toc-readxl" class="nav-link" data-scroll-target="#readxl"><span class="header-section-number">5.2.2</span> readxl</a></li>
+<li><a href="#text-files" id="toc-text-files" class="nav-link" data-scroll-target="#text-files"><span class="header-section-number">6.2.1</span> Text files</a></li>
+  <li><a href="#binary-files" id="toc-binary-files" class="nav-link" data-scroll-target="#binary-files"><span class="header-section-number">6.2.2</span> Binary files</a></li>
+  <li><a href="#encoding" id="toc-encoding" class="nav-link" data-scroll-target="#encoding"><span class="header-section-number">6.2.3</span> Encoding</a></li>
   </ul>
 </li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">5.3</span> Exercises</a></li>
-  <li><a href="#downloading-files" id="toc-downloading-files" class="nav-link" data-scroll-target="#downloading-files"><span class="header-section-number">5.4</span> Downloading files</a></li>
-  <li><a href="#r-base-importing-functions" id="toc-r-base-importing-functions" class="nav-link" data-scroll-target="#r-base-importing-functions"><span class="header-section-number">5.5</span> R-base importing functions</a></li>
-  <li><a href="#text-versus-binary-files" id="toc-text-versus-binary-files" class="nav-link" data-scroll-target="#text-versus-binary-files"><span class="header-section-number">5.6</span> Text versus binary files</a></li>
-  <li><a href="#unicode-versus-ascii" id="toc-unicode-versus-ascii" class="nav-link" data-scroll-target="#unicode-versus-ascii"><span class="header-section-number">5.7</span> Unicode versus ASCII</a></li>
-  <li><a href="#organizing-data-with-spreadsheets" id="toc-organizing-data-with-spreadsheets" class="nav-link" data-scroll-target="#organizing-data-with-spreadsheets"><span class="header-section-number">5.8</span> Organizing data with spreadsheets</a></li>
-  <li><a href="#exercises-1" id="toc-exercises-1" class="nav-link" data-scroll-target="#exercises-1"><span class="header-section-number">5.9</span> Exercises</a></li>
+  <li>
+<a href="#parsers" id="toc-parsers" class="nav-link" data-scroll-target="#parsers"><span class="header-section-number">6.3</span> Parsers</a>
+  <ul class="collapse">
+<li><a href="#base-r" id="toc-base-r" class="nav-link" data-scroll-target="#base-r"><span class="header-section-number">6.3.1</span> Base R</a></li>
+  <li><a href="#readr" id="toc-readr" class="nav-link" data-scroll-target="#readr"><span class="header-section-number">6.3.2</span> readr</a></li>
+  <li><a href="#readxl" id="toc-readxl" class="nav-link" data-scroll-target="#readxl"><span class="header-section-number">6.3.3</span> readxl</a></li>
+  <li><a href="#data.table" id="toc-data.table" class="nav-link" data-scroll-target="#data.table"><span class="header-section-number">6.3.4</span> data.table</a></li>
+  <li><a href="#downloading-files" id="toc-downloading-files" class="nav-link" data-scroll-target="#downloading-files"><span class="header-section-number">6.3.5</span> Downloading files</a></li>
+  </ul>
+</li>
+  <li><a href="#organizing-data-with-spreadsheets" id="toc-organizing-data-with-spreadsheets" class="nav-link" data-scroll-target="#organizing-data-with-spreadsheets"><span class="header-section-number">6.4</span> Organizing data with spreadsheets</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">6.5</span> Exercises</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/blob/main/R/importing-data.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-importing-data" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importing data</span></span></h1>
+<h1 class="title"><span id="sec-importing-data" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Importing data</span></span></h1>
 </div>
 
 
@@ -366,112 +371,120 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header><p>We have been using data sets already stored as R objects. A data scientist will rarely have such luck and will have to import data into R from either a file, a database, or other sources. Currently, one of the most common ways of storing and sharing data for analysis is through electronic spreadsheets. A spreadsheet stores data in rows and columns. It is basically a file version of a data frame. When saving such a table to a computer file, one needs a way to define when a new row or column ends and the other begins. This in turn defines the cells in which single values are stored.</p>
-<p>When creating spreadsheets with text files, like the ones created with a simple text editor, a new row is defined with return and columns are separated with some predefined special character. The most common characters are comma (<code>,</code>), semicolon (<code>;</code>), space ( ), and tab (a preset number of spaces or <code>\t</code>). Here is an example of what a comma separated file looks like if we open it with a basic text editor:</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-2_a4510e57ab0799c62a0ab3913c71e446">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/csv-file.png" class="img-fluid figure-img" style="width:70.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The first row contains column names rather than data. We call this a <em>header</em>, and when we read-in data from a spreadsheet it is important to know if the file has a header or not. Most reading functions assume there is a header. To know if the file has a header, it helps to look at the file before trying to read it. This can be done with a text editor or with RStudio. In RStudio, we can do this by either opening the file in the editor or navigating to the file location, double clicking on the file, and hitting <em>View File</em>.</p>
-<p>However, not all spreadsheet files are in a text format. Google Sheets, which are rendered on a browser, are an example. Another example is the proprietary format used by Microsoft Excel. These can’t be viewed with a text editor. Despite this, due to the widespread use of Microsoft Excel software, this format is widely used.</p>
-<p>We start this chapter by describing the difference between text (ASCII), Unicode, and binary files and how this affects how we import them. We then explain the concepts of file paths and working directories, which are essential to understand how to import data effectively. We then introduce the <strong>readr</strong> and <strong>readxl</strong> package and the functions that are available to import spreadsheets into R. Finally, we provide some recommendations on how to store and organize data in files. More complex challenges such as extracting data from web pages or PDF documents are left for the Data Wrangling part of the book.</p>
-<section id="paths-and-the-working-directory" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="paths-and-the-working-directory">
-<span class="header-section-number">5.1</span> Paths and the working directory</h2>
-<p>The first step when importing data from a spreadsheet is to locate the file containing the data. Although we do not recommend it, you can use an approach similar to what you do to open files in Microsoft Excel by clicking on the RStudio “File” menu, clicking “Import Dataset”, then clicking through folders until you find the file. We want to be able to write code rather than use the point-and-click approach. The keys and concepts we need to learn to do this are described in detail in the Productivity Tools part of this book. Here we provide an overview of the very basics.</p>
-<p>The main challenge in this first step is that we need to let the R functions doing the importing know where to look for the file containing the data. The simplest way to do this is to have a copy of the file in the folder in which the importing functions look by default. Once we do this, all we have to supply to the importing function is the filename.</p>
-<p>A spreadsheet containing the US murders data is included as part of the <strong>dslabs</strong> package. Finding this file is not straightforward, but the following lines of code copy the file to the folder in which R looks in by default. We explain how these lines work below.</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-3_6bbf830fe0c4bed3dd5d4d285dd865e4">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="st">"murders.csv"</span></span>
-<span><span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"dslabs"</span><span class="op">)</span> </span>
-<span><span class="va">fullpath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">dir</span>, <span class="va">filename</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.copy</a></span><span class="op">(</span><span class="va">fullpath</span>, <span class="st">"murders.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This code does not read the data into R, it just copies a file. But once the file is copied, we can import the data with a simple line of code. Here we use the <code>read_csv</code> function from the <strong>readr</strong> package, which is part of the tidyverse.</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-4_3382d6aee44b41beee7d41badbd2c294">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The data is imported and stored in <code>dat</code>. The rest of this section defines some important concepts and provides an overview of how we write code that tells R how to find the files we want to import. Chapter <a href="../productivity/unix.html"><span>Chapter&nbsp;20</span></a> provides more details on this topic.</p>
-<section id="the-filesystem" class="level3" data-number="5.1.1"><h3 data-number="5.1.1" class="anchored" data-anchor-id="the-filesystem">
-<span class="header-section-number">5.1.1</span> The filesystem</h3>
-<p>You can think of your computer’s filesystem as a series of nested folders, each containing other folders and files. Data scientists refer to folders as <em>directories</em>. We refer to the folder that contains all other folders as the <em>root directory</em>. We refer to the directory in which we are currently located as the <em>working directory</em>. The working directory therefore changes as you move through folders: think of it as your current location.</p>
-</section><section id="relative-and-full-paths" class="level3" data-number="5.1.2"><h3 data-number="5.1.2" class="anchored" data-anchor-id="relative-and-full-paths">
-<span class="header-section-number">5.1.2</span> Relative and full paths</h3>
-<p>The <em>path</em> of a file is a list of directory names that can be thought of as instructions on what folders to click on, and in what order, to find the file. If these instructions are for finding the file from the root directory we refer to it as the <em>full path</em>. If the instructions are for finding the file starting in the working directory we refer to it as a <em>relative path</em>. Section <a href="../productivity/unix.html#sec-filesystem"><span>Section&nbsp;20.3</span></a> provides more details on this topic.</p>
+</header><p>We have been using datasets already stored as R objects. In data analysis work we rarely have such luck and will have to import data into R from either a file, a database, or other sources. Currently, one of the most common ways of storing and sharing data for analysis is through electronic spreadsheets. A spreadsheet stores data in rows and columns. It is basically a file version of a data frame. When saving such a table to a computer file, one needs a way to define when a new row or column ends and the other begins. This in turn defines the cells in which single values are stored. Here is an example of what a comma separated file looks like if we open it with a basic text editor:</p>
+<p><img src="img/csv-file.png" class="img-fluid"></p>
+<p>In this chapter, we outline how to load data from a file into R. First, it’s crucial to identify the file’s location; thus, we touch on file paths and working directories (detailed in <a href="../productivity/unix.html"><span>Chapter&nbsp;20</span></a>). Next, we delve into file types (text or binary) and encodings (like ASCII and Unicode), both essential for data import. We then introduce popular functions for data importing, refered to as <em>parsers</em>. Lastly, we offer tips on how to store data in spreadsheets Advanced topics like extracting data from websites or PDFs will be discussed in the book’s Data Wrangling section.</p>
+<section id="paths-and-the-working-directory" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="paths-and-the-working-directory">
+<span class="header-section-number">6.1</span> Paths and the working directory</h2>
+<p>The first step when importing data from a spreadsheet is to locate the file containing the data. Although we do not recommend it, you can use an approach similar to what you do to open files in Microsoft Excel by clicking on the RStudio “File” menu, clicking “Import Dataset”, then clicking through folders until you find the file. However, we rather write code rather than use the point-and-click approach. The key concepts we need to learn to do this are described in detail in <a href="../productivity/unix.html"><span>Chapter&nbsp;20</span></a>. Here we provide an overview of the very basics.</p>
+<section id="the-filesystem" class="level3" data-number="6.1.1"><h3 data-number="6.1.1" class="anchored" data-anchor-id="the-filesystem">
+<span class="header-section-number">6.1.1</span> The filesystem</h3>
+<p>You can think of your computer’s filesystem as a series of nested folders, each containing other folders and files. We refer to folders as <em>directories</em>. We refer to the folder that contains all other folders as the <em>root directory</em>. We refer to the directory in which we are currently located as the <em>working directory</em>. The working directory therefore changes as you move through folders: think of it as your current location.</p>
+</section><section id="relative-and-full-paths" class="level3" data-number="6.1.2"><h3 data-number="6.1.2" class="anchored" data-anchor-id="relative-and-full-paths">
+<span class="header-section-number">6.1.2</span> Relative and full paths</h3>
+<p>The <em>path</em> of a file is a list of directory names that can be thought of as instructions on what folders to click on, and in what order, to find the file. If these instructions are for finding the file from the root directory we refer to it as the <em>full path</em>. If the instructions are for finding the file starting in the working directory we refer to it as a <em>relative path</em>. <a href="../productivity/unix.html#sec-filesystem"><span>Section&nbsp;20.3</span></a> provides more details on this topic.</p>
 <p>To see an example of a full path on your system type the following:</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-5_187701e629c7f078554cbe38657af20f">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"dslabs"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-1_399efb2487667f5984fb281dbd317c82">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"dslabs"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/dslabs"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The strings separated by slashes are the directory names. The first slash represents the root directory and we know this is a full path because it starts with a slash. If the first directory name appears without a slash in front, then the path is assumed to be relative. We can use the function <code>list.files</code> to see examples of relative paths.</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-6_fcbb8e6c60cf6c8363947ffeaaf5118e">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"dslabs"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span>path <span class="op">=</span> <span class="va">dir</span><span class="op">)</span></span>
+<p>Note that the output will be different across different computers. The <code>system.file</code> function finds the full path to the files that were added to your system when you installed the <strong>dslabs</strong> package. The strings separated by slashes are the directory names. The first slash represents the root directory and we know this is a full path because it starts with a slash.</p>
+<p>We can use the function <code>list.files</code> to show the names of files and directories in any directory. For example, here are the files in the <strong>dslabs</strong> package directory:</p>
+<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-2_91b012b862a4a7f233cde8e715e0c198">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"dslabs"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="va">dir</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "data"        "DESCRIPTION" "extdata"     "help"       </span></span>
 <span><span class="co">#&gt;  [5] "html"        "INDEX"       "Meta"        "NAMESPACE"  </span></span>
 <span><span class="co">#&gt;  [9] "R"           "script"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>These relative paths give us the location of the files or directories if we start in the directory with the full path. For example, the full path to the <code>help</code> directory in the example above is <code>/Library/Frameworks/R.framework/Versions/3.5/Resources/library/dslabs/help</code>.</p>
-<p><strong>Note</strong>: You will probably not make much use of the <code>system.file</code> function in your day-to-day data analysis work. We introduce it in this section because it facilitates the sharing of spreadsheets by including them in the <strong>dslabs</strong> package. You will rarely have the luxury of data being included in packages you already have installed. However, you will frequently need to navigate full and relative paths and import spreadsheet formatted data.</p>
-</section><section id="the-working-directory" class="level3" data-number="5.1.3"><h3 data-number="5.1.3" class="anchored" data-anchor-id="the-working-directory">
-<span class="header-section-number">5.1.3</span> The working directory</h3>
-<p>We highly recommend only writing relative paths in your code. The reason is that full paths are unique to your computer and you want your code to be portable. You can get the full path of your working directory without writing out explicitly by using the <code>getwd</code> function.</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-7_739c4bf4a57a98370149a713a9ef3e0e">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that these do not start with slash which implies they are <em>relative paths</em>. These relative paths give us the location of the files or directories if the path stored in <code>dir</code> is our working directory.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>If you need to change your working directory, you can use the function <code>setwd</code> or you can change it through RStudio by clicking on “Session”.</p>
-</section><section id="generating-path-names" class="level3" data-number="5.1.4"><h3 data-number="5.1.4" class="anchored" data-anchor-id="generating-path-names">
-<span class="header-section-number">5.1.4</span> Generating path names</h3>
-<p>Another example of obtaining a full path without writing out explicitly was given above when we created the object <code>fullpath</code> like this:</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-8_83d86551cffcdbdaaeeaf8577e49e1e7">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="st">"murders.csv"</span></span>
-<span><span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"dslabs"</span><span class="op">)</span> </span>
-<span><span class="va">fullpath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">dir</span>, <span class="va">filename</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-body-container">
+<p>You will not make much use of the <code>system.file</code> function in your day-to-day data analysis work. We introduce it in this section because it facilitates the sharing of spreadsheets that can be used to practice. The spreadsheets are in the <code>extdata</code> directory.</p>
 </div>
-<p>The function <code>system.file</code> provides the full path of the folder containing all the files and directories relevant to the package specified by the <code>package</code> argument. By exploring the directories in <code>dir</code> we find that the <code>extdata</code> contains the file we want:</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-9_bac44e671201fa8e87cff6e5a677fdc6">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"dslabs"</span><span class="op">)</span> </span>
-<span><span class="va">filename</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">dir</span>, <span class="st">"extdata"</span><span class="op">)</span><span class="op">)</span> </span>
+</div>
+</div>
+</section><section id="the-working-directory" class="level3" data-number="6.1.3"><h3 data-number="6.1.3" class="anchored" data-anchor-id="the-working-directory">
+<span class="header-section-number">6.1.3</span> The working directory</h3>
+<p>We highly recommend only using relative paths in your code. The reason is that full paths are unique to your computer and you want your code to be portable. If you want to know the full path of your working directory using the <code>getwd</code> function. If you need to change your working directory, you can use the function <code>setwd</code> or you can change it through RStudio by clicking on “Session”.</p>
+<p>When you start a project you want to pick a directory to store all the files related to that project and make this is your working directory when ruining your analysis. This will facilitate th because if you provide a relative path to an importing functions, it will assume you want R to search for this file in the working directory. <a href="../productivity/reproducible-projects.html"><span>Chapter&nbsp;22</span></a> provides details on how to organize projects with RStudio.</p>
+</section><section id="generating-path-names" class="level3" data-number="6.1.4"><h3 data-number="6.1.4" class="anchored" data-anchor-id="generating-path-names">
+<span class="header-section-number">6.1.4</span> Generating path names</h3>
+<p>The <code>file.path</code> function combines characters to form a complete path, ensuring compatibility with the respective operating system. Linux and Mac use forward slashes <code>/</code>, while Windows uses backslashes <code>\</code>, to separate directories. This function is useful because often you want to define paths using a variable. Here is an example that constructs the full path for a spreadsheet containing the spreadsheet that with the murders data. Here the variable <code>dir</code> contains the full path for the <strong>dslabs</strong> package and <code>extdata/murders.csv</code> is the relative path of the spreadsheet if <code>dir</code> is considered the working directory.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"dslabs"</span><span class="op">)</span></span>
+<span><span class="va">file_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">dir</span>, <span class="st">"extdata/murders.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can copy the file with full path <code>file_path</code> to your working directory using the function <code>file.copy</code>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.copy</a></span><span class="op">(</span><span class="va">file_path</span>, <span class="st">"murders.csv"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code>system.file</code> function permits us to provide a subdirectory as a first argument, so we can obtain the fullpath of the <code>extdata</code> directory like this:</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-10_138ddf37cc3956c9142e03fff1fb6456">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"dslabs"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If the file is copied successfully, this function will return <code>TRUE</code>. Note that we used the same filename for the destination file, but we can give it whatever name we want. If a file with that name already exists in your destination directory, the copy will be unsuccessful. You can change this behavior with the <code>overwrite</code> argument.</p>
+</section></section><section id="file-types" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="file-types">
+<span class="header-section-number">6.2</span> File types</h2>
+<p>For most data analysis applications, files can generally be classified into two categories: text files and binary files. In this section we describe the most widely used format for both these types and the best way to identify them. In the last subsection we describe the importance of knowing the file encoding.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>The function <code>file.path</code> is used to combine directory names to produce the full path of the file we want to import.</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-11_96c3787598bdac0ea42c4799f8b480cb">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fullpath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">dir</span>, <span class="va">filename</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-body-container">
+<p>For this and the following section we assume you have copied the <code>murders.csv</code> file into your working directory. You can use the code at the end of the previous section to do this.</p>
 </div>
-</section><section id="copying-files-using-paths" class="level3" data-number="5.1.5"><h3 data-number="5.1.5" class="anchored" data-anchor-id="copying-files-using-paths">
-<span class="header-section-number">5.1.5</span> Copying files using paths</h3>
-<p>The final line of code we used to copy the file into our home directory used<br>
-the function <code>file.copy</code>. This function takes two arguments: the file to copy and the name to give it in the new directory.</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-12_f749766617f83b02807e354dfd9ad0ac">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.copy</a></span><span class="op">(</span><span class="va">fullpath</span>, <span class="st">"murders.csv"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>If a file is copied successfully, the <code>file.copy</code> function returns <code>TRUE</code>. Note that we are giving the file the same name, <code>murders.csv</code>, but we could have named it anything. Also note that by not starting the string with a slash, R assumes this is a relative path and copies the file to the working directory.</p>
-<p>You should be able to see the file in your working directory and can check by using:</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-13_a683c2f13b4e97b9d8261c712c0732b3">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="the-readr-and-readxl-packages" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="the-readr-and-readxl-packages">
-<span class="header-section-number">5.2</span> The readr and readxl packages</h2>
-<p>In this section we introduce the main tidyverse data importing functions. We will use the <code>murders.csv</code> file provided by the <strong>dslabs</strong> package as an example. To simplify the illustration we will copy the file to our working directory using the following code:</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-14_3b6749f955a7e44a2e64ee409fed14ea">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="st">"murders.csv"</span></span>
-<span><span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"dslabs"</span><span class="op">)</span> </span>
-<span><span class="va">fullpath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">dir</span>, <span class="va">filename</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.copy</a></span><span class="op">(</span><span class="va">fullpath</span>, <span class="st">"murders.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="text-files" class="level3" data-number="6.2.1"><h3 data-number="6.2.1" class="anchored" data-anchor-id="text-files">
+<span class="header-section-number">6.2.1</span> Text files</h3>
+<p>You have already worked with text files. All your R scripts and Quarto files, for example, are text files and so are the Quarto files used to create this book. The <code>murders.csv</code> file mentioned above is also text files. One big advantage of these files is that we can easily “look” at them without having to purchase any kind of special software or follow complicated instructions. Any text editor can be used to examine a text file, including freely available editors such as RStudio or nano. To see this, try opening a csv file using the “Open file” RStudio tool. You should be able to see the content right on your editor.</p>
+<p>When text files are used to store a spreadsheet, line breaks are used to separate rows and a predefined character, referred to as the <em>delimiter</em>, is used to separate columns within a row. The most common delimiters are comma (<code>,</code>), semicolon (<code>;</code>), space (<code></code>), and tab (a preset number of spaces or <code>\t</code>). Slightly different approaches are used to read these files into R, so we need to know what delimiter was used. In some cases, the delimiter can be inferred from file suffix. For example, files ending in <code>csv</code> or <code>tsv</code> are expected to be comma and tab delimited, respectively. However, it is harder to infer the delimiter for files ending in <code>txt</code>. As a result we recommend looking at the file rather than inferring from the suffix. You can look at any number of lines from within R using the <code>readLines</code> function:</p>
+<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-5_331776480172e23bf1bfb739f5ae3e57">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">"murders.csv"</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "state,abb,region,population,total"</span></span>
+<span><span class="co">#&gt; [2] "Alabama,AL,South,4779736,135"     </span></span>
+<span><span class="co">#&gt; [3] "Alaska,AK,West,710231,19"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="readr" class="level3" data-number="5.2.1"><h3 data-number="5.2.1" class="anchored" data-anchor-id="readr">
-<span class="header-section-number">5.2.1</span> readr</h3>
-<p>The <strong>readr</strong> library includes functions for reading data stored in text file spreadsheets into R. <strong>readr</strong> is part of the <strong>tidyverse</strong> package, or you can load it directly:</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-15_ace33afeb1446754dfc299cd0d90acf8">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This immediately reveals that the file is indeed comma delimited. It also reveals that the file has a header: the first row contains column names rather than data. This is also important to know. Most parsers assume the file starts with a header, but not all files have one.</p>
+</section><section id="binary-files" class="level3" data-number="6.2.2"><h3 data-number="6.2.2" class="anchored" data-anchor-id="binary-files">
+<span class="header-section-number">6.2.2</span> Binary files</h3>
+<p>Opening image files such as jpg or png in a text editor or using <code>readLines</code> in R will not show comprehensible content because these are <em>binary</em> files. Unlike text files, which are designed for human readability and have standardized conventions, binary files can adopt numerous formats specific to their data type. While R’s <code>readBin</code> function can process any binary file, interpreting the output necessitates a thorough understanding of the file’s structure. This intricate topic isn’t covered in this book. Instead, we concentrate on the prevalent binary formats for spreadsheets: Microsoft Excel’s xls and xlsx.</p>
+</section><section id="encoding" class="level3" data-number="6.2.3"><h3 data-number="6.2.3" class="anchored" data-anchor-id="encoding">
+<span class="header-section-number">6.2.3</span> Encoding</h3>
+<p>A frequent issue when importing data, whether text or binary, is incorrectly identifying the file’s <em>encoding</em>. At its core, a computer translates everything into sequences of 0s and 1s. ASCII is an <em>encoding</em> system that assigns specific numbers to characters. Using 7 bits, ASCII can represent <span class="math inline">\(2^7 = 128\)</span> unique symbols, sufficient for all English keyboard characters. However, many global languages contain characters outside ASCII’s range. For instance, the é in “México” isn’t in ASCII’s catalog. To address this, broader encodings, such as Unicode, emerged. Unicode offers variations using 8, 16, or 32 bits, known as UTF-8, UTF-16, and UTF-32. RStudio typically uses UTF-8 as its default. Notably, ASCII is a subset of UTF-8, meaning that if a file is ASCII-encoded, presuming it’s UTF-8 encoded won’t cause issues. However, there other encodings, such as ISO-8859-1 (also known as Latin-1) developed for the western European languages, Big5 for Traditional Chinese, and ISO-8859-6 for Arabic.</p>
+<p>The <strong>dslabs</strong> package includes a file that is not UTF-8 encoded to serve as an example. Notice the strange characters that appear you attempt to read inthe first line:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fn</span> <span class="op">&lt;-</span> <span class="st">"calificaciones.csv"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.copy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"dslabs"</span><span class="op">)</span>, <span class="va">fn</span><span class="op">)</span>, <span class="va">fn</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="va">fn</span>, n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "\"nombre\",\"f.n.\",\"estampa\",\"puntuaci\xf3n\""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the following section, we’ll introduce several helpful import functions, some of which allow you to specify the file encoding.</p>
+</section></section><section id="parsers" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="parsers">
+<span class="header-section-number">6.3</span> Parsers</h2>
+<p>Importing fuctions, or parsers, are avaible from base R. However, more powerful and often faster functions are available in the <strong>readr</strong>, <strong>readxl</strong>, and <strong>data.table</strong> pacakges. In this section we review some examples. We also describe how data can be downlaoded or read directly from the internet.</p>
+<section id="base-r" class="level3" data-number="6.3.1"><h3 data-number="6.3.1" class="anchored" data-anchor-id="base-r">
+<span class="header-section-number">6.3.1</span> Base R</h3>
+<p>Base R base provides several file parsers for example <code>read.csv</code>, <code>read.table</code> and <code>read.delim</code>. The first argument takes a full or relative path. If a relative path is provided, the parser assumes you want to search in the working directory. Therfore, to read the <code>murders.csv</code> file previously copied to our working directory, we can simply type:</p>
+<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-7_e1437a15b68534d1a54abac8d2486aef">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"murders.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>An often useful R-base importing function is <code>scan</code>, as it provides much flexibility. When reading in spreadsheets many things can go wrong. The file might have multiline headers or be missing cells. With experience you will learn how to deal with different challenges. Carefully reading the help files for the functions discussed here will be useful. With scan you can read-in each cell of a file. Here is an example:</p>
+<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-8_b942952086ac489c3ba34b25aa3eb3bf">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scan.html">scan</a></span><span class="op">(</span><span class="st">"murders.csv"</span>, sep <span class="op">=</span> <span class="st">","</span>, what <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span></span>
+<span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span>
+<span><span class="co">#&gt;  [1] "state"      "abb"        "region"     "population" "total"     </span></span>
+<span><span class="co">#&gt;  [6] "Alabama"    "AL"         "South"      "4779736"    "135"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="readr" class="level3" data-number="6.3.2"><h3 data-number="6.3.2" class="anchored" data-anchor-id="readr">
+<span class="header-section-number">6.3.2</span> readr</h3>
+<p>The <strong>readr</strong> package includes parsers for reading text file spreadsheets into R. <strong>readr</strong> is part of the <strong>tidyverse</strong>, but you can load it directly using:</p>
+<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-9_bc52d1750c61049cbc9e3000229feb78">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The following functions are available to read-in spreadsheets:</p>
 <table class="table">
@@ -513,16 +526,10 @@ the function <code>file.copy</code>. This function takes two arguments: the file
 </tr>
 </tbody>
 </table>
-<p>Although the suffix usually tells us what type of file it is, there is no guarantee that these always match. We can open the file to take a look or use the function <code>read_lines</code> to look at a few lines:</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-16_bf09f0e09d29e7cafb3138ffb149a066">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_lines.html">read_lines</a></span><span class="op">(</span><span class="st">"murders.csv"</span>, n_max <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "state,abb,region,population,total"</span></span>
-<span><span class="co">#&gt; [2] "Alabama,AL,South,4779736,135"     </span></span>
-<span><span class="co">#&gt; [3] "Alaska,AK,West,710231,19"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This also shows that there is a header. Now we are ready to read-in the data into R. From the .csv suffix and the peek at the file, we know to use <code>read_csv</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/message_792082c923709eecc26361fdbba5c364">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span>
+<p>It also includes <code>read_lines</code> with similar functionality to <code>readLines</code>.</p>
+<p>We can read in the <code>murders.csv</code> file using</p>
+<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-10_ac691191f160d26dcba584b26ee21614">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"murders.csv"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 51 Columns: 5</span></span>
 <span><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────</span></span>
 <span><span class="co">#&gt; Delimiter: ","</span></span>
@@ -532,21 +539,42 @@ the function <code>file.copy</code>. This function takes two arguments: the file
 <span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
 <span><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Note that we receive a message letting us know what data types were used for each column. Also note that <code>dat</code> is a <code>tibble</code>, not just a data frame. This is because <code>read_csv</code> is a <strong>tidyverse</strong> parser. We can confirm that the data has in fact been read-in with:</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-17_02e93e9f5cb92de2ee8b12e99392944b">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that we receive a message letting us know what data types were used for each column. Also note that <code>dat</code> is a <code>tibble</code>, not just a data frame. We can supress this message using the argument <code>show_col_types = FALSE</code>.</p>
+<p>The <strong>readr</strong> parse permit us to specify an encoding. It also includes a function that tries to guess the encoding:</p>
+<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-11_c16b13ed7485d6f822f753a49f7b1210">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/encoding.html">guess_encoding</a></span><span class="op">(</span><span class="st">"murders.csv"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 2</span></span>
+<span><span class="co">#&gt;   encoding confidence</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;         &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 ASCII             1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Finally, note that we can also use the full path for the file:</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-18_85b137f97f8e995cdc26a223b32877a0">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="va">fullpath</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This function can help us read the file we previously noted was showing strange characters:</p>
+<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-12_deb4670689e22dfe59d4982b65b75714">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/encoding.html">guess_encoding</a></span><span class="op">(</span><span class="st">"calificaciones.csv"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
+<span><span class="co">#&gt;   encoding   confidence</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;           &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 ISO-8859-1       0.92</span></span>
+<span><span class="co">#&gt; 2 ISO-8859-2       0.72</span></span>
+<span><span class="co">#&gt; 3 ISO-8859-9       0.53</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="readxl" class="level3" data-number="5.2.2"><h3 data-number="5.2.2" class="anchored" data-anchor-id="readxl">
-<span class="header-section-number">5.2.2</span> readxl</h3>
-<p>You can load the <strong>readxl</strong> package using</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-19_cdf97034969ee909bd0214e7494f90e1">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Once we know the encoding we can specify it:</p>
+<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-13_a4239968f17abbeb0b7abc49623edc09">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"calificaciones.csv"</span>, show_col_types <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                locale <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/locale.html">locale</a></span><span class="op">(</span>encoding <span class="op">=</span> <span class="st">"ISO-8859-1"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The package provides functions to read-in Microsoft Excel formats:</p>
+<p>We can now see that the characters in the header were read in correctly:</p>
+<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-14_f81137aff5c0a56d7429b7050aff4947">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "nombre"     "f.n."       "estampa"    "puntuación"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="readxl" class="level3" data-number="6.3.3"><h3 data-number="6.3.3" class="anchored" data-anchor-id="readxl">
+<span class="header-section-number">6.3.3</span> readxl</h3>
+<p>The <strong>readxl</strong> package provides functions to read-in Microsoft Excel formats.</p>
+<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-15_fc056e87d3169659e5c0c4e0d7370e7c">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The main functions are:</p>
 <table class="table">
 <colgroup>
 <col style="width: 14%">
@@ -577,75 +605,49 @@ the function <code>file.copy</code>. This function takes two arguments: the file
 </tbody>
 </table>
 <p>The Microsoft Excel formats permit you to have more than one spreadsheet in one file. These are referred to as <em>sheets</em>. The functions listed above read the first sheet by default, but we can also read the others. The <code>excel_sheets</code> function gives us the names of all the sheets in an Excel file. These names can then be passed to the <code>sheet</code> argument in the three functions above to read sheets other than the first.</p>
-</section></section><section id="exercises" class="level2" data-number="5.3"><h2 data-number="5.3" class="anchored" data-anchor-id="exercises">
-<span class="header-section-number">5.3</span> Exercises</h2>
-<p>1. Use the <code>read_csv</code> function to read each of the files that the following code saves in the <code>files</code> object:</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-20_cb86360cacb066cde265e97b706e1471">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"dslabs"</span><span class="op">)</span></span>
-<span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span>
-<span><span class="va">files</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="data.table" class="level3" data-number="6.3.4"><h3 data-number="6.3.4" class="anchored" data-anchor-id="data.table">
+<span class="header-section-number">6.3.4</span> data.table</h3>
+<p>The <strong>data.table</strong> package provides the <code>fread</code> function, a powerful and fast utility designed for reading large datasets. <code>fread</code> automatically detects the format of the input, whether it’s delimited text or even files compressed in formats like gzip or zip. It offers a significant speed advantage over the other parsers described here, especially for large files.</p>
+<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-16_491060a2e5ddff5511f4fe8d056e48ae">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com">data.table</a></span><span class="op">)</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"murders.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>2. Note that the last one, the <code>olive</code> file, gives us a warning. This is because the first line of the file is missing the header for the first column.</p>
-<p>Read the help file for <code>read_csv</code> to figure out how to read in the file without reading this header. If you skip the header, you should not get this warning. Save the result to an object called <code>dat</code>.</p>
-<p>3. A problem with the previous approach is that we don’t know what the columns represent. Type:</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-21_5243d6bfc63cb2ea30c0d9faa6750efe">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note <code>fread</code> returns a <code>data.table</code> object.</p>
+</section><section id="downloading-files" class="level3" data-number="6.3.5"><h3 data-number="6.3.5" class="anchored" data-anchor-id="downloading-files">
+<span class="header-section-number">6.3.5</span> Downloading files</h3>
+<p>A common place for data to reside is on the internet. When these data are in files, we can download them and then import them or even read them directly from the web. For example, we note that because our <strong>dslabs</strong> package is on GitHub, the file we downloaded with the package has a url:</p>
+<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-17_3b3114e97f87e0fa2d70628dca202c40">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/rafalab/dslabs/master/inst/extdata/murders.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>to see that the names are not informative.</p>
-<p>Use the <code>readLines</code> function to read in just the first line (we later learn how to extract values from the output).</p>
-</section><section id="downloading-files" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="downloading-files">
-<span class="header-section-number">5.4</span> Downloading files</h2>
-<p>Another common place for data to reside is on the internet. When these data are in files, we can download them and then import them or even read them directly from the web. For example, we note that because our <strong>dslabs</strong> package is on GitHub, the file we downloaded with the package has a url:</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-23_6fe1d04a084b6728615da90105642d40">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/rafalab/dslabs/master/inst/</span></span>
-<span><span class="st">extdata/murders.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The <code>read_csv</code> file can read these files directly:</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-24_2d480814b6c40b21daf2e717e4bb2be3">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Most parsers can read these files directly:</p>
+<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-18_60bae24fbef8ef5c60a7d2badc20844f">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If you want to have a local copy of the file, you can use the <code>download.file</code> function:</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-25_0a245a93a58fc1d9ab46dfe4a65a1ed7">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span><span class="va">url</span>, <span class="st">"murders.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-19_5ce06ffd027ac1da6322806e328bd137">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span><span class="va">url</span>, <span class="st">"murders.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This will download the file and save it on your system with the name <code>murders.csv</code>. You can use any name here, not necessarily <code>murders.csv</code>. Note that when using <code>download.file</code> you should be careful as <strong>it will overwrite existing files without warning</strong>.</p>
+<p>This will download the file and save it on your system with the name <code>murders.csv</code>. You can use any name here, not necessarily <code>murders.csv</code>.</p>
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The function <code>download.file</code> overwrites existing files without warning.</p>
+</div>
+</div>
+</div>
 <p>Two functions that are sometimes useful when downloading data from the internet are <code>tempdir</code> and <code>tempfile</code>. The first creates a directory with a random name that is very likely to be unique. Similarly, <code>tempfile</code> creates a character string, not a file, that is likely to be a unique filename. So you can run a command like this which erases the temporary file once it imports the data:</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-26_fc970fb1d78d25e882cc8c1802544f80">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tmp_filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-20_5c81841fb718ab4efab551db8b77da9d">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tmp_filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span><span class="va">url</span>, <span class="va">tmp_filename</span><span class="op">)</span></span>
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="va">tmp_filename</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.remove</a></span><span class="op">(</span><span class="va">tmp_filename</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="r-base-importing-functions" class="level2" data-number="5.5"><h2 data-number="5.5" class="anchored" data-anchor-id="r-base-importing-functions">
-<span class="header-section-number">5.5</span> R-base importing functions</h2>
-<p>R-base also provides import functions. These have similar names to those in the <strong>tidyverse</strong>, for example <code>read.table</code>, <code>read.csv</code> and <code>read.delim</code>. You can obtain an data frame like <code>dat</code> using:</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-27_ce8249a216cc6b4dc0df415faa03c07a">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>An often useful R-base importing function is <code>scan</code>, as it provides much flexibility. When reading in spreadsheets many things can go wrong. The file might have a multiline header, be missing cells, or it might use an unexpected encoding<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. We recommend you read this post about common issues found here: <a href="https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/">https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/</a>.</p>
-<p>With experience you will learn how to deal with different challenges. Carefully reading the help files for the functions discussed here will be useful. With scan you can read-in each cell of a file. Here is an example:</p>
-<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-28_6c21cb1dd9725d7a1b684a25e0fda979">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"dslabs"</span><span class="op">)</span></span>
-<span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="st">"murders.csv"</span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scan.html">scan</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">path</span>, <span class="va">filename</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">","</span>, what <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span></span>
-<span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span>
-<span><span class="co">#&gt;  [1] "state"      "abb"        "region"     "population" "total"     </span></span>
-<span><span class="co">#&gt;  [6] "Alabama"    "AL"         "South"      "4779736"    "135"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Note that the tidyverse provides <code>read_lines</code>, a similarly useful function.</p>
-</section><section id="text-versus-binary-files" class="level2" data-number="5.6"><h2 data-number="5.6" class="anchored" data-anchor-id="text-versus-binary-files">
-<span class="header-section-number">5.6</span> Text versus binary files</h2>
-<p>For data science purposes, files can generally be classified into two categories: text files (also known as ASCII files) and binary files. You have already worked with text files. All your R scripts are text files and so are the R markdown files used to create this book. The csv tables you have read are also text files. One big advantage of these files is that we can easily “look” at them without having to purchase any kind of special software or follow complicated instructions. Any text editor can be used to examine a text file, including freely available editors such as RStudio, Notepad, textEdit, vi, emacs, nano, and pico. To see this, try opening a csv file using the “Open file” RStudio tool. You should be able to see the content right on your editor. However, if you try to open, say, an Excel xls file, jpg or png file, you will not be able to see anything immediately useful. These are binary files. Excel files are actually compressed folders with several text files inside. But the main distinction here is that text files can be easily examined.</p>
-<p>Although R includes tools for reading widely used binary files, such as xls files, in general you will want to find data sets stored in text files. Similarly, when sharing data you want to make it available as text files as long as storage is not an issue (binary files are much more efficient at saving space on your disk). In general, plain-text formats make it easier to share data since commercial software is not required for working with the data.</p>
-<p>Extracting data from a spreadsheet stored as a text file is perhaps the easiest way to bring data from a file to an R session. Unfortunately, spreadsheets are not always available and the fact that you can look at text files does not necessarily imply that extracting data from them will be straightforward. In the Data Wrangling part of the book we learn to extract data from more complex text files such as html files.</p>
-</section><section id="unicode-versus-ascii" class="level2" data-number="5.7"><h2 data-number="5.7" class="anchored" data-anchor-id="unicode-versus-ascii">
-<span class="header-section-number">5.7</span> Unicode versus ASCII</h2>
-<p>A pitfall in data science is assuming a file is an ASCII text file when, in fact, it is something else that can look a lot like an ASCII text file: a Unicode text file.</p>
-<p>To understand the difference between these, remember that everything on a computer needs to eventually be converted to 0s and 1s. ASCII is an <em>encoding</em> that maps characters to numbers. ASCII uses 7 bits (0s and 1s) which results in <span class="math inline">\(2^7 = 128\)</span> unique items, enough to encode all the characters on an English language keyboard. However, other languages use characters not included in this encoding. For example, the é in México is not encoded by ASCII. For this reason, a new encoding, using more than 7 bits, was defined: Unicode. When using Unicode, one can chose between 8, 16, and 32 bits abbreviated UTF-8, UTF-16, and UTF-32 respectively. RStudio actually defaults to UTF-8 encoding.</p>
-<p>Although we do not go into the details of how to deal with the different encodings here, it is important that you know these different encodings exist so that you can better diagnose a problem if you encounter it. One way problems manifest themselves is when you see “weird looking” characters you were not expecting. This StackOverflow discussion is an example: <a href="https://stackoverflow.com/questions/18789330/r-on-windows-character-encoding-hell">https://stackoverflow.com/questions/18789330/r-on-windows-character-encoding-hell</a>.</p>
-</section><section id="organizing-data-with-spreadsheets" class="level2" data-number="5.8"><h2 data-number="5.8" class="anchored" data-anchor-id="organizing-data-with-spreadsheets">
-<span class="header-section-number">5.8</span> Organizing data with spreadsheets</h2>
-<p>Although this book focuses almost exclusively on data analysis, data management is also an important part of data science. As explained in the introduction, we do not cover this topic. However, quite often data analysts needs to collect data, or work with others collecting data, in a way that is most conveniently stored in a spreadsheet. Although filling out a spreadsheet by hand is a practice we highly discourage, we instead recommend the process be automatized as much as possible, sometimes you just have to do it. Therefore, in this section, we provide recommendations on how to organize data in a spreadsheet. Although there are R packages designed to read Microsoft Excel spreadsheets, we generally want to avoid this format. Instead, we recommend Google Sheets as a free software tool. Below we summarize the recommendations made in paper by Karl Broman and Kara Woo<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Please read the paper for important details.</p>
+</section></section><section id="organizing-data-with-spreadsheets" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="organizing-data-with-spreadsheets">
+<span class="header-section-number">6.4</span> Organizing data with spreadsheets</h2>
+<p>Although this book focuses almost exclusively on data analysis, data management is also an important part of data science operations. As explained in the introduction, we do not cover this topic. However, quite often data analysts need to collect data, or work with others collecting data, in a way that is most conveniently stored in a spreadsheet. Although filling out a spreadsheet by hand is a practice we highly discourage, we instead recommend the process be automatized as much as possible, sometimes you just have to do it. Therefore, in this section, we provide recommendations on how to organize data in a spreadsheet. Although there are R packages designed to read Microsoft Excel spreadsheets, we generally want to avoid this format. Instead, we recommend Google Sheets as a free software tool. Below we summarize the recommendations made in paper by Karl Broman and Kara Woo<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Please read the paper for important details.</p>
 <ul>
 <li>
 <strong>Be Consistent</strong> - Before you commence entering data, have a plan. Once you have a plan, be consistent and stick to it.</li>
@@ -671,15 +673,28 @@ the function <code>file.copy</code>. This function takes two arguments: the file
 <strong>Use Data Validation to Avoid Errors</strong> - Leverage the tools in your spreadsheet software so that the process is as error-free and repetitive-stress-injury-free as possible.</li>
 <li>
 <strong>Save the Data as Text Files</strong> - Save files for sharing in comma or tab delimited format.</li>
-</ul></section><section id="exercises-1" class="level2" data-number="5.9"><h2 data-number="5.9" class="anchored" data-anchor-id="exercises-1">
-<span class="header-section-number">5.9</span> Exercises</h2>
-<p>1. Pick a measurement you can take on a regular basis. For example, your daily weight or how long it takes you to run 5 miles. Keep a spreadsheet that includes the date, the hour, the measurement, and any other informative variable you think is worth keeping. Do this for 2 weeks. Then make a plot.</p>
+</ul></section><section id="exercises" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="exercises">
+<span class="header-section-number">6.5</span> Exercises</h2>
+<p>1. Use the <code>read_csv</code> function to read each of the files that the following code saves in the <code>files</code> object:</p>
+<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-21_5bf3680b7968965ec9b63defc20daae2">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"dslabs"</span><span class="op">)</span></span>
+<span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span>
+<span><span class="va">files</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>2. Note that the the <code>olive</code> file, gives us a warning. This is because the first line of the file is missing the header for the first column.</p>
+<p>Read the help file for <code>read_csv</code> to figure out how to read in the file without reading this header. If you skip the header, you should not get this warning. Save the result to an object called <code>dat</code>.</p>
+<p>3. A problem with the previous approach is that we don’t know what the columns represent. Type:</p>
+<div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-22_33a3419840aac002a5cdd6e7d4cde8ba">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>to see that the names are not informative.</p>
+<p>Use the <code>readLines</code> function to read in just the first line (we later learn how to extract values from the output).</p>
+<p>4. Pick a measurement you can take on a regular basis. For example, your daily weight or how long it takes you to run 5 miles. Keep a spreadsheet that includes the date, the hour, the measurement, and any other informative variable you think is worth keeping. Do this for 2 weeks. Then make a plot.</p>
 
 
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
-<li id="fn1"><p>https://en.wikipedia.org/wiki/Character_encoding<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>https://www.tandfonline.com/doi/abs/10.1080/00031305.2017.1375989<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>https://www.tandfonline.com/doi/abs/10.1080/00031305.2017.1375989<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -913,13 +928,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="../R/tidyverse.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The tidyverse</span></span>
+      <a href="../R/data-table.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">data.table</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../R/data_table.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">data.table</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../dataviz/intro-dataviz.html" class="pagination-link">
+        <span class="nav-page-text">Data Visualization</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,0 +1,131 @@
+# Wrangling with `data.table`
+
+The first three chapters described how to reshape data, join tables, and parse dates and times with the **tidyverse**. 
+
+```{r, cache = FALSE, message=FALSE}
+library(tidyverse) 
+```
+
+This can all be done with **data.table** as well.
+
+```{r, cache = FALSE, message=FALSE}
+library(data.table)
+```
+
+Here we show the **data.table** version of some of the **tidyverse** commands we previously showed. The **data.table** functions are faster and more efficient with memory. In general, eveyrthing you can with **tidyverse** has a way to do it with **data.table* and R base which, although perhaps harder to read, it is often more flexible, faster, and more efficient. Here we show just a few examples, but you can learn others using internet searches or code generation tools.
+
+## Reshaping data
+
+Previously we used this example:
+
+```{r, message=FALSE, warning=FALSE}
+library(dslabs)
+path <- system.file("extdata", package = "dslabs")
+filename <- file.path(path, "fertility-two-countries-example.csv")
+```
+
+
+### pivot_long is melt
+
+If in **tidyeverse** we  write
+
+```{r}
+wide_data <- read_csv(filename)
+new_tidy_data <- wide_data |>
+  pivot_longer(-1, names_to = "year", values_to = "fertility")
+```
+
+in **data.table** we use the `melt` function 
+
+```{r}
+dt_wide_data <- fread(filename) 
+dt_new_tidy_data  <- melt(as.data.table(dt_wide_data), 
+                      measure.vars = 2:ncol(dt_wide_data), 
+                      variable.name = "year", 
+                      value.name = "fertility")
+```
+
+
+## `pivot_wider` is `dcast`
+
+
+If in **tidyeverse** we  write
+
+```{r}
+new_wide_data <- new_tidy_data |> 
+  pivot_wider(names_from = year, values_from = fertility)
+select(new_wide_data, country, `1960`:`1967`)
+```
+
+in **data.table** we write:
+
+```{r}
+dt_new_wide_data <- dcast(dt_new_tidy_data, formula = ... ~ year, value.var = "fertility")
+```
+
+
+### Separating variables
+
+```{r, message=FALSE}
+path <- system.file("extdata", package = "dslabs")
+filename <- "life-expectancy-and-fertility-two-countries-example.csv"
+filename <-  file.path(path, filename)
+```
+
+In **tidyverse** we wrangled using 
+
+```{r, message=FALSE}
+raw_dat <- read_csv(filename)
+dat <- raw_dat |> pivot_longer(-country) |>
+  separate_wider_delim(name, delim = "_", names = c("year", "name"), too_many = "merge") |>
+  pivot_wider()
+```
+
+In **data.table** we can use the `tstrsplit` function:
+
+```{r}
+dt_raw_dat <- fread(filename)
+dat_long <- melt(dt_raw_dat, measure.vars = which(names(dt_raw_dat) != "country"), 
+                 variable.name = "name", value.name = "value")
+dat_long[, c("year", "name", "name2") := tstrsplit(name, "_", fixed = TRUE, type.convert = TRUE)]
+dat_long[is.na(name2), name2 := ""]
+dat_long[, name := paste(name, name2, sep = "_")][, name2 := NULL]
+dat_wide <- dcast(dat_long, country + year ~ name, value.var = "value")
+```
+
+## Joins
+
+
+In *tidyverse** we joined two table like this:
+
+```{r}
+tab <- left_join(murders, results_us_election_2016, by = "state") 
+```
+
+In **data.table** the `merge` functions works similarly:
+
+```{r}
+tab <- merge(murders, results_us_election_2016, by = "state", all.x = TRUE)
+```
+
+Instead of defining different functions for the different type of joins, `merge` uses the the logical arguments `all` (full join), `all.x` (left join), and `all.y` (right join).
+
+## Dates and times
+
+The **data.table** package also includes some of the functionality to **lubridate**. For example,
+it includes the `mday`,  `month`,  and `year` functions:
+
+```{r}
+data.table::mday(now())
+data.table::month(now())
+data.table::year(now())
+```
+
+Other similar functions are `second`, `minute`, `hour`, `wday`, `week`, 
+`isoweek` `quarter`, `yearmon`, `yearqtr`.
+
+The package also includes the class `IDate` and `ITime`, which store dates and times more efficiently, convenient for large files with date stamps. You convert dates in the usual R format using `as.IDate` and `as.ITime`.
+
+
+
+
