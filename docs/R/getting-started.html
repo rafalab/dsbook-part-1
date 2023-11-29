@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
 <title>Introduction to Data Science - 1&nbsp; Getting started</title>
@@ -88,7 +88,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 </head>
@@ -103,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../R/intro-to-R.html">R</a></li><li class="breadcrumb-item"><a href="../R/getting-started.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -113,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Introduction to Data Science</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/rafalab/dsbook-part-1" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -271,7 +272,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/text-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text mining</span></span></a>
   </div>
 </li>
       </ul>
@@ -363,7 +364,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>R is free and open source<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</li>
 <li>It runs on all major platforms: Windows, Mac Os, UNIX/Linux.</li>
 <li>Scripts and data objects can be shared seamlessly across platforms.</li>
-<li>There is a large, growing, and active community of R users and, as a result, there are numerous resources for learning and asking questions<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</li>
+<li>There is a large, growing, and active community of R users and, as a result, there are numerous resources for learning and asking questions<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</li>
 <li>It is easy for others to contribute add-ons which enables developers to share software implementations of new data science methodologies. This gives R users early access to the latest methods and to tools which are developed for a wide variety of disciplines, including ecology, molecular biology, social sciences, and geography, just to name a few examples.</li>
 </ol></section><section id="the-r-console" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="the-r-console">
 <span class="header-section-number">1.2</span> The R console</h2>
@@ -377,10 +378,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Note that in this book, grey boxes are used to show R code typed into the R console. The symbol <code>#&gt;</code> is used to denote what the R console outputs.</strong></p>
 </section><section id="scripts" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="scripts">
 <span class="header-section-number">1.3</span> Scripts</h2>
-<p>One of the great advantages of R over point-and-click analysis software is that you can save your work as scripts. You can edit and save these scripts using a text editor. The material in this book was developed using the interactive <em>integrated development environment</em> (IDE) RStudio<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. RStudio includes an editor with many R specific features, a console to execute your code, and other useful panes, including one to show figures.</p>
+<p>One of the great advantages of R over point-and-click analysis software is that you can save your work as scripts. You can edit and save these scripts using a text editor. The material in this book was developed using the interactive <em>integrated development environment</em> (IDE) RStudio<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. RStudio includes an editor with many R specific features, a console to execute your code, and other useful panes, including one to show figures.</p>
 <p><img src="img/rstudio.png" class="img-fluid" style="width:70.0%"></p>
 <p>Most web-based R consoles also provide a pane to edit scripts, but not all permit you to save the scripts for later use.</p>
-<p>All the R scripts used to generate this book can be found on GitHub<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p>
+<p>All the R scripts used to generate this book can be found on GitHub<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p>
 </section><section id="sec-rstudio" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="sec-rstudio">
 <span class="header-section-number">1.4</span> RStudio</h2>
 <p>RStudio will be our launching pad for data science projects. It not only provides an editor for us to create and edit our scripts but also provides many other useful tools. In this section, we go over some of the basics.</p>
@@ -456,13 +457,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
-<li id="fn1"><p>https://pdfs.semanticscholar.org/9b48/46f192aa37ca122cfabb1ed1b59866d8bfda.pdf<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>https://opensource.org/history<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>https://stats.stackexchange.com/questions/138/free-resources-for-learning-r<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>https://www.r-project.org/help.html<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>https://stackoverflow.com/documentation/r/topics<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>https://www.rstudio.com/<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>https://github.com/rafalab/dsbook<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p><a href="https://pdfs.semanticscholar.org/9b48/46f192aa37ca122cfabb1ed1b59866d8bfda.pdf" class="uri">https://pdfs.semanticscholar.org/9b48/46f192aa37ca122cfabb1ed1b59866d8bfda.pdf</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://opensource.org/history" class="uri">https://opensource.org/history</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://stats.stackexchange.com/questions/138/free-resources-for-learning-r" class="uri">https://stats.stackexchange.com/questions/138/free-resources-for-learning-r</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a href="https://www.r-project.org/help.html" class="uri">https://www.r-project.org/help.html</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><a href="https://www.rstudio.com/" class="uri">https://www.rstudio.com/</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><a href="https://github.com/rafalab/dsbook" class="uri">https://github.com/rafalab/dsbook</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
