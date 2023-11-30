@@ -1,15 +1,15 @@
 # Importing data {#sec-importing-data}
 
-We have been using datasets already stored as R objects. In data analysis work we rarely have such luck and will have to import data into R from either a file, a database, or other sources. Currently, one of the most common ways of storing and sharing data for analysis is through electronic spreadsheets. A spreadsheet stores data in rows and columns. It is basically a file version of a data frame. When saving such a table to a computer file, one needs a way to define when a new row or column ends and the other begins. This in turn defines the cells in which single values are stored. Here is an example of what a comma separated file looks like if we open it with a basic text editor:
+We have been using datasets already stored as R objects. In data analysis work we rarely have such luck and will have to import data into R from either a file, a database, or another source. Currently, one of the most common ways of storing and sharing data for analysis is through electronic spreadsheets. A spreadsheet stores data in rows and columns. It is basically a file version of a data frame. When saving such a table to a computer file, one needs a way to define when a new row or column ends and the other begins. This in turn defines the cells in which single values are stored. Here is an example of what a comma separated file looks like if we open it with a basic text editor:
 
 
 ![](img/csv-file.png)
 
-In this chapter, we outline how to load data from a file into R. First, it's crucial to identify the file's location; thus, we touch on file paths and working directories (detailed in @sec-unix). Next, we delve into file types (text or binary) and encodings (like ASCII and Unicode), both essential for data import. We then introduce popular functions for data importing, refered to as _parsers_. Lastly, we offer tips on how to store data in spreadsheets Advanced topics like extracting data from websites or PDFs will be discussed in the book's Data Wrangling section.
+In this chapter, we outline how to load data from a file into R. First, it's crucial to identify the file's location; thus, we touch on file paths and working directories (detailed in @sec-unix). Next, we delve into file types (text or binary) and encodings (like ASCII and Unicode), both essential for data import. We then introduce popular functions for data importing, refered to as _parsers_. Lastly, we offer tips on how to store data in spreadsheets. Advanced topics like extracting data from websites or PDFs will be discussed in the book's Data Wrangling section.
 
 ## Paths and the working directory 
 
-The first step when importing data from a spreadsheet is to locate the file containing the data. Although we do not recommend it, you can use an approach similar to what you do to open files in Microsoft Excel by clicking on the RStudio "File" menu, clicking "Import Dataset", then clicking through folders until you find the file. However, we rather write code rather than use the point-and-click approach. The key concepts we need to learn to do this are described in detail in @sec-unix. Here we provide an overview of the very basics.
+The first step when importing data from a spreadsheet is to locate the file containing the data. Although we do not recommend it, you can use an approach similar to what you do to open files in Microsoft Excel by clicking on the RStudio "File" menu, clicking "Import Dataset", then clicking through folders until you find the file. However, we write code rather than use the point-and-click approach. The key concepts we need to learn to do this are described in detail in @sec-unix. Here we provide an overview of the very basics.
 
 
 ### The filesystem
@@ -19,7 +19,7 @@ You can think of your computer's filesystem as a series of nested folders, each 
 
 ### Relative and full paths
 
-The _path_ of a file is a list of directory names that can be thought of as instructions on what folders to click on, and in what order, to find the file. If these instructions are for finding the file from the root directory we refer to it as the _full path_. If the instructions are for finding the file starting in the working directory we refer to it as a _relative path_. @sec-filesystem provides more details on this topic.
+The _path_ of a file is a list of directory names that can be thought of as instructions on what folders to click on, and in what order, to find the file. If these instructions are for finding the file from the root directory, we refer to it as the _full path_. If the instructions are for finding the file starting in the working directory, we refer to it as a _relative path_. @sec-filesystem provides more details on this topic.
 
 To see an example of a full path on your system type the following:
 
@@ -51,7 +51,7 @@ When you start a project you want to pick a directory to store all the files rel
 
 ### Generating path names
 
-The `file.path` function combines characters to form a complete path, ensuring compatibility with the respective operating system. Linux and Mac use forward slashes `/`, while Windows uses backslashes `\`, to separate directories. This function is useful because often you want to define paths using a variable. Here is an example that constructs the full path for a spreadsheet containing the spreadsheet that with the murders data. Here the variable `dir` contains the full path for the __dslabs__ package and `extdata/murders.csv` is the relative path of the spreadsheet if `dir` is considered the working directory.
+The `file.path` function combines characters to form a complete path, ensuring compatibility with the respective operating system. Linux and Mac use forward slashes `/`, while Windows uses backslashes `\`, to separate directories. This function is useful because often you want to define paths using a variable. Here is an example that constructs the full path for a spreadsheet containing the murders data. Here the variable `dir` contains the full path for the __dslabs__ package and `extdata/murders.csv` is the relative path of the spreadsheet if `dir` is considered the working directory.
 
 ```{r}
 #| cache: false
@@ -99,7 +99,7 @@ Opening image files such as jpg or png in a text editor or using `readLines` in 
 A frequent issue when importing data, whether text or binary, is incorrectly identifying the file's _encoding_. 
 At its core, a computer translates everything into sequences of 0s and 1s. ASCII is an _encoding_ system that assigns specific numbers to characters. Using 7 bits, ASCII can represent $2^7 = 128$ unique symbols, sufficient for all English keyboard characters. However, many global languages contain characters outside ASCII's range. For instance, the é in "México" isn't in ASCII's catalog. To address this, broader encodings, such as Unicode, emerged. Unicode offers variations using 8, 16, or 32 bits, known as UTF-8, UTF-16, and UTF-32. RStudio typically uses UTF-8 as its default. Notably, ASCII is a subset of UTF-8, meaning that if a file is ASCII-encoded, presuming it's UTF-8 encoded won't cause issues. However, there other encodings, such as ISO-8859-1 (also known as Latin-1) developed for the western European languages, Big5 for Traditional Chinese, and ISO-8859-6 for Arabic.
 
-The __dslabs__ package includes a file that is not UTF-8 encoded to serve as an example. Notice the strange characters that appear you attempt to read inthe first line:
+The __dslabs__ package includes a file that is not UTF-8 encoded to serve as an example. Notice the strange characters that appear you attempt to read in the first line:
 
 ```{r}
 #| cache: false
@@ -116,7 +116,7 @@ Importing fuctions, or parsers, are avaible from base R. However, more powerful 
 
 ### Base R
 
-Base R base provides several file parsers for example `read.csv`, `read.table` and `read.delim`. The first argument takes a full or relative path. If a relative path is provided, the parser assumes you want to search in the working directory. Therfore, to read the `murders.csv` file previously copied to our working directory, we can simply type:
+Base R base provides several file parsers for example `read.csv`, `read.table` and `read.delim`. The first argument can take either a full or relative path. If a relative path is provided, the parser assumes you want to search in the working directory. Therefore, to read the `murders.csv` file previously copied to our working directory, we can simply type:
 
 ```{r}
 dat <- read.csv("murders.csv")
@@ -132,14 +132,14 @@ x[1:10]
 
 ### readr
 
-The __readr__ package includes parsers for reading text file spreadsheets into R. __readr__ is part of the __tidyverse__, but you can load it directly using:
+The __readr__ package includes parsers, for reading text file spreadsheets into R. __readr__ is part of the __tidyverse__, but you can load it directly using:
 
 ```{r, warning=FALSE, message=FALSE}
 library(readr)
 ```
 
 
-The following functions are available to read-in spreadsheets:
+The following functions are available to read-in text file spreadsheets:
 
 | Function  | Format                                           | Typical suffix |
 |-----------|--------------------------------------------------|----------------| 
@@ -159,7 +159,7 @@ dat <- read_csv("murders.csv")
 
 Note that we receive a message letting us know what data types were used for each column. Also note that `dat` is a `tibble`, not just a data frame. We can supress this message using the argument `show_col_types = FALSE`.
 
-The __readr__ parse permit us to specify an encoding. It also includes a function that tries to guess the encoding:
+The __readr__ parsers permit us to specify an encoding. It also includes a function that tries to guess the encoding:
 
 ```{r}
 guess_encoding("murders.csv")
@@ -255,8 +255,8 @@ file.remove(tmp_filename)
 
 ## Organizing data with spreadsheets
 
-Although this book focuses almost exclusively on data analysis, data management is also an important part of data science operations. As explained in the introduction, we do not cover this topic. However, quite often data analysts need to collect data, or work with others collecting data, in a way that is most conveniently stored in a spreadsheet. Although filling out a spreadsheet by hand is a practice we highly discourage, we instead recommend the process be automatized as much as possible, sometimes you just have to do it. Therefore, in this section, we provide recommendations on how to organize data in a spreadsheet. Although there are R packages designed to read Microsoft Excel spreadsheets, we generally want to avoid this format. Instead, we recommend Google Sheets as a free software tool. Below 
-we summarize the recommendations made in paper by Karl Broman and Kara Woo^[https://www.tandfonline.com/doi/abs/10.1080/00031305.2017.1375989]. Please read the paper for important details.
+Although this book focuses almost exclusively on data analysis, data management is also an important part of data science operations. As explained in the introduction, we do not cover this topic. However, quite often data analysts need to collect data, or work with others collecting data, in a way that is most conveniently stored in a spreadsheet. Although filling out a spreadsheet by hand is a practice we highly discourage, and we instead recommend the process be automatized as much as possible, sometimes you just have to do it. Therefore, in this section, we provide recommendations on how to organize data in a spreadsheet. Although there are R packages designed to read Microsoft Excel spreadsheets, we generally want to avoid this format. Instead, we recommend Google Sheets as a free software tool. Below 
+we summarize the recommendations made in paper by Karl Broman and Kara Woo^[<https://www.tandfonline.com/doi/abs/10.1080/00031305.2017.1375989>]. Please read the paper for important details.
 
 * __Be Consistent__ - Before you commence entering data, have a plan. Once you have a plan, be consistent and stick to it. 
 * __Choose Good Names for Things__ - You want the names you pick for objects, files, and directories to be memorable, easy to spell, and descriptive. This is actually a hard balance to achieve and it does require time and thought. One important rule to follow is **do not use spaces**, use underscores `_` or dashes instead `-`. Also, avoid symbols; stick to letters and numbers.
@@ -295,7 +295,7 @@ names(dat)
 
 to see that the names are not informative.
 
-Use the `readLines` function to read in just the first line (we later learn how to extract values from the output). 
+Use the `readLines` function to read in just the first line. 
 
 4\. Pick a measurement you can take on a regular basis. For example, your daily weight or how long it takes you to run 5 miles. Keep a spreadsheet that includes the date, the hour, the measurement, and any other informative variable you think is worth keeping. Do this for 2 weeks. Then make a plot.
 

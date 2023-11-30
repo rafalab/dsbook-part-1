@@ -272,7 +272,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/text-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text mining</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -686,13 +686,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="pull" class="level3" data-number="4.4.4"><h3 data-number="4.4.4" class="anchored" data-anchor-id="pull">
 <span class="header-section-number">4.4.4</span> <code>pull</code>
 </h3>
-<p>The <code>us_murder_rate</code> object defined above represents just one number. Yet we are storing it in a data frame:</p>
+<p>The <code>us_murder_rate</code> object defined in <a href="#sec-summarize"><span>Section&nbsp;4.4.1</span></a> represents just one number. Yet we are storing it in a data frame:</p>
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-34_8dc7d9e082dbaf2d57b3e852d544e294">
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">us_murder_rate</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "data.frame"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>since, as most <strong>dplyr</strong> functions, <code>summarize</code> always returns a data frame.</p>
-<p>This might be problematic if we want to use this result with functions that require a numeric value. Here we show a useful trick for accessing values stored in data when using pipes: when a data object is piped that object and its columns can be accessed using the <code>pull</code> function. To get a number from the original data table with one line of code we can type:</p>
+<p>This might be problematic if we want to use this result with functions that require a numeric value. Here we show a useful trick for accessing values stored in data when using pipes: when a data object is piped that object and its columns can be accessed using the <code>pull</code> function. To get a number from the original data table with one additional line of code we can type:</p>
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-35_5be9884fbc13de1049342498d3b5db5c">
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">us_murder_rate</span> <span class="op">&lt;-</span> <span class="va">murders</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>rate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">total</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span><span class="op">*</span><span class="fl">100000</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -708,7 +708,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section></section><section id="sorting" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="sorting">
 <span class="header-section-number">4.5</span> Sorting</h2>
-<p>When examining a dataset, it is often convenient to sort the table by the different columns. We know about the <code>order</code> and <code>sort</code> function, but for ordering entire tables, the <strong>dplyr</strong> function <code>arrange</code> is useful. For example, here we order the states by population size:</p>
+<p>When examining a dataset, it is often convenient to sort the data frame by the different columns. We know about the <code>order</code> and <code>sort</code> function, but for ordering entire data frames, the <strong>dplyr</strong> function <code>arrange</code> is useful. For example, here we order the states by population size:</p>
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-37_fdf0168aa28015f9931d3293ae933898">
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                  state abb        region population total   rate</span></span>
@@ -719,8 +719,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 5               Alaska  AK          West     710231    19  2.675</span></span>
 <span><span class="co">#&gt; 6         South Dakota  SD North Central     814180     8  0.983</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>With <code>arrange</code> we get to decide which column to sort by. To see the states by, for example, we would use <code>arrange(rate)</code> instead.</p>
-<p>Note that the default behavior is to order in ascending order. In <strong>dplyr</strong>, the function <code>desc</code> transforms a vector so that it is in descending order. To sort the table in descending order, we can type:</p>
+<p>With <code>arrange</code> we get to decide which column to sort by. To see the states sorted by murder rates, for example, we would use <code>arrange(rate)</code> instead.</p>
+<p>Note that the default behavior is to order in ascending order. In <strong>dplyr</strong>, the function <code>desc</code> transforms a vector so that it is in descending order. To sort the data frame by murder rates in descending order, we can type:</p>
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-38_2f1a98adf4abcd00192b395df651e7c6">
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">rate</span><span class="op">)</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -742,7 +742,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="the-top-n" class="level3" data-number="4.5.2"><h3 data-number="4.5.2" class="anchored" data-anchor-id="the-top-n">
 <span class="header-section-number">4.5.2</span> The top <span class="math inline">\(n\)</span>
 </h3>
-<p>In the code above, we have used the function <code>head</code> to avoid having the page fill up with the entire dataset. If we want to see a larger proportion, we can use the <code>top_n</code> function. This function takes a data frame as it’s first argument, the number of rows to show in the second, and the variable to filter by in the third. Here is an example of how to see the top 5 rows:</p>
+<p>In the code above, we have used the function <code>head</code> to avoid having the page fill up with the entire dataset. For instance, using <code>arrange(desc(rate))</code> followed by <code>head</code> would show the 6 states with the largest murder rates, in order. Instead, to view a specific number of observations with the highest murder rates, we can use the <code>top_n</code> function. This function takes a data frame as it’s first argument, the number of rows to show in the second, and the variable to filter by in the third. Here is an example of how to see the top 5 rows:</p>
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-40_ec784fa61016794540aac3c03cc360f1">
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/top_n.html">top_n</a></span><span class="op">(</span><span class="fl">5</span>, <span class="va">rate</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                  state abb        region population total  rate</span></span>
@@ -752,20 +752,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 4             Missouri  MO North Central    5988927   321  5.36</span></span>
 <span><span class="co">#&gt; 5       South Carolina  SC         South    4625364   207  4.48</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Note that rows are not sorted by <code>rate</code>, only filtered. If we want to sort, we need to use <code>arrange</code>. Note that if the third argument is left blank, <code>top_n</code> filters by the last column.</p>
+<p>Note that rows are not sorted by <code>rate</code>, only filtered. If we want to sort, we still need to use <code>arrange</code>. Note that if the third argument is left blank, <code>top_n</code> filters by the last column.</p>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>You are ready to do exercises 11-19.</p>
+<p>You are ready to do exercises 12-19.</p>
 </div>
 </div>
 </div>
 </section></section><section id="tibbles" class="level2" data-number="4.6"><h2 data-number="4.6" class="anchored" data-anchor-id="tibbles">
 <span class="header-section-number">4.6</span> Tibbles</h2>
-<p>To work with the tidyverse data must be stored in data frames. We introduced the data frame in Section <a href="R-basics.html#sec-data-frames"><span>Section&nbsp;2.3.1</span></a> and have been using the <code>murders</code> data frame throughout the book. In Section <a href="#sec-group-by"><span>Section&nbsp;4.4.3</span></a> we introduced the <code>group_by</code> function, which permits stratifying data before computing summary statistics. But where is the group information stored in the data frame?</p>
+<p>To work with the tidyverse, data must be stored in data frames. We introduced the data frame in <a href="R-basics.html#sec-data-frames"><span>Section&nbsp;2.3.1</span></a> and have been using the <code>murders</code> data frame throughout the book. In <a href="#sec-group-by"><span>Section&nbsp;4.4.3</span></a> we introduced the <code>group_by</code> function, which permits stratifying data before computing summary statistics. But where is the group information stored in the data frame?</p>
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-41_1c8fc67497dcbc77733d93497ab14291">
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 51 × 6</span></span>
@@ -779,16 +779,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 5 California CA    West     37253956  1257  3.37</span></span>
 <span><span class="co">#&gt; # ℹ 46 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Notice that there are no columns with this information. But, if you look closely at the output above, you see the line <code>A tibble</code> followd by dimensions. We can learn the class of the returned object using:</p>
+<p>Notice that there are no columns with this information. But, if you look closely at the output above, you see the line <code>A tibble</code> followed by dimensions. We can learn the class of the returned object using:</p>
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-42_31015ea49f8f4f6ef5cbc598373d42bd">
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "grouped_df" "tbl_df"     "tbl"        "data.frame"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code>tbl</code>, pronounced tibble, is a special kind of data frame. The functions <code>group_by</code> and <code>summarize</code> always return this type of data frame. The <code>group_by</code> function returns a special kind of <code>tbl</code>, the <code>grouped_df</code>. We will say more about these later. For consistency, the <strong>dplyr</strong> manipulation verbs (<code>select</code>, <code>filter</code>, <code>mutate</code>, and <code>arrange</code>) preserve the class of the input: if they receive a regular data frame they return a regular data frame, while if they receive a tibble they return a tibble. But tibbles are the preferred format in the tidyverse and as a result tidyverse functions that produce a data frame from scratch return a tibble. For example, in <a href="importing-data.html"><span>Chapter&nbsp;6</span></a> we will see that tidyverse functions used to import data create tibbles.</p>
+<p>The <code>tbl</code>, pronounced “tibble”, is a special kind of data frame. The functions <code>group_by</code> and <code>summarize</code> always return this type of data frame. The <code>group_by</code> function returns a special kind of <code>tbl</code>, the <code>grouped_df</code>. We will say more about these later. For consistency, the <strong>dplyr</strong> manipulation verbs (<code>select</code>, <code>filter</code>, <code>mutate</code>, and <code>arrange</code>) preserve the class of the input: if they receive a regular data frame they return a regular data frame, while if they receive a tibble they return a tibble. But tibbles are the preferred format in the tidyverse and as a result tidyverse functions that produce a data frame from scratch return a tibble. For example, in <a href="importing-data.html"><span>Chapter&nbsp;6</span></a> we will see that tidyverse functions used to import data create tibbles.</p>
 <p>Tibbles are very similar to data frames. In fact, you can think of them as a modern version of data frames. Nonetheless there are some important differences which we describe next.</p>
-<ol type="1">
-<li>Tibbles display better</li>
-</ol>
+<p><strong>(1) Tibbles display better</strong></p>
 <p>The print method for tibbles is more readable than that of a data frame. To see this, compare the outputs of typing <code>murders</code> and the output of murders if we convert it to a tibble. We can do this using <code>as_tibble(murders)</code>. If using RStudio, output for a tibble adjusts to your window size. To see this, change the width of your R console and notice how more/less columns are shown.</p>
 <p>If you subset the columns of a data frame, you may get back an object that is not a data frame, such as a vector or scalar. For example:</p>
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-43_042944b452274a9f77cf2ac4f901d3a7">
@@ -817,9 +815,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; Warning: Unknown or uninitialised column: `Population`.</span></span>
 <span><span class="co">#&gt; NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="2" type="1">
-<li>Tibbles can have complex entries</li>
-</ol>
+<p><strong>(2) Tibbles can have complex entries</strong></p>
 <p>While data frame columns need to be vectors of numbers, strings, or logical values, tibbles can have more complex objects, such as lists or functions. Also, we can create tibbles with functions:</p>
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-48_893a3778e762c01586ef7ba12caba204">
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>, func <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">mean</span>, <span class="va">median</span>, <span class="va">sd</span><span class="op">)</span><span class="op">)</span></span>
@@ -830,9 +826,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 2     2 &lt;fn&gt;  </span></span>
 <span><span class="co">#&gt; 3     3 &lt;fn&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="3" type="1">
-<li>Tibbles can be grouped</li>
-</ol>
+<p><strong>(3) Tibbles can be grouped</strong></p>
 <p>The function <code>group_by</code> returns a special kind of tibble: a grouped tibble. This class stores information that lets you know which rows are in which groups. The tidyverse functions, in particular the <code>summarize</code> function, are aware of the group information.</p>
 <section id="creating-tibbles" class="level3" data-number="4.6.1"><h3 data-number="4.6.1" class="anchored" data-anchor-id="creating-tibbles">
 <span class="header-section-number">4.6.1</span> Creating tibbles</h3>
@@ -842,7 +836,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>                     exam_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">95</span>, <span class="fl">80</span>, <span class="fl">90</span>, <span class="fl">85</span><span class="op">)</span>, </span>
 <span>                     exam_2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">85</span>, <span class="fl">85</span>, <span class="fl">90</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Note that base R (without packages loaded) has a function with a very similar name, <code>data.frame</code>, that can be used to create a regular data frame rather than a tibble.</p>
+<p>Note that base R (without packages loaded) has the <code>data.frame</code> function that can be used to create a regular data frame rather than a tibble.</p>
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-50_7f88918acfd63332f47473170501daf6">
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">grades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"John"</span>, <span class="st">"Juan"</span>, <span class="st">"Jean"</span>, <span class="st">"Yao"</span><span class="op">)</span>, </span>
 <span>                     exam_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">95</span>, <span class="fl">80</span>, <span class="fl">90</span>, <span class="fl">85</span><span class="op">)</span>, </span>
@@ -863,7 +857,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="the-purrr-package" class="level2" data-number="4.8"><h2 data-number="4.8" class="anchored" data-anchor-id="the-purrr-package">
 <span class="header-section-number">4.8</span> The <strong>purrr</strong> package</h2>
-<p>In Section <a href="programming-basics.html#sec-vectorization"><span>Section&nbsp;3.5</span></a> we learned about the <code>sapply</code> function, which permitted us to apply the same function to each element of a vector. We constructed a function and used <code>sapply</code> to compute the sum of the first <code>n</code> integers for several values of <code>n</code> like this:</p>
+<p>In <a href="programming-basics.html#sec-vectorization"><span>Section&nbsp;3.5</span></a> we learned about the <code>sapply</code> function, which permitted us to apply the same function to each element of a vector. We constructed a function and used <code>sapply</code> to compute the sum of the first <code>n</code> integers for several values of <code>n</code> like this:</p>
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-53_e4250df1e4a326907f58a4be7c86eadf">
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">compute_s_n</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n</span><span class="op">)</span></span>
@@ -897,10 +891,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="op">}</span></span>
 <span><span class="va">s_n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html">map_df</a></span><span class="op">(</span><span class="va">n</span>, <span class="va">compute_s_n</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <strong>purrr</strong> package provides much more functionality not covered here. For more details you can consult <a href="https://jennybc.github.io/purrr-tutorial/">this online resource</a>.</p>
+<p>The <strong>purrr</strong> package provides much more functionality not covered here. For more details you can consult <a href="https://jennybc.github.io/purrr-tutorial/">this online resource</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 </section><section id="tidyverse-conditionals" class="level2" data-number="4.9"><h2 data-number="4.9" class="anchored" data-anchor-id="tidyverse-conditionals">
 <span class="header-section-number">4.9</span> Tidyverse conditionals</h2>
-<p>A typical data analysis will often involve one or more conditional operations. In Section <a href="programming-basics.html#sec-conditionals"><span>Section&nbsp;3.1</span></a> we described the <code>ifelse</code> function, which we will use extensively in this book. In this section we present two <strong>dplyr</strong> functions that provide further functionality for performing conditional operations.</p>
+<p>A typical data analysis will often involve one or more conditional operations. In <a href="programming-basics.html#sec-conditionals"><span>Section&nbsp;3.1</span></a> we described the <code>ifelse</code> function, which we will use extensively in this book. In this section we present two <strong>dplyr</strong> functions that provide further functionality for performing conditional operations.</p>
 <section id="case_when" class="level3" data-number="4.9.1"><h3 data-number="4.9.1" class="anchored" data-anchor-id="case_when">
 <span class="header-section-number">4.9.1</span> <code>case_when</code>
 </h3>
@@ -940,6 +934,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>However, this can become cumbersome, especially within the tidyverse approach. The <code>between</code> function performs the same operation.</p>
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-61_f50d3f0b3e811aa1f52185d84e996551">
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/between.html">between</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">a</span>, <span class="va">b</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>You are ready to do exercises 20-24.</p>
+</div>
+</div>
 </div>
 </section></section><section id="exercises" class="level2" data-number="4.10"><h2 data-number="4.10" class="anchored" data-anchor-id="exercises">
 <span class="header-section-number">4.10</span> Exercises</h2>
@@ -1023,7 +1027,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">murders</span>, <span class="va">population</span> <span class="op">&lt;</span> <span class="fl">5000000</span> <span class="op">&amp;</span> <span class="va">region</span> <span class="op">==</span> <span class="st">"Northeast"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Make sure <code>murders</code> has been defined with <code>rate</code> and <code>rank</code> and still has all states. Create a table called <code>my_states</code> that contains rows for states satisfying both the conditions: it is in the Northeast or West and the murder rate is less than 1. Use <code>select</code> to show only the state name, the rate, and the rank.</p>
-<p>12. The pipe <code>|&gt;</code> can be used to perform operations sequentially without having to define intermediate objects. Start by redefining murder to include rate and rank.</p>
+<p>12. The pipe <code>|&gt;</code> can be used to perform operations sequentially without having to define intermediate objects. Start by redefining <code>murders</code> to include rate and rank.</p>
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-69_5fd6602c1e1d14923871553e0ed646fe">
 <div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">murders</span>, rate <span class="op">=</span>  <span class="va">total</span><span class="op">/</span><span class="va">population</span><span class="op">*</span><span class="fl">100000</span>, </span>
 <span>                  rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rank.html">rank</a></span><span class="op">(</span><span class="op">-</span><span class="va">rate</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1069,11 +1073,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; [1] 1.22</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s now explore the NHANES data.</p>
-<p>We will provide some basic facts about blood pressure. First let’s select a group to set the standard. We will use 20-to-29-year-old females. <code>AgeDecade</code> is a categorical variable with these ages. Note that the category is coded like ” 20-29”, with a space in front! What is the average and standard deviation of systolic blood pressure as saved in the <code>BPSysAve</code> variable? Save it to a variable called <code>ref</code>.</p>
+<p>We will provide some basic facts about blood pressure. First let’s select a group to set the standard. We will use 20-to-29-year-old females. <code>AgeDecade</code> is a categorical variable with these ages. Note that the category is coded like <code>" 20-29"</code>, with a space in front! What is the average and standard deviation of systolic blood pressure as saved in the <code>BPSysAve</code> variable? Save it to a variable called <code>ref</code>.</p>
 <p>Hint: Use <code>filter</code> and <code>summarize</code> and use the <code>na.rm = TRUE</code> argument when computing the average and standard deviation. You can also filter the NA values using <code>filter</code>.</p>
-<p>14. Using a pipe, assign the average to a numeric variable <code>ref_avg</code>. Hint: Use the code similar to above and then <code>pull</code>.</p>
+<p>14. Using a pipe, assign the average to a numeric variable <code>ref_avg</code>. Hint: Use the code from the previous exercise and then <code>pull</code>.</p>
 <p>15. Now report the min and max values for the same group.</p>
-<p>16. Compute the average and standard deviation for females, but for each age group separately rather than a selected decade as in question 1. Note that the age groups are defined by <code>AgeDecade</code>. Hint: rather than filtering by age and gender, filter by <code>Gender</code> and then use <code>group_by</code>.</p>
+<p>16. Compute the average and standard deviation for females, but for each age group separately rather than a selected decade as in exercise 13. Note that the age groups are defined by <code>AgeDecade</code>. Hint: rather than filtering by age and gender, filter by <code>Gender</code> and then use <code>group_by</code>.</p>
 <p>17. Repeat exercise 16 for males.</p>
 <p>19. For males between the ages of 40-49, compare systolic blood pressure across race as reported in the <code>Race1</code> variable. Order the resulting table from lowest to highest average systolic blood pressure.</p>
 <p>20. Load the <code>murders</code> dataset. Which of the following is true?</p>
@@ -1097,7 +1101,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>24. Use the <code>map_df</code> to create a data frame with three columns named <code>n</code>, <code>s_n</code>, and <code>s_n_2</code>. The first column should contain the numbers 1 through 100. The second and third columns should each contain the sum of 1 through <span class="math inline">\(n\)</span> with <span class="math inline">\(n\)</span> the row number.</p>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p><a href="https://jennybc.github.io/purrr-tutorial/" class="uri">https://jennybc.github.io/purrr-tutorial/</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

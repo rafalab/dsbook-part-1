@@ -2,7 +2,7 @@
 
 In this book, we use tidyverse packages, primarily because they offer readability that is beneficial for beginners. This readability allows us to emphasize data analysis and statistical concepts. However, while tidyverse is beginner-friendly, there are other methods in R that are more efficient and can handle larger datasets more effectively. One such package is **data.table**, which is widely used in the R community. We'll briefly introduce **data.table** in this chapter. For those interested in diving deeper, there are numerous online resources, including the mentioned introduction[^data_table-1].
 
-[^data_table-1]: https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html
+[^data_table-1]: <https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html>
 
 ## Refining data tables
 
@@ -14,7 +14,7 @@ library(dslabs)
 library(data.table)
 ```
 
-We will provide example code showing the **data.table** approaches to **dplyr**'s `mutate`, `filter`, `select`, `group_by`, and `summarize` shown in Chapter @sec-tidyverse. As in that chapter, we will use the `murders` dataset:
+We will provide example code showing the **data.table** approaches to **dplyr**'s `mutate`, `filter`, `select`, `group_by`, and `summarize` shown in @sec-tidyverse. As in that chapter, we will use the `murders` dataset:
 
 
 The first step when using **data.table** is to convert the data frame into a `data.table` object using the `as.data.table` function:
@@ -55,7 +55,7 @@ We learned to use the **dplyr** `mutate` function with this example:
 murders <- mutate(murders, rate = total / population * 100000)
 ```
 
-**data.table** uses an approach that avoids a new assignment (update by reference). This can help with large datasets that take up most of your computer's memory. The **data.table** :=\` function permits us to do this:
+**data.table** uses an approach that avoids a new assignment (update by reference). This can help with large datasets that take up most of your computer's memory. The **data.table** `:=` function permits us to do this:
 
 ```{r, message=FALSE}
 murders_dt[, rate := total / population * 100000]
@@ -131,7 +131,7 @@ With **dplyr**, we filtered like this:
 filter(murders, rate <= 0.7)
 ```
 
-With **data.table**, we again use an approach similar to subsetting matrices, except **data.table** knows that `rate` refers to a column name and not an object in the R environment:
+With **data.table**, we again use an approach similar to subsetting matrices, except like **dplyr**, **data.table** knows that `rate` refers to a column name and not an object in the R environment:
 
 ```{r}
 #| eval: false
@@ -162,7 +162,7 @@ As an example, we will use the `heights` dataset:
 heights_dt <- as.data.table(heights)
 ```
 
-In **data.table**, we can call functions inside `.()` and they will be applied to rows. So the equivalent of:
+In **data.table**, we can call functions inside `.()` and they will be applied to columns So the equivalent of:
 
 ```{r}
 s <- heights |> summarize(avg = mean(height), sd = sd(height))
@@ -190,7 +190,7 @@ s <- heights_dt[sex == "Female", .(avg = mean(height), sd = sd(height))]
 
 ### Multiple summaries
 
-In @sec-tidyverse, we defined the follwing function to permit multiple column summaries in __dplyer__:
+In @sec-tidyverse, we defined the following function to permit multiple column summaries in __dplyr__:
 
 ```{r}
 median_min_max <- function(x){
@@ -223,7 +223,7 @@ We can order rows using the same approach we use for filter. Here are the states
 murders_dt[order(population)]
 ```
 
-N To sort the table in descending order, we can order by the negative of `population` or use the `decreasing` argument:
+To sort the table in descending order, we can order by the negative of `population` or use the `decreasing` argument:
 
 ```{r, eval=FALSE}
 murders_dt[order(population, decreasing = TRUE)] 
@@ -231,12 +231,15 @@ murders_dt[order(population, decreasing = TRUE)]
 
 ### Nested sorting
 
-Similarly, we can perform nested ordering by including more than one variable in order
+Similarly, we can perform nested ordering by including more than one variable in order:
 
 ```{r, eval=FALSE}
 murders_dt[order(region, rate)] 
 ```
 
+:::{.callout-note}
+You are ready to do exercises 8-12.
+:::
 
 ## Exercises
 
@@ -275,7 +278,7 @@ murders_dt[state == "New York"]
 
 You can use other logical vectors to filter rows.
 
-Show the top 5 states with the highest murder rates. After we add murder rate and rank, do not change the `murders` dataset, just show the result. Remember that you can filter based on the `rank` column.
+Show the top 5 states with the highest murder rates. From here on, do not change the `murders` dataset, just show the result. Remember that you can filter based on the `rank` column.
 
 5\. We can remove rows using the `!=` operator. For example, to remove Florida, we would do this:
 
@@ -307,13 +310,13 @@ For exercises 8-12, we will be using the **NHANES** data.
 library(NHANES)
 ```
 
-8\. We will provide some basic facts about blood pressure. First let's select a group to set the standard. We will use 20-to-29-year-old females. `AgeDecade` is a categorical variable with these ages. Note that the category is coded like " 20-29", with a space in front! Use the **data.table** package to compute the average and standard deviation of systolic blood pressure as saved in the `BPSysAve` variable. Save it to a variable called `ref`.
+8\. We will provide some basic facts about blood pressure. First let's select a group to set the standard. We will use 20-to-29-year-old females. `AgeDecade` is a categorical variable with these ages. Note that the category is coded like `" 20-29"`, with a space in front! Use the **data.table** package to compute the average and standard deviation of systolic blood pressure as saved in the `BPSysAve` variable. Save it to a variable called `ref`.
 
 9\. Report the min and max values for the same group.
 
-10\. Compute the average and standard deviation for females, but for each age group separately rather than a selected decade as in question 1. Note that the age groups are defined by `AgeDecade`.
+10\. Compute the average and standard deviation for females, but for each age group separately rather than a selected decade as in exercise 8. Note that the age groups are defined by `AgeDecade`.
 
-11\. Repeat exercise 3 for males.
+11\. Repeat exercise 10 for males.
 
 12\. For males between the ages of 40-49, compare systolic blood pressure across race as reported in the `Race1` variable. Order the resulting table from lowest to highest average systolic blood pressure.
 
