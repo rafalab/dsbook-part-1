@@ -372,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="va">murder_rate</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">total</span> <span class="op">/</span> <span class="va">murders</span><span class="op">$</span><span class="va">population</span><span class="op">*</span><span class="fl">100000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here is a very simple example that tells us which states, if any, have a murder rate lower than 0.5 per 100,000. The if-else statement protects us from the case in which no state satisfies the condition.</p>
+<p>Here is a very simple example that tells us the state with the lowest murder rate if it is lower than 0.5 per 100,000. The if-else statement protects us from the case in which no state satisfies the condition.</p>
 <div class="cell" data-layout-align="center" data-hash="programming-basics_cache/html/unnamed-chunk-3_11b943473b18a05c2c6e1f5038704750">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.min</a></span><span class="op">(</span><span class="va">murder_rate</span><span class="op">)</span></span>
 <span></span>
@@ -468,6 +468,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>You are ready to do exercises 1-3.</p>
+</div>
+</div>
+</div>
 </section><section id="defining-functions" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="defining-functions">
 <span class="header-section-number">3.2</span> Defining functions</h2>
 <p>As you become more experienced, you will find yourself needing to perform the same operations over and over. A simple example is computing averages. We can compute the average of a vector <code>x</code> using the <code>sum</code> and <code>length</code> functions: <code>sum(x)/length(x)</code>. Because we do this repeatedly, it is much more efficient to write a function that performs this operation. This particular operation is so common that someone already wrote the <code>mean</code> function and it is included in base R. However, you will encounter situations in which the function does not already exist, so R permits you to write your own. A simple version of a function that computes the average can be defined like this:</p>
@@ -508,6 +518,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We will learn more about how to create functions through experience as we face more complex tasks.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>You are ready to do exercises 4-7.</p>
+</div>
+</div>
+</div>
 </section><section id="namespaces" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="namespaces">
 <span class="header-section-number">3.3</span> Namespaces</h2>
 <p>Once you start becoming more of an R expert user, you will likely need to load several add-on packages for some of your analysis. Once you start doing this, it is likely that two packages use the same name for two different functions. And often these functions do completely different things. In fact, you have already encountered this because both <strong>dplyr</strong> and the R-base <strong>stats</strong> package define a <code>filter</code> function. There are five other examples in <strong>dplyr</strong>. We know this because when we first load <strong>dplyr</strong> we see the following message:</p>
@@ -546,7 +566,7 @@ The following objects are masked from ‘package:base’:
 <p>For more on this more advanced topic we recommend the R packages book<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 </section><section id="for-loops" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="for-loops">
 <span class="header-section-number">3.4</span> For-loops</h2>
-<p>The formula for the sum of the series <span class="math inline">\(1+2+\dots+n\)</span> is <span class="math inline">\(n(n+1)/2\)</span>. What if we weren’t sure that was the right function? How could we check? Using what we learned about functions we can create one that computes the <span class="math inline">\(S_n\)</span>:</p>
+<p>The formula for the sum of the series <span class="math inline">\(1+2+\dots+n\)</span> is <span class="math inline">\(S_n = n(n+1)/2\)</span>. What if we weren’t sure that was the right function? How could we check? Using what we learned about functions we can create one that computes <span class="math inline">\(S_n\)</span>:</p>
 <div class="cell" data-layout-align="center" data-hash="programming-basics_cache/html/unnamed-chunk-18_348000cbe8db985e97b0ba3563745e5e">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">compute_s_n</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n</span><span class="op">)</span></span>
@@ -616,6 +636,16 @@ The following objects are masked from ‘package:base’:
 <span><span class="va">s_n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">n</span>, <span class="va">compute_s_n</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Other functionals are <code>apply</code>, <code>lapply</code>, <code>tapply</code>, <code>mapply</code>, <code>vapply</code>, and <code>replicate</code>. We mostly use <code>sapply</code>, <code>apply</code>, and <code>replicate</code> in this book, but we recommend familiarizing yourselves with the others as they can be very useful.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>You are ready to do exercises 8-11.</p>
+</div>
+</div>
+</div>
 </section><section id="exercises" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="exercises">
 <span class="header-section-number">3.6</span> Exercises</h2>
 <p>1. What will this conditional expression return?</p>
@@ -649,14 +679,13 @@ The following objects are masked from ‘package:base’:
 <p>7. Write a function <code>compute_s_n</code> that for any given <span class="math inline">\(n\)</span> computes the sum <span class="math inline">\(S_n = 1^2 + 2^2 + 3^2 + \dots n^2\)</span>. Report the value of the sum when <span class="math inline">\(n=10\)</span>.</p>
 <p>8. Define an empty numerical vector <code>s_n</code> of size 25 using <code>s_n &lt;- vector("numeric", 25)</code> and store in the results of <span class="math inline">\(S_1, S_2, \dots S_{25}\)</span> using a for-loop.</p>
 <p>9. Repeat exercise 8, but this time use <code>sapply</code>.</p>
-<p>10. Repeat exercise 8, but this time use <code>map_dbl</code>.</p>
-<p>11. Plot <span class="math inline">\(S_n\)</span> versus <span class="math inline">\(n\)</span>. Use points defined by <span class="math inline">\(n=1,\dots,25\)</span>.</p>
-<p>12. Confirm that the formula for this sum is <span class="math inline">\(S_n= n(n+1)(2n+1)/6\)</span>.</p>
+<p>10. Plot <span class="math inline">\(S_n\)</span> versus <span class="math inline">\(n\)</span>. Use points defined by <span class="math inline">\(n=1,\dots,25\)</span>.</p>
+<p>11. Confirm that the formula for this sum is <span class="math inline">\(S_n= n(n+1)(2n+1)/6\)</span>.</p>
 
 
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
-<li id="fn1"><p>http://r-pkgs.had.co.nz/namespace.html<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p><a href="http://r-pkgs.had.co.nz/namespace.html" class="uri">http://r-pkgs.had.co.nz/namespace.html</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

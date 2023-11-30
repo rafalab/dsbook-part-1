@@ -28,7 +28,7 @@ murder_rate <- murders$total / murders$population*100000
 ```
 
 
-Here is a very simple example that tells us which states, if any, have a murder rate lower than 0.5 per 100,000. The if-else statement protects us from the case in which no state satisfies the condition.
+Here is a very simple example that tells us the state with the lowest murder rate if it is lower than 0.5 per 100,000. The if-else statement protects us from the case in which no state satisfies the condition.
 
 ```{r}
 ind <- which.min(murder_rate)
@@ -92,6 +92,10 @@ any(z)
 all(z)
 ```
 
+:::{.callout-note}
+You are ready to do exercises 1-3.
+:::
+
 ## Defining functions
 
 As you become more experienced, you will find yourself needing to perform the same operations over and over. A simple example is computing averages. We can compute the average of a vector `x` using the `sum` and `length` functions: `sum(x)/length(x)`. Because we do this repeatedly, it is much more efficient to write a function that performs this operation. This particular operation is so common that someone already wrote the `mean` function and it is included in base R. However, you will encounter situations in which the function does not already exist, so R permits you to write your own. A simple version of a function that computes the average can be defined like this:
@@ -142,6 +146,10 @@ avg <- function(x, arithmetic = TRUE){
 
 We will learn more about how to create functions through experience as we face more complex tasks.
 
+:::{.callout-note}
+You are ready to do exercises 4-7.
+:::
+
 ## Namespaces
 
 Once you start becoming more of an R expert user, you will likely need to load several add-on packages for some of your analysis. Once you start doing this, it is likely that two packages use the same name for two different functions. And often these functions do completely different things. In fact, you have already encountered this because both __dplyr__ and the R-base  __stats__ package define a `filter` function.  There are five other examples in __dplyr__. We know this because when we first load __dplyr__ we see the following message:
@@ -184,11 +192,11 @@ Also note that if we want to use a function in a package without loading the ent
 If you want to see all the packages that have function called, for example `filter`, you can use double questions marks: `??filter`.
 :::
 
-For more on this more advanced topic we recommend the R packages book^[http://r-pkgs.had.co.nz/namespace.html].
+For more on this more advanced topic we recommend the R packages book^[<http://r-pkgs.had.co.nz/namespace.html>].
 
 ## For-loops
 
-The formula for the sum of the series $1+2+\dots+n$ is $n(n+1)/2$. What if we weren't sure that was the right function? How could we check? Using what we learned about functions we can create one that computes the $S_n$:
+The formula for the sum of the series $1+2+\dots+n$ is $S_n = n(n+1)/2$. What if we weren't sure that was the right function? How could we check? Using what we learned about functions we can create one that computes $S_n$:
 
 ```{r}
 compute_s_n <- function(n) { 
@@ -269,6 +277,10 @@ s_n <- sapply(n, compute_s_n)
 
 Other functionals are `apply`, `lapply`, `tapply`, `mapply`, `vapply`, and `replicate`. We mostly use `sapply`, `apply`, and `replicate` in this book, but we recommend familiarizing yourselves with the others as they can be very useful.
 
+:::{.callout-note}
+You are ready to do exercises 8-11.
+:::
+
 ## Exercises 
 
 1\. What will this conditional expression return?
@@ -314,11 +326,9 @@ my_func <- function(y){
 
 9\. Repeat exercise 8, but this time use `sapply`.
 
-10\. Repeat exercise 8, but this time use `map_dbl`.
+10\. Plot $S_n$ versus $n$. Use points defined by $n=1,\dots,25$.
 
-11\. Plot $S_n$ versus $n$. Use points defined by $n=1,\dots,25$.
-
-12\. Confirm that the formula for this sum is $S_n= n(n+1)(2n+1)/6$.
+11\. Confirm that the formula for this sum is $S_n= n(n+1)(2n+1)/6$.
 
 
 
