@@ -1,16 +1,16 @@
-# Text mining
+# Text analysis
 
 With the exception of labels used to represent categorical data, we have focused on numerical data. But in many applications, data starts as text. Well-known examples are spam filtering, cyber-crime prevention, counter-terrorism and sentiment analysis. In all these cases, the raw data is composed of free form text. Our task is to extract insights from these data. In this section, we learn how to generate useful numerical summaries from text data to which we can apply some of the powerful data visualization and analysis techniques we have learned.
 
 ## Case study: Trump tweets
 
-During the 2016 US presidential election, then candidate Donald J. Trump used his twitter account as a way to communicate with potential voters. On August 6, 2016, Todd Vaziri tweeted[^text-mining-1] about Trump that "Every non-hyperbolic tweet is from iPhone (his staff). Every hyperbolic tweet is from Android (from him)." David Robinson conducted an analysis[^text-mining-2] to determine if data supported this assertion. Here, we go through David's analysis to learn some of the basics of text mining. To learn more about text mining in R, we recommend the Text Mining with R book[^text-mining-3] by Julia Silge and David Robinson.
+During the 2016 US presidential election, then candidate Donald J. Trump used his twitter account as a way to communicate with potential voters. On August 6, 2016, Todd Vaziri tweeted[^text-analysis-1] about Trump that "Every non-hyperbolic tweet is from iPhone (his staff). Every hyperbolic tweet is from Android (from him)." David Robinson conducted an analysis[^text-analysis-2] to determine if data supported this assertion. Here, we go through David's analysis to learn some of the basics of text analysis. To learn more about text analysis in R, we recommend the Text Mining with R book[^text-analysis-3] by Julia Silge and David Robinson.
 
-[^text-mining-1]: https://twitter.com/tvaziri/status/762005541388378112/photo/1
+[^text-analysis-1]: https://twitter.com/tvaziri/status/762005541388378112/photo/1
 
-[^text-mining-2]: http://varianceexplained.org/r/trump-tweets/
+[^text-analysis-2]: http://varianceexplained.org/r/trump-tweets/
 
-[^text-mining-3]: https://www.tidytextmining.com/
+[^text-analysis-3]: https://www.tidytextmining.com/
 
 ```{r,echo=FALSE}
 set.seed(2002)
@@ -134,7 +134,7 @@ tweet_words |>
   arrange(desc(n))
 ```
 
-It is not surprising that these are the top words, which are not informative. The *tidytext* package has a database of these commonly used words, referred to as *stop words*, in text mining:
+It is not surprising that these are the top words, which are not informative. The *tidytext* package has a database of these commonly used words, referred to as *stop words*, in text analysis:
 
 ```{r}
 head(stop_words)
@@ -292,9 +292,9 @@ android_vs_iphone |> inner_join(nrc, by = "word") |>
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
 ```
 
-This is just a simple example of the many analyses one can perform with tidytext. To learn more, we again recommend the Tidy Text Mining book[^text-mining-4].
+This is just a simple example of the many analyses one can perform with tidytext. To learn more, we again recommend the Tidy Text Mining book[^text-analysis-4].
 
-[^text-mining-4]: https://www.tidytextmining.com/
+[^text-analysis-4]: https://www.tidytextmining.com/
 
 ## Exercises
 
