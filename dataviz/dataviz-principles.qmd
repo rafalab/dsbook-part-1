@@ -1,10 +1,10 @@
 # Data visualization principles {#sec-dataviz-principles}
 
-In this chapter we aim to provide some general principles we can use as a guide for effective data visualization. Much of this section is based on a talk by Karl Broman^[http://kbroman.org/] titled "Creating Effective Figures and Tables"^[https://www.biostat.wisc.edu/~kbroman/presentations/graphs2017.pdf] and includes some of the figures which were made with code that Karl makes available on his GitHub repository^[https://github.com/kbroman/Talk_Graphs], as well as class notes from Peter Aldhous' Introduction to Data Visualization course^[http://paldhous.github.io/ucb/2016/dataviz/index.html]. Following Karl's approach, we show some examples of plot styles we should avoid, explain how to improve them, and use these as motivation for a list of principles. We compare and contrast plots that follow these principles to those that don't.
+In this chapter we aim to provide some general principles we can use as a guide for effective data visualization. Much of this section is based on a talk by Karl Broman^[<http://kbroman.org/>] titled "Creating Effective Figures and Tables"^[<https://www.biostat.wisc.edu/~kbroman/presentations/graphs2017.pdf>] and includes some of the figures which were made with code that Karl makes available on his GitHub repository^[<https://github.com/kbroman/Talk_Graphs>], as well as class notes from Peter Aldhous' Introduction to Data Visualization course^[<https://www.peteraldhous.com/ucb/2014/dataviz/index.html>]. Following Karl's approach, we show some examples of plot styles we should avoid, explain how to improve them, and use these as motivation for a list of principles. We compare and contrast plots that follow these principles to those that don't.
 
 The principles are mostly based on research related to how humans detect patterns and make visual comparisons. The preferred approaches are those that best fit the way our brains process visual information. When deciding on a visualization approach, it is also important to keep our goal in mind. We may be comparing a viewable number of quantities, describing distributions for categories or numeric values, comparing the data from two groups, or describing the relationship between two variables. As a final note, we want to emphasize that it is important to adapt and optimize graphs to the audience. For example, an exploratory plot made for ourselves will be different than a chart intended to communicate a finding to a general audience.
 
-In this chapter we focus on the principles and do not show code (code can be viewed on GitHub^[https://github.com/rafalab/dsbook-part-1/blob/main/dataviz/dataviz-principles.qmd]). In @sec-dataviz-in-practice, we apply these principles in case study and do show code. 
+In this chapter we focus on the principles and do not show code (code can be viewed on GitHub^[<https://github.com/rafalab/dsbook-part-1/blob/main/dataviz/dataviz-principles.qmd>]). In @sec-dataviz-in-practice, we apply these principles in case study and do show code. 
 
 
 ```{r, warning=FALSE, message=FALSE, cache=FALSE, echo=FALSE}
@@ -107,11 +107,11 @@ In general, when displaying quantities, position and length are preferred over a
 
 ## Know when to include 0
 
-When using length as a visual cue, it is misinformative not to start the bars at 0. This is because, by using length as a visual cue, say with a barplot, we are implying the length is proportional to the quantities being displayed. By avoiding 0, relatively small differences can be made to look much bigger than they actually are. This approach is often used by politicians or media organizations trying to exaggerate a difference. Below is an illustrative example^[http://paldhous.github.io/ucb/2016/dataviz/week2.html]:
+When using length as a visual cue, it is misinformative not to start the bars at 0. This is because, by using length as a visual cue, say with a barplot, we are implying the length is proportional to the quantities being displayed. By avoiding 0, relatively small differences can be made to look much bigger than they actually are. This approach is often used by politicians or media organizations trying to exaggerate a difference. Below is an illustrative example^[<https://www.peteraldhous.com/ucb/2014/dataviz/week2.html>]:
 
 ![](img/class2_8.jpg)
 
-(Source: Fox News, via Media Matters^[http://mediamatters.org/blog/2013/04/05/fox-news-newest-dishonest-chart-immigration-enf/193507].)
+(Source: Fox News, via Media Matters^[<http://mediamatters.org/blog/2013/04/05/fox-news-newest-dishonest-chart-immigration-enf/193507>].)
 
 From the plot above, it appears that apprehensions have almost tripled when, in fact, they have only increased by about 16%. Starting the graph at 0 illustrates this clearly:
 
@@ -126,7 +126,7 @@ Here is another example:
 <!--http://i2.wp.com/flowingdata.com/wp-content/uploads/2012/08/Bush-cuts.png-->
 ![](img/Bush-cuts.png)
 
-(Source: Fox News, via Flowing Data^[http://flowingdata.com/2012/08/06/fox-news-continues-charting-excellence/].)
+(Source: Fox News, via Flowing Data^[<http://flowingdata.com/2012/08/06/fox-news-continues-charting-excellence/>].)
 
 This plot makes a 13% increase look like a five fold change. Here is the appropriate plot:
 
@@ -145,7 +145,7 @@ Finally, here is an extreme example that makes a very small difference of under 
 ![](img/venezuela-election.png)
 
 (Source: 
-Venezolana de Televisión via El Mundo^[https://www.elmundo.es/america/2013/04/15/venezuela/1366029653.html].)
+Venezolana de Televisión via El Mundo^[<https://www.elmundo.es/america/2013/04/15/venezuela/1366029653.html>].)
 
 Here is the appropriate plot:
 
@@ -179,7 +179,7 @@ During President Barack Obama’s 2011 State of the Union Address, the following
 
 ![](img/state-of-the-union.png)
 
-(Source: The 2011 State of the Union Address^[https://www.youtube.com/watch?v=kl2g40GoRxg])
+(Source: The 2011 State of the Union Address^[<https://www.youtube.com/watch?v=kl2g40GoRxg>])
 
 Judging by the area of the circles, the US appears to have an economy over five times larger than China's and over 30 times larger than France's. However, if we look at the actual numbers, we see that this is not the case. The actual ratios are 2.6 and 5.8 times bigger than China and France, respectively. The reason for this distortion is that the radius, rather than the area, was made to be proportional to the quantity, which implies that the proportion between the areas is squared: 2.6 turns into 6.5 and 5.8 turns into 34.1. Here is a comparison of the circles we get if we make the value proportional to the radius and to the area:
 
@@ -315,7 +315,7 @@ heights |>
   facet_grid(.~sex, scales = "free_x")
 ```
 
-However, from this plot it is not immediately obvious that males are, on average, taller than females. We have to look carefully to notice that the x-axis has a higher range of values in the male histogram. An important principle here is to **keep the axes the same** when comparing data across two plots. Below we see how the comparison becomes easier:
+However, from this plot it is not immediately obvious that males are, on average, taller than females. We have to look carefully to notice that the x-axis has a higher range of values in the male histogram. An important principle here is to **keep the axes the same** when comparing data across two plots. Below we see how the comparison becomes a little easier:
 
 ```{r common-axes-histograms-right, echo=FALSE}
 heights |> 
@@ -452,7 +452,7 @@ The comparison becomes even easier to make if we use color to denote the two thi
 
 ## Think of the color blind
 
-About 10% of the population is color blind. Unfortunately, the default colors used in __ggplot2__ are not optimal for this group. However, __ggplot2__ does make it easy to change the color palette used in the plots. An example of how we can use a color blind friendly palette is described here: [http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette):
+About 10% of the population is color blind. Unfortunately, the default colors used in __ggplot2__ are not optimal for this group. However, __ggplot2__ does make it easy to change the color palette used in the plots. An example of how we can use a color blind friendly palette is described in the R cookbook[^<http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette>]:
 
 ```{r, eval=FALSE}
 color_blind_friendly_cols <- 
@@ -481,12 +481,12 @@ p1 <- data.frame(x=1:8, y=rep(1,8), col = as.character(1:8)) |>
 p1 + scale_color_manual(values=color_blind_friendly_cols)
 ```
 
-There are several resources that can help you select colors, for example this one: [http://bconnelly.net/2013/10/creating-colorblind-friendly-figures/](http://bconnelly.net/2013/10/creating-colorblind-friendly-figures/). 
+There are several resources that can help you select colors, for example tutorials on R-bloggers[^<https://www.r-bloggers.com/2013/10/creating-colorblind-friendly-figures/>].
 
 ## Plots for two variables
 
 In general, you should use scatterplots to visualize the relationship between two variables.
-In every single instance in which we have examined the relationship between two variables, including total murders versus population size, life expectancy versus fertility rates, and infant mortality versus income, we have used scatterplots. This is the plot we generally recommend. However, there are some exceptions and we describe two alternative plots here: the _slope chart_ and the _Bland-Altman plot_.
+In every single instance in which we have examined the relationship between two variables, including total murders versus population size and life expectancy versus fertility rates, we have used scatterplots. This is the plot we generally recommend. However, there are some exceptions and we describe two alternative plots here: the _slope chart_ and the _Bland-Altman plot_.
 
 ### Slope charts
 
@@ -520,8 +520,8 @@ dat |>
 An advantage of the slope chart is that it permits us to quickly get an idea of changes based on the slope of the lines. Although we are using angle as the visual cue, we also have position to determine the exact values. Comparing the improvements is a bit harder with a scatterplot:
 
 
-```{r scatter-plot-instead-of-slope, echo=FALSE}
-#| echo: true
+```{r scatter-plot-instead-of-slope}
+#| echo: false
 library(ggrepel)
 west <- c("Western Europe","Northern Europe","Southern Europe",
           "Northern America","Australia and New Zealand")
@@ -550,6 +550,7 @@ In the scatterplot, we have followed the principle _use common axes_ since we ar
 Since we are primarily interested in the difference, it makes sense to dedicate one of our axes to it. The Bland-Altman plot, also known as the Tukey mean-difference plot and the MA-plot, shows the difference versus the average:
 
 ```{r, bland-altman}
+#| echo: false
 library(ggrepel)
 dat |> 
   mutate(year = paste0("life_expectancy_", year)) |>
@@ -569,7 +570,7 @@ Here, by simply looking at the y-axis, we quickly see which countries have shown
 
 ## Encoding a third variable
 
-An earlier scatterplot showed the relationship between infant survival and average income. Below is a version of this plot that encodes three variables: OPEC membership, region, and population.
+An earlier scatterplot showed the relationship between infant survival and average income. Below is a version of this plot that encodes three additional variables: OPEC membership, region, and population.
 
 ```{r encoding-third-variable, echo=FALSE}
 present_year <- 2010
@@ -639,8 +640,7 @@ display.brewer.all(type = "div")
 
 ## Avoid pseudo-three-dimensional plots
 
-The figure below, taken from the scientific literature^[https://projecteuclid.org/download/pdf_1/euclid.ss/1177010488],
-shows three variables: dose, drug type and survival. Although your screen/book page is flat and two-dimensional, the plot tries to imitate three dimensions and assigned a dimension to each variable.
+The figure below, taken from the scientific literature^[<https://projecteuclid.org/download/pdf_1/euclid.ss/1177010488>], shows three variables: dose, drug type and survival. Although your screen/book page is flat and two-dimensional, the plot tries to imitate three dimensions and assigned a dimension to each variable.
 
 <!-- https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig8b.png-->
 ![](img/fig8b.png)
@@ -700,7 +700,7 @@ if(knitr::is_html_output()){
 options(digits = tmp)
 ```
 
-We are reporting precision up to 0.00001 cases per 10,000, a very small value in the context of the changes that are occurring across the dates. In this case, two significant figures is more than enough and clearly makes the point that rates are decreasing:
+We are reporting precision up to 0.00001 cases per 10,000, a very small value in the context of the changes that are occurring across the dates. In this case, one significant figures is enough and clearly makes the point that rates are decreasing:
 
 ```{r, echo = FALSE}
 dat <- dat |> 
@@ -739,7 +739,7 @@ if(knitr::is_html_output()){
 
 ## Know your audience
 
-Graphs can be used for 1) our own exploratory data analysis, 2) to convey a message to experts, or 3) to help convery a message to a general audience. Make sure that the intended audience understands each element of the plot. 
+Graphs can be used 1) for our own exploratory data analysis, 2) to convey a message to experts, or 3) to help convey a message to a general audience. Make sure that the intended audience understands each element of the plot. 
 
 As a simple example, consider that for your own exploration it may be more useful to log-transform data and then plot it. However, for a general audience that is unfamiliar with converting logged values back to the original measurements, using a log-scale for the axis instead of log-transformed values will be much easier to digest.
 
