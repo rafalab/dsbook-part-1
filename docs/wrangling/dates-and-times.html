@@ -452,19 +452,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The <strong>lubridate</strong> package is also useful for dealing with times. In R base, you can get the current time typing <code><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time()</a></code>. The <strong>lubridate</strong> package provides a slightly more advanced function, <code>now</code>, that permits you to define the time zone:</p>
 <div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-15_0a188e891a9c6e41161e71e6bb6d5944">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2023-11-24 12:04:40 EST"</span></span>
+<span><span class="co">#&gt; [1] "2023-12-07 08:18:05 EST"</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="st">"GMT"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2023-11-24 17:04:40 GMT"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "2023-12-07 13:18:05 GMT"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can see all the available time zones with <code><a href="https://rdrr.io/r/base/timezones.html">OlsonNames()</a></code> function.</p>
 <p>We can also extract hours, minutes, and seconds:</p>
 <div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-16_bf4642ae527f9ed4f048afa7b2a2d9ef">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/hour.html">hour</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 12</span></span>
+<span><span class="co">#&gt; [1] 8</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/minute.html">minute</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 4</span></span>
+<span><span class="co">#&gt; [1] 18</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/second.html">second</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 40.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 5.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The package also includes a function to parse strings into times as well as parsers for time objects that include dates:</p>
 <div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-17_28a10b5c88fe005fc35d3f51da70d8f8">
