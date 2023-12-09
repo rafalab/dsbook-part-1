@@ -13,7 +13,7 @@ You can see the data table when you visit the webpage:
 
 ![](img/murders-data-wiki-page.png)
 
-(Web page courtesy of Wikipedia^[https://en.wikipedia.org/w/index.php?title=Gun_violence_in_the_United_States_by_state&direction=prev&oldid=810166167]. CC-BY-SA-3.0 license^[https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License]. Screenshot of part of the page.)
+(Web page courtesy of Wikipedia^[<https://en.wikipedia.org/w/index.php?title=Gun_violence_in_the_United_States_by_state&direction=prev&oldid=810166167>]. CC-BY-SA-3.0 license^[<https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License>]. Screenshot of part of the page.)
 
 
 _Web scraping_, or _web harvesting_, is the term we use to describe the process of extracting data from a website. The reason we can do this is because the information used by a browser to render webpages is received as a text file from a server. The text is code written in hyper text markup language (HTML). Every browser has a way to show the html source code for a page, each one different. On Chrome, you can use Control-U on a PC and command+alt+U on a Mac. You will see something like this:
@@ -61,9 +61,9 @@ title="List of U.S. states and territories by population">Population</a><br />
 <tr>
 ```
 
-You can actually see the data, except data values are surrounded by html code such as `<td>`. We can also see a pattern of how it is stored. If you know HTML, you can write programs that leverage knowledge of these patterns to extract what we want. We also take advantage of a language widely used to make webpages look "pretty" called Cascading Style Sheets (CSS). We say more about this in Section @sec-css-selectors.
+You can actually see the data, except data values are surrounded by html code such as `<td>`. We can also see a pattern of how it is stored. If you know HTML, you can write programs that leverage knowledge of these patterns to extract what we want. We also take advantage of a language widely used to make webpages look "pretty" called Cascading Style Sheets (CSS). We say more about this in @sec-css-selectors.
 
-Although we provide tools that make it possible to scrape data without knowing HTML, it is useful to learn some HTML and CSS. Not only does this improve your scraping skills, but it might come in handy if you are creating a webpage to showcase your work. There are plenty of online courses and tutorials for learning these. Two examples are Codeacademy^[https://www.codecademy.com/learn/learn-html] and W3schools^[https://www.w3schools.com/].
+Although we provide tools that make it possible to scrape data without knowing HTML, it is useful to learn some HTML and CSS. Not only does this improve your scraping skills, but it might come in handy if you are creating a webpage to showcase your work. There are plenty of online courses and tutorials for learning these. Two examples are Codeacademy^[<https://www.codecademy.com/learn/learn-html>] and W3schools^[<https://www.w3schools.com/>].
 
 ## The rvest package
 
@@ -141,8 +141,8 @@ The default look of a webpage made with the most basic HTML is quite unattractiv
 If we want to grab data from a webpage and we happen to know a selector that is unique to the part of the page containing this data, we can use the `html_nodes` function. However, knowing which selector can be quite complicated. 
 In fact, the complexity of webpages has been increasing as they become more sophisticated. For some of the more advanced ones, it seems almost impossible to find the nodes that define a particular piece of data. However, selector gadgets actually make this possible.
 
-SelectorGadget^[http://selectorgadget.com/] is piece of software that allows you to interactively determine what CSS selector you need to extract specific components from the webpage. If you plan on scraping data other than tables from html pages, we highly recommend you install it. A Chrome extension is available which permits you to turn on the gadget and then, as you click through the page, it highlights parts and shows you the selector you need to extract these parts. There are various demos of how to do this including __rvest__ author Hadley Wickham's
-vignette^[https://cran.r-project.org/web/packages/rvest/vignettes/selectorgadget.html] and other tutorials based on the vignette^[https://stat4701.github.io/edav/2015/04/02/rvest_tutorial/] ^[https://www.analyticsvidhya.com/blog/2017/03/beginners-guide-on-web-scraping-in-r-using-rvest-with-hands-on-knowledge/].
+SelectorGadget^[<http://selectorgadget.com/>] is piece of software that allows you to interactively determine what CSS selector you need to extract specific components from the webpage. If you plan on scraping data other than tables from html pages, we highly recommend you install it. A Chrome extension is available which permits you to turn on the gadget and then, as you click through the page, it highlights parts and shows you the selector you need to extract these parts. There are various demos of how to do this including __rvest__ author Hadley Wickham's
+vignette^[<https://rvest.tidyverse.org/articles/selectorgadget.html>] and other tutorials based on the vignette^[<https://www.analyticsvidhya.com/blog/2017/03/beginners-guide-on-web-scraping-in-r-using-rvest-with-hands-on-knowledge/>].
 
 ## JSON
 
@@ -159,16 +159,18 @@ json
 The file above actually represents a data frame. To read it, we can use the function `fromJSON` from the __jsonlite__ package. Note that JSON files are often made available via the internet. Several organizations provide a JSON API or a web service that you can connect directly to and obtain data. Here is an example providing information Nobel prize winners:
 
 ```{r}
+library(jsonlite)
 nobel <- fromJSON("http://api.nobelprize.org/v1/prize.json")
 ```
 
 This downloads a list. The first argument is a table with information about Nobel prize winners:
 
 ```{r}
-filter(nobel$prize, category == "literature" & year == "1971") |> pull(laureates)
+filter(nobel$prize, category == "literature" & year == "1971") |> 
+  pull(laureates)
 ```
 
-You can learn much more by examining tutorials and help files from the __jsonlite__ package. This package is intended for relatively simple tasks such as converting data into tables. For more flexibility, we recommend `rjson`.
+You can learn much more by examining tutorials and help files from the __jsonlite__ package. This package is intended for relatively simple tasks such as converting data into tables. For more flexibility, we recommend the __rjson__ package.
 
 
 
@@ -206,14 +208,13 @@ This `request` function forms an HTTP GET request to the specified URL. Typicall
 The function returns an object of class `response`. This object contains all the details of the server's response, including status code, headers, and content. You can then use other **httr2** functions to extract or interpret information from this response.
 
 
-Let's say you want to retrieve COVID-19 deaths by state from the CDC. By visiting <https://data.cdc.gov> you can search for 
-datasets and find that the data is provided through this API:
+Let's say you want to retrieve COVID-19 deaths by state from the CDC. By visiting their data catalog^[<https://data.cdc.gov>] you can search for datasets and find that the data is provided through this API:
 
 ```{r}
 url <- "https://data.cdc.gov/resource/muzy-jte6.csv"
 ```
 
-We cam then make create and perform a request like this:
+We can then make create and perform a request like this:
 
 
 ```{r}
@@ -236,7 +237,7 @@ tab <- response |> resp_body_string() |> read_csv()
 ```
 
 We note that the returned object is only `r nrow(tab)` entries. API often limit how much you can download. 
-The documentation for this API^[https://dev.socrata.com/docs/queries/] explains that we can change this limit through the 
+The documentation for this API^[<https://dev.socrata.com/docs/queries/>] explains that we can change this limit through the 
 `$limit` parameters. We can use the `req_url_path_append` to add this to our request:
 
 ```{r}
@@ -278,7 +279,7 @@ Start by applying what you learned to read in the website into an object called 
 html_text(h)
 ```
 
-The next step is to extract the tables. For this, we can use the `html_nodes` function. We learned that tables in html are associated with the `table` node.  Use the `html_nodes` function and the `table` node to extract the first table. Store it in an object `nodes`.
+The next step is to extract the tables. For this, we can use the `html_nodes` function. We learned that tables in html are associated with the `table` node.  Use the `html_nodes` function to extract all tables. Store it in an object `nodes`.
 
 
 
@@ -317,7 +318,7 @@ Remove the first component and then use `sapply` and `html_table` to convert eac
 8\. Look through the resulting tables. Are they all the same? Could we just join them with `bind_rows`? 
 
 
-9\. Create two tables, call them `tab_1` and `tab_2` using entries 10 and 19.
+9\. Create two tables, call them `tab_1` and `tab_2` using the 10th and 19th tables in `nodes`.
 
 
 10\. Use a `full_join` function to combine these two tables. Before you do this you will have to fix the missing header problem. You will also need to make the names match.
@@ -336,7 +337,7 @@ tab_1 <- tab_1 |>
 
 Now join the tables and show only Oakland and the Yankees and the payroll columns.
 
-13\. Advanced: extract the titles of the movies that won Best Picture from this website: [https://m.imdb.com/chart/bestpicture/](https://m.imdb.com/chart/bestpicture/)
+13\. Advanced: extract the titles of the movies that won Best Picture from IMDB^[<https://m.imdb.com/chart/bestpicture/>].
 
 
 
