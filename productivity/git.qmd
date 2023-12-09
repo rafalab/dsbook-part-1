@@ -2,11 +2,10 @@
 
 Here we provide a brief introduction Git and GitHub. We are only scratching the surface. To learn more about Git, we highly recommend the following resources:
 
-* Codeacademy: [https://www.codecademy.com/learn/learn-git](https://www.codecademy.com/learn/learn-git)
-* GitHub Guides: [https://guides.github.com/activities/hello-world/](https://guides.github.com/activities/hello-world/)
-* Try Git tutorial: [https://try.github.io/levels/1/challenges/1](https://try.github.io/levels/1/challenges/1)
+* "Learn Git & GitHub" on Codecademy^[<https://www.codecademy.com/learn/learn-git>]
+* "Hello World" exercises GitHub Guides^[<https://guides.github.com/activities/hello-world/>]
 
-If you plan to use Git and Github frequently in conjunction with R, we highly recommend reading [Happy Git and GitHub for the useR](http://happygitwithr.com/) to learn about the details we don't cover here.
+If you plan to use Git and Github frequently in conjunction with R, we highly recommend reading Happy Git and GitHub for the useR^[<http://happygitwithr.com/>] to learn about the details we don't cover here.
 
 ## Why use Git and GitHub?
 
@@ -20,7 +19,7 @@ Three primary reasons to use Git and GitHub are:
 3. **Sharing:** Beyond its powerful version control and collaboration tools, Git and GitHub serve as a platform to easily share your code with others.
 
 
-We primarily emphasize the sharing capabilities of Git here. For a deeper dive into its other functionality, please refer to the provided links above. One major advantage of hosting code on GitHub is the ease with which you can showcase it to potential employers seeking samples of your work. Given that numerous companies and organizations employ version control systems like Git for project collaboration, they may find it commendable that you possess some knowledge of the tool.
+We primarily emphasize the sharing capabilities here. For a deeper dive into its other functionality, please refer to the provided resources above. One major advantage of hosting code on GitHub is the ease with which you can showcase it to potential employers seeking samples of your work. Given that numerous companies and organizations employ version control systems like Git for project collaboration, they may find it commendable that you possess some knowledge of the tool.
 
 ## Overview of Git {#sec-git-overview}
 
@@ -50,16 +49,16 @@ Now, to work with this strategy, you'll need an account on GitHub. In the next t
 
 ## GitHub accounts
 
-Basic GitHub accounts are free. To create one, go to [GitHub](github.com) where you will see a box in which you can sign up. 
+Basic GitHub accounts are free. To create one, go to GitHub^[<https://github.com/>] where you will see a box in which you can sign up. 
 
 You want to pick a name carefully. It should be short, easy to remember and to spell, somehow related to your name, and professional. This last one is important since you might be sending potential employers a link to your GitHub account. Your initials and last name are usually a good choice. 
 
 
 ## GitHub repositories {#sec-github-repos}
 
-Once you have an account, you are now ready to create a GitHub repository that will serve as the main or upstream repo for a project. Collaborators you add to this project, will be able to manage a local repository on their computer and push changes. Git will help you keep all the different copies synced.
+Once you have an account, you are now ready to create a GitHub repository that will serve as the main or upstream repo for a project. Collaborators you add to this project will be able to manage a local repository on their computer and push changes. Git will help you keep all the different copies synced.
 
-To create a repo, first log in to your account by clicking the _Sign In_ button on [https://github.com](http://github.com). You might already be signed in, in which case the _Sign In_ button will not show up. If signing in, you will have to enter your username and password. We recommend you set up your browser to remember this to avoid typing it in each time.
+To create a repo, first log in to your account by clicking the _Sign In_ button on GitHub. You might already be signed in, in which case the _Sign In_ button will not show up. If signing in, you will have to enter your username and password. We recommend you set up your browser to remember this to avoid typing it in each time.
 
 Once on your account, you can click on _Repositories_ and then click on _New_ to create a new repo. You will be prompted for a name:
 
@@ -75,7 +74,7 @@ When naming your project, pick a descriptive name that clearly tells what the pr
 
 You will also be prompted to decide whether your repo should be public or private. To decide, know that this is the difference:
 
-- **Public repositories**: Anyone on the internet can see these. Although only collaborators can make changes.
+- **Public repositories**: Anyone on the internet can see these. Only collaborators can make changes.
 
 - **Private repositories**: Only people you grant access to can view them.
 
@@ -87,9 +86,9 @@ After creating your repo, GitHub will show you steps to link your local repo (th
 
 When accessing GitHub you need credentials to verify your identity. There are two ways to connect: HTTPS or SSH, each requiring different credentials. We recommend using HTTPS, which uses a Personal Access Token (PAT). Note that **your GitHub website password isn't your access token**. 
 
-GitHub provides a detailed guide on obtaining an access token. You can find the guide [here](https://docs.github.com/en/enterprise-server@3.6/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens). To generate a token:
+GitHub provides a detailed guide on obtaining an access token^[<https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens>] which can be found by searching "Managing your personal access tokens" on the GitHub Docs website^[<https://docs.github.com/en>]. To generate a token:
 
-1. Carefully follow the instructions in the provided link.
+1. Carefully follow the instructions provided by GitHub.
 2. When setting permissions for the token, choose _non-expiring_ and select the _repo_ option in the _scopes_ section.
 
 Once you complete these steps, GitHub will display your token—a lengthy string of characters. You should then:
@@ -99,7 +98,7 @@ Once you complete these steps, GitHub will display your token—a lengthy string
 
 In some of the procedures outlined below, you'll be prompted to enter your password. Instead, paste the token you've copied. After this, password prompts should no longer appear. If you ever need the token again, retrieve it from your password manager.
 
-For a much more detailed explanation, including how to use SSH instead of HTTPS, please consult [Happy Git and GitHub for the useR](https://happygitwithr.com/https-pat).
+For a much more detailed explanation, including how to use SSH instead of HTTPS, please consult Happy Git and GitHub for the useR^[<https://happygitwithr.com/https-pat>].
 
 The next step is to let Git know who we are. This will make it easier to connect with GitHub. To to this type the following two commands in our terminal window:
 
@@ -113,7 +112,7 @@ Note that **you need to use the email account that you used to open your GitHub 
 
 ## Initial setup {#sec-init}
 
-In a terminal move to the directory you want to store the local repository. We recommend naming the directory the same as the GitHub repo. In our example we would use:
+In a terminal, move to the directory you want to store the local repository. We recommend naming the directory the same as the GitHub repo. In our example we would use:
 
 ```
 mkdir homework-0
@@ -146,14 +145,14 @@ git branch
 If you see a branch name other than `main` but want it to be `main`, rename it with:
 
 ```
-git branch -M main
+git branch -M main*
 ```
 
 The `-M` stands for move. Note that this is different from changing branches, it is renaming the current branch.
 :::
 
 
-To link your local repository to its counterpart on GitHub, you'll need the GitHub repository's URL. To find this, go to the repository's webpage at `https://github.com/rairizarry/homework-0`. Click the green _Code_ button to quickly copy the URL, which in our example is `https://github.com/rairizarry/homework-0.git`.
+To link your local repository to its counterpart on GitHub, you'll need the GitHub repository's URL. To find this, go to the repository's webpage. Click the green _Code_ button to quickly copy the URL, which in our example is `https://github.com/rairizarry/homework-0.git`.
 
 ![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_24_19.png){width=50%}
 
@@ -248,7 +247,7 @@ If we are now ready to make a first version of our repository, which only includ
 git commit -m "Adding a new file." 
 ```
 
-Note that `commit` requires us to add a messge. Making these informative will help us remember why this change was made. After running `commit` we will receive a message letting us know it was committed:
+Note that `commit` requires us to add a message. Making these informative will help us remember why this change was made. After running `commit` we will receive a message letting us know it was committed:
 
 ```
 [main (root-commit) 1735c25] adding a new file
@@ -279,7 +278,7 @@ which gives us a message letting us know a change was made:
  1 file changed, 1 insertion(+)
 ```
 
-Note that we can achieve the same results with just one line by following the commit command with the files we want committed
+Note that we can achieve the same results with just one line by following the commit command with the files we want committed:
 
 ```
 git commit -m "Added some lines of code." code.R
@@ -342,7 +341,7 @@ origin  https://github.com/username/homework-0.git (fetch)
 origin  https://github.com/username/homework-0.git (push)
 ```
 
-We describe `fetch` next. If you don't get anything back it means you have not defined your remote as we did in Section @sec-init.
+We describe `fetch` next. If you don't get anything back it means you have not defined your remote as we did in @sec-init.
 
 
 ### fetch and merge
@@ -397,7 +396,7 @@ If you use `git clone`, you do not need to initialize as the branch and remote w
 
 ## .gitignore
 
-When we use `git status` we obtain information about all files in our local repo. But we don't necessarily need to add all the files in our local repo to the Git repo, only the ones we want to keep track of or the ones we want to share. If our work is producing files of a certain type that we do not want to keep track of, we can add the suffix that defines these files to the .gitignore file. More details on using .gitignore are included here: [https://git-scm.com/docs/gitignore](https://git-scm.com/docs/gitignore). These files will stop appearing in your RStudio Git pane. 
+When we use `git status` we obtain information about all files in our local repo. But we don't necessarily need to add all the files in our working directory to the Git repo, only the ones we want to keep track of or the ones we want to share. If our work is producing files of a certain type that we do not want to keep track of, we can add the suffix that defines these files to the .gitignore file. More details on using .gitignore are included on the git-scm website^[<https://git-scm.com/docs/gitignore>]. These files will stop appearing when you type `git status`.
 
 
 ## Git in RStudio {#sec-rstudio-git}
@@ -413,7 +412,7 @@ To do this, we start a project but, instead of _New Directory_, or _Existing Dir
 ![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_30_43.png){width=35%}
 :::
 
-The repository URL is the link you used as `origin` or to clone. In Section @sec-github-repos, we used `https://github.com/username/homework-0.git` as an example. In the project directory name, you need to put the name of the folder that was generated, which in our example will be the name of the repo `homework-0`. This will create a folder called `homework-0` on your local system. Note you will need to remove the folder if it already exists or chose a different name.
+The repository URL is the link you used as `origin` or to clone. In @sec-github-repos, we used `https://github.com/username/homework-0.git` as an example. In the project directory name, you need to put the name of the folder that was generated, which in our example will be the name of the repo `homework-0`. This will create a folder called `homework-0` on your local system. Note you will need to remove the folder if it already exists or chose a different name.
 Once you do this, the project is created and it is aware of the connection to a GitHub repo. You will see on the top right corner the name and type of project as well as a new tab on the upper right pane titled _Git_. 
 
 
@@ -425,21 +424,21 @@ Once you do this, the project is created and it is aware of the connection to a 
 :::
 
 
-If you select this tab, it will show you the files on your project with some icons that give you information about these files and their relationship to the repo. In the example below, we already added a file to the folder, called _code.R_ which you can see in the editing pane.
+If you select this tab, it will show you the files in your project, excluding those in `.gitignore`, with some icons that give you information about these files and their relationship to the repo. In the example below, we already added a file to the folder, called _code.R_ which you can see in the editing pane.
 
-![](img//windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_34_06.png){width=50%}
+![](img//windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_34_06.png){width="50%" fig-align="center"}
 
-We now need to pay attention to the Git pane. It is important to know that **your local files and the GitHub repo will not be synced automatically**.  As described in Section @sec-git-overview, you have to sync using git push when you are ready. We show how you can do this through RStudio rather than the terminal below. 
+We now need to pay attention to the Git pane. It is important to know that **your local files and the GitHub repo will not be synced automatically**.  As described in @sec-git-overview, you have to sync using git push when you are ready. We show how you can do this through RStudio rather than the terminal below. 
 
 Before we start working on a collaborative project, usually the first thing we do is _pull_ in the changes from the remote repo, in our case the one on GitHub. However, for the example shown here, since we are starting with an empty repo and we are the only ones making changes, we don't need to start by pulling.
 
 In RStudio, the status of the file as it relates to the remote and local repos are represented in the status symbols with colors. A yellow square means that Git knows nothing about this file. To sync with the GitHub repo, we need to _add_ the file, then _commit_ the change to our local Git repo, then _push_ the change to the GitHub repo. Right now, the file is just on our computer. To add the file using RStudio, we click the _Stage_ box. You will see that the status icon now changes to a green A. 
 
-![](img//windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_51_31.png){width=50%}
+![](img//windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_51_31.png){width="50%" fig-align="center"}
 
-Now we are ready to commit the file to our local repo. In RStudio, we can use the _Commit_ button. This will open a new dialog window. With Git, whenever we commit a change, we are required to enter a comment describing the changes being _committed_. 
+Now we are ready to commit the file to our local repo. In RStudio, we can use the _Commit_ button. This will open a new dialog window. With Git, whenever we commit a change, we are required to enter a message describing the changes being _committed_. 
 
-![](img//windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_51_54.png){width=50%}
+![](img//windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_51_54.png){width="50%" fig-align="center"}
 
 In this case, we will simply describe that we are adding a new script. In this dialog box, RStudio also gives you a summary of what you are changing to the GitHub repo. In this case, because it is a new file, the entire file is highlighted as green, which highlights the changes.
 
@@ -467,12 +466,12 @@ In the pop-up window we no longer see the `code.R` file. This is because no new 
 
 If we now visit our repo on the web, we will see that it matches our local copy. 
 
-![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_09.png){width=50%}
+![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_09.png){width="50%" fig-align="center"}
 
 Congratulations, you have successfully shared code on a GitHub repository!
 
 
 :::{ .callout-note}
-For the example shown here, we only be added _code.R_. But, in general, for an RStudio project, we recommend adding a README.md file and both the .gitignore and .Rproj files.
+For the example shown here, we only added _code.R_. But, in general, for an RStudio project, we recommend adding a README.md file and both the .gitignore and .Rproj files.
 :::
 

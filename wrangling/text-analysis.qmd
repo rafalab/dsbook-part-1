@@ -6,11 +6,11 @@ With the exception of labels used to represent categorical data, we have focused
 
 During the 2016 US presidential election, then candidate Donald J. Trump used his twitter account as a way to communicate with potential voters. On August 6, 2016, Todd Vaziri tweeted[^text-analysis-1] about Trump that "Every non-hyperbolic tweet is from iPhone (his staff). Every hyperbolic tweet is from Android (from him)." David Robinson conducted an analysis[^text-analysis-2] to determine if data supported this assertion. Here, we go through David's analysis to learn some of the basics of text analysis. To learn more about text analysis in R, we recommend the Text Mining with R book[^text-analysis-3] by Julia Silge and David Robinson.
 
-[^text-analysis-1]: https://twitter.com/tvaziri/status/762005541388378112/photo/1
+[^text-analysis-1]: <https://twitter.com/tvaziri/status/762005541388378112/photo/1>
 
-[^text-analysis-2]: http://varianceexplained.org/r/trump-tweets/
+[^text-analysis-2]: <http://varianceexplained.org/r/trump-tweets/>
 
-[^text-analysis-3]: https://www.tidytextmining.com/
+[^text-analysis-3]: <https://www.tidytextmining.com/>
 
 ```{r,echo=FALSE}
 set.seed(2002)
@@ -26,7 +26,7 @@ library(textdata)
 library(dslabs)
 ```
 
-X.com (formerly twitter) provides an API that permits downloading tweets. Brendan Brown runs the trump archive\^\[https://www.thetrumparchive.com/\], which compiles tweet data from Trump's account. The **dslabs** package includes tweets from the following range:
+X, formerly known as twitter, provides an API that permits downloading tweets. Brendan Brown runs the trump archive^[<https://www.thetrumparchive.com/>], which compiles tweet data from Trump's account. The **dslabs** package includes tweets from the following range:
 
 ```{r}
 range(trump_tweets$created_at)
@@ -50,7 +50,7 @@ and the source variable tells us which device was used to compose and upload eac
 trump_tweets |> count(source) |> arrange(desc(n)) |> head(5)
 ```
 
-We are interested in what happened during the 2016 campaign, so for this analysis we will focus on what was tweeted between the day Trump announced his campaign and election day. We define the following table containing just the tweets from that time period. We remove the `Twitter for` part of the source and filter out retweets.
+We are interested in what happened during the 2016 campaign, so for this analysis we will focus on what was tweeted between the day Trump announced his campaign and election day. We define the following table containing just the tweets from that time period. We remove the `Twitter for` part of the source, only keep tweets from Android or iPhone, and filter out retweets.
 
 ```{r}
 campaign_tweets <- trump_tweets |> 
@@ -63,7 +63,7 @@ campaign_tweets <- trump_tweets |>
   as_tibble()
 ```
 
-We can now use data visualization to explore the possibility that two different groups were tweeting from these devices. For each tweet, we will extract the hour, East Coast time (EST), it was tweeted and then compute the proportion of tweets tweeted at each hour for each device:
+We can now use data visualization to explore the possibility that two different groups were tweeting from these devices. For each tweet, we will extract the hour, Eastern Standard Time (EST), it was tweeted and then compute the proportion of tweets tweeted at each hour for each device:
 
 ```{r tweets-by-time-by-device}
 campaign_tweets |>
@@ -81,13 +81,13 @@ campaign_tweets |>
 
 We notice a big peak for the Android in the early hours of the morning, between 6 and 8 AM. There seems to be a clear difference in these patterns. We will therefore assume that two different entities are using these two devices.
 
-We will now study how the tweets differ when we compare Android to iPhone. To do this, we introduce the **tidytext** package.
+We will now study how the text of the tweets differ when we compare Android to iPhone. To do this, we introduce the **tidytext** package.
 
 ## Text as data
 
 The **tidytext** package helps us convert free form text into a tidy table. Having the data in this format greatly facilitates data visualization and the use of statistical techniques.
 
-The main function needed to achieve this is `unnest_tokens`. A *token* refers to a unit that we are considering to be a data point. The most common *token* will be words, but they can also be single characters, n-grams, sentences, lines, or a pattern defined by a regex. The functions will take a vector of strings and extract the tokens so that each one gets a row in the new table. Here is a simple example:
+The main function needed to achieve this is `unnest_tokens`. A *token* refers to a unit that we are considering to be a data point. The most common *token* will be words, but they can also be single characters, n-grams, sentences, lines, or a pattern defined by a regex. The function will take a vector of strings and extract the tokens so that each one gets a row in the new table. Here is a simple example:
 
 ```{r}
 poem <- c("Roses are red,", "Violets are blue,", 
@@ -98,7 +98,7 @@ example
 example |> unnest_tokens(word, text)
 ```
 
-Now let's look at trump tweet. We will look at tweet number 3008 because it will later permit us to illustrate a couple of points:
+Now let's look at Trump's tweets. We will look at tweet number 3008 because it will later permit us to illustrate a couple of points:
 
 ```{r}
 i <- 3008
@@ -118,7 +118,7 @@ campaign_tweets[i,] |>
   pull(word)
 ```
 
-Now we are now ready to extract the words for all our tweets.
+Now we are now ready to extract the words from all our tweets.
 
 ```{r, message=FALSE, warning=FALSE}
 tweet_words <- campaign_tweets |> 
@@ -155,7 +155,6 @@ we end up with a much more informative set of top 10 tweeted words:
 tweet_words |> 
   count(word) |>
   top_n(10, n) |>
-  mutate(word = reorder(word, n)) |>
   arrange(desc(n))
 ```
 
@@ -172,7 +171,7 @@ tweet_words <- campaign_tweets |>
 
 Now that we have all our words in a table, along with information about what device was used to compose the tweet they came from, we can start exploring which words are more common when comparing Android to iPhone.
 
-For each word, we want to know if it is more likely to come from an Android tweet or an iPhone tweet. We therefore compute, for each word, what proportion of all words it represent for Android and iPhone, respectively.
+For each word, we want to know if it is more likely to come from an Android tweet or an iPhone tweet. We therefore compute, for each word, its frequency among words tweeted from Android and iPhone, respectively.
 
 ```{r}
 android_vs_iphone <- tweet_words |>
@@ -202,7 +201,7 @@ We already see somewhat of a pattern in the types of words that are being tweete
 
 In sentiment analysis, we assign a word to one or more "sentiments". Although this approach will miss context-dependent sentiments, such as sarcasm, when performed on large numbers of words, summaries can provide insights.
 
-The first step in sentiment analysis is to assign a sentiment to each word. As we demonstrate, the **tidytext** package includes several maps or lexicons. We **textdata** package includes several of these lexicons.
+The first step in sentiment analysis is to assign a sentiment to each word. As we demonstrate, the **tidytext** package includes several maps or lexicons. The **textdata** package includes several of these lexicons.
 
 The `bing` lexicon divides words into `positive` and `negative` sentiments. We can see this using the *tidytext* function `get_sentiments`:
 
@@ -264,7 +263,7 @@ sentiment_counts |>
 
 So we do see some differences and the order is interesting: the largest three sentiments are disgust, anger, and negative!
 
-If we are interested in exploring which specific words are driving these differences, we can refer back to our `android_iphone_or` object:
+If we are interested in exploring which specific words are driving these differences, we can refer back to our `android_vs_iphone` object:
 
 ```{r}
 android_vs_iphone |> inner_join(nrc, by = "word") |>
@@ -294,7 +293,7 @@ android_vs_iphone |> inner_join(nrc, by = "word") |>
 
 This is just a simple example of the many analyses one can perform with tidytext. To learn more, we again recommend the Tidy Text Mining book[^text-analysis-4].
 
-[^text-analysis-4]: https://www.tidytextmining.com/
+[^text-analysis-4]: <https://www.tidytextmining.com/>
 
 ## Exercises
 

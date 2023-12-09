@@ -295,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Installing Git</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Terminal Access and Installing Git</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -338,7 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#changing-global-options" id="toc-changing-global-options" class="nav-link" data-scroll-target="#changing-global-options"><span class="header-section-number">1.4.4</span> Changing global options</a></li>
   </ul>
 </li>
-  <li><a href="#installing-r-packages" id="toc-installing-r-packages" class="nav-link" data-scroll-target="#installing-r-packages"><span class="header-section-number">1.5</span> Installing R packages</a></li>
+  <li><a href="#sec-installing-r-packages" id="toc-sec-installing-r-packages" class="nav-link" data-scroll-target="#sec-installing-r-packages"><span class="header-section-number">1.5</span> Installing R packages</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/blob/main/R/getting-started.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
@@ -369,7 +369,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol></section><section id="the-r-console" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="the-r-console">
 <span class="header-section-number">1.2</span> The R console</h2>
 <p>Interactive data analysis usually occurs on the <em>R console</em> that executes commands as you type them. There are several ways to gain access to an R console. One way is to simply start R on your computer. The console looks something like this:</p>
-<p><img src="img/R_console.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="img/R_console.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 <p>As a quick example, try using the console to calculate a 15% tip on a meal that cost $19.71:</p>
 <div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/tip_calculator_57d4ab85b7c6b59cabda401e52b26309">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">0.15</span> <span class="op">*</span> <span class="fl">19.71</span>  </span>
@@ -379,7 +382,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="scripts" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="scripts">
 <span class="header-section-number">1.3</span> Scripts</h2>
 <p>One of the great advantages of R over point-and-click analysis software is that you can save your work as scripts. You can edit and save these scripts using a text editor. The material in this book was developed using the interactive <em>integrated development environment</em> (IDE) RStudio<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. RStudio includes an editor with many R specific features, a console to execute your code, and other useful panes, including one to show figures.</p>
-<p><img src="img/rstudio.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="img/rstudio.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 <p>Most web-based R consoles also provide a pane to edit scripts, but not all permit you to save the scripts for later use.</p>
 <p>All the R scripts used to generate this book can be found on GitHub<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p>
 </section><section id="sec-rstudio" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="sec-rstudio">
@@ -388,37 +394,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="the-panes" class="level3" data-number="1.4.1"><h3 data-number="1.4.1" class="anchored" data-anchor-id="the-panes">
 <span class="header-section-number">1.4.1</span> The panes</h3>
 <p>When you start RStudio for the first time, you will see three panes. The left pane shows the R console. On the right, the top pane includes tabs such as <em>Environment</em> and <em>History</em>, while the bottom pane shows five tabs: <em>File</em>, <em>Plots</em>, <em>Packages</em>, <em>Help</em>, and <em>Viewer</em> (these tabs may change in new versions). You can click on each tab to move across the different features.</p>
-<p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_16.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_16.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 <p>To start a new script, you can click on File, then New File, then R Script.</p>
-<p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_42.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_42.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 <p>This starts a new pane on the left and it is here where you can start writing your script.</p>
-<p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_49.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_49.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 </section><section id="key-bindings" class="level3" data-number="1.4.2"><h3 data-number="1.4.2" class="anchored" data-anchor-id="key-bindings">
 <span class="header-section-number">1.4.2</span> Key bindings</h3>
 <p>Many tasks we perform with the mouse can be achieved with a combination of key strokes instead. These keyboard versions for performing tasks are referred to as <em>key bindings</em>. For example, we just showed how to use the mouse to start a new script, but you can also use a key binding: Ctrl+Shift+N on Windows and command+shift+N on the Mac.</p>
 <p>Although in this tutorial we often show how to use the mouse, <strong>we highly recommend that you memorize key bindings for the operations you use most</strong>. RStudio provides a useful cheat sheet with the most widely used commands. You can get it from RStudio directly:</p>
-<p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_22_20.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_22_20.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 <p>You might want to keep this handy so you can look up key-bindings when you find yourself performing repetitive point-and-clicking.</p>
 </section><section id="running-commands-while-editing-scripts" class="level3" data-number="1.4.3"><h3 data-number="1.4.3" class="anchored" data-anchor-id="running-commands-while-editing-scripts">
 <span class="header-section-number">1.4.3</span> Running commands while editing scripts</h3>
 <p>There are many editors specifically made for coding. These are useful because color and indentation are automatically added to make code more readable. RStudio is one of these editors, and it was specifically developed for R. One of the main advantages provided by RStudio over other editors is that we can test our code easily as we edit our scripts. Below we show an example.</p>
 <p>Let’s start by opening a new script as we did before. A next step is to give the script a name. We can do this through the editor by saving the current new unnamed script. To do this, click on the save icon or use the key binding Ctrl+S on Windows and command+S on the Mac.<br></p>
 <p>When you ask for the document to be saved for the first time, RStudio will prompt you for a name. A good convention is to use a descriptive name, with lower case letters, no spaces, only hyphens to separate words, and then followed by the suffix <em>.R</em>. We will call this script <em>my-first-script.R</em>.</p>
-<p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_27_44.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_27_44.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 <p>Now we are ready to start editing our first script. The first lines of code in an R script are dedicated to loading the libraries we will use. Another useful RStudio feature is that once we type <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> it starts auto-completing with libraries that we have installed. Note what happens when we type <code><a href="https://rdrr.io/r/base/library.html">library(ti)</a></code>:</p>
-<p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_29_47.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_29_47.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 <p>Another feature you may have noticed is that when you type <code>library(</code> the second parenthesis is automatically added. This will help you avoid one of the most common errors in coding: forgetting to close a parenthesis.</p>
 <p>Now we can continue to write code. As an example, we will make a graph showing murder totals versus population totals by state. Once you are done writing the code needed to make this plot, you can try it out by <em>executing</em> the code. To do this, click on the <em>Run</em> button on the upper right side of the editing pane. You can also use the key binding: Ctrl+Shift+Enter on Windows or command+shift+return on the Mac.</p>
 <p>Once you run the code, you will see it appear in the R console and, in this case, the generated plot appears in the plots console. Note that the plot console has a useful interface that permits you to click back and forward across different plots, zoom in to the plot, or save the plots as files.</p>
-<p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_45_18.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_45_18.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 <p>To run one line at a time instead of the entire script, you can use Control-Enter on Windows and command-return on the Mac.</p>
 </section><section id="changing-global-options" class="level3" data-number="1.4.4"><h3 data-number="1.4.4" class="anchored" data-anchor-id="changing-global-options">
 <span class="header-section-number">1.4.4</span> Changing global options</h3>
 <p>You can change the look and functionality of RStudio quite a bit.</p>
 <p>To change the global options you click on <em>Tools</em> then <em>Global Options…</em>.</p>
 <p>As an example we show how to make a change that we <strong>highly recommend</strong>. This is to change the <em>Save workspace to .RData on exit</em> to <em>Never</em> and uncheck the <em>Restore .RData into workspace at start</em>. By default, when you exit R saves all the objects you have created into a file called .RData. This is done so that when you restart the session in the same folder, it will load these objects. We find that this causes confusion especially when we share code with colleagues and assume they have this .RData file. To change these options, make your <em>General</em> settings look like this:</p>
-<p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_56_08.png" class="img-fluid" style="width:70.0%"></p>
-</section></section><section id="installing-r-packages" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="installing-r-packages">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_56_08.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</section></section><section id="sec-installing-r-packages" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="sec-installing-r-packages">
 <span class="header-section-number">1.5</span> Installing R packages</h2>
 <p>The functionality provided by a fresh install of R is only a small fraction of what is possible. In fact, we refer to what you get after your first install as <em>base R</em>. The extra functionality comes from add-ons available from developers. There are currently hundreds of these available from CRAN and many others shared via other repositories such as GitHub. However, because not everybody needs all available functionality, R instead makes different components available via <em>packages</em>. R makes it very easy to install packages from within R. For example, to install the <strong>dslabs</strong> package, which we use to share datasets and code related to this book, you would type:</p>
 <div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-1_4d50f87651b72d18ad5cd05692e07934">
@@ -434,7 +464,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"tidyverse"</span>, <span class="st">"dslabs"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>One advantage of using RStudio is that it auto-completes package names once you start typing, which is helpful when you do not remember the exact spelling of the package:</p>
-<p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_24_18.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_24_18.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 <p>Once you select your package, we recommend selecting all the defaults:</p>
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">

@@ -4,7 +4,7 @@ The final product of a data analysis project is often a report. Many scientific 
 
 Imagine that after you finish the analysis and the report, you are told that you were given the wrong dataset, you are sent a new one and you are asked to run the same analysis. Or what if you realize that a mistake was made and you need to re-examine the code, fix the error, and re-run the analysis? Or imagine that someone you are training wants to see your code and be able to reproduce the results to learn about your approach?
 
-Situations like the ones just described are actually quite common for a data analyst. Here, we describe how you can keep your projects organized with RStudio so that re-running an analysis is straight-forward. We then demonstrate how to generate reproducible reports with quarto, or R markdown, and the **knitR** package in a way that will greatly help with recreating reports with minimal work. This is possible due to the fact that markdown documents permit code and textual descriptions to be combined into the same document, and the figures and tables produced by the code are automatically added to the document.
+Situations like the ones just described are actually quite common for a data analyst. Here, we describe how you can keep your projects organized with RStudio so that re-running an analysis is straight-forward. We then demonstrate how to generate reproducible reports with quarto or R markdown. The **knitR** package will greatly help with recreating reports with minimal work. This is possible due to the fact that markdown documents permit code and textual descriptions to be combined into the same document, and the figures and tables produced by the code are automatically added to the document.
 
 ```{r, echo=FALSE}
 img_path <- "productivity/img"
@@ -16,9 +16,9 @@ mac_screenshots <- file.path(img_path,"mac-screenshots", mac_screenshots)
 
 ## RStudio projects
 
-RStudio provides a way to keep all the components of a data analysis project organized into one folder and to keep track of information about this project, such as the Git status of files, in one file. In Section @sec-rstudio-git we demonstrate how RStudio facilitates the use of Git and GitHub through RStudio projects. In this section we quickly demonstrate how to start a new a project and some recommendations on how to keep these organized. RStudio projects also permit you to have several RStudio sessions open and keep track of which is which.
+RStudio provides a way to keep all the components of a data analysis project organized into one folder and to keep track of information about this project, such as the Git status of files, in one place. In @sec-rstudio-git we demonstrated how RStudio facilitates the use of Git and GitHub through RStudio projects. In this section we quickly demonstrate how to start a new a project and some recommendations on how to keep these organized. RStudio projects also permit you to have several RStudio sessions open and keep track of which is which.
 
-To start a project, click on *File* and then *New Project*. Often we have already created a folder to save the work, as we did in Section @sec-prep-project and we select *Existing Directory*. Here we show an example in which we have not yet created a folder and select the *New Directory* option.
+To start a project, click on *File* and then *New Project*. Often we have already created a folder to save the work, as we did in @sec-prep-project, and we select *Existing Directory*. Here we show an example in which we have not yet created a folder and select the *New Directory* option.
 
 ::: {layout-ncol="2"}
 ![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_20_21.png){width="35%"}
@@ -28,21 +28,21 @@ To start a project, click on *File* and then *New Project*. Often we have alread
 
 Then, for a data analysis project, you usually select the *New Project* option:
 
-![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_20_35.png){width="50%"}
+![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_20_35.png){width="50%" fig-align="center"}
 
 Now you will have to decide on the location of the folder that will be associated with your project, as well as the name of the folder. When choosing a folder name, just like with file names, make sure it is a meaningful name that will help you remember what the project is about. As with files, we recommend using lower case letters, no spaces, and hyphens to separate words. We will call the folder for this project `my-first-project`. This will then generate a *Rproj* file called `my-first-project.Rproj` in the folder associated with the project. We will see how this is useful a few lines below.
 
-![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_21_09.png){width="50%"}
+![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_21_09.png){width="50%" fig-align="center"}
 
 You will be given options on where this folder should be on your filesystem. In this example, we will place it in our home folder, but this is generally not good practice. As we described in @sec-prep-project in the Unix chapter, you want to organize your filesystem following a hierarchical approach and with a folder called *projects* where you keep a folder for each project.
 
-![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_21_56.png){width="50%"}
+![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_21_56.png){width="50%" fig-align="center"}
 
 When you start using RStudio with a project, you will see the project name in the upper right corner. This will remind you what project this particular RStudio session belongs to. When you open an RStudio session with no project, it will say *Project: (None)*.
 
 When working on a project, all files will be saved and searched for in the folder associated with the project. Below, we show an example of a script that we wrote and saved with the name `code.R`. Because we used a meaningful name for the project, we can be a bit less informative when we name the files. Although we do not do it here, you can have several scripts open at once. You simply need to click *File*, then *New File* and pick the type of file you want to edit.
 
-![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_23_26.png){width="50%"}
+![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_23_26.png){width="50%" fig-align="center"}
 
 One of the main advantages of using Projects is that after closing RStudio, if we wish to continue where we left off on the project, we simply double click or open the file saved when we first created the RStudio project. In this case, the file is called `my-first-project.Rproj`. If we open this file, RStudio will start up and open the scripts we were editing.
 
@@ -56,11 +56,11 @@ Another advantage is that if you click on two or more different Rproj files, you
 
 ## Markdown
 
-Markdown is a format for *literate programming* documents that is widely used to generate html pages or pdf documents. Literate programming weaves instructions, documentation, and detailed comments in between machine executable code, producing a document that describes the program that is best for human understanding (Knuth 1984). You can learn more about markdown here: <https://www.markdowntutorial.com/>.
+Markdown is a format for *literate programming* documents that is widely used to generate html pages or pdf documents. Literate programming weaves instructions, documentation, and detailed comments in between machine executable code, producing a document that describes the program that is best for human understanding^[Knuth, Donald Ervin. "Literate programming." The computer journal 27.2 (1984): 97-111. <https://academic.oup.com/comjnl/article/27/2/97/343244>]. You can learn more about markdown with online tutorials^[<https://www.markdowntutorial.com/>].
 
 Unlike a word processor, such as Microsoft Word, where what you see is what you get, with markdown, you need to *compile* the document into the final report. The markdown document looks different than the final product. This approach seems like a disadvantage at first, but it can save you time in the long run. For example, instead of producing plots and inserting them one by one into the word processing document, the plots are automatically added when the document is compiled. If you need to change the plots, you just recompile the document after editing the code that produces the plot.
 
-In R, we can produce literate programming documents using Quarto or R Markdown. We recommend using Quarto because it is a newer and more flexible version of R markdown that permits the use of languages other than R. Because R markdown preceded Quarto by several years, many public and educational literate programming documents are written in R markdown. However, because the format is similar and both use the **knitr** package, described in Section @sec-knitr, to execute the R code, most existing R markdown files can be rendered with Quarto, without modification.
+In R, we can produce literate programming documents using Quarto or R markdown. We recommend using Quarto because it is a newer and more flexible version of R markdown that permits the use of languages other than R. Because R markdown preceded Quarto by several years, many public and educational literate programming documents are written in R markdown. However, because the format is similar and both use the **knitr** package to execute the R code (details in @sec-knitr), most existing R markdown files can be rendered with Quarto without modification.
 
 In RStudio, you can start either a Quarto or R markdown document by clicking on *File*, *New File*, then *Quarto Document* or *R Markdown*, respectively. You will then be asked to enter a title and author for your document. We are going to prepare a report on gun murders so we will give it an appropriate name. You can also decide what format you would like the final report to be in: HTML, PDF, or Microsoft Word. Later, we can easily change this, but here we select html as it is the preferred format for debugging purposes:
 
@@ -72,7 +72,7 @@ In RStudio, you can start either a Quarto or R markdown document by clicking on 
 
 This will generate a template file:
 
-![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_20.png){width="50%"}
+![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_20.png){width="50%" fig-align="center"}
 
 As a convention, we use `qmd` and `Rmd` suffixes for Quarto and R markdown files, respectively.
 
@@ -92,7 +92,7 @@ format: html
 ---
 ```
 
-The things between the `---` is the *YAML* header. YAML is a widely used language mainly used for providing configuration data. With Quarto and R markdown it is mainly used to define options for the document. You can define many other things in the header than what is included in the template. We don't discuss those here, but much information is available from the [quarto guide](https://quarto.org/docs/guide/). The one parameter that we will highlight is `format`. By changing this to, say, `pdf`, we can control the type of output that is produced when we compile. The title and author parameters are automatically filled because we filled in the blanks in the RStudio diaglog box that pops up when starting a new document.
+The things between the `---` is the *YAML* header. YAML is a widely used language mainly used for providing configuration data. With Quarto and R markdown it is mainly used to define options for the document. You can define many other things in the header than what is included in the template. We don't discuss those here, but much information is available from the quarto guide^[<https://quarto.org/docs/guide/>]. The one parameter that we will highlight is `format`. By changing this to, say, `pdf`, we can control the type of output that is produced when we compile. The title and author parameters are automatically filled because we filled in the blanks in the RStudio dialog box that pops up when creating a new document.
 
 ### R code chunks
 
@@ -130,7 +130,7 @@ We recommend getting into the habit of adding a label to the R code chunks. This
 
 ### Global execution options
 
-If you want to apply an option globally, you can include in the header, under `execute`. For example adding the following line to the header make code not shou up, by default:
+If you want to apply an option globally, you can include in the header, under `execute`. For example adding the following line to the header make code not show up, by default:
 
 ```         
 execute:
@@ -141,9 +141,9 @@ We will not cover more details here, but as you become more experienced with R M
 
 ### knitR {#sec-knitr}
 
-We use the **knitR** package to compile Quarto or R markdown documents. The specific function used to compile is the `knit` function, which takes a filename as input. RStudio provides a button that makes it easier to compile the document. For the screenshot below, we have edited the document so that a report on gun murders is produced. You can see the file here: <https://raw.githubusercontent.com/rairizarry/murders/master/report.qmd>. You can now click on the `Render` button:
+We use the **knitR** package to compile Quarto or R markdown documents. The specific function used to compile is the `knit` function, which takes a filename as input. RStudio provides a button that makes it easier to compile the document. For the screenshot below, we have edited the document so that a report on gun murders is produced. You can see the file on GitHub^[<https://raw.githubusercontent.com/rairizarry/murders/master/report.qmd>]. You can now click on the `Render` button:
 
-![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_21.0.png){width="50%"}
+![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_21.0.png){width="50%" fig-align="center"}
 
 Note that the first time you click on the *Render* button, a dialog box may appear asking you to install packages you need. Once you have installed the packages, clicking *Render* will compile your Quarto file and the resulting document will pop up.
 
@@ -159,9 +159,10 @@ This is a convenient way to share your reports.
 
 There is a lot more you can do with R markdown. We highly recommend you continue learning as you gain more experience writing reports in R. There are many free resources on the internet including:
 
--   The Quarto Guide: <https://quarto.org/docs/guide/>
--   RStudio's tutorial: <https://quarto.org/docs/get-started/hello/rstudio.html>
--   The knitR book: <https://yihui.name/knitr/>
+-   The Quarto Guide^[<https://quarto.org/docs/guide/>]
+-   Hello, Quarto tutorial^[<https://quarto.org/docs/get-started/hello/rstudio.html>]
+-   Dynamic Documents
+with R and knitr textbook^[<https://duhi23.github.io/Analisis-de-datos/Yihue.pdf>]
 
 ## Organizing a data science project {#sec-organizing}
 
@@ -169,7 +170,7 @@ In this section we put it all together to create the US murders project and shar
 
 ### Create directories in Unix
 
-In Section @sec-prep-project we demonstrated how to use Unix to prepare for a data science project using an example. Here we continue this example and show how to use RStudio. In Section @sec-prep-project we created the following directories using Unix:
+In @sec-prep-project we demonstrated how to use Unix to prepare for a data science project using an example. Here we continue this example and show how to use RStudio. In @sec-prep-project we created the following directories using Unix:
 
 ```{bash, eval=FALSE}
 cd ~
@@ -191,7 +192,7 @@ In the next section we will use create an RStudio project. In RStudio we go to *
 
 Once you do this, you will see the `rdas` and `data` directories you created in the RStudio *Files* tab.
 
-![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_16.png){width="50%"}
+![](img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_16.png){width="50%" fig-align="center"}
 
 Keep in mind that when we are in this project, our default working directory will be `~/projects/murders`. You can confirm this by typing `getwd()` into your R session. This is important because it will help us organize the code when we need to write file paths.
 
@@ -221,7 +222,7 @@ Now we are ready to write a script to read this data and prepare a table that we
 ```{r, eval=FALSE}
 library(tidyverse)
 murders <- read_csv("data/murders.csv")
-murders <-murders |> mutate(region = factor(region),
+murders <- murders |> mutate(region = factor(region),
                              rate = total / population * 10^5)
 save(murders, file = "rdas/murders.rda")
 ```
@@ -297,7 +298,7 @@ analysis.R - A plot is generated and saved in the figs directory.
 
 ### Initializing a Git directory
 
-In Section @sec-init we demonstrated how to initialize a Git directory and connect it to the upstream repository on GitHub, which we already created in that section.
+In @sec-init we demonstrated how to initialize a Git directory and connect it to the upstream repository on GitHub, which we already created in that section.
 
 We can do this in the Unix terminal:
 
@@ -324,7 +325,7 @@ We can continue adding and committing each file, but it might be easier to use R
 
 We can now go to GitHub and confirm that our files are there. You can see a version of this project, organized with Unix directories, on GitHub[^reproducible-projects-1]. You can download a copy to your computer by using the `git clone` command on your terminal. This command will create a directory called `murders` in your working directory, so be careful where you call it from.
 
-[^reproducible-projects-1]: https://github.com/rairizarry/murders
+[^reproducible-projects-1]: <https://github.com/rairizarry/murders>
 
 ```{r, eval=FALSE}
 git clone https://github.com/rairizarry/murders.git

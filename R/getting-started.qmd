@@ -26,7 +26,7 @@ Other attractive features of R are:
 
 Interactive data analysis usually occurs on the *R console* that executes commands as you type them. There are several ways to gain access to an R console. One way is to simply start R on your computer. The console looks something like this:
 
-![](img/R_console.png){width=70%}
+![](img/R_console.png){width="70%" fig-align="center"}
 
 As a quick example, try using the console to calculate a 15% tip on a meal that cost \$19.71:
 
@@ -42,7 +42,7 @@ One of the great advantages of R over point-and-click analysis software is that 
 
 [^getting-started-5]: <https://www.rstudio.com/>
 
-![](img/rstudio.png){width=70%}
+![](img/rstudio.png){width="70%" fig-align="center"}
 
 Most web-based R consoles also provide a pane to edit scripts, but not all permit you to save the scripts for later use.
 
@@ -58,16 +58,16 @@ RStudio will be our launching pad for data science projects. It not only provide
 
 When you start RStudio for the first time, you will see three panes. The left pane shows the R console. On the right, the top pane includes tabs such as *Environment* and *History*, while the bottom pane shows five tabs: *File*, *Plots*, *Packages*, *Help*, and *Viewer* (these tabs may change in new versions). You can click on each tab to move across the different features.
 
-![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_16.png){width=70%}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_16.png){width="70%" fig-align="center"}
 
 To start a new script, you can click on File, then New File, then R Script.
 
-![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_42.png){width=70%}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_42.png){width="70%" fig-align="center"}
 
 
 This starts a new pane on the left and it is here where you can start writing your script.
 
-![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_49.png){width=70%}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_49.png){width="70%" fig-align="center"}
 
 
 ### Key bindings
@@ -76,7 +76,7 @@ Many tasks we perform with the mouse can be achieved with a combination of key s
 
 Although in this tutorial we often show how to use the mouse, **we highly recommend that you memorize key bindings for the operations you use most**. RStudio provides a useful cheat sheet with the most widely used commands. You can get it from RStudio directly:
 
-![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_22_20.png){width=70%}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_22_20.png){width="70%" fig-align="center"}
 
 You might want to keep this handy so you can look up key-bindings when you find yourself performing repetitive point-and-clicking.
 
@@ -88,11 +88,11 @@ Let's start by opening a new script as we did before. A next step is to give the
 
 When you ask for the document to be saved for the first time, RStudio will prompt you for a name. A good convention is to use a descriptive name, with lower case letters, no spaces, only hyphens to separate words, and then followed by the suffix *.R*. We will call this script *my-first-script.R*.
 
-![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_27_44.png){width=70%}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_27_44.png){width="70%" fig-align="center"}
 
 Now we are ready to start editing our first script. The first lines of code in an R script are dedicated to loading the libraries we will use. Another useful RStudio feature is that once we type `library()` it starts auto-completing with libraries that we have installed. Note what happens when we type `library(ti)`:
 
-![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_29_47.png){width=70%}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_29_47.png){width="70%" fig-align="center"}
 
 Another feature you may have noticed is that when you type `library(` the second parenthesis is automatically added. This will help you avoid one of the most common errors in coding: forgetting to close a parenthesis.
 
@@ -100,7 +100,7 @@ Now we can continue to write code. As an example, we will make a graph showing m
 
 Once you run the code, you will see it appear in the R console and, in this case, the generated plot appears in the plots console. Note that the plot console has a useful interface that permits you to click back and forward across different plots, zoom in to the plot, or save the plots as files.
 
-![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_45_18.png){width=70%}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_45_18.png){width="70%" fig-align="center"}
 
 
 To run one line at a time instead of the entire script, you can use Control-Enter on Windows and command-return on the Mac.
@@ -113,9 +113,9 @@ To change the global options you click on *Tools* then *Global Options...*.
 
 As an example we show how to make a change that we **highly recommend**. This is to change the *Save workspace to .RData on exit* to *Never* and uncheck the *Restore .RData into workspace at start*. By default, when you exit R saves all the objects you have created into a file called .RData. This is done so that when you restart the session in the same folder, it will load these objects. We find that this causes confusion especially when we share code with colleagues and assume they have this .RData file. To change these options, make your *General* settings look like this:
 
-![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_56_08.png){width=70%}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_56_08.png){width="70%" fig-align="center"}
 
-## Installing R packages
+## Installing R packages {#sec-installing-r-packages}
 
 The functionality provided by a fresh install of R is only a small fraction of what is possible. In fact, we refer to what you get after your first install as *base R*. The extra functionality comes from add-ons available from developers. There are currently hundreds of these available from CRAN and many others shared via other repositories such as GitHub. However, because not everybody needs all available functionality, R instead makes different components available via *packages*. R makes it very easy to install packages from within R. For example, to install the **dslabs** package, which we use to share datasets and code related to this book, you would type:
 
@@ -139,7 +139,7 @@ install.packages(c("tidyverse", "dslabs"))
 
 One advantage of using RStudio is that it auto-completes package names once you start typing, which is helpful when you do not remember the exact spelling of the package:
 
-![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_24_18.png){width=70%}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_24_18.png){width="70%" fig-align="center"}
 
 
 Once you select your package, we recommend selecting all the defaults:
