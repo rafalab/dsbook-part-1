@@ -769,44 +769,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We take this opportunity to introduce the <code>str_view</code> function, which is helpful for troubleshooting as it shows us all matches for each string that has matches. Each match is surrounded by the characters <code>&lt;</code> and <code>&gt;</code>. Below, we see that <code>5</code> has one match and <code>5'10</code> has three matches.</p>
-<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-26_21a8559166de1215e5b04b49f1ca3be5">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] │ &lt;5&gt;</span></span>
-<span><span class="co">#&gt; [2] │ &lt;6&gt;</span></span>
-<span><span class="co">#&gt; [3] │ &lt;5&gt;'&lt;1&gt;&lt;0&gt;</span></span>
-<span><span class="co">#&gt; [4] │ &lt;5&gt; feet</span></span>
-<span><span class="co">#&gt; [5] │ &lt;4&gt;'&lt;1&gt;&lt;1&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-26_cdd423b0eb6cf3a80fc5934f8d36aa0b">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><img src="img/str_view-1.png" class="img-fluid" style="width:80.0%"></p>
 <p>To view all strings, even if there wasn’t a match, we can use the <code>match = NA</code> parameter.</p>
-<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-27_de0af454010290a5eda96c4806c7ef81">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern</span>, match <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] │ &lt;5&gt;</span></span>
-<span><span class="co">#&gt; [2] │ &lt;6&gt;</span></span>
-<span><span class="co">#&gt; [3] │ &lt;5&gt;'&lt;1&gt;&lt;0&gt;</span></span>
-<span><span class="co">#&gt; [4] │ &lt;5&gt; feet</span></span>
-<span><span class="co">#&gt; [5] │ &lt;4&gt;'&lt;1&gt;&lt;1&gt;</span></span>
-<span><span class="co">#&gt; [6] │ </span></span>
-<span><span class="co">#&gt; [7] │ .</span></span>
-<span><span class="co">#&gt; [8] │ Five</span></span>
-<span><span class="co">#&gt; [9] │ six</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-27_7aac0ee8735949363c75d56a9de6436c">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern</span>, match <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><img src="img/str_view-2.png" class="img-fluid" style="width:80.0%"></p>
 <p>Another useful special character is <code>\w</code> which stands for <em>word character</em> and it matches any letter, number, or underscore.</p>
 <p>There are many other special characters. We will learn some others below, but you can see most or all of them in the cheat sheet<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> mentioned earlier.</p>
 </section><section id="character-classes" class="level3" data-number="16.4.3"><h3 data-number="16.4.3" class="anchored" data-anchor-id="character-classes">
 <span class="header-section-number">16.4.3</span> Character classes</h3>
 <p>Character classes are used to define a series of characters that can be matched. We define character classes with square brackets <code>[]</code>. So, for example, if we want the pattern to match only if we have a <code>5</code> or a <code>6</code>, we use the regex <code>[56]</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-28_f06a7b4c57ab180d9ebd819d10137398">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">"[56]"</span>, match <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] │ &lt;5&gt;</span></span>
-<span><span class="co">#&gt; [2] │ &lt;6&gt;</span></span>
-<span><span class="co">#&gt; [3] │ &lt;5&gt;'10</span></span>
-<span><span class="co">#&gt; [4] │ &lt;5&gt; feet</span></span>
-<span><span class="co">#&gt; [5] │ 4'11</span></span>
-<span><span class="co">#&gt; [6] │ </span></span>
-<span><span class="co">#&gt; [7] │ .</span></span>
-<span><span class="co">#&gt; [8] │ Five</span></span>
-<span><span class="co">#&gt; [9] │ six</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-28_7277fc3c4b51189414dbf27eeb450eab">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">"[56]"</span>, match <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><img src="img/str_view-3.png" class="img-fluid" style="width:80.0%"></p>
 <p>Suppose we want to match values between 4 and 7. A common way to define character classes is with ranges. So, for example, <code>[0-9]</code> is equivalent to <code>\\d</code>. The pattern we want is therefore <code>[4-7]</code>.</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-29_e6a551e4454c2208541ddb53fd63e447">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">yes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fl">4</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span></span>
@@ -822,39 +802,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">16.4.4</span> Anchors</h3>
 <p>What if we want a match when we have exactly 1 digit? This will be useful in our case study since feet are never more than 1 digit so a restriction will help us. One way to do this with regex is by using <em>anchors</em>, which let us define patterns that must start or end at a specific place. The two most common anchors are <code>^</code> and <code>$</code> which represent the beginning and end of a string, respectively. So the pattern <code>^\\d$</code> is read as “start of the string followed by one digit followed by end of string”.</p>
 <p>This pattern now only detects the strings with exactly one digit:</p>
-<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-30_c25efd840ef7e119bed8583d259ac599">
+<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-30_8dd9beec51bef3d2a4117e223be4f386">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"^\\d$"</span></span>
 <span><span class="va">yes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="st">"5"</span>, <span class="st">"9"</span><span class="op">)</span></span>
 <span><span class="va">no</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"12"</span>, <span class="st">"123"</span>, <span class="st">" 1"</span>, <span class="st">"a4"</span>, <span class="st">"b"</span><span class="op">)</span></span>
 <span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">yes</span>, <span class="va">no</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern</span>, match <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] │ &lt;1&gt;</span></span>
-<span><span class="co">#&gt; [2] │ &lt;5&gt;</span></span>
-<span><span class="co">#&gt; [3] │ &lt;9&gt;</span></span>
-<span><span class="co">#&gt; [4] │ 12</span></span>
-<span><span class="co">#&gt; [5] │ 123</span></span>
-<span><span class="co">#&gt; [6] │  1</span></span>
-<span><span class="co">#&gt; [7] │ a4</span></span>
-<span><span class="co">#&gt; [8] │ b</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern</span>, match <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><img src="img/str_view-4.png" class="img-fluid" style="width:80.0%"></p>
 <p>The <code>1</code> does not match because it does not start with the digit but rather with a space, which is not easy to see.</p>
 </section><section id="bounded-quantifiers" class="level3" data-number="16.4.5"><h3 data-number="16.4.5" class="anchored" data-anchor-id="bounded-quantifiers">
 <span class="header-section-number">16.4.5</span> Bounded quantifiers</h3>
 <p>For the inches part, we can have one or two digits. This can be specified in regex with <em>quantifiers</em>. This is done by following the pattern with curly brackets containing the number of times the previous entry can be repeated. We call the <em>bounded</em> because the numbers in the quantifier are limited by the numbers in the curly brackets. Later we learn about <em>unbounded quantifiers</em>.</p>
 <p>We use an example to illustrate. The pattern for one or two digits is:</p>
-<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-31_3ea46da563ceb879e3d2d76824000e8e">
+<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-31_81fd314e47666eeac0a28ad1da5bea66">
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"^\\d{1,2}$"</span></span>
 <span><span class="va">yes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="st">"5"</span>, <span class="st">"9"</span>, <span class="st">"12"</span><span class="op">)</span></span>
 <span><span class="va">no</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"123"</span>, <span class="st">"a4"</span>, <span class="st">"b"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">yes</span>, <span class="va">no</span><span class="op">)</span>, <span class="va">pattern</span>, match <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] │ &lt;1&gt;</span></span>
-<span><span class="co">#&gt; [2] │ &lt;5&gt;</span></span>
-<span><span class="co">#&gt; [3] │ &lt;9&gt;</span></span>
-<span><span class="co">#&gt; [4] │ &lt;12&gt;</span></span>
-<span><span class="co">#&gt; [5] │ 123</span></span>
-<span><span class="co">#&gt; [6] │ a4</span></span>
-<span><span class="co">#&gt; [7] │ b</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">yes</span>, <span class="va">no</span><span class="op">)</span>, <span class="va">pattern</span>, match <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><img src="img/str_view-5.png" class="img-fluid" style="width:80.0%"></p>
 <p>In this case, <code>123</code> does <strong>not</strong> match, but <code>12</code> does. To look for our feet and inches pattern, we can add the symbols for feet <code>'</code> and inches <code>"</code> after the digits.</p>
 <p>With what we have learned, we can now construct an example for the pattern <code>x'y"</code> with <code>x</code> feet and <code>y</code> inches.</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-32_dbb90bd9d2ad25710776dd30ac051d6f">
@@ -993,7 +960,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-45_54539b0ebcb6349658767cb6ad755846">
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">problems</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">10</span>, <span class="fl">11</span>, <span class="fl">12</span>, <span class="fl">15</span><span class="op">)</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">pattern</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><img src="img/str_view-6.png" class="img-fluid"></p>
+<p><img src="img/str_view-6.png" class="img-fluid" style="width:80.0%"></p>
 <p>An initial problem we see immediately is that some students wrote out the words “feet” and “inches”. We can see the entries that did this with the <code>str_subset</code> function:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-46_7355a74b3c0b329cb226eb9c0f9d26b7">
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset</a></span><span class="op">(</span><span class="va">problems</span>, <span class="st">"inches"</span><span class="op">)</span></span>
@@ -1410,13 +1377,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb84"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Suppose we want to show life expectancy time series by country for the Caribbean. If we make this plot</p>
-<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/caribbean_c57f4d752e5bac0ea782b95e6124f187">
+<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/caribbean_41040604593db6d422bfc294f2bc5cb9">
 <div class="sourceCode" id="cb85"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">region</span> <span class="op">==</span> <span class="st">"Caribbean"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">life_expectancy</span>, color <span class="op">=</span> <span class="va">country</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="string-processing_files/figure-html/caribbean-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
 </div>
-<p>we see that the legend takes up much of the plot because we have four countries with names longer than 12 characters. We can</p>
+</div>
+</div>
+<p>we see that the legend takes up much of the plot because we have four countries with names longer than 12 characters. We can rename these levels using the <code>case_when</code> function:</p>
 <div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-86_94fe1d7277f85679634ddd4837400ccf">
 <div class="sourceCode" id="cb86"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">country</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">country</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
@@ -1436,17 +1409,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>We can also use the <code>fct_recode</code> function in the <strong>forcats</strong> package:</p>
-<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-87_54a5fd4f59b787fc57ef0b9cab3e9828">
+<p>We can instead use the <code>fct_recode</code> function in the <strong>forcats</strong> package:</p>
+<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-87_86ea0d6f187023319d5b43621b533bc8">
 <div class="sourceCode" id="cb87"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://forcats.tidyverse.org/">forcats</a></span><span class="op">)</span></span>
 <span><span class="va">gapminder</span><span class="op">$</span><span class="va">country</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">country</span>, </span>
 <span>             <span class="st">"Barbuda"</span> <span class="op">=</span> <span class="st">"Antigua and Barbuda"</span>,</span>
 <span>             <span class="st">"DR"</span> <span class="op">=</span> <span class="st">"Dominican Republic"</span>,</span>
 <span>             <span class="st">"St. Vincent"</span> <span class="op">=</span> <span class="st">"St. Vincent and the Grenadines"</span>,</span>
-<span>             <span class="st">"Trinidad"</span> <span class="op">=</span> <span class="st">"Trinidad and Tobago"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Unknown levels in `f`: Antigua and Barbuda, Dominican</span></span>
-<span><span class="co">#&gt; Republic, St. Vincent and the Grenadines, Trinidad and Tobago</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>             <span class="st">"Trinidad"</span> <span class="op">=</span> <span class="st">"Trinidad and Tobago"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="exercises" class="level2" data-number="16.10"><h2 data-number="16.10" class="anchored" data-anchor-id="exercises">
 <span class="header-section-number">16.10</span> Exercises</h2>

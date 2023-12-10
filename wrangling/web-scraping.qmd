@@ -84,7 +84,7 @@ class(h)
 
 The __rvest__ package is actually more general; it handles XML documents. XML is a general markup language (that's what the ML stands for) that can be used to represent any kind of data. HTML is a specific type of XML specifically developed for representing webpages. Here we focus on HTML documents.
 
-Now, how do we extract the table from the object `h`? If we print `h`, we don't really see much:
+Now, how do we extract the table from the object `h`? If we print `h`, we don't really see much.
 
 ```{r}
 h
@@ -163,11 +163,14 @@ library(jsonlite)
 nobel <- fromJSON("http://api.nobelprize.org/v1/prize.json")
 ```
 
-This downloads a list. The first argument is a table with information about Nobel prize winners:
+This downloads a list. The first argument, named "prizes" is a table with information about Nobel prize winners. Each row holds corresponds to a particular year and category. The "laureates" column holds a list with a data frame for each winner with columns for id, firstname, surname, and motivation.
 
 ```{r}
-filter(nobel$prize, category == "literature" & year == "1971") |> 
-  pull(laureates)
+nobel$prizes |>
+  filter(category == "literature" & year == "1971") |> 
+  pull(laureates) |>
+  first() |>
+  select(id, firstname, surname)
 ```
 
 You can learn much more by examining tutorials and help files from the __jsonlite__ package. This package is intended for relatively simple tasks such as converting data into tables. For more flexibility, we recommend the __rjson__ package.
@@ -241,7 +244,9 @@ The documentation for this API^[<https://dev.socrata.com/docs/queries/>] explain
 `$limit` parameters. We can use the `req_url_path_append` to add this to our request:
 
 ```{r}
-response <- request(url) |> req_url_path_append("?$limit=100000") |> req_perform() 
+response <- request(url) |> 
+  req_url_path_append("?$limit=100000") |> 
+  req_perform() 
 ```
 
 

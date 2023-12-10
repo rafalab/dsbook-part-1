@@ -142,7 +142,7 @@ Three related function are `separate_wider_position`, `separate_wider_regex`, an
 
 The **janitor** package includes function for some of the most common steps needed to wrangle data. These are particularly useful as these tasks that are often repetitive and time-consuming. Key features include functions for examining and cleaning column names, removing empty or duplicate rows, and converting data types. It also offers capabilities to generate frequency tables and perform cross tabulations with ease. The package is designed to work seamlessly with the  **tidyverse**. Here we show four examples. 
  
-Spreadsheets often use names that are not compatible with programming. The most common problem is column names with spaces. The `clean_names()` function attempts to fix this and other common problems. By default it forces varaible names to be lower case and with underscore instead of space. In this example we change the variable names of the object `dat` created in the previous section and then demonstrate how this function works:
+Spreadsheets often use names that are not compatible with programming. The most common problem is column names with spaces. The `clean_names()` function attempts to fix this and other common problems. By default it forces variable names to be lower case and with underscore instead of space. In this example we change the variable names of the object `dat` created in the previous section and then demonstrate how this function works:
 
 ```{r message = FALSE}
 library(janitor)
@@ -159,7 +159,7 @@ data.frame(ids = letters[1:3], x = 1:3, y = 4:6) |>
   as.matrix() 
 ```
 
-Another common challenge is that spreadsheets include the columnnames as a first row. To quickly fix this we can `row_to_names``:
+Another common challenge is that spreadsheets include the column names as a first row. To quickly fix this we can `row_to_names``:
 
 ```{r}
 x <- read.csv(file.path(path, "murders.csv"), header = FALSE) |> 

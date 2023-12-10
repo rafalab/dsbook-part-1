@@ -5,7 +5,7 @@ We have been using datasets already stored as R objects. In data analysis work w
 
 ![](img/csv-file.png)
 
-In this chapter, we outline how to load data from a file into R. First, it's crucial to identify the file's location; thus, we touch on file paths and working directories (detailed in @sec-unix). Next, we delve into file types (text or binary) and encodings (like ASCII and Unicode), both essential for data import. We then introduce popular functions for data importing, refered to as _parsers_. Lastly, we offer tips on how to store data in spreadsheets. Advanced topics like extracting data from websites or PDFs will be discussed in the book's Data Wrangling section.
+In this chapter, we outline how to load data from a file into R. First, it's crucial to identify the file's location; thus, we touch on file paths and working directories (detailed in @sec-unix). Next, we delve into file types (text or binary) and encodings (like ASCII and Unicode), both essential for data import. We then introduce popular functions for data importing, referred to as _parsers_. Lastly, we offer tips on how to store data in spreadsheets. Advanced topics like extracting data from websites or PDFs will be discussed in the book's Data Wrangling section.
 
 ## Paths and the working directory 
 
@@ -112,11 +112,11 @@ In the following section, we'll introduce several helpful import functions, some
 
 ## Parsers
 
-Importing fuctions, or parsers, are avaible from base R. However, more powerful and often faster functions are available in the __readr__, __readxl__, and __data.table__ pacakges. In this section we review some examples. We also describe how data can be downlaoded or read directly from the internet.
+Importing functions, or parsers, are available from base R. However, more powerful and often faster functions are available in the __readr__, __readxl__, and __data.table__ packages. In this section we review some examples. We also describe how data can be downloaded or read directly from the internet.
 
 ### Base R
 
-Base R base provides several file parsers for example `read.csv`, `read.table` and `read.delim`. The first argument can take either a full or relative path. If a relative path is provided, the parser assumes you want to search in the working directory. Therefore, to read the `murders.csv` file previously copied to our working directory, we can simply type:
+Base R provides several file parsers for example `read.csv`, `read.table` and `read.delim`. The first argument can take either a full or relative path. If a relative path is provided, the parser assumes you want to search in the working directory. Therefore, to read the `murders.csv` file previously copied to our working directory, we can simply type:
 
 ```{r}
 dat <- read.csv("murders.csv")
@@ -157,7 +157,7 @@ We can read in the `murders.csv` file using
 dat <- read_csv("murders.csv")
 ```
 
-Note that we receive a message letting us know what data types were used for each column. Also note that `dat` is a `tibble`, not just a data frame. We can supress this message using the argument `show_col_types = FALSE`.
+Note that we receive a message letting us know what data types were used for each column. Also note that `dat` is a `tibble`, not just a data frame. We can suppress this message using the argument `show_col_types = FALSE`.
 
 The __readr__ parsers permit us to specify an encoding. It also includes a function that tries to guess the encoding:
 
@@ -221,7 +221,8 @@ Note `fread` returns a `data.table` object.
 A common place for data to reside is on the internet. When these data are in files, we can download them and then import them or even read them directly from the web. For example, we note that because our __dslabs__ package is on GitHub, the file we downloaded with the package has a url:
 
 ```{r}
-url <- "https://raw.githubusercontent.com/rafalab/dslabs/master/inst/extdata/murders.csv"
+url <- paste0("https://raw.githubusercontent.com/",
+              "rafalab/dslabs/master/inst/extdata/murders.csv")
 ```
 
 Most parsers can read these files directly:

@@ -414,16 +414,18 @@ helpful for troubleshooting as it shows us all matches for each
 string that has matches. Each match is surrounded by the characters `<` and `>`. Below, we see that `5` has one match
 and `5'10` has three matches.
 
-```{r}
+```{r eval = FALSE}
 str_view(s, pattern)
 ```
+![](img/str_view-1.png){width="80%"}
 
 To view all strings, even if there wasn't a match, we can use the `match = NA` parameter.
 
-```{r}
+```{r eval = FALSE}
 str_view(s, pattern, match = NA)
 ```
 
+![](img/str_view-2.png){width="80%"}
 
 Another useful special character is `\w` which stands for *word
 character* and it matches any letter, number, or underscore.
@@ -440,9 +442,12 @@ matched. We define character classes with square brackets `[]`. So, for
 example, if we want the pattern to match only if we have a `5` or a `6`,
 we use the regex `[56]`:
 
-```{r}
+```{r eval = FALSE}
 str_view(s, "[56]", match = NA)
 ```
+
+![](img/str_view-3.png){width="80%"}
+
 
 Suppose we want to match values between 4 and 7. A common way to define
 character classes is with ranges. So, for example, `[0-9]` is equivalent
@@ -481,13 +486,16 @@ followed by end of string".
 
 This pattern now only detects the strings with exactly one digit:
 
-```{r}
+```{r eval = FALSE}
 pattern <- "^\\d$"
 yes <- c("1", "5", "9")
 no <- c("12", "123", " 1", "a4", "b")
 s <- c(yes, no)
 str_view(s, pattern, match = NA)
 ```
+
+![](img/str_view-4.png){width="80%"}
+
 
 The ` 1` does not match because it does not start with the digit but
 rather with a space, which is not easy to see.
@@ -503,12 +511,14 @@ learn about *unbounded quantifiers*.
 
 We use an example to illustrate. The pattern for one or two digits is:
 
-```{r}
+```{r eval = FALSE}
 pattern <- "^\\d{1,2}$"
 yes <- c("1", "5", "9", "12")
 no <- c("123", "a4", "b")
 str_view(c(yes, no), pattern, match = NA)
 ```
+
+![](img/str_view-5.png){width="80%"}
 
 In this case, `123` does **not** match, but `12` does. To look for
 our feet and inches pattern, we can add the symbols for feet `'` and
@@ -699,7 +709,7 @@ more matches:
 problems[c(2, 10, 11, 12, 15)] |> str_view(pattern)
 ```
 
-![](img/str_view-6.png)
+![](img/str_view-6.png){width="80%"}
 
 An initial problem we see immediately is that some students wrote out
 the words "feet" and "inches". We can see the entries that did this with
@@ -1204,14 +1214,13 @@ Suppose we want to show life expectancy time series by country for the
 Caribbean. If we make this plot
 
 ```{r caribbean}
-#| eval: false
 gapminder |> 
   filter(region == "Caribbean") |>
   ggplot(aes(year, life_expectancy, color = country)) +
   geom_line()
 ```
 
-we see that the legend takes up much of the plot because we have four countries with names longer than 12 characters. We can 
+we see that the legend takes up much of the plot because we have four countries with names longer than 12 characters. We can rename these levels using the `case_when` function:
 
 ```{r}
 x <- levels(gapminder$country)
@@ -1228,9 +1237,10 @@ gapminder |>
 
 ```
 
-We can also use the `fct_recode` function in the **forcats** package:
+We can instead use the `fct_recode` function in the **forcats** package:
 
 ```{r}
+#| eval: false
 library(forcats)
 gapminder$country <- 
   fct_recode(gapminder$country, 
