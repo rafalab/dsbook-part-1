@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -59,7 +59,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -79,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../productivity/intro-productivity.html">Productivity Tools</a></li><li class="breadcrumb-item"><a href="../productivity/installing-r-and-rstudio.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Installing R and RStudio</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -93,7 +94,7 @@ ul.task-list li input[type="checkbox"] {
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Introduction to Data Science</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/rafalab/dsbook-part-1" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -274,7 +275,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Installing Git</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Terminal Access and Installing Git</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -332,12 +333,12 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>The instructions below include screen shots from the installation process in which we used the Chrome browser which, although not necessary, you can freely download and install from here: <a href="https://www.google.com/chrome/" class="uri">https://www.google.com/chrome/</a>.</p>
+<p>The instructions below include screen shots from the installation process in which we used the Chrome browser which, although not necessary, you can freely download and install<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <section id="installing-r" class="level2" data-number="18.1">
 <h2 data-number="18.1" class="anchored" data-anchor-id="installing-r"><span class="header-section-number">18.1</span> Installing R</h2>
 <p>RStudio is an interactive desktop environment, but it is not R, nor does it include R when you download and install it. Therefore, to use RStudio, we first need to install R.</p>
 <ol type="1">
-<li>You can download R from the Comprehensive R Archive Network (CRAN)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Search for CRAN on your browser:</li>
+<li>You can download R from the Comprehensive R Archive Network (CRAN)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Search for CRAN on your browser:</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -354,7 +355,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>Here we show screenshots for Windows, but the process is similar for the other platforms. When they differ, we will also show screenshots for Mac OS X.</p>
 <ol start="3" type="1">
-<li>Once at the CRAN download page, you will have several choices. You want to install the <em>base</em> subdirectory. This installs the basic packages you need to get started. We will later learn how to install other needed packages from within R, rather than from this webpage.</li>
+<li>Once at the CRAN download page, you will have several choices. You want to install the <em>base</em> subdirectory. This installs the basic packages you need to get started. <a href="../R/getting-started.html#sec-installing-r-packages"><span>Section&nbsp;1.5</span></a> discusses how to install other needed packages from within R, rather than from this webpage.</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -482,7 +483,7 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <ol start="2" type="1">
-<li>You should find the RStudio website as shown above. Once there, click on <em>Download RStudio</em>.</li>
+<li>You should find the Posit website<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> as shown above. Once there, click on <em>Download RStudio</em>.</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -542,7 +543,6 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>On the Mac, there are fewer clicks. You basically drag and drop the RStudio icon into the Applications folder icon here:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_16.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -572,7 +572,9 @@ ul.task-list li input[type="checkbox"] {
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>https://cran.r-project.org/<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p><a href="https://www.google.com/chrome/" class="uri">https://www.google.com/chrome/</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://posit.co/products/open-source/rstudio/" class="uri">https://posit.co/products/open-source/rstudio/</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -818,7 +820,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="../productivity/installing-git.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Installing Git</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Terminal Access and Installing Git</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
