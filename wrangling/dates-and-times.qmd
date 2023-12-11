@@ -107,12 +107,12 @@ The `mdy` function assumes the first entry is the month, then the day, then the 
 mdy(x)
 ```
 
-The _lubridate_ package provides a function for every possibility. Here are the other common one:
+The _lubridate_ package provides a function for every possibility. Here is the other common one:
 ```{r}
 dmy(x)
 ```
 
-The __lubridate__ package is also useful for dealing with times. In R base, you can get the current time typing `Sys.time()`. The __lubridate__ package provides a slightly more advanced function, `now`, that permits you to define the time zone:
+The __lubridate__ package is also useful for dealing with times. In base R, you can get the current time typing `Sys.time()`. The __lubridate__ package provides a slightly more advanced function, `now`, that permits you to define the time zone:
 
 ```{r}
 now()
@@ -141,7 +141,7 @@ mdy_hms(x)
 
 This package has many other useful functions. We describe two of these here that we find particularly useful.
 
-The `make_date` function can be used to quickly create a date object. It takes three arguments: year, month, day, hour, minute, seconds, and time zone defaulting to the epoch values on UTC time. To create an date object representing, for example, July 6, 2019 we write:
+The `make_date` function can be used to quickly create a date object. It can take up to seven arguments: year, month, day, hour, minute, seconds, and time zone defaulting to the epoch values on UTC time. To create an date object representing, for example, July 6, 2019 we write:
 
 ```{r}
 make_date(2019, 7, 6)
@@ -153,7 +153,7 @@ To make a vector of January 1 for the 80s we write:
 make_date(1980:1989)
 ```
 
-Another very useful function is the `round_date`. It can be used to _round_ dates to nearest year, quarter,  month, week, day, hour, minutes, or seconds. So if we want to group all the polls by week of the year we can do the following:
+Another very useful function is `round_date`. It can be used to _round_ dates to nearest year, quarter,  month, week, day, hour, minutes, or seconds. So if we want to group all the polls by week of the year we can do the following:
 
 ```{r poll-margin-versus-week}
 polls_us_election_2016 |> 

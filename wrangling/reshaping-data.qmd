@@ -2,7 +2,7 @@
 
 As we have seen through the book, having data in *tidy* format is what makes the tidyverse flow. After the first step in the data analysis process, importing data, a common next step is to reshape the data into a form that facilitates the rest of the analysis. The **tidyr** package, part of **tidyverse**, includes several functions that are useful for tidying data.
 
-We will use the fertility wide format dataset described in Section @sec-tidy-data as an example in this section.
+We will use the fertility wide format dataset described in @sec-tidy-data as an example in this section.
 
 ```{r, message=FALSE, warning=FALSE}
 library(tidyverse) 
@@ -16,7 +16,7 @@ wide_data <- read_csv(filename)
 
 One of the most used functions in the **tidyr** package is `pivot_longer`, which is useful for converting wide data into tidy data.
 
-As with most tidyverse functions, the `pivot_longer` function's first argument is the data frame that will be converted. Here we want to reshape the `wide_data` dataset so that each row represents a fertility observation, which implies we need three columns to store the year, country, and the observed value. In its current form, data from different years are in different columns with the year values stored in the column names. Through the `names_to` and `values_to` argument we will tell `pivot_longer` the column names we want to assign to the columns containing the current column names and observations, respectively. The default names are `name` and `value`, which are often usable choices. In this case a better choice for these two arguments would be `year` and `fertility`. Note that nowhere in the data file does it tell us this is fertility data. Instead, we deciphered this from the file name. Through `cols`, the second argument we specify the columns containing observed values; these are the columns that will be *pivoted*. The default is to pivot all columns so, in most cases, we have to specify the columns. In our example we want columns `1960`, `1961` up to `2015`.
+As with most tidyverse functions, the `pivot_longer` function's first argument is the data frame that will be converted. Here we want to reshape the `wide_data` dataset so that each row represents a fertility observation, which implies we need three columns to store the year, country, and the observed value. In its current form, data from different years are in different columns with the year values stored in the column names. Through the `names_to` and `values_to` argument we will tell `pivot_longer` the column names we want to assign to the columns containing the current column names and observations, respectively. The default names are `name` and `value`, which are often usable choices. In this case a better choice for these two arguments would be `year` and `fertility`. Note that nowhere in the data file does it tell us this is fertility data. Instead, we deciphered this from the file name. Through `cols`, the second argument, we specify the columns containing observed values; these are the columns that will be *pivoted*. The default is to pivot all columns so, in most cases, we have to specify the columns. In our example we want columns `1960`, `1961` up to `2015`.
 
 The code to pivot the fertility data therefore looks like this:
 
@@ -25,7 +25,7 @@ new_tidy_data <- wide_data |>
   pivot_longer(`1960`:`2015`, names_to = "year", values_to = "fertility")
 ```
 
-We can see that the data have been converted to tidy format with columns `year` and `fertility`:
+We can see that the data have been converted to tidy format with columns `year` and `fertility`
 
 ```{r}
 head(new_tidy_data)
@@ -57,7 +57,9 @@ new_tidy_data <- wide_data |>
 Now that the data is tidy, we can use this relatively simple ggplot code:
 
 ```{r fertility-year-check, eval=FALSE}
-new_tidy_data |> ggplot(aes(year, fertility, color = country)) + geom_point()
+new_tidy_data |> 
+  ggplot(aes(year, fertility, color = country)) + 
+  geom_point()
 ```
 
 ## `pivot_wider`
@@ -104,38 +106,45 @@ dat$name[1:5]
 Encoding multiple variables in a column name is such a common problem that the **tidyr** package includes function to separate these columns into two or more. The `separate_wider_delim` function takes three arguments: the name of the column to be separated, the names to be used for the new columns, and the character that separates the variables. So, a first attempt at separating the variable name from the year might be:
 
 ```{r, eval=FALSE}
-dat |> separate_wider_delim(name, delim = "_", names = c("year", "name"))
+dat |> separate_wider_delim(name, delim = "_", 
+                            names = c("year", "name"))
 ```
 
-However, this line of code will give an error. This is because the life expectancy names have three string separated by `_` and the fertility names have two. This is a common problem so the `separate_wider_delim` function has arguments `too_few` and `too_many` to handle these situations. We see in the help file that the option `too_many = merge` _will merge together any additional pieces_. The following line does what we want:
+However, this line of code will give an error. This is because the life expectancy names have three strings separated by `_` and the fertility names have two. This is a common problem so the `separate_wider_delim` function has arguments `too_few` and `too_many` to handle these situations. We see in the help file that the option `too_many = merge` _will merge together any additional pieces_. The following line does what we want:
 
 
 
 ```{r}
-dat |> separate_wider_delim(name, delim = "_", names = c("year", "name"), too_many = "merge")
+dat |> separate_wider_delim(name, delim = "_", 
+                            names = c("year", "name"), 
+                            too_many = "merge")
 ```
 
 But we are not done yet. We need to create a column for each variable and change `year` to a number. As we learned, the `pivot_wider` function can do this:
 
 ```{r}
-dat |> 
-  separate_wider_delim(name, delim = "_", names = c("year", "name"), too_many = "merge") |>
+dat <- dat |> 
+  separate_wider_delim(name, delim = "_", 
+                       names = c("year", "name"), 
+                       too_many = "merge") |>
   pivot_wider() |>
   mutate(year = as.integer(year))
+
+dat
 ```
 
 The data is now in tidy format with one row for each observation with three variables: year, fertility, and life expectancy.
 
-Three related function are `separate_wider_position`, `separate_wider_regex`, and `unite`. `separate_wider_position` takes a width instead of delimiter. `separate_wider_regex`, described in @sec-separate_regex, provides much more control over how we separate and what we keep. The `untie` function can be tought of as the inverse of the `separate` function: it combines two columns into one. 
+Three related function are `separate_wider_position`, `separate_wider_regex`, and `unite`. `separate_wider_position` takes a width instead of delimiter. `separate_wider_regex`, described in @sec-separate_regex, provides much more control over how we separate and what we keep. The `unite` function can be thought of as the inverse of the `separate` function: it combines two columns into one. 
 
 
 ## The janitor package
 
 The **janitor** package includes function for some of the most common steps needed to wrangle data. These are particularly useful as these tasks that are often repetitive and time-consuming. Key features include functions for examining and cleaning column names, removing empty or duplicate rows, and converting data types. It also offers capabilities to generate frequency tables and perform cross tabulations with ease. The package is designed to work seamlessly with the  **tidyverse**. Here we show four examples. 
  
-Spreadsheets often use names that are not compatible with programming. The most common problem is column names with spaces. The `clean_names()` function attempts to fix this and other common problems. By default it forces varaible names to be lower case and with underscore instead of space. In this example we change the variable names of the object `dat` created in the previous section and then demonstrate how this function works:
+Spreadsheets often use names that are not compatible with programming. The most common problem is column names with spaces. The `clean_names()` function attempts to fix this and other common problems. By default it forces variable names to be lower case and with underscore instead of space. In this example we change the variable names of the object `dat` created in the previous section and then demonstrate how this function works:
 
-```{r}
+```{r message = FALSE}
 library(janitor)
 names(dat) <- c("Country", "Year", "Fertility",  "Life Expectancy")
 clean_names(dat) |> names()
@@ -150,14 +159,15 @@ data.frame(ids = letters[1:3], x = 1:3, y = 4:6) |>
   as.matrix() 
 ```
 
-Another common challenge is that spreadsheets include the columnnames as a first row. To quickly fix this we can `row_to_names``:
+Another common challenge is that spreadsheets include the column names as a first row. To quickly fix this we can `row_to_names``:
 
 ```{r}
-x <- read.csv(file.path(path, "murders.csv"), header = FALSE) |> row_to_names(1)
+x <- read.csv(file.path(path, "murders.csv"), header = FALSE) |> 
+  row_to_names(1)
 names(x)
 ```
 
-Our final example relates to finding duplicates. A very common error in the creation of speadsheets is that rows are duplicated. The `get_dups` function finds and reports duplicate records. By default it considers all varaibles, but you can also specificy which ones.
+Our final example relates to finding duplicates. A very common error in the creation of spreadsheets is that rows are duplicated. The `get_dups` function finds and reports duplicate records. By default it considers all variables, but you can also specify which ones to use.
 
 ```{r}
 x <- bind_rows(x, x[1,])
@@ -208,7 +218,7 @@ If we think of an observation as a major, and that each observation has two vari
 
 5\. Now we will try a more advanced wrangling challenge. We want to wrangle the admissions data so that for each major we have 4 observations: `admitted_men`, `admitted_women`, `applicants_men` and `applicants_women`. The *trick* we perform here is actually quite common: first use `pivot_longer` to generate an intermediate data frame and then `pivot_wider` to obtain the tidy data we want. We will go step by step in this and the next two exercises.
 
-Use the `pivot_longer` function to create a `tmp` data.frame with a column containing the type of observation `admitted` or `applicants`. Call the new columns `name` and `value`.
+Use the `pivot_longer` function to create a `tmp` data frame with a column containing the type of observation: `admitted` or `applicants`. Call the new columns `name` and `value`.
 
 6\. Now you have an object `tmp` with columns `major`, `gender`, `name` and `value`. Note that if you combine the `name` and `gender`, we get the column names we want: `admitted_men`, `admitted_women`, `applicants_men` and `applicants_women`. Use the function `unite` to create a new column called `column_name`.
 

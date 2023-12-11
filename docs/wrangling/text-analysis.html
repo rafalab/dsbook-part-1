@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
 <title>Introduction to Data Science - 17&nbsp; Text analysis</title>
@@ -88,7 +88,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 </head>
@@ -103,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../wrangling/intro-to-wrangling.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="../wrangling/text-analysis.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text analysis</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -113,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Introduction to Data Science</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/rafalab/dsbook-part-1" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -294,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Installing Git</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Terminal Access and Installing Git</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -360,7 +361,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/EmilHvitfeldt/textdata">textdata</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>X.com (formerly twitter) provides an API that permits downloading tweets. Brendan Brown runs the trump archive^[https://www.thetrumparchive.com/], which compiles tweet data from Trump’s account. The <strong>dslabs</strong> package includes tweets from the following range:</p>
+<p>X, formerly known as twitter, provides an API that permits downloading tweets. Brendan Brown runs the trump archive<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>, which compiles tweet data from Trump’s account. The <strong>dslabs</strong> package includes tweets from the following range:</p>
 <div class="cell" data-layout-align="center" data-hash="text-analysis_cache/html/unnamed-chunk-3_92ab69a80d3c771683ad6fe075098346">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">trump_tweets</span><span class="op">$</span><span class="va">created_at</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "2009-05-04 13:54:25 EST" "2018-01-01 08:37:52 EST"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -389,7 +390,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 4           TweetDeck   468</span></span>
 <span><span class="co">#&gt; 5     TwitLonger Beta   288</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We are interested in what happened during the 2016 campaign, so for this analysis we will focus on what was tweeted between the day Trump announced his campaign and election day. We define the following table containing just the tweets from that time period. We remove the <code>Twitter for</code> part of the source and filter out retweets.</p>
+<p>We are interested in what happened during the 2016 campaign, so for this analysis we will focus on what was tweeted between the day Trump announced his campaign and election day. We define the following table containing just the tweets from that time period. We remove the <code>Twitter for</code> part of the source, only keep tweets from Android or iPhone, and filter out retweets.</p>
 <div class="cell" data-layout-align="center" data-hash="text-analysis_cache/html/unnamed-chunk-7_f56929a531b13f8f56ebfe4fc7e64887">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">campaign_tweets</span> <span class="op">&lt;-</span> <span class="va">trump_tweets</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">source</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Twitter for"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Android"</span>, <span class="st">"iPhone"</span><span class="op">)</span><span class="op">)</span> <span class="op">&amp;</span></span>
@@ -400,7 +401,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">created_at</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We can now use data visualization to explore the possibility that two different groups were tweeting from these devices. For each tweet, we will extract the hour, East Coast time (EST), it was tweeted and then compute the proportion of tweets tweeted at each hour for each device:</p>
+<p>We can now use data visualization to explore the possibility that two different groups were tweeting from these devices. For each tweet, we will extract the hour, Eastern Standard Time (EST), it was tweeted and then compute the proportion of tweets tweeted at each hour for each device:</p>
 <div class="cell" data-layout-align="center" data-hash="text-analysis_cache/html/tweets-by-time-by-device_942ad8529976783b328ee8d27f5a9cc7">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">campaign_tweets</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>hour <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/hour.html">hour</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/with_tz.html">with_tz</a></span><span class="op">(</span><span class="va">created_at</span>, <span class="st">"EST"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -421,11 +422,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>We notice a big peak for the Android in the early hours of the morning, between 6 and 8 AM. There seems to be a clear difference in these patterns. We will therefore assume that two different entities are using these two devices.</p>
-<p>We will now study how the tweets differ when we compare Android to iPhone. To do this, we introduce the <strong>tidytext</strong> package.</p>
+<p>We will now study how the text of the tweets differ when we compare Android to iPhone. To do this, we introduce the <strong>tidytext</strong> package.</p>
 </section><section id="text-as-data" class="level2" data-number="17.2"><h2 data-number="17.2" class="anchored" data-anchor-id="text-as-data">
 <span class="header-section-number">17.2</span> Text as data</h2>
 <p>The <strong>tidytext</strong> package helps us convert free form text into a tidy table. Having the data in this format greatly facilitates data visualization and the use of statistical techniques.</p>
-<p>The main function needed to achieve this is <code>unnest_tokens</code>. A <em>token</em> refers to a unit that we are considering to be a data point. The most common <em>token</em> will be words, but they can also be single characters, n-grams, sentences, lines, or a pattern defined by a regex. The functions will take a vector of strings and extract the tokens so that each one gets a row in the new table. Here is a simple example:</p>
+<p>The main function needed to achieve this is <code>unnest_tokens</code>. A <em>token</em> refers to a unit that we are considering to be a data point. The most common <em>token</em> will be words, but they can also be single characters, n-grams, sentences, lines, or a pattern defined by a regex. The function will take a vector of strings and extract the tokens so that each one gets a row in the new table. Here is a simple example:</p>
 <div class="cell" data-layout-align="center" data-hash="text-analysis_cache/html/unnamed-chunk-8_749ee69dbcf2992f87660efd669b32ae">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">poem</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Roses are red,"</span>, <span class="st">"Violets are blue,"</span>, </span>
 <span>          <span class="st">"Sugar is sweet,"</span>, <span class="st">"And so are you."</span><span class="op">)</span></span>
@@ -450,7 +451,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 5     2 are    </span></span>
 <span><span class="co">#&gt; # ℹ 8 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now let’s look at trump tweet. We will look at tweet number 3008 because it will later permit us to illustrate a couple of points:</p>
+<p>Now let’s look at Trump’s tweets. We will look at tweet number 3008 because it will later permit us to illustrate a couple of points:</p>
 <div class="cell" data-layout-align="center" data-hash="text-analysis_cache/html/unnamed-chunk-9_e84d1353ae5102a0c60474cd95f9da01">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">i</span> <span class="op">&lt;-</span> <span class="fl">3008</span></span>
 <span><span class="va">campaign_tweets</span><span class="op">$</span><span class="va">text</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_wrap.html">str_wrap</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">65</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -478,7 +479,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; [13] "davenport"      "this"           "past"           "winter"        </span></span>
 <span><span class="co">#&gt; [17] "maga"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now we are now ready to extract the words for all our tweets.</p>
+<p>Now we are now ready to extract the words from all our tweets.</p>
 <div class="cell" data-layout-align="center" data-hash="text-analysis_cache/html/unnamed-chunk-11_5d26b118a405b029dec2d0a834ddee4d">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tweet_words</span> <span class="op">&lt;-</span> <span class="va">campaign_tweets</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_remove.html">str_remove_all</a></span><span class="op">(</span><span class="va">text</span>, <span class="va">links_to_pics</span><span class="op">)</span><span class="op">)</span>  <span class="op">|&gt;</span></span>
@@ -520,15 +521,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">word</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">stop_words</span><span class="op">$</span><span class="va">word</span> <span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>we end up with a much more informative set of top 10 tweeted words:</p>
-<div class="cell" data-layout-align="center" data-hash="text-analysis_cache/html/unnamed-chunk-15_47e307d9918fd475a0881ba32a2c8acc">
+<div class="cell" data-layout-align="center" data-hash="text-analysis_cache/html/unnamed-chunk-15_e775e123d79970a71a8bf82a2d5c9269">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tweet_words</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">word</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/top_n.html">top_n</a></span><span class="op">(</span><span class="fl">10</span>, <span class="va">n</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>word <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 10 × 2</span></span>
 <span><span class="co">#&gt;   word                      n</span></span>
-<span><span class="co">#&gt;   &lt;fct&gt;                 &lt;int&gt;</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                 &lt;int&gt;</span></span>
 <span><span class="co">#&gt; 1 trump2016               415</span></span>
 <span><span class="co">#&gt; 2 hillary                 407</span></span>
 <span><span class="co">#&gt; 3 people                  304</span></span>
@@ -546,7 +546,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>word <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span><span class="va">word</span>, <span class="st">"^'"</span>, <span class="st">""</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now that we have all our words in a table, along with information about what device was used to compose the tweet they came from, we can start exploring which words are more common when comparing Android to iPhone.</p>
-<p>For each word, we want to know if it is more likely to come from an Android tweet or an iPhone tweet. We therefore compute, for each word, what proportion of all words it represent for Android and iPhone, respectively.</p>
+<p>For each word, we want to know if it is more likely to come from an Android tweet or an iPhone tweet. We therefore compute, for each word, its frequency among words tweeted from Android and iPhone, respectively.</p>
 <div class="cell" data-layout-align="center" data-hash="text-analysis_cache/html/unnamed-chunk-17_9920bf26d29ff30efc00c938efc50ee1">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">android_vs_iphone</span> <span class="op">&lt;-</span> <span class="va">tweet_words</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">source</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -586,7 +586,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="sentiment-analysis" class="level2" data-number="17.3"><h2 data-number="17.3" class="anchored" data-anchor-id="sentiment-analysis">
 <span class="header-section-number">17.3</span> Sentiment analysis</h2>
 <p>In sentiment analysis, we assign a word to one or more “sentiments”. Although this approach will miss context-dependent sentiments, such as sarcasm, when performed on large numbers of words, summaries can provide insights.</p>
-<p>The first step in sentiment analysis is to assign a sentiment to each word. As we demonstrate, the <strong>tidytext</strong> package includes several maps or lexicons. We <strong>textdata</strong> package includes several of these lexicons.</p>
+<p>The first step in sentiment analysis is to assign a sentiment to each word. As we demonstrate, the <strong>tidytext</strong> package includes several maps or lexicons. The <strong>textdata</strong> package includes several of these lexicons.</p>
 <p>The <code>bing</code> lexicon divides words into <code>positive</code> and <code>negative</code> sentiments. We can see this using the <em>tidytext</em> function <code>get_sentiments</code>:</p>
 <div class="cell" data-layout-align="center" data-hash="text-analysis_cache/html/unnamed-chunk-20_030fba128c1bfc05dd58c9cdc2ec1eff">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/tidytext/man/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"bing"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -675,7 +675,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; # ℹ 6 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>So we do see some differences and the order is interesting: the largest three sentiments are disgust, anger, and negative!</p>
-<p>If we are interested in exploring which specific words are driving these differences, we can refer back to our <code>android_iphone_or</code> object:</p>
+<p>If we are interested in exploring which specific words are driving these differences, we can refer back to our <code>android_vs_iphone</code> object:</p>
 <div class="cell" data-layout-align="center" data-hash="text-analysis_cache/html/unnamed-chunk-28_a0d39eef67dfe74182e5496bea7c4ecd">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">android_vs_iphone</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">nrc</span>, by <span class="op">=</span> <span class="st">"word"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sentiment</span> <span class="op">==</span> <span class="st">"disgust"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -699,7 +699,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>This is just a simple example of the many analyses one can perform with tidytext. To learn more, we again recommend the Tidy Text Mining book<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
+<p>This is just a simple example of the many analyses one can perform with tidytext. To learn more, we again recommend the Tidy Text Mining book<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
 </section><section id="exercises" class="level2" data-number="17.4"><h2 data-number="17.4" class="anchored" data-anchor-id="exercises">
 <span class="header-section-number">17.4</span> Exercises</h2>
 <p>Project Gutenberg is a digital archive of public domain books. The R package <strong>gutenbergr</strong> facilitates the importation of these texts into R.</p>
@@ -713,7 +713,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gutenberg_metadata</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>1. Use <code>str_detect</code> to find the ID of the novel <em>Pride and Prejudice</em>.</p>
-<p>2. We notice that there are several versions. The <code><a href="https://docs.ropensci.org/gutenbergr/reference/gutenberg_works.html">gutenberg_works()</a></code> function filters this table to remove replicates and include only English language works. Read the help file and use this function to find the ID for <em>Pride and Prejudice</em>.</p>
+<p>2. We notice that there are several versions. The <code>gutenberg_works()</code> function filters this table to remove replicates and include only English language works. Read the help file and use this function to find the ID for <em>Pride and Prejudice</em>.</p>
 <p>3. Use the <code>gutenberg_download</code> function to download the text for Pride and Prejudice. Save it to an object called <code>book</code>.</p>
 <p>4. Use the <strong>tidytext</strong> package to create a tidy table with all the words in the text. Save the table in an object called <code>words</code></p>
 <p>5. We will later make a plot of sentiment versus location in the book. For this, it will be useful to add a column with the word number to the table.</p>
@@ -725,10 +725,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
-<li id="fn1"><p>https://twitter.com/tvaziri/status/762005541388378112/photo/1<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>http://varianceexplained.org/r/trump-tweets/<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>https://www.tidytextmining.com/<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>https://www.tidytextmining.com/<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p><a href="https://twitter.com/tvaziri/status/762005541388378112/photo/1" class="uri">https://twitter.com/tvaziri/status/762005541388378112/photo/1</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="http://varianceexplained.org/r/trump-tweets/" class="uri">http://varianceexplained.org/r/trump-tweets/</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://www.tidytextmining.com/" class="uri">https://www.tidytextmining.com/</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a href="https://www.thetrumparchive.com/" class="uri">https://www.thetrumparchive.com/</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><a href="https://www.tidytextmining.com/" class="uri">https://www.tidytextmining.com/</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

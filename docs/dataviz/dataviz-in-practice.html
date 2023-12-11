@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
 <title>Introduction to Data Science - 10&nbsp; Data visualization in practice</title>
@@ -88,7 +88,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script><script src="../site_libs/kePrint-0.0.1/kePrint.js"></script><link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -104,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dataviz/intro-dataviz.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="../dataviz/dataviz-in-practice.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data visualization in practice</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -114,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Introduction to Data Science</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/rafalab/dsbook-part-1" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -295,7 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Installing Git</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Terminal Access and Installing Git</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -397,7 +398,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header><p>In this chapter, we will demonstrate how relatively simple <strong>ggplot2</strong> code can create insightful and aesthetically pleasing plots. As motivation we will create plots that help us better understand trends in world health and economics. We will implement what we learned in Chapters <a href="ggplot2.html"><span>Chapter&nbsp;8</span></a> <a href="dataviz-principles.html"><span>Chapter&nbsp;9</span></a> and learn how to augment the code to perfect the plots. As we go through our case study, we will describe relevant general data visualization principles and learn concepts such as <em>faceting</em>, <em>time series plots</em>, <em>transformations</em>, and <em>ridge plots</em>.</p>
+</header><p>In this chapter, we will demonstrate how relatively simple <strong>ggplot2</strong> code can create insightful and aesthetically pleasing plots. As motivation we will create plots that help us better understand trends in world health and economics. We will implement what we learned in <a href="ggplot2.html"><span>Chapter&nbsp;8</span></a> and <a href="dataviz-principles.html"><span>Chapter&nbsp;9</span></a> and learn how to augment the code to perfect the plots. As we go through our case study, we will describe relevant general data visualization principles and learn concepts such as <em>faceting</em>, <em>time series plots</em>, <em>transformations</em>, and <em>ridge plots</em>.</p>
 <section id="case-study-1-new-insights-on-poverty" class="level2" data-number="10.1"><h2 data-number="10.1" class="anchored" data-anchor-id="case-study-1-new-insights-on-poverty">
 <span class="header-section-number">10.1</span> Case study 1: new insights on poverty</h2>
 <p>Hans Rosling<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> was the co-founder of the Gapminder Foundation<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, an organization dedicated to educating the public by using data to dispel common myths about the so-called developing world. The organization uses data to show how actual trends in health and economics contradict the narratives that emanate from sensationalist media coverage of catastrophes, tragedies, and other unfortunate events. As stated in the Gapminder Foundation’s website:</p>
@@ -408,7 +409,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 </blockquote>
 </blockquote>
-<p>Hans Rosling conveyed actual data-based trends in a dramatic way of his own, using effective data visualization. This section is based on two talks that exemplify this approach to education: [New Insights on Poverty]<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> and The Best Stats You’ve Ever Seen<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Specifically, in this section, we use data to attempt to answer the following two questions:</p>
+<p>Hans Rosling conveyed actual data-based trends in a dramatic way of his own, using effective data visualization. This section is based on two talks that exemplify this approach to education: New Insights on Poverty<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> and The Best Stats You’ve Ever Seen<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Specifically, in this section, we use data to attempt to answer the following two questions:</p>
 <ol type="1">
 <li>Is it a fair characterization of today’s world to say it is divided into western rich nations and the developing world in Africa, Asia, and Latin America?</li>
 <li>Has income inequality across countries worsened during the last 40 years?</li>
@@ -546,7 +547,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>We see a plot for each continent/year pair. However, this is just an example and more than what we want, which is simply to compare 1962 and 2012. In this case, there is just one variable and we use <code>.</code> to let facet know that we are not using one of the variables:</p>
+<p>We see a plot for each continent/year pair. However, this is just an example and more than what we want, which is simply to compare 1962 and 2012. In this case, there is just one variable and we use <code>.</code> to let facet know that we are not using a second variable:</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-in-practice_cache/html/fertility-versus-life-expectancy-two-years_4b9960abef76974ea5b5282855773386">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1962</span>, <span class="fl">2012</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">fertility</span>, <span class="va">life_expectancy</span>, col <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -626,7 +627,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>This is particularly helpful when we look at two countries. If we subset the data to include two countries, one from Europe and one from Asia, then adapt the code above:</p>
+<p>This is particularly helpful when we look at two countries. We can subset the data to include two countries, one from Europe and one from Asia, then adapt the code above:</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-in-practice_cache/html/wrong-time-series-plot_22cf667d9cb07f8c800910349e40d61b">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"South Korea"</span>, <span class="st">"Germany"</span><span class="op">)</span></span>
 <span></span>
@@ -691,8 +692,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">10.5</span> Data transformations</h2>
 <p>We now shift our attention to the second question related to the commonly held notion that wealth distribution across the world has become worse during the last decades. When general audiences are asked if poor countries have become poorer and rich countries become richer, the majority answers yes. By using stratification, histograms, smooth densities, and boxplots, we will be able to understand if this is in fact the case. First we learn how transformations can sometimes help provide more informative summaries and plots.</p>
 <p>The <code>gapminder</code> data table includes a column with the countries’ gross domestic product (GDP). GDP measures the market value of goods and services produced by a country in a year. The GDP per person is often used as a rough summary of a country’s wealth. Here we divide this quantity by 365 to obtain the more interpretable measure <em>dollars per day</em>. Using current US dollars as a unit, a person surviving on an income of less than $2 a day is defined to be living in <em>absolute poverty</em>. We add this variable to the data table:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-in-practice_cache/html/unnamed-chunk-3_a221fd69cfd7d84a0208eedd9a0cd210">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>dollars_per_day <span class="op">=</span> <span class="va">gdp</span><span class="op">/</span><span class="va">population</span><span class="op">/</span><span class="fl">365</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="dataviz-in-practice_cache/html/unnamed-chunk-3_426a547cfb71e6e932d41f23d2de926f">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span>  </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>dollars_per_day <span class="op">=</span> <span class="va">gdp</span><span class="op">/</span><span class="va">population</span><span class="op">/</span><span class="fl">365</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The GDP values are adjusted for inflation and represent current US dollars, so these values are meant to be comparable across the years. Of course, these are country averages and within each country there is much variability. All the graphs and insights described below relate to country averages and not to individuals.</p>
 <section id="log-transformation" class="level3" data-number="10.5.1"><h3 data-number="10.5.1" class="anchored" data-anchor-id="log-transformation">
@@ -713,7 +715,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>We use the <code>color = "black"</code> argument to draw a boundary and clearly distinguish the bins.</p>
 <p>In this plot, we see that for the majority of countries, averages are below $10 a day. However, the majority of the x-axis is dedicated to the 35 countries with averages above $10. So the plot is not very informative about countries with values below $10 a day.</p>
-<p>It might be more informative to quickly be able to see how many countries have average daily incomes of about $1 (extremely poor), $2 (very poor), $4 (poor), $8 (middle), $16 (well off), $32 (rich), $64 (very rich) per day. These changes are multiplicative and log transformations convert multiplicative changes into additive ones: when using base 2, a doubling of a value turns into an increase by 1.</p>
+<p>It might be more informative to quickly be able to see how many countries have average daily incomes of about $1 (extremely poor), $2 (very poor), $4 (poor), $8 (middle), $16 (well off), $32 (rich), $64 (very rich) per day. These changes are multiplicative, and log transformations convert multiplicative changes into additive ones: when using base 2, a doubling of a value turns into an increase by 1.</p>
 <p>Here is the distribution if we apply a log base 2 transform:</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-in-practice_cache/html/dollars-per-day-distribution-log_4870f75ab53d644c094c528df083a6d2">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
@@ -731,9 +733,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="which-base" class="level3" data-number="10.5.2"><h3 data-number="10.5.2" class="anchored" data-anchor-id="which-base">
 <span class="header-section-number">10.5.2</span> Which base?</h3>
 <p>In the case above, we used base 2 in the log transformations. Other common choices are base <span class="math inline">\(\mathrm{e}\)</span> (the natural log) and base 10.</p>
-<p>In general, we do not recommend using the natural log for data exploration and visualization. This is because while <span class="math inline">\(2^2, 2^3, 2^4, \dots\)</span> or <span class="math inline">\(10^2, 10^3, \dots\)</span> are easy to mentally compute, but the same is not true for <span class="math inline">\(\mathrm{e}^2, \mathrm{e}^3, \dots\)</span>. So natural log scale is not intuitive or easy to interpret.</p>
-<p>In the dollars per day example, we used base 2 instead of base 10 because the resulting range is easier to interpret. The range of the values being plotted is 0.3269426, 48.8852142.</p>
-<p>In base 10, this turns into a range that includes very few integers: just 0 and 1. With base two, our range includes -2, -1, 0, 1, 2, 3, 4, and 5. It is easier to compute <span class="math inline">\(2^x\)</span> and <span class="math inline">\(10^x\)</span> when <span class="math inline">\(x\)</span> is an integer and between -10 and 10, so we prefer to have smaller integers in the scale. Another consequence of a limited range is that choosing the binwidth is more challenging. With log base 2, we know that a binwidth of 1 will translate to a bin with range <span class="math inline">\(x\)</span> to <span class="math inline">\(2x\)</span>.</p>
+<p>In general, we do not recommend using the natural log for data exploration and visualization. This is because while <span class="math inline">\(2^2, 2^3, 2^4, \dots\)</span> or <span class="math inline">\(10^2, 10^3, \dots\)</span> are easy to mentally compute, but the same is not true for <span class="math inline">\(\mathrm{e}^2, \mathrm{e}^3, \dots\)</span>. The natural log scale is not intuitive or easy to interpret.</p>
+<p>In the dollars per day example, we used base 2 instead of base 10 because the resulting range is easier to interpret. The range of the untransformed values is 0.3269426, 48.8852142.</p>
+<p>In base 10, this turns into a range that includes very few integers: just 0 and 1. With base 2, our range includes -2, -1, 0, 1, 2, 3, 4, and 5. It is easier to compute <span class="math inline">\(2^x\)</span> and <span class="math inline">\(10^x\)</span> when <span class="math inline">\(x\)</span> is an integer and between -10 and 10, so we prefer to have smaller integers in the scale. Another consequence of a limited range is that choosing the binwidth is more challenging. With log base 2, we know that a binwidth of 1 will translate to a bin with range <span class="math inline">\(x\)</span> to <span class="math inline">\(2x\)</span>.</p>
 <p>For an example in which base 10 makes more sense, consider population sizes. A log base 10 is preferable since the range for these is:</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-in-practice_cache/html/unnamed-chunk-4_490623b450bfe99860da750b460e1991">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="va">past_year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -761,7 +763,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>----1----x----2--------3----</code></p>
 <p>for log transformed data, we know that the value of <span class="math inline">\(x\)</span> is about 1.5. If the scales are logged:</p>
 <p><code>----10---x---100------1000---</code></p>
-<p>then, to determine <code>x</code>, we need to compute <span class="math inline">\(10^{1.5}\)</span>, which is not easy to do in our heads. The advantage of using logged scales is that we see the original values on the axes. However, the advantage of showing logged scales is that the original values are displayed in the plot, which are easier to interpret. For example, we would see “32 dollars a day” instead of “5 log base 2 dollars a day”.</p>
+<p>then, to determine <code>x</code>, we need to compute <span class="math inline">\(10^{1.5}\)</span>, which is not easy to do in our heads. However, the advantage of showing logged scales is that the original values are displayed in the plot, which are easier to interpret. For example, we would see “32 dollars a day” instead of “5 log base 2 dollars a day”.</p>
 <p>As we learned earlier, if we want to scale the axis with logs, we can use the <code>scale_x_continuous</code> function. Instead of logging the values first, we apply this layer:</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-in-practice_cache/html/dollars-per-day-log-scale_5273b7d273d918bfae5ce909b6662240">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
@@ -781,7 +783,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section></section><section id="multimodal-distributions" class="level2" data-number="10.6"><h2 data-number="10.6" class="anchored" data-anchor-id="multimodal-distributions">
 <span class="header-section-number">10.6</span> Multimodal distributions</h2>
 <p>In the histogram above we see two <em>bumps</em>: one at about 4 and another at about 32. In statistics these bumps are sometimes referred to as <em>modes</em>. The mode of a distribution is the value with the highest frequency. The mode of the normal distribution is the average. When a distribution, like the one above, doesn’t monotonically decrease from the mode, we call the locations where it goes up and down again <em>local modes</em> and say that the distribution has <em>multiple modes</em>.</p>
-<p>The histogram above suggests that the 1970 country income distribution has two modes: one at about 2 dollars per day (1 in the log 2 scale) and another at about 32 dollars per day (5 in the log 2 scale). This <em>bimodality</em> is consistent with a dichotomous world made up of countries with average incomes less than $8 (3 in the log 2 scale) a day and countries above that.</p>
+<p>The histogram above suggests that the 1970 country income distribution has two modes: one at about 2 dollars per day (1 in the log 2 scale) and another at about 32 dollars per day (5 in the log 2 scale). This <em>bimodality</em> is consistent with a dichotomous world made up of countries with average incomes less than 8 dollars per day (3 in the log 2 scale) and countries above that.</p>
 </section><section id="comparing-distributions" class="level2" data-number="10.7"><h2 data-number="10.7" class="anchored" data-anchor-id="comparing-distributions">
 <span class="header-section-number">10.7</span> Comparing distributions</h2>
 <p>A histogram showed us that the 1970 income distribution values show a dichotomy. However, the histogram does not show us if the two groups of countries are <em>west</em> versus the <em>developing</em> world.</p>
@@ -800,7 +802,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>We can already see that there is indeed a “west versus the rest” dichotomy: we see two clear groups, with the rich group composed of North America, Northern and Western Europe, New Zealand and Australia. We define groups based on this observation:</p>
+<p>We can already see that there is indeed a “west versus the rest” dichotomy: we see two clear groups, with the rich group composed of North America, Northern and Western Europe, and New Zealand and Australia. We define groups based on this observation:</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-in-practice_cache/html/unnamed-chunk-5_d98588f1d428cc5cb6623e50ac697480">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>group <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
@@ -824,7 +826,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In the next section we demonstrate how to visualize and compare distributions across groups.</p>
 <section id="boxplots" class="level3" data-number="10.7.1"><h3 data-number="10.7.1" class="anchored" data-anchor-id="boxplots">
 <span class="header-section-number">10.7.1</span> Boxplots</h3>
-<p>The exploratory data analysis above has revealed two characteristics about average income distribution in 1970. Using a histogram, we found a bimodal distribution with the modes relating to poor and rich countries. We now want to compare the distribution across these five groups to confirm the “west versus the rest” dichotomy. The number of points in each category is large enough that a summary plot may be useful. We could generate five histograms or five density plots, but it may be more practical to have all the visual summaries in one plot. We therefore start by stacking boxplots next to each other. Note that we add the layer <code>theme(axis.text.x = element_text(angle = 90, hjust = 1))</code> to turn the group labels vertical, since they do not fit if we show them horizontally, and remove the axis label to make space.</p>
+<p>The exploratory data analysis above has revealed two characteristics about average income distribution in 1970. Using a histogram, we found a bimodal distribution with the modes relating to poor and rich countries. We now want to compare the distribution across these five groups to confirm the “west versus the rest” dichotomy. The number of points in each category is large enough that a summary plot may be useful. We could generate five histograms or five density plots, but it may be more practical to have all the visual summaries in one plot. We therefore start by stacking boxplots next to each other. Note that we add the layer <code>theme(axis.text.x = element_text(angle = 90, hjust = 1))</code> to turn the group labels vertical, since they do not fit if we show them horizontally, and we remove the axis label to make space.</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-in-practice_cache/html/dollars-per-day-boxplot_dce94e8b700c433ccff16735b1bbfec9">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">past_year</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">gdp</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -903,7 +905,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="example-1970-versus-2010-income-distributions" class="level3" data-number="10.7.3"><h3 data-number="10.7.3" class="anchored" data-anchor-id="example-1970-versus-2010-income-distributions">
 <span class="header-section-number">10.7.3</span> Example: 1970 versus 2010 income distributions</h3>
-<p>Data exploration clearly shows that in 1970 there was a “west versus the rest” dichotomy. But does this dichotomy persist? Let’s use <code>facet_grid</code> and see how the distributions have changed. To start, we will focus on two groups: the west and the rest. We make four histograms. We make this plot only for countries with data in both 1970 and 2010. Note that several countries were founded after 1970, for example, the Soviet Union divided into several countries during the 1990s. We also note tat that data was available for more countries in 2010.</p>
+<p>Data exploration clearly shows that in 1970 there was a “west versus the rest” dichotomy. But does this dichotomy persist? Let’s use <code>facet_grid</code> and see how the distributions have changed. To start, we will focus on two groups: the west and the rest. We make four histograms. We make this plot only for countries with data in both 1970 and 2010. Note that several countries were founded after 1970; for example, the Soviet Union divided into several countries during the 1990s. We also note that that data was available for more countries in 2010.</p>
 <p>We therefore make the plot only for countries with data in both years:</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-in-practice_cache/html/unnamed-chunk-7_fd8ee90fcc19c5ba5273fb7c7b0a04f7">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">past_year</span> <span class="op">&lt;-</span> <span class="fl">1970</span></span>
@@ -916,7 +918,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">country</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>These 108 account for 86% of the world population, so this subset should be representative. We can compare the distributions using this code:</p>
+<p>These 108 countries account for 86% of the world population, so this subset should be representative. We can compare the distributions using this code:</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-in-practice_cache/html/income-histogram-west-v-devel_899bd5a28fb9c0c4c9e9544ab86504d0">
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">years</span> <span class="op">&amp;</span> <span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">country_list</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -951,7 +953,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Here, we pause to introduce another powerful <strong>ggplot2</strong> feature. Because we want to compare each region before and after, it would be convenient to have the 1970 boxplot next to the 2010 boxplot for each region. In general, comparisons are easier when data are plotted next to each other.</p>
-<p>So instead of faceting, we keep the data from each year together and ask to color (or fill) them depending on the year. Note that groups are automatically separated by year and each pair of boxplots drawn next to each other. Because year is a number, we turn it into a factor since <strong>ggplot2</strong> automatically assigns a color to each category of a factor. Note that we have to convert the year columns from numeric to factor.</p>
+<p>So instead of faceting, we keep the data from each year together and ask to color (or fill) them depending on the year. Note that groups are automatically separated by year and each pair of boxplots drawn next to each other. Because the year column is a number, we have to convert it into a factor since <strong>ggplot2</strong> automatically assigns a color to each category of a factor.</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-in-practice_cache/html/income-histogram-west-v-devel-by-year_bffffe02432c52652fa99224e5322a16">
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">years</span> <span class="op">&amp;</span> <span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">country_list</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -986,7 +988,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>In the 1970 plot, we see two clear modes: poor and rich countries. In 2010, it appears that some of the poor countries have shifted towards the right, closing the gap.</p>
 <p>The next message we need to convey is that the reason for this change in distribution is that several poor countries became richer, rather than some rich countries becoming poorer. To do this, we can assign a color to the groups we identified during data exploration.</p>
-<p>However, because when we overlay two densities, the default is to have the area under the distribution curve add up to 1 for each group, regardless of the size of each group, we first need to learn how to make these smooth densities in a way that preserves information on the number of countries in each group. To do this, we will need to learn to access computed variables with <code>geom_density</code> function.</p>
+<p>However, because when we overlay two densities, the default is to have the area under the distribution curve add up to 1 for each group, regardless of the size of each group, we first need to learn how to make these smooth densities in a way that preserves information on the number of countries in each group. To do this, we will need to learn to access computed variables with the <code>geom_density</code> function.</p>
 </section><section id="accessing-computed-variables" class="level3" data-number="10.7.4"><h3 data-number="10.7.4" class="anchored" data-anchor-id="accessing-computed-variables">
 <span class="header-section-number">10.7.4</span> Accessing computed variables</h3>
 <p>To have the areas of these densities be proportional to the size of the groups, we can simply multiply the y-axis values by the size of the group. From the <code>geom_density</code> help file, we see that the functions compute a variable called <code>count</code> that does exactly this. We want this variable to be on the y-axis rather than the density.</p>
@@ -1053,7 +1055,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Here we can clearly see how the distributions for East Asia, Latin America, and others shift markedly to the right. While Sub-Saharan Africa remains stagnant.</p>
+<p>Here we can clearly see how the distributions for East Asia, Latin America, and others shift markedly to the right while Sub-Saharan Africa remains stagnant.</p>
 <p>Notice that we order the levels of the group so that the West’s density is plotted first, then Sub-Saharan Africa. Having the two extremes plotted first allows us to see the remaining bimodality better.</p>
 </section><section id="weighted-densities" class="level3" data-number="10.7.5"><h3 data-number="10.7.5" class="anchored" data-anchor-id="weighted-densities">
 <span class="header-section-number">10.7.5</span> Weighted densities</h3>
@@ -1079,7 +1081,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>The relationship between these two variables is almost perfectly linear and the graph shows a dramatic difference. While in the West less than 0.5% of infants die, in Sub-Saharan Africa the rate is higher than 6%!</p>
+<p>The relationship between these two variables is almost perfectly linear with the chosen axis transformations, and the graph shows a dramatic difference. While in the West less than 0.5% of infants die, in Sub-Saharan Africa the rate is higher than 6%!</p>
 <p>Note that the plot uses a new transformation, the logistic transformation.</p>
 <section id="sec-logit" class="level3" data-number="10.8.1"><h3 data-number="10.8.1" class="anchored" data-anchor-id="sec-logit">
 <span class="header-section-number">10.8.1</span> Logistic transformation</h3>
@@ -1102,7 +1104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Specifically, we see that there is a large amount of variability. We see that countries from the same regions can be quite different and that countries with the same income can have different survival rates. For example, while on average Sub-Saharan Africa had the worse health and economic outcomes, there is wide variability within that group. Mauritius and Botswana are doing better than Angola and Sierra Leone, with Mauritius comparable to Western countries.</p>
 </section></section><section id="sec-vaccines" class="level2" data-number="10.9"><h2 data-number="10.9" class="anchored" data-anchor-id="sec-vaccines">
 <span class="header-section-number">10.9</span> Case study 3: vaccines and infectious diseases</h2>
-<p>Vaccines have helped save millions of lives. In the 19th century, before herd immunization was achieved through vaccination programs, deaths from infectious diseases, such as smallpox and polio, were common. However, today vaccination programs have become somewhat controversial despite all the scientific evidence for their importance.</p>
+<p>Vaccines have helped save millions of lives. In the 19th century, before herd immunization was achieved through vaccination programs, deaths from infectious diseases, such as smallpox and polio, were common. Today however, vaccination programs have become somewhat controversial despite all the scientific evidence for their importance.</p>
 <p>The controversy started with a paper<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> published in 1988 and led by Andrew Wakefield claiming there was a link between the administration of the measles, mumps, and rubella (MMR) vaccine and the appearance of autism and bowel disease. Despite much scientific evidence contradicting this finding, sensationalist media reports and fear-mongering from conspiracy theorists led parts of the public into believing that vaccines were harmful. As a result, many parents ceased to vaccinate their children. This dangerous practice can be potentially disastrous given that the Centers for Disease Control (CDC) estimates that vaccinations will prevent more than 21 million hospitalizations and 732,000 deaths among children born in the last 20 years (see Benefits from Immunization during the Vaccines for Children Program Era — United States, 1994-2013, MMWR<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>). The 1988 paper has since been retracted and Andrew Wakefield was eventually “struck off the UK medical register, with a statement identifying deliberate falsification in the research published in The Lancet, and was thereby barred from practicing medicine in the UK.” (source: Wikipedia<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>). Yet misconceptions persist, in part due to self-proclaimed activists who continue to disseminate misinformation about vaccines.</p>
 <p>Effective communication of data is a strong antidote to misinformation and fear-mongering. Earlier we used an example provided by a Wall Street Journal article<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> showing data related to the impact of vaccines on battling infectious diseases. Here we reconstruct that example.</p>
 <section id="data" class="level3" data-number="10.9.1"><h3 data-number="10.9.1" class="anchored" data-anchor-id="data">
@@ -1141,7 +1143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>We add a vertical line at 1963 since this is when the vaccine was introduced [Control, Centers for Disease; Prevention (2014). CDC health information for international travel 2014 (the yellow book). p.&nbsp;250. ISBN 9780199948505].</p>
+<p>We add a vertical line at 1963 since this is when the vaccine was introduced <a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>.</p>
 <p>Now can we show data for all states in one plot? We have three variables to show: year, state, and rate. In the WSJ figure, they use the x-axis for year, the y-axis for state, and color hue to represent rates. However, the color scale they use, which goes from yellow to blue to green to orange to red, can be improved.</p>
 <p>In our example, we want to use a sequential palette since there is no meaningful center, just low and high rates.</p>
 <p>We use the geometry <code>geom_tile</code> to tile the region with colors representing disease rates. We use a square root transformation to avoid having the really high counts dominate the plot. Notice that missing values are shown in grey. Note that once a disease was pretty much eradicated, some states stopped reporting cases all together. This is why we see so much grey after 1980.</p>
@@ -1171,22 +1173,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>              <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">population</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">*</span> <span class="fl">10000</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now to make the plot we simply use the <code>geom_line</code> geometry:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-in-practice_cache/html/time-series-vaccines-plot_3954752408a52af95ad7fc361af5551e">
+<div class="cell" data-layout-align="center" data-hash="dataviz-in-practice_cache/html/time-series-vaccines-plot_56e5dd4334789f7ebb7516fd6364d167">
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">rate</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">rate</span>, group <span class="op">=</span> <span class="va">state</span><span class="op">)</span>,  color <span class="op">=</span> <span class="st">"grey50"</span>, </span>
-<span>            show.legend <span class="op">=</span> <span class="cn">FALSE</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">us_rate</span><span class="op">)</span>,  data <span class="op">=</span> <span class="va">avg</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>            show.legend <span class="op">=</span> <span class="cn">FALSE</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, linewidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">us_rate</span><span class="op">)</span>,  data <span class="op">=</span> <span class="va">avg</span>, linewidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>trans <span class="op">=</span> <span class="st">"sqrt"</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">25</span>, <span class="fl">125</span>, <span class="fl">300</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Cases per 10,000 by state"</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1955</span>, y <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>, </span>
 <span>            mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, label <span class="op">=</span> <span class="st">"US average"</span><span class="op">)</span>, </span>
 <span>            color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">1963</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
-<span><span class="co">#&gt; ℹ Please use `linewidth` instead.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">1963</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-in-practice_files/figure-html/time-series-vaccines-plot-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -1201,21 +1201,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Reproduce the image plot we previously made but for smallpox. For this plot, do not include years in which cases were not reported in 10 or more weeks.</p></li>
 <li><p>Now reproduce the time series plot we previously made, but this time following the instructions of the previous question for smallpox.</p></li>
 <li><p>For the state of California, make a time series plot showing rates for all diseases. Include only years with 10 or more weeks reporting. Use a different color for each disease.</p></li>
-<li><p>Now do the same for the rates for the US. Hint: compute the US rate by using summarize: the total divided by total population.</p></li>
+<li><p>Now do the same for the rates for the US. Hint: compute the US rate as the total divided by total population using <code>summarize</code>.</p></li>
 </ol>
 
 
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
-<li id="fn1"><p>https://en.wikipedia.org/wiki/Hans_Rosling<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>http://www.gapminder.org/<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>https://www.ted.com/talks/hans_rosling_reveals_new_insights_on_poverty?language=en<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(97)11096-0/abstract<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>https://www.cdc.gov/mmwr/preview/mmwrhtml/mm6316a4.htm<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>https://en.wikipedia.org/wiki/Andrew_Wakefield<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>http://graphics.wsj.com/infectious-diseases-and-vaccines/<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p>http://www.tycho.pitt.edu/<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p><a href="https://en.wikipedia.org/wiki/Hans_Rosling" class="uri">https://en.wikipedia.org/wiki/Hans_Rosling</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="http://www.gapminder.org/" class="uri">http://www.gapminder.org/</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://www.ted.com/talks/hans_rosling_reveals_new_insights_on_poverty?language=en" class="uri">https://www.ted.com/talks/hans_rosling_reveals_new_insights_on_poverty?language=en</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen" class="uri">https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><a href="http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(97)11096-0/abstract" class="uri">http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(97)11096-0/abstract</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><a href="https://www.cdc.gov/mmwr/preview/mmwrhtml/mm6316a4.htm" class="uri">https://www.cdc.gov/mmwr/preview/mmwrhtml/mm6316a4.htm</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p><a href="https://en.wikipedia.org/wiki/Andrew_Wakefield" class="uri">https://en.wikipedia.org/wiki/Andrew_Wakefield</a><a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p><a href="http://graphics.wsj.com/infectious-diseases-and-vaccines/" class="uri">http://graphics.wsj.com/infectious-diseases-and-vaccines/</a><a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p><a href="http://www.tycho.pitt.edu/" class="uri">http://www.tycho.pitt.edu/</a><a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Control, Centers for Disease; Prevention (2014). CDC health information for international travel 2014 (the yellow book). p.&nbsp;250. ISBN 9780199948505<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

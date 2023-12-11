@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Rafael A. Irizarry">
 
-<title>Introduction to Data Science - 19&nbsp; Installing Git</title>
+<title>Introduction to Data Science - 19&nbsp; Terminal Access and Installing Git</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,7 +59,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -76,10 +77,10 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../productivity/intro-productivity.html">Productivity Tools</a></li><li class="breadcrumb-item"><a href="../productivity/installing-git.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Installing Git</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../productivity/intro-productivity.html">Productivity Tools</a></li><li class="breadcrumb-item"><a href="../productivity/installing-git.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Terminal Access and Installing Git</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -93,7 +94,7 @@ ul.task-list li input[type="checkbox"] {
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Introduction to Data Science</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/rafalab/dsbook-part-1" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -274,7 +275,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Installing Git</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Terminal Access and Installing Git</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -319,7 +320,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Installing Git</span></h1>
+<h1 class="title"><span id="sec-terminal-git" class="quarto-section-identifier"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Terminal Access and Installing Git</span></span></h1>
 </div>
 
 
@@ -337,7 +338,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Before getting started, we need to make sure you have access to a <em>terminal</em> and that Git is installed. The terminal is integrated into Mac and Linux systems, but Windows users will have to install an <em>emulator</em>. There are many emulator options available, but here we show how to install Git Bash because it can be done as part of the Windows Git installation. Because of the differences in Mac and Windows, the sections in this chapter are divided accordingly.</p>
 <section id="sec-terminal-on-mac" class="level2" data-number="19.1">
 <h2 data-number="19.1" class="anchored" data-anchor-id="sec-terminal-on-mac"><span class="header-section-number">19.1</span> Accessing the terminal on a Mac</h2>
-<p>In Chapter <a href="unix.html"><span>Chapter&nbsp;20</span></a> we will show how the terminal is our window into the Unix world. On a Mac you can access a terminal by opening the application in the Utilities folder:</p>
+<p>In <a href="unix.html"><span>Chapter&nbsp;20</span></a> we will show how the terminal is our window into the Unix world. On a Mac you can access a terminal by opening the application in the Utilities folder:</p>
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 28.6%;justify-content: center;">
@@ -360,15 +361,27 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Start by opening a terminal as described in the previous section.</p></li>
 <li><p>Once you start the terminal, you will see a console like this:</p></li>
 </ol>
-<p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.36.48-AM.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.36.48-AM.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 <ol start="3" type="1">
 <li>You might have Git installed already. One way to check is by asking for the version by typing:</li>
 </ol>
 <pre><code>git --version</code></pre>
 <p>If you get a version number back, it is already installed. If not, you will get the following message:</p>
-<p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.39.31-AM.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.39.31-AM.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 <p>and you will be asked if you want to install it. You should click <em>Install</em>:</p>
-<p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.39.44-AM.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-10.39.44-AM.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 <ol start="4" type="1">
 <li>This will take you through the installation process:</li>
 </ol>
@@ -388,7 +401,11 @@ ul.task-list li input[type="checkbox"] {
 <ol start="5" type="1">
 <li>Once installed, you can check for the version again and it should show you something like this:</li>
 </ol>
-<p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-11.10.47-AM.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/mac-screenshots/Screen-Shot-2018-04-11-at-11.10.47-AM.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 <p>Congratulations. You have installed Git on your Mac.</p>
 </section>
 <section id="installing-git-and-git-bash-on-windows" class="level2" data-number="19.3">
@@ -405,13 +422,21 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>There are several pieces of software that will permit you to perform Unix commands on Windows. We will be using Git Bash as it interfaces with RStudio and it is automatically installed when we install Git for Windows.</p>
 <ol type="1">
-<li>Start by searching for <em>Git for Windows</em> on your browser and clicking on the link from <em>git-scm.com</em>.</li>
+<li>Start by searching for <em>Git for Windows</em> on your browser and clicking on the link from <em>git-scm.com</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
 </ol>
-<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_31_15.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_31_15.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 <ol start="2" type="1">
 <li>This will take you to the <em>Download Git</em> page from which you can download the <em>most recent maintained build</em>:</li>
 </ol>
-<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_31_45.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_31_45.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 <ol start="3" type="1">
 <li>You can then accept to run the installer and agree to the license:</li>
 </ol>
@@ -428,11 +453,19 @@ ul.task-list li input[type="checkbox"] {
 <ol start="4" type="1">
 <li>In one of the installation steps, you will be asked to pick the default editor for Git. Unless you are already a <em>vi</em> or <em>vim</em> user, we recommend against selecting <em>vim</em> which might be the default. If you do not recognize an editor you are familiar with among the options given, we recommend that you select <em>nano</em> as your default editor for Git since it is the easiest to learn:</li>
 </ol>
-<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_32_55.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_32_55.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 <ol start="5" type="1">
-<li>The next installation decision is actually an <strong>important one</strong>. This installation process installs Git Bash. We recommend that you select <em>Git and optional Unix tools from the Windows Command Prompt</em> as this will permit you to learn Unix from within RStudio. However, if you do this, <strong>some commands that run on your Windows command line will stop working</strong>. If you do not use your Windows command line, then this should not be a problem. Also, most, if not all, of these Windows command lines have a Unix equivalent that you will be able to use now.</li>
+<li>The next installation decision is actually an <strong>important one</strong>. This installation process installs Git Bash. We recommend that you select <em>Use Git and optional Unix tools from the Windows Command Prompt</em> as this will permit you to learn Unix from within RStudio. However, if you do this, <strong>some commands that run on your Windows command line will stop working</strong>. If you do not use your Windows command line, then this should not be a problem. Also, most, if not all, of these Windows command lines have a Unix equivalent that you will be able to use now.</li>
 </ol>
-<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_34_52.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_34_52.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 <ol start="6" type="1">
 <li>You can now continue selecting the default options.</li>
 </ol>
@@ -463,11 +496,23 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="19.4" class="anchored" data-anchor-id="sec-terminal-on-windows"><span class="header-section-number">19.4</span> Accessing the terminal on Windows</h2>
 <p>Now that Git Bash is installed, we can access the terminal either through RStudio or by opening Git Bash directly.</p>
 <p>To access the terminal through RStudio, we need to change a preference so that Git Bash becomes the default Unix shell in RStudio. In RStudio, go to preferences (under the File pull down menu), then select <em>Terminal</em>, then select <em>Git Bash</em>:</p>
-<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_38_00.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_38_00.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 <p>To check that you in fact are using Git Bash in RStudio, you can open a <em>New Terminal</em> in RStudio:</p>
-<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_10_49_44.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_10_49_44.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 <p>It should look something like this:</p>
-<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_10_49_51.png" class="img-fluid" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_10_49_51.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 <p>Often we want access to the terminal, but do not need RStudio. You can do this by running the Git Bash program directly:</p>
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -481,6 +526,12 @@ ul.task-list li input[type="checkbox"] {
 </div>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p><a href="https://git-scm.com/download/win" class="uri">https://git-scm.com/download/win</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

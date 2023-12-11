@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
 <title>Introduction to Data Science - 5&nbsp; data.table</title>
@@ -88,7 +88,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 </head>
@@ -103,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../R/intro-to-R.html">R</a></li><li class="breadcrumb-item"><a href="../R/data-table.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">data.table</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -113,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Introduction to Data Science</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/rafalab/dsbook-part-1" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -294,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Installing Git</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Terminal Access and Installing Git</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -374,7 +375,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com">data.table</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We will provide example code showing the <strong>data.table</strong> approaches to <strong>dplyr</strong>’s <code>mutate</code>, <code>filter</code>, <code>select</code>, <code>group_by</code>, and <code>summarize</code> shown in Chapter <a href="tidyverse.html"><span>Chapter&nbsp;4</span></a>. As in that chapter, we will use the <code>murders</code> dataset:</p>
+<p>We will provide example code showing the <strong>data.table</strong> approaches to <strong>dplyr</strong>’s <code>mutate</code>, <code>filter</code>, <code>select</code>, <code>group_by</code>, and <code>summarize</code> shown in <a href="tidyverse.html"><span>Chapter&nbsp;4</span></a>. As in that chapter, we will use the <code>murders</code> dataset:</p>
 <p>The first step when using <strong>data.table</strong> is to convert the data frame into a <code>data.table</code> object using the <code>as.data.table</code> function:</p>
 <div class="cell" data-layout-align="center" data-hash="data-table_cache/html/unnamed-chunk-2_179c88e234b4f3a270185f5e1f05939d">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/as.data.table.html">as.data.table</a></span><span class="op">(</span><span class="va">murders</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -400,7 +401,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center" data-hash="data-table_cache/html/unnamed-chunk-6_43b5dad9eaa54aacec1b922370bd70df">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">murders</span>, rate <span class="op">=</span> <span class="va">total</span> <span class="op">/</span> <span class="va">population</span> <span class="op">*</span> <span class="fl">100000</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>data.table</strong> uses an approach that avoids a new assignment (update by reference). This can help with large datasets that take up most of your computer’s memory. The <strong>data.table</strong> :=` function permits us to do this:</p>
+<p><strong>data.table</strong> uses an approach that avoids a new assignment (update by reference). This can help with large datasets that take up most of your computer’s memory. The <strong>data.table</strong> <code>:=</code> function permits us to do this:</p>
 <div class="cell" data-layout-align="center" data-hash="data-table_cache/html/unnamed-chunk-7_be3b0315a915d1d5f195e28e6e244dff">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span>, <span class="va">rate</span> <span class="op">:=</span> <span class="va">total</span> <span class="op">/</span> <span class="va">population</span> <span class="op">*</span> <span class="fl">100000</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -416,7 +417,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>y</code> is actually referencing <code>x</code>, it is not an new opject: <code>y</code> just another name for <code>x</code>. Until you change <code>y</code>, a new object will not be made. However, the <code>:=</code> function changes <em>by reference</em> so if you change <code>x</code>, a new object is not made and <code>y</code> continues to be just another name for <code>x</code>:</p>
+<p><code>y</code> is actually referencing <code>x</code>, it is not an new object: <code>y</code> just another name for <code>x</code>. Until you change <code>y</code>, a new object will not be made. However, the <code>:=</code> function changes <em>by reference</em> so if you change <code>x</code>, a new object is not made and <code>y</code> continues to be just another name for <code>x</code>:</p>
 <div class="cell" data-layout-align="center" data-hash="data-table_cache/html/unnamed-chunk-10_7380eee482c56a2b9eb760f758ffdebd">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span><span class="op">[</span>,<span class="va">a</span> <span class="op">:=</span> <span class="fl">2</span><span class="op">]</span></span>
 <span><span class="va">y</span></span>
@@ -462,11 +463,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center" data-hash="data-table_cache/html/unnamed-chunk-16_5a72c7e7db1560b965aa6199f04f0e5a">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">murders</span>, <span class="va">rate</span> <span class="op">&lt;=</span> <span class="fl">0.7</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>With <strong>data.table</strong>, we again use an approach similar to subsetting matrices, except <strong>data.table</strong> knows that <code>rate</code> refers to a column name and not an object in the R environment:</p>
+<p>With <strong>data.table</strong>, we again use an approach similar to subsetting matrices, except like <strong>dplyr</strong>, <strong>data.table</strong> knows that <code>rate</code> refers to a column name and not an object in the R environment:</p>
 <div class="cell" data-layout-align="center" data-hash="data-table_cache/html/unnamed-chunk-17_0ff1c5c2c93748df0b4ddf9c3b3d7749">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span><span class="va">rate</span> <span class="op">&lt;=</span> <span class="fl">0.7</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Notice that we can combine the filter and select into one succint command. Here are the state names and rates for those with rates below 0.7.</p>
+<p>Notice that we can combine the filter and select into one succinct command. Here are the state names and rates for those with rates below 0.7.</p>
 <div class="cell" data-layout-align="center" data-hash="data-table_cache/html/unnamed-chunk-18_5a3489c4ca4a43508489f26b376dab4f">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span><span class="va">rate</span> <span class="op">&lt;=</span> <span class="fl">0.7</span>, <span class="fu">.</span><span class="op">(</span><span class="va">state</span>, <span class="va">rate</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co">#&gt;            state  rate</span></span>
@@ -496,7 +497,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center" data-hash="data-table_cache/html/unnamed-chunk-20_e36e45fbb0d93a5499a627be49fa4d53">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heights_dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/as.data.table.html">as.data.table</a></span><span class="op">(</span><span class="va">heights</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In <strong>data.table</strong>, we can call functions inside <code>.()</code> and they will be applied to rows. So the equivalent of:</p>
+<p>In <strong>data.table</strong>, we can call functions inside <code>.()</code> and they will be applied to columns So the equivalent of:</p>
 <div class="cell" data-layout-align="center" data-hash="data-table_cache/html/unnamed-chunk-21_8bea31c2e6b178909c9a5250e2ef2d95">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="va">heights</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>avg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -516,7 +517,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="multiple-summaries" class="level3" data-number="5.2.1"><h3 data-number="5.2.1" class="anchored" data-anchor-id="multiple-summaries">
 <span class="header-section-number">5.2.1</span> Multiple summaries</h3>
-<p>In <a href="tidyverse.html"><span>Chapter&nbsp;4</span></a>, we defined the follwing function to permit multiple column summaries in <strong>dplyer</strong>:</p>
+<p>In <a href="tidyverse.html"><span>Chapter&nbsp;4</span></a>, we defined the following function to permit multiple column summaries in <strong>dplyr</strong>:</p>
 <div class="cell" data-layout-align="center" data-hash="data-table_cache/html/unnamed-chunk-25_4f5be559b7ec5aa9612ad07d3c5a50ad">
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">median_min_max</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="va">qs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
@@ -542,15 +543,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center" data-hash="data-table_cache/html/unnamed-chunk-28_ae6fc801f78cd65665627eee1d6a1a96">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>N To sort the table in descending order, we can order by the negative of <code>population</code> or use the <code>decreasing</code> argument:</p>
+<p>To sort the table in descending order, we can order by the negative of <code>population</code> or use the <code>decreasing</code> argument:</p>
 <div class="cell" data-layout-align="center" data-hash="data-table_cache/html/unnamed-chunk-29_3a8d98029d339cbdd33965832c36c74d">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">population</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">]</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="nested-sorting" class="level3" data-number="5.3.1"><h3 data-number="5.3.1" class="anchored" data-anchor-id="nested-sorting">
 <span class="header-section-number">5.3.1</span> Nested sorting</h3>
-<p>Similarly, we can perform nested ordering by including more than one variable in order</p>
+<p>Similarly, we can perform nested ordering by including more than one variable in order:</p>
 <div class="cell" data-layout-align="center" data-hash="data-table_cache/html/unnamed-chunk-30_df2edd20340a667c693032e05368d135">
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">region</span>, <span class="va">rate</span><span class="op">)</span><span class="op">]</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>You are ready to do exercises 8-12.</p>
+</div>
+</div>
 </div>
 </section></section><section id="exercises" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="exercises">
 <span class="header-section-number">5.4</span> Exercises</h2>
@@ -576,7 +587,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders_dt</span><span class="op">[</span><span class="va">state</span> <span class="op">==</span> <span class="st">"New York"</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can use other logical vectors to filter rows.</p>
-<p>Show the top 5 states with the highest murder rates. After we add murder rate and rank, do not change the <code>murders</code> dataset, just show the result. Remember that you can filter based on the <code>rank</code> column.</p>
+<p>Show the top 5 states with the highest murder rates. From here on, do not change the <code>murders</code> dataset, just show the result. Remember that you can filter based on the <code>rank</code> column.</p>
 <p>5. We can remove rows using the <code>!=</code> operator. For example, to remove Florida, we would do this:</p>
 <div class="cell" data-layout-align="center" data-hash="data-table_cache/html/unnamed-chunk-35_817548c97685a89d32f9bad49ba4d674">
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">no_florida</span> <span class="op">&lt;-</span> <span class="va">murders_dt</span><span class="op">[</span><span class="va">state</span> <span class="op">!=</span> <span class="st">"Florida"</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -596,16 +607,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center" data-hash="data-table_cache/html/unnamed-chunk-38_5a94868abdb9f2acb5d371882b69080a">
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">NHANES</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>8. We will provide some basic facts about blood pressure. First let’s select a group to set the standard. We will use 20-to-29-year-old females. <code>AgeDecade</code> is a categorical variable with these ages. Note that the category is coded like ” 20-29”, with a space in front! Use the <strong>data.table</strong> package to compute the average and standard deviation of systolic blood pressure as saved in the <code>BPSysAve</code> variable. Save it to a variable called <code>ref</code>.</p>
+<p>8. We will provide some basic facts about blood pressure. First let’s select a group to set the standard. We will use 20-to-29-year-old females. <code>AgeDecade</code> is a categorical variable with these ages. Note that the category is coded like <code>" 20-29"</code>, with a space in front! Use the <strong>data.table</strong> package to compute the average and standard deviation of systolic blood pressure as saved in the <code>BPSysAve</code> variable. Save it to a variable called <code>ref</code>.</p>
 <p>9. Report the min and max values for the same group.</p>
-<p>10. Compute the average and standard deviation for females, but for each age group separately rather than a selected decade as in question 1. Note that the age groups are defined by <code>AgeDecade</code>.</p>
-<p>11. Repeat exercise 3 for males.</p>
+<p>10. Compute the average and standard deviation for females, but for each age group separately rather than a selected decade as in exercise 8. Note that the age groups are defined by <code>AgeDecade</code>.</p>
+<p>11. Repeat exercise 10 for males.</p>
 <p>12. For males between the ages of 40-49, compare systolic blood pressure across race as reported in the <code>Race1</code> variable. Order the resulting table from lowest to highest average systolic blood pressure.</p>
 
 
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
-<li id="fn1"><p>https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p><a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html" class="uri">https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
 <title>Introduction to Data Science - 11&nbsp; Reshaping data</title>
@@ -88,7 +88,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 </head>
@@ -103,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../wrangling/intro-to-wrangling.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="../wrangling/reshaping-data.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Reshaping data</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -113,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Introduction to Data Science</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/rafalab/dsbook-part-1" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -294,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Installing Git</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Terminal Access and Installing Git</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -348,7 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 </header><p>As we have seen through the book, having data in <em>tidy</em> format is what makes the tidyverse flow. After the first step in the data analysis process, importing data, a common next step is to reshape the data into a form that facilitates the rest of the analysis. The <strong>tidyr</strong> package, part of <strong>tidyverse</strong>, includes several functions that are useful for tidying data.</p>
-<p>We will use the fertility wide format dataset described in Section <a href="../R/tidyverse.html#sec-tidy-data"><span>Section&nbsp;4.1</span></a> as an example in this section.</p>
+<p>We will use the fertility wide format dataset described in <a href="../R/tidyverse.html#sec-tidy-data"><span>Section&nbsp;4.1</span></a> as an example in this section.</p>
 <div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-1_5311c13e05e4b666e77f84874f272c3e">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> </span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
@@ -360,13 +361,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">11.1</span> <code>pivot_longer</code>
 </h2>
 <p>One of the most used functions in the <strong>tidyr</strong> package is <code>pivot_longer</code>, which is useful for converting wide data into tidy data.</p>
-<p>As with most tidyverse functions, the <code>pivot_longer</code> function’s first argument is the data frame that will be converted. Here we want to reshape the <code>wide_data</code> dataset so that each row represents a fertility observation, which implies we need three columns to store the year, country, and the observed value. In its current form, data from different years are in different columns with the year values stored in the column names. Through the <code>names_to</code> and <code>values_to</code> argument we will tell <code>pivot_longer</code> the column names we want to assign to the columns containing the current column names and observations, respectively. The default names are <code>name</code> and <code>value</code>, which are often usable choices. In this case a better choice for these two arguments would be <code>year</code> and <code>fertility</code>. Note that nowhere in the data file does it tell us this is fertility data. Instead, we deciphered this from the file name. Through <code>cols</code>, the second argument we specify the columns containing observed values; these are the columns that will be <em>pivoted</em>. The default is to pivot all columns so, in most cases, we have to specify the columns. In our example we want columns <code>1960</code>, <code>1961</code> up to <code>2015</code>.</p>
+<p>As with most tidyverse functions, the <code>pivot_longer</code> function’s first argument is the data frame that will be converted. Here we want to reshape the <code>wide_data</code> dataset so that each row represents a fertility observation, which implies we need three columns to store the year, country, and the observed value. In its current form, data from different years are in different columns with the year values stored in the column names. Through the <code>names_to</code> and <code>values_to</code> argument we will tell <code>pivot_longer</code> the column names we want to assign to the columns containing the current column names and observations, respectively. The default names are <code>name</code> and <code>value</code>, which are often usable choices. In this case a better choice for these two arguments would be <code>year</code> and <code>fertility</code>. Note that nowhere in the data file does it tell us this is fertility data. Instead, we deciphered this from the file name. Through <code>cols</code>, the second argument, we specify the columns containing observed values; these are the columns that will be <em>pivoted</em>. The default is to pivot all columns so, in most cases, we have to specify the columns. In our example we want columns <code>1960</code>, <code>1961</code> up to <code>2015</code>.</p>
 <p>The code to pivot the fertility data therefore looks like this:</p>
 <div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-2_a1fef4c2cb19cf529e0d8bb16f2d88e8">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_tidy_data</span> <span class="op">&lt;-</span> <span class="va">wide_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="va">`1960`</span><span class="op">:</span><span class="va">`2015`</span>, names_to <span class="op">=</span> <span class="st">"year"</span>, values_to <span class="op">=</span> <span class="st">"fertility"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We can see that the data have been converted to tidy format with columns <code>year</code> and <code>fertility</code>:</p>
+<p>We can see that the data have been converted to tidy format with columns <code>year</code> and <code>fertility</code></p>
 <div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-3_5d6b0426ec19cfd8787beeea37799bcc">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">new_tidy_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 3</span></span>
@@ -397,8 +398,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now that the data is tidy, we can use this relatively simple ggplot code:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/fertility-year-check_104be9df0a95f5814f47e602d736bff8">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_tidy_data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">fertility</span>, color <span class="op">=</span> <span class="va">country</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/fertility-year-check_c692d0d152ede4384e6e12eb4e159182">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_tidy_data</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">fertility</span>, color <span class="op">=</span> <span class="va">country</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="pivot_wider" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="pivot_wider">
 <span class="header-section-number">11.2</span> <code>pivot_wider</code>
@@ -455,12 +458,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; [4] "1961_life_expectancy" "1962_fertility"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Encoding multiple variables in a column name is such a common problem that the <strong>tidyr</strong> package includes function to separate these columns into two or more. The <code>separate_wider_delim</code> function takes three arguments: the name of the column to be separated, the names to be used for the new columns, and the character that separates the variables. So, a first attempt at separating the variable name from the year might be:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-11_badbf470abe6c542a8ce8639eb8fb68b">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html">separate_wider_delim</a></span><span class="op">(</span><span class="va">name</span>, delim <span class="op">=</span> <span class="st">"_"</span>, names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"name"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-11_e448eb426fc9163bd17470a7bd255836">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html">separate_wider_delim</a></span><span class="op">(</span><span class="va">name</span>, delim <span class="op">=</span> <span class="st">"_"</span>, </span>
+<span>                            names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"name"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>However, this line of code will give an error. This is because the life expectancy names have three string separated by <code>_</code> and the fertility names have two. This is a common problem so the <code>separate_wider_delim</code> function has arguments <code>too_few</code> and <code>too_many</code> to handle these situations. We see in the help file that the option <code>too_many = merge</code> <em>will merge together any additional pieces</em>. The following line does what we want:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-12_0fe86b2aad151eaa1442fba7faf94c13">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html">separate_wider_delim</a></span><span class="op">(</span><span class="va">name</span>, delim <span class="op">=</span> <span class="st">"_"</span>, names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"name"</span><span class="op">)</span>, too_many <span class="op">=</span> <span class="st">"merge"</span><span class="op">)</span></span>
+<p>However, this line of code will give an error. This is because the life expectancy names have three strings separated by <code>_</code> and the fertility names have two. This is a common problem so the <code>separate_wider_delim</code> function has arguments <code>too_few</code> and <code>too_many</code> to handle these situations. We see in the help file that the option <code>too_many = merge</code> <em>will merge together any additional pieces</em>. The following line does what we want:</p>
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-12_af388338c3fa9fa1e8fe1cd3231f828e">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html">separate_wider_delim</a></span><span class="op">(</span><span class="va">name</span>, delim <span class="op">=</span> <span class="st">"_"</span>, </span>
+<span>                            names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"name"</span><span class="op">)</span>, </span>
+<span>                            too_many <span class="op">=</span> <span class="st">"merge"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 224 × 4</span></span>
 <span><span class="co">#&gt;   country year  name            value</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;           &lt;dbl&gt;</span></span>
@@ -472,11 +478,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; # ℹ 219 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>But we are not done yet. We need to create a column for each variable and change <code>year</code> to a number. As we learned, the <code>pivot_wider</code> function can do this:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-13_28f79e46a9546c0dad30a0c9ec106507">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html">separate_wider_delim</a></span><span class="op">(</span><span class="va">name</span>, delim <span class="op">=</span> <span class="st">"_"</span>, names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"name"</span><span class="op">)</span>, too_many <span class="op">=</span> <span class="st">"merge"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-13_d83367950d5047530acae70b45eece2b">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">dat</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html">separate_wider_delim</a></span><span class="op">(</span><span class="va">name</span>, delim <span class="op">=</span> <span class="st">"_"</span>, </span>
+<span>                       names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"name"</span><span class="op">)</span>, </span>
+<span>                       too_many <span class="op">=</span> <span class="st">"merge"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dat</span></span>
 <span><span class="co">#&gt; # A tibble: 112 × 4</span></span>
 <span><span class="co">#&gt;   country  year fertility life_expectancy</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;   &lt;int&gt;     &lt;dbl&gt;           &lt;dbl&gt;</span></span>
@@ -488,23 +498,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; # ℹ 107 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The data is now in tidy format with one row for each observation with three variables: year, fertility, and life expectancy.</p>
-<p>Three related function are <code>separate_wider_position</code>, <code>separate_wider_regex</code>, and <code>unite</code>. <code>separate_wider_position</code> takes a width instead of delimiter. <code>separate_wider_regex</code>, described in <a href="string-processing.html#sec-separate_regex"><span>Section&nbsp;16.4.13</span></a>, provides much more control over how we separate and what we keep. The <code>untie</code> function can be tought of as the inverse of the <code>separate</code> function: it combines two columns into one.</p>
+<p>Three related function are <code>separate_wider_position</code>, <code>separate_wider_regex</code>, and <code>unite</code>. <code>separate_wider_position</code> takes a width instead of delimiter. <code>separate_wider_regex</code>, described in <a href="string-processing.html#sec-separate_regex"><span>Section&nbsp;16.4.13</span></a>, provides much more control over how we separate and what we keep. The <code>unite</code> function can be thought of as the inverse of the <code>separate</code> function: it combines two columns into one.</p>
 </section><section id="the-janitor-package" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="the-janitor-package">
 <span class="header-section-number">11.4</span> The janitor package</h2>
 <p>The <strong>janitor</strong> package includes function for some of the most common steps needed to wrangle data. These are particularly useful as these tasks that are often repetitive and time-consuming. Key features include functions for examining and cleaning column names, removing empty or duplicate rows, and converting data types. It also offers capabilities to generate frequency tables and perform cross tabulations with ease. The package is designed to work seamlessly with the <strong>tidyverse</strong>. Here we show four examples.</p>
-<p>Spreadsheets often use names that are not compatible with programming. The most common problem is column names with spaces. The <code><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names()</a></code> function attempts to fix this and other common problems. By default it forces varaible names to be lower case and with underscore instead of space. In this example we change the variable names of the object <code>dat</code> created in the previous section and then demonstrate how this function works:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-14_6b56dfcadad8f96733d938394e1a79a4">
+<p>Spreadsheets often use names that are not compatible with programming. The most common problem is column names with spaces. The <code><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names()</a></code> function attempts to fix this and other common problems. By default it forces variable names to be lower case and with underscore instead of space. In this example we change the variable names of the object <code>dat</code> created in the previous section and then demonstrate how this function works:</p>
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-14_2af85ecc7fd33dcc9c307d8acfecf6f0">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/sfirke/janitor">janitor</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'janitor'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     chisq.test, fisher.test</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Country"</span>, <span class="st">"Year"</span>, <span class="st">"Fertility"</span>,  <span class="st">"Life Expectancy"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: The `value` argument of `names&lt;-` must have the same length as `x` as</span></span>
-<span><span class="co">#&gt; of tibble 3.0.0.</span></span>
 <span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "country"   "year"      "fertility"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "country"         "year"            "fertility"      </span></span>
+<span><span class="co">#&gt; [4] "life_expectancy"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Another very common challenging reality is that numeric matrices are saved in spreadsheets and include a column with characters defining the row names. To fix this we have to remove the first column, but only after assigning them as vector that we will use to define rownames after converting the data frame to a matrix. The function <code>column_to_rows</code> does these operations for us and all we have to do is specify which column contains the rownames:</p>
 <div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-15_ffff702a98c39766ff53ab5727f9ad79">
@@ -516,13 +520,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; b 2 5</span></span>
 <span><span class="co">#&gt; c 3 6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Another common challenge is that spreadsheets include the columnnames as a first row. To quickly fix this we can `row_to_names``:</p>
-<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-16_ab55d7ee6d75a82e5236a0eb02e7fce6">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">path</span>, <span class="st">"murders.csv"</span><span class="op">)</span>, header <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://sfirke.github.io/janitor/reference/row_to_names.html">row_to_names</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<p>Another common challenge is that spreadsheets include the column names as a first row. To quickly fix this we can `row_to_names``:</p>
+<div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-16_ee1f7342856836390e4c60cfd9aa7363">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">path</span>, <span class="st">"murders.csv"</span><span class="op">)</span>, header <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://sfirke.github.io/janitor/reference/row_to_names.html">row_to_names</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "state"      "abb"        "region"     "population" "total"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Our final example relates to finding duplicates. A very common error in the creation of speadsheets is that rows are duplicated. The <code>get_dups</code> function finds and reports duplicate records. By default it considers all varaibles, but you can also specificy which ones.</p>
+<p>Our final example relates to finding duplicates. A very common error in the creation of spreadsheets is that rows are duplicated. The <code>get_dups</code> function finds and reports duplicate records. By default it considers all variables, but you can also specify which ones to use.</p>
 <div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-17_e3aa5131e0b355bf01c643362d2856cb">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/get_dupes.html">get_dupes</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
@@ -563,7 +568,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>If we think of an observation as a major, and that each observation has two variables (men admitted percentage and women admitted percentage) then this is not tidy. Use the <code>pivot_wider</code> function to wrangle into tidy shape: one row for each major.</p>
 <p>5. Now we will try a more advanced wrangling challenge. We want to wrangle the admissions data so that for each major we have 4 observations: <code>admitted_men</code>, <code>admitted_women</code>, <code>applicants_men</code> and <code>applicants_women</code>. The <em>trick</em> we perform here is actually quite common: first use <code>pivot_longer</code> to generate an intermediate data frame and then <code>pivot_wider</code> to obtain the tidy data we want. We will go step by step in this and the next two exercises.</p>
-<p>Use the <code>pivot_longer</code> function to create a <code>tmp</code> data.frame with a column containing the type of observation <code>admitted</code> or <code>applicants</code>. Call the new columns <code>name</code> and <code>value</code>.</p>
+<p>Use the <code>pivot_longer</code> function to create a <code>tmp</code> data frame with a column containing the type of observation: <code>admitted</code> or <code>applicants</code>. Call the new columns <code>name</code> and <code>value</code>.</p>
 <p>6. Now you have an object <code>tmp</code> with columns <code>major</code>, <code>gender</code>, <code>name</code> and <code>value</code>. Note that if you combine the <code>name</code> and <code>gender</code>, we get the column names we want: <code>admitted_men</code>, <code>admitted_women</code>, <code>applicants_men</code> and <code>applicants_women</code>. Use the function <code>unite</code> to create a new column called <code>column_name</code>.</p>
 <p>7. Now use the <code>pivot_wider</code> function to generate the tidy data with four variables for each major.</p>
 <p>8. Now use the pipe to write a line of code that turns <code>admissions</code> to the table produced in the previous exercise.</p>

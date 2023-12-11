@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
 <title>Introduction to Data Science - 14&nbsp; Wrangling with data.table</title>
@@ -88,7 +88,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 </head>
@@ -103,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../wrangling/intro-to-wrangling.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="../wrangling/data-table-wrangling.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Wrangling with `data.table`</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -113,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Introduction to Data Science</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/rafalab/dsbook-part-1" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -294,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Installing Git</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Terminal Access and Installing Git</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -367,7 +368,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com">data.table</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here we show the <strong>data.table</strong> version of some of the <strong>tidyverse</strong> commands we previously showed. The <strong>data.table</strong> functions are faster and more efficient with memory. In general, eveyrthing you can with <strong>tidyverse</strong> has a way to do it with **data.table* and R base which, although perhaps harder to read, it is often more flexible, faster, and more efficient. Here we show just a few examples, but you can learn others using internet searches or code generation tools.</p>
+<p>Here we show the <strong>data.table</strong> version of some of the <strong>tidyverse</strong> commands we previously showed. The <strong>data.table</strong> functions are faster and more efficient with memory. In general, everything you can do with <strong>tidyverse</strong> can be done with <strong>data.table</strong> and base R which, although perhaps harder to read, it is often more flexible, faster, and more efficient. Here we show just a few examples, but you can learn others using internet searches or code generation tools.</p>
 <section id="reshaping-data" class="level2" data-number="14.1"><h2 data-number="14.1" class="anchored" data-anchor-id="reshaping-data">
 <span class="header-section-number">14.1</span> Reshaping data</h2>
 <p>Previously we used this example:</p>
@@ -379,13 +380,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="pivot_longer-is-melt" class="level3" data-number="14.1.1"><h3 data-number="14.1.1" class="anchored" data-anchor-id="pivot_longer-is-melt">
 <span class="header-section-number">14.1.1</span> <code>pivot_longer</code> is <code>melt</code>
 </h3>
-<p>If in <strong>tidyeverse</strong> we write</p>
+<p>If in <strong>tidyverse</strong> we write</p>
 <div class="cell" data-layout-align="center" data-hash="data-table-wrangling_cache/html/unnamed-chunk-4_a3699c5303101a49e45c5be77a4cb917">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wide_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span>
 <span><span class="va">new_tidy_data</span> <span class="op">&lt;-</span> <span class="va">wide_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, names_to <span class="op">=</span> <span class="st">"year"</span>, values_to <span class="op">=</span> <span class="st">"fertility"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>in <strong>data.table</strong> we use the <code>melt</code> function</p>
+<p>in <strong>data.table</strong> we use the <code>melt</code> function.</p>
 <div class="cell" data-layout-align="center" data-hash="data-table-wrangling_cache/html/unnamed-chunk-5_a17f4282fc8f69c286cb838f34139ba6">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt_wide_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span> </span>
 <span><span class="va">dt_new_tidy_data</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/melt.data.table.html">melt</a></span><span class="op">(</span><span class="va">dt_wide_data</span>, </span>
@@ -396,12 +397,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section></section><section id="pivot_wider-is-dcast" class="level2" data-number="14.2"><h2 data-number="14.2" class="anchored" data-anchor-id="pivot_wider-is-dcast">
 <span class="header-section-number">14.2</span> <code>pivot_wider</code> is <code>dcast</code>
 </h2>
-<p>If in <strong>tidyeverse</strong> we write</p>
+<p>If in <strong>tidyverse</strong> we write</p>
 <div class="cell" data-layout-align="center" data-hash="data-table-wrangling_cache/html/unnamed-chunk-6_29a77266766e0651b70236f4ab18476b">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_wide_data</span> <span class="op">&lt;-</span> <span class="va">new_tidy_data</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">year</span>, values_from <span class="op">=</span> <span class="va">fertility</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>in <strong>data.table</strong> we write:</p>
+<p>in <strong>data.table</strong> we use the <code>dcast</code> function.</p>
 <div class="cell" data-layout-align="center" data-hash="data-table-wrangling_cache/html/unnamed-chunk-7_a5cf54848486e0d7b6a828430efb07e7">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt_new_wide_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/dcast.data.table.html">dcast</a></span><span class="op">(</span><span class="va">dt_new_tidy_data</span>, formula <span class="op">=</span> <span class="va">...</span> <span class="op">~</span> <span class="va">year</span>,</span>
 <span>                          value.var <span class="op">=</span> <span class="st">"fertility"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -436,23 +437,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section></section><section id="joins" class="level2" data-number="14.3"><h2 data-number="14.3" class="anchored" data-anchor-id="joins">
 <span class="header-section-number">14.3</span> Joins</h2>
-<p>In *tidyverse** we joined two table like this:</p>
+<p>In <strong>tidyverse</strong> we joined two tables with <code>left_join</code>:</p>
 <div class="cell" data-layout-align="center" data-hash="data-table-wrangling_cache/html/unnamed-chunk-11_b8a9115d9ef282d8e3e5a836ba131c62">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">murders</span>, <span class="va">results_us_election_2016</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In <strong>data.table</strong> the <code>merge</code> functions works similarly:</p>
-<div class="cell" data-layout-align="center" data-hash="data-table-wrangling_cache/html/unnamed-chunk-12_6030dec2ec2c30f49e2068f7edeeb3b0">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">murders</span>, <span class="va">results_us_election_2016</span>, by <span class="op">=</span> <span class="st">"state"</span>, all.x <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="data-table-wrangling_cache/html/unnamed-chunk-12_29ef58bdb364ebf1f768c3cf839304cc">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">murders</span>, <span class="va">results_us_election_2016</span>, </span>
+<span>             by <span class="op">=</span> <span class="st">"state"</span>, all.x <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Instead of defining different functions for the different type of joins, <code>merge</code> uses the the logical arguments <code>all</code> (full join), <code>all.x</code> (left join), and <code>all.y</code> (right join).</p>
 </section><section id="dates-and-times" class="level2" data-number="14.4"><h2 data-number="14.4" class="anchored" data-anchor-id="dates-and-times">
 <span class="header-section-number">14.4</span> Dates and times</h2>
-<p>The <strong>data.table</strong> package also includes some of the functionality to <strong>lubridate</strong>. For example, it includes the <code>mday</code>, <code>month</code>, and <code>year</code> functions:</p>
+<p>The <strong>data.table</strong> package also includes some of the same functionality as <strong>lubridate</strong>. For example, it includes the <code>mday</code>, <code>month</code>, and <code>year</code> functions:</p>
 <div class="cell" data-layout-align="center" data-hash="data-table-wrangling_cache/html/unnamed-chunk-13_9ce2868d6acee1e8c4adf8142a6dc332">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/IDateTime.html">mday</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 7</span></span>
+<span><span class="co">#&gt; [1] 28</span></span>
 <span><span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/IDateTime.html">month</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 12</span></span>
+<span><span class="co">#&gt; [1] 11</span></span>
 <span><span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/IDateTime.html">year</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 2023</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -460,7 +462,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The package also includes the class <code>IDate</code> and <code>ITime</code>, which store dates and times more efficiently, convenient for large files with date stamps. You convert dates in the usual R format using <code>as.IDate</code> and <code>as.ITime</code>.</p>
 </section><section id="exercises" class="level2" data-number="14.5"><h2 data-number="14.5" class="anchored" data-anchor-id="exercises">
 <span class="header-section-number">14.5</span> Exercises</h2>
-<p>Repear exercises in <a href="reshaping-data.html"><span>Chapter&nbsp;11</span></a>, <a href="joining-tables.html#sec-joins"><span>Section&nbsp;12.1</span></a>, and <a href="dates-and-times.html"><span>Chapter&nbsp;13</span></a> using <strong>data.table</strong> instead of <strong>tidyverse</strong>.</p>
+<p>Repeat exercises in <a href="reshaping-data.html"><span>Chapter&nbsp;11</span></a>, <a href="joining-tables.html#sec-joins"><span>Section&nbsp;12.1</span></a>, and <a href="dates-and-times.html"><span>Chapter&nbsp;13</span></a> using <strong>data.table</strong> instead of <strong>tidyverse</strong>.</p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

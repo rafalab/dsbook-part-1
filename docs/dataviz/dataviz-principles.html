@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
 <title>Introduction to Data Science - 9&nbsp; Data visualization principles</title>
@@ -88,7 +88,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script><script src="../site_libs/kePrint-0.0.1/kePrint.js"></script><link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -104,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../dataviz/intro-dataviz.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="../dataviz/dataviz-principles.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data visualization principles</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -114,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Introduction to Data Science</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/rafalab/dsbook-part-1" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -295,7 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Installing Git</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Terminal Access and Installing Git</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -484,7 +485,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Finally, here is an extreme example that makes a very small difference of under 2% look like a 10-100 fold change:</p>
 <!-- http://i2.wp.com/flowingdata.com/wp-content/uploads/2012/08/Bush-cuts.png-->
 <p><img src="img/venezuela-election.png" class="img-fluid"></p>
-<p>(Source: Venezolana de Televisión via Pakistan Today<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> and Diego Mariano.)</p>
+<p>(Source: Venezolana de Televisión via El Mundo<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>.)</p>
 <p>Here is the appropriate plot:</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/barplot-from-zero-3_67ae8ea17afa5c2dd0cb21c70813b5c4">
 <div class="cell-output-display">
@@ -600,7 +601,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>However, from this plot it is not immediately obvious that males are, on average, taller than females. We have to look carefully to notice that the x-axis has a higher range of values in the male histogram. An important principle here is to <strong>keep the axes the same</strong> when comparing data across two plots. Below we see how the comparison becomes easier:</p>
+<p>However, from this plot it is not immediately obvious that males are, on average, taller than females. We have to look carefully to notice that the x-axis has a higher range of values in the male histogram. An important principle here is to <strong>keep the axes the same</strong> when comparing data across two plots. Below we see how the comparison becomes a little easier:</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/common-axes-histograms-right_7a7ccae4629f59ebd8782444efc6d3ae">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -703,7 +704,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="think-of-the-color-blind" class="level2" data-number="9.9"><h2 data-number="9.9" class="anchored" data-anchor-id="think-of-the-color-blind">
 <span class="header-section-number">9.9</span> Think of the color blind</h2>
-<p>About 10% of the population is color blind. Unfortunately, the default colors used in <strong>ggplot2</strong> are not optimal for this group. However, <strong>ggplot2</strong> does make it easy to change the color palette used in the plots. An example of how we can use a color blind friendly palette is described here: <a href="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette">http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette</a>:</p>
+<p>About 10% of the population is color blind. Unfortunately, the default colors used in <strong>ggplot2</strong> are not optimal for this group. However, <strong>ggplot2</strong> does make it easy to change the color palette used in the plots. An example of how we can use a color blind friendly palette is described in the R cookbook<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>:</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-4_4eeb667782cf8a449f82c6036a3dd2f3">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">color_blind_friendly_cols</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#999999"</span>, <span class="st">"#E69F00"</span>, <span class="st">"#56B4E9"</span>, <span class="st">"#009E73"</span>, </span>
@@ -718,10 +719,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>There are several resources that can help you select colors, for example this one: <a href="http://bconnelly.net/2013/10/creating-colorblind-friendly-figures/">http://bconnelly.net/2013/10/creating-colorblind-friendly-figures/</a>.</p>
+<p>There are several resources that can help you select colors, for example tutorials on R-bloggers<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>.</p>
 </section><section id="plots-for-two-variables" class="level2" data-number="9.10"><h2 data-number="9.10" class="anchored" data-anchor-id="plots-for-two-variables">
 <span class="header-section-number">9.10</span> Plots for two variables</h2>
-<p>In general, you should use scatterplots to visualize the relationship between two variables. In every single instance in which we have examined the relationship between two variables, including total murders versus population size, life expectancy versus fertility rates, and infant mortality versus income, we have used scatterplots. This is the plot we generally recommend. However, there are some exceptions and we describe two alternative plots here: the <em>slope chart</em> and the <em>Bland-Altman plot</em>.</p>
+<p>In general, you should use scatterplots to visualize the relationship between two variables. In every single instance in which we have examined the relationship between two variables, including total murders versus population size and life expectancy versus fertility rates, we have used scatterplots. This is the plot we generally recommend. However, there are some exceptions and we describe two alternative plots here: the <em>slope chart</em> and the <em>Bland-Altman plot</em>.</p>
 <section id="slope-charts" class="level3" data-number="9.10.1"><h3 data-number="9.10.1" class="anchored" data-anchor-id="slope-charts">
 <span class="header-section-number">9.10.1</span> Slope charts</h3>
 <p>One exception where another type of plot may be more informative is when you are comparing variables of the same type, but at different time points and for a relatively small number of comparisons. For example, comparing life expectancy between 2010 and 2015. In this case, we might recommend a <em>slope chart</em>.</p>
@@ -735,26 +736,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>An advantage of the slope chart is that it permits us to quickly get an idea of changes based on the slope of the lines. Although we are using angle as the visual cue, we also have position to determine the exact values. Comparing the improvements is a bit harder with a scatterplot:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/scatter-plot-instead-of-slope_ccd2d64fd87310ffbd6deca78679b33a">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span></span>
-<span><span class="va">west</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Western Europe"</span>,<span class="st">"Northern Europe"</span>,<span class="st">"Southern Europe"</span>,</span>
-<span>          <span class="st">"Northern America"</span>,<span class="st">"Australia and New Zealand"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span><span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2010</span>, <span class="fl">2015</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">region</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">west</span> <span class="op">&amp;</span> </span>
-<span>           <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">life_expectancy</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">population</span> <span class="op">&gt;</span> <span class="fl">10</span><span class="op">^</span><span class="fl">7</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="va">dat</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">mutate</span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"life_expectancy_"</span>, <span class="va">year</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">country</span>, <span class="va">year</span>, <span class="va">life_expectancy</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">spread</span><span class="op">(</span><span class="va">year</span>, <span class="va">life_expectancy</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">life_expectancy_2010</span>,y<span class="op">=</span><span class="va">life_expectancy_2015</span>, label <span class="op">=</span> <span class="va">country</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_text_repel</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>limits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">78.5</span>, <span class="fl">83</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>limits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">78.5</span>, <span class="fl">83</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span>lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"2010"</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"2015"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/scatter-plot-instead-of-slope_c5c160181aa4b0e4effc0e61d481df72">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/scatter-plot-instead-of-slope-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -766,20 +748,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="bland-altman-plot" class="level3" data-number="9.10.2"><h3 data-number="9.10.2" class="anchored" data-anchor-id="bland-altman-plot">
 <span class="header-section-number">9.10.2</span> Bland-Altman plot</h3>
 <p>Since we are primarily interested in the difference, it makes sense to dedicate one of our axes to it. The Bland-Altman plot, also known as the Tukey mean-difference plot and the MA-plot, shows the difference versus the average:</p>
-<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/bland-altman_666020b962ddfb2c70ec6e4fd0e9ba3a">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span></span>
-<span><span class="va">dat</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">mutate</span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"life_expectancy_"</span>, <span class="va">year</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">country</span>, <span class="va">year</span>, <span class="va">life_expectancy</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">"year"</span>, values_from<span class="op">=</span><span class="st">"life_expectancy"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">mutate</span><span class="op">(</span>average <span class="op">=</span> <span class="op">(</span><span class="va">life_expectancy_2015</span> <span class="op">+</span> <span class="va">life_expectancy_2010</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>,</span>
-<span>         difference <span class="op">=</span> <span class="va">life_expectancy_2015</span> <span class="op">-</span> <span class="va">life_expectancy_2010</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">average</span>, <span class="va">difference</span>, label <span class="op">=</span> <span class="va">country</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_text_repel</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span>lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Average of 2010 and 2015"</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Difference between 2015 and 2010"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/bland-altman_50d9572d2b6281413ac33935fa3b6e08">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/bland-altman-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -790,7 +759,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Here, by simply looking at the y-axis, we quickly see which countries have shown the most improvement. We also get an idea of the overall value from the x-axis.</p>
 </section></section><section id="encoding-a-third-variable" class="level2" data-number="9.11"><h2 data-number="9.11" class="anchored" data-anchor-id="encoding-a-third-variable">
 <span class="header-section-number">9.11</span> Encoding a third variable</h2>
-<p>An earlier scatterplot showed the relationship between infant survival and average income. Below is a version of this plot that encodes three variables: OPEC membership, region, and population.</p>
+<p>An earlier scatterplot showed the relationship between infant survival and average income. Below is a version of this plot that encodes three additional variables: OPEC membership, region, and population.</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/encoding-third-variable_3032856503a96e79be181db6fe835519">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -829,7 +798,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="avoid-pseudo-three-dimensional-plots" class="level2" data-number="9.12"><h2 data-number="9.12" class="anchored" data-anchor-id="avoid-pseudo-three-dimensional-plots">
 <span class="header-section-number">9.12</span> Avoid pseudo-three-dimensional plots</h2>
-<p>The figure below, taken from the scientific literature<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>, shows three variables: dose, drug type and survival. Although your screen/book page is flat and two-dimensional, the plot tries to imitate three dimensions and assigned a dimension to each variable.</p>
+<p>The figure below, taken from the scientific literature<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>, shows three variables: dose, drug type and survival. Although your screen/book page is flat and two-dimensional, the plot tries to imitate three dimensions and assigned a dimension to each variable.</p>
 <!-- https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig8b.png-->
 <p><img src="img/fig8b.png" class="img-fluid"></p>
 <p>(Image courtesy of Karl Broman)</p>
@@ -908,7 +877,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-<p>We are reporting precision up to 0.00001 cases per 10,000, a very small value in the context of the changes that are occurring across the dates. In this case, two significant figures is more than enough and clearly makes the point that rates are decreasing:</p>
+<p>We are reporting precision up to 0.00001 cases per 10,000, a very small value in the context of the changes that are occurring across the dates. In this case, one significant figures is enough and clearly makes the point that rates are decreasing:</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-6_ab3356261a6c169a31bb2be0031102ca">
 <div class="cell-output-display">
 <table class="table table-striped table-sm small" data-quarto-postprocess="true">
@@ -1007,13 +976,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="know-your-audience" class="level2" data-number="9.14"><h2 data-number="9.14" class="anchored" data-anchor-id="know-your-audience">
 <span class="header-section-number">9.14</span> Know your audience</h2>
-<p>Graphs can be used for 1) our own exploratory data analysis, 2) to convey a message to experts, or 3) to help convery a message to a general audience. Make sure that the intended audience understands each element of the plot.</p>
+<p>Graphs can be used 1) for our own exploratory data analysis, 2) to convey a message to experts, or 3) to help convey a message to a general audience. Make sure that the intended audience understands each element of the plot.</p>
 <p>As a simple example, consider that for your own exploration it may be more useful to log-transform data and then plot it. However, for a general audience that is unfamiliar with converting logged values back to the original measurements, using a log-scale for the axis instead of log-transformed values will be much easier to digest.</p>
 </section><section id="exercises" class="level2" data-number="9.15"><h2 data-number="9.15" class="anchored" data-anchor-id="exercises">
 <span class="header-section-number">9.15</span> Exercises</h2>
 <p>For these exercises, we will be using the vaccines data in the <strong>dslabs</strong> package:</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-8_886b89c08d5fb2b78dffa7bced2c57a6">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>1. Pie charts are appropriate:</p>
 <ol type="a">
@@ -1055,15 +1024,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>4. To make the plot on the left, we have to reorder the levels of the states’ variables.</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-9_d15c8f71f7e7d3a1c1feae73334aa955">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">us_contagious_diseases</span> <span class="op">|&gt;</span>  </span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">us_contagious_diseases</span> <span class="op">|&gt;</span>  </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">1967</span> <span class="op">&amp;</span> <span class="va">disease</span><span class="op">==</span><span class="st">"Measles"</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>rate <span class="op">=</span> <span class="va">count</span> <span class="op">/</span> <span class="va">population</span> <span class="op">*</span> <span class="fl">10000</span> <span class="op">*</span> <span class="fl">52</span> <span class="op">/</span> <span class="va">weeks_reporting</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note what happens when we make a barplot:</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/barplot-plot-exercise-example_d66fb9d2ce64f4cdc9322b87789e3c90">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">state</span>, <span class="va">rate</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">state</span>, <span class="va">rate</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">coord_flip</span><span class="op">(</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/barplot-plot-exercise-example-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -1073,21 +1042,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Define these objects:</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-10_24577d80ea94af3a741a53c3a9f2a805">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">state</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">$</span><span class="va">state</span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">state</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">$</span><span class="va">state</span></span>
 <span><span class="va">rate</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">$</span><span class="va">count</span><span class="op">/</span><span class="va">dat</span><span class="op">$</span><span class="va">population</span><span class="op">*</span><span class="fl">10000</span><span class="op">*</span><span class="fl">52</span><span class="op">/</span><span class="va">dat</span><span class="op">$</span><span class="va">weeks_reporting</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Redefine the <code>state</code> object so that the levels are re-ordered. Print the new object <code>state</code> and its levels so you can see that the vector is not re-ordered by the levels.</p>
 <p>5. Now with one line of code, define the <code>dat</code> table as done above, but change the use mutate to create a rate variable and re-order the state variable so that the levels are re-ordered by this variable. Then make a barplot using the code above, but for this new <code>dat</code>.</p>
 <p>6. Say we are interested in comparing gun homicide rates across regions of the US. We see this plot:</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/us-murders-barplot_417bc78093066b92cb5dc7b867b9a78f">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>rate <span class="op">=</span> <span class="va">total</span><span class="op">/</span><span class="va">population</span><span class="op">*</span><span class="fl">100000</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span><span class="fu">group_by</span><span class="op">(</span><span class="va">region</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span><span class="fu">summarize</span><span class="op">(</span>avg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">rate</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span><span class="fu">mutate</span><span class="op">(</span>region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">region</span>, <span class="va">avg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Murder Rate Average"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">region</span>, <span class="va">avg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span><span class="fu">ylab</span><span class="op">(</span><span class="st">"Murder Rate Average"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="dataviz-principles_files/figure-html/us-murders-barplot-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -1098,13 +1067,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>and decide to move to a state in the western region. What is the main problem with this interpretation?</p>
 <ol type="a">
 <li>The categories are ordered alphabetically.</li>
-<li>The graph does not show standarad errors.</li>
+<li>The graph does not show standard errors.</li>
 <li>It does not show all the data. We do not see the variability within a region and it’s possible that the safest states are not in the West.</li>
 <li>The Northeast has the lowest average.</li>
 </ol>
 <p>7. Make a boxplot of the murder rates defined as</p>
 <div class="cell" data-layout-align="center" data-hash="dataviz-principles_cache/html/unnamed-chunk-11_f9f5dfd7fc93cdaaba230c670b56e19e">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>rate <span class="op">=</span> <span class="va">total</span><span class="op">/</span><span class="va">population</span><span class="op">*</span><span class="fl">100000</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>rate <span class="op">=</span> <span class="va">total</span><span class="op">/</span><span class="va">population</span><span class="op">*</span><span class="fl">100000</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>by region, showing all the points and ordering the regions by their median rate.</p>
 <p>8. The plots below show three continuous variables.</p>
@@ -1136,17 +1105,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
-<li id="fn1"><p>http://kbroman.org/<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>https://www.biostat.wisc.edu/~kbroman/presentations/graphs2017.pdf<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>https://github.com/kbroman/Talk_Graphs<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>http://paldhous.github.io/ucb/2016/dataviz/index.html<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>https://github.com/rafalab/dsbook-part-1/blob/main/dataviz/dataviz-principles.qmd<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>http://paldhous.github.io/ucb/2016/dataviz/week2.html<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>http://mediamatters.org/blog/2013/04/05/fox-news-newest-dishonest-chart-immigration-enf/193507<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>http://flowingdata.com/2012/08/06/fox-news-continues-charting-excellence/<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p>https://www.pakistantoday.com.pk/2018/05/18/whats-at-stake-in-venezuelan-presidential-vote<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn10"><p>https://www.youtube.com/watch?v=kl2g40GoRxg<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn11"><p>https://projecteuclid.org/download/pdf_1/euclid.ss/1177010488<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p><a href="http://kbroman.org/" class="uri">http://kbroman.org/</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://www.biostat.wisc.edu/~kbroman/presentations/graphs2017.pdf" class="uri">https://www.biostat.wisc.edu/~kbroman/presentations/graphs2017.pdf</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://github.com/kbroman/Talk_Graphs" class="uri">https://github.com/kbroman/Talk_Graphs</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a href="https://www.peteraldhous.com/ucb/2014/dataviz/index.html" class="uri">https://www.peteraldhous.com/ucb/2014/dataviz/index.html</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><a href="https://github.com/rafalab/dsbook-part-1/blob/main/dataviz/dataviz-principles.qmd" class="uri">https://github.com/rafalab/dsbook-part-1/blob/main/dataviz/dataviz-principles.qmd</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><a href="https://www.peteraldhous.com/ucb/2014/dataviz/week2.html" class="uri">https://www.peteraldhous.com/ucb/2014/dataviz/week2.html</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p><a href="http://mediamatters.org/blog/2013/04/05/fox-news-newest-dishonest-chart-immigration-enf/193507" class="uri">http://mediamatters.org/blog/2013/04/05/fox-news-newest-dishonest-chart-immigration-enf/193507</a><a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p><a href="http://flowingdata.com/2012/08/06/fox-news-continues-charting-excellence/" class="uri">http://flowingdata.com/2012/08/06/fox-news-continues-charting-excellence/</a><a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p><a href="https://www.elmundo.es/america/2013/04/15/venezuela/1366029653.html" class="uri">https://www.elmundo.es/america/2013/04/15/venezuela/1366029653.html</a><a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p><a href="https://www.youtube.com/watch?v=kl2g40GoRxg" class="uri">https://www.youtube.com/watch?v=kl2g40GoRxg</a><a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p><a href="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette" class="uri">http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette</a><a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p><a href="https://www.r-bloggers.com/2013/10/creating-colorblind-friendly-figures/" class="uri">https://www.r-bloggers.com/2013/10/creating-colorblind-friendly-figures/</a><a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p><a href="https://projecteuclid.org/download/pdf_1/euclid.ss/1177010488" class="uri">https://projecteuclid.org/download/pdf_1/euclid.ss/1177010488</a><a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

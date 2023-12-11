@@ -1,16 +1,10 @@
 # R basics {#sec-r-basics}
 
-In this book, we will be using the R software environment for all our analysis. You will learn R and data analysis techniques simultaneously. To follow along you will therefore need access to R. We also recommend the use of an *integrated development environment* (IDE), such as RStudio, to save your work. Note that it is common for a course or workshop to offer access to an R environment and an IDE through your web browser, as done by RStudio cloud[^r-basics-1]. If you have access to such a resource, you don't need to install R and RStudio. However, if you intend on becoming an advanced data analyst, we highly recommend installing these tools on your computer[^r-basics-2]. Both R and RStudio are free and available online.
-
-[^r-basics-1]: https://rstudio.cloud
-
-[^r-basics-2]: https://rafalab.github.io/dsbook/installing-r-rstudio.html
-
 ## Motivating example: US Gun Murders
 
-Imagine you live in Europe and are offered a job in a US company with many locations across all states. It is a great job, but news with headlines such as **US Gun Homicide Rate Higher Than Other Developed Countries**[^r-basics-3] have you worried. Charts like this may concern you even more:
+Imagine you live in Europe and are offered a job in a US company with many locations across all states. It is a great job, but news with headlines such as **US Gun Homicide Rate Higher Than Other Developed Countries**[^r-basics-1] have you worried. Charts like this may concern you even more:
 
-[^r-basics-3]: http://abcnews.go.com/blogs/headlines/2012/12/us-gun-ownership-homicide-rate-higher-than-other-developed-countries/
+[^r-basics-1]: <http://abcnews.go.com/blogs/headlines/2012/12/us-gun-ownership-homicide-rate-higher-than-other-developed-countries/>
 
 ```{r murder-rate-example-1, echo=FALSE, warning=FALSE, message=FALSE, out.width="70%", cache=FALSE}
 ## img_path <- "img"
@@ -18,7 +12,7 @@ Imagine you live in Europe and are offered a job in a US company with many locat
 ##knitr::include_graphics(file.path(img_path,"homocides_g8_countries_640x360_wmain.jpg"))
 library(tidyverse)
 library(ggplot2)
-library(ggflags)
+library(ggflags) # from GitHub repo jimjam-slam/ggflags
 library(countrycode)
 library(dslabs)
 
@@ -50,7 +44,9 @@ dat |>
 <!--(Source:
 [Ma’ayan Rosenzweigh/ABC News](https://abcnews.go.com/blogs/headlines/2012/12/us-gun-ownership-homicide-rate-higher-than-other-developed-countries/), Data from UNODC Homicide Statistics) -->
 ```
-Or even worse, this version from [everytown.org](https://everytownresearch.org):
+Or even worse, this version from [everytown.org](https://everytownresearch.org)[^r-basics-2]:
+
+[^r-basics-2]: <https://everytownresearch.org>
 
 ```{r murder-rate-example-2, echo=FALSE, out.width="70%"}
 # from https://everytownresearch.org/wp-content/uploads/2016/07/GunTrends_murders_per_1000.png
@@ -147,7 +143,7 @@ ls()
 
 In RStudio, the *Environment* tab shows the values:
 
-![](img/rstudio-environment.png){width=70%}
+![](img/rstudio-environment.png){width="70%"}
 
 We should see `a`, `b`, and `c`. If you try to recover the value of a variable that is not in your workspace, you receive an error. For example, if you type `x` you will receive the following message: `Error: object 'x' not found`.
 
@@ -285,9 +281,9 @@ solution_1 <- (-b + sqrt(b^2 - 4*a*c))/(2*a)
 solution_2 <- (-b - sqrt(b^2 - 4*a*c))/(2*a)
 ```
 
-For more advice, we highly recommend studying Hadley Wickham's style guide[^r-basics-4].
+For more advice, we highly recommend studying Hadley Wickham's style guide[^r-basics-3].
 
-[^r-basics-4]: http://adv-r.had.co.nz/Style.html
+[^r-basics-3]: <http://adv-r.had.co.nz/Style.html>
 
 ### Saving your workspace
 
@@ -307,11 +303,11 @@ c <- -1
 (-b - sqrt(b^2 - 4*a*c))/(2*a)
 ```
 
-By creating and saving a script with the code above, we would not need to retype everything each time and, instead, simply change the variable names. Try writing the script above into an editor and notice how easy it is to change the variables and receive an answer.
+By creating and saving a script with the code above, we would not need to retype everything each time and, instead, simply change the variable values. Try writing the script above into an editor and notice how easy it is to change the variables and receive an answer.
 
 ### Commenting your code
 
-If a line of R code starts with the symbol `#`, it is not evaluated. We can use this to write reminders of why we wrote particular code. For example, in the script above we could add:
+If a line of R code starts with the symbol `#`, it is a comment and is not evaluated. We can use this to write reminders of why we wrote particular code. For example, in the script above we could add:
 
 ```{r, eval=FALSE}
 ## Code to compute solution to quadratic equation
@@ -321,12 +317,12 @@ a <- 3
 b <- 2
 c <- -1
 
-## now compute the solution
+## Now compute the solution
 (-b + sqrt(b^2 - 4*a*c))/(2*a)
 (-b - sqrt(b^2 - 4*a*c))/(2*a)
 ```
 
-:::{.callout-note}
+::: callout-note
 You are ready to do exercises 1-5.
 :::
 
@@ -345,7 +341,7 @@ To work efficiently in R, it is important to learn the different types of variab
 
 Up to now, the variables we have defined are just one number. This is not very useful for storing data. The most common way of storing a dataset in R is in a *data frame*. Conceptually, we can think of a data frame as a table with rows representing observations and the different variables reported for each observation defining the columns. Data frames are particularly useful for datasets because we can combine different data types into one object.
 
-A large proportion of data analysis challenges start with data stored in a data frame. For example, we stored the data for our motivating example in a data frame. You can access this dataset by loading the **dslabs** library and loading the `murders` dataset using the `data` function:
+A large proportion of data analysis challenges start with data stored in a data frame. For example, we stored the data for our motivating example in a data frame. You can access this dataset by loading the **dslabs** library which provides the `murders` dataset:
 
 ```{r}
 #| cache: false
@@ -373,7 +369,7 @@ str(murders)
 ```
 
 ```{r, echo=FALSE}
-# remove str we defiend
+# remove str we defined
 rm(str)
 ```
 
@@ -403,7 +399,7 @@ names(murders)
 
 It is important to know that the order of the entries in `murders$population` preserves the order of the rows in our data table. This will later permit us to manipulate one variable based on the results of another. For example, we will be able to order the state names by the number of murders.
 
-:::{.callout-tip}
+::: callout-tip
 R comes with a very nice auto-complete functionality that saves us the trouble of typing out all the names. Try typing `murders$p` then hitting the *tab* key on your keyboard. This functionality and many other useful auto-complete features are available when working in RStudio.
 :::
 
@@ -452,7 +448,7 @@ In future sections, you will see how useful relational operators can be.
 
 We discuss more important features of vectors after the next set of exercises.
 
-:::{.callout-note}
+::: callout-note
 Mathematically, the values in `pop` are integers and there is an integer class in R. However, by default, numbers are assigned class numeric even when they are round integers. For example, `class(1)` returns numeric. You can turn them into class integer with the `as.integer()` function or by adding an `L` like this: `1L`. Note the class by typing: `class(1L)`
 :::
 
@@ -474,7 +470,7 @@ In the background, R stores these *levels* as integers and keeps a map to keep t
 
 Note that the levels have an order that is different from the order of appearance in the factor object. The default in R is for the levels to follow alphabetical order. However, often we want the levels to follow a different order. You can specify an order through the `levels` argument when creating the factor with the `factor` function. For example, in the murders dataset regions are ordered from east to west. The function `reorder` lets us change the order of the levels of a factor variable based on a summary computed on a numeric vector. We will demonstrate this with a simple example, and will see more advanced ones in the Data Visualization part of the book.
 
-Suppose we want the levels of the region by the total number of murders rather than alphabetical order. If there are values associated with each level, we can use the `reorder` and specify a data summary to determine the order. The following code takes the sum of the total murders in each region, and reorders the factor following these sums.
+Suppose we want the levels of region ordered by the total number of murders rather than alphabetically If there are values associated with each level, we can use the `reorder` and specify a data summary to determine the order. The following code takes the sum of the total murders in each region, and reorders the factor following these sums.
 
 ```{r}
 region <- murders$region
@@ -485,7 +481,7 @@ levels(region)
 
 The new order is in agreement with the fact that the Northeast has the least murders and the South has the most.
 
-:::{.callout-warning}
+::: callout-warning
 Factors can be a source of confusion since sometimes they behave like characters and sometimes they do not. As a result, confusing factors and characters are a common source of bugs.
 :::
 
@@ -500,7 +496,7 @@ record <- list(name = "John Doe",
              final_grade = "A")
 ```
 
-The function `c` is described in Section @sec-vectors.
+The function `c` is described in @sec-vectors.
 
 This list includes a character, a number, a vector with five numbers, and another character.
 
@@ -546,12 +542,14 @@ Yet matrices have a major advantage over data frames: we can perform matrix alge
 
 <!--We cover matrices in more detail in Chapter @sec-matrix-algebra but describe them briefly here since some of the functions we will learn return matrices. -->
 
-We can define a matrix using the `matrix` function. We need to specify the number of rows and columns.
+We can define a matrix using the `matrix` function. We need to specify the data in the matrix as well as the number of rows and columns.
 
 ```{r}
 mat <- matrix(1:12, 4, 3)
 mat
 ```
+
+The shorthand using `:` is described in @sec-vectors.
 
 You can access specific entries in a matrix using square brackets (`[`). If you want the second row, third column, you use:
 
@@ -600,11 +598,9 @@ murders[25, 1]
 murders[2:3, ]
 ```
 
-:::{.callout-note}
+::: callout-note
 You are ready to do exercises 6-11.
 :::
-
-
 
 ## Vectors {#sec-vectors}
 
@@ -756,7 +752,7 @@ x
 class(x)
 ```
 
-R *coerced* the data into characters. It guessed that because you put a character string in the vector, you meant the 1 and 3 to actually be character strings `"1"` and "`3`". The fact that not even a warning is issued is an example of how coercion can cause many unnoticed errors in R.
+R *coerced* the data into characters. It guessed that because you put a character string in the vector, you meant the 1 and 3 to actually be character strings `"1"` and `"3"`. The fact that not even a warning is issued is an example of how coercion can cause many unnoticed errors in R.
 
 R also offers functions to change from one type to another. For example, you can turn numbers into characters with:
 
@@ -787,10 +783,9 @@ R does not have any guesses for what number you want when you type `b`, so it do
 
 As a data scientist you will encounter the `NA`s often as they are generally used for missing data, a common problem in real-world datasets.
 
-:::{.callout-note}
+::: callout-note
 You are ready to do exercises 12-23.
 :::
-
 
 ## Sorting
 
@@ -889,19 +884,7 @@ if(knitr::is_html_output()){
 }
 ```
 
-### Beware of recycling
-
-Another common source of unnoticed errors in R is the use of *recycling*. We saw that vectors are added elementwise. So if the vectors don't match in length, it is natural to assume that we should get an error. But we don't. Notice what happens:
-
-```{r, warning=TRUE}
-x <- c(1, 2, 3)
-y <- c(10, 20, 30, 40, 50, 60, 70)
-x + y
-```
-
-We do get a warning, but no error. For the output, R has recycled the numbers in `x`. Notice the last digit of numbers in the output.
-
-:::{.callout-note}
+::: callout-note
 You are ready to do exercises 24-31
 :::
 
@@ -977,12 +960,21 @@ Once we do this, we notice that California is no longer near the top of the list
 murders$abb[order(murder_rate)]
 ```
 
-:::{.callout-note}
+### Beware of recycling
+
+Another common source of unnoticed errors in R is the use of *recycling*. We saw that vectors are added elementwise. So if the vectors don't match in length, it is natural to assume that we should get an error. But we don't. Notice what happens:
+
+```{r, warning=TRUE}
+x <- c(1, 2, 3)
+y <- c(10, 20, 30, 40, 50, 60, 70)
+x + y
+```
+
+We do get a warning, but no error. For the output, R has recycled the numbers in `x`. Notice the last digit of numbers in the output.
+
+::: callout-note
 You are now ready to do exercises 32-34.
 :::
-
-
-
 
 ## Indexing
 
@@ -1082,21 +1074,20 @@ c("Boston", "Dakota", "Washington") %in% murders$state
 
 Note that we will be using `%in%` often throughout the book.
 
-There is a connection between `match` and `%in%` through `which`. To see this, notice that the following two lines produce the same index (although in different order):::::
+There is a connection between `match` and `%in%` through `which`. To see this, notice that the following two lines produce the same index (although in different order):
 
 ```{r}
 match(c("New York", "Florida", "Texas"), murders$state)
 which(murders$state %in% c("New York", "Florida", "Texas"))
 ```
 
-:::{.callout-note}
-You are now ready to do exercies 35-42.
+::: callout-note
+You are now ready to do exercises 35-42.
 :::
-
 
 ## Basic plots
 
-In Chapter @sec-ggplot2 we describe an add-on package that provides a powerful approach to producing plots in R. We then have an entire part on Data Visualization in which we provide many examples. Here we briefly describe some of the functions that are available in a basic R installation.
+In @sec-ggplot2 we describe an add-on package that provides a powerful approach to producing plots in R. We then have an entire part on Data Visualization in which we provide many examples. Here we briefly describe some of the functions that are available in a basic R installation.
 
 ### `plot`
 
@@ -1176,11 +1167,15 @@ x <- matrix(1:120, 12, 10)
 image(x)
 ```
 
+::: callout-note
+You are now ready to do exercises 43-45.
+:::
+
 ## Exercises
 
-1\. What is the sum of the first 100 positive integers? The formula for the sum of integers $1$ through $n$ is $n(n+1)/2$. Define $n=100$ and then use R to compute the sum of $1$ through $100$ using the formula. What is the sum?
+1\. What is the sum of the first 100 positive integers? The formula for the sum of integers 1 through n is $n(n+1)/2$. Define $n=100$ and then use R to compute the sum of 1 through 100 using the formula. What is the sum?
 
-2\. Now use the same formula to compute the sum of the integers from 1 through 1,000.
+2\. Now use the same formula to compute the sum of the integers from 1 through 1000.
 
 3\. Look at the result of typing the following code into R:
 
@@ -1197,7 +1192,7 @@ b.  `seq` creates a list of numbers and `sum` adds them up.
 c.  `seq` creates a random list and `sum` computes the sum of 1 through 1,000.
 d.  `sum` always returns the same number.
 
-4\. In math and programming, we say that we evaluate a function when we replace the argument with a given number. So if we type `sqrt(4)`, we evaluate the `sqrt` function. In R, you can evaluate a function inside another function. The evaluations happen from the inside out. Use one line of code to compute the log, in base 10, of the square root of 100.
+4\. In math and programming, we say that we evaluate a function when we replace the argument with a given value. So if we type `sqrt(4)`, we evaluate the `sqrt` function. In R, you can evaluate a function inside another function. The evaluations happen from the inside out. Use one line of code to compute the log, in base 10, of the square root of 100.
 
 5\. Which of the following will always return the numeric value stored in `x`? You can try out examples and use the help system if you want.
 
@@ -1205,7 +1200,6 @@ a.  `log(10^x)`
 b.  `log10(x^10)`
 c.  `log(exp(x))`
 d.  `exp(log(x, base = 2))`
-
 
 6\. Make sure the US murders dataset is loaded. Use the function `str` to examine the structure of the `murders` object. Which of the following best describes the variables represented in this data frame?
 
@@ -1226,9 +1220,9 @@ d.  `str` shows no relevant information.
 class(murders$region)
 ```
 
-With one line of code, use the function `levels` and `length` to determine the number of regions defined by this dataset.
+With one line of code, use the functions `levels` and `length` to determine the number of regions defined by this dataset.
 
-11\. The function `table` takes a vector and returns the frequency of each element. You can quickly see how many states are in each region by applying this function. Use this function in one line of code to create a table of states per region.
+11\. The function `table` takes a vector and returns the frequency of each element. You can quickly see how many states are in each region by applying this function. Use this function in one line of code to create a table of number of states per region.
 
 12\. Use the function `c` to create a vector with the average high temperatures in January for Beijing, Lagos, Paris, Rio de Janeiro, San Juan, and Toronto, which are 35, 88, 42, 84, 81, and 30 degrees Fahrenheit. Call the object `temp`.
 
@@ -1259,7 +1253,6 @@ x <- c("1", "3", "5")
 ```
 
 and coerce it to get integers.
-
 
 24\. For exercises 24-31 we will use the US murders dataset. Make sure you load it prior to starting. Use the `$` operator to access the population size data and store it as the object `pop`. Then use the `sort` function to redefine `pop` so that it is sorted. Finally, use the `[` operator to report the smallest population size.
 
@@ -1296,8 +1289,7 @@ mean(na_example)
 
 The `is.na` function returns a logical vector that tells us which entries are `NA`. Assign this logical vector to an object called `ind` and determine how many `NA`s does `na_example` have.
 
-31\. Now compute the average again, but only for the entries that are not `NA`. Hint: remember the `!` operator.
-
+31\. Now compute the average again, but only for the entries that are not `NA`. Hint: remember the `!` operator, which turns `FALSE` into `TRUE` and vice versa.
 
 32\. In exercises 28 we created the `temp` data frame:
 
@@ -1314,7 +1306,7 @@ Remake the data frame using the code above, but add a line that converts the tem
 
 34\. Compute the per 100,000 murder rate for each state and store it in the object `murder_rate`. Then compute the average murder rate for the US using the function `mean`. What is the average?
 
-35.\ For remaining exercises 35-42, start by loading the library and data.
+35. For remaining exercises 35-42, start by loading the library and data.
 
 ```{r}
 library(dslabs)
@@ -1326,7 +1318,7 @@ Compute the per 100,000 murder rate for each state and store it in an object cal
 
 37\. Use the results from the previous exercise to report the names of the states with murder rates lower than 1.
 
-38\. Now extend the code from exercises 2 and 3 to report the states in the Northeast with murder rates lower than 1. Hint: use the previously defined logical vector `low` and the logical operator `&`.
+38\. Now extend the code from the exercise to report the states in the Northeast with murder rates lower than 1. Hint: use the previously defined logical vector `low` and the logical operator `&`.
 
 39\. In a previous exercise we computed the murder rate for each state and the average of these numbers. How many states are below the average?
 

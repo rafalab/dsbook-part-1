@@ -2,19 +2,19 @@
 
 Unix is the operating system of choice in data science. We will introduce you to the Unix way of thinking using an example: how to keep a data analysis project organized. We will learn some of the most commonly used commands along the way. However, we won't go into advanced details. We highly encourage you to learn more, especially when you find yourself using the mouse or performing a repetitive task often. In those cases, there is probably a more efficient way to do it in Unix. Here are some basic courses to get you started:
 
--   <https://www.codecademy.com/learn/learn-the-command-line>
--   <https://www.edx.org/course/introduction-linux-linuxfoundationx-lfs101x-1>
--   <https://www.coursera.org/learn/unix>
+-   "Learn the Command Line" through codecademy^[<https://www.codecademy.com/learn/learn-the-command-line>]
+-   "LinuxFoundationX: Introduction to Linux" through edX^[<https://www.edx.org/course/introduction-linux-linuxfoundationx-lfs101x-1>]
+-   "The Unix Workbench" through coursera^[<https://www.coursera.org/learn/unix>]
 
 There are many reference books[^unix-1] as well. Bite Size Linux[^unix-2] and Bite Size Command Line[^unix-3] are two particularly clear, succinct, and complete examples.
 
-[^unix-1]: https://www.quora.com/Which-are-the-best-Unix-Linux-reference-books
+[^unix-1]: <https://www.quora.com/Which-are-the-best-Unix-Linux-reference-books>
 
-[^unix-2]: https://gumroad.com/l/bite-size-linux
+[^unix-2]: <https://gumroad.com/l/bite-size-linux>
 
-[^unix-3]: https://jvns.ca/blog/2018/08/05/new-zine--bite-size-command-line/
+[^unix-3]: <https://jvns.ca/blog/2018/08/05/new-zine--bite-size-command-line/>
 
-When searching for Unix resources, keep in mind that other terms used to describe what we will learn here are *Linux*, *the shell* and *the command line*. Basically, what we are learning is a series of commands and a way of thinking that facilitates the organization of files without using the mouse.
+When searching for Unix resources, keep in mind that other terms used to describe what we will learn here are *Linux*, *the shell*, and *the command line*. Basically, what we are learning is a series of commands and a way of thinking that facilitates the organization of files without using the mouse.
 
 To serve as motivation, we are going to start constructing a directory using Unix tools and RStudio.
 
@@ -24,7 +24,7 @@ Before you start organizing projects with Unix you want to pick a name conventio
 
 In general you want to name your files in a way that is related to their contents and specifies how they relate to other files. The Smithsonian Data Management Best Practices[^unix-4] has "five precepts of file naming and organization" and they are:
 
-[^unix-4]: https://library.si.edu/sites/default/files/tutorial/pdf/filenamingorganizing20180227.pdf
+[^unix-4]: <https://library.si.edu/sites/default/files/tutorial/pdf/filenamingorganizing20180227.pdf>
 
 > > -   Have a distinctive, human-readable name that gives an indication of the content.
 > > -   Follow a consistent pattern that is machine-friendly.
@@ -34,15 +34,15 @@ In general you want to name your files in a way that is related to their content
 
 For specific recommendations we highly recommend you follow The Tidyverse Style Guide[^unix-5].
 
-[^unix-5]: https://style.tidyverse.org/
+[^unix-5]: <https://style.tidyverse.org/>
 
 ## The terminal {#sec-the-terminal}
 
 Instead of clicking, dragging, and dropping to organize our files and folders, we will be typing Unix commands into the terminal. The way we do this is similar to how we type commands into the R console, but instead of generating plots and statistical summaries, we will be organizing files on our system.
 
-You will need access to a terminal[^unix-6]. Once you have a terminal open, you can start typing commands. You should see a blinking cursor at the spot where what you type will show up. This position is called the *command line*. Once you type something and hit enter on Windows or return on the Mac, Unix will try to execute this command. If you want to try out an example, type this command:
+Accessing a terminal is discussed in @sec-terminal-git. Once you have a terminal open, you can start typing commands. You should see a blinking cursor at the spot where what you type will show up. This position is called the *command line*. Once you type something and hit enter on Windows or return on the Mac, Unix will try to execute this command. If you want to try out an example, type this command:
 
-[^unix-6]: https://rafalab.github.io/dsbook/accessing-the-terminal-and-installing-git.html
+[^unix-6]: <https://rafalab.github.io/dsbook/accessing-the-terminal-and-installing-git.html>
 
 ```         
 echo "hello world"
@@ -98,7 +98,7 @@ The concept of a *current location* is part of the point-and-click experience: a
 
 In Unix, we don't have the same visual cues, but the concept of a *current location* is indispensable. We refer to this as the *working directory*. Each terminal window you have open has a working directory associated with it.
 
-How do we know what is our working directory? To answer this, we learn our first Unix command: `pwd`, which stands for *print working directory*. This command returns the working directory.
+How do we know what is our working directory? To answer this, we learn our next Unix command: `pwd`, which stands for *print working directory*. This command returns the working directory.
 
 Open a terminal and type:
 
@@ -112,7 +112,7 @@ Notice that the forward slashes `/` in the strings above separate directories. S
 
 ### Paths {#sec-paths}
 
-We refer to the string returned by `pwd` as the *full path* of the working directory. The name comes from the fact that this string spells out the *path* you need to follow to get to the directory in question from the root directory. Every directory has a full path. Later, we will learn about *relative paths*, which tell us how to get to a directory from the working directory.
+We refer to the string returned by `pwd` as the *full path* of the working directory. The name comes from the fact that this string spells out the *path* you need to follow to get to the directory in question from the root directory. Every directory has a full path. Later, we will about *relative paths*, which tell us how to get to a directory from the working directory.
 
 In Unix, we use the shorthand `~` as a nickname for your home directory. So, for example, if `docs` is a directory in your home directory, the full path for *docs* can be written like this `~/docs`.
 
@@ -148,13 +148,13 @@ mkdir projects
 
 If you do this correctly, nothing will happen: no news is good news. If the directory already exists, you will get an error message and the existing directory will remain untouched.
 
-To confirm that you created these directories, you can list the directories:
+To confirm that you created the directory, you can list the contents of the current working directory:
 
 ```         
 ls
 ```
 
-You should see the directories we just created listed. Perhaps you can also see many other directories that come pre-installed on your computer.
+You should see the directory we just created listed. Perhaps you can also see many other directories that were already on your computer.
 
 For illustrative purposes, let's make a few more directories. You can list more than one directory name like this:
 
@@ -247,12 +247,6 @@ cd /c/Users/yourusername/projects
 
 The last two commands are equivalent and in both cases we are typing the full path.
 
-When typing out the path of the directory we want, either full or relative, we can concatenate directories with the forward-slashes. We already saw that we can move to the `projects` directory regardless of where we are by typing the full path like this:
-
-```         
-cd ~/projects
-```
-
 We can also concatenate directory names for relative paths. For instance, if we want to move back to the parent directory of the parent directory of the working directory, we can type:
 
 ```         
@@ -279,7 +273,7 @@ you will be returned to your home directory.
 
 Let's explore some examples of using `cd`. To help visualize, we will show the graphical representation of our filesystem vertically:
 
-![](img/unix/filesystem-vertical.png){width="50%"}
+![](img/unix/filesystem-vertical.png){width="50%" fig-align="center"}
 
 Suppose our working directory is `~/projects` and we want to move to `figs` in `project-1`.
 
@@ -310,7 +304,7 @@ Let's examine one more example. Suppose we are in `~/projects/project-1/figs` an
 With relative paths:
 
 ```         
-cd ../../proejct-2
+cd ../../project-2
 ```
 
 and with full paths:
@@ -341,7 +335,7 @@ For example, if we want to move the file `cv.tex` from `resumes` to `reports`, y
 mv ~/docs/resumes/cv.tex ~/docs/reports/
 ```
 
-You can also use relative paths. So you could do this:
+You can also use relative paths. You could do this:
 
 ```         
 cd ~/docs/resumes
@@ -405,7 +399,7 @@ You can actually list files as well like this:
 rm filename-1 filename-2 filename-3
 ```
 
-You can use full or relative paths. To remove directories, you will have to learn about arguments, which we do later.
+You can use full or relative paths. To remove non-empty directories, you will have to learn about arguments, which we do later.
 
 ### `less`: looking at a file
 
@@ -424,7 +418,7 @@ If you are wondering why the command is called `less`, it is because the origina
 
 We are now ready to prepare a directory for a project. We will use the US murders project[^unix-7] as an example.
 
-[^unix-7]: https://github.com/rairizarry/murders
+[^unix-7]: <https://github.com/rairizarry/murders>
 
 You should start by creating a directory where you will keep all your projects. We recommend a directory called *projects* in your home directory. To do this you would type:
 
@@ -460,7 +454,7 @@ So if we open a new terminal and want to navigate into that directory we type:
 cd projects/murders
 ```
 
-In Section @sec-organizing we will describe how we can use RStudio to organize a data analysis project, once these directories have been created.
+In @sec-organizing we will describe how we can use RStudio to organize a data analysis project, once these directories have been created.
 
 ## Advanced Unix
 
@@ -468,7 +462,7 @@ Most Unix implementations include a large number of powerful tools and utilities
 
 ### Arguments
 
-Most Unix commands can be run with arguments. Arguments are typically defined by using a dash `-` or two dashes `--` (depending on the command) followed by a letter or a word. An example of an argument is the `-r` behind `rm`. The `r` stands for recursive and the result is that files and directories are removed recursively, which means that if you type:
+Most Unix commands can be run with arguments. Arguments are typically defined by using a dash `-` or two dashes `--` (depending on the command) followed by a letter or a word. An example of an argument is the `-r` behind `rm`. The `r` stands for recursive, and the result is that files and directories are removed recursively, which means that if you type:
 
 ```         
 rm -r directory-name
@@ -490,7 +484,7 @@ A command that is often called with argument is `ls`. Here are some examples:
 ls -a 
 ```
 
-The `a` stands for all. This argument makes `ls` show you all files in the directory, including hidden files. In Unix, all files starting with a `.` are hidden. Many applications create hidden directories to store important information without getting in the way of your work. An example is `git` (which we cover in depth later). Once you initialize a directory as a git directory with `git init`, a hidden directory called `.git` is created. Another hidden file is the `.gitignore` file.
+The `a` stands for all. This argument makes `ls` show you all files in the directory, including hidden files. In Unix, all files starting with a `.` are hidden. Many applications create hidden directories to store important information without getting in the way of your work. An example is `git` (which we cover in depth in @sec-git). Once you initialize a directory as a git directory with `git init`, a hidden directory called `.git` is created. Another hidden file is the `.gitignore` file.
 
 Another example of using an argument is:
 
@@ -576,14 +570,14 @@ rm file-???.html
 
 This will only remove files with that format.
 
-We can combine wild cards. For example, to remove all files with the name `file-001` regardless of suffix, we can type:
+We can combine wild cards. For example, to remove all files with the form `file-001` up to `file-999` regardless of suffix, we can type:
 
 ```         
-rm file-001.* 
+rm file-???.* 
 ```
 
 ::: callout-warning
-Combining rm with the `*` wild card can be dangerous. There are combinations of these commands that will erase your entire filesystem without asking "are you sure?". So make sure you understand how it works before using this wild card with the rm command.
+Combining rm with the `*` wild card can be dangerous. There are combinations of these commands that will erase your entire filesystem without asking "are you sure?". So make sure you understand how it works before using this wild card with the `rm` command. We recommend always checking what files will match the wild card first by using the `ls` command.
 :::
 
 ### Environment variables
@@ -674,25 +668,25 @@ At the beginning, you will see a series of symbols like this `-rw-r--r--`. This 
 
 There are many commands that we do not teach in this book, but we want to make you aware of them and what they do. They are:
 
--   open/start - On the Mac `open filename` tries to figure out the right application of the filename and open it with that application. This is a very useful command. On Git Bash, you can try `start filename`. Try opening an `R` or `Rmd` file with `open` or `start`: it should open them with RStudio.
+-   open/start - On the Mac, `open filename` tries to figure out the right application of the filename and open it with that application. This is a very useful command. On Git Bash, you can try `start filename`. Try opening an `R` or `Rmd` file with `open` or `start`: it should open them with RStudio.
 
--   nano - A bare-bones text editor.
+-   nano - Opens a bare-bones text editor.
 
--   tar - archive files and subdirectories of a directory into one file.
+-   tar - Archives files and subdirectories of a directory into one file.
 
--   ssh - connect to another computer.
+-   ssh - Connects to another computer.
 
--   find - find files by filename on your system.
+-   find - Finds files by filename on your system.
 
--   grep - search for patterns in a file.
+-   grep - Searches for patterns in a file.
 
 -   awk/sed - These are two very powerful commands that permit you to find specific strings in files and change them.
 
--   ln - create a symbolic link. We do not recommend its use, but you should be familiar with it.
+-   ln - Creates a symbolic link. We do not recommend its use, but you should be familiar with it.
 
 ### File manipulation in R
 
-We can also perform file management from within R. The key functions to learn about can be seen by looking at the help file for `?files`. Another useful function is `unlink`.
+We can also perform file management from within R. The key functions to learn about can be seen by looking at the help file for `?files`^[<https://rdrr.io/r/base/files.html>]. Another useful function is `unlink`.
 
 Although not generally recommended, you can run Unix commands in R using `system`.
 
