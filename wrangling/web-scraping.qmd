@@ -84,19 +84,13 @@ class(h)
 
 The __rvest__ package is actually more general; it handles XML documents. XML is a general markup language (that's what the ML stands for) that can be used to represent any kind of data. HTML is a specific type of XML specifically developed for representing webpages. Here we focus on HTML documents.
 
-Now, how do we extract the table from the object `h`? If we print `h`, we don't really see much.
-
-```{r}
-h
-```
-
-We can see all the code that defines the downloaded webpage using the `html_text` function like this:
+Now, how do we extract the table from the object `h`? If you were to print `h`,  we would see information about the object that is not very informative. We can see all the code that defines the downloaded webpage using the `html_text` function like this:
 
 ```{r, eval=FALSE}
 html_text(h)
 ```
 
-We don't show the output here because it includes thousands of characters, but if we look at it, we can see the data we are after are stored in an HTML table: you can see this in this line of the HTML code above `<table class="wikitable sortable">`. The different parts of an HTML document, often defined with a message in between  `<` and `>`  are referred to as _nodes_. The __rvest__ package includes functions to extract nodes of an HTML document: `html_nodes` extracts all nodes of different types and `html_node` extracts the first one. To extract the tables from the html code we use:
+We don't show the output here because it includes thousands of characters. But if we look at it, we can see the data we are after are stored in an HTML table: you can see this in this line of the HTML code above `<table class="wikitable sortable">`. The different parts of an HTML document, often defined with a message in between  `<` and `>`  are referred to as _nodes_. The __rvest__ package includes functions to extract nodes of an HTML document: `html_nodes` extracts all nodes of different types and `html_node` extracts the first one. To extract the tables from the html code we use:
  
 
 ```{r} 

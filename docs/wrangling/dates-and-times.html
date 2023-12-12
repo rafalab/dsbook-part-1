@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.3.353">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
 <title>Introduction to Data Science - 13&nbsp; Parsing dates and times</title>
@@ -88,8 +88,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 </head>
@@ -104,7 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../wrangling/intro-to-wrangling.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="../wrangling/dates-and-times.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -114,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Introduction to Data Science</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/rafalab/dsbook-part-1" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/rafalab/dsbook-part-1" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -288,32 +287,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../productivity/installing-r-and-rstudio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Installing R and RStudio</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Terminal Access and Installing Git</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Terminal Access and Installing Git</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/unix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Git and GitHub</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Git and GitHub</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/reproducible-projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reproducible projects</span></span></a>
   </div>
 </li>
       </ul>
@@ -453,19 +446,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The <strong>lubridate</strong> package is also useful for dealing with times. In base R, you can get the current time typing <code><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time()</a></code>. The <strong>lubridate</strong> package provides a slightly more advanced function, <code>now</code>, that permits you to define the time zone:</p>
 <div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-15_0a188e891a9c6e41161e71e6bb6d5944">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2023-11-28 19:22:22 EST"</span></span>
+<span><span class="co">#&gt; [1] "2023-12-11 17:21:58 EST"</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="st">"GMT"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2023-11-29 00:22:22 GMT"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "2023-12-11 22:21:58 GMT"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can see all the available time zones with <code><a href="https://rdrr.io/r/base/timezones.html">OlsonNames()</a></code> function.</p>
 <p>We can also extract hours, minutes, and seconds:</p>
 <div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-16_bf4642ae527f9ed4f048afa7b2a2d9ef">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/hour.html">hour</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 19</span></span>
+<span><span class="co">#&gt; [1] 17</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/minute.html">minute</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 22</span></span>
+<span><span class="co">#&gt; [1] 21</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/second.html">second</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 22.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 58.8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The package also includes a function to parse strings into times as well as parsers for time objects that include dates:</p>
 <div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-17_28a10b5c88fe005fc35d3f51da70d8f8">
@@ -505,11 +498,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="exercises" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="exercises">
 <span class="header-section-number">13.3</span> Exercises</h2>
+<p>For these exercises we will use the following dataset:</p>
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-20_b55b871e6d719317762f69b50e338f90">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pr_death_counts</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>1. We want to make a plot of death counts versus date. Confirm that the <code>date</code> variable are in fact dates and not strings.</p>
 <p>2. Plot deaths versus date.</p>
-<ol start="3" type="1">
-<li>What time period is represented in these data?</li>
-</ol>
+<p>3. What time period is represented in these data?</p>
 <p>4. Note that after May 31, 2018, the deaths are all 0. The data is probably not entered yet. We also see a drop off starting around May 1. Redefine <code>dat</code> to exclude observations taken on or after May 1, 2018. Then, remake the plot.</p>
 <p>5. Repeat the plot but use the day of the year on the x-axis instead of date.</p>
 <p>6. Compute the deaths per day by month.</p>

@@ -105,30 +105,32 @@ Suppose a high school student asks us for help solving several quadratic equatio
 
 $$
 \frac{-b - \sqrt{b^2 - 4ac}}{2a}\,\, \mbox{ and } \frac{-b + \sqrt{b^2 - 4ac}}{2a}
-$$ which of course change depending on the values of $a$, $b$, and $c$. One advantage of programming languages is that we can define variables and write expressions with these variables, similar to how we do so in math, but obtain a numeric solution. We will write out general code for the quadratic equation below, but if we are asked to solve $x^2 + x -1 = 0$, then we define:
+$$ which of course change depending on the values of $a$, $b$, and $c$. One advantage of programming languages is that we can define variables and write expressions with these variables, similar to how we do so in math, but obtain a numeric solution. We will write out general code for the quadratic equation below, but if we are asked to solve $x^2 + x -1 = 0$, then we define the coefficients:
 
 ```{r}
-a <- 1
-b <- 1
-c <- -1
+coef_a <- 1
+coef_b <- 1
+coef_c <- -1
 ```
 
-which stores the values for later use. We use `<-` to assign values to the variables.
+which stores the values for later use. We use `<-` to assign values to the variables. We can also assign values using `=` instead of `<-`, but we recommend against using `=` to avoid confusion.
 
-We can also assign values using `=` instead of `<-`, but we recommend against using `=` to avoid confusion.
+:::{.callout-note}
+When writing code in R, it's important to choose variable names that are both meaningful and avoid conflicts with existing functions or reserved words in the language. The primary reason we used `coef_a`, `coef_b` and `coef_c` is to avoid a conflict with the `c()` function in R, described in @sec-creating-vectors. If you were to name a variable `c`, you would not receive an error or warning, but the conflict can lead to unexpected behavior and bugs that are hard to diagnose.
+:::
 
 Copy and paste the code above into your console to define the three variables. Note that R does not print anything when we make this assignment. This means the objects were defined successfully. Had you made a mistake, you would have received an error message.
 
-To see the value stored in a variable, we simply ask R to evaluate `a` and it shows the stored value:
+To see the value stored in a variable, we simply ask R to evaluate `coef_a` and it shows the stored value:
 
 ```{r}
-a
+coef_a
 ```
 
-A more explicit way to ask R to show us the value stored in `a` is using `print` like this:
+A more explicit way to ask R to show us the value stored in `coef_a` is using `print` like this:
 
 ```{r}
-print(a)
+print(coef_a)
 ```
 
 We use the term *object* to describe stuff that is stored in R. Variables are examples, but objects can also be more complicated entities such as functions, which are described later.
@@ -145,28 +147,28 @@ In RStudio, the *Environment* tab shows the values:
 
 ![](img/rstudio-environment.png){width="70%"}
 
-We should see `a`, `b`, and `c`. If you try to recover the value of a variable that is not in your workspace, you receive an error. For example, if you type `x` you will receive the following message: `Error: object 'x' not found`.
+We should see `coef_a`, `coef_b`, and `coef_c`. If you try to recover the value of a variable that is not in your workspace, you receive an error. For example, if you type `x` you will receive the following message: `Error: object 'x' not found`.
 
 Now since these values are saved in variables, to obtain a solution to our equation, we use the quadratic formula:
 
 ```{r}
-(-b + sqrt(b^2 - 4*a*c))/(2*a)
-(-b - sqrt(b^2 - 4*a*c))/(2*a)
+(-coef_b + sqrt(coef_b^2 - 4*coef_a*coef_c))/(2*coef_a)
+(-coef_b - sqrt(coef_b^2 - 4*coef_a*coef_c))/(2*coef_a)
 ```
 
 ### Prebuilt functions
 
 Once you define variables, the data analysis process can usually be described as a series of *functions* applied to the data. R includes several predefined functions and most of the analysis pipelines we construct make extensive use of these.
 
-We already used the `install.packages`, `library`, and `ls` functions. We also used the function `sqrt` to solve the quadratic equation above. There are many more prebuilt functions and even more can be added through packages. These functions do not appear in the workspace because you did not define them, but they are available for immediate use.
+We already used or discussed the `install.packages`, `library`, `c`, and `ls` functions. We also used the function `sqrt` to solve the quadratic equation above. There are many more prebuilt functions and even more can be added through packages. These functions do not appear in the workspace because you did not define them, but they are available for immediate use.
 
 In general, we need to use parentheses to evaluate a function. If you type `ls`, the function is not evaluated and instead R shows you the code that defines the function. If you type `ls()` the function is evaluated and, as seen above, we see objects in the workspace.
 
-Unlike `ls`, most functions require one or more *arguments*. Below is an example of how we assign an object to the argument of the function `log`. Remember that we earlier defined `a` to be 1:
+Unlike `ls`, most functions require one or more *arguments*. Below is an example of how we assign an object to the argument of the function `log`. Remember that we earlier defined `coef_a` to be 1:
 
 ```{r}
 log(8)
-log(a) 
+log(coef_a) 
 ```
 
 You can find out what the function expects and what it does by reviewing the very useful manuals included in R. You can get help by using the `help` function like this:
@@ -218,7 +220,7 @@ To specify arguments, we must use `=`, and cannot use `<-`.
 There are some exceptions to the rule that functions need the parentheses to be evaluated. Among these, the most commonly used are the arithmetic and relational operators. For example:
 
 ```{r}
-2 ^ 3
+2^3
 ```
 
 You can see the arithmetic operators by typing:
@@ -277,8 +279,8 @@ We have used the letters `a`, `b`, and `c` as variable names, but variable names
 A nice convention to follow is to use meaningful words that describe what is stored, use only lower case, and use underscores as a substitute for spaces. For the quadratic equations, we could use something like this:
 
 ```{r}
-solution_1 <- (-b + sqrt(b^2 - 4*a*c))/(2*a)
-solution_2 <- (-b - sqrt(b^2 - 4*a*c))/(2*a)
+solution_1 <- (-coef_b + sqrt(coef_b^2 - 4*coef_a*coef_c))/(2*coef_a)
+solution_2 <- (-coef_b - sqrt(coef_b^2 - 4*coef_a*coef_c))/(2*coef_a)
 ```
 
 For more advice, we highly recommend studying Hadley Wickham's style guide[^r-basics-3].
@@ -296,11 +298,11 @@ We actually recommend against saving the workspace this way because, as you star
 To solve another equation such as $3x^2 + 2x -1$, we can copy and paste the code above and then redefine the variables and recompute the solution:
 
 ```{r, eval=FALSE}
-a <- 3
-b <- 2
-c <- -1
-(-b + sqrt(b^2 - 4*a*c))/(2*a)
-(-b - sqrt(b^2 - 4*a*c))/(2*a)
+coef_a <- 3
+coef_b <- 2
+coef_c <- -1
+(-coef_b + sqrt(coef_b^2 - 4*coef_a*coef_c))/(2*coef_a)
+(-coef_b - sqrt(coef_b^2 - 4*coef_a*coef_c))/(2*coef_a)
 ```
 
 By creating and saving a script with the code above, we would not need to retype everything each time and, instead, simply change the variable values. Try writing the script above into an editor and notice how easy it is to change the variables and receive an answer.
@@ -313,13 +315,13 @@ If a line of R code starts with the symbol `#`, it is a comment and is not evalu
 ## Code to compute solution to quadratic equation
 
 ## Define the variables
-a <- 3 
-b <- 2
-c <- -1
+coef_a <- 3 
+coef_b <- 2
+coef_c <- -1
 
 ## Now compute the solution
-(-b + sqrt(b^2 - 4*a*c))/(2*a)
-(-b - sqrt(b^2 - 4*a*c))/(2*a)
+(-coef_b + sqrt(coef_b^2 - 4*coef_a*coef_c))/(2*coef_a)
+(-coef_b - sqrt(coef_b^2 - 4*coef_a*coef_c))/(2*coef_a)
 ```
 
 ::: callout-note
@@ -606,7 +608,7 @@ You are ready to do exercises 6-11.
 
 In R, the most basic objects available to store data are *vectors*. As we have seen, complex datasets can usually be broken down into components that are vectors. For example, in a data frame, each column is a vector. Here we learn more about this important class.
 
-### Creating vectors
+### Creating vectors {#sec-creating-vectors}
 
 We can create vectors using the function `c`, which stands for *concatenate*. We use `c` to concatenate entries in the following way:
 
