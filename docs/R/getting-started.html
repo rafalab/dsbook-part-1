@@ -386,12 +386,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>RStudio will be our launching pad for data science projects. It not only provides an editor for us to create and edit our scripts but also provides many other useful tools. In this section, we go over some of the basics.</p>
 <section id="the-panes" class="level3" data-number="1.4.1"><h3 data-number="1.4.1" class="anchored" data-anchor-id="the-panes">
 <span class="header-section-number">1.4.1</span> The panes</h3>
-<p>When you start RStudio for the first time, you will see three panes. The left pane shows the R console. On the right, the top pane includes tabs such as <em>Environment</em> and <em>History</em>, while the bottom pane shows five tabs: <em>File</em>, <em>Plots</em>, <em>Packages</em>, <em>Help</em>, and <em>Viewer</em> (these tabs may change in new versions). You can click on each tab to move across the different features.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_16.png" class="img-fluid figure-img" style="width:70.0%"></p>
-</figure>
-</div>
-<p>To start a new script, you can click on File, then New File, then R Script.</p>
+<p>When you start RStudio for the first time, you will see three panes. The left pane shows the R console. On the right, the top pane includes tabs such as <em>Environment</em> and <em>History</em>, while the bottom pane shows five tabs: <em>File</em>, <em>Plots</em>, <em>Packages</em>, <em>Help</em>, and <em>Viewer</em> (these tabs may change in new versions). You can click on each tab to move across the different features. For example, to start a new script, you can click on File, then New File, then R Script.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_42.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
@@ -414,7 +409,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">1.4.3</span> Running commands while editing scripts</h3>
 <p>There are many editors specifically made for coding. These are useful because color and indentation are automatically added to make code more readable. RStudio is one of these editors, and it was specifically developed for R. One of the main advantages provided by RStudio over other editors is that we can test our code easily as we edit our scripts. Below we show an example.</p>
 <p>Let’s start by opening a new script as we did before. A next step is to give the script a name. We can do this through the editor by saving the current new unnamed script. To do this, click on the save icon or use the key binding Ctrl+S on Windows and command+S on the Mac.<br></p>
-<p>When you ask for the document to be saved for the first time, RStudio will prompt you for a name. A good convention is to use a descriptive name, with lower case letters, no spaces, only hyphens to separate words, and then followed by the suffix <em>.R</em>. We will call this script <em>my-first-script.R</em>.</p>
+<p>When you ask for the document to be saved for the first time, RStudio will prompt you for a name. A good convention is to use a descriptive name, with lower case letters, no spaces, only hyphens to separate words, and then followed by the suffix <code>.R</code>. We will call this script <code>my-first-script.R</code>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_27_44.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
@@ -438,7 +433,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To change the global options you click on <em>Tools</em> then <em>Global Options…</em>.</p>
 <p>As an example we show how to make a change that we <strong>highly recommend</strong>. This is to change the <em>Save workspace to .RData on exit</em> to <em>Never</em> and uncheck the <em>Restore .RData into workspace at start</em>. By default, when you exit R saves all the objects you have created into a file called .RData. This is done so that when you restart the session in the same folder, it will load these objects. We find that this causes confusion especially when we share code with colleagues and assume they have this .RData file. To change these options, make your <em>General</em> settings look like this:</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_56_08.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_56_08.png" class="img-fluid figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 </section></section><section id="sec-installing-r-packages" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="sec-installing-r-packages">
@@ -456,22 +451,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center" data-hash="getting-started_cache/html/unnamed-chunk-3_6e60bf9ac81ad6ff9cea5c77c3eed24f">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"tidyverse"</span>, <span class="st">"dslabs"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>One advantage of using RStudio is that it auto-completes package names once you start typing, which is helpful when you do not remember the exact spelling of the package:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_24_18.png" class="img-fluid figure-img" style="width:70.0%"></p>
-</figure>
-</div>
-<p>Once you select your package, we recommend selecting all the defaults:</p>
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_24_36.png" class="img-fluid"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_26_24.png" class="img-fluid"></p>
-</div>
-</div>
-</div>
+<p>One advantage of using RStudio is that it auto-completes package names once you start typing, which is helpful when you do not remember the exact spelling of the package.</p>
 <p>Note that installing <strong>tidyverse</strong> actually installs several packages. This commonly occurs when a package has <em>dependencies</em>, or uses functions from other packages. When you load a package using <code>library</code>, you also load its dependencies.</p>
 <p>Once packages are installed, you can load them into R and you do not need to install them again, unless you install a fresh version of R. Remember packages are installed in R not RStudio.</p>
 <p>It is helpful to keep a list of all the packages you need for your work in a script because if you need to perform a fresh install of R, you can re-install all your packages by simply running a script.</p>

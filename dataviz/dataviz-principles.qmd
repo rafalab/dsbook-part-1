@@ -200,8 +200,8 @@ Not surprisingly, __ggplot2__ defaults to using area rather than
 radius. Of course, in this case, we really should not be using area at all since we can use position and length:
 
 ```{r barplot-better-than-area, out.width="70%", echo=FALSE}
-gdp_data |> 
-  filter(y == "Area") |>
+data.frame(Country = c("United States", "China", "Japan", "Germany", "France"), GDP = gdp) |>
+  mutate(Country = reorder(Country, GDP)) |>
   ggplot(aes(Country, GDP)) + 
   geom_col(width = 0.5) + 
   ylab("GDP in trillions of US dollars")

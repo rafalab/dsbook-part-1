@@ -40,10 +40,6 @@ dat |>
         plot.margin = unit(c(1,1,1,1), "cm")) 
 ```
 
-```{=html}
-<!--(Source:
-[Ma’ayan Rosenzweigh/ABC News](https://abcnews.go.com/blogs/headlines/2012/12/us-gun-ownership-homicide-rate-higher-than-other-developed-countries/), Data from UNODC Homicide Statistics) -->
-```
 Or even worse, this version from [everytown.org](https://everytownresearch.org)[^r-basics-2]:
 
 [^r-basics-2]: <https://everytownresearch.org>
@@ -67,9 +63,9 @@ dat |>
         axis.text.x = element_blank(),
         axis.ticks.length = unit(-0.4, "cm")) + 
   coord_flip() 
+rm(dat)
 ```
 
-<!--(Source  [everytown.org](https://everytownresearch.org))-->
 
 But then you remember that the US is a large and diverse country with 50 very different states as well as the District of Columbia (DC).
 
@@ -115,10 +111,6 @@ coef_c <- -1
 
 which stores the values for later use. We use `<-` to assign values to the variables. We can also assign values using `=` instead of `<-`, but we recommend against using `=` to avoid confusion.
 
-:::{.callout-note}
-When writing code in R, it's important to choose variable names that are both meaningful and avoid conflicts with existing functions or reserved words in the language. The primary reason we used `coef_a`, `coef_b` and `coef_c` is to avoid a conflict with the `c()` function in R, described in @sec-creating-vectors. If you were to name a variable `c`, you would not receive an error or warning, but the conflict can lead to unexpected behavior and bugs that are hard to diagnose.
-:::
-
 Copy and paste the code above into your console to define the three variables. Note that R does not print anything when we make this assignment. This means the objects were defined successfully. Had you made a mistake, you would have received an error message.
 
 To see the value stored in a variable, we simply ask R to evaluate `coef_a` and it shows the stored value:
@@ -140,6 +132,7 @@ We use the term *object* to describe stuff that is stored in R. Variables are ex
 As we define objects in the console, we are actually changing the *workspace*. You can see all the variables saved in your workspace by typing:
 
 ```{r}
+#| eval: false
 ls()
 ```
 
@@ -160,7 +153,7 @@ Now since these values are saved in variables, to obtain a solution to our equat
 
 Once you define variables, the data analysis process can usually be described as a series of *functions* applied to the data. R includes several predefined functions and most of the analysis pipelines we construct make extensive use of these.
 
-We already used or discussed the `install.packages`, `library`, `c`, and `ls` functions. We also used the function `sqrt` to solve the quadratic equation above. There are many more prebuilt functions and even more can be added through packages. These functions do not appear in the workspace because you did not define them, but they are available for immediate use.
+We already used or discussed the `install.packages`, `library`, and `ls` functions. We also used the function `sqrt` to solve the quadratic equation above. There are many more prebuilt functions and even more can be added through packages. These functions do not appear in the workspace because you did not define them, but they are available for immediate use.
 
 In general, we need to use parentheses to evaluate a function. If you type `ls`, the function is not evaluated and instead R shows you the code that defines the function. If you type `ls()` the function is evaluated and, as seen above, we see objects in the workspace.
 
@@ -274,13 +267,15 @@ Inf + 1
 
 ### Variable names
 
-We have used the letters `a`, `b`, and `c` as variable names, but variable names can be almost anything. Some basic rules in R are that variable names have to start with a letter, can't contain spaces, and should not be variables that are predefined in R. For example, don't name one of your variables `install.packages` by typing something like `install.packages <- 2`.
+We used `coef_a`, `coef_b`, and `coef_c` as variable names, but variable names can be almost anything. When writing code in R, it's important to choose variable names that are both meaningful and avoid conflicts with existing functions or reserved words in the language. For example, we did not use `a`, `b` and `c` to avoid a conflict with the `c()` function in R, described in @sec-creating-vectors. If you were to name a variable `c`, you would not receive an error or warning, but the conflict can lead to unexpected behavior and bugs that are hard to diagnose.
 
-A nice convention to follow is to use meaningful words that describe what is stored, use only lower case, and use underscores as a substitute for spaces. For the quadratic equations, we could use something like this:
+Some basic rules in R are that variable names have to start with a letter, can't contain spaces, and should not be variables that are predefined in R, such as `c`.
+
+A nice convention to follow is to use meaningful words that describe what is stored, use only lower case, and use underscores as a substitute for spaces. For the quadratic equations, we could use something like this for the two roots:
 
 ```{r}
-solution_1 <- (-coef_b + sqrt(coef_b^2 - 4*coef_a*coef_c))/(2*coef_a)
-solution_2 <- (-coef_b - sqrt(coef_b^2 - 4*coef_a*coef_c))/(2*coef_a)
+r_1 <- (-coef_b + sqrt(coef_b^2 - 4*coef_a*coef_c))/(2*coef_a)
+r_2 <- (-coef_b - sqrt(coef_b^2 - 4*coef_a*coef_c))/(2*coef_a)
 ```
 
 For more advice, we highly recommend studying Hadley Wickham's style guide[^r-basics-3].

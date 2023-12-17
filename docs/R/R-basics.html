@@ -422,10 +422,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<!--(Source:
-[Ma’ayan Rosenzweigh/ABC News](https://abcnews.go.com/blogs/headlines/2012/12/us-gun-ownership-homicide-rate-higher-than-other-developed-countries/), Data from UNODC Homicide Statistics) -->
 <p>Or even worse, this version from <a href="https://everytownresearch.org">everytown.org</a><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/murder-rate-example-2_b77ceb0ff6df062eeeb744537ff92181">
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/murder-rate-example-2_8d4403a8c638dc0e4b41a4f27f962549">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="R-basics_files/figure-html/murder-rate-example-2-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
@@ -433,7 +431,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<!--(Source  [everytown.org](https://everytownresearch.org))-->
 <p>But then you remember that the US is a large and diverse country with 50 very different states as well as the District of Columbia (DC).</p>
 <div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/us-murders-by-state-map_2b41b0462a8e50bd41ffbe0d5d74f17a">
 <div class="cell-output-display">
@@ -460,16 +457,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">coef_c</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>which stores the values for later use. We use <code>&lt;-</code> to assign values to the variables. We can also assign values using <code>=</code> instead of <code>&lt;-</code>, but we recommend against using <code>=</code> to avoid confusion.</p>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>When writing code in R, it’s important to choose variable names that are both meaningful and avoid conflicts with existing functions or reserved words in the language. The primary reason we used <code>coef_a</code>, <code>coef_b</code> and <code>coef_c</code> is to avoid a conflict with the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function in R, described in <a href="#sec-creating-vectors"><span>Section&nbsp;2.4.1</span></a>. If you were to name a variable <code>c</code>, you would not receive an error or warning, but the conflict can lead to unexpected behavior and bugs that are hard to diagnose.</p>
-</div>
-</div>
-</div>
 <p>Copy and paste the code above into your console to define the three variables. Note that R does not print anything when we make this assignment. This means the objects were defined successfully. Had you made a mistake, you would have received an error message.</p>
 <p>To see the value stored in a variable, we simply ask R to evaluate <code>coef_a</code> and it shows the stored value:</p>
 <div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-2_603746470ff09906a41ccd844b076b22">
@@ -485,10 +472,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="the-workspace" class="level3" data-number="2.2.2"><h3 data-number="2.2.2" class="anchored" data-anchor-id="the-workspace">
 <span class="header-section-number">2.2.2</span> The workspace</h3>
 <p>As we define objects in the console, we are actually changing the <em>workspace</em>. You can see all the variables saved in your workspace by typing:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-4_7d3eb1908994dd68e74143bc57967367">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "coef_a"          "coef_b"          "coef_c"         </span></span>
-<span><span class="co">#&gt; [4] "dat"             "has_annotations"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-4_f7ac3d3745d9465cc23302a504b0faa9">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In RStudio, the <em>Environment</em> tab shows the values:</p>
 <p><img src="img/rstudio-environment.png" class="img-fluid" style="width:70.0%"></p>
@@ -503,7 +488,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="prebuilt-functions" class="level3" data-number="2.2.3"><h3 data-number="2.2.3" class="anchored" data-anchor-id="prebuilt-functions">
 <span class="header-section-number">2.2.3</span> Prebuilt functions</h3>
 <p>Once you define variables, the data analysis process can usually be described as a series of <em>functions</em> applied to the data. R includes several predefined functions and most of the analysis pipelines we construct make extensive use of these.</p>
-<p>We already used or discussed the <code>install.packages</code>, <code>library</code>, <code>c</code>, and <code>ls</code> functions. We also used the function <code>sqrt</code> to solve the quadratic equation above. There are many more prebuilt functions and even more can be added through packages. These functions do not appear in the workspace because you did not define them, but they are available for immediate use.</p>
+<p>We already used or discussed the <code>install.packages</code>, <code>library</code>, and <code>ls</code> functions. We also used the function <code>sqrt</code> to solve the quadratic equation above. There are many more prebuilt functions and even more can be added through packages. These functions do not appear in the workspace because you did not define them, but they are available for immediate use.</p>
 <p>In general, we need to use parentheses to evaluate a function. If you type <code>ls</code>, the function is not evaluated and instead R shows you the code that defines the function. If you type <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code> the function is evaluated and, as seen above, we see objects in the workspace.</p>
 <p>Unlike <code>ls</code>, most functions require one or more <em>arguments</em>. Below is an example of how we assign an object to the argument of the function <code>log</code>. Remember that we earlier defined <code>coef_a</code> to be 1:</p>
 <div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-6_1a21dd73d1a01617e4ed5e5ee1c76074">
@@ -589,11 +574,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="variable-names" class="level3" data-number="2.2.5"><h3 data-number="2.2.5" class="anchored" data-anchor-id="variable-names">
 <span class="header-section-number">2.2.5</span> Variable names</h3>
-<p>We have used the letters <code>a</code>, <code>b</code>, and <code>c</code> as variable names, but variable names can be almost anything. Some basic rules in R are that variable names have to start with a letter, can’t contain spaces, and should not be variables that are predefined in R. For example, don’t name one of your variables <code>install.packages</code> by typing something like <code>install.packages &lt;- 2</code>.</p>
-<p>A nice convention to follow is to use meaningful words that describe what is stored, use only lower case, and use underscores as a substitute for spaces. For the quadratic equations, we could use something like this:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-22_350c69f8cac27a343ae585cb96abbcf0">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">solution_1</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="op">-</span><span class="va">coef_b</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">coef_b</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">4</span><span class="op">*</span><span class="va">coef_a</span><span class="op">*</span><span class="va">coef_c</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">coef_a</span><span class="op">)</span></span>
-<span><span class="va">solution_2</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="op">-</span><span class="va">coef_b</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">coef_b</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">4</span><span class="op">*</span><span class="va">coef_a</span><span class="op">*</span><span class="va">coef_c</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">coef_a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We used <code>coef_a</code>, <code>coef_b</code>, and <code>coef_c</code> as variable names, but variable names can be almost anything. When writing code in R, it’s important to choose variable names that are both meaningful and avoid conflicts with existing functions or reserved words in the language. For example, we did not use <code>a</code>, <code>b</code> and <code>c</code> to avoid a conflict with the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function in R, described in <a href="#sec-creating-vectors"><span>Section&nbsp;2.4.1</span></a>. If you were to name a variable <code>c</code>, you would not receive an error or warning, but the conflict can lead to unexpected behavior and bugs that are hard to diagnose.</p>
+<p>Some basic rules in R are that variable names have to start with a letter, can’t contain spaces, and should not be variables that are predefined in R, such as <code>c</code>.</p>
+<p>A nice convention to follow is to use meaningful words that describe what is stored, use only lower case, and use underscores as a substitute for spaces. For the quadratic equations, we could use something like this for the two roots:</p>
+<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-22_225bdba836a45732f30a9aff8806fd0a">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r_1</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="op">-</span><span class="va">coef_b</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">coef_b</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">4</span><span class="op">*</span><span class="va">coef_a</span><span class="op">*</span><span class="va">coef_c</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">coef_a</span><span class="op">)</span></span>
+<span><span class="va">r_2</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="op">-</span><span class="va">coef_b</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">coef_b</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">4</span><span class="op">*</span><span class="va">coef_a</span><span class="op">*</span><span class="va">coef_c</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">coef_a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For more advice, we highly recommend studying Hadley Wickham’s style guide<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
 </section><section id="saving-your-workspace" class="level3" data-number="2.2.6"><h3 data-number="2.2.6" class="anchored" data-anchor-id="saving-your-workspace">

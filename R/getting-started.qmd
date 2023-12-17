@@ -56,11 +56,7 @@ RStudio will be our launching pad for data science projects. It not only provide
 
 ### The panes
 
-When you start RStudio for the first time, you will see three panes. The left pane shows the R console. On the right, the top pane includes tabs such as *Environment* and *History*, while the bottom pane shows five tabs: *File*, *Plots*, *Packages*, *Help*, and *Viewer* (these tabs may change in new versions). You can click on each tab to move across the different features.
-
-![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_16.png){width="70%" fig-align="center"}
-
-To start a new script, you can click on File, then New File, then R Script.
+When you start RStudio for the first time, you will see three panes. The left pane shows the R console. On the right, the top pane includes tabs such as *Environment* and *History*, while the bottom pane shows five tabs: *File*, *Plots*, *Packages*, *Help*, and *Viewer* (these tabs may change in new versions). You can click on each tab to move across the different features. For example, to start a new script, you can click on File, then New File, then R Script.
 
 ![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_42.png){width="70%" fig-align="center"}
 
@@ -86,7 +82,7 @@ There are many editors specifically made for coding. These are useful because co
 
 Let's start by opening a new script as we did before. A next step is to give the script a name. We can do this through the editor by saving the current new unnamed script. To do this, click on the save icon or use the key binding Ctrl+S on Windows and command+S on the Mac.\
 
-When you ask for the document to be saved for the first time, RStudio will prompt you for a name. A good convention is to use a descriptive name, with lower case letters, no spaces, only hyphens to separate words, and then followed by the suffix *.R*. We will call this script *my-first-script.R*.
+When you ask for the document to be saved for the first time, RStudio will prompt you for a name. A good convention is to use a descriptive name, with lower case letters, no spaces, only hyphens to separate words, and then followed by the suffix `.R`. We will call this script `my-first-script.R`.
 
 ![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_27_44.png){width="70%" fig-align="center"}
 
@@ -113,7 +109,7 @@ To change the global options you click on *Tools* then *Global Options...*.
 
 As an example we show how to make a change that we **highly recommend**. This is to change the *Save workspace to .RData on exit* to *Never* and uncheck the *Restore .RData into workspace at start*. By default, when you exit R saves all the objects you have created into a file called .RData. This is done so that when you restart the session in the same folder, it will load these objects. We find that this causes confusion especially when we share code with colleagues and assume they have this .RData file. To change these options, make your *General* settings look like this:
 
-![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_56_08.png){width="70%" fig-align="center"}
+![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_56_08.png){width="40%" fig-align="center"}
 
 ## Installing R packages {#sec-installing-r-packages}
 
@@ -137,20 +133,7 @@ We can install more than one package at once by feeding a character vector to th
 install.packages(c("tidyverse", "dslabs"))
 ```
 
-One advantage of using RStudio is that it auto-completes package names once you start typing, which is helpful when you do not remember the exact spelling of the package:
-
-![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_24_18.png){width="70%" fig-align="center"}
-
-
-Once you select your package, we recommend selecting all the defaults:
-
-:::{layout-ncol=2}
-
-![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_24_36.png){width=50%}
-
-![](../productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_26_24.png){width=50%}
-
-:::
+One advantage of using RStudio is that it auto-completes package names once you start typing, which is helpful when you do not remember the exact spelling of the package.
 
 Note that installing **tidyverse** actually installs several packages. This commonly occurs when a package has *dependencies*, or uses functions from other packages. When you load a package using `library`, you also load its dependencies.
 
