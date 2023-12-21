@@ -181,7 +181,7 @@ We apply this function and find the number of problematic entries:
 
 ```{r}
 problems <- reported_heights |> 
-  mutate(inches = suppressWarnings(as.numeric(x))) |>
+  mutate(inches = suppressWarnings(as.numeric(height))) |>
   filter(is.na(inches) | inches < 50 | inches > 84) |>
   pull(height)
 length(problems)
