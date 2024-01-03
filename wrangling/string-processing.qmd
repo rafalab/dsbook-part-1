@@ -181,7 +181,7 @@ We apply this function and find the number of problematic entries:
 
 ```{r}
 problems <- reported_heights |> 
-  mutate(inches = suppressWarnings(as.numeric(x))) |>
+  mutate(inches = suppressWarnings(as.numeric(height))) |>
   filter(is.na(inches) | inches < 50 | inches > 84) |>
   pull(height)
 length(problems)
@@ -971,7 +971,7 @@ cleanup <- function(s){
   s <- str_remove_all(s, "inches|in|''|\"|cm|and") |> 
     str_trim() |>
     str_to_lower()
-  for (i in 0:11){
+  for (i in 0:11) {
     s <- str_replace_all(s, words(i), as.character(i))
   }
   return(s)
@@ -1092,10 +1092,14 @@ temp_file <- tempfile()
 url <- paste0("https://web.archive.org/web/20150927033124/",
               "https://www.pnas.org/content/suppl/2015/09/16/",
               "1510159112.DCSupplemental/pnas.201510159SI.pdf")
-download.file(url, temp_file)
+download.file(url, temp_file, mode = "wb")
 txt <- pdf_text(temp_file)
 file.remove(temp_file)
 ```
+
+:::{.callout-note}
+The `mode = "wb"` argument is only necessary if using Microsoft Windows. On MacOs or Linux the default `mode = "w"` works. To understand this difference please refer to the `download.file` help file.
+:::
 
 If we examine the object text, we notice that it is a character vector
 with an entry for each page. So we keep the page we want:
@@ -1109,8 +1113,13 @@ The steps above can actually be skipped because we include this raw data in the 
 Examining the object `raw_data_research_funding_rates` we see that it is a long string and each line on the page, including the table rows, are separated by the symbol for newline: `\n`. A first step in converting this into a data frame is to store rows separately in a way that will make them easy to access. For this we use the `str_split` function:
 
 ```{r}
-tab <- str_split(raw_data_research_funding_rates, "\n")
+tab <- str_split(raw_data_research_funding_rates, "\n+")
 ```
+
+:::{.callout-note}
+On MacOS or Linux you can simply use `\n` as the separator. Microsoft Windows and macOS (which is based on Unix) use different conventions for line endings in text files and a result `raw_data_research_funding_rates` has more `\n` when using Windows.
+:::
+
 
 Because we start off with just one string, we end up with a list with just one entry.
 

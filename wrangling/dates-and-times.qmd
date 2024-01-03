@@ -1,6 +1,5 @@
 # Parsing dates and times {#sec-dates-and-times}
 
-
 We have described three main types of vectors: numeric, character, and logical. When analyzing data, we often encounter variables that are dates. Although we can represent a date with a string, for example `November 2, 2017`, once we pick a reference day, referred to as the _epoch_ by computer programmers, they can be converted to numbers by calculating the number of days since the epoch. In R and Unix, the epoch is defined as January 1, 1970. So, for example, January 2, 1970 is day 1, December 31, 1969 is day -1, and November 2, 2017, is day 17,204. 
 
 Now how should we represent dates and times when analyzing data in R? We could just use days since the epoch, but then it is almost impossible to interpret. If I tell you it's November 2, 2017, you know what this means immediately. If I tell you it's day 17,204, you will be quite confused. Similar problems arise with times and even more complications can appear due to time zones. For this reason, R defines a data type just for dates and times. 
@@ -164,6 +163,7 @@ polls_us_election_2016 |>
   geom_point()
 ```
 
+Finally, you should be aware the there are useful function for computing operations on time such a `difftime`, `time_length`, and `interval`.
 
 ## Exercises
 

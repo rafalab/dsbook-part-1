@@ -252,26 +252,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../wrangling/locales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Locales</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../wrangling/data-table-wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Wrangling with <code>data.table</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Wrangling with <code>data.table</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Web scraping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Web scraping</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">String processing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">String processing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/text-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Text analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -288,25 +294,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Terminal Access and Installing Git</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Terminal Access and Installing Git</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/unix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Git and GitHub</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Git and GitHub</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/reproducible-projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reproducible projects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects</span></span></a>
   </div>
 </li>
       </ul>
@@ -340,7 +346,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <a href="#parsers" id="toc-parsers" class="nav-link" data-scroll-target="#parsers"><span class="header-section-number">6.3</span> Parsers</a>
   <ul class="collapse">
 <li><a href="#base-r" id="toc-base-r" class="nav-link" data-scroll-target="#base-r"><span class="header-section-number">6.3.1</span> Base R</a></li>
-  <li><a href="#readr" id="toc-readr" class="nav-link" data-scroll-target="#readr"><span class="header-section-number">6.3.2</span> readr</a></li>
+  <li><a href="#sec-reader" id="toc-sec-reader" class="nav-link" data-scroll-target="#sec-reader"><span class="header-section-number">6.3.2</span> readr</a></li>
   <li><a href="#readxl" id="toc-readxl" class="nav-link" data-scroll-target="#readxl"><span class="header-section-number">6.3.3</span> readxl</a></li>
   <li><a href="#data.table" id="toc-data.table" class="nav-link" data-scroll-target="#data.table"><span class="header-section-number">6.3.4</span> data.table</a></li>
   <li><a href="#downloading-files" id="toc-downloading-files" class="nav-link" data-scroll-target="#downloading-files"><span class="header-section-number">6.3.5</span> Downloading files</a></li>
@@ -367,16 +373,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header><p>We have been using datasets already stored as R objects. In data analysis work we rarely have such luck and will have to import data into R from either a file, a database, or another source. Currently, one of the most common ways of storing and sharing data for analysis is through electronic spreadsheets. A spreadsheet stores data in rows and columns. It is basically a file version of a data frame. When saving such a table to a computer file, one needs a way to define when a new row or column ends and the other begins. This in turn defines the cells in which single values are stored. Here is an example of what a comma separated file looks like if we open it with a basic text editor:</p>
 <p><img src="img/csv-file.png" class="img-fluid"></p>
-<p>In this chapter, we outline how to load data from a file into R. First, it’s crucial to identify the file’s location; thus, we touch on file paths and working directories (detailed in <a href="../productivity/unix.html"><span>Chapter&nbsp;19</span></a>). Next, we delve into file types (text or binary) and encodings (like ASCII and Unicode), both essential for data import. We then introduce popular functions for data importing, referred to as <em>parsers</em>. Lastly, we offer tips on how to store data in spreadsheets. Advanced topics like extracting data from websites or PDFs will be discussed in the book’s Data Wrangling section.</p>
+<p>In this chapter, we outline how to load data from a file into R. First, it’s crucial to identify the file’s location; thus, we touch on file paths and working directories (detailed in <a href="../productivity/unix.html"><span>Chapter&nbsp;20</span></a>). Next, we delve into file types (text or binary) and encodings (like ASCII and Unicode), both essential for data import. We then introduce popular functions for data importing, referred to as <em>parsers</em>. Lastly, we offer tips on how to store data in spreadsheets. Advanced topics like extracting data from websites or PDFs will be discussed in the book’s Data Wrangling section.</p>
 <section id="paths-and-the-working-directory" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="paths-and-the-working-directory">
 <span class="header-section-number">6.1</span> Paths and the working directory</h2>
-<p>The first step when importing data from a spreadsheet is to locate the file containing the data. Although we do not recommend it, you can use an approach similar to what you do to open files in Microsoft Excel by clicking on the RStudio “File” menu, clicking “Import Dataset”, then clicking through folders until you find the file. However, we write code rather than use the point-and-click approach. The key concepts we need to learn to do this are described in detail in <a href="../productivity/unix.html"><span>Chapter&nbsp;19</span></a>. Here we provide an overview of the very basics.</p>
+<p>The first step when importing data from a spreadsheet is to locate the file containing the data. Although we do not recommend it, you can use an approach similar to what you do to open files in Microsoft Excel by clicking on the RStudio “File” menu, clicking “Import Dataset”, then clicking through folders until you find the file. However, we write code rather than use the point-and-click approach. The key concepts we need to learn to do this are described in detail in <a href="../productivity/unix.html"><span>Chapter&nbsp;20</span></a>. Here we provide an overview of the very basics.</p>
 <section id="the-filesystem" class="level3" data-number="6.1.1"><h3 data-number="6.1.1" class="anchored" data-anchor-id="the-filesystem">
 <span class="header-section-number">6.1.1</span> The filesystem</h3>
 <p>You can think of your computer’s filesystem as a series of nested folders, each containing other folders and files. We refer to folders as <em>directories</em>. We refer to the folder that contains all other folders as the <em>root directory</em>. We refer to the directory in which we are currently located as the <em>working directory</em>. The working directory therefore changes as you move through folders: think of it as your current location.</p>
 </section><section id="relative-and-full-paths" class="level3" data-number="6.1.2"><h3 data-number="6.1.2" class="anchored" data-anchor-id="relative-and-full-paths">
 <span class="header-section-number">6.1.2</span> Relative and full paths</h3>
-<p>The <em>path</em> of a file is a list of directory names that can be thought of as instructions on what folders to click on, and in what order, to find the file. If these instructions are for finding the file from the root directory, we refer to it as the <em>full path</em>. If the instructions are for finding the file starting in the working directory, we refer to it as a <em>relative path</em>. <a href="../productivity/unix.html#sec-filesystem"><span>Section&nbsp;19.3</span></a> provides more details on this topic.</p>
+<p>The <em>path</em> of a file is a list of directory names that can be thought of as instructions on what folders to click on, and in what order, to find the file. If these instructions are for finding the file from the root directory, we refer to it as the <em>full path</em>. If the instructions are for finding the file starting in the working directory, we refer to it as a <em>relative path</em>. <a href="../productivity/unix.html#sec-filesystem"><span>Section&nbsp;20.3</span></a> provides more details on this topic.</p>
 <p>To see an example of a full path on your system type the following:</p>
 <div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-1_399efb2487667f5984fb281dbd317c82">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"dslabs"</span><span class="op">)</span></span>
@@ -405,7 +411,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="the-working-directory" class="level3" data-number="6.1.3"><h3 data-number="6.1.3" class="anchored" data-anchor-id="the-working-directory">
 <span class="header-section-number">6.1.3</span> The working directory</h3>
 <p>We highly recommend only using relative paths in your code. The reason is that full paths are unique to your computer and you want your code to be portable. If you want to know the full path of your working directory using the <code>getwd</code> function. If you need to change your working directory, you can use the function <code>setwd</code> or you can change it through RStudio by clicking on “Session”.</p>
-<p>When you start a project you want to pick a directory to store all the files related to that project and make this is your working directory when ruining your analysis. This will facilitate th because if you provide a relative path to an importing functions, it will assume you want R to search for this file in the working directory. <a href="../productivity/reproducible-projects.html"><span>Chapter&nbsp;21</span></a> provides details on how to organize projects with RStudio.</p>
+<p>When you start a project you want to pick a directory to store all the files related to that project and make this is your working directory when ruining your analysis. This will facilitate th because if you provide a relative path to an importing functions, it will assume you want R to search for this file in the working directory. <a href="../productivity/reproducible-projects.html"><span>Chapter&nbsp;22</span></a> provides details on how to organize projects with RStudio.</p>
 </section><section id="generating-path-names" class="level3" data-number="6.1.4"><h3 data-number="6.1.4" class="anchored" data-anchor-id="generating-path-names">
 <span class="header-section-number">6.1.4</span> Generating path names</h3>
 <p>The <code>file.path</code> function combines characters to form a complete path, ensuring compatibility with the respective operating system. Linux and Mac use forward slashes <code>/</code>, while Windows uses backslashes <code>\</code>, to separate directories. This function is useful because often you want to define paths using a variable. Here is an example that constructs the full path for a spreadsheet containing the murders data. Here the variable <code>dir</code> contains the full path for the <strong>dslabs</strong> package and <code>extdata/murders.csv</code> is the relative path of the spreadsheet if <code>dir</code> is considered the working directory.</p>
@@ -474,7 +480,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt;  [1] "state"      "abb"        "region"     "population" "total"     </span></span>
 <span><span class="co">#&gt;  [6] "Alabama"    "AL"         "South"      "4779736"    "135"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="readr" class="level3" data-number="6.3.2"><h3 data-number="6.3.2" class="anchored" data-anchor-id="readr">
+</section><section id="sec-reader" class="level3" data-number="6.3.2"><h3 data-number="6.3.2" class="anchored" data-anchor-id="sec-reader">
 <span class="header-section-number">6.3.2</span> readr</h3>
 <p>The <strong>readr</strong> package includes parsers, for reading text file spreadsheets into R. <strong>readr</strong> is part of the <strong>tidyverse</strong>, but you can load it directly using:</p>
 <div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-9_bc52d1750c61049cbc9e3000229feb78">
@@ -552,11 +558,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 2 ISO-8859-2       0.72</span></span>
 <span><span class="co">#&gt; 3 ISO-8859-9       0.53</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Once we know the encoding we can specify it:</p>
+<p>Once we know the encoding we can specify it through the <code>locale</code> argument:</p>
 <div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-13_a4239968f17abbeb0b7abc49623edc09">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"calificaciones.csv"</span>, show_col_types <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>                locale <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/locale.html">locale</a></span><span class="op">(</span>encoding <span class="op">=</span> <span class="st">"ISO-8859-1"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>We learn about locales in <a href="../wrangling/locales.html"><span>Chapter&nbsp;14</span></a>.</p>
 <p>We can now see that the characters in the header were read in correctly:</p>
 <div class="cell" data-layout-align="center" data-hash="importing-data_cache/html/unnamed-chunk-14_f81137aff5c0a56d7429b7050aff4947">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>

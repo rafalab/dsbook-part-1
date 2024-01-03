@@ -232,13 +232,17 @@ nrc <- get_sentiments("nrc") |>
   select(word, sentiment)
 ```
 
-We can combine the words and sentiments using `inner_join`, which will only keep words associated with a sentiment. Here are 10 random words extracted from the tweets:
+We can combine the words and sentiments using `inner_join`, which will only keep words associated with a sentiment. Here are 5 random words extracted from the tweets:
 
 ```{r}
 tweet_words |> inner_join(nrc, by = "word", relationship = "many-to-many") |> 
   select(source, word, sentiment) |> 
   sample_n(5)
 ```
+
+:::{.callout-note}
+`relationship = "many-to-many"` is added to address a warning that arises from `left_join` detecting an "unexpected many-to-many relationship". However, this behavior is actually expected in this context because many words have multiple sentiments associated with them.
+:::
 
 Now we are ready to perform a quantitative analysis comparing Android and iPhone by comparing the sentiments of the tweets posted from each device. Here we could perform a tweet-by-tweet analysis, assigning a sentiment to each tweet. However, this will be challenging since each tweet will have several sentiments attached to it, one for each word appearing in the lexicon. For illustrative purposes, we will perform a much simpler analysis: we will count and compare the frequencies of each sentiment appearing in each device.
 
@@ -250,6 +254,7 @@ sentiment_counts <- tweet_words |>
   mutate(sentiment = replace_na(sentiment, replace = "none"))
 sentiment_counts
 ```
+
 
 For each sentiment, we can compute the percent difference in proportion for Android compared to iPhone:
 

@@ -130,7 +130,7 @@ x[1:10]
 ```
 
 
-### readr
+### readr {#sec-reader}
 
 The __readr__ package includes parsers, for reading text file spreadsheets into R. __readr__ is part of the __tidyverse__, but you can load it directly using:
 
@@ -171,12 +171,14 @@ This function can help us read the file we previously noted was showing strange 
 guess_encoding("calificaciones.csv")
 ```
 
-Once we know the encoding we can specify it:
+Once we know the encoding we can specify it through the `locale` argument:
 
 ```{r}
 dat <- read_csv("calificaciones.csv", show_col_types = FALSE,
                 locale = locale(encoding = "ISO-8859-1"))
 ```
+
+We learn about locales in @sec-locales.
 
 We can now see that the characters in the header were read in correctly:
 

@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.3.353">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
-<title>Introduction to Data Science - 14&nbsp; Wrangling with data.table</title>
+<title>Introduction to Data Science - 15&nbsp; Wrangling with data.table</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -62,7 +62,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../wrangling/web-scraping.html" rel="next">
-<link href="../wrangling/dates-and-times.html" rel="prev">
+<link href="../wrangling/locales.html" rel="prev">
 <link href="../cover.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -100,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../wrangling/intro-to-wrangling.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="../wrangling/data-table-wrangling.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Wrangling with `data.table`</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../wrangling/intro-to-wrangling.html">Data Wrangling</a></li><li class="breadcrumb-item"><a href="../wrangling/data-table-wrangling.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Wrangling with `data.table`</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -252,26 +252,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../wrangling/locales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Locales</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../wrangling/data-table-wrangling.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Wrangling with <code>data.table</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Wrangling with <code>data.table</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Web scraping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Web scraping</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">String processing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">String processing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/text-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Text analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -288,25 +294,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Terminal Access and Installing Git</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Terminal Access and Installing Git</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/unix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Git and GitHub</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Git and GitHub</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/reproducible-projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reproducible projects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects</span></span></a>
   </div>
 </li>
       </ul>
@@ -320,26 +326,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#reshaping-data" id="toc-reshaping-data" class="nav-link active" data-scroll-target="#reshaping-data"><span class="header-section-number">14.1</span> Reshaping data</a>
+<a href="#reshaping-data" id="toc-reshaping-data" class="nav-link active" data-scroll-target="#reshaping-data"><span class="header-section-number">15.1</span> Reshaping data</a>
   <ul class="collapse">
-<li><a href="#pivot_longer-is-melt" id="toc-pivot_longer-is-melt" class="nav-link" data-scroll-target="#pivot_longer-is-melt"><span class="header-section-number">14.1.1</span> <code>pivot_longer</code> is <code>melt</code></a></li>
+<li><a href="#pivot_longer-is-melt" id="toc-pivot_longer-is-melt" class="nav-link" data-scroll-target="#pivot_longer-is-melt"><span class="header-section-number">15.1.1</span> <code>pivot_longer</code> is <code>melt</code></a></li>
   </ul>
 </li>
   <li>
-<a href="#pivot_wider-is-dcast" id="toc-pivot_wider-is-dcast" class="nav-link" data-scroll-target="#pivot_wider-is-dcast"><span class="header-section-number">14.2</span> <code>pivot_wider</code> is <code>dcast</code></a>
+<a href="#pivot_wider-is-dcast" id="toc-pivot_wider-is-dcast" class="nav-link" data-scroll-target="#pivot_wider-is-dcast"><span class="header-section-number">15.2</span> <code>pivot_wider</code> is <code>dcast</code></a>
   <ul class="collapse">
-<li><a href="#separating-variables" id="toc-separating-variables" class="nav-link" data-scroll-target="#separating-variables"><span class="header-section-number">14.2.1</span> Separating variables</a></li>
+<li><a href="#separating-variables" id="toc-separating-variables" class="nav-link" data-scroll-target="#separating-variables"><span class="header-section-number">15.2.1</span> Separating variables</a></li>
   </ul>
 </li>
-  <li><a href="#joins" id="toc-joins" class="nav-link" data-scroll-target="#joins"><span class="header-section-number">14.3</span> Joins</a></li>
-  <li><a href="#dates-and-times" id="toc-dates-and-times" class="nav-link" data-scroll-target="#dates-and-times"><span class="header-section-number">14.4</span> Dates and times</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">14.5</span> Exercises</a></li>
+  <li><a href="#joins" id="toc-joins" class="nav-link" data-scroll-target="#joins"><span class="header-section-number">15.3</span> Joins</a></li>
+  <li><a href="#dates-and-times" id="toc-dates-and-times" class="nav-link" data-scroll-target="#dates-and-times"><span class="header-section-number">15.4</span> Dates and times</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">15.5</span> Exercises</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/blob/main/wrangling/data-table-wrangling.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Wrangling with <code>data.table</code></span>
+<span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Wrangling with <code>data.table</code></span>
 </h1>
 </div>
 
@@ -362,16 +368,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com">data.table</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here we show the <strong>data.table</strong> version of some of the <strong>tidyverse</strong> commands we previously showed. The <strong>data.table</strong> functions are faster and more efficient with memory. In general, everything you can do with <strong>tidyverse</strong> can be done with <strong>data.table</strong> and base R which, although perhaps harder to read, it is often more flexible, faster, and more efficient. Here we show just a few examples, but you can learn others using internet searches or code generation tools.</p>
-<section id="reshaping-data" class="level2" data-number="14.1"><h2 data-number="14.1" class="anchored" data-anchor-id="reshaping-data">
-<span class="header-section-number">14.1</span> Reshaping data</h2>
+<section id="reshaping-data" class="level2" data-number="15.1"><h2 data-number="15.1" class="anchored" data-anchor-id="reshaping-data">
+<span class="header-section-number">15.1</span> Reshaping data</h2>
 <p>Previously we used this example:</p>
 <div class="cell" data-layout-align="center" data-hash="data-table-wrangling_cache/html/unnamed-chunk-3_b225ff80ef02a36b72e1fae45322ed48">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"dslabs"</span><span class="op">)</span></span>
 <span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">path</span>, <span class="st">"fertility-two-countries-example.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="pivot_longer-is-melt" class="level3" data-number="14.1.1"><h3 data-number="14.1.1" class="anchored" data-anchor-id="pivot_longer-is-melt">
-<span class="header-section-number">14.1.1</span> <code>pivot_longer</code> is <code>melt</code>
+<section id="pivot_longer-is-melt" class="level3" data-number="15.1.1"><h3 data-number="15.1.1" class="anchored" data-anchor-id="pivot_longer-is-melt">
+<span class="header-section-number">15.1.1</span> <code>pivot_longer</code> is <code>melt</code>
 </h3>
 <p>If in <strong>tidyverse</strong> we write</p>
 <div class="cell" data-layout-align="center" data-hash="data-table-wrangling_cache/html/unnamed-chunk-4_a3699c5303101a49e45c5be77a4cb917">
@@ -387,8 +393,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>                      variable.name <span class="op">=</span> <span class="st">"year"</span>, </span>
 <span>                      value.name <span class="op">=</span> <span class="st">"fertility"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="pivot_wider-is-dcast" class="level2" data-number="14.2"><h2 data-number="14.2" class="anchored" data-anchor-id="pivot_wider-is-dcast">
-<span class="header-section-number">14.2</span> <code>pivot_wider</code> is <code>dcast</code>
+</section></section><section id="pivot_wider-is-dcast" class="level2" data-number="15.2"><h2 data-number="15.2" class="anchored" data-anchor-id="pivot_wider-is-dcast">
+<span class="header-section-number">15.2</span> <code>pivot_wider</code> is <code>dcast</code>
 </h2>
 <p>If in <strong>tidyverse</strong> we write</p>
 <div class="cell" data-layout-align="center" data-hash="data-table-wrangling_cache/html/unnamed-chunk-6_29a77266766e0651b70236f4ab18476b">
@@ -400,8 +406,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt_new_wide_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/dcast.data.table.html">dcast</a></span><span class="op">(</span><span class="va">dt_new_tidy_data</span>, formula <span class="op">=</span> <span class="va">...</span> <span class="op">~</span> <span class="va">year</span>,</span>
 <span>                          value.var <span class="op">=</span> <span class="st">"fertility"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="separating-variables" class="level3" data-number="14.2.1"><h3 data-number="14.2.1" class="anchored" data-anchor-id="separating-variables">
-<span class="header-section-number">14.2.1</span> Separating variables</h3>
+<section id="separating-variables" class="level3" data-number="15.2.1"><h3 data-number="15.2.1" class="anchored" data-anchor-id="separating-variables">
+<span class="header-section-number">15.2.1</span> Separating variables</h3>
 <div class="cell" data-layout-align="center" data-hash="data-table-wrangling_cache/html/unnamed-chunk-8_fb3fd3f028a13676b78ec5440f4ce4fd">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"dslabs"</span><span class="op">)</span></span>
 <span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="st">"life-expectancy-and-fertility-two-countries-example.csv"</span></span>
@@ -428,8 +434,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">dat_long</span><span class="op">[</span>, <span class="va">name</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">name2</span>, sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span><span class="op">]</span><span class="op">[</span>, <span class="va">name2</span> <span class="op">:=</span> <span class="cn">NULL</span><span class="op">]</span></span>
 <span><span class="va">dat_wide</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/dcast.data.table.html">dcast</a></span><span class="op">(</span><span class="va">dat_long</span>, <span class="va">country</span> <span class="op">+</span> <span class="va">year</span> <span class="op">~</span> <span class="va">name</span>, value.var <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="joins" class="level2" data-number="14.3"><h2 data-number="14.3" class="anchored" data-anchor-id="joins">
-<span class="header-section-number">14.3</span> Joins</h2>
+</section></section><section id="joins" class="level2" data-number="15.3"><h2 data-number="15.3" class="anchored" data-anchor-id="joins">
+<span class="header-section-number">15.3</span> Joins</h2>
 <p>In <strong>tidyverse</strong> we joined two tables with <code>left_join</code>:</p>
 <div class="cell" data-layout-align="center" data-hash="data-table-wrangling_cache/html/unnamed-chunk-11_b8a9115d9ef282d8e3e5a836ba131c62">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">murders</span>, <span class="va">results_us_election_2016</span>, by <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -440,21 +446,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>             by <span class="op">=</span> <span class="st">"state"</span>, all.x <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Instead of defining different functions for the different type of joins, <code>merge</code> uses the the logical arguments <code>all</code> (full join), <code>all.x</code> (left join), and <code>all.y</code> (right join).</p>
-</section><section id="dates-and-times" class="level2" data-number="14.4"><h2 data-number="14.4" class="anchored" data-anchor-id="dates-and-times">
-<span class="header-section-number">14.4</span> Dates and times</h2>
+</section><section id="dates-and-times" class="level2" data-number="15.4"><h2 data-number="15.4" class="anchored" data-anchor-id="dates-and-times">
+<span class="header-section-number">15.4</span> Dates and times</h2>
 <p>The <strong>data.table</strong> package also includes some of the same functionality as <strong>lubridate</strong>. For example, it includes the <code>mday</code>, <code>month</code>, and <code>year</code> functions:</p>
 <div class="cell" data-layout-align="center" data-hash="data-table-wrangling_cache/html/unnamed-chunk-13_9ce2868d6acee1e8c4adf8142a6dc332">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/IDateTime.html">mday</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 17</span></span>
+<span><span class="co">#&gt; [1] 3</span></span>
 <span><span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/IDateTime.html">month</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 12</span></span>
+<span><span class="co">#&gt; [1] 1</span></span>
 <span><span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/IDateTime.html">year</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 2023</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 2024</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Other similar functions are <code>second</code>, <code>minute</code>, <code>hour</code>, <code>wday</code>, <code>week</code>, <code>isoweek</code> <code>quarter</code>, <code>yearmon</code>, <code>yearqtr</code>.</p>
 <p>The package also includes the class <code>IDate</code> and <code>ITime</code>, which store dates and times more efficiently, convenient for large files with date stamps. You convert dates in the usual R format using <code>as.IDate</code> and <code>as.ITime</code>.</p>
-</section><section id="exercises" class="level2" data-number="14.5"><h2 data-number="14.5" class="anchored" data-anchor-id="exercises">
-<span class="header-section-number">14.5</span> Exercises</h2>
+</section><section id="exercises" class="level2" data-number="15.5"><h2 data-number="15.5" class="anchored" data-anchor-id="exercises">
+<span class="header-section-number">15.5</span> Exercises</h2>
 <p>Repeat exercises in <a href="reshaping-data.html"><span>Chapter&nbsp;11</span></a>, <a href="joining-tables.html#sec-joins"><span>Section&nbsp;12.1</span></a>, and <a href="dates-and-times.html"><span>Chapter&nbsp;13</span></a> using <strong>data.table</strong> instead of <strong>tidyverse</strong>.</p>
 
 
@@ -691,13 +697,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="../wrangling/dates-and-times.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Parsing dates and times</span></span>
+      <a href="../wrangling/locales.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Locales</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../wrangling/web-scraping.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Web scraping</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Web scraping</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
