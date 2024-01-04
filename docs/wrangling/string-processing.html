@@ -1409,7 +1409,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>we see that the legend takes up much of the plot because we have four countries with names longer than 12 characters. We can rename these levels using the <code>case_when</code> function:</p>
-<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-86_94fe1d7277f85679634ddd4837400ccf">
+<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/country-long-names_3bc58a2518c28ca306edbb4173c8de49">
 <div class="sourceCode" id="cb86"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">country</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">country</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
 <span>  <span class="va">x</span> <span class="op">==</span> <span class="st">"Antigua and Barbuda"</span> <span class="op">~</span> <span class="st">"Barbuda"</span>,</span>
@@ -1423,13 +1423,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="string-processing_files/figure-html/unnamed-chunk-86-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figure class="figure"><p><img src="string-processing_files/figure-html/country-long-names-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>We can instead use the <code>fct_recode</code> function in the <strong>forcats</strong> package:</p>
-<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-87_86ea0d6f187023319d5b43621b533bc8">
+<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-86_b2366976b38d11db1365cce054e740da">
 <div class="sourceCode" id="cb87"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://forcats.tidyverse.org/">forcats</a></span><span class="op">)</span></span>
 <span><span class="va">gapminder</span><span class="op">$</span><span class="va">country</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">country</span>, </span>
@@ -1442,16 +1442,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">17.10</span> Exercises</h2>
 <p>1. Complete all lessons and exercises in the RegexOne<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> online interactive tutorial.</p>
 <p>2. In the <code>extdata</code> directory of the <strong>dslabs</strong> package, you will find a PDF file containing daily mortality data for Puerto Rico from Jan 1, 2015 to May 31, 2018. You can find the file like this:</p>
-<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-88_aa2ab490b8da71f2232286da87359f59">
+<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-87_f5c32ae50e9fe9d3d1578e3793c493f1">
 <div class="sourceCode" id="cb88"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"RD-Mortality-Report_2015-18-180531.pdf"</span>,</span>
 <span>                  package<span class="op">=</span><span class="st">"dslabs"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Find and open the file or open it directly from RStudio. On a Mac, you can type:</p>
-<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-89_ba96a9ff122ae8831ec809b2a9cab27e">
+<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-88_8a7d1d8d80cd08dfdf10520af54bf8ab">
 <div class="sourceCode" id="cb89"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/system2.html">system2</a></span><span class="op">(</span><span class="st">"open"</span>, args <span class="op">=</span> <span class="va">fn</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and on Windows, you can type:</p>
-<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-90_f2dc8c3331d6862f8fe25c7687a7cd79">
+<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-89_3dca16b3ef6ed5cb2abdb31258d7cbad">
 <div class="sourceCode" id="cb90"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="st">"cmd.exe"</span>, input <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"start"</span>, <span class="va">fn</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Which of the following best describes this file:</p>
@@ -1462,7 +1462,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>It shows graphs of the data. Extracting the data will be difficult.</li>
 </ol>
 <p>3. We are going to create a tidy dataset with each row representing one observation. The variables in this dataset will be year, month, day, and deaths. Start by installing and loading the <strong>pdftools</strong> package:</p>
-<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-91_1bc997e72a00eeb32fdda7b5cb59ce38">
+<div class="cell" data-layout-align="center" data-hash="string-processing_cache/html/unnamed-chunk-90_ae27db42b5f2d018a09d607a15a352d6">
 <div class="sourceCode" id="cb91"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"pdftools"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/pdftools/">pdftools</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>

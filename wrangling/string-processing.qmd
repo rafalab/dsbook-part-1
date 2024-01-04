@@ -1231,7 +1231,7 @@ gapminder |>
 
 we see that the legend takes up much of the plot because we have four countries with names longer than 12 characters. We can rename these levels using the `case_when` function:
 
-```{r}
+```{r country-long-names}
 x <- levels(gapminder$country)
 levels(gapminder$country) <- case_when(
   x == "Antigua and Barbuda" ~ "Barbuda",
@@ -1243,7 +1243,6 @@ gapminder |>
   filter(region == "Caribbean") |>
   ggplot(aes(year, life_expectancy, color = country)) +
   geom_line()
-
 ```
 
 We can instead use the `fct_recode` function in the **forcats** package:
