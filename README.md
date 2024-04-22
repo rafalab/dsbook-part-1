@@ -1,6 +1,6 @@
-This is the code for the [Introduction to Data Science](https://rafalab.github.io/dsbook-part-1/) book. 
+This is the code for the first part of Introduction to Data Science book: [Data Wrangling and Visualization with R](https://rafalab.github.io/dsbook-part-1/). 
 
-The website for **Advanced Data Science** is [here](http://rafalab.dfci.harvard.edu/dsbook-part-2/).
+The website for the second part is [here](http://rafalab.dfci.harvard.edu/dsbook-part-2/).
 
 This material is used in the
  [HarvardX Data Science Series](https://www.edx.org/professional-certificate/harvardx-data-science).
