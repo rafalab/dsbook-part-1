@@ -165,6 +165,28 @@ polls_us_election_2016 |>
 
 Finally, you should be aware the there are useful function for computing operations on time such a `difftime`, `time_length`, and `interval`.
 
+## Dates and times with data.table
+
+The **data.table** package includes some of the same functionality as **lubridate**. For example, it includes the `month`, and `year` functions that are the same as those in **lubridate**. The equilvalent of **lubridate**'s `day` is `mday`:
+
+```{r}
+library(data.table)
+st <- as.Date("2024-03-04")
+day(st)
+mday(st)
+```
+
+Other similar functions included in **data.table** are `second`, `minute`, `hour`, `yday`, `wday`, `week`, 
+`isoweek` and `quarter`.
+
+The package also includes the classes `IDate` and `ITime`, which store dates and times more efficiently that `lubridate` and base R. This convenient for large files with date stamps. You can convert dates in the usual R format: using `as.IDate` and `as.ITime`. You can see this by using the `object.size` function:
+
+```{r}
+object.size(polls_us_election_2016$startdate)
+object.size(as.IDate(polls_us_election_2016$startdate))
+```
+
+
 ## Exercises
 
 For these exercises we will use the following dataset:

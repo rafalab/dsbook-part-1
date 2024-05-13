@@ -137,6 +137,90 @@ The data is now in tidy format with one row for each observation with three vari
 
 Three related function are `separate_wider_position`, `separate_wider_regex`, and `unite`. `separate_wider_position` takes a width instead of delimiter. `separate_wider_regex`, described in @sec-separate_regex, provides much more control over how we separate and what we keep. The `unite` function can be thought of as the inverse of the `separate` function: it combines two columns into one. 
 
+## Reshaping with data.table
+
+In general, everything you can do with **tidyverse** can be done with **data.table** and base R which, although perhaps harder to read, it is often more flexible, faster, and more efficient. Here we show how the **data.table** approach to `pivot_longer`, `pivot_wider`, and `separate`.
+We will illustrate with the previously used this example:
+
+```{r, message=FALSE, warning=FALSE}
+path <- system.file("extdata", package = "dslabs")
+filename <- file.path(path, "fertility-two-countries-example.csv")
+```
+
+### `pivot_longer` is `melt`
+
+If in **tidyverse** we  write
+
+```{r, message=FALSE}
+wide_data <- read_csv(filename)
+new_tidy_data <- wide_data |>
+  pivot_longer(-1, names_to = "year", values_to = "fertility")
+```
+
+in **data.table** we use the `melt` function.
+
+```{r}
+#| message: false
+#| warning: false
+library(data.table)
+dt_wide_data <- fread(filename) 
+dt_new_tidy_data  <- melt(dt_wide_data, 
+                      measure.vars = 2:ncol(dt_wide_data), 
+                      variable.name = "year", 
+                      value.name = "fertility")
+```
+
+
+### `pivot_wider` is `dcast`
+
+If in **tidyverse** we  write
+
+```{r}
+new_wide_data <- new_tidy_data |> 
+  pivot_wider(names_from = year, values_from = fertility)
+```
+
+in **data.table** we use the `dcast` function.
+
+```{r}
+dt_new_wide_data <- dcast(dt_new_tidy_data, formula = ... ~ year,
+                          value.var = "fertility")
+```
+
+### Separating variables
+
+We now illustrate with this previously used example:
+```{r, message=FALSE}
+path <- system.file("extdata", package = "dslabs")
+filename <- "life-expectancy-and-fertility-two-countries-example.csv"
+filename <-  file.path(path, filename)
+```
+
+In **tidyverse** we wrangled using 
+
+```{r, message=FALSE}
+raw_dat <- read_csv(filename)
+dat <- raw_dat |> pivot_longer(-country) |>
+  separate_wider_delim(name, delim = "_", names = c("year", "name"), 
+                       too_many = "merge") |>
+  pivot_wider() |>
+  mutate(year = as.integer(year))
+```
+
+In **data.table** we can use the `tstrsplit` function:
+
+```{r}
+dt_raw_dat <- fread(filename)
+dat_long <- melt(dt_raw_dat, 
+                 measure.vars = which(names(dt_raw_dat) != "country"), 
+                 variable.name = "name", value.name = "value")
+dat_long[, c("year", "name", "name2") := 
+           tstrsplit(name, "_", fixed = TRUE, type.convert = TRUE)]
+dat_long[is.na(name2), name2 := ""]
+dat_long[, name := paste(name, name2, sep = "_")][, name2 := NULL]
+dat_wide <- dcast(dat_long, country + year ~ name, value.var = "value")
+```
+
 
 ## The janitor package
 

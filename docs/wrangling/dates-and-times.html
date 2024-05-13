@@ -258,26 +258,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../wrangling/data-table-wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Wrangling with <code>data.table</code></span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Web scraping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Extracting data from the web</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">String processing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">String processing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/text-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Text analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -293,26 +287,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Terminal Access and Installing Git</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../productivity/unix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Git and GitHub</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Git and GitHub</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/reproducible-projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reproducible projects</span></span></a>
   </div>
 </li>
       </ul>
@@ -327,7 +315,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
 <li><a href="#the-date-data-type" id="toc-the-date-data-type" class="nav-link active" data-scroll-target="#the-date-data-type"><span class="header-section-number">13.1</span> The date data type</a></li>
   <li><a href="#sec-lubridate" id="toc-sec-lubridate" class="nav-link" data-scroll-target="#sec-lubridate"><span class="header-section-number">13.2</span> The lubridate package</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">13.3</span> Exercises</a></li>
+  <li><a href="#dates-and-times-with-data.table" id="toc-dates-and-times-with-data.table" class="nav-link" data-scroll-target="#dates-and-times-with-data.table"><span class="header-section-number">13.3</span> Dates and times with data.table</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">13.4</span> Exercises</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/blob/main/wrangling/dates-and-times.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
@@ -452,19 +441,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The <strong>lubridate</strong> package is also useful for dealing with times. In base R, you can get the current time typing <code><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time()</a></code>. The <strong>lubridate</strong> package provides a slightly more advanced function, <code>now</code>, that permits you to define the time zone:</p>
 <div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-15_0a188e891a9c6e41161e71e6bb6d5944">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2024-01-03 09:51:11 EST"</span></span>
+<span><span class="co">#&gt; [1] "2024-02-05 10:30:46 EST"</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="st">"GMT"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2024-01-03 14:51:11 GMT"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "2024-02-05 15:30:46 GMT"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can see all the available time zones with <code><a href="https://rdrr.io/r/base/timezones.html">OlsonNames()</a></code> function.</p>
 <p>We can also extract hours, minutes, and seconds:</p>
 <div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-16_bf4642ae527f9ed4f048afa7b2a2d9ef">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/hour.html">hour</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 9</span></span>
+<span><span class="co">#&gt; [1] 10</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/minute.html">minute</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 51</span></span>
+<span><span class="co">#&gt; [1] 30</span></span>
 <span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">now</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/second.html">second</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 11</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 46.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The package also includes a function to parse strings into times as well as parsers for time objects that include dates:</p>
 <div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-17_28a10b5c88fe005fc35d3f51da70d8f8">
@@ -503,11 +492,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Finally, you should be aware the there are useful function for computing operations on time such a <code>difftime</code>, <code>time_length</code>, and <code>interval</code>.</p>
-</section><section id="exercises" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="exercises">
-<span class="header-section-number">13.3</span> Exercises</h2>
+</section><section id="dates-and-times-with-data.table" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="dates-and-times-with-data.table">
+<span class="header-section-number">13.3</span> Dates and times with data.table</h2>
+<p>The <strong>data.table</strong> package includes some of the same functionality as <strong>lubridate</strong>. For example, it includes the <code>month</code>, and <code>year</code> functions that are the same as those in <strong>lubridate</strong>. The equilvalent of <strong>lubridate</strong>’s <code>day</code> is <code>mday</code>:</p>
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-20_d18cf63e7a3776ec42256d3523f38447">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com">data.table</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'data.table'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:lubridate':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     hour, isoweek, mday, minute, month, quarter, second, wday,</span></span>
+<span><span class="co">#&gt;     week, yday, year</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:dplyr':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     between, first, last</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:purrr':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     transpose</span></span>
+<span><span class="va">st</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2024-03-04"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/day.html">day</a></span><span class="op">(</span><span class="va">st</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 4</span></span>
+<span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/IDateTime.html">mday</a></span><span class="op">(</span><span class="va">st</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Other similar functions included in <strong>data.table</strong> are <code>second</code>, <code>minute</code>, <code>hour</code>, <code>yday</code>, <code>wday</code>, <code>week</code>, <code>isoweek</code> and <code>quarter</code>.</p>
+<p>The package also includes the classes <code>IDate</code> and <code>ITime</code>, which store dates and times more efficiently that <code>lubridate</code> and base R. This convenient for large files with date stamps. You can convert dates in the usual R format: using <code>as.IDate</code> and <code>as.ITime</code>. You can see this by using the <code>object.size</code> function:</p>
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-21_1d091a25edce128321e45443f9f8b134">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/object.size.html">object.size</a></span><span class="op">(</span><span class="va">polls_us_election_2016</span><span class="op">$</span><span class="va">startdate</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 33936 bytes</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/object.size.html">object.size</a></span><span class="op">(</span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/IDateTime.html">as.IDate</a></span><span class="op">(</span><span class="va">polls_us_election_2016</span><span class="op">$</span><span class="va">startdate</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 17168 bytes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="exercises" class="level2" data-number="13.4"><h2 data-number="13.4" class="anchored" data-anchor-id="exercises">
+<span class="header-section-number">13.4</span> Exercises</h2>
 <p>For these exercises we will use the following dataset:</p>
-<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-20_b55b871e6d719317762f69b50e338f90">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
+<div class="cell" data-layout-align="center" data-hash="dates-and-times_cache/html/unnamed-chunk-22_01ffa713ea28f3d3626f81189c3f006d">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pr_death_counts</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>1. We want to make a plot of death counts versus date. Confirm that the <code>date</code> variable are in fact dates and not strings.</p>

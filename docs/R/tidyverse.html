@@ -258,26 +258,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../wrangling/data-table-wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Wrangling with <code>data.table</code></span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../wrangling/web-scraping.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Web scraping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Extracting data from the web</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/string-processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">String processing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">String processing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../wrangling/text-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Text analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Text analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -293,26 +287,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../productivity/installing-git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Terminal Access and Installing Git</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../productivity/unix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Organizing with Unix</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Git and GitHub</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Git and GitHub</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../productivity/reproducible-projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Reproducible projects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reproducible projects</span></span></a>
   </div>
 </li>
       </ul>
@@ -339,10 +327,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li>
 <a href="#summarizing-data" id="toc-summarizing-data" class="nav-link" data-scroll-target="#summarizing-data"><span class="header-section-number">4.4</span> Summarizing data</a>
   <ul class="collapse">
-<li><a href="#sec-summarize" id="toc-sec-summarize" class="nav-link" data-scroll-target="#sec-summarize"><span class="header-section-number">4.4.1</span> <code>summarize</code></a></li>
+<li><a href="#sec-summarize" id="toc-sec-summarize" class="nav-link" data-scroll-target="#sec-summarize"><span class="header-section-number">4.4.1</span> The <code>summarize</code> funciton</a></li>
   <li><a href="#multiple-summaries" id="toc-multiple-summaries" class="nav-link" data-scroll-target="#multiple-summaries"><span class="header-section-number">4.4.2</span> Multiple summaries</a></li>
   <li><a href="#sec-group-by" id="toc-sec-group-by" class="nav-link" data-scroll-target="#sec-group-by"><span class="header-section-number">4.4.3</span> Group then summarize with <code>group_by</code></a></li>
-  <li><a href="#pull" id="toc-pull" class="nav-link" data-scroll-target="#pull"><span class="header-section-number">4.4.4</span> <code>pull</code></a></li>
+  <li><a href="#extracting-varialbes-with-pull" id="toc-extracting-varialbes-with-pull" class="nav-link" data-scroll-target="#extracting-varialbes-with-pull"><span class="header-section-number">4.4.4</span> Extracting varialbes with <code>pull</code></a></li>
   </ul>
 </li>
   <li>
@@ -352,22 +340,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-top-n" id="toc-the-top-n" class="nav-link" data-scroll-target="#the-top-n"><span class="header-section-number">4.5.2</span> The top <span class="math inline">\(n\)</span></a></li>
   </ul>
 </li>
+  <li><a href="#tibbles" id="toc-tibbles" class="nav-link" data-scroll-target="#tibbles"><span class="header-section-number">4.6</span> Tibbles</a></li>
   <li>
-<a href="#tibbles" id="toc-tibbles" class="nav-link" data-scroll-target="#tibbles"><span class="header-section-number">4.6</span> Tibbles</a>
+<a href="#tibbles-versus-data-frames" id="toc-tibbles-versus-data-frames" class="nav-link" data-scroll-target="#tibbles-versus-data-frames"><span class="header-section-number">4.7</span> Tibbles versus data frames</a>
   <ul class="collapse">
-<li><a href="#creating-tibbles" id="toc-creating-tibbles" class="nav-link" data-scroll-target="#creating-tibbles"><span class="header-section-number">4.6.1</span> Creating tibbles</a></li>
+<li><a href="#creating-tibbles" id="toc-creating-tibbles" class="nav-link" data-scroll-target="#creating-tibbles"><span class="header-section-number">4.7.1</span> Creating tibbles</a></li>
   </ul>
 </li>
-  <li><a href="#the-placeholder" id="toc-the-placeholder" class="nav-link" data-scroll-target="#the-placeholder"><span class="header-section-number">4.7</span> The placeholder</a></li>
-  <li><a href="#the-purrr-package" id="toc-the-purrr-package" class="nav-link" data-scroll-target="#the-purrr-package"><span class="header-section-number">4.8</span> The <strong>purrr</strong> package</a></li>
+  <li><a href="#the-placeholder" id="toc-the-placeholder" class="nav-link" data-scroll-target="#the-placeholder"><span class="header-section-number">4.8</span> The placeholder</a></li>
+  <li><a href="#the-purrr-package" id="toc-the-purrr-package" class="nav-link" data-scroll-target="#the-purrr-package"><span class="header-section-number">4.9</span> The <strong>purrr</strong> package</a></li>
   <li>
-<a href="#tidyverse-conditionals" id="toc-tidyverse-conditionals" class="nav-link" data-scroll-target="#tidyverse-conditionals"><span class="header-section-number">4.9</span> Tidyverse conditionals</a>
+<a href="#tidyverse-conditionals" id="toc-tidyverse-conditionals" class="nav-link" data-scroll-target="#tidyverse-conditionals"><span class="header-section-number">4.10</span> Tidyverse conditionals</a>
   <ul class="collapse">
-<li><a href="#case_when" id="toc-case_when" class="nav-link" data-scroll-target="#case_when"><span class="header-section-number">4.9.1</span> <code>case_when</code></a></li>
-  <li><a href="#between" id="toc-between" class="nav-link" data-scroll-target="#between"><span class="header-section-number">4.9.2</span> <code>between</code></a></li>
+<li><a href="#case_when" id="toc-case_when" class="nav-link" data-scroll-target="#case_when"><span class="header-section-number">4.10.1</span> <code>case_when</code></a></li>
+  <li><a href="#between" id="toc-between" class="nav-link" data-scroll-target="#between"><span class="header-section-number">4.10.2</span> <code>between</code></a></li>
   </ul>
 </li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">4.10</span> Exercises</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">4.11</span> Exercises</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/blob/main/R/tidyverse.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
@@ -556,8 +545,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; [1] 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Therefore, when using the pipe with data frames and <strong>dplyr</strong>, we no longer need to specify the required first argument since the <strong>dplyr</strong> functions we have described all take the data as the first argument. In the code we wrote:</p>
-<div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-19_6c9957afeaa7eaa3b36a8287b56e52d7">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">state</span>, <span class="va">region</span>, <span class="va">rate</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rate</span> <span class="op">&lt;=</span> <span class="fl">0.71</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-19_1b748787f17d395d4a55c1706b66aa2b">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>murders <span class="sc">|&gt;</span> <span class="fu">select</span>(state, region, rate) <span class="sc">|&gt;</span> <span class="fu">filter</span>(rate <span class="sc">&lt;=</span> <span class="fl">0.71</span>)edsfsdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>murders</code> is the first argument of the <code>select</code> function, and the new data frame (formerly <code>new_dataframe</code>) is the first argument of the <code>filter</code> function.</p>
 <p>Note that the pipe works well with functions where the first argument is the input data. Functions in <strong>tidyverse</strong> packages like <strong>dplyr</strong> have this format and can be used easily with the pipe.</p>
@@ -565,8 +554,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">4.4</span> Summarizing data</h2>
 <p>An important part of exploratory data analysis is summarizing data. The average and standard deviation are two examples of widely used summary statistics. More informative summaries can often be achieved by first splitting data into groups. In this section, we cover two new <strong>dplyr</strong> verbs that make these computations easier: <code>summarize</code> and <code>group_by</code>. We learn to access resulting values using the <code>pull</code> function.</p>
 <section id="sec-summarize" class="level3" data-number="4.4.1"><h3 data-number="4.4.1" class="anchored" data-anchor-id="sec-summarize">
-<span class="header-section-number">4.4.1</span> <code>summarize</code>
-</h3>
+<span class="header-section-number">4.4.1</span> The <code>summarize</code> funciton</h3>
 <p>The <code>summarize</code> function in <strong>dplyr</strong> provides a way to compute summary statistics with intuitive and readable code. We start with a simple example based on heights. The <code>heights</code> dataset includes heights and sex reported by students in an in-class survey.</p>
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-21_97be190012585736cd4bf93c51994569">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
@@ -682,8 +670,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 3 North Central   1.97 0.595  5.36</span></span>
 <span><span class="co">#&gt; 4 West            1.29 0.515  3.63</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="pull" class="level3" data-number="4.4.4"><h3 data-number="4.4.4" class="anchored" data-anchor-id="pull">
-<span class="header-section-number">4.4.4</span> <code>pull</code>
+</section><section id="extracting-varialbes-with-pull" class="level3" data-number="4.4.4"><h3 data-number="4.4.4" class="anchored" data-anchor-id="extracting-varialbes-with-pull">
+<span class="header-section-number">4.4.4</span> Extracting varialbes with <code>pull</code>
 </h3>
 <p>The <code>us_murder_rate</code> object defined in <a href="#sec-summarize"><span>Section&nbsp;4.4.1</span></a> represents just one number. Yet we are storing it in a data frame:</p>
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-34_8dc7d9e082dbaf2d57b3e852d544e294">
@@ -784,6 +772,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; [1] "grouped_df" "tbl_df"     "tbl"        "data.frame"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>tbl</code>, pronounced “tibble”, is a special kind of data frame. The functions <code>group_by</code> and <code>summarize</code> always return this type of data frame. The <code>group_by</code> function returns a special kind of <code>tbl</code>, the <code>grouped_df</code>. We will say more about these later. For consistency, the <strong>dplyr</strong> manipulation verbs (<code>select</code>, <code>filter</code>, <code>mutate</code>, and <code>arrange</code>) preserve the class of the input: if they receive a regular data frame they return a regular data frame, while if they receive a tibble they return a tibble. But tibbles are the preferred format in the tidyverse and as a result tidyverse functions that produce a data frame from scratch return a tibble. For example, in <a href="importing-data.html"><span>Chapter&nbsp;6</span></a> we will see that tidyverse functions used to import data create tibbles.</p>
+</section><section id="tibbles-versus-data-frames" class="level2" data-number="4.7"><h2 data-number="4.7" class="anchored" data-anchor-id="tibbles-versus-data-frames">
+<span class="header-section-number">4.7</span> Tibbles versus data frames</h2>
 <p>Tibbles are very similar to data frames. In fact, you can think of them as a modern version of data frames. Nonetheless there are some important differences which we describe next.</p>
 <p><strong>(1) Tibbles display better</strong></p>
 <p>The print method for tibbles is more readable than that of a data frame. To see this, compare the outputs of typing <code>murders</code> and the output of murders if we convert it to a tibble. We can do this using <code>as_tibble(murders)</code>. If using RStudio, output for a tibble adjusts to your window size. To see this, change the width of your R console and notice how more/less columns are shown.</p>
@@ -827,8 +817,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>(3) Tibbles can be grouped</strong></p>
 <p>The function <code>group_by</code> returns a special kind of tibble: a grouped tibble. This class stores information that lets you know which rows are in which groups. The tidyverse functions, in particular the <code>summarize</code> function, are aware of the group information.</p>
-<section id="creating-tibbles" class="level3" data-number="4.6.1"><h3 data-number="4.6.1" class="anchored" data-anchor-id="creating-tibbles">
-<span class="header-section-number">4.6.1</span> Creating tibbles</h3>
+<section id="creating-tibbles" class="level3" data-number="4.7.1"><h3 data-number="4.7.1" class="anchored" data-anchor-id="creating-tibbles">
+<span class="header-section-number">4.7.1</span> Creating tibbles</h3>
 <p>It is sometimes useful for us to create our own data frames. To create a data frame in the tibble format, you can do this by using the <code>tibble</code> function.</p>
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-49_d25859be11cb57c5826bea3fbcc01f43">
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">grades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"John"</span>, <span class="st">"Juan"</span>, <span class="st">"Jean"</span>, <span class="st">"Yao"</span><span class="op">)</span>, </span>
@@ -846,16 +836,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">grades</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "tbl_df"     "tbl"        "data.frame"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="the-placeholder" class="level2" data-number="4.7"><h2 data-number="4.7" class="anchored" data-anchor-id="the-placeholder">
-<span class="header-section-number">4.7</span> The placeholder</h2>
+</section></section><section id="the-placeholder" class="level2" data-number="4.8"><h2 data-number="4.8" class="anchored" data-anchor-id="the-placeholder">
+<span class="header-section-number">4.8</span> The placeholder</h2>
 <p>One of the advantages of using the pipe <code>|&gt;</code> is that we do not have to keep naming new objects as we manipulate the data frame. The object on the left-hand side of the pipe is used as the first argument of the function on the right-hand side of the pipe. But what if we want to pass it as argument to the right-hand side function that is not the first? The answer is the placeholder operator <code>_</code> (for the <code>%&gt;%</code> pipe the placeholder is <code>.</code>). Below is a simple example that passes the <code>base</code> argument to the <code>log</code> function. The following three are equivalent:</p>
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-52_3c40e5383cd2f985cb61eab85e695834">
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">8</span>, base <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fl">2</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">8</span>, base <span class="op">=</span> <span class="va">_</span><span class="op">)</span></span>
 <span><span class="fl">2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">8</span>, base <span class="op">=</span> <span class="va">.</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="the-purrr-package" class="level2" data-number="4.8"><h2 data-number="4.8" class="anchored" data-anchor-id="the-purrr-package">
-<span class="header-section-number">4.8</span> The <strong>purrr</strong> package</h2>
+</section><section id="the-purrr-package" class="level2" data-number="4.9"><h2 data-number="4.9" class="anchored" data-anchor-id="the-purrr-package">
+<span class="header-section-number">4.9</span> The <strong>purrr</strong> package</h2>
 <p>In <a href="programming-basics.html#sec-vectorization"><span>Section&nbsp;3.5</span></a> we learned about the <code>sapply</code> function, which permitted us to apply the same function to each element of a vector. We constructed a function and used <code>sapply</code> to compute the sum of the first <code>n</code> integers for several values of <code>n</code> like this:</p>
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-53_e4250df1e4a326907f58a4be7c86eadf">
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">compute_s_n</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
@@ -891,11 +881,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">s_n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html">map_df</a></span><span class="op">(</span><span class="va">n</span>, <span class="va">compute_s_n</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <strong>purrr</strong> package provides much more functionality not covered here. For more details you can consult <a href="https://jennybc.github.io/purrr-tutorial/">this online resource</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
-</section><section id="tidyverse-conditionals" class="level2" data-number="4.9"><h2 data-number="4.9" class="anchored" data-anchor-id="tidyverse-conditionals">
-<span class="header-section-number">4.9</span> Tidyverse conditionals</h2>
+</section><section id="tidyverse-conditionals" class="level2" data-number="4.10"><h2 data-number="4.10" class="anchored" data-anchor-id="tidyverse-conditionals">
+<span class="header-section-number">4.10</span> Tidyverse conditionals</h2>
 <p>A typical data analysis will often involve one or more conditional operations. In <a href="programming-basics.html#sec-conditionals"><span>Section&nbsp;3.1</span></a> we described the <code>ifelse</code> function, which we will use extensively in this book. In this section we present two <strong>dplyr</strong> functions that provide further functionality for performing conditional operations.</p>
-<section id="case_when" class="level3" data-number="4.9.1"><h3 data-number="4.9.1" class="anchored" data-anchor-id="case_when">
-<span class="header-section-number">4.9.1</span> <code>case_when</code>
+<section id="case_when" class="level3" data-number="4.10.1"><h3 data-number="4.10.1" class="anchored" data-anchor-id="case_when">
+<span class="header-section-number">4.10.1</span> <code>case_when</code>
 </h3>
 <p>The <code>case_when</code> function is useful for vectorizing conditional statements. It is similar to <code>ifelse</code> but can output any number of values, as opposed to just <code>TRUE</code> or <code>FALSE</code>. Here is an example splitting numbers into negative, positive, and 0:</p>
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-58_408dc5d29763a75d26f2a30e64c93fd4">
@@ -923,8 +913,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 3 South        3.63</span></span>
 <span><span class="co">#&gt; 4 West Coast   2.90</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="between" class="level3" data-number="4.9.2"><h3 data-number="4.9.2" class="anchored" data-anchor-id="between">
-<span class="header-section-number">4.9.2</span> <code>between</code>
+</section><section id="between" class="level3" data-number="4.10.2"><h3 data-number="4.10.2" class="anchored" data-anchor-id="between">
+<span class="header-section-number">4.10.2</span> <code>between</code>
 </h3>
 <p>A common operation in data analysis is to determine if a value falls inside an interval. We can check this using conditionals. For example, to check if the elements of a vector <code>x</code> are between <code>a</code> and <code>b</code> we can type</p>
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-60_a3266ef69f41ace6fcac99b6554de2a8">
@@ -934,8 +924,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center" data-hash="tidyverse_cache/html/unnamed-chunk-61_f50d3f0b3e811aa1f52185d84e996551">
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/between.html">between</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">a</span>, <span class="va">b</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="exercises" class="level2" data-number="4.10"><h2 data-number="4.10" class="anchored" data-anchor-id="exercises">
-<span class="header-section-number">4.10</span> Exercises</h2>
+</section></section><section id="exercises" class="level2" data-number="4.11"><h2 data-number="4.11" class="anchored" data-anchor-id="exercises">
+<span class="header-section-number">4.11</span> Exercises</h2>
 <p>1. Examine the built-in dataset <code>co2</code>. Which of the following is true:</p>
 <ol type="a">
 <li>

@@ -240,7 +240,7 @@ or
 ?">"
 ```
 
-### Other prebuilt objects
+### Prebuilt objects
 
 There are several datasets that are included for users to practice and test out functions. You can see all the available datasets by typing:
 
@@ -288,7 +288,7 @@ Values remain in the workspace until you end your session or erase them with the
 
 We actually recommend against saving the workspace this way because, as you start working on different projects, it will become harder to keep track of what is saved. Instead, we recommend you assign the workspace a specific name. You can do this by using the function `save` or `save.image`. To load, use the function `load`. When saving a workspace, we recommend the suffix `rda` or `RData`. In RStudio, you can also do this by navigating to the *Session* tab and choosing *Save Workspace as*. You can later load it using the *Load Workspace* options in the same tab. You can read the help pages on `save`, `save.image`, and `load` to learn more.
 
-### Motivating scripts
+### Why use scripts?
 
 To solve another equation such as $3x^2 + 2x -1$, we can copy and paste the code above and then redefine the variables and recompute the solution:
 
@@ -352,7 +352,7 @@ To see that this is in fact a data frame, we type:
 class(murders)
 ```
 
-### Examining an object
+### Examining objects
 
 The function `str` is useful for finding out more about the structure of an object:
 
@@ -400,7 +400,7 @@ It is important to know that the order of the entries in `murders$population` pr
 R comes with a very nice auto-complete functionality that saves us the trouble of typing out all the names. Try typing `murders$p` then hitting the *tab* key on your keyboard. This functionality and many other useful auto-complete features are available when working in RStudio.
 :::
 
-### Vectors: numerics, characters, and logical
+### Vectors
 
 The object `murders$population` is not one number but several. We call these types of objects *vectors*. A single number is technically a vector of length 1, but in general we use the term vectors to refer to objects with several entries. The function `length` tells you how many entries are in the vector:
 
@@ -467,7 +467,7 @@ In the background, R stores these *levels* as integers and keeps a map to keep t
 
 Note that the levels have an order that is different from the order of appearance in the factor object. The default in R is for the levels to follow alphabetical order. However, often we want the levels to follow a different order. You can specify an order through the `levels` argument when creating the factor with the `factor` function. For example, in the murders dataset regions are ordered from east to west. The function `reorder` lets us change the order of the levels of a factor variable based on a summary computed on a numeric vector. We will demonstrate this with a simple example, and will see more advanced ones in the Data Visualization part of the book.
 
-Suppose we want the levels of region ordered by the total number of murders rather than alphabetically. If there are values associated with each level, we can use the `reorder` function and specify a data summary to determine the order. The following code takes the sum of the total murders in each region, and reorders the factor following these sums.
+Suppose we want the levels of region ordered by the total number of murders rather than alphabetically If there are values associated with each level, we can use the `reorder` function and specify a data summary to determine the order. The following code takes the sum of the total murders in each region, and reorders the factor following these sums.
 
 ```{r}
 region <- murders$region

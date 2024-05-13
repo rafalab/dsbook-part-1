@@ -247,6 +247,28 @@ The __dplyr__ version checks whether data frames are equal, regardless of order 
 dplyr::setequal(tab_1, tab_2)
 ```
 
+## Joining with data.table
+
+The **data.table** package includes `merge`, a very efficient function for joining tables. 
+
+In **tidyverse** we joined two tables with `left_join`:
+
+```{r}
+tab <- left_join(murders, results_us_election_2016, by = "state") 
+```
+
+In **data.table** the `merge` functions works similarly:
+
+```{r}
+#| message: false
+#| warning: false
+library(data.table)
+tab <- merge(murders, results_us_election_2016, by = "state", all.x = TRUE)
+```
+
+Instead of defining different functions for the different type of joins, `merge` uses the the logical arguments `all` (full join), `all.x` (left join), and `all.y` (right join).
+
+
 ## Exercises 
 
 

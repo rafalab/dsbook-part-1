@@ -185,7 +185,7 @@ Remember that the pipe sends values to the first argument, so we can define othe
 Therefore, when using the pipe with data frames and __dplyr__, we no longer need to specify the required first argument since the __dplyr__ functions we have described all take the data as the first argument. In the code we wrote:
 
 ```{r, eval=FALSE}
-murders |> select(state, region, rate) |> filter(rate <= 0.71)
+murders |> select(state, region, rate) |> filter(rate <= 0.71)edsfsdf
 ```
 `murders` is the first argument of the `select` function, and the new data frame (formerly `new_dataframe`) is the first argument of the `filter` function.
 
@@ -200,7 +200,7 @@ An important part of exploratory data analysis is summarizing data. The average 
 library(tidyverse)
 ```
 
-### `summarize` {#sec-summarize}
+### The `summarize` funciton {#sec-summarize}
 
 The `summarize` function in __dplyr__ provides a way to compute summary statistics with intuitive and readable code. We start with a simple example based on heights. The `heights` dataset includes heights and sex reported by students in an in-class survey. 
 
@@ -312,7 +312,7 @@ murders |>
   summarize(median_min_max(rate))
 ```
 
-### `pull`
+### Extracting varialbes with `pull`
 
 The `us_murder_rate` object defined in @sec-summarize represents just one number. Yet we are storing it in a data frame:
 
@@ -395,6 +395,9 @@ murders |> group_by(region) |> class()
 ```
 
 The `tbl`, pronounced "tibble", is a special kind of data frame. The functions `group_by` and `summarize` always return this type of data frame. The `group_by` function returns a special kind of `tbl`, the `grouped_df`. We will say more about these later. For consistency, the __dplyr__ manipulation verbs (`select`, `filter`, `mutate`, and `arrange`) preserve the class of the input: if they receive a regular data frame they return a regular data frame, while if they receive a tibble they return a tibble. But tibbles are the preferred format in the tidyverse and as a result tidyverse functions that produce a data frame from scratch return a tibble. For example, in @sec-importing-data we will see that tidyverse functions used to import data create tibbles.
+
+
+## Tibbles versus data frames
 
 Tibbles are very similar to data frames. In fact, you can think of them as a modern version of data frames. Nonetheless there are some important differences which we describe next.
 

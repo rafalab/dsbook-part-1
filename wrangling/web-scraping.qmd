@@ -1,5 +1,8 @@
-# Web scraping 
+# Extracting data from the web
 
+In today's digital age, the internet serves as a treasure trove of data. This chapter describes approaches for retrieving this data and preparing for data analysis. We focus on two primary methodologies: scraping html and API integration. Scraping html allows us to programmatically navigate and extract data from web pages, transforming the unstructured content of the HTML pages into structured data ready for analysis. On the other hand, APIs provide a more direct and efficient and structured access to data provided by web services. This chapter aims to introduce the basics needed to starting leveraging the web's vast data resources.
+
+## Scraping HTML
 
 The data we need to answer a question is not always in a spreadsheet ready for us to read. For example, the US murders dataset we used in the R Basics chapter originally comes from this Wikipedia page: 
 
@@ -21,7 +24,7 @@ _Web scraping_, or _web harvesting_, is the term we use to describe the process 
 ![](img/html-code.png)
 
 
-## HTML
+### HTML
 
 Because this code is accessible, we can download the HTML file, import it into R, and then write programs to extract the information we need from the page. However, once we look at HTML code, this might seem like a daunting task. But we will show you some convenient tools to facilitate the process. To get an idea of how it works, here are a few lines of code from the Wikipedia page that provides the US murders data:
 
@@ -65,7 +68,7 @@ You can actually see the data, except data values are surrounded by html code su
 
 Although we provide tools that make it possible to scrape data without knowing HTML, it is useful to learn some HTML and CSS. Not only does this improve your scraping skills, but it might come in handy if you are creating a webpage to showcase your work. There are plenty of online courses and tutorials for learning these. Two examples are Codeacademy^[<https://www.codecademy.com/learn/learn-html>] and W3schools^[<https://www.w3schools.com/>].
 
-## The rvest package
+### The rvest package
 
 The __tidyverse__ provides a web harvesting package called __rvest__. The first step using this package is to import the webpage into R. The package makes this quite simple:
 
@@ -128,7 +131,7 @@ head(tab)
 We still have some wrangling to do. For example, we need to remove the commas and turn characters into numbers. Before continuing with this, we will learn a more general approach to extracting information from web sites.
 
 
-## CSS selectors {#sec-css-selectors}
+### CSS selectors {#sec-css-selectors}
 
 The default look of a webpage made with the most basic HTML is quite unattractive. The aesthetically pleasing pages we see today are made using CSS to define the look and style of webpages. The fact that all pages for a company have the same style usually results from their use of the same CSS file to define the style. The general way these CSS files work is by defining how each of the elements of a webpage will look. The title, headings, itemized lists, tables, and links, for example, each receive their own style including font, color, size, and distance from the margin. CSS does this by leveraging patterns used to define these elements, referred to as _selectors_. An example of such a pattern, which we used above, is `table`, but there are many, many more. 
 
@@ -175,13 +178,15 @@ You can learn much more by examining tutorials and help files from the __jsonlit
 
 An Application Programming Interface (API) is a set of rules and protocols that allows different software entities to communicate with each other. It defines methods and data formats that software components should use when requesting and exchanging information. APIs play a crucial role in enabling the integration that make today's software so interconnected and versatile.
 
+### API types and concepts
+
 There are several types of APIs. The main ones related to retrieving data are:
 
 * **Web Services** - Often built using protocols like HTTP/HTTPS. Commonly used to enable applications to communicate with each other over the web. For instance, a weather application for a smartphone may use a web API to request weather data from a remote server.
 
 * **Database APIs** - Enable communication between an application and a database, SQL-based calls for example.
 
-Key concepts associated with APIs:
+Some key concepts associated with APIs:
 
 - **Endpoints**: Specific functions available through the API. For web APIs, an endpoint is usually a specific URL where the API can be accessed.
 
@@ -195,8 +200,9 @@ Key concepts associated with APIs:
 
 - **Data Formats**: Many web APIs exchange data in a specific format, often JSON or CSV.
 
+Here now describe the **httr2** package that facilitates interacionts between R and HTTP web services.
 
-## The httr2 package 
+### The httr2 package 
 
 HTTP is the most widely used protocol for data sharing through the internet. The **httr2** package provides functions to work with HTTP requests. One of the core functions in this package is `request`, which is used to form request to send to web services. The `req_perform` function sends the request.
 
