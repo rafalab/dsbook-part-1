@@ -582,7 +582,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; b 2 5</span></span>
 <span><span class="co">#&gt; c 3 6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Another common challenge is that spreadsheets include the column names as a first row. To quickly fix this we can `row_to_names``:</p>
+<p>Another common challenge is that spreadsheets include the column names as a first row. To quickly fix this we can <code>row_to_names</code>:</p>
 <div class="cell" data-layout-align="center" data-hash="reshaping-data_cache/html/unnamed-chunk-24_03bb9b5bcecbd8b9a4f9b033bed5f1cc">
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">path</span>, <span class="st">"murders.csv"</span><span class="op">)</span>, header <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://sfirke.github.io/janitor/reference/row_to_names.html">row_to_names</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>

@@ -727,7 +727,8 @@ dat <- us_contagious_diseases |>
   mutate(state = reorder(state, rate)) |> 
   select(state, year, disease, rate) |>
   spread(year, rate) |> 
-  mutate_if(is.numeric, round, digits=1) 
+  rename(State = state, Disease = disease) |>
+  mutate_if(is.numeric, round, digits = 1) 
 if(knitr::is_html_output()){
   knitr::kable(dat, "html") |>
     kableExtra::kable_styling(bootstrap_options = "striped", full_width = FALSE)
