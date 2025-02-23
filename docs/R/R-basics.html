@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
-<title>Introduction to Data Science - 2&nbsp; R basics</title>
+<title>2&nbsp; R basics – Introduction to Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -31,7 +31,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -78,7 +78,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -87,30 +93,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script><script src="../site_libs/kePrint-0.0.1/kePrint.js"></script><link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar floating">
 
-
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../R/intro-to-R.html">R</a></li><li class="breadcrumb-item"><a href="../R/R-basics.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../R/intro-to-R.html">R</a></li><li class="breadcrumb-item"><a href="../R/R-basics.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Introduction to Data Science</a> 
         <div class="sidebar-tools-main">
@@ -146,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../R/intro-to-R.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -193,7 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../dataviz/intro-dataviz.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Visualization</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -228,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../wrangling/intro-to-wrangling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Wrangling</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -281,7 +313,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../productivity/intro-productivity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Productivity Tools</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -308,7 +340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
@@ -388,10 +420,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul>
 </li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">2.11</span> Exercises</a></li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/blob/main/R/R-basics.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/rafalab/dsbook-part-1/blob/main/R/R-basics.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../R/intro-to-R.html">R</a></li><li class="breadcrumb-item"><a href="../R/R-basics.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title"><span id="sec-r-basics" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R basics</span></span></h1>
 </div>
 
@@ -405,31 +437,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header><section id="motivating-example-us-gun-murders" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="motivating-example-us-gun-murders">
 <span class="header-section-number">2.1</span> Motivating example: US Gun Murders</h2>
 <p>Imagine you live in Europe and are offered a job in a US company with many locations across all states. It is a great job, but news with headlines such as <strong>US Gun Homicide Rate Higher Than Other Developed Countries</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> have you worried. Charts like this may concern you even more:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="R-basics_files/figure-html/murder-rate-example-1-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figure class="figure"><p><img src="R-basics_files/figure-html/murder-rate-example-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Or even worse, this version from <a href="https://everytownresearch.org">everytown.org</a><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/murder-rate-example-2_8d4403a8c638dc0e4b41a4f27f962549">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="R-basics_files/figure-html/murder-rate-example-2-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figure class="figure"><p><img src="R-basics_files/figure-html/murder-rate-example-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>But then you remember that the US is a large and diverse country with 50 very different states as well as the District of Columbia (DC).</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/us-murders-by-state-map_2b41b0462a8e50bd41ffbe0d5d74f17a">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="R-basics_files/figure-html/us-murders-by-state-map-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figure class="figure"><p><img src="R-basics_files/figure-html/us-murders-by-state-map-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -445,7 +478,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math display">\[
 \frac{-b - \sqrt{b^2 - 4ac}}{2a}\,\, \mbox{ and } \frac{-b + \sqrt{b^2 - 4ac}}{2a}
 \]</span> which of course change depending on the values of <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, and <span class="math inline">\(c\)</span>. One advantage of programming languages is that we can define variables and write expressions with these variables, similar to how we do so in math, but obtain a numeric solution. We will write out general code for the quadratic equation below, but if we are asked to solve <span class="math inline">\(x^2 + x -1 = 0\)</span>, then we define the coefficients:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-1_fc09983dbedb9f4c176b3b71fb408ee8">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coef_a</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span><span class="va">coef_b</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span><span class="va">coef_c</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -453,12 +486,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>which stores the values for later use. We use <code>&lt;-</code> to assign values to the variables. We can also assign values using <code>=</code> instead of <code>&lt;-</code>, but we recommend against using <code>=</code> to avoid confusion.</p>
 <p>Copy and paste the code above into your console to define the three variables. Note that R does not print anything when we make this assignment. This means the objects were defined successfully. Had you made a mistake, you would have received an error message.</p>
 <p>To see the value stored in a variable, we simply ask R to evaluate <code>coef_a</code> and it shows the stored value:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-2_603746470ff09906a41ccd844b076b22">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coef_a</span></span>
 <span><span class="co">#&gt; [1] 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A more explicit way to ask R to show us the value stored in <code>coef_a</code> is using <code>print</code> like this:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-3_76cf61f2c98600a0110216b8dc887605">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">coef_a</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -466,14 +499,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="the-workspace" class="level3" data-number="2.2.2"><h3 data-number="2.2.2" class="anchored" data-anchor-id="the-workspace">
 <span class="header-section-number">2.2.2</span> The workspace</h3>
 <p>As we define objects in the console, we are actually changing the <em>workspace</em>. You can see all the variables saved in your workspace by typing:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-4_f7ac3d3745d9465cc23302a504b0faa9">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In RStudio, the <em>Environment</em> tab shows the values:</p>
 <p><img src="img/rstudio-environment.png" class="img-fluid" style="width:70.0%"></p>
 <p>We should see <code>coef_a</code>, <code>coef_b</code>, and <code>coef_c</code>. If you try to recover the value of a variable that is not in your workspace, you receive an error. For example, if you type <code>x</code> you will receive the following message: <code>Error: object 'x' not found</code>.</p>
 <p>Now since these values are saved in variables, to obtain a solution to our equation, we use the quadratic formula:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-5_a2ab8b17f2380679b1995596e059dc0e">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="op">-</span><span class="va">coef_b</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">coef_b</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">4</span><span class="op">*</span><span class="va">coef_a</span><span class="op">*</span><span class="va">coef_c</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">coef_a</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.618</span></span>
 <span><span class="op">(</span><span class="op">-</span><span class="va">coef_b</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">coef_b</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">4</span><span class="op">*</span><span class="va">coef_a</span><span class="op">*</span><span class="va">coef_c</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">coef_a</span><span class="op">)</span></span>
@@ -485,82 +518,82 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We already used or discussed the <code>install.packages</code>, <code>library</code>, and <code>ls</code> functions. We also used the function <code>sqrt</code> to solve the quadratic equation above. There are many more prebuilt functions and even more can be added through packages. These functions do not appear in the workspace because you did not define them, but they are available for immediate use.</p>
 <p>In general, we need to use parentheses to evaluate a function. If you type <code>ls</code>, the function is not evaluated and instead R shows you the code that defines the function. If you type <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code> the function is evaluated and, as seen above, we see objects in the workspace.</p>
 <p>Unlike <code>ls</code>, most functions require one or more <em>arguments</em>. Below is an example of how we assign an object to the argument of the function <code>log</code>. Remember that we earlier defined <code>coef_a</code> to be 1:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-6_1a21dd73d1a01617e4ed5e5ee1c76074">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">8</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 2.08</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">coef_a</span><span class="op">)</span> </span>
 <span><span class="co">#&gt; [1] 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can find out what the function expects and what it does by reviewing the very useful manuals included in R. You can get help by using the <code>help</code> function like this:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-7_55dfe7e5e5f123eff535120d434c331c">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span><span class="op">(</span><span class="st">"log"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For most functions, we can also use this shorthand:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-8_a141f2b22d5a6239d62e267ce5b1b948">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">log</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The help page will show you what arguments the function is expecting. For example, <code>log</code> needs <code>x</code> and <code>base</code> to run. However, some arguments are required and others are optional. You can determine which arguments are optional by noting in the help document that a default value is assigned with <code>=</code>. Defining these is optional. For example, the base of the function <code>log</code> defaults to <code>base = exp(1)</code> making <code>log</code> the natural log by default.</p>
 <p>If you want a quick look at the arguments without opening the help system, you can type:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-9_aa04c8916a2313cf385eaa05bae9c0d4">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/args.html">args</a></span><span class="op">(</span><span class="va">log</span><span class="op">)</span></span>
 <span><span class="co">#&gt; function (x, base = exp(1)) </span></span>
 <span><span class="co">#&gt; NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can change the default values by simply assigning another object:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-10_40154035057f36bfbcead67d5a93847f">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">8</span>, base <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that we have not been specifying the argument <code>x</code> as such:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-11_48f0ba95770a27405fe910bf574435c3">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">8</span>, base <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The above code works, but we can save ourselves some typing: if no argument name is used, R assumes you are entering arguments in the order shown in the help file or by <code>args</code>. So by not using the names, it assumes the arguments are <code>x</code> followed by <code>base</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-12_e49903bef0d20a28f825fc4ec5992c33">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">8</span>, <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If using the arguments’ names, then we can include them in whatever order we want:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-13_ef63238d9e71f3b6bc5a86baf8840160">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span>base <span class="op">=</span> <span class="fl">2</span>, x <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To specify arguments, we must use <code>=</code>, and cannot use <code>&lt;-</code>.</p>
 <p>There are some exceptions to the rule that functions need the parentheses to be evaluated. Among these, the most commonly used are the arithmetic and relational operators. For example:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-14_d4c532b55cd5ba4978cd1ef668e8fadb">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span><span class="op">^</span><span class="fl">3</span></span>
 <span><span class="co">#&gt; [1] 8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can see the arithmetic operators by typing:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-15_7ff9fef0d6096aaaf694b3fba1bbca97">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span><span class="op">(</span><span class="st">"+"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>or</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-16_73676624fccb609b1a19dd5a70aeafd3">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="st">"+"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and the relational operators by typing:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-17_68da22b9ca4065c9b353f2fccf81284d">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span><span class="op">(</span><span class="st">"&gt;"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>or</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-18_291003571b29f9af644c6b1b9c758ca6">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="st">"&gt;"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="prebuilt-objects" class="level3" data-number="2.2.4"><h3 data-number="2.2.4" class="anchored" data-anchor-id="prebuilt-objects">
 <span class="header-section-number">2.2.4</span> Prebuilt objects</h3>
 <p>There are several datasets that are included for users to practice and test out functions. You can see all the available datasets by typing:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-19_02cd23a04ee462e36502fbe5e535b02e">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This shows you the object name for these datasets. These datasets are objects that can be used by simply typing the name. For example, if you type:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-20_378df9b70a47a907efc1c5dc10103222">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">co2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>R will show you Mauna Loa atmospheric CO2 concentration data.</p>
 <p>Other prebuilt objects are mathematical quantities, such as the constant <span class="math inline">\(\pi\)</span> and <span class="math inline">\(\infty\)</span>:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-21_b10cd8764f08ea3d86da51c05be3ad14">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pi</span></span>
 <span><span class="co">#&gt; [1] 3.14</span></span>
 <span><span class="cn">Inf</span> <span class="op">+</span> <span class="fl">1</span></span>
@@ -568,10 +601,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="variable-names" class="level3" data-number="2.2.5"><h3 data-number="2.2.5" class="anchored" data-anchor-id="variable-names">
 <span class="header-section-number">2.2.5</span> Variable names</h3>
-<p>We used <code>coef_a</code>, <code>coef_b</code>, and <code>coef_c</code> as variable names, but variable names can be almost anything. When writing code in R, it’s important to choose variable names that are both meaningful and avoid conflicts with existing functions or reserved words in the language. For example, we did not use <code>a</code>, <code>b</code> and <code>c</code> to avoid a conflict with the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function in R, described in <a href="#sec-creating-vectors"><span>Section&nbsp;2.4.1</span></a>. If you were to name a variable <code>c</code>, you would not receive an error or warning, but the conflict can lead to unexpected behavior and bugs that are hard to diagnose.</p>
+<p>We used <code>coef_a</code>, <code>coef_b</code>, and <code>coef_c</code> as variable names, but variable names can be almost anything. When writing code in R, it’s important to choose variable names that are both meaningful and avoid conflicts with existing functions or reserved words in the language. For example, we did not use <code>a</code>, <code>b</code> and <code>c</code> to avoid a conflict with the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function in R, described in <a href="#sec-creating-vectors" class="quarto-xref"><span>Section 2.4.1</span></a>. If you were to name a variable <code>c</code>, you would not receive an error or warning, but the conflict can lead to unexpected behavior and bugs that are hard to diagnose.</p>
 <p>Some basic rules in R are that variable names have to start with a letter, can’t contain spaces, and should not be variables that are predefined in R, such as <code>c</code>.</p>
 <p>A nice convention to follow is to use meaningful words that describe what is stored, use only lower case, and use underscores as a substitute for spaces. For the quadratic equations, we could use something like this for the two roots:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-22_225bdba836a45732f30a9aff8806fd0a">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r_1</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="op">-</span><span class="va">coef_b</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">coef_b</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">4</span><span class="op">*</span><span class="va">coef_a</span><span class="op">*</span><span class="va">coef_c</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">coef_a</span><span class="op">)</span></span>
 <span><span class="va">r_2</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="op">-</span><span class="va">coef_b</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">coef_b</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">4</span><span class="op">*</span><span class="va">coef_a</span><span class="op">*</span><span class="va">coef_c</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">coef_a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -583,7 +616,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="why-use-scripts" class="level3" data-number="2.2.7"><h3 data-number="2.2.7" class="anchored" data-anchor-id="why-use-scripts">
 <span class="header-section-number">2.2.7</span> Why use scripts?</h3>
 <p>To solve another equation such as <span class="math inline">\(3x^2 + 2x -1\)</span>, we can copy and paste the code above and then redefine the variables and recompute the solution:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-23_cd6d36109d88a47423a1485c6829dff6">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coef_a</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
 <span><span class="va">coef_b</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
 <span><span class="va">coef_c</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">1</span></span>
@@ -594,7 +627,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="commenting-your-code" class="level3" data-number="2.2.8"><h3 data-number="2.2.8" class="anchored" data-anchor-id="commenting-your-code">
 <span class="header-section-number">2.2.8</span> Commenting your code</h3>
 <p>If a line of R code starts with the symbol <code>#</code>, it is a comment and is not evaluated. We can use this to write reminders of why we wrote particular code. For example, in the script above we could add:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-24_78fd67c86834b6e08f712cc3d30a837c">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Code to compute solution to quadratic equation</span></span>
 <span></span>
 <span><span class="co">## Define the variables</span></span>
@@ -619,7 +652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section></section><section id="data-types" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="data-types">
 <span class="header-section-number">2.3</span> Data types</h2>
 <p>Variables in R can be of different types. For example, we need to distinguish numbers from character strings and tables from simple lists of numbers. The function <code>class</code> helps us determine what type of object we have:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-25_bdf9ef13d2ab0b9dd8784d7fa2bac080">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "numeric"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -633,14 +666,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To see that this is in fact a data frame, we type:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-27_8d65e8de0059b1c4d3b2f6d82839b392">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">murders</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "data.frame"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="examining-objects" class="level3" data-number="2.3.2"><h3 data-number="2.3.2" class="anchored" data-anchor-id="examining-objects">
 <span class="header-section-number">2.3.2</span> Examining objects</h3>
 <p>The function <code>str</code> is useful for finding out more about the structure of an object:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-29_d64fd88659adbd96d22ea5bc839bf6ff">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">murders</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    51 obs. of  5 variables:</span></span>
 <span><span class="co">#&gt; $ state : chr "Alabama" "Alaska" "Arizona" "Arkansas" ...</span></span>
@@ -651,7 +684,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; $ total : num 135 19 232 93 1257 ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This tells us much more about the object. We see that the table has 51 rows (50 states plus DC) and five variables. We can show the first six lines using the function <code>head</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-31_e06480ecc75e6c27acf153ca03f6ea64">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">murders</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        state abb region population total</span></span>
 <span><span class="co">#&gt; 1    Alabama  AL  South    4779736   135</span></span>
@@ -667,7 +700,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">2.3.3</span> The accessor: <code>$</code>
 </h3>
 <p>For our analysis, we will need to access the different variables represented by columns included in this data frame. To do this, we use the accessor operator <code>$</code> in the following way:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-32_c4c50a136659597cc77e01bf39fb54c9">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span><span class="op">$</span><span class="va">population</span></span>
 <span><span class="co">#&gt;  [1]  4779736   710231  6392017  2915918 37253956  5029196  3574097</span></span>
 <span><span class="co">#&gt;  [8]   897934   601723 19687653  9920000  1360301  1567582 12830632</span></span>
@@ -679,7 +712,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; [50]  5686986   563626</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>But how did we know to use <code>population</code>? Previously, by applying the function <code>str</code> to the object <code>murders</code>, we revealed the names for each of the five variables stored in this table. We can quickly access the variable names using:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-33_24692a966d25a3407be0a7b099505d18">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">murders</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "state"      "abb"        "region"     "population" "total"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -697,25 +730,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="vectors" class="level3" data-number="2.3.4"><h3 data-number="2.3.4" class="anchored" data-anchor-id="vectors">
 <span class="header-section-number">2.3.4</span> Vectors</h3>
 <p>The object <code>murders$population</code> is not one number but several. We call these types of objects <em>vectors</em>. A single number is technically a vector of length 1, but in general we use the term vectors to refer to objects with several entries. The function <code>length</code> tells you how many entries are in the vector:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-34_1b8d4238a047cd360d42e1050129b18a">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pop</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">population</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">pop</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 51</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This particular vector is <em>numeric</em> since population sizes are numbers:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-35_e3e98552a603b43a6bab1e5c08ac1937">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">pop</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "numeric"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In a numeric vector, every entry must be a number.</p>
 <p>To store character strings, vectors can also be of class <em>character</em>. For example, the state names are characters:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-36_fea5db2034c423754c251725aab44d44">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "character"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As with numeric vectors, all entries in a character vector need to be a character.</p>
 <p>Another important type of vectors are <em>logical vectors</em>. These must be either <code>TRUE</code> or <code>FALSE</code>.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-37_f21d3e4b6cc542c53802c03f217d813c">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fl">3</span> <span class="op">==</span> <span class="fl">2</span></span>
 <span><span class="va">z</span></span>
 <span><span class="co">#&gt; [1] FALSE</span></span>
@@ -724,7 +757,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Here the <code>==</code> is a relational operator asking if 3 is equal to 2. In R, if you just use one <code>=</code>, you actually assign a variable, but if you use two <code>==</code> you test for equality.</p>
 <p>You can see the other <em>relational operators</em> by typing:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-38_0a01239f3d9eee510e9b3595052caa4f">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">Comparison</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In future sections, you will see how useful relational operators can be.</p>
@@ -742,19 +775,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="sec-factors" class="level3" data-number="2.3.5"><h3 data-number="2.3.5" class="anchored" data-anchor-id="sec-factors">
 <span class="header-section-number">2.3.5</span> Factors</h3>
 <p>In the <code>murders</code> dataset, we might expect the region to also be a character vector. However, it is not:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-39_bea565726763b7c278d7f51d80bdcdde">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">region</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "factor"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>It is a <em>factor</em>. Factors are useful for storing categorical data. We can see that there are only 4 regions by using the <code>levels</code> function:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-40_265473c41e20fa063019094f95b13180">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">region</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Northeast"     "South"         "North Central" "West"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In the background, R stores these <em>levels</em> as integers and keeps a map to keep track of the labels. This is more memory efficient than storing all the characters.</p>
 <p>Note that the levels have an order that is different from the order of appearance in the factor object. The default in R is for the levels to follow alphabetical order. However, often we want the levels to follow a different order. You can specify an order through the <code>levels</code> argument when creating the factor with the <code>factor</code> function. For example, in the murders dataset regions are ordered from east to west. The function <code>reorder</code> lets us change the order of the levels of a factor variable based on a summary computed on a numeric vector. We will demonstrate this with a simple example, and will see more advanced ones in the Data Visualization part of the book.</p>
 <p>Suppose we want the levels of region ordered by the total number of murders rather than alphabetically If there are values associated with each level, we can use the <code>reorder</code> function and specify a data summary to determine the order. The following code takes the sum of the total murders in each region, and reorders the factor following these sums.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-41_1cb5e910ae938be815b7d26a3855cb89">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">region</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">region</span></span>
 <span><span class="va">value</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">total</span></span>
 <span><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">region</span>, <span class="va">value</span>, FUN <span class="op">=</span> <span class="va">sum</span><span class="op">)</span></span>
@@ -775,15 +808,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="lists" class="level3" data-number="2.3.6"><h3 data-number="2.3.6" class="anchored" data-anchor-id="lists">
 <span class="header-section-number">2.3.6</span> Lists</h3>
 <p>Data frames are a special case of <em>lists</em>. Lists are useful because you can store any combination of different types. You can create a list using the <code>list</code> function like this:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-42_c2993d6cde8dc18bfc8ef9ab269909a9">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">record</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"John Doe"</span>,</span>
 <span>             student_id <span class="op">=</span> <span class="fl">1234</span>,</span>
 <span>             grades <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">95</span>, <span class="fl">82</span>, <span class="fl">91</span>, <span class="fl">97</span>, <span class="fl">93</span><span class="op">)</span>,</span>
 <span>             final_grade <span class="op">=</span> <span class="st">"A"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The function <code>c</code> is described in <a href="#sec-vectors"><span>Section&nbsp;2.4</span></a>.</p>
+<p>The function <code>c</code> is described in <a href="#sec-vectors" class="quarto-xref"><span>Section 2.4</span></a>.</p>
 <p>This list includes a character, a number, a vector with five numbers, and another character.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-43_da9516937b0f8274a5dc0842d253e182">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">record</span></span>
 <span><span class="co">#&gt; $name</span></span>
 <span><span class="co">#&gt; [1] "John Doe"</span></span>
@@ -800,18 +833,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; [1] "list"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As with data frames, you can extract the components of a list with the accessor <code>$</code>.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-44_f483e859c46c4a45f8a2fa04c9a4c4b5">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">record</span><span class="op">$</span><span class="va">student_id</span></span>
 <span><span class="co">#&gt; [1] 1234</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also use double square brackets (<code>[[</code>) like this:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-45_6d9e5a819b8e693c96d64dbb40875080">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">record</span><span class="op">[[</span><span class="st">"student_id"</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] 1234</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You should get used to the fact that in R, there are often several ways to do the same thing, such as accessing entries.</p>
 <p>You might also encounter lists without variable names.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-46_833eacdf68e8b8f1c73398dddaa81eda">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">record2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"John Doe"</span>, <span class="fl">1234</span><span class="op">)</span></span>
 <span><span class="va">record2</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
@@ -821,7 +854,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; [1] 1234</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If a list does not have names, you cannot extract the elements with <code>$</code>, but you can still use the brackets method and instead of providing the variable name, you provide the list index, like this:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-47_59999af4324eb13bec58617e7a03da0b">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">record2</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] "John Doe"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -832,7 +865,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Yet matrices have a major advantage over data frames: we can perform matrix algebra operations, a powerful type of mathematical technique. We do not describe these operations in this book, but much of what happens in the background when you perform a data analysis involves matrices. We only cover matrices briefly here since some of the functions we will learn return matrices. However, if you plan to perform more advanced work, we highly recommend learning more as they are widely used in data analysis.</p>
 <!--We cover matrices in more detail in Chapter @sec-matrix-algebra but describe them briefly here since some of the functions we will learn return matrices. -->
 <p>We can define a matrix using the <code>matrix</code> function. We need to specify the data in the matrix as well as the number of rows and columns.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-48_61105d413aad696549e66d72496acbd5">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, <span class="fl">4</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">mat</span></span>
 <span><span class="co">#&gt;      [,1] [,2] [,3]</span></span>
@@ -841,26 +874,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; [3,]    3    7   11</span></span>
 <span><span class="co">#&gt; [4,]    4    8   12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The shorthand using <code>:</code> is described in <a href="#sec-vectors"><span>Section&nbsp;2.4</span></a>.</p>
+<p>The shorthand using <code>:</code> is described in <a href="#sec-vectors" class="quarto-xref"><span>Section 2.4</span></a>.</p>
 <p>You can access specific entries in a matrix using square brackets (<code>[</code>). If you want the second row, third column, you use:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-49_b725ccff7187f2b49f2e1db9f812a7ef">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mat</span><span class="op">[</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If you want the entire second row, you leave the column spot empty:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-50_8bb921ec68b78b2a22272324e3f3f4ee">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mat</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span></span>
 <span><span class="co">#&gt; [1]  2  6 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Notice that this returns a vector, not a matrix.</p>
 <p>Similarly, if you want the entire third column, you leave the row spot empty:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-51_de6352f47c470d7377512b6728ef469b">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mat</span><span class="op">[</span>, <span class="fl">3</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1]  9 10 11 12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This is also a vector, not a matrix.</p>
 <p>You can access more than one column or more than one row if you like. This will give you a new matrix.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-52_c6d12ac8ed6037ef76e9b19d48bab402">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mat</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="co">#&gt;      [,1] [,2]</span></span>
 <span><span class="co">#&gt; [1,]    5    9</span></span>
@@ -869,14 +902,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; [4,]    8   12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can subset both rows and columns:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-53_7a6856c226cfa29e50716d5bfff64986">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="co">#&gt;      [,1] [,2]</span></span>
 <span><span class="co">#&gt; [1,]    5    9</span></span>
 <span><span class="co">#&gt; [2,]    6   10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can convert matrices into data frames using the function <code>as.data.frame</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-54_e25e907032b90926125da2a018097981">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">mat</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   V1 V2 V3</span></span>
 <span><span class="co">#&gt; 1  1  5  9</span></span>
@@ -885,7 +918,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 4  4  8 12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can also use single square brackets (<code>[</code>) to access rows and columns of a data frame:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-55_2ecfa81ee99ccae8be3393b6432d23c4">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span><span class="op">[</span><span class="fl">25</span>, <span class="fl">1</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] "Mississippi"</span></span>
 <span><span class="va">murders</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">3</span>, <span class="op">]</span></span>
@@ -909,46 +942,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="sec-creating-vectors" class="level3" data-number="2.4.1"><h3 data-number="2.4.1" class="anchored" data-anchor-id="sec-creating-vectors">
 <span class="header-section-number">2.4.1</span> Creating vectors</h3>
 <p>We can create vectors using the function <code>c</code>, which stands for <em>concatenate</em>. We use <code>c</code> to concatenate entries in the following way:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-56_a31397d947e6ae6baf36c4bc12914c09">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">codes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">380</span>, <span class="fl">124</span>, <span class="fl">818</span><span class="op">)</span></span>
 <span><span class="va">codes</span></span>
 <span><span class="co">#&gt; [1] 380 124 818</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also create character vectors. We use the quotes to denote that the entries are characters rather than variable names.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-57_ef61fb1f7e4707ebf91bdd48839ae7d3">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"italy"</span>, <span class="st">"canada"</span>, <span class="st">"egypt"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In R you can also use single quotes:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-58_3df27e31c218ce571e7ed4ba8b3c7f2d">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'italy'</span>, <span class="st">'canada'</span>, <span class="st">'egypt'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>But be careful not to confuse the single quote ’ with the <em>back quote</em> `.</p>
 <p>By now you should know that if you type:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-59_6facd702a5e0e1414832187f0084ebf4">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">italy</span>, <span class="va">canada</span>, <span class="va">egypt</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>you receive an error because the variables <code>italy</code>, <code>canada</code>, and <code>egypt</code> are not defined. If we do not use the quotes, R looks for variables with those names and returns an error.</p>
 </section><section id="names" class="level3" data-number="2.4.2"><h3 data-number="2.4.2" class="anchored" data-anchor-id="names">
 <span class="header-section-number">2.4.2</span> Names</h3>
 <p>Sometimes it is useful to name the entries of a vector. For example, when defining a vector of country codes, we can use the names to connect the two:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-60_6e85d9c710b61ac4a072e1c16aa1ddc3">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">codes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>italy <span class="op">=</span> <span class="fl">380</span>, canada <span class="op">=</span> <span class="fl">124</span>, egypt <span class="op">=</span> <span class="fl">818</span><span class="op">)</span></span>
 <span><span class="va">codes</span></span>
 <span><span class="co">#&gt;  italy canada  egypt </span></span>
 <span><span class="co">#&gt;    380    124    818</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The object <code>codes</code> continues to be a numeric vector:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-61_6c960ea049ab6920222595fa31778290">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">codes</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "numeric"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>but with names:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-62_a238ad0c5d8ff7bc8ea03cb5c08e79dc">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">codes</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "italy"  "canada" "egypt"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If the use of strings without quotes looks confusing, know that you can use the quotes as well:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-63_5d917a7b96df034ad8f026703ad6760b">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">codes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"italy"</span> <span class="op">=</span> <span class="fl">380</span>, <span class="st">"canada"</span> <span class="op">=</span> <span class="fl">124</span>, <span class="st">"egypt"</span> <span class="op">=</span> <span class="fl">818</span><span class="op">)</span></span>
 <span><span class="va">codes</span></span>
 <span><span class="co">#&gt;  italy canada  egypt </span></span>
@@ -956,7 +989,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>There is no difference between this function call and the previous one. This is one of the many ways in which R is quirky compared to other languages.</p>
 <p>We can also assign names using the <code>names</code> functions:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-64_0fff3f0908f61327c517f64174256b63">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">codes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">380</span>, <span class="fl">124</span>, <span class="fl">818</span><span class="op">)</span></span>
 <span><span class="va">country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"italy"</span>,<span class="st">"canada"</span>,<span class="st">"egypt"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">codes</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">country</span></span>
@@ -967,52 +1000,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="sequences" class="level3" data-number="2.4.3"><h3 data-number="2.4.3" class="anchored" data-anchor-id="sequences">
 <span class="header-section-number">2.4.3</span> Sequences</h3>
 <p>Another useful function for creating vectors generates sequences:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-65_92f1a876542081517fa17b34a431df34">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The first argument defines the start, and the second defines the end which is included. The default is to go up in increments of 1, but a third argument lets us tell it how much to jump by:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-66_4fe9e8dd4ca70e7f20786bfabc62d59b">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 1 3 5 7 9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If we want consecutive integers, we can use the following shorthand:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-67_778c967564bb9d8cfc7136b9576f2075">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span></span>
 <span><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>When we use these functions, R produces integers, not numerics, because they are typically used to index something:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-68_1d115628702b837650849af4d23ec72b">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "integer"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>However, if we create a sequence including non-integers, the class changes:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-69_22ea35962310126d9e8df0899c48bb25">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "numeric"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="subsetting" class="level3" data-number="2.4.4"><h3 data-number="2.4.4" class="anchored" data-anchor-id="subsetting">
 <span class="header-section-number">2.4.4</span> Subsetting</h3>
 <p>We use square brackets to access specific elements of a vector. For the vector <code>codes</code> we defined above, we can access the second element using:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-70_8a4513f7156f13cdc0b82964175ef35d">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">codes</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
 <span><span class="co">#&gt; canada </span></span>
 <span><span class="co">#&gt;    124</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can get more than one entry by using a multi-entry vector as an index:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-71_be21494b4ca53589d8d4d2262e708cbd">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb69"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">codes</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co">#&gt; italy egypt </span></span>
 <span><span class="co">#&gt;   380   818</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The sequences defined above are particularly useful if we want to access, say, the first two elements:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-72_f4b21d0d51332f9dc9fa896731041612">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">codes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span>
 <span><span class="co">#&gt;  italy canada </span></span>
 <span><span class="co">#&gt;    380    124</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If the elements have names, we can also access the entries using these names. Below are two examples.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-73_3cf171710aaf4224c6efc2962a1770ac">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">codes</span><span class="op">[</span><span class="st">"canada"</span><span class="op">]</span></span>
 <span><span class="co">#&gt; canada </span></span>
 <span><span class="co">#&gt;    124</span></span>
@@ -1024,11 +1057,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">2.5</span> Coercion</h2>
 <p>In general, <em>coercion</em> is an attempt by R to be flexible with data types. When an entry does not match the expected, some of the prebuilt R functions try to guess what was meant before throwing an error. This can also lead to confusion. Failing to understand <em>coercion</em> can drive programmers crazy when attempting to code in R since it behaves quite differently from most other languages in this regard. Let’s learn about it with some examples.</p>
 <p>We said that vectors must be all of the same type. So if we try to combine, say, numbers and characters, you might expect an error:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-74_221be94ac0a0c60217298f01bde934b0">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb72"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="st">"canada"</span>, <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>But we don’t get one, not even a warning! What happened? Look at <code>x</code> and its class:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-75_50fb0bc5b4653e1a7e82b23f1a51d487">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb73"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span></span>
 <span><span class="co">#&gt; [1] "1"      "canada" "3"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
@@ -1036,14 +1069,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>R <em>coerced</em> the data into characters. It guessed that because you put a character string in the vector, you meant the 1 and 3 to actually be character strings <code>"1"</code> and <code>"3"</code>. The fact that not even a warning is issued is an example of how coercion can cause many unnoticed errors in R.</p>
 <p>R also offers functions to change from one type to another. For example, you can turn numbers into characters with:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-76_06ac306d44b515f1f92e307e551c477c">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb74"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="va">y</span></span>
 <span><span class="co">#&gt; [1] "1" "2" "3" "4" "5"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can turn it back with <code>as.numeric</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-77_0ff8ddbbe7c6482b02f15d96f37d3343">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 1 2 3 4 5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1051,7 +1084,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="not-availables-na" class="level2" data-number="2.6"><h2 data-number="2.6" class="anchored" data-anchor-id="not-availables-na">
 <span class="header-section-number">2.6</span> Not availables (NA)</h2>
 <p>When a function tries to coerce one type to another and encounters an impossible case, it usually gives us a warning and turns the entry into a special value called an <code>NA</code> for “not available”. For example:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-78_3eee1a9ea39594cf179f81c4398a3b55">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb76"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="st">"b"</span>, <span class="st">"3"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: NAs introduced by coercion</span></span>
@@ -1076,7 +1109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">2.7.1</span> <code>sort</code>
 </h3>
 <p>Say we want to rank the states from least to most gun murders. The function <code>sort</code> sorts a vector in increasing order. We can therefore see the largest number of gun murders by typing:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-79_f0a85c5c7ce2c917f50e1161daa17b00">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb77"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1]    2    4    5    5    7    8   11   12   12   16   19   21   22</span></span>
@@ -1089,19 +1122,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">2.7.2</span> <code>order</code>
 </h3>
 <p>The function <code>order</code> is closer to what we want. It takes a vector as input and returns the vector of indexes that sorts the input vector. This may sound confusing so let’s look at a simple example. We can create a vector and sort it:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-80_1ef97b9515a47c712fa0cbcdc9f6860d">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb78"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">31</span>, <span class="fl">4</span>, <span class="fl">15</span>, <span class="fl">92</span>, <span class="fl">65</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1]  4 15 31 65 92</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Rather than sort the input vector, the function <code>order</code> returns the index that sorts input vector:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-81_408df7e9f7e8e24eb8305c9b7cd16c98">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb79"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">index</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="va">x</span><span class="op">[</span><span class="va">index</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1]  4 15 31 65 92</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This is the same output as that returned by <code>sort(x)</code>. If we look at this index, we see why it works:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-82_209ec88ec4d610eb6ae7ee1cae27c1f8">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb80"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span></span>
 <span><span class="co">#&gt; [1] 31  4 15 92 65</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
@@ -1109,7 +1142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The second entry of <code>x</code> is the smallest, so <code>order(x)</code> starts with <code>2</code>. The next smallest is the third entry, so the second entry is <code>3</code> and so on.</p>
 <p>How does this help us order the states by murders? First, remember that the entries of vectors you access with <code>$</code> follow the same order as the rows in the table. For example, these two vectors containing state names and abbreviations, respectively, are matched by their order:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-83_728818b1ac81f388b546c75d0c079472">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb81"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] "Alabama"    "Alaska"     "Arizona"    "Arkansas"   "California"</span></span>
 <span><span class="co">#&gt; [6] "Colorado"</span></span>
@@ -1117,7 +1150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; [1] "AL" "AK" "AZ" "AR" "CA" "CO"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This means we can order the state names by their total murders. We first obtain the index that orders the vectors according to murder totals and then index the state names vector:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-84_b45a48612a47973a066305d37468aff3">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb82"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">total</span><span class="op">)</span> </span>
 <span><span class="va">murders</span><span class="op">$</span><span class="va">abb</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span> </span>
 <span><span class="co">#&gt;  [1] "VT" "ND" "NH" "WY" "HI" "SD" "ME" "ID" "MT" "RI" "AK" "IA" "UT"</span></span>
@@ -1130,12 +1163,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">2.7.3</span> <code>max</code> and <code>which.max</code>
 </h3>
 <p>If we are only interested in the entry with the largest value, we can use <code>max</code> for the value:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-85_4d6163e7b600a6a0c57dceb5950b3437">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb83"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 1257</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and <code>which.max</code> for the index of the largest value:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-86_8eb281ef3d5452c445b754e3ea9844f9">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb84"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">i_max</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span>
 <span><span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op">[</span><span class="va">i_max</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] "California"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1146,15 +1179,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">2.7.4</span> <code>rank</code>
 </h3>
 <p>Although not as frequently used as <code>order</code> and <code>sort</code>, the function <code>rank</code> is also related to order and can be useful. For any given vector it returns a vector with the rank of the first entry, second entry, etc., of the input vector. Here is a simple example:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-87_23b5092326197d6bc4e0c47e29b0ea54">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb85"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">31</span>, <span class="fl">4</span>, <span class="fl">15</span>, <span class="fl">92</span>, <span class="fl">65</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/rank.html">rank</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 3 1 2 5 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To summarize, let’s look at the results of the three functions we have introduced:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-88_220bd84a4a7cc548a58aa16451371f8e">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<table class="table table-striped table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped caption-top table-sm small" data-quarto-postprocess="true">
 <thead><tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">original</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">sort</th>
@@ -1209,7 +1242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section></section><section id="vector-arithmetics" class="level2" data-number="2.8"><h2 data-number="2.8" class="anchored" data-anchor-id="vector-arithmetics">
 <span class="header-section-number">2.8</span> Vector arithmetics</h2>
 <p>California had the most murders, but does this mean it is the most dangerous state? What if it just has many more people than any other state? We can quickly confirm that California indeed has the largest population:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-89_9591e36b255286ce004e1689815688ae">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb86"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">population</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] "California"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1218,16 +1251,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="rescaling-a-vector" class="level3" data-number="2.8.1"><h3 data-number="2.8.1" class="anchored" data-anchor-id="rescaling-a-vector">
 <span class="header-section-number">2.8.1</span> Rescaling a vector</h3>
 <p>In R, arithmetic operations on vectors occur <em>element-wise</em>. For a quick example, suppose we have height in inches:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-90_1e6a7efacefbd674692a765c14a43c65">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb87"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">inches</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">69</span>, <span class="fl">62</span>, <span class="fl">66</span>, <span class="fl">70</span>, <span class="fl">70</span>, <span class="fl">73</span>, <span class="fl">67</span>, <span class="fl">73</span>, <span class="fl">67</span>, <span class="fl">70</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and want to convert to centimeters. Notice what happens when we multiply <code>inches</code> by 2.54:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-91_62d0c3e98c1c8fac4e1a2b2ded0a90d4">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb88"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">inches</span> <span class="op">*</span> <span class="fl">2.54</span></span>
 <span><span class="co">#&gt;  [1] 175 157 168 178 178 185 170 185 170 178</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In the line above, we multiplied each element by 2.54. Similarly, if for each entry we want to compute how many inches taller or shorter than 69 inches, the average height for males, we can subtract it from every entry like this:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-92_207e3b86afe677cc5bc222cc6d75683f">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb89"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">inches</span> <span class="op">-</span> <span class="fl">69</span></span>
 <span><span class="co">#&gt;  [1]  0 -7 -3  1  1  4 -2  4 -2  1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1258,11 +1291,11 @@ d + h
 \]</span></p>
 <p>The same holds for other mathematical operations, such as <code>-</code>, <code>*</code> and <code>/</code>.</p>
 <p>This implies that to compute the murder rates we can simply type:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-93_199555dc20cbe0ad4f66f62aa63f542d">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb90"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murder_rate</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">total</span> <span class="op">/</span> <span class="va">murders</span><span class="op">$</span><span class="va">population</span> <span class="op">*</span> <span class="fl">100000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once we do this, we notice that California is no longer near the top of the list. In fact, we can use what we have learned to order the states by murder rate:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-94_dfb4d2ed6a0bb97a4e844b98105647fe">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb91"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span><span class="op">$</span><span class="va">abb</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">murder_rate</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co">#&gt;  [1] "VT" "NH" "HI" "ND" "IA" "ID" "UT" "ME" "WY" "OR" "SD" "MN" "MT"</span></span>
 <span><span class="co">#&gt; [14] "CO" "WA" "WV" "RI" "WI" "NE" "MA" "IN" "KS" "NY" "KY" "AK" "OH"</span></span>
@@ -1272,7 +1305,7 @@ d + h
 </section><section id="beware-of-recycling" class="level3" data-number="2.8.3"><h3 data-number="2.8.3" class="anchored" data-anchor-id="beware-of-recycling">
 <span class="header-section-number">2.8.3</span> Beware of recycling</h3>
 <p>Another common source of unnoticed errors in R is the use of <em>recycling</em>. We saw that vectors are added elementwise. So if the vectors don’t match in length, it is natural to assume that we should get an error. But we don’t. Notice what happens:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-95_01368c7c5d182b3d86629a1e7b7ea314">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb92"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">50</span>, <span class="fl">60</span>, <span class="fl">70</span><span class="op">)</span></span>
 <span><span class="va">x</span> <span class="op">+</span> <span class="va">y</span></span>
@@ -1294,38 +1327,38 @@ d + h
 </section></section><section id="indexing" class="level2" data-number="2.9"><h2 data-number="2.9" class="anchored" data-anchor-id="indexing">
 <span class="header-section-number">2.9</span> Indexing</h2>
 <p>R provides a powerful and convenient way of indexing vectors. We can, for example, subset a vector based on properties of another vector. In this section, we continue working with our US murders example, which we can load like this:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-96_cf51166a685e9fcfa5d609dcef112775">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb93"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="subsetting-with-logicals" class="level3" data-number="2.9.1"><h3 data-number="2.9.1" class="anchored" data-anchor-id="subsetting-with-logicals">
 <span class="header-section-number">2.9.1</span> Subsetting with logicals</h3>
 <p>We have now calculated the murder rate using:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-97_5b683bec25346ace7cfe8a84d88cc1e8">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb94"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murder_rate</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">total</span> <span class="op">/</span> <span class="va">murders</span><span class="op">$</span><span class="va">population</span> <span class="op">*</span> <span class="fl">100000</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Imagine you are moving from Italy where, according to an ABC news report, the murder rate is only 0.71 per 100,000. You would prefer to move to a state with a similar murder rate. Another powerful feature of R is that we can use logicals to index vectors. If we compare a vector to a single number, it actually performs the test for each entry. The following is an example related to the question above:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-98_154cf74f72dfe8316cc3f3030b9e4976">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb95"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="va">murder_rate</span> <span class="op">&lt;</span> <span class="fl">0.71</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If we instead want to know if a value is less or equal, we can use:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-99_5c496eaaac80d35c17ff9a81d823034f">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb96"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="va">murder_rate</span> <span class="op">&lt;=</span> <span class="fl">0.71</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that we get back a logical vector with <code>TRUE</code> for each entry smaller than or equal to 0.71. To see which states these are, we can leverage the fact that vectors can be indexed with logicals.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-100_54893f589b2d54260150ecbc82cd62ef">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb97"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] "Hawaii"        "Iowa"          "New Hampshire" "North Dakota" </span></span>
 <span><span class="co">#&gt; [5] "Vermont"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In order to count how many are TRUE, the function <code>sum</code> returns the sum of the entries of a vector and logical vectors get <em>coerced</em> to numeric with <code>TRUE</code> coded as 1 and <code>FALSE</code> as 0. Thus we can count the states using:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-101_b976eb0968623a90833f6a731e7aff4a">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb98"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">ind</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="logical-operators" class="level3" data-number="2.9.2"><h3 data-number="2.9.2" class="anchored" data-anchor-id="logical-operators">
 <span class="header-section-number">2.9.2</span> Logical operators</h3>
 <p>Suppose we like the mountains and we want to move to a safe state in the western region of the country. We want the murder rate to be at most 1. In this case, we want two different things to be true. Here we can use the logical operator <em>and</em>, which in R is represented with <code>&amp;</code>. This operation results in <code>TRUE</code> only when both logicals are <code>TRUE</code>. To see this, consider this example:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-102_6e0520f7c468ff304f8012f762a60e1e">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb99"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="cn">TRUE</span> <span class="op">&amp;</span> <span class="cn">TRUE</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span>
 <span><span class="cn">TRUE</span> <span class="op">&amp;</span> <span class="cn">FALSE</span></span>
@@ -1334,12 +1367,12 @@ d + h
 <span><span class="co">#&gt; [1] FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For our example, we can form two logicals:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-103_b34a61add3593e202a0092cf47d5cd88">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb100"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">west</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">region</span> <span class="op">==</span> <span class="st">"West"</span></span>
 <span><span class="va">safe</span> <span class="op">&lt;-</span> <span class="va">murder_rate</span> <span class="op">&lt;=</span> <span class="fl">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and we can use the <code>&amp;</code> to get a vector of logicals that tells us which states satisfy both conditions:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-104_1d2dec8f329466c488ba242f18d57ca3">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb101"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="va">safe</span> <span class="op">&amp;</span> <span class="va">west</span></span>
 <span><span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] "Hawaii"  "Idaho"   "Oregon"  "Utah"    "Wyoming"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1348,7 +1381,7 @@ d + h
 <span class="header-section-number">2.9.3</span> <code>which</code>
 </h3>
 <p>Suppose we want to look up California’s murder rate. For this type of operation, it is convenient to convert vectors of logicals into indexes instead of keeping long vectors of logicals. The function <code>which</code> tells us which entries of a logical vector are TRUE. So we can type:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-105_9126691891fab7ebdafc2249f21e1d04">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb102"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">state</span> <span class="op">==</span> <span class="st">"California"</span><span class="op">)</span></span>
 <span><span class="va">murder_rate</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] 3.37</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1357,13 +1390,13 @@ d + h
 <span class="header-section-number">2.9.4</span> <code>match</code>
 </h3>
 <p>If instead of just one state we want to find out the murder rates for several states, say New York, Florida, and Texas, we can use the function <code>match</code>. This function tells us which indexes of a second vector match each of the entries of a first vector:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-106_71a23ccf9f37b48cf7b8bc81b2ba732a">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb103"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/match.html">match</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"New York"</span>, <span class="st">"Florida"</span>, <span class="st">"Texas"</span><span class="op">)</span>, <span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op">)</span></span>
 <span><span class="va">ind</span></span>
 <span><span class="co">#&gt; [1] 33 10 44</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we can look at the murder rates:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-107_53fbd58e2adb24ac232a3f6ebc2ee43f">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb104"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murder_rate</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] 2.67 3.40 3.20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1371,13 +1404,13 @@ d + h
 <span class="header-section-number">2.9.5</span> <code>%in%</code>
 </h3>
 <p>If rather than an index we want a logical that tells us whether or not each element of a first vector is in a second, we can use the function <code>%in%</code>. Let’s imagine you are not sure if Boston, Dakota, and Washington are states. You can find out like this:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-108_5f5d7e9af032fbb98ce3de1392bd8cc0">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb105"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Boston"</span>, <span class="st">"Dakota"</span>, <span class="st">"Washington"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">murders</span><span class="op">$</span><span class="va">state</span></span>
 <span><span class="co">#&gt; [1] FALSE FALSE  TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that we will be using <code>%in%</code> often throughout the book.</p>
 <p>There is a connection between <code>match</code> and <code>%in%</code> through <code>which</code>. To see this, notice that the following two lines produce the same index (although in different order):</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-109_f2a61e7994040ea2be852b7f736d7df8">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb106"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/match.html">match</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"New York"</span>, <span class="st">"Florida"</span>, <span class="st">"Texas"</span><span class="op">)</span>, <span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 33 10 44</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">state</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"New York"</span>, <span class="st">"Florida"</span>, <span class="st">"Texas"</span><span class="op">)</span><span class="op">)</span></span>
@@ -1395,26 +1428,26 @@ d + h
 </div>
 </section></section><section id="basic-plots" class="level2" data-number="2.10"><h2 data-number="2.10" class="anchored" data-anchor-id="basic-plots">
 <span class="header-section-number">2.10</span> Basic plots</h2>
-<p>In <a href="../dataviz/ggplot2.html"><span>Chapter&nbsp;8</span></a> we describe an add-on package that provides a powerful approach to producing plots in R. We then have an entire part on Data Visualization in which we provide many examples. Here we briefly describe some of the functions that are available in a basic R installation.</p>
+<p>In <a href="../dataviz/ggplot2.html" class="quarto-xref"><span>Chapter 8</span></a> we describe an add-on package that provides a powerful approach to producing plots in R. We then have an entire part on Data Visualization in which we provide many examples. Here we briefly describe some of the functions that are available in a basic R installation.</p>
 <section id="plot" class="level3" data-number="2.10.1"><h3 data-number="2.10.1" class="anchored" data-anchor-id="plot">
 <span class="header-section-number">2.10.1</span> <code>plot</code>
 </h3>
 <p>The <code>plot</code> function can be used to make scatterplots. Here is a plot of total murders versus population.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-110_34606b134e913291b55fc33c8f75e6d2">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb107"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">population</span> <span class="op">/</span> <span class="fl">10</span><span class="op">^</span><span class="fl">6</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">total</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/first-plot_de542da7e9a0bde30345dcb47e3621d2">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="R-basics_files/figure-html/first-plot-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figure class="figure"><p><img src="R-basics_files/figure-html/first-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>For a quick plot that avoids accessing variables twice, we can use the <code>with</code> function:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-111_20854481737ee24660089cbcc1eb6bf3">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb108"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">murders</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">population</span>, <span class="va">total</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The function <code>with</code> lets us use the <code>murders</code> column names in the <code>plot</code> function. It also works with any data frames and any function.</p>
@@ -1422,20 +1455,20 @@ d + h
 <span class="header-section-number">2.10.2</span> <code>hist</code>
 </h3>
 <p>We will describe histograms as they relate to distributions in the Data Visualization part of the book. Here we will simply note that histograms are a powerful graphical summary of a list of numbers that gives you a general overview of the types of values you have. We can make a histogram of our murder rates by simply typing:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-112_bc96e5513925290319ccdfd73eb01a0f">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb109"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">murders</span>, <span class="va">total</span> <span class="op">/</span> <span class="va">population</span> <span class="op">*</span> <span class="fl">100000</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/r-base-hist_a55741d30aaa6c3ae1b1d4a01d13b723">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="R-basics_files/figure-html/r-base-hist-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figure class="figure"><p><img src="R-basics_files/figure-html/r-base-hist-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>We can see that there is a wide range of values with most of them between 2 and 3 and one very extreme case with a murder rate of more than 15:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-113_04858a187a7344895e61ca340c6ea4f4">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb110"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span><span class="op">$</span><span class="va">state</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] "District of Columbia"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1443,14 +1476,14 @@ d + h
 <span class="header-section-number">2.10.3</span> <code>boxplot</code>
 </h3>
 <p>Boxplots will also be described in the Data Visualization part of the book. They provide a more terse summary than histograms, but they are easier to stack with other boxplots. For example, here we can use them to compare the different regions:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-114_986142ca0966f88baee7e71bd8490d9d">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb111"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span><span class="op">$</span><span class="va">rate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">murders</span>, <span class="va">total</span> <span class="op">/</span> <span class="va">population</span> <span class="op">*</span> <span class="fl">100000</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">rate</span><span class="op">~</span><span class="va">region</span>, data <span class="op">=</span> <span class="va">murders</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/r-base-boxplot_cb2666f4d7627f0318eb7a997df3d325">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="R-basics_files/figure-html/r-base-boxplot-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figure class="figure"><p><img src="R-basics_files/figure-html/r-base-boxplot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
 </figure>
 </div>
 </div>
@@ -1460,14 +1493,14 @@ d + h
 <span class="header-section-number">2.10.4</span> <code>image</code>
 </h3>
 <p>The image function displays the values in a matrix using color. Here is a quick example:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-115_9e58a2e5fe4fb4e77092ff00cbc08c13">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb112"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">120</span>, <span class="fl">12</span>, <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/image.html">image</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/image-first-example_ed0c10991dabbff8d08fad9664b5ae03">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="R-basics_files/figure-html/image-first-example-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figure class="figure"><p><img src="R-basics_files/figure-html/image-first-example-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 </div>
@@ -1487,7 +1520,7 @@ d + h
 <p>1. What is the sum of the first 100 positive integers? The formula for the sum of integers 1 through n is <span class="math inline">\(n(n+1)/2\)</span>. Define <span class="math inline">\(n=100\)</span> and then use R to compute the sum of 1 through 100 using the formula. What is the sum?</p>
 <p>2. Now use the same formula to compute the sum of the integers from 1 through 1000.</p>
 <p>3. Look at the result of typing the following code into R:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-116_33500df9e2c67dad9f037802371942b4">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb113"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">n</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1523,7 +1556,7 @@ d + h
 <p>8. Use the accessor <code>$</code> to extract the state abbreviations and assign them to the object <code>a</code>. What is the class of this object?</p>
 <p>9. Now use the square brackets to extract the state abbreviations and assign them to the object <code>b</code>. Use the <code>identical</code> function to determine if <code>a</code> and <code>b</code> are the same.</p>
 <p>10. We saw that the <code>region</code> column stores a factor. You can corroborate this by typing:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-117_28be772287184aebf80460d09955c947">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb114"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">region</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>With one line of code, use the functions <code>levels</code> and <code>length</code> to determine the number of regions defined by this dataset.</p>
@@ -1540,7 +1573,7 @@ d + h
 <p>21. What is the class of the following object <code>a &lt;- seq(1, 10)</code>?</p>
 <p>22. The class of <code>class(a&lt;-1)</code> is numeric, not integer. R defaults to numeric and to force an integer, you need to add the letter <code>L</code>. Confirm that the class of <code>1L</code> is integer.</p>
 <p>23. Define the following vector:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-118_5f7be555a52d390c1bc340e6553329f5">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb115"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="st">"3"</span>, <span class="st">"5"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and coerce it to get integers.</p>
@@ -1549,7 +1582,7 @@ d + h
 <p>26. We can actually perform the same operation as in the previous exercise using the function <code>which.min</code>. Write one line of code that does this.</p>
 <p>27. Now we know how small the smallest state is and we know which row represents it. Which state is it? Define a variable <code>states</code> to be the state names from the <code>murders</code> data frame. Report the name of the state with the smallest population.</p>
 <p>28. You can create a data frame using the <code>data.frame</code> function. Here is a quick example:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-119_fa319bfc8f640c6db4ece35c11af5916">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb116"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">35</span>, <span class="fl">88</span>, <span class="fl">42</span>, <span class="fl">84</span>, <span class="fl">81</span>, <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="va">city</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Beijing"</span>, <span class="st">"Lagos"</span>, <span class="st">"Paris"</span>, <span class="st">"Rio de Janeiro"</span>, </span>
 <span>          <span class="st">"San Juan"</span>, <span class="st">"Toronto"</span><span class="op">)</span></span>
@@ -1558,19 +1591,19 @@ d + h
 <p>Use the <code>rank</code> function to determine the population rank of each state from smallest population size to biggest. Save these ranks in an object called <code>ranks</code>, then create a data frame with the state name and its rank. Call the data frame <code>my_df</code>.</p>
 <p>29. Repeat the previous exercise, but this time order <code>my_df</code> so that the states are ordered from least populous to most populous. Hint: create an object <code>ind</code> that stores the indexes needed to order the population values. Then use the bracket operator <code>[</code> to re-order each column in the data frame.</p>
 <p>30. The <code>na_example</code> vector represents a series of counts. You can quickly examine the object using:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-120_d2fe863232e3b9ca0913698686fd5bc9">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb117"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">na_example</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  int [1:1000] 2 1 3 2 1 3 1 4 3 2 ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>However, when we compute the average with the function <code>mean</code>, we obtain an <code>NA</code>:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-121_11881fd67182260338912ee8ab335958">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb118"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">na_example</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>is.na</code> function returns a logical vector that tells us which entries are <code>NA</code>. Assign this logical vector to an object called <code>ind</code> and determine how many <code>NA</code>s does <code>na_example</code> have.</p>
 <p>31. Now compute the average again, but only for the entries that are not <code>NA</code>. Hint: remember the <code>!</code> operator, which turns <code>FALSE</code> into <code>TRUE</code> and vice versa.</p>
 <p>32. In exercises 28 we created the <code>temp</code> data frame:</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-122_8d790e82ddb70e6aa60bd3b9dfa4ca97">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb119"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">35</span>, <span class="fl">88</span>, <span class="fl">42</span>, <span class="fl">84</span>, <span class="fl">81</span>, <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="va">city</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Beijing"</span>, <span class="st">"Lagos"</span>, <span class="st">"Paris"</span>, <span class="st">"Rio de Janeiro"</span>, </span>
 <span>          <span class="st">"San Juan"</span>, <span class="st">"Toronto"</span><span class="op">)</span></span>
@@ -1580,7 +1613,7 @@ d + h
 <p>33. What is the following sum <span class="math inline">\(1+1/2^2 + 1/3^2 + \dots 1/100^2\)</span>? Hint: thanks to Euler, we know it should be close to <span class="math inline">\(\pi^2/6\)</span>.</p>
 <p>34. Compute the per 100,000 murder rate for each state and store it in the object <code>murder_rate</code>. Then compute the average murder rate for the US using the function <code>mean</code>. What is the average?</p>
 <p>35.&nbsp;For remaining exercises 35-42, start by loading the library and data.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-123_361f3c8fba355618bb652773c7b6fe30">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb120"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Compute the per 100,000 murder rate for each state and store it in an object called <code>murder_rate</code>. Then use logical operators to create a logical vector named <code>low</code> that tells us which entries of <code>murder_rate</code> are lower than 1.</p>
@@ -1592,7 +1625,7 @@ d + h
 <p>41. Use the <code>%in%</code> operator to create a logical vector that answers the question: which of the following are actual abbreviations: MA, ME, MI, MO, MU?</p>
 <p>42. Extend the code you used in exercise 7 to report the one entry that is <strong>not</strong> an actual abbreviation. Hint: use the <code>!</code> operator, which turns <code>FALSE</code> into <code>TRUE</code> and vice versa, then <code>which</code> to obtain an index.</p>
 <p>43. We made a plot of total murders versus population and noted a strong relationship. Not surprisingly, states with larger populations had more murders.</p>
-<div class="cell" data-layout-align="center" data-hash="R-basics_cache/html/unnamed-chunk-124_9a81f591f28c0a90481f60e4cf4c60cf">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb121"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">population_in_millions</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">population</span><span class="op">/</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span></span>
 <span><span class="va">total_gun_murders</span> <span class="op">&lt;-</span> <span class="va">murders</span><span class="op">$</span><span class="va">total</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">population_in_millions</span>, <span class="va">total_gun_murders</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1642,18 +1675,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1685,11 +1707,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("http:\/\/rafalab\.dfci\.harvard\.edu\/dsbook-part-1");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1699,8 +1760,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1712,7 +1782,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1756,6 +1949,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1781,6 +1975,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1840,23 +2060,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="../R/getting-started.html" class="pagination-link">
+      <a href="../R/getting-started.html" class="pagination-link" aria-label="Getting started">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../R/programming-basics.html" class="pagination-link">
+      <a href="../R/programming-basics.html" class="pagination-link" aria-label="Programming basics">
         <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Programming basics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
-    <div class="nav-footer-left">Introduction to Data Science was written by Rafael A. Irizarry</div>   
+    <div class="nav-footer-left">
+<p>Introduction to Data Science was written by Rafael A. Irizarry</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
-    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/rafalab/dsbook-part-1/blob/main/R/R-basics.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
   </div>
 </footer>
 

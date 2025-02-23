@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
-<title>Introduction to Data Science - 20&nbsp; Reproducible projects</title>
+<title>20&nbsp; Reproducible projects – Introduction to Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -31,7 +31,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -77,7 +77,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -86,29 +92,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 </head>
 <body class="nav-sidebar floating">
 
-
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../productivity/intro-productivity.html">Productivity Tools</a></li><li class="breadcrumb-item"><a href="../productivity/reproducible-projects.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reproducible projects</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../productivity/intro-productivity.html">Productivity Tools</a></li><li class="breadcrumb-item"><a href="../productivity/reproducible-projects.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reproducible projects</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Introduction to Data Science</a> 
         <div class="sidebar-tools-main">
@@ -144,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../R/intro-to-R.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -191,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../dataviz/intro-dataviz.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Visualization</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -226,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../wrangling/intro-to-wrangling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Wrangling</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -279,7 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../productivity/intro-productivity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Productivity Tools</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -306,7 +313,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
@@ -337,10 +344,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#add-commit-and-push-files-using-rstudio" id="toc-add-commit-and-push-files-using-rstudio" class="nav-link" data-scroll-target="#add-commit-and-push-files-using-rstudio"><span class="header-section-number">20.3.9</span> Add, commit, and push files using RStudio</a></li>
   </ul>
 </li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rafalab/dsbook-part-1/blob/main/productivity/reproducible-projects.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/rafalab/dsbook-part-1/blob/main/productivity/reproducible-projects.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../productivity/intro-productivity.html">Productivity Tools</a></li><li class="breadcrumb-item"><a href="../productivity/reproducible-projects.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reproducible projects</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title"><span id="sec-projects" class="quarto-section-identifier"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reproducible projects</span></span></h1>
 </div>
 
@@ -354,15 +361,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header><p>The final product of a data analysis project is often a report. Many scientific publications can be thought of as a final report of a data analysis. The same is true for news articles based on data, an analysis report for your company, or lecture notes for a class on how to analyze data. The reports are often on paper or in a PDF that includes a textual description of the findings along with some figures and tables resulting from the analysis.</p>
 <p>Imagine that after you finish the analysis and the report, you are told that you were given the wrong dataset, you are sent a new one and you are asked to run the same analysis. Or what if you realize that a mistake was made and you need to re-examine the code, fix the error, and re-run the analysis? Or imagine that someone you are training wants to see your code and be able to reproduce the results to learn about your approach?</p>
 <p>Situations like the ones just described are actually quite common for a data analyst. Here, we describe how you can keep your projects organized with RStudio so that re-running an analysis is straight-forward. We then demonstrate how to generate reproducible reports with quarto or R markdown. The <strong>knitR</strong> package will greatly help with recreating reports with minimal work. This is possible due to the fact that markdown documents permit code and textual descriptions to be combined into the same document, and the figures and tables produced by the code are automatically added to the document.</p>
 <section id="rstudio-projects" class="level2" data-number="20.1"><h2 data-number="20.1" class="anchored" data-anchor-id="rstudio-projects">
 <span class="header-section-number">20.1</span> RStudio projects</h2>
-<p>RStudio provides a way to keep all the components of a data analysis project organized into one folder and to keep track of information about this project, such as the Git status of files, in one place. In <a href="git.html#sec-rstudio-git"><span>Section&nbsp;19.9</span></a> we demonstrated how RStudio facilitates the use of Git and GitHub through RStudio projects. In this section we quickly demonstrate how to start a new a project and some recommendations on how to keep these organized. RStudio projects also permit you to have several RStudio sessions open and keep track of which is which.</p>
-<p>To start a project, click on <em>File</em> and then <em>New Project</em>. Often we have already created a folder to save the work, as we did in <a href="unix.html#sec-prep-project"><span>Section&nbsp;18.6</span></a>, and we select <em>Existing Directory</em>. Here we show an example in which we have not yet created a folder and select the <em>New Directory</em> option.</p>
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
+<p>RStudio provides a way to keep all the components of a data analysis project organized into one folder and to keep track of information about this project, such as the Git status of files, in one place. In <a href="git.html#sec-rstudio-git" class="quarto-xref"><span>Section 19.9</span></a> we demonstrated how RStudio facilitates the use of Git and GitHub through RStudio projects. In this section we quickly demonstrate how to start a new a project and some recommendations on how to keep these organized. RStudio projects also permit you to have several RStudio sessions open and keep track of which is which.</p>
+<p>To start a project, click on <em>File</em> and then <em>New Project</em>. Often we have already created a folder to save the work, as we did in <a href="unix.html#sec-prep-project" class="quarto-xref"><span>Section 18.6</span></a>, and we select <em>Existing Directory</em>. Here we show an example in which we have not yet created a folder and select the <em>New Directory</em> option.</p>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_20_21.png" class="img-fluid"></p>
 </div>
@@ -373,28 +384,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Then, for a data analysis project, you usually select the <em>New Project</em> option:</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_20_35.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_20_35.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <p>Now you will have to decide on the location of the folder that will be associated with your project, as well as the name of the folder. When choosing a folder name, just like with file names, make sure it is a meaningful name that will help you remember what the project is about. As with files, we recommend using lower case letters, no spaces, and hyphens to separate words. We will call the folder for this project <code>my-first-project</code>. This will then generate a <em>Rproj</em> file called <code>my-first-project.Rproj</code> in the folder associated with the project. We will see how this is useful a few lines below.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_21_09.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_21_09.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
 </figure>
 </div>
-<p>You will be given options on where this folder should be on your filesystem. In this example, we will place it in our home folder, but this is generally not good practice. As we described in <a href="unix.html#sec-prep-project"><span>Section&nbsp;18.6</span></a> in the Unix chapter, you want to organize your filesystem following a hierarchical approach and with a folder called <em>projects</em> where you keep a folder for each project.</p>
+<p>You will be given options on where this folder should be on your filesystem. In this example, we will place it in our home folder, but this is generally not good practice. As we described in <a href="unix.html#sec-prep-project" class="quarto-xref"><span>Section 18.6</span></a> in the Unix chapter, you want to organize your filesystem following a hierarchical approach and with a folder called <em>projects</em> where you keep a folder for each project.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_21_56.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_21_56.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <p>When you start using RStudio with a project, you will see the project name in the upper right corner. This will remind you what project this particular RStudio session belongs to. When you open an RStudio session with no project, it will say <em>Project: (None)</em>.</p>
 <p>When working on a project, all files will be saved and searched for in the folder associated with the project. Below, we show an example of a script that we wrote and saved with the name <code>code.R</code>. Because we used a meaningful name for the project, we can be a bit less informative when we name the files. Although we do not do it here, you can have several scripts open at once. You simply need to click <em>File</em>, then <em>New File</em> and pick the type of file you want to edit.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_23_26.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_23_26.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <p>One of the main advantages of using Projects is that after closing RStudio, if we wish to continue where we left off on the project, we simply double click or open the file saved when we first created the RStudio project. In this case, the file is called <code>my-first-project.Rproj</code>. If we open this file, RStudio will start up and open the scripts we were editing.</p>
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_09_24_08.png" class="img-fluid"></p>
 </div>
@@ -408,10 +422,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">20.2</span> Markdown</h2>
 <p>Markdown is a format for <em>literate programming</em> documents that is widely used to generate html pages or pdf documents. Literate programming weaves instructions, documentation, and detailed comments in between machine executable code, producing a document that describes the program that is best for human understanding<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. You can learn more about markdown with online tutorials<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
 <p>Unlike a word processor, such as Microsoft Word, where what you see is what you get, with markdown, you need to <em>compile</em> the document into the final report. The markdown document looks different than the final product. This approach seems like a disadvantage at first, but it can save you time in the long run. For example, instead of producing plots and inserting them one by one into the word processing document, the plots are automatically added when the document is compiled. If you need to change the plots, you just recompile the document after editing the code that produces the plot.</p>
-<p>In R, we can produce literate programming documents using Quarto or R markdown. We recommend using Quarto because it is a newer and more flexible version of R markdown that permits the use of languages other than R. Because R markdown preceded Quarto by several years, many public and educational literate programming documents are written in R markdown. However, because the format is similar and both use the <strong>knitr</strong> package to execute the R code (details in <a href="#sec-knitr"><span>Section&nbsp;20.2.4</span></a>), most existing R markdown files can be rendered with Quarto without modification.</p>
+<p>In R, we can produce literate programming documents using Quarto or R markdown. We recommend using Quarto because it is a newer and more flexible version of R markdown that permits the use of languages other than R. Because R markdown preceded Quarto by several years, many public and educational literate programming documents are written in R markdown. However, because the format is similar and both use the <strong>knitr</strong> package to execute the R code (details in <a href="#sec-knitr" class="quarto-xref"><span>Section 20.2.4</span></a>), most existing R markdown files can be rendered with Quarto without modification.</p>
 <p>In RStudio, you can start either a Quarto or R markdown document by clicking on <em>File</em>, <em>New File</em>, then <em>Quarto Document</em> or <em>R Markdown</em>, respectively. You will then be asked to enter a title and author for your document. We are going to prepare a report on gun murders so we will give it an appropriate name. You can also decide what format you would like the final report to be in: HTML, PDF, or Microsoft Word. Later, we can easily change this, but here we select html as it is the preferred format for debugging purposes:</p>
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_18.png" class="img-fluid"></p>
 </div>
@@ -422,7 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>This will generate a template file:</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_20.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_20.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <p>As a convention, we use <code>qmd</code> and <code>Rmd</code> suffixes for Quarto and R markdown files, respectively.</p>
@@ -441,25 +458,25 @@ format: html
 <span class="header-section-number">20.2.2</span> R code chunks</h3>
 <p>In various places in the document, we see something like this:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">1 + 1</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>These are the code chunks. When you compile the document, the R code inside the chunk, in this case <code>1+1</code>, will be evaluated and the result included in that position in the final document.</p>
 <p>To add your own R chunks, you can type the characters above quickly with the key binding command-option-I on the Mac and Ctrl-Alt-I on Windows.</p>
 <p>This applies to plots as well; the plot will be placed in that position. We can write something like this:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="in">plot(1)</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>By default, the code will show up as well. To avoid having the code show up, you can use an argument, which are annotated with <code>#|</code> To avoid showing code in the final document, you can use the argument <code>echo: FALSE</code>. For example:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: false</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="in">1+1</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We recommend getting into the habit of adding a label to the R code chunks. This will be very useful when debugging, among other situations. You do this by adding a descriptive word like this:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: one-plus-one</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: one-plus-one</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="in">1+1</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="global-execution-options" class="level3" data-number="20.2.3"><h3 data-number="20.2.3" class="anchored" data-anchor-id="global-execution-options">
 <span class="header-section-number">20.2.3</span> Global execution options</h3>
@@ -471,14 +488,14 @@ format: html
 <span class="header-section-number">20.2.4</span> knitR</h3>
 <p>We use the <strong>knitR</strong> package to compile Quarto or R markdown documents. The specific function used to compile is the <code>knit</code> function, which takes a filename as input. RStudio provides a button that makes it easier to compile the document. For the screenshot below, we have edited the document so that a report on gun murders is produced. You can see the file on GitHub<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. You can now click on the <code>Render</code> button:</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_21.0.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_21.0.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <p>Note that the first time you click on the <em>Render</em> button, a dialog box may appear asking you to install packages you need. Once you have installed the packages, clicking <em>Render</em> will compile your Quarto file and the resulting document will pop up.</p>
 <p>This particular example produces an html document which you can see in your working directory. To view it, open a terminal and list the files. You can open the file in a browser and use this to present your analysis. You can also produce a PDF or Microsoft document by changing: <code>format: html</code> to <code>format: pdf</code> or <code>format: docx</code>. Note this is one difference between Quarto and R markdown. With R markdown we use <code>output: html_document</code>, <code>output: pdf_document</code>, or <code>output: word_document</code>.</p>
 <p>We can also produce documents that render on GitHub using <code>format: gfm</code>, which stands for GitHub flavored markdown. This will produce a markdown file, with suffix <code>md</code>, that renders nicely on GitHub. Because we have uploaded these files to GitHub, you can click on the <code>md</code> file and you will see the report as a webpage:</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_38.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_38.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <p>This is a convenient way to share your reports.</p>
@@ -497,8 +514,8 @@ format: html
 <p>In this section we put it all together to create the US murders project and share it on GitHub.</p>
 <section id="create-directories-in-unix" class="level3" data-number="20.3.1"><h3 data-number="20.3.1" class="anchored" data-anchor-id="create-directories-in-unix">
 <span class="header-section-number">20.3.1</span> Create directories in Unix</h3>
-<p>In <a href="unix.html#sec-prep-project"><span>Section&nbsp;18.6</span></a> we demonstrated how to use Unix to prepare for a data science project using an example. Here we continue this example and show how to use RStudio. In <a href="unix.html#sec-prep-project"><span>Section&nbsp;18.6</span></a> we created the following directories using Unix:</p>
-<div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-2_8704108cfc660709db14659abdcc1ce9">
+<p>In <a href="unix.html#sec-prep-project" class="quarto-xref"><span>Section 18.6</span></a> we demonstrated how to use Unix to prepare for a data science project using an example. Here we continue this example and show how to use RStudio. In <a href="unix.html#sec-prep-project" class="quarto-xref"><span>Section 18.6</span></a> we created the following directories using Unix:</p>
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> projects</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> murders</span>
@@ -508,8 +525,11 @@ format: html
 </section><section id="create-an-rstudio-project" class="level3" data-number="20.3.2"><h3 data-number="20.3.2" class="anchored" data-anchor-id="create-an-rstudio-project">
 <span class="header-section-number">20.3.2</span> Create an RStudio project</h3>
 <p>In the next section we will use create an RStudio project. In RStudio we go to <em>File</em> and then <em>New Project…</em> and when given the options we pick <em>Existing Directory</em>. We then write the full path of the <code>murders</code> directory created above.</p>
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_14.png" class="img-fluid"></p>
 </div>
@@ -520,7 +540,7 @@ format: html
 </div>
 <p>Once you do this, you will see the <code>rdas</code> and <code>data</code> directories you created in the RStudio <em>Files</em> tab.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_16.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figure class="figure"><p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_16.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <p>Keep in mind that when we are in this project, our default working directory will be <code>~/projects/murders</code>. You can confirm this by typing <code><a href="https://rdrr.io/r/base/getwd.html">getwd()</a></code> into your R session. This is important because it will help us organize the code when we need to write file paths.</p>
@@ -538,7 +558,7 @@ format: html
 <span class="header-section-number">20.3.3</span> Editting R scripts</h3>
 <p>Let’s now write a script that downloads a file into the data directory. We will call this file <code>download-data.R</code>.</p>
 <p>The content of this file will be:</p>
-<div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-3_6c63d2d8a16ce7cddc2229dac1a5807b">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/rafalab/dslabs/master/inst/</span></span>
 <span><span class="st">extdata/murders.csv"</span></span>
 <span><span class="va">dest_file</span> <span class="op">&lt;-</span> <span class="st">"data/murders.csv"</span></span>
@@ -547,7 +567,7 @@ format: html
 <p>Notice that we are using the relative path <code>data/murders.csv</code>.</p>
 <p>Run this code in R and you will see that a file is added to the <code>data</code> directory.</p>
 <p>Now we are ready to write a script to read this data and prepare a table that we can use for analysis. Call the file <code>wrangle-data.R</code>. The content of this file will be:</p>
-<div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-4_486763c3e0cdba89e12a5254c7263f49">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="va">murders</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/murders.csv"</span><span class="op">)</span></span>
 <span><span class="va">murders</span> <span class="op">&lt;-</span> <span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span>,</span>
@@ -560,17 +580,17 @@ format: html
 <p>In this file, we introduce an R command we have not seen: <code>save</code>. The <code>save</code> command in R saves objects into what is called an <em>rda file</em>: <em>rda</em> is short for R data. We recommend using the <code>.rda</code> suffix on files saving R objects. You will see that <code>.RData</code> is also used.</p>
 <p>If you run this code above, the processed data object will be saved in a file in the <code>rda</code> directory. You can then restore the object using <code>load</code>. Although not the case here, this approach is often practical because generating the data object we use for final analyses and plots can be a complex and time-consuming process. So we run this process once and save the file. But we still want to be able to generate the entire analysis from the raw data.</p>
 <p>While <code>save</code> let’s you save several objects that then get loaded with the same names used when saving, the function <code>saveRDS</code> lets you save one object, without the name. To bring it back you use the <code>readRDS</code> function. An example of how this is used is you save it in one session:</p>
-<div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-5_8b8afbf00ae0969857962eb16200771a">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">murders</span>, file <span class="op">=</span> <span class="st">"rdas/murders.rda"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then read it in in another session, using whatever object name you want:</p>
-<div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-6_6d2cd7d06298bf7256e90103fc007a88">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"rdas/murders.rda"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="the-main-analysis-file" class="level3" data-number="20.3.5"><h3 data-number="20.3.5" class="anchored" data-anchor-id="the-main-analysis-file">
 <span class="header-section-number">20.3.5</span> The main analysis file</h3>
 <p>Now we are ready to write the analysis file. Let’s call it <code>analysis.R</code>. The content should be the following:</p>
-<div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-7_d80f3bca7e353b101d375a6d2394a01f">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"rdas/murders.rda"</span><span class="op">)</span></span>
 <span></span>
@@ -583,11 +603,11 @@ format: html
 </section><section id="other-directories" class="level3" data-number="20.3.6"><h3 data-number="20.3.6" class="anchored" data-anchor-id="other-directories">
 <span class="header-section-number">20.3.6</span> Other directories</h3>
 <p>Now suppose we want to save the generated plot for use in a report or presentation. We can do this with the <strong>ggplot</strong> command <code>ggsave</code>. But where do we put the graph? We should be systematically organized so we will save plots to a directory called <code>figs</code>. Start by creating a directory by typing the following in the terminal:</p>
-<div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-8_7e90299aa824c87b3652785e503e8924">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> figs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and then you can add the line:</p>
-<div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-9_73043dec78fae3f670cdf801a306f6ab">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"figs/barplot.png"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>to your R script. If you run the script now, a png file will be saved into the <code>figs</code> directory. If we wanted to copy that file to some other directory where we are developing a presentation, we can avoid using the mouse by using the <code>cp</code> command in our terminal.</p>
@@ -604,9 +624,9 @@ directory
 analysis.R - A plot is generated and saved in the figs directory.</code></pre>
 </section><section id="initializing-a-git-directory" class="level3" data-number="20.3.8"><h3 data-number="20.3.8" class="anchored" data-anchor-id="initializing-a-git-directory">
 <span class="header-section-number">20.3.8</span> Initializing a Git directory</h3>
-<p>In <a href="git.html#sec-init"><span>Section&nbsp;19.6</span></a> we demonstrated how to initialize a Git directory and connect it to the upstream repository on GitHub, which we already created in that section.</p>
+<p>In <a href="git.html#sec-init" class="quarto-xref"><span>Section 19.6</span></a> we demonstrated how to initialize a Git directory and connect it to the upstream repository on GitHub, which we already created in that section.</p>
 <p>We can do this in the Unix terminal:</p>
-<div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-10_f231f4fcfbc80e58577c3206ab5bc5c1">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/projects/murders</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.txt</span>
@@ -617,8 +637,11 @@ analysis.R - A plot is generated and saved in the figs directory.</code></pre>
 </section><section id="add-commit-and-push-files-using-rstudio" class="level3" data-number="20.3.9"><h3 data-number="20.3.9" class="anchored" data-anchor-id="add-commit-and-push-files-using-rstudio">
 <span class="header-section-number">20.3.9</span> Add, commit, and push files using RStudio</h3>
 <p>We can continue adding and committing each file, but it might be easier to use RStudio. To do this, start the project by opening the Rproj file. The git icons should appear and you can add, commit and push using these.</p>
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="3">
+<div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <p><img src="img/windows-screenshots/VirtualBox_Windows-7-Enterprise_23_03_2018_14_53_32.png" class="img-fluid"></p>
 </div>
@@ -631,7 +654,7 @@ analysis.R - A plot is generated and saved in the figs directory.</code></pre>
 </div>
 </div>
 <p>We can now go to GitHub and confirm that our files are there. You can see a version of this project, organized with Unix directories, on GitHub<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>. You can download a copy to your computer by using the <code>git clone</code> command on your terminal. This command will create a directory called <code>murders</code> in your working directory, so be careful where you call it from.</p>
-<div class="cell" data-layout-align="center" data-hash="reproducible-projects_cache/html/unnamed-chunk-11_bb9d1fa0eb9b284fdb29d96bfbb5d264">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>git clone https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>rairizarry<span class="sc">/</span>murders.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
@@ -681,18 +704,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -724,11 +736,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("http:\/\/rafalab\.dfci\.harvard\.edu\/dsbook-part-1");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -738,8 +789,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -751,7 +811,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -795,6 +978,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -820,6 +1004,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -879,7 +1089,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="../productivity/git.html" class="pagination-link">
+      <a href="../productivity/git.html" class="pagination-link" aria-label="Git and GitHub">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Git and GitHub</span></span>
       </a>          
   </div>
@@ -888,11 +1098,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </nav>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
-    <div class="nav-footer-left">Introduction to Data Science was written by Rafael A. Irizarry</div>   
+    <div class="nav-footer-left">
+<p>Introduction to Data Science was written by Rafael A. Irizarry</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
-    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/rafalab/dsbook-part-1/blob/main/productivity/reproducible-projects.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/rafalab/dsbook-part-1/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
   </div>
 </footer>
 
