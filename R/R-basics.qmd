@@ -1071,11 +1071,12 @@ c("Boston", "Dakota", "Washington") %in% murders$state
 
 Note that we will be using `%in%` often throughout the book.
 
-There is a connection between `match` and `%in%` through `which`. To see this, notice that the following two lines produce the same index (although in different order):
+Note also that `which` coupled with `%in%` is similar to `match`; the two create logically equivalent indexes, though ordering may differ as it is based on the first argument. See the examples below.
 
 ```{r}
 match(c("New York", "Florida", "Texas"), murders$state)
 which(murders$state %in% c("New York", "Florida", "Texas"))
+match(c("Florida", "New York", "Texas"), murders$state)
 ```
 
 ::: callout-note
