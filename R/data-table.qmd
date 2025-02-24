@@ -47,7 +47,7 @@ We can also use the `.()` **data.table** notation to alert R that variables insi
 murders_dt[, .(state, region)] 
 ```
 
-### Adding or transformin variables
+### Adding or transforming variables
 
 We learned to use the **dplyr** `mutate` function with this example:
 
@@ -101,7 +101,7 @@ x[,a := 2]
 y
 ```
 
-Note that the function `as.data.table` creates a copy of the data frame being converted. However, if working with a large data frames it is helpful to avoid this by using `setDT`:
+Note that the function `as.data.table` creates a copy of the data frame being converted. However, if working with a large data frame it is helpful to avoid the overhead of copying by using `setDT`, which coerces lists and data frames to `data.table` by reference:
 
 ```{r}
 x <- data.frame(a = 1)
