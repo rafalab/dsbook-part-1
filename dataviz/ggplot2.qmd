@@ -200,9 +200,9 @@ murders |> ggplot(aes(population/10^6, total)) +
 
 Clearly, the second call to `geom_text` does not use `population` and `total`.
 
-## Non-aesthetic arguments
+## Static aesthetics
 
-Each geometry function has arguments other than `aes` and `data`. They tend to be specific to the function and are not mapped to variables in the data. For example, in the plot we wish to make, the points are larger than the default size. As another example, to avoid putting the text on top of the point, we can use the `nudge_x` argument in `geom_text`. The code, with the arguments, looks like this:
+Each geometry function has arguments other than `aes` and `data`. They tend to be specific to the function and explicitly defined rather than dynamically mapped to data. For example, in the plot we wish to make, the points are larger than the default size. As another example, to avoid putting the text on top of the point, we can use the `nudge_x` argument in `geom_text`. These static aesthetic values are applied to *all* points.  The code, with the arguments, looks like this:
 
 ```{r ggplot-example-5}
 murders |> ggplot(aes(population/10^6, total)) +
@@ -223,7 +223,7 @@ murders |> ggplot(aes(population/10^6, total)) +
 
 Note the `geom_point` automatically assigns a different color to each category and also adds a legend! Legends are usually desired, but to avoid adding a legend we can set the `geom_point` argument `show.legend = FALSE`.
 
-Note that `color` is also a non-aesthetic argument in several **ggplot2** functions, including `geom_point`. This argument is not used to map colors to categories, but to change the color of all the points. For example, if we wanted all the points to be blue we would change the layer to `geom_point(col = "blue", size = 3)`.
+Note that `color` is also a static, unmapped aesthetic in several **ggplot2** functions, including `geom_point`. This argument is not used to map colors to categories, but to change the color of *all* the points. For example, if we wanted all the points to be blue we would change the layer to `geom_point(col = "blue", size = 3)`.
 
 ```{r ggplot-example-7}
 murders |> ggplot(aes(population/10^6, total)) +
@@ -584,11 +584,11 @@ Use the `binwidth` argument to change the histogram made in the previous exercis
 
 21\. Instead of a histogram, we are going to make a smooth density plot. In this case we will not make an object, but instead render the plot with one line of code. Change the geometry in the code previously used to make a smooth density instead of a histogram.
 
-22\. Now we are going to make a density plot for males and females separately. We can do this using the `group` argument. We assign groups via the aesthetic mapping as each point needs to a group before making the calculations needed to estimate a density.
+22\. Now we are going to make separate density plots for males and females. We can do this using the `aes` `group` argument, which maps each point to a group prior to calculating the densities.
 
-23\. We can also assign groups through the `color` argument. This has the added benefit that it uses colors to distinguish the groups. Change the code above to use color.
+23\. We can also map groups through the `color` argument, which distinguishes the groups with colored slopes. Change the code above to use color.
 
-24\. We can also assign groups through the `fill` argument. This has the added benefit that it uses colors to distinguish the groups, like this:
+24\. We can also map groups through the `fill` argument, which distinguishes the groups with colored areas, like this:
 
 ```{r, eval=FALSE}
 heights |> 
