@@ -128,15 +128,17 @@ Here is another example:
 
 (Source: Fox News, via Flowing Data^[<http://flowingdata.com/2012/08/06/fox-news-continues-charting-excellence/>].)
 
-This plot makes a 13% increase look like a five fold change. Here is the appropriate plot:
+This plot makes a 13% increase look like a five fold change. Below, it is plotted again as it should be; and then skewed as above with a misleading y axis:
 
 ```{r barplot-from-zero-2, echo=FALSE}
-data.frame(date = c("Now", "Jan 1, 2013"), tax_rate = c(35, 39.6)) |>
+tax <- data.frame(date = c("Now", "Jan 1, 2013"), tax_rate = c(35, 39.6)) |>
   mutate(date = reorder(date, tax_rate)) |>
   ggplot(aes(date, tax_rate)) + 
   ylab("") + xlab("") +
-  geom_col(fill = "yellow", col = "black", width = 0.5) + 
-  ggtitle("Top Tax Rate If Bush Tax Cut Expires")
+  geom_col(fill = "yellow", col = "black", width = 0.5) +
+  ggtitle("Top Tax Rate If Bush Tax Cut Expires") 
+tax2 <- tax + coord_cartesian(ylim=c(34,42))
+grid.arrange(tax, tax2, ncol=2)
 ```
 
 Finally, here is an extreme example that makes a very small difference of under 2% look like a 10-100 fold change:
@@ -836,10 +838,10 @@ state <- dat$state
 rate <- dat$count/dat$population*10000*52/dat$weeks_reporting
 ```
 
-Redefine the `state` object so that the levels are re-ordered. Print the new object `state` and its levels so you can see that the vector is not re-ordered by the levels.
+Redefine the `state` object so that its levels are re-ordered by rate. Print the new object `state` and its levels so you can see that the vector is now re-ordered by the levels.
 
 
-5\. Now with one line of code, define the `dat` table as done above, but change the use mutate to create a rate variable and re-order the state variable so that the levels are re-ordered by this variable. Then make a barplot using the code above, but for this new `dat`.
+5\. Now with one line of code, define the `dat` table as done above, but use mutate to create a rate variable and re-order the state variable by rate. Then make a barplot using the code above, but for this new `dat`.
 
   
 6\. Say we are interested in comparing gun homicide rates across regions of the US. We see this plot:
