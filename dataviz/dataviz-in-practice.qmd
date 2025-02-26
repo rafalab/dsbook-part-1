@@ -315,12 +315,12 @@ gapminder |>
   filter(year == past_year & !is.na(gdp)) |>
   ggplot(aes(dollars_per_day)) + 
   geom_histogram(binwidth = 1, color = "black") +
-  scale_x_continuous(trans = "log2")
+  scale_x_continuous(transform = "log2")
 ```
 
 Note that the log base 10 transformation has its own function: `scale_x_log10()`, but currently base 2 does not, although we could easily define our own.
 
-There are other transformations available through the `trans` argument. As we learn later on, the square root (`sqrt`) transformation is useful when considering counts. The logistic transformation (`logit`) is useful when plotting proportions between 0 and 1. The `reverse` transformation is useful when we want smaller values to be on the right or on top.
+There are other transformations available through the `transform` argument. As we learn later on, the square root (`sqrt`) transformation is useful when considering counts. The logistic transformation (`logit`) is useful when plotting proportions between 0 and 1. The `reverse` transformation is useful when we want smaller values to be on the right or on top.
 
 ## Multimodal distributions
 
@@ -340,7 +340,7 @@ gapminder |>
   mutate(region = reorder(region, dollars_per_day, FUN = median)) |>
   ggplot(aes(dollars_per_day, region)) +
   geom_point() +
-  scale_x_continuous(trans = "log2")  
+  scale_x_continuous(transform = "log2")  
 ```
 
 We can already see that there is indeed a "west versus the rest" dichotomy: we see two clear groups, with the rich group composed of North America, Northern and Western Europe, and New Zealand and Australia. We define groups based on this observation:
@@ -379,7 +379,7 @@ p <- gapminder |>
   filter(year == past_year & !is.na(gdp)) |>
   ggplot(aes(group, dollars_per_day)) +
   geom_boxplot() +
-  scale_y_continuous(trans = "log2") +
+  scale_y_continuous(transform = "log2") +
   xlab("") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
 p
@@ -416,7 +416,7 @@ library(ggridges)
 p <- gapminder |> 
   filter(year == past_year & !is.na(dollars_per_day)) |>
   ggplot(aes(dollars_per_day, group)) + 
-  scale_x_continuous(trans = "log2") 
+  scale_x_continuous(transform = "log2") 
 p  + geom_density_ridges() 
 ```
 
@@ -463,7 +463,7 @@ gapminder |>
   mutate(west = ifelse(group == "West", "West", "Developing")) |>
   ggplot(aes(dollars_per_day)) +
   geom_histogram(binwidth = 1, color = "black") +
-  scale_x_continuous(trans = "log2") + 
+  scale_x_continuous(transform = "log2") + 
   facet_grid(year ~ west)
 ```
 
@@ -477,14 +477,14 @@ gapminder |>
   ggplot(aes(group, dollars_per_day)) +
   geom_boxplot() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  scale_y_continuous(trans = "log2") +
+  scale_y_continuous(transform = "log2") +
   xlab("") +
   facet_grid(. ~ year)
 ```
 
 Here, we pause to introduce another powerful **ggplot2** feature. Because we want to compare each region before and after, it would be convenient to have the `r past_year` boxplot next to the `r present_year` boxplot for each region. In general, comparisons are easier when data are plotted next to each other.
 
-So instead of faceting, we keep the data from each year together and ask to color (or fill) them depending on the year. Note that groups are automatically separated by year and each pair of boxplots drawn next to each other. Because the year column is a number, we have to convert it into a factor since **ggplot2** automatically assigns a color to each category of a factor.
+So instead of faceting, we keep the data from each year together and ask to color (or fill) them depending on the year. Note that groups are automatically separated by year and each pair of boxplots drawn next to each other. Also note that year is mutated into a factor since **ggplot2**'s `group`, `color`, and `fill` apply to the categories of a factor.
 
 ```{r income-histogram-west-v-devel-by-year}
 gapminder |> 
@@ -493,7 +493,7 @@ gapminder |>
   ggplot(aes(group, dollars_per_day, fill = year)) +
   geom_boxplot() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  scale_y_continuous(trans = "log2") +
+  scale_y_continuous(transform = "log2") +
   xlab("") 
 ```
 
@@ -507,7 +507,7 @@ gapminder |>
   filter(year %in% years & country %in% country_list) |>
   ggplot(aes(dollars_per_day)) +
   geom_density(fill = "grey") + 
-  scale_x_continuous(trans = "log2") + 
+  scale_x_continuous(transform = "log2") + 
   facet_grid(. ~ year)
 ```
 
@@ -515,11 +515,11 @@ In the `r past_year` plot, we see two clear modes: poor and rich countries. In `
 
 The next message we need to convey is that the reason for this change in distribution is that several poor countries became richer, rather than some rich countries becoming poorer. To do this, we can assign a color to the groups we identified during data exploration.
 
-However, because when we overlay two densities, the default is to have the area under the distribution curve add up to 1 for each group, regardless of the size of each group, we first need to learn how to make these smooth densities in a way that preserves information on the number of countries in each group. To do this, we will need to learn to access computed variables with the `geom_density` function.
+However, when we overlay two densities, the default is to have the area under the distribution curve add up to 1 for each group, regardless of the size of each group. We first need to learn how to make these smooth densities in a way that preserves information on the number of countries in each group. To do this, we will need to learn to access computed variables with the `geom_density` function.
 
 ### Accessing computed variables
 
-To have the areas of these densities be proportional to the size of the groups, we can simply multiply the y-axis values by the size of the group. From the `geom_density` help file, we see that the functions compute a variable called `count` that does exactly this. We want this variable to be on the y-axis rather than the density.
+To have the areas of these densities be proportional to the size of the groups, we can simply multiply the y-axis values (density) by the size of the group. From the `geom_density` help file, we see that the functions compute a variable called `count` that stores exactly this - `density * points`. We want to position this computed variable, rather than density, on the y-axis.
 
 In **ggplot2**, we access these variables using the function `after_stat`. We will therefore use the following mapping:
 
@@ -534,7 +534,7 @@ p <- gapminder |>
   filter(year %in% years & country %in% country_list) |>
   mutate(group = ifelse(group == "West", "West", "Developing")) |>
   ggplot(aes(dollars_per_day, y = after_stat(count), fill = group)) +
-  scale_x_continuous(trans = "log2", limits = c(0.125, 300))
+  scale_x_continuous(transform = "log2", limits = c(0.125, 300))
 p + geom_density(alpha = 0.2) + facet_grid(year ~ .)
 ```
 
@@ -552,7 +552,7 @@ To visualize if any of the groups defined above are driving this we can quickly 
 gapminder |> 
   filter(year %in% years & !is.na(dollars_per_day)) |>
   ggplot(aes(dollars_per_day, group)) + 
-  scale_x_continuous(trans = "log2") + 
+  scale_x_continuous(transform = "log2") + 
   geom_density_ridges(bandwidth = 1.5) +
   facet_grid(. ~ year)
 ```
@@ -561,12 +561,9 @@ Another way to achieve this is by stacking the densities on top of each other:
 
 ```{r income-smooth-density-counts-by-region-and-year}
 gapminder |> 
-    filter(year %in% years & country %in% country_list) |>
-  group_by(year) |>
-  mutate(weight = population/sum(population)*2) |>
-  ungroup() |>
+  filter(year %in% years & country %in% country_list) |>
   ggplot(aes(dollars_per_day, fill = group)) +
-  scale_x_continuous(trans = "log2", limits = c(0.125, 300)) + 
+  scale_x_continuous(transform = "log2", limits = c(0.125, 300)) + 
   geom_density(alpha = 0.2, bw = 0.75, position = "stack") + 
   facet_grid(year ~ .) 
 ```
@@ -586,7 +583,7 @@ gapminder |>
   mutate(weight = population/sum(population)*2) |>
   ungroup() |>
   ggplot(aes(dollars_per_day, fill = group, weight = weight)) +
-  scale_x_continuous(trans = "log2", limits = c(0.125, 300)) + 
+  scale_x_continuous(transform = "log2", limits = c(0.125, 300)) + 
   geom_density(alpha = 0.2, bw = 0.75, position = "stack") + facet_grid(year ~ .) 
 ```
 
@@ -625,15 +622,15 @@ surv_income <- gapminder |>
 #surv_income |> arrange(income) |> print(n=nrow(surv_income))
 
 surv_income |> ggplot(aes(income, infant_survival_rate, label = group, color = group)) +
-  scale_x_continuous(trans = "log2", limits = c(0.25, 150)) +
-  scale_y_continuous(trans = "logit", limits = c(0.875, .9981), 
+  scale_x_continuous(transform = "log2", limits = c(0.25, 150)) +
+  scale_y_continuous(transform = "logit", limits = c(0.875, .9981), 
                      breaks = c(.85,.90,.95,.99,.995,.998)) +
   geom_label_repel(size = 3, show.legend = FALSE)
 ```
 
 The relationship between these two variables is almost perfectly linear with the chosen axis transformations, and the graph shows a dramatic difference. While in the West less than 0.5% of infants die, in Sub-Saharan Africa the rate is higher than 6%!
 
-Note that the plot uses a new transformation, the logistic transformation.
+Note that the plot uses a new transformation, the logistic transformation, on the y-axis.
 
 ### Logistic transformation {#sec-logit}
 
@@ -660,8 +657,8 @@ highlight <- c("Sierra Leone", "Mauritius",  "Sudan", "Botswana", "Tunisia",
 gapminder |> filter(year %in% present_year & !is.na(gdp) & !is.na(infant_mortality) & !is.na(group) ) |>
   mutate(country_name = ifelse(country %in% highlight, as.character(country), "")) |>
   ggplot(aes(dollars_per_day, 1 - infant_mortality/1000, col = group, label = country_name)) +
-  scale_x_continuous(trans = "log2", limits = c(0.25, 150)) +
-  scale_y_continuous(trans = "logit",limits = c(0.875, .9981),
+  scale_x_continuous(transform = "log2", limits = c(0.25, 150)) +
+  scale_y_continuous(transform = "logit",limits = c(0.875, .9981),
                      breaks = c(.85,.90,.95,.99,.995,.998)) + 
   geom_point(alpha = 0.5, size = 3) +
   geom_text_repel(size = 4, show.legend = FALSE)
@@ -732,7 +729,7 @@ We use the geometry `geom_tile` to tile the region with colors representing dise
 dat |> ggplot(aes(year, state, fill = rate)) +
   geom_tile(color = "grey50") +
   scale_x_continuous(expand = c(0,0)) +
-  scale_fill_gradientn(colors = brewer.pal(9, "Reds"), trans = "sqrt") +
+  scale_fill_gradientn(colors = brewer.pal(9, "Reds"), transform = "sqrt") +
   geom_vline(xintercept = 1963, col = "blue") +
   theme_minimal() +  
   theme(panel.grid = element_blank(), 
@@ -758,7 +755,7 @@ dat |>
   geom_line(aes(year, rate, group = state),  color = "grey50", 
             show.legend = FALSE, alpha = 0.2, linewidth = 1) +
   geom_line(mapping = aes(year, us_rate),  data = avg, linewidth = 1) +
-  scale_y_continuous(trans = "sqrt", breaks = c(5, 25, 125, 300)) + 
+  scale_y_continuous(transform = "sqrt", breaks = c(5, 25, 125, 300)) + 
   ggtitle("Cases per 10,000 by state") + 
   xlab("") + ylab("") +
   geom_text(data = data.frame(x = 1955, y = 50), 
