@@ -224,7 +224,7 @@ dat_wide <- dcast(dat_long, country + year ~ name, value.var = "value")
 
 ## The janitor package
 
-The **janitor** package includes function for some of the most common steps needed to wrangle data. These are particularly useful as these tasks that are often repetitive and time-consuming. Key features include functions for examining and cleaning column names, removing empty or duplicate rows, and converting data types. It also offers capabilities to generate frequency tables and perform cross tabulations with ease. The package is designed to work seamlessly with the  **tidyverse**. Here we show four examples. 
+The **janitor** package includes functions for some of the most common steps needed to wrangle data. These are particularly useful as these tasks that are often repetitive and time-consuming. Key features include functions for examining and cleaning column names, removing empty or duplicate rows, and converting data types. It also offers capabilities to generate frequency tables and perform cross tabulations with ease. The package is designed to work seamlessly with the  **tidyverse**. Here we show four examples. 
  
 Spreadsheets often use names that are not compatible with programming. The most common problem is column names with spaces. The `clean_names()` function attempts to fix this and other common problems. By default it forces variable names to be lower case and with underscore instead of space. In this example we change the variable names of the object `dat` created in the previous section and then demonstrate how this function works:
 
