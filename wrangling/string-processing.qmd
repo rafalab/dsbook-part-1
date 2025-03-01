@@ -1176,7 +1176,7 @@ the_names_2 <- the_names_2 |>
 the_names_2
 ```
 
-We can then join these to generate one name for each column. Specifically, we want "discipline" plus the permutations of the other columns - awards_total, awards_men, awards_women, etc.  We use `rep` and `paste` for the permutations, temporarily excluding "discipline" by negated index, and then add that column back.  This is a common task, when source data has multi-line headings.
+We can then join these to generate one name for each column. This is a common task, when source data headings span multiple lines. In this case, we want "discipline" plus the permutations of the other (multi-line) columns - awards_[total|men|women], applications_[total|men|women], etc.  We use `rep` and `paste` for the permutations with an underscore separator, and use the index for "discipline" to exclude/include it as appropriate.
 
 ```{r}
 tmp_names <- paste(rep(the_names_1, each = 3), the_names_2[-1], sep = "_")
