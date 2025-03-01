@@ -505,7 +505,7 @@ rather with a space, which is not easy to see.
 For the inches part, we can have one or two digits. This can be
 specified in regex with *quantifiers*. This is done by following the
 pattern with curly brackets containing the number of times the previous
-entry can be repeated. We call the *bounded* because the numbers in the
+entry can be repeated. We call this *bounded* because the numbers in the
 quantifier are limited by the numbers in the curly brackets. Later we
 learn about *unbounded quantifiers*.
 
@@ -871,7 +871,7 @@ Suppose we have data frame like this:
 tab <- data.frame(x = c("5'10", "6' 1", "5 ' 9", "5'11\""))
 ```
 
-Note that using `separate_wider_delim` won't work here because the delimiter can varies across entries. With `separate_wider_regex` we can define flexible patterns that are matched to define each column. 
+Note that using `separate_wider_delim` won't work here because the delimiter varies across entries. With `separate_wider_regex` we can define flexible patterns that are matched to define each column. 
 
 ```{r}
 patterns <- c(feet = "\\d", "\\s*'\\s*", inches = "\\d{1,2}", ".*")
@@ -963,7 +963,7 @@ converted[!index]
 ```
 
 
-We noticed that two students added `cm` and some entries have space at the end so we write incorporate this into our cleanup stage. We also notice that at least one entry wrote out numbers such as `Five foot eight inches`. We can use  the `words()` function in the **english** package to change these to actual numbers. In preparation for our final product, we define a function that cleans up previously noticed problems and these new ones:
+We noticed that two students added `cm` and some entries have space at the end so we can incorporate this into our cleanup stage. We also notice that at least one entry wrote out numbers such as `Five foot eight inches`. We can use the `words()` function in the **english** package to change these to actual numbers. In preparation for our final product, we define a function that cleans up previously noticed problems and these new ones:
 
 ```{r, warning=FALSE, message=FALSE}
 library(english)
@@ -978,7 +978,7 @@ cleanup <- function(s){
 }
 ```
 
-Many also notice that students measuring exactly 5 or 6 feet did not enter any inches, for example `6'`, and our pattern requires that inches be included, and that some entries are in meters and some of these use European decimals, for example `1.6` and `1,70`. So we 
+Also notice that many students measuring exactly 5 or 6 feet did not enter any inches, for example `6'`, and our pattern requires that inches be included; and that some entries are in meters and some of these use European decimals, for example `1.6` and `1,70`. So we 
 create a function that add these corrections to those already identified as needed to reformat the entry as feet`'`inches:
 
 ```{r}
@@ -992,11 +992,11 @@ convert_format <- function(s){
 
 Now we are ready to wrangle our reported heights dataset. The strategy is as follows: 
 
-1\. We start by defining a variable to keep a copy of the original entry, we then clean up and covert the `height` entry using the functions described above. 
+1\. We start by defining a variable, new_heights, to keep a copy of the original entry.  We then clean up and convert the `height` entry using the functions described above. 
 
-2\. We then use the `separate_wider_regex_` function to extract feet and inches when the entry matches our feet`'`inches format. 
+2\. We use the `separate_wider_regex` function to extract feet and inches when the entry matches our feet`'`inches format. Note that by default, `separate_wider_regex` gives an error if any given string does not "match the pattern, the whole pattern, and nothing but the pattern".  Earlier, we used a final pattern of `.*` to account for any extraneous trailing characters; here, we use additional arguments to handle edge cases.
 
-3\. We use a lookaround to make sure that entries that have numbers with no `'` following them don't match and return an `NA`. 
+3\. We use a lookaround in the named 'feet' pattern to ensure a trailing `'`.
 
 4.\ Once this is done, we convert the feet and inches into inches.
 
@@ -1176,7 +1176,7 @@ the_names_2 <- the_names_2 |>
 the_names_2
 ```
 
-We can then join these to generate one name for each column:
+We can then join these to generate one name for each column. Specifically, we want "discipline" plus the permutations of the other columns - awards_total, awards_men, awards_women, etc.  We use `rep` and `paste` for the permutations, temporarily excluding "discipline" by negated index, and then add that column back.  This is a common task, when source data has multi-line headings.
 
 ```{r}
 tmp_names <- paste(rep(the_names_1, each = 3), the_names_2[-1], sep = "_")
@@ -1386,7 +1386,7 @@ including one called `day`. Also, add a column with the month. Call the
 resulting object `dat`. Finally, make sure the day is an integer not a
 character. Hint: use only the first five columns.
 
-16\. Now finish it up by tidying `tab` with the `pivot_longer`
+16\. Now finish it up by tidying `dat` with the `pivot_longer`
 function.
 
 17\. Make a plot of deaths versus day with color to denote year. Exclude
