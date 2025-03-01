@@ -519,7 +519,7 @@ However, when we overlay two densities, the default is to have the area under th
 
 ### Accessing computed variables
 
-To have the areas of these densities be proportional to the size of the groups, we can simply multiply the y-axis values (density) by the size of the group. From the `geom_density` help file, we see that the functions compute a variable called `count` that stores exactly this - `density * points`. We want to position this computed variable, rather than density, on the y-axis.
+To have the areas of these densities be proportional to the size of the groups, we could possibly multiply the y-axis values (density) by the size of the group; but from the `geom_density` help file, we see that the functions already compute a `count` variable that stores exactly this - `density * points`. We want to position this computed variable, rather than density, on the y-axis.
 
 In **ggplot2**, we access these variables using the function `after_stat`. We will therefore use the following mapping:
 
