@@ -241,7 +241,7 @@ tweet_words |> inner_join(nrc, by = "word", relationship = "many-to-many") |>
 ```
 
 :::{.callout-note}
-`relationship = "many-to-many"` is added to address a warning that arises from `left_join` detecting an "unexpected many-to-many relationship". However, this behavior is actually expected in this context because many words have multiple sentiments associated with them.
+`relationship = "many-to-many"` is added to address a warning that arises from `inner_join` detecting an "unexpected many-to-many relationship". However, this behavior is actually expected in this context because many words have multiple sentiments associated with them.  This can occur with outer joins as well.
 :::
 
 Now we are ready to perform a quantitative analysis comparing Android and iPhone by comparing the sentiments of the tweets posted from each device. Here we could perform a tweet-by-tweet analysis, assigning a sentiment to each tweet. However, this will be challenging since each tweet will have several sentiments attached to it, one for each word appearing in the lexicon. For illustrative purposes, we will perform a much simpler analysis: we will count and compare the frequencies of each sentiment appearing in each device.
@@ -276,7 +276,7 @@ android_vs_iphone |> inner_join(nrc, by = "word") |>
   arrange(desc(percent_diff))
 ```
 
-and we can make a graph:
+And we can make a graph - of the sentiments with the largest tweet count discrepancies between the two devices; with the most frequently tweeted words of each sentiment, each word colored to reflect which device was prominent: 
 
 ```{r percent-diff-by-word, out.width="100%", echo=FALSE}
 levels <- sentiment_counts |>
