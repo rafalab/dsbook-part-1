@@ -154,7 +154,7 @@ we end up with a much more informative set of top 10 tweeted words:
 ```{r}
 tweet_words |> 
   count(word) |>
-  top_n(10, n) |>
+  slice_max(n, n = 10) |>
   arrange(desc(n))
 ```
 
@@ -171,28 +171,27 @@ tweet_words <- campaign_tweets |>
 
 Now that we have all our words in a table, along with information about what device was used to compose the tweet they came from, we can start exploring which words are more common when comparing Android to iPhone.
 
-For each word, we want to know if it is more likely to come from an Android tweet or an iPhone tweet. We therefore compute, for each word, its frequency among words tweeted from Android and iPhone, respectively.
+For each word, we want to know if it is more likely to come from an Android tweet or an iPhone tweet. We therefore compute, for each word, its frequency among words tweeted from Android and iPhone, respectively and then derive the ratio of these proportions (Android proportion divided by iPhone proportion). Because some words are infrequent, we apply the continuity correction described in @sec-log-transform:
 
 ```{r}
 android_vs_iphone <- tweet_words |>
   count(word, source) |>
   pivot_wider(names_from = "source", values_from = "n", values_fill = 0) |>
-  mutate(p_a = Android / sum(Android), p_i = iPhone / sum(iPhone),
-         percent_diff = (p_a - p_i) / ((p_a + p_i)/2) * 100)
+  mutate(p_a = (Android + 0.5)/(sum(Android) + 0.5), 
+         p_i = (iPhone + 0.5)/(sum(iPhone) + 0.5),  
+         ratio = p_a / p_i)
 ```
 
 For words appearing at least 100 times in total, here are the highest percent differences for Android
 
 ```{r}
-android_vs_iphone |> filter(Android + iPhone >= 100) |>
-  arrange(desc(percent_diff))
+android_vs_iphone |> filter(Android + iPhone >= 100) |> arrange(desc(ratio))
 ```
 
 and the top for iPhone:
 
 ```{r}
-android_vs_iphone |> filter(Android + iPhone >= 100) |> 
-  arrange(percent_diff)
+android_vs_iphone |> filter(Android + iPhone >= 100) |>  arrange(ratio)
 ```
 
 We already see somewhat of a pattern in the types of words that are being tweeted more from one device versus the other. However, we are not interested in specific words but rather in the tone. Vaziri's assertion is that the Android tweets are more hyperbolic. So how can we check this with data? *Hyperbolic* is a hard sentiment to extract from words as it relies on interpreting phrases. However, words can be associated to more basic sentiment such as anger, fear, joy, and surprise. In the next section, we demonstrate basic sentiment analysis.
@@ -228,8 +227,7 @@ get_sentiments("nrc") |> count(sentiment)
 For our analysis, we are interested in exploring the different sentiments of each tweet so we will use the `nrc` lexicon:
 
 ```{r}
-nrc <- get_sentiments("nrc") |>
-  select(word, sentiment)
+nrc <- get_sentiments("nrc") |> select(word, sentiment)
 ```
 
 We can combine the words and sentiments using `inner_join`, which will only keep words associated with a sentiment. Here are 5 random words extracted from the tweets:
@@ -252,47 +250,36 @@ sentiment_counts <- tweet_words |>
   count(source, sentiment) |>
   pivot_wider(names_from = "source", values_from = "n") |>
   mutate(sentiment = replace_na(sentiment, replace = "none"))
-sentiment_counts
 ```
 
-
-For each sentiment, we can compute the percent difference in proportion for Android compared to iPhone:
+For each sentiment, we calculate its proportion relative to the total responses for  Android and iPhone, respectively, and derive the ratio of these proportions (Android proportion divided by iPhone proportion).
 
 ```{r}
-sentiment_counts |>
-  mutate(p_a = Android / sum(Android) , 
-         p_i = iPhone / sum(iPhone), 
-         percent_diff = (p_a - p_i) / ((p_a + p_i)/2) * 100) |>
-  arrange(desc(percent_diff))
+sentiment_counts <- sentiment_counts |>
+  mutate(p_a = Android/sum(Android), p_i = iPhone/sum(iPhone), ratio = p_a/p_i) |> 
+  arrange(desc(ratio))
+sentiment_counts
 ```
 
 So we do see some differences and the order is interesting: the largest three sentiments are disgust, anger, and negative!
 
-If we are interested in exploring which specific words are driving these differences, we can refer back to our `android_vs_iphone` object:
-
-```{r}
-android_vs_iphone |> inner_join(nrc, by = "word") |>
-  filter(sentiment == "disgust") |>
-  arrange(desc(percent_diff))
-```
-
-and we can make a graph:
+If we are interested in exploring which specific words are driving these differences, we can refer back to our `android_vs_iphone` object. For each sentiment we show the 10 largest ratios, in either direction. We exclude words appearing less than 10 times total.
 
 ```{r percent-diff-by-word, out.width="100%", echo=FALSE}
-levels <- sentiment_counts |>
-  mutate(p_a = Android / sum(Android) , 
-         p_i = iPhone / sum(iPhone), 
-         percent_diff = (p_a - p_i) / ((p_a + p_i)/2) * 100) |>
-  arrange(desc(percent_diff)) |>
-  pull(sentiment)
+ordered_levels <- sentiment_counts$sentiment
 
-android_vs_iphone |> inner_join(nrc, by = "word") |>
-  mutate(sentiment = factor(sentiment, levels = levels)) |>
-  filter(Android + iPhone > 25 & abs(percent_diff) > 25) |>
-  mutate(word = reorder(word, percent_diff)) |>
-  ggplot(aes(word, percent_diff, fill = percent_diff < 0)) +
-  facet_wrap(~sentiment, scales = "free_x", nrow = 2) + 
+android_vs_iphone |>
+  filter(Android + iPhone >= 10) |>
+  inner_join(nrc, by = "word") |>
+  mutate(sentiment = factor(sentiment, levels = sentiment_counts$sentiment)) |>
+  group_by(sentiment) |>
+  slice_max(abs(log(ratio)), n = 10) |>
+  ungroup() |> 
+  mutate(word = reorder(word, -ratio)) |>
+  ggplot(aes(word, ratio, fill = ratio < 1)) +
   geom_col(show.legend = FALSE) +
+  scale_y_log10() +
+  facet_wrap(~sentiment, scales = "free_x", nrow = 2) + 
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
 ```
 

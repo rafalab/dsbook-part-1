@@ -362,7 +362,7 @@ window.Quarto = {
 <li><a href="#sec-summarize" id="toc-sec-summarize" class="nav-link" data-scroll-target="#sec-summarize"><span class="header-section-number">4.4.1</span> The <code>summarize</code> funciton</a></li>
   <li><a href="#multiple-summaries" id="toc-multiple-summaries" class="nav-link" data-scroll-target="#multiple-summaries"><span class="header-section-number">4.4.2</span> Multiple summaries</a></li>
   <li><a href="#sec-group-by" id="toc-sec-group-by" class="nav-link" data-scroll-target="#sec-group-by"><span class="header-section-number">4.4.3</span> Group then summarize with <code>group_by</code></a></li>
-  <li><a href="#extracting-varialbes-with-pull" id="toc-extracting-varialbes-with-pull" class="nav-link" data-scroll-target="#extracting-varialbes-with-pull"><span class="header-section-number">4.4.4</span> Extracting varialbes with <code>pull</code></a></li>
+  <li><a href="#extracting-variables-with-pull" id="toc-extracting-variables-with-pull" class="nav-link" data-scroll-target="#extracting-variables-with-pull"><span class="header-section-number">4.4.4</span> Extracting variables with <code>pull</code></a></li>
   </ul>
 </li>
   <li>
@@ -703,8 +703,8 @@ window.Quarto = {
 <span><span class="co">#&gt; 3 North Central   1.97 0.595  5.36</span></span>
 <span><span class="co">#&gt; 4 West            1.29 0.515  3.63</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="extracting-varialbes-with-pull" class="level3" data-number="4.4.4"><h3 data-number="4.4.4" class="anchored" data-anchor-id="extracting-varialbes-with-pull">
-<span class="header-section-number">4.4.4</span> Extracting varialbes with <code>pull</code>
+</section><section id="extracting-variables-with-pull" class="level3" data-number="4.4.4"><h3 data-number="4.4.4" class="anchored" data-anchor-id="extracting-variables-with-pull">
+<span class="header-section-number">4.4.4</span> Extracting variables with <code>pull</code>
 </h3>
 <p>The <code>us_murder_rate</code> object defined in <a href="#sec-summarize" class="quarto-xref"><span>Section 4.4.1</span></a> represents just one number. Yet we are storing it in a data frame:</p>
 <div class="cell" data-layout-align="center">
@@ -762,17 +762,17 @@ window.Quarto = {
 </section><section id="the-top-n" class="level3" data-number="4.5.2"><h3 data-number="4.5.2" class="anchored" data-anchor-id="the-top-n">
 <span class="header-section-number">4.5.2</span> The top <span class="math inline">\(n\)</span>
 </h3>
-<p>In the code above, we have used the function <code>head</code> to avoid having the page fill up with the entire dataset. For instance, using <code>arrange(desc(rate))</code> followed by <code>head</code> would show the 6 states with the largest murder rates, in order. Instead, to view a specific number of observations with the highest murder rates, we can use the <code>top_n</code> function. This function takes a data frame as it’s first argument, the number of rows to show in the second, and the variable to filter by in the third. Here is an example of how to see the top 5 rows:</p>
+<p>In the code above, we have used the function <code>head</code> to avoid having the page fill up with the entire dataset. For instance, using <code>arrange(desc(rate))</code> followed by <code>head</code> would show the 6 states with the largest murder rates, in order. Instead, to view a specific number of observations with the highest murder rates, we can use the <code>slice_max</code> function. This function takes a data frame as it’s first argument, the number of rows to show in the second, and the variable to filter by in the third. Here is an example of how to see the top 5 rows:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/top_n.html">top_n</a></span><span class="op">(</span><span class="fl">5</span>, <span class="va">rate</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">murders</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span><span class="va">rate</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                  state abb        region population total  rate</span></span>
 <span><span class="co">#&gt; 1 District of Columbia  DC         South     601723    99 16.45</span></span>
 <span><span class="co">#&gt; 2            Louisiana  LA         South    4533372   351  7.74</span></span>
-<span><span class="co">#&gt; 3             Maryland  MD         South    5773552   293  5.07</span></span>
-<span><span class="co">#&gt; 4             Missouri  MO North Central    5988927   321  5.36</span></span>
+<span><span class="co">#&gt; 3             Missouri  MO North Central    5988927   321  5.36</span></span>
+<span><span class="co">#&gt; 4             Maryland  MD         South    5773552   293  5.07</span></span>
 <span><span class="co">#&gt; 5       South Carolina  SC         South    4625364   207  4.48</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Note that rows are not sorted by <code>rate</code>, only filtered. If we want to sort, we still need to use <code>arrange</code>. Note that if the third argument is left blank, <code>top_n</code> filters by the last column.</p>
+<p>The function <code>slice_min</code> does the same, but for the smallest values.</p>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1092,7 +1092,7 @@ window.Quarto = {
 <p>16. Compute the average and standard deviation for females, but for each age group separately rather than a selected decade as in exercise 13. Note that the age groups are defined by <code>AgeDecade</code>. Hint: rather than filtering by age and gender, filter by <code>Gender</code> and then use <code>group_by</code>.</p>
 <p>17. Repeat exercise 16 for males.</p>
 <p>19. For males between the ages of 40-49, compare systolic blood pressure across race as reported in the <code>Race1</code> variable. Order the resulting table from lowest to highest average systolic blood pressure.</p>
-<p>20. Load the <code>murders</code> dataset. Which of the following is true?</p>
+<p>19. Load the <code>murders</code> dataset. Which of the following is true?</p>
 <ol type="a">
 <li>
 <code>murders</code> is in tidy format and is stored in a tibble.</li>
@@ -1103,14 +1103,14 @@ window.Quarto = {
 <li>
 <code>murders</code> is not in tidy format and is stored in a data frame.</li>
 </ol>
-<p>21. Use <code>as_tibble</code> to convert the <code>murders</code> data table into a tibble and save it in an object called <code>murders_tibble</code>.</p>
-<p>22. Use the <code>group_by</code> function to convert <code>murders</code> into a tibble that is grouped by region.</p>
-<p>23. Write tidyverse code that is equivalent to this code:</p>
+<p>20. Use <code>as_tibble</code> to convert the <code>murders</code> data table into a tibble and save it in an object called <code>murders_tibble</code>.</p>
+<p>21. Use the <code>group_by</code> function to convert <code>murders</code> into a tibble that is grouped by region.</p>
+<p>22. Write tidyverse code that is equivalent to this code:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">murders</span><span class="op">$</span><span class="va">population</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Write it using the pipe so that each function is called without arguments. Use the dot operator to access the population. Hint: The code should start with <code>murders |&gt;</code>.</p>
-<p>24. Use the <code>map_df</code> to create a data frame with three columns named <code>n</code>, <code>s_n</code>, and <code>s_n_2</code>. The first column should contain the numbers 1 through 100. The second and third columns should each contain the sum of 1 through <span class="math inline">\(n\)</span> with <span class="math inline">\(n\)</span> the row number.</p>
+<p>23. Use the <code>map_df</code> to create a data frame with three columns named <code>n</code>, <code>s_n</code>, and <code>s_n_2</code>. The first column should contain the numbers 1 through 100. The second and third columns should each contain the sum of 1 through <span class="math inline">\(n\)</span> with <span class="math inline">\(n\)</span> the row number.</p>
 
 
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>

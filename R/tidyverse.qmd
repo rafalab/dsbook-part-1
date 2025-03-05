@@ -312,7 +312,7 @@ murders |>
   summarize(median_min_max(rate))
 ```
 
-### Extracting varialbes with `pull`
+### Extracting variables with `pull`
 
 The `us_murder_rate` object defined in @sec-summarize represents just one number. Yet we are storing it in a data frame:
 
@@ -367,13 +367,13 @@ murders |>
 
 ### The top $n$ 
 
-In the code above, we have used the function `head` to avoid having the page fill up with the entire dataset. For instance, using `arrange(desc(rate))` followed by `head` would show the 6 states with the largest murder rates, in order. Instead, to view a specific number of observations with the highest murder rates, we can use the `top_n` function. This function takes a data frame as it's first argument, the number of rows to show in the second, and the variable to filter by in the third. Here is an example of how to see the top 5 rows:
+In the code above, we have used the function `head` to avoid having the page fill up with the entire dataset. For instance, using `arrange(desc(rate))` followed by `head` would show the 6 states with the largest murder rates, in order. Instead, to view a specific number of observations with the highest murder rates, we can use the `slice_max` function. This function takes a data frame as it's first argument, the number of rows to show in the second, and the variable to filter by in the third. Here is an example of how to see the top 5 rows:
 
 ```{r}
-murders |> top_n(5, rate)
+murders |> slice_max(rate, n = 5)
 ```
 
-Note that rows are not sorted by `rate`, only filtered. If we want to sort, we still need to use `arrange`. Note that if the third argument is left blank, `top_n` filters by the last column.
+The function `slice_min` does the same, but for the smallest values.
 
 
 :::{.callout-note}
@@ -765,18 +765,18 @@ Hint: Use `filter` and `summarize` and use the `na.rm = TRUE` argument when comp
 19\. For males between the ages of 40-49, compare systolic blood pressure across race as reported in the `Race1` variable. Order the resulting table from lowest to highest average systolic blood pressure.
 
 
-20\. Load the `murders` dataset. Which of the following is true?
+19\. Load the `murders` dataset. Which of the following is true?
 
 a. `murders` is in tidy format and is stored in a tibble.
 b. `murders` is in tidy format and is stored in a data frame.
 c. `murders` is not in tidy format and is stored in a tibble.
 d. `murders` is not in tidy format and is stored in a data frame.
     
-21\. Use `as_tibble` to convert the `murders` data table into a tibble and save it in an object called `murders_tibble`.
+20\. Use `as_tibble` to convert the `murders` data table into a tibble and save it in an object called `murders_tibble`.
     
-22\. Use the `group_by` function to convert `murders` into a tibble that is grouped by region.
+21\. Use the `group_by` function to convert `murders` into a tibble that is grouped by region.
 
-23\. Write tidyverse code that is equivalent to this code:
+22\. Write tidyverse code that is equivalent to this code:
     
 ```{r, eval=FALSE}
 exp(mean(log(murders$population)))
@@ -784,4 +784,4 @@ exp(mean(log(murders$population)))
 
 Write it using the pipe so that each function is called without arguments. Use the dot operator to access the population. Hint: The code should start with `murders |>`.
     
-24\. Use the `map_df` to create a data frame with three columns named `n`, `s_n`, and `s_n_2`. The first column should contain the numbers 1 through 100. The second and third columns should each contain the sum of 1 through $n$ with $n$ the row number.  
+23\. Use the `map_df` to create a data frame with three columns named `n`, `s_n`, and `s_n_2`. The first column should contain the numbers 1 through 100. The second and third columns should each contain the sum of 1 through $n$ with $n$ the row number.  

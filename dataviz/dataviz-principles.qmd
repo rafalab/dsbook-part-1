@@ -343,7 +343,7 @@ If we want the more compact summary provided by boxplots, we then align them hor
 ```{r boxplot-with-points-with-jitter, echo=FALSE}
 p3 <- heights |> 
   ggplot(aes(sex, height)) + 
-  geom_boxplot(coef=3) + 
+  geom_boxplot(coef = 3) + 
   geom_jitter(width = 0.1, alpha = 0.2) +
   ylab("Height in inches")
 p3
@@ -358,11 +358,9 @@ grid.arrange(p1, p2, p3, ncol = 3)
 
 Notice how much more we learn from the two plots on the right. Barplots are useful for showing one number, but not very useful when we want to describe distributions.
 
-## Transformations
+## Log transformations {#sec-log-transform}
 
-We have motivated the use of the log transformation in cases where the changes are multiplicative. Population size was an example in which we found a log transformation to yield a more informative transformation. 
-
-The combination of an incorrectly chosen barplot and a failure to use a log transformation when one is merited can be particularly distorting. As an example, consider this barplot showing the average population sizes for each continent in 2015:
+The combination of an incorrectly chosen barplot and a failure to use a transformation when one is merited can be particularly distorting. As an example, consider this barplot showing the average population sizes for each continent in 2015:
 
 ```{r no-transformations-wrong-use-of-barplot, echo=FALSE}
 p1 <- gapminder |> 
@@ -389,7 +387,14 @@ p2 <- gapminder |> filter(year == 2015) |>
 p2 +  geom_jitter(width = .1, alpha = .5) 
 ```
 
-Using a log transformation here provides a much more informative plot. We compare the original barplot to a boxplot using the log scale transformation for the y-axis:
+Here, we focus on examples in which the log transformation improves data visualization of skewed data. Other common transformations to be aware of include the logistic transformation (`logit`), which is useful for interpreting fold changes in odds, and the square root transformation (`sqrt`), which is often applied to stabilize variance in count data.
+
+### Right-skewed distributions
+
+Country population sizes provide a clear example of a _right-skewed_ distribution: most countries have relatively small populations, while a few have extremely large ones. As shown in the box plot above, this imbalance causes most of the data points to be compressed into a small area of the plot, while a large portion of the plotting space is left empty. This makes it difficult to see meaningful differences among the majority of countries.  
+
+In @sec-scales, we saw how applying a log transformation improved the readability of a scatter plot by addressing this kind of skew. Similarly, applying a log transformation to population sizes here produces a much more informative visualization. Below, we compare the original barplot to a boxplot with a log-transformed y-axis to illustrate the improvement.
+
 
 
 ```{r correct-transformation, out.width="100%", echo=FALSE, fig.height=3.5}
@@ -402,7 +407,51 @@ grid.arrange(p1, p2, ncol = 2)
 
 With the new plot, we realize that countries in Africa actually have a larger median population size than those in Asia.
 
-Other transformations you should consider are the logistic transformation (`logit`), useful to better see fold changes in odds, and the square root transformation (`sqrt`), useful for count data.
+### Ratios
+
+Ratios are commonly used in data analysis to compare two values. For example, we often report the relative risk of developing a disease, such as stating that the risk of disease is _three times higher_ in smokers than in non-smokers.
+
+Conceptually, ratios are centered around 1, where a ratio of 1 indicates no difference between the two values. However, mathematically, ratios are not symmetric around 1. For instance, if the ratio of $A$ to $B$ is $3$, meaning $A$ is three times larger than $B$, the reverse ratio of $B$ to $A$ is $1/3$. Notice that $3$ and $1/3$ are not equally distant from 1, which can make it difficult to visualize ratios in a way that fairly represents increases and decreases.
+
+For this reason, it is common to use a log transformation when displaying ratios. This is because the logarithm of a ratio has a symmetric property:  
+
+$$
+\log(A/B) = -\log(B/A)
+$$  
+This means that if $A$ is three times larger than $B$, the log ratio is equally distant from zero as when $B$ is three times larger than $A$, but in the opposite direction. This symmetry around zero makes differences easier to interpret visually.
+
+Below is a plot demonstrating the advantage of using a log scale for displaying ratios.
+
+```{r log-ratio-better}
+#| echo: false
+p <- data.frame(Value = c(1 / c(10, 5, 2), c(1, 2, 5, 10))) |>
+  mutate(
+    id = seq_along(Value),
+    label = c(paste0("frac(1,", c(10, 5, 2), ")"),
+      as.character(c(1, 2, 5, 10)))) |>
+  ggplot(aes(id, Value)) +
+  geom_text(aes(label = label), parse = TRUE) +
+  geom_hline(yintercept = 1, linetype = 2, color = "grey") +
+  xlab("Arbitrary index") + 
+  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())  
+grid.arrange(p +  scale_y_continuous(expand = expansion(mult = c(0.10, 0.05))) + ggtitle("Liner scale y-axis"),  
+             p + scale_y_log10(expand = expansion(mult = c(0.10, 0.05))) + ggtitle("Log transformed y-axis"), nrow = 1)
+```
+
+
+:::{.callout-note}  
+A common challenge when plotting log ratios is handling zeros in either the numerator or denominator, since $\log(0)$ is undefined. Additionally, very small values can produce log ratios that approach positive or negative infinity, making the results unstable and difficult to interpret.
+
+A practical solution to address both issues is to apply a _continuity correction_, which involves adding a small constant to both the numerator and denominator. This prevents zeros and stabilizes extreme values. A commonly used constant is 0.5, leading to the following adjusted log ratio:
+
+$$
+\log\left( \frac{A + 0.5}{B + 0.5} \right)
+$$
+
+This simple adjustment helps ensure that log ratios remain finite and more interpretable, particularly when dealing with values close to 0. Additionally, when $A$ and $B$ are large, it closely approximates the actual log ratio $\log(A/B)$.
+:::
+
+
 
 ## Visual cues to be compared should be adjacent
 
@@ -784,7 +833,6 @@ d. Percentages should be shown as a pie chart.
 3\. Take a look at the following two plots. They show the same information: 1928 rates of measles across the 50 states.
 
 ```{r measels-exercise, fig.height = 5, echo=FALSE}
-library(gridExtra)
 p1 <- us_contagious_diseases |> 
   filter(year == 1928 & disease=="Measles" & count>0 & !is.na(population)) |> 
   mutate(rate = count / population * 10000 * 52 / weeks_reporting) |>

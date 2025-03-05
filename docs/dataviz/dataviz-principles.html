@@ -358,7 +358,13 @@ window.Quarto = {
   <li><a href="#aligning-plots-for-comparisons" id="toc-aligning-plots-for-comparisons" class="nav-link" data-scroll-target="#aligning-plots-for-comparisons"><span class="header-section-number">9.6.2</span> Aligning plots for comparisons</a></li>
   </ul>
 </li>
-  <li><a href="#transformations" id="toc-transformations" class="nav-link" data-scroll-target="#transformations"><span class="header-section-number">9.7</span> Transformations</a></li>
+  <li>
+<a href="#sec-log-transform" id="toc-sec-log-transform" class="nav-link" data-scroll-target="#sec-log-transform"><span class="header-section-number">9.7</span> Log transformations</a>
+  <ul class="collapse">
+<li><a href="#right-skewed-distributions" id="toc-right-skewed-distributions" class="nav-link" data-scroll-target="#right-skewed-distributions"><span class="header-section-number">9.7.1</span> Right-skewed distributions</a></li>
+  <li><a href="#ratios" id="toc-ratios" class="nav-link" data-scroll-target="#ratios"><span class="header-section-number">9.7.2</span> Ratios</a></li>
+  </ul>
+</li>
   <li><a href="#visual-cues-to-be-compared-should-be-adjacent" id="toc-visual-cues-to-be-compared-should-be-adjacent" class="nav-link" data-scroll-target="#visual-cues-to-be-compared-should-be-adjacent"><span class="header-section-number">9.8</span> Visual cues to be compared should be adjacent</a></li>
   <li><a href="#think-of-the-color-blind" id="toc-think-of-the-color-blind" class="nav-link" data-scroll-target="#think-of-the-color-blind"><span class="header-section-number">9.9</span> Think of the color blind</a></li>
   <li>
@@ -661,10 +667,9 @@ window.Quarto = {
 </div>
 </div>
 <p>Notice how much more we learn from the two plots on the right. Barplots are useful for showing one number, but not very useful when we want to describe distributions.</p>
-</section></section><section id="transformations" class="level2" data-number="9.7"><h2 data-number="9.7" class="anchored" data-anchor-id="transformations">
-<span class="header-section-number">9.7</span> Transformations</h2>
-<p>We have motivated the use of the log transformation in cases where the changes are multiplicative. Population size was an example in which we found a log transformation to yield a more informative transformation.</p>
-<p>The combination of an incorrectly chosen barplot and a failure to use a log transformation when one is merited can be particularly distorting. As an example, consider this barplot showing the average population sizes for each continent in 2015:</p>
+</section></section><section id="sec-log-transform" class="level2" data-number="9.7"><h2 data-number="9.7" class="anchored" data-anchor-id="sec-log-transform">
+<span class="header-section-number">9.7</span> Log transformations</h2>
+<p>The combination of an incorrectly chosen barplot and a failure to use a transformation when one is merited can be particularly distorting. As an example, consider this barplot showing the average population sizes for each continent in 2015:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -682,7 +687,11 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>Using a log transformation here provides a much more informative plot. We compare the original barplot to a boxplot using the log scale transformation for the y-axis:</p>
+<p>Here, we focus on examples in which the log transformation improves data visualization of skewed data. Other common transformations to be aware of include the logistic transformation (<code>logit</code>), which is useful for interpreting fold changes in odds, and the square root transformation (<code>sqrt</code>), which is often applied to stabilize variance in count data.</p>
+<section id="right-skewed-distributions" class="level3" data-number="9.7.1"><h3 data-number="9.7.1" class="anchored" data-anchor-id="right-skewed-distributions">
+<span class="header-section-number">9.7.1</span> Right-skewed distributions</h3>
+<p>Country population sizes provide a clear example of a <em>right-skewed</em> distribution: most countries have relatively small populations, while a few have extremely large ones. As shown in the box plot above, this imbalance causes most of the data points to be compressed into a small area of the plot, while a large portion of the plotting space is left empty. This makes it difficult to see meaningful differences among the majority of countries.</p>
+<p>In <a href="ggplot2.html#sec-scales" class="quarto-xref"><span>Section 8.10</span></a>, we saw how applying a log transformation improved the readability of a scatter plot by addressing this kind of skew. Similarly, applying a log transformation to population sizes here produces a much more informative visualization. Below, we compare the original barplot to a boxplot with a log-transformed y-axis to illustrate the improvement.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -692,8 +701,40 @@ window.Quarto = {
 </div>
 </div>
 <p>With the new plot, we realize that countries in Africa actually have a larger median population size than those in Asia.</p>
-<p>Other transformations you should consider are the logistic transformation (<code>logit</code>), useful to better see fold changes in odds, and the square root transformation (<code>sqrt</code>), useful for count data.</p>
-</section><section id="visual-cues-to-be-compared-should-be-adjacent" class="level2" data-number="9.8"><h2 data-number="9.8" class="anchored" data-anchor-id="visual-cues-to-be-compared-should-be-adjacent">
+</section><section id="ratios" class="level3" data-number="9.7.2"><h3 data-number="9.7.2" class="anchored" data-anchor-id="ratios">
+<span class="header-section-number">9.7.2</span> Ratios</h3>
+<p>Ratios are commonly used in data analysis to compare two values. For example, we often report the relative risk of developing a disease, such as stating that the risk of disease is <em>three times higher</em> in smokers than in non-smokers.</p>
+<p>Conceptually, ratios are centered around 1, where a ratio of 1 indicates no difference between the two values. However, mathematically, ratios are not symmetric around 1. For instance, if the ratio of <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span> is <span class="math inline">\(3\)</span>, meaning <span class="math inline">\(A\)</span> is three times larger than <span class="math inline">\(B\)</span>, the reverse ratio of <span class="math inline">\(B\)</span> to <span class="math inline">\(A\)</span> is <span class="math inline">\(1/3\)</span>. Notice that <span class="math inline">\(3\)</span> and <span class="math inline">\(1/3\)</span> are not equally distant from 1, which can make it difficult to visualize ratios in a way that fairly represents increases and decreases.</p>
+<p>For this reason, it is common to use a log transformation when displaying ratios. This is because the logarithm of a ratio has a symmetric property:</p>
+<p><span class="math display">\[
+\log(A/B) = -\log(B/A)
+\]</span><br>
+This means that if <span class="math inline">\(A\)</span> is three times larger than <span class="math inline">\(B\)</span>, the log ratio is equally distant from zero as when <span class="math inline">\(B\)</span> is three times larger than <span class="math inline">\(A\)</span>, but in the opposite direction. This symmetry around zero makes differences easier to interpret visually.</p>
+<p>Below is a plot demonstrating the advantage of using a log scale for displaying ratios.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="dataviz-principles_files/figure-html/log-ratio-better-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>A common challenge when plotting log ratios is handling zeros in either the numerator or denominator, since <span class="math inline">\(\log(0)\)</span> is undefined. Additionally, very small values can produce log ratios that approach positive or negative infinity, making the results unstable and difficult to interpret.</p>
+<p>A practical solution to address both issues is to apply a <em>continuity correction</em>, which involves adding a small constant to both the numerator and denominator. This prevents zeros and stabilizes extreme values. A commonly used constant is 0.5, leading to the following adjusted log ratio:</p>
+<p><span class="math display">\[
+\log\left( \frac{A + 0.5}{B + 0.5} \right)
+\]</span></p>
+<p>This simple adjustment helps ensure that log ratios remain finite and more interpretable, particularly when dealing with values close to 0. Additionally, when <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are large, it closely approximates the actual log ratio <span class="math inline">\(\log(A/B)\)</span>.</p>
+</div>
+</div>
+</div>
+</section></section><section id="visual-cues-to-be-compared-should-be-adjacent" class="level2" data-number="9.8"><h2 data-number="9.8" class="anchored" data-anchor-id="visual-cues-to-be-compared-should-be-adjacent">
 <span class="header-section-number">9.8</span> Visual cues to be compared should be adjacent</h2>
 <p>For each continent, let’s compare income in 1970 versus 2010. When comparing income data across regions between 1970 and 2010, we made a figure similar to the one below, but this time we investigate continents rather than regions.</p>
 <div class="cell" data-layout-align="center">
