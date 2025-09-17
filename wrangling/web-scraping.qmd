@@ -241,11 +241,11 @@ tab <- response |> resp_body_string() |> read_csv()
 
 We note that the returned object is only `r nrow(tab)` entries. API often limit how much you can download. 
 The documentation for this API^[<https://dev.socrata.com/docs/queries/>] explains that we can change this limit through the 
-`$limit` parameters. We can use the `req_url_path_append` to add this to our request:
+`$limit` parameters. We can use the `req_url_query` to add this to our request:
 
 ```{r}
 response <- request(url) |> 
-  req_url_path_append("?$limit=100000") |> 
+  req_url_query(`$limit` = 100000) |>
   req_perform() 
 ```
 

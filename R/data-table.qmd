@@ -47,7 +47,7 @@ We can also use the `.()` **data.table** notation to alert R that variables insi
 murders_dt[, .(state, region)] 
 ```
 
-### Adding or transformin variables
+### Adding or transforming variables
 
 We learned to use the **dplyr** `mutate` function with this example:
 
@@ -81,14 +81,14 @@ y <- x
 `y` is actually referencing `x`, it is not an new object: `y` just another name for `x`. Until you change `y`, a new object will not be made. However, the `:=` function changes *by reference* so if you change `x`, a new object is not made and `y` continues to be just another name for `x`:
 
 ```{r}
-x[,a := 2]
+x[, a := 2]
 y
 ```
 
 You can also change `x` like this:
 
 ```{r}
-y[,a := 1]
+y[, a := 1]
 x
 ```
 
@@ -97,7 +97,7 @@ To avoid this, you can use the `copy` function which forces the creation of an a
 ```{r}
 x <- data.table(a = 1)
 y <- copy(x)
-x[,a := 2]
+x[, a := 2]
 y
 ```
 
@@ -118,7 +118,7 @@ y <- setDT(x)
 The objects `x` and `y` are referencing the same data table:
 
 ```{r}
-x[,a := 2]
+x[, a := 2]
 y
 ```
 
@@ -198,6 +198,7 @@ median_min_max <- function(x){
   data.frame(median = qs[1], minimum = qs[2], maximum = qs[3])
 }
 ```
+
 
 In __data.table__ we place a function call within `.()` to obtain the three number summary:
 
