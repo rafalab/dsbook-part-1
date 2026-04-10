@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.27">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Rafael A. Irizarry">
 <title>16&nbsp; String processing – Introduction to Data Science</title>
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../cover.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-314d552717907458410b1a40a915f399.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-e6d0edd034577e10f8adaa8bd7de22cf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -376,8 +377,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="sec-stringr" class="level2" data-number="16.1"><h2 data-number="16.1" class="anchored" data-anchor-id="sec-stringr">
 <span class="header-section-number">16.1</span> The stringr package</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org">stringr</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org">stringr</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In general, string processing tasks can be divided into <strong>detecting</strong>, <strong>locating</strong>, <strong>extracting</strong>, or <strong>replacing</strong> patterns in strings. We will see several examples. The table below includes the functions available to you in the <strong>stringr</strong> package. We split them by task. We also include the base R equivalent when available.</p>
 <p>All these functions take a character vector as first argument. Also, for each function, operations are vectorized: the operation gets applied to each string in the vector.</p>
@@ -599,7 +600,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">16.2</span> Case study 1: self-reported heights</h2>
 <p>The <strong>dslabs</strong> package includes the raw data from which the heights dataset was obtained. You can load it like this:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">reported_heights</span><span class="op">)</span></span>
 <span><span class="co">#&gt;            time_stamp    sex height</span></span>
 <span><span class="co">#&gt; 1 2014-09-02 13:40:36   Male     75</span></span>
@@ -607,26 +608,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 3 2014-09-02 13:59:20   Male     68</span></span>
 <span><span class="co">#&gt; 4 2014-09-02 14:51:53   Male     74</span></span>
 <span><span class="co">#&gt; 5 2014-09-02 15:16:15   Male     61</span></span>
-<span><span class="co">#&gt; 6 2014-09-02 15:16:16 Female     65</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 6 2014-09-02 15:16:16 Female     65</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>These heights were obtained using a web form in which students were asked to enter their heights. They could enter anything, but the instructions asked for <em>height in inches</em>, a number. We compiled 1,095 submissions, but unfortunately the column vector with the reported heights had several non-numeric entries and as a result became a character vector:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">reported_heights</span><span class="op">$</span><span class="va">height</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "character"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">reported_heights</span><span class="op">$</span><span class="va">height</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "character"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>If we try to parse it into numbers, we get a warning:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">reported_heights</span><span class="op">$</span><span class="va">height</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: NAs introduced by coercion</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">reported_heights</span><span class="op">$</span><span class="va">height</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: NAs introduced by coercion</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Although most values appear to be height in inches as requested we do end up with many <code>NA</code>s:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 81</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 81</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Here are some of the entries that are not successfully converted:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">reported_heights</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">reported_heights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>new_height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">new_height</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
@@ -640,19 +641,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 7  2014-09-02 15:18:00   Male 5 feet and 8.11 inches         NA</span></span>
 <span><span class="co">#&gt; 8  2014-09-02 15:19:48   Male                   5'11         NA</span></span>
 <span><span class="co">#&gt; 9  2014-09-04 00:46:45   Male                  5'9''         NA</span></span>
-<span><span class="co">#&gt; 10 2014-09-04 10:29:44   Male                 5'10''         NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 10 2014-09-04 10:29:44   Male                 5'10''         NA</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We immediately see what is happening. Some of the students did not report their heights in inches as requested. We could discard these data and continue. However, many of the entries follow patterns that, in principle, we can easily convert to inches. For example, in the output above, we see various cases that use the format <code>x'y"</code> or <code>x'y''</code> with <code>x</code> and <code>y</code> representing feet and inches, respectively. Each one of these cases can be read and converted to inches by a human, for example <code>5'4"</code> is <code>5*12 + 4 = 64</code>. So we could fix all the problematic entries <em>by hand</em>. However, humans are prone to making mistakes, so an automated approach is preferable. Also, because we plan on continuing to collect data, it will be convenient to write code that automatically corrects entries entered in error.</p>
 <p>A first step in this type of task is to survey the problematic entries and try to define specific patterns followed by a large groups of entries. The larger these groups, the more entries we can fix with a single programmatic approach. We want to find patterns that can be accurately described with a rule, such as “a digit, followed by a feet symbol, followed by one or two digits, followed by an inches symbol”.</p>
 <p>To look for such patterns, it helps to remove the entries that are consistent with being in inches and to view only the problematic entries. We thus write a function to automatically do this. We keep entries that either result in <code>NA</code>s when applying <code>as.numeric</code> or are outside a range of plausible heights. We permit a range that covers about 99.9999% of the adult population. We also use <code>suppressWarnings</code> to avoid the warning message we know <code>as.numeric</code> will gives us.</p>
 <p>We apply this function and find the number of problematic entries:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">problems</span> <span class="op">&lt;-</span> <span class="va">reported_heights</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">problems</span> <span class="op">&lt;-</span> <span class="va">reported_heights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>inches <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/warning.html">suppressWarnings</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">inches</span><span class="op">)</span> <span class="op">|</span> <span class="va">inches</span> <span class="op">&lt;</span> <span class="fl">50</span> <span class="op">|</span> <span class="va">inches</span> <span class="op">&gt;</span> <span class="fl">84</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">problems</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 292</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 292</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can now view all the cases by simply printing them. If we do, we see that three patterns can be used to define three large groups within these exceptions.</p>
 <p>1. A pattern of the form <code>x'y</code> or <code>x' y''</code> or <code>x'y"</code> with <code>x</code> and <code>y</code> representing feet and inches, respectively. Here are ten examples:</p>
@@ -681,42 +682,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">16.3</span> Escaping</h2>
 <p>To define strings in R, we can use either double quotes or single quotes:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">"Hello!"</span></span>
-<span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">'Hello!'</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">"Hello!"</span></span>
+<span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">'Hello!'</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Make sure you choose the correct single quote, as opposed to the back quote <code>`</code>.</p>
 <p>Now, what happens if the string we want to define includes double quotes? For example, if we want to write 10 inches like this <code>10"</code>? In this case you can’t use:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="st">"10""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="st">"10""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>because this is just the string <code>10</code> followed by a double quote. If you type this into R, you get an error because you failed to close the double quote. To avoid this, we can use the single quotes:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">'10"'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">'10"'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>If we print out <code>s</code> we see that the double quotes are <em>escaped</em> with the backslash <code>\</code>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span></span>
-<span><span class="co">#&gt; [1] "10\""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span></span>
+<span><span class="co">#&gt; [1] "10\""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In fact, escaping with the backslash provides a way to define the string while still using the double quotes to define strings:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">"10\""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">"10\""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In R, the function <code>cat</code> lets us see what the string actually looks like:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 10"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 10"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now, what if we want our string to be 5 feet written like this <code>5'</code>? In this case, we can use the double quotes or escape the single quote</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">"5'"</span></span>
-<span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">'5\''</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">"5'"</span></span>
+<span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">'5\''</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>So we’ve learned how to write 5 feet and 10 inches separately, but what if we want to write them together to represent <em>5 feet and 10 inches</em> like this <code>5'10"</code>? In this case, neither the single nor double quotes will work since <code>'5'10"'</code> closes the string after 5 and this <code>"5'10""</code> closes the string after 10. Keep in mind that if we type one of the above code snippets into R, it will get stuck waiting for you to close the open quote and you will have to exit the execution with the <em>esc</em> button.</p>
 <p>To achieve the desired result we need to escape both quotes with the backslash <code>\</code>. You can escape either character that can be confused with a closing quote. These are the two options:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">'5\'10"'</span></span>
-<span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">"5'10\""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">'5\'10"'</span></span>
+<span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">"5'10\""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Escaping characters is something we often have to use when processing strings. Another characters that often needs escaping is the backslash character itself. We can do this with <code>\\</code>. When using regular expression, the topic of the next section, we often have to escape the <em>special characters</em> used in this approach.</p>
 </section><section id="sec-regex" class="level2" data-number="16.4"><h2 data-number="16.4" class="anchored" data-anchor-id="sec-regex">
@@ -728,51 +729,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">16.4.1</span> Strings are a regex</h3>
 <p>Technically any string is a regex, perhaps the simplest example is a single character. So the comma <code>,</code> used in the next code example is a simple example of searching with regex.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">","</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">","</span></span>
 <span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="st">"10"</span>, <span class="st">"100"</span>, <span class="st">"1,000"</span>, <span class="st">"10,000"</span><span class="op">)</span>, <span class="va">pattern</span><span class="op">)</span> </span>
-<span><span class="co">#&gt; [1] FALSE FALSE FALSE  TRUE  TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] FALSE FALSE FALSE  TRUE  TRUE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Above, we noted that an entry included a <code>cm</code>. This is also a simple example of a regex. We can show all the entries that used <code>cm</code> like this:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset</a></span><span class="op">(</span><span class="va">reported_heights</span><span class="op">$</span><span class="va">height</span>, <span class="st">"cm"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "165cm"  "170 cm"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset</a></span><span class="op">(</span><span class="va">reported_heights</span><span class="op">$</span><span class="va">height</span>, <span class="st">"cm"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "165cm"  "170 cm"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="special-characters" class="level3" data-number="16.4.2"><h3 data-number="16.4.2" class="anchored" data-anchor-id="special-characters">
 <span class="header-section-number">16.4.2</span> Special characters</h3>
 <p>Now let’s consider a slightly more complicated example. Which of the following strings contain the pattern <code>cm</code> or <code>inches</code>?</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">yes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"180 cm"</span>, <span class="st">"70 inches"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">yes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"180 cm"</span>, <span class="st">"70 inches"</span><span class="op">)</span></span>
 <span><span class="va">no</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"180"</span>, <span class="st">"70''"</span><span class="op">)</span></span>
-<span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">yes</span>, <span class="va">no</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">yes</span>, <span class="va">no</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can do this with two searches:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">"cm"</span><span class="op">)</span> <span class="op">|</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">"inches"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1]  TRUE  TRUE FALSE FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">"cm"</span><span class="op">)</span> <span class="op">|</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">"inches"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1]  TRUE  TRUE FALSE FALSE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>However, we don’t need to do this. The main feature that distinguishes the regex <em>language</em> from plain strings is that we can use special characters. These are characters with a meaning. We start by introducing <code>|</code> which means <em>or</em>. So if we want to know if either <code>cm</code> or <code>inches</code> appears in the strings, we can use the regex <code>cm|inches</code>:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">"cm|inches"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1]  TRUE  TRUE FALSE FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">"cm|inches"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1]  TRUE  TRUE FALSE FALSE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>and obtain the correct answer.</p>
 <p>Another special character that will be useful for identifying feet and inches values is <code>\d</code> which means any digit: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9. The backslash is used to distinguish it from the character <code>d</code>. In R, we have to <em>escape</em> the backslash <code>\</code> so we actually have to use <code>\\d</code> to represent digits. Here is an example:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">yes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"5"</span>, <span class="st">"6"</span>, <span class="st">"5'10"</span>, <span class="st">"5 feet"</span>, <span class="st">"4'11"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">yes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"5"</span>, <span class="st">"6"</span>, <span class="st">"5'10"</span>, <span class="st">"5 feet"</span>, <span class="st">"4'11"</span><span class="op">)</span></span>
 <span><span class="va">no</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"."</span>, <span class="st">"Five"</span>, <span class="st">"six"</span><span class="op">)</span></span>
 <span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">yes</span>, <span class="va">no</span><span class="op">)</span></span>
 <span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"\\d"</span></span>
 <span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We take this opportunity to introduce the <code>str_view</code> function, which is helpful for troubleshooting as it shows us all matches for each string that has matches. Each match is surrounded by the characters <code>&lt;</code> and <code>&gt;</code>. Below, we see that <code>5</code> has one match and <code>5'10</code> has three matches.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><img src="img/str_view-1.png" class="img-fluid" style="width:80.0%"></p>
 <p>To view all strings, even if there wasn’t a match, we can use the <code>match = NA</code> parameter.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern</span>, match <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern</span>, match <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><img src="img/str_view-2.png" class="img-fluid" style="width:80.0%"></p>
 <p>Another useful special character is <code>\w</code> which stands for <em>word character</em> and it matches any letter, number, or underscore.</p>
@@ -781,16 +782,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">16.4.3</span> Character classes</h3>
 <p>Character classes are used to define a series of characters that can be matched. We define character classes with square brackets <code>[]</code>. So, for example, if we want the pattern to match only if we have a <code>5</code> or a <code>6</code>, we use the regex <code>[56]</code>:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">"[56]"</span>, match <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">"[56]"</span>, match <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><img src="img/str_view-3.png" class="img-fluid" style="width:80.0%"></p>
 <p>Suppose we want to match values between 4 and 7. A common way to define character classes is with ranges. So, for example, <code>[0-9]</code> is equivalent to <code>\\d</code>. The pattern we want is therefore <code>[4-7]</code>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">yes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fl">4</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">yes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fl">4</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span></span>
 <span><span class="va">no</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">yes</span>, <span class="va">no</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">"[4-7]"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>However, it is important to know that in regex everything is a character; there are no numbers. So <code>4</code> is the character <code>4</code> not the number four. Notice, for example, that <code>[1-20]</code> does <strong>not</strong> mean 1 through 20, it means the characters 1 through 2 or the character 0. So <code>[1-20]</code> simply means the character class composed of 0, 1, and 2.</p>
 <p>Keep in mind that characters do have an order and the digits do follow the numeric order. So <code>0</code> comes before <code>1</code> which comes before <code>2</code> and so on. For the same reason, we can define lower case letters as <code>[a-z]</code>, upper case letters as <code>[A-Z]</code>, and <code>[a-zA-z]</code> as both.</p>
@@ -800,11 +801,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>What if we want a match when we have exactly 1 digit? This will be useful in our case study since feet are never more than 1 digit so a restriction will help us. One way to do this with regex is by using <em>anchors</em>, which let us define patterns that must start or end at a specific place. The two most common anchors are <code>^</code> and <code>$</code> which represent the beginning and end of a string, respectively. So the pattern <code>^\\d$</code> is read as “start of the string followed by one digit followed by end of string”.</p>
 <p>This pattern now only detects the strings with exactly one digit:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"^\\d$"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"^\\d$"</span></span>
 <span><span class="va">yes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="st">"5"</span>, <span class="st">"9"</span><span class="op">)</span></span>
 <span><span class="va">no</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"12"</span>, <span class="st">"123"</span>, <span class="st">" 1"</span>, <span class="st">"a4"</span>, <span class="st">"b"</span><span class="op">)</span></span>
 <span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">yes</span>, <span class="va">no</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern</span>, match <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern</span>, match <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><img src="img/str_view-4.png" class="img-fluid" style="width:80.0%"></p>
 <p>The <code>1</code> does not match because it does not start with the digit but rather with a space, which is not easy to see.</p>
@@ -813,16 +814,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For the inches part, we can have one or two digits. This can be specified in regex with <em>quantifiers</em>. This is done by following the pattern with curly brackets containing the number of times the previous entry can be repeated. We call the <em>bounded</em> because the numbers in the quantifier are limited by the numbers in the curly brackets. Later we learn about <em>unbounded quantifiers</em>.</p>
 <p>We use an example to illustrate. The pattern for one or two digits is:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"^\\d{1,2}$"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"^\\d{1,2}$"</span></span>
 <span><span class="va">yes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="st">"5"</span>, <span class="st">"9"</span>, <span class="st">"12"</span><span class="op">)</span></span>
 <span><span class="va">no</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"123"</span>, <span class="st">"a4"</span>, <span class="st">"b"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">yes</span>, <span class="va">no</span><span class="op">)</span>, <span class="va">pattern</span>, match <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">yes</span>, <span class="va">no</span><span class="op">)</span>, <span class="va">pattern</span>, match <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><img src="img/str_view-5.png" class="img-fluid" style="width:80.0%"></p>
 <p>In this case, <code>123</code> does <strong>not</strong> match, but <code>12</code> does. To look for our feet and inches pattern, we can add the symbols for feet <code>'</code> and inches <code>"</code> after the digits.</p>
 <p>With what we have learned, we can now construct an example for the pattern <code>x'y"</code> with <code>x</code> feet and <code>y</code> inches.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"^[4-7]'\\d{1,2}\"$"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"^[4-7]'\\d{1,2}\"$"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The pattern is now getting complex, but you can look at it carefully and break it down:</p>
 <ul>
@@ -841,26 +842,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Let’s test it out:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">yes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"5'7\""</span>, <span class="st">"6'2\""</span>,  <span class="st">"5'12\""</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">yes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"5'7\""</span>, <span class="st">"6'2\""</span>,  <span class="st">"5'12\""</span><span class="op">)</span></span>
 <span><span class="va">no</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"6,2\""</span>, <span class="st">"6.2\""</span>,<span class="st">"I am 5'11\""</span>, <span class="st">"3'2\""</span>, <span class="st">"64"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">yes</span>, <span class="va">pattern</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE TRUE TRUE</span></span>
 <span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">no</span>, <span class="va">pattern</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] FALSE FALSE FALSE FALSE FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] FALSE FALSE FALSE FALSE FALSE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>For now, we are permitting the inches to be 12 or larger. We will add a restriction later as the regex for this is a bit more complex than we are ready to show.</p>
 </section><section id="white-space" class="level3" data-number="16.4.6"><h3 data-number="16.4.6" class="anchored" data-anchor-id="white-space">
 <span class="header-section-number">16.4.6</span> White space</h3>
 <p>Another problem we have is spaces. For example, our pattern does not match <code>5' 4"</code> because there is a space between <code>'</code> and <code>4</code> which our pattern does not permit. Spaces are characters and R does not ignore them:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/identical.html">identical</a></span><span class="op">(</span><span class="st">"Hi"</span>, <span class="st">"Hi "</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/identical.html">identical</a></span><span class="op">(</span><span class="st">"Hi"</span>, <span class="st">"Hi "</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] FALSE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In regex, <code>\s</code> represents white space. To find patterns like <code>5' 4</code>, we can change our pattern to:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern_2</span> <span class="op">&lt;-</span> <span class="st">"^[4-7]'\\s\\d{1,2}\"$"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern_2</span> <span class="op">&lt;-</span> <span class="st">"^[4-7]'\\s\\d{1,2}\"$"</span></span>
 <span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset</a></span><span class="op">(</span><span class="va">problems</span>, <span class="va">pattern_2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "5' 4\""  "5' 11\"" "5' 7\""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "5' 4\""  "5' 11\"" "5' 7\""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>However, this will not match the patterns with no space. So do we need more than one regex pattern? It turns out we can use a quantifier for this as well.</p>
 </section><section id="unbounded-quantifiers" class="level3" data-number="16.4.7"><h3 data-number="16.4.7" class="anchored" data-anchor-id="unbounded-quantifiers">
@@ -868,17 +869,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </h3>
 <p>We want the pattern to permit spaces but not require them. Even if there are several spaces, like in this example <code>5'   4</code>, we still want it to match. There is a quantifier for exactly this purpose. In regex, the character <code>*</code> means zero or more instances of the previous character. Here is an example:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">yes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"AB"</span>, <span class="st">"A1B"</span>, <span class="st">"A11B"</span>, <span class="st">"A111B"</span>, <span class="st">"A1111B"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">yes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"AB"</span>, <span class="st">"A1B"</span>, <span class="st">"A11B"</span>, <span class="st">"A111B"</span>, <span class="st">"A1111B"</span><span class="op">)</span></span>
 <span><span class="va">no</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A2B"</span>, <span class="st">"A21B"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">yes</span>, <span class="st">"A1*B"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE TRUE TRUE TRUE TRUE</span></span>
 <span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">no</span>, <span class="st">"A1*B"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] FALSE FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] FALSE FALSE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The above matches the first string which has zero 1s and all the strings with one or more 1s. We can then improve our pattern by adding the <code>*</code> after the space character <code>\s</code>.</p>
 <p>There are two other similar quantifiers. For none or once, we can use <code>?</code>, and for one or more, we can use <code>+</code>. You can see how they differ with this example:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>string <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"AB"</span>, <span class="st">"A1B"</span>, <span class="st">"A11B"</span>, <span class="st">"A111B"</span>, <span class="st">"A1111B"</span><span class="op">)</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>string <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"AB"</span>, <span class="st">"A1B"</span>, <span class="st">"A11B"</span>, <span class="st">"A111B"</span>, <span class="st">"A1111B"</span><span class="op">)</span>,</span>
 <span>           none_or_more <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">yes</span>, <span class="st">"A1*B"</span><span class="op">)</span>,</span>
 <span>           nore_or_once <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">yes</span>, <span class="st">"A1?B"</span><span class="op">)</span>,</span>
 <span>           once_or_more <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">yes</span>, <span class="st">"A1+B"</span><span class="op">)</span><span class="op">)</span></span>
@@ -887,20 +888,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 2    A1B         TRUE         TRUE         TRUE</span></span>
 <span><span class="co">#&gt; 3   A11B         TRUE        FALSE         TRUE</span></span>
 <span><span class="co">#&gt; 4  A111B         TRUE        FALSE         TRUE</span></span>
-<span><span class="co">#&gt; 5 A1111B         TRUE        FALSE         TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 5 A1111B         TRUE        FALSE         TRUE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We will actually use all three in our reported heights example, but we will see these in a later section.</p>
 </section><section id="not" class="level3" data-number="16.4.8"><h3 data-number="16.4.8" class="anchored" data-anchor-id="not">
 <span class="header-section-number">16.4.8</span> Not</h3>
 <p>To specify patterns that we do <strong>not</strong> want to detect, we can use the <code>^</code> symbol but only <strong>inside</strong> square brackets. Remember that outside the square bracket <code>^</code> means the start of the string. So, for example, if we want to detect digits that are preceded by anything except a letter we can do the following:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"[^a-zA-Z]\\d"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"[^a-zA-Z]\\d"</span></span>
 <span><span class="va">yes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">".3"</span>, <span class="st">"+2"</span>, <span class="st">"-0"</span>,<span class="st">"*4"</span><span class="op">)</span></span>
 <span><span class="va">no</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A3"</span>, <span class="st">"B2"</span>, <span class="st">"C0"</span>, <span class="st">"E4"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">yes</span>, <span class="va">pattern</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE TRUE TRUE TRUE</span></span>
 <span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">no</span>, <span class="va">pattern</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] FALSE FALSE FALSE FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] FALSE FALSE FALSE FALSE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Another way to generate a pattern that searches for <em>everything except</em> is to use the upper case of the special character. For example <code>\\D</code> means anything other than a digit, <code>\\S</code> means anything except a space, and so on.</p>
 </section><section id="sec-groups" class="level3" data-number="16.4.9"><h3 data-number="16.4.9" class="anchored" data-anchor-id="sec-groups">
@@ -909,25 +910,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We want to change heights written like <code>5.6</code> to <code>5'6</code>.</p>
 <p>To avoid changing patterns such as <code>70.2</code>, we will require that the first digit be between 4 and 7 <code>[4-7]</code> and that the second be none or more digits <code>\\d*</code>. Let’s start by defining a simple pattern that matches this:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern_without_groups</span> <span class="op">&lt;-</span> <span class="st">"^[4-7],\\d*$"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern_without_groups</span> <span class="op">&lt;-</span> <span class="st">"^[4-7],\\d*$"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We want to extract the digits so we can then form the new version using a period. These are our two groups, so we encapsulate them with parentheses:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern_with_groups</span> <span class="op">&lt;-</span>  <span class="st">"^([4-7]),(\\d*)$"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern_with_groups</span> <span class="op">&lt;-</span>  <span class="st">"^([4-7]),(\\d*)$"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We encapsulate the part of the pattern that matches the parts we want to keep for later use. Adding groups does not affect the detection, since it only signals that we want to save what is captured by the groups. Note that both patterns return the same result when using <code>str_detect</code>:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">yes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"5,9"</span>, <span class="st">"5,11"</span>, <span class="st">"6,"</span>, <span class="st">"6,1"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">yes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"5,9"</span>, <span class="st">"5,11"</span>, <span class="st">"6,"</span>, <span class="st">"6,1"</span><span class="op">)</span></span>
 <span><span class="va">no</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"5'9"</span>, <span class="st">","</span>, <span class="st">"2,8"</span>, <span class="st">"6.1.1"</span><span class="op">)</span></span>
 <span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">yes</span>, <span class="va">no</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern_without_groups</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE</span></span>
 <span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern_with_groups</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Once we define groups, we can use the function <code>str_match</code> to extract the values these groups define:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_match.html">str_match</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern_with_groups</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_match.html">str_match</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern_with_groups</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      [,1]   [,2] [,3]</span></span>
 <span><span class="co">#&gt; [1,] "5,9"  "5"  "9" </span></span>
 <span><span class="co">#&gt; [2,] "5,11" "5"  "11"</span></span>
@@ -936,64 +937,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; [5,] NA     NA   NA  </span></span>
 <span><span class="co">#&gt; [6,] NA     NA   NA  </span></span>
 <span><span class="co">#&gt; [7,] NA     NA   NA  </span></span>
-<span><span class="co">#&gt; [8,] NA     NA   NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [8,] NA     NA   NA</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Notice that the second and third columns contain feet and inches, respectively. The first column is the part of the string matching the pattern. If no match occurred, we see an <code>NA</code>.</p>
 <p>Now we can understand the difference between the functions <code>str_extract</code> and <code>str_match</code>. <code>str_extract</code> extracts only strings that match a pattern, not the values defined by groups:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern_with_groups</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "5,9"  "5,11" "6,"   "6,1"  NA     NA     NA     NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern_with_groups</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "5,9"  "5,11" "6,"   "6,1"  NA     NA     NA     NA</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="search-and-replace" class="level3" data-number="16.4.10"><h3 data-number="16.4.10" class="anchored" data-anchor-id="search-and-replace">
 <span class="header-section-number">16.4.10</span> Search and replace</h3>
 <p>Earlier we defined the object <code>problems</code> containing the strings that do not appear to be in inches. We can see that not too many of our problematic strings match the pattern:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"^[4-7]'\\d{1,2}\"$"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"^[4-7]'\\d{1,2}\"$"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">problems</span>, <span class="va">pattern</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 14</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 14</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>To see why this is, we show some examples that expose why we don’t have more matches:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">problems</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">10</span>, <span class="fl">11</span>, <span class="fl">12</span>, <span class="fl">15</span><span class="op">)</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">pattern</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">problems</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">10</span>, <span class="fl">11</span>, <span class="fl">12</span>, <span class="fl">15</span><span class="op">)</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_view.html">str_view</a></span><span class="op">(</span><span class="va">pattern</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><img src="img/str_view-6.png" class="img-fluid" style="width:80.0%"></p>
 <p>An initial problem we see immediately is that some students wrote out the words “feet” and “inches”. We can see the entries that did this with the <code>str_subset</code> function:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset</a></span><span class="op">(</span><span class="va">problems</span>, <span class="st">"inches"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset</a></span><span class="op">(</span><span class="va">problems</span>, <span class="st">"inches"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "5 feet and 8.11 inches" "Five foot eight inches"</span></span>
 <span><span class="co">#&gt; [3] "5 feet 7inches"         "5ft 9 inches"          </span></span>
-<span><span class="co">#&gt; [5] "5 ft 9 inches"          "5 feet 6 inches"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [5] "5 ft 9 inches"          "5 feet 6 inches"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We also see that some entries used two single quotes <code>''</code> instead of a double quote <code>"</code>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset</a></span><span class="op">(</span><span class="va">problems</span>, <span class="st">"''"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset</a></span><span class="op">(</span><span class="va">problems</span>, <span class="st">"''"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "5'9''"   "5'10''"  "5'10''"  "5'3''"   "5'7''"   "5'6''"  </span></span>
-<span><span class="co">#&gt;  [7] "5'7.5''" "5'7.5''" "5'10''"  "5'11''"  "5'10''"  "5'5''"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;  [7] "5'7.5''" "5'7.5''" "5'10''"  "5'11''"  "5'10''"  "5'5''"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>To correct this, we can replace the different ways of representing inches and feet with a uniform symbol. We will use <code>'</code> for feet, whereas for inches we will simply not use a symbol since some entries were of the form <code>x'y</code>. Now, if we no longer use the inches symbol, we have to change our pattern accordingly:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"^[4-7]'\\d{1,2}$"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"^[4-7]'\\d{1,2}$"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>If we do this replacement before the matching, we get many more matches:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">problems</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">problems</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span><span class="st">"feet|ft|foot"</span>, <span class="st">"'"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># replace feet, ft, foot with ' </span></span>
 <span>  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span><span class="st">"inches|in|''|\""</span>, <span class="st">""</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># remove all inches symbols</span></span>
 <span>  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">pattern</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 48</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 48</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>However, we still have many cases to go.</p>
 <p>Note that in the code above, we leveraged the <strong>stringr</strong> consistency and used the pipe.</p>
 <p>For now, we improve our pattern by adding <code>\\s*</code> in front of and after the feet symbol <code>'</code> to permit space between the feet symbol and the numbers. Now we match a few more entries:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"^[4-7]\\s*'\\s*\\d{1,2}$"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"^[4-7]\\s*'\\s*\\d{1,2}$"</span></span>
 <span><span class="va">problems</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span><span class="st">"feet|ft|foot"</span>, <span class="st">"'"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># replace feet, ft, foot with ' </span></span>
 <span>  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span><span class="st">"inches|in|''|\""</span>, <span class="st">""</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># remove all inches symbols</span></span>
 <span>  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">pattern</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 53</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 53</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We might be tempted to avoid doing this by removing all the spaces with <code>str_replace_all</code>. However, when doing such an operation we need to make sure that it does not have unintended effects. In our reported heights examples, this will be a problem because some entries are of the form <code>x y</code> with space separating the feet from the inches. If we remove all spaces, we will incorrectly turn <code>x y</code> into <code>xy</code> which implies that a <code>6 1</code> would become <code>61</code> inches instead of <code>73</code> inches.</p>
 <p>The second large type of problematic entries were of the form <code>x.y</code>, <code>x,y</code> and <code>x y</code>. We want to change all these to our common format <code>x'y</code>. But we can’t just do a search and replace because we would change values such as <code>70.5</code> into <code>70'5</code>. Our strategy will therefore be to search for a very specific pattern that assures us feet and inches are being provided and then, for those that match, replace appropriately.</p>
@@ -1002,17 +1003,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Another powerful aspect of groups is that you can refer to the extracted values in a regex when searching and replacing.</p>
 <p>The regex special character for the <code>i</code>-th group is <code>\\i</code>. So <code>\\1</code> is the value extracted from the first group, <code>\\2</code> the value from the second and so on. As a simple example, note that the following code will replace a comma with period, but only if it is after a digit between 4 and 7, and followed by zero or more digits:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern_with_groups</span> <span class="op">&lt;-</span>  <span class="st">"^([4-7]),(\\d*)$"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern_with_groups</span> <span class="op">&lt;-</span>  <span class="st">"^([4-7]),(\\d*)$"</span></span>
 <span><span class="va">yes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"5,9"</span>, <span class="st">"5,11"</span>, <span class="st">"6,"</span>, <span class="st">"6,1"</span><span class="op">)</span></span>
 <span><span class="va">no</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"5'9"</span>, <span class="st">","</span>, <span class="st">"2,8"</span>, <span class="st">"6.1.1"</span><span class="op">)</span></span>
 <span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">yes</span>, <span class="va">no</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">pattern_with_groups</span>, <span class="st">"\\1'\\2"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "5'9"   "5'11"  "6'"    "6'1"   "5'9"   ","     "2,8"   "6.1.1"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "5'9"   "5'11"  "6'"    "6'1"   "5'9"   ","     "2,8"   "6.1.1"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can use this to convert cases in our reported heights.</p>
 <p>We are now ready to define a pattern that helps us convert all the <code>x.y</code>, <code>x,y</code> and <code>x y</code> to our preferred format. We need to adapt <code>pattern_with_groups</code> to be a bit more flexible and capture all the cases.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern_with_groups</span> <span class="op">&lt;-</span> <span class="st">"^([4-7])\\s*[,\\.\\s+]\\s*(\\d*)$"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern_with_groups</span> <span class="op">&lt;-</span> <span class="st">"^([4-7])\\s*[,\\.\\s+]\\s*(\\d*)$"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Let’s break this one down:</p>
 <ul>
@@ -1033,14 +1034,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>We can see that it appears to be working:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset</a></span><span class="op">(</span><span class="va">problems</span>, <span class="va">pattern_with_groups</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "5.3"  "5.25" "5.5"  "6.5"  "5.8"  "5.6"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset</a></span><span class="op">(</span><span class="va">problems</span>, <span class="va">pattern_with_groups</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "5.3"  "5.25" "5.5"  "6.5"  "5.8"  "5.6"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>and will be able to perform the search and replace:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset</a></span><span class="op">(</span><span class="va">problems</span>, <span class="va">pattern_with_groups</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset</a></span><span class="op">(</span><span class="va">problems</span>, <span class="va">pattern_with_groups</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span><span class="va">pattern_with_groups</span>, <span class="st">"\\1'\\2"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "5'3"  "5'25" "5'5"  "6'5"  "5'8"  "5'6"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "5'3"  "5'25" "5'5"  "6'5"  "5'8"  "5'6"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Again, we will deal with the inches-larger-than-twelve challenge later.</p>
 </section><section id="lookarounds" class="level3" data-number="16.4.12"><h3 data-number="16.4.12" class="anchored" data-anchor-id="lookarounds">
@@ -1049,24 +1050,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>There are four types of lookarounds: lookahead <code>(?=pattern)</code>, lookbehind <code>(?&lt;=pattern)</code>, negative lookahead <code>(?!pattern)</code>, and negative lookbehind <code>(?&lt;!pattern)</code>.</p>
 <p>The conventional example checking password that must satisfy several conditions such as 1) 8-16 word characters, 2) starts with a letter, and 3) has at least one digit. You can concatenate lookarounds to check for multiple conditions. For our example we can write</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"(?=\\w{8,16})(?=^[a-z|A-Z].*)(?=.*\\d+.*)"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"(?=\\w{8,16})(?=^[a-z|A-Z].*)(?=.*\\d+.*)"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>A simpler example is changing all <code>superman</code> to <code>supergirl</code> without changing all the men to girl. We could use a lookaround like this:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">"Superman saved a man. The man thanked superman."</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">"Superman saved a man. The man thanked superman."</span></span>
 <span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">"(?&lt;=[Ss]uper)man"</span>, <span class="st">"girl"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Supergirl saved a man. The man thanked supergirl."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "Supergirl saved a man. The man thanked supergirl."</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="sec-separate_regex" class="level3" data-number="16.4.13"><h3 data-number="16.4.13" class="anchored" data-anchor-id="sec-separate_regex">
 <span class="header-section-number">16.4.13</span> Separating variables</h3>
 <p>In <a href="reshaping-data.html#sec-separate" class="quarto-xref"><span>Section 11.3</span></a> we introduced functions that can split columns into new ones. The <code>separate_wider_regex</code> uses regex instead of delimiters to separate variables in data frames. It uses an approach similar to regex groups and turns each of groups into a new column.</p>
 <p>Suppose we have data frame like this:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"5'10"</span>, <span class="st">"6' 1"</span>, <span class="st">"5 ' 9"</span>, <span class="st">"5'11\""</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"5'10"</span>, <span class="st">"6' 1"</span>, <span class="st">"5 ' 9"</span>, <span class="st">"5'11\""</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Note that using <code>separate_wider_delim</code> won’t work here because the delimiter can varies across entries. With <code>separate_wider_regex</code> we can define flexible patterns that are matched to define each column.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">patterns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>feet <span class="op">=</span> <span class="st">"\\d"</span>, <span class="st">"\\s*'\\s*"</span>, inches <span class="op">=</span> <span class="st">"\\d{1,2}"</span>, <span class="st">".*"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">patterns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>feet <span class="op">=</span> <span class="st">"\\d"</span>, <span class="st">"\\s*'\\s*"</span>, inches <span class="op">=</span> <span class="st">"\\d{1,2}"</span>, <span class="st">".*"</span><span class="op">)</span></span>
 <span><span class="va">tab</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html">separate_wider_regex</a></span><span class="op">(</span><span class="va">x</span>, patterns <span class="op">=</span> <span class="va">patterns</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 4 × 2</span></span>
 <span><span class="co">#&gt;   feet  inches</span></span>
@@ -1074,31 +1075,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 1 5     10    </span></span>
 <span><span class="co">#&gt; 2 6     1     </span></span>
 <span><span class="co">#&gt; 3 5     9     </span></span>
-<span><span class="co">#&gt; 4 5     11</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 4 5     11</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>By not naming the second and fourth entries of <code>patterns</code> we tell the function not to keep the values that match that pattern.</p>
 </section></section><section id="trimming" class="level2" data-number="16.5"><h2 data-number="16.5" class="anchored" data-anchor-id="trimming">
 <span class="header-section-number">16.5</span> Trimming</h2>
 <p>In general, spaces at the start or end of the string are uninformative. These can be particularly deceptive because sometimes they can be hard to see:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">"Hi "</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="st">"Hi "</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Hi</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/identical.html">identical</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">"Hi"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] FALSE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This is a general enough problem that there is a function dedicated to removing them: <code>str_trim</code>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim</a></span><span class="op">(</span><span class="st">"5 ' 9 "</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "5 ' 9"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim</a></span><span class="op">(</span><span class="st">"5 ' 9 "</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "5 ' 9"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="case-conversion" class="level2" data-number="16.6"><h2 data-number="16.6" class="anchored" data-anchor-id="case-conversion">
 <span class="header-section-number">16.6</span> Case conversion</h2>
 <p>Notice that regex is case sensitive. Often we want to match a word regardless of case. One approach to doing this is to first change everything to lower case and then proceeding ignoring case. As an example, note that one of the entries writes out numbers as words <code>Five foot eight inches</code>. Although not efficient, we could add 13 extra <code>str_replace</code> calls to convert <code>zero</code> to <code>0</code>, <code>one</code> to <code>1</code>, and so on. To avoid having to write two separate operations for <code>Zero</code> and <code>zero</code>, <code>One</code> and <code>one</code>, etc., we can use the <code>str_to_lower</code> function to make all works lower case first:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Five feet eight inches"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Five feet eight inches"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_lower</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "five feet eight inches"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "five feet eight inches"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Other related functions are <code>str_to_upper</code> and <code>str_to_title</code>. We are now ready to define a procedure that converts all the problematic cases to inches.</p>
 </section><section id="case-study-1-continued-putting-it-all-together" class="level2" data-number="16.7"><h2 data-number="16.7" class="anchored" data-anchor-id="case-study-1-continued-putting-it-all-together">
@@ -1106,34 +1107,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We are now ready to put it all together and wrangle our reported heights data to try to recover as many heights as possible. The code is complex, but we will break it down into parts.</p>
 <p>Let’s see how many problematic entries we can recover with the approaches we covered in <a href="#sec-regex" class="quarto-xref"><span>Section 16.4</span></a>. We will first define a function that detects entries that are not reported as inches or centimeters:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">not_inches_or_cm</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">smallest</span> <span class="op">=</span> <span class="fl">50</span>, <span class="va">tallest</span> <span class="op">=</span> <span class="fl">84</span><span class="op">)</span><span class="op">{</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">not_inches_or_cm</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">smallest</span> <span class="op">=</span> <span class="fl">50</span>, <span class="va">tallest</span> <span class="op">=</span> <span class="fl">84</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="va">inches</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/warning.html">suppressWarnings</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">inches</span><span class="op">)</span> <span class="op">|</span></span>
 <span>    <span class="op">!</span><span class="op">(</span><span class="op">(</span><span class="va">inches</span> <span class="op">&gt;=</span> <span class="va">smallest</span> <span class="op">&amp;</span> <span class="va">inches</span> <span class="op">&lt;=</span> <span class="va">tallest</span><span class="op">)</span> <span class="op">|</span></span>
 <span>        <span class="op">(</span><span class="va">inches</span><span class="op">/</span><span class="fl">2.54</span> <span class="op">&gt;=</span> <span class="va">smallest</span> <span class="op">&amp;</span> <span class="va">inches</span><span class="op">/</span><span class="fl">2.54</span> <span class="op">&lt;=</span> <span class="va">tallest</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can see how many entries are not inches or centimeters:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">problems</span> <span class="op">&lt;-</span> <span class="va">reported_heights</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">problems</span> <span class="op">&lt;-</span> <span class="va">reported_heights</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu">not_inches_or_cm</span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">problems</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 200</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 200</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Let’s see how many feet<code>'</code>inches format we can recover applying the finding from <a href="#sec-regex" class="quarto-xref"><span>Section 16.4</span></a>. Specifically we replace feet/foot/ft with <code>'</code>, we remove the word inches and its abbreviations, then rewrite similar patterns into the desired feet<code>'</code>inches pattern. Once this is done we see what proportion don’t fit the desired pattern</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">converted</span> <span class="op">&lt;-</span> <span class="va">problems</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">converted</span> <span class="op">&lt;-</span> <span class="va">problems</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span><span class="st">"feet|foot|ft"</span>, <span class="st">"'"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_remove.html">str_remove_all</a></span><span class="op">(</span><span class="st">"inches|in|''|\""</span><span class="op">)</span> <span class="op">|&gt;</span>  </span>
 <span>  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span><span class="st">"^([4-7])\\s*[,\\.\\s+]\\s*(\\d*)$"</span>, <span class="st">"\\1'\\2"</span><span class="op">)</span> </span>
 <span><span class="va">index</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">converted</span>, <span class="st">"^[4-7]\\s*'\\s*\\d{1,2}$"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="op">!</span><span class="va">index</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.385</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] 0.385</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We see that a substantial proportion has not yet been fixed. Trial and error is a common approach to finding the regex pattern that satisfies all desired conditions. We can examine the remaining cases to try to decipher if new patterns we can use to fix them:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">converted</span><span class="op">[</span><span class="op">!</span><span class="va">index</span><span class="op">]</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">converted</span><span class="op">[</span><span class="op">!</span><span class="va">index</span><span class="op">]</span></span>
 <span><span class="co">#&gt;  [1] "6"             "165cm"         "511"           "6"            </span></span>
 <span><span class="co">#&gt;  [5] "2"             "&gt;9000"         "5 ' and 8.11 " "11111"        </span></span>
 <span><span class="co">#&gt;  [9] "6"             "103.2"         "19"            "5"            </span></span>
@@ -1153,11 +1154,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; [65] "728,346"       "0"             "6"             "6"            </span></span>
 <span><span class="co">#&gt; [69] "6"             "100"           "88"            "6"            </span></span>
 <span><span class="co">#&gt; [73] "170 cm"        "7,283,465"     "5"             "5"            </span></span>
-<span><span class="co">#&gt; [77] "34"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [77] "34"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We noticed that two students added <code>cm</code> and some entries have space at the end so we write incorporate this into our cleanup stage. We also notice that at least one entry wrote out numbers such as <code>Five foot eight inches</code>. We can use the <code><a href="https://rdrr.io/pkg/english/man/words.html">words()</a></code> function in the <strong>english</strong> package to change these to actual numbers. In preparation for our final product, we define a function that cleans up previously noticed problems and these new ones:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">english</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">english</span><span class="op">)</span></span>
 <span><span class="va">cleanup</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">s</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_remove.html">str_remove_all</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">"inches|in|''|\"|cm|and"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1166,16 +1167,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span><span class="va">s</span>, <span class="fu"><a href="https://rdrr.io/pkg/english/man/words.html">words</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Many also notice that students measuring exactly 5 or 6 feet did not enter any inches, for example <code>6'</code>, and our pattern requires that inches be included, and that some entries are in meters and some of these use European decimals, for example <code>1.6</code> and <code>1,70</code>. So we create a function that add these corrections to those already identified as needed to reformat the entry as feet<code>'</code>inches:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">convert_format</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">s</span><span class="op">)</span><span class="op">{</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">convert_format</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">s</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="va">s</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span><span class="st">"feet|foot|ft"</span>, <span class="st">"'"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span><span class="st">"^([4-7])\\s*[,\\.\\s+]\\s*(\\d*)$"</span>, <span class="st">"\\1'\\2"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span><span class="st">"^([56])'?$"</span>, <span class="st">"\\1'0"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span><span class="st">"^([12])\\s*,\\s*(\\d*)$"</span>, <span class="st">"\\1\\.\\2"</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now we are ready to wrangle our reported heights dataset. The strategy is as follows:</p>
 <p>1. We start by defining a variable to keep a copy of the original entry, we then clean up and covert the <code>height</code> entry using the functions described above.</p>
@@ -1184,7 +1185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>4.&nbsp;Once this is done, we convert the feet and inches into inches.</p>
 <p>5.&nbsp;Finally, we decide if the entries are in inches, centimeters, or meters and convert appropriately.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">patterns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>feet <span class="op">=</span> <span class="st">"[4-7](?=\\s*'\\s*)"</span>, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">patterns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>feet <span class="op">=</span> <span class="st">"[4-7](?=\\s*'\\s*)"</span>, </span>
 <span>              <span class="st">"\\s*'\\s*"</span>, </span>
 <span>              inches <span class="op">=</span> <span class="st">"\\d+\\.?\\d*"</span><span class="op">)</span></span>
 <span><span class="va">smallest</span> <span class="op">&lt;-</span> <span class="fl">50</span></span>
@@ -1206,11 +1207,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span> <span class="op">&amp;</span> </span>
 <span>                           <span class="va">inches</span> <span class="op">&lt;=</span> <span class="fl">12</span> <span class="op">&amp;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/between.html">between</a></span><span class="op">(</span><span class="va">guess</span>, <span class="va">smallest</span>, <span class="va">tallest</span><span class="op">)</span>,</span>
 <span>                         <span class="va">guess</span>, <span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">feet</span>, <span class="op">-</span><span class="va">inches</span>, <span class="op">-</span><span class="va">guess</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">feet</span>, <span class="op">-</span><span class="va">inches</span>, <span class="op">-</span><span class="va">guess</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We see that we fix all but 44 entries. You can see that these are mostly un-fixable:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_heights</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">original</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_heights</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">original</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "511"       "&gt;9000"     "5.25"      "11111"     "103.2"    </span></span>
 <span><span class="co">#&gt;  [6] "19"        "300"       "5.75"      "7"         "214"      </span></span>
 <span><span class="co">#&gt; [11] "0.7"       "2'33"      "612"       "87"        "111"      </span></span>
@@ -1219,19 +1220,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; [26] "87"        "120"       "120"       "23"        "5.51"     </span></span>
 <span><span class="co">#&gt; [31] "5.69"      "86"        "708,661"   "5.25"      "649,606"  </span></span>
 <span><span class="co">#&gt; [36] "10000"     "1"         "728,346"   "0"         "100"      </span></span>
-<span><span class="co">#&gt; [41] "5.57"      "88"        "7,283,465" "34"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [41] "5.57"      "88"        "7,283,465" "34"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You can review the ones we did fix by typing:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_heights</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb69"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_heights</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu">not_inches_or_cm</span><span class="op">(</span><span class="va">original</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">original</span>, <span class="va">height</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>A final observation is that if we look at the shortest students in our course:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_heights</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_heights</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 4</span></span>
 <span><span class="co">#&gt;   time_stamp          sex    height original</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;               &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;   </span></span>
@@ -1240,14 +1241,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 3 2014-09-02 15:18:30 Female     51 51      </span></span>
 <span><span class="co">#&gt; 4 2016-06-05 14:07:20 Female     52 52      </span></span>
 <span><span class="co">#&gt; 5 2016-06-05 14:07:38 Female     52 52      </span></span>
-<span><span class="co">#&gt; # ℹ 1 more row</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; # ℹ 1 more row</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We see heights of 50, 51, 52, and so on. These short heights are rare and it is likely that the students actually meant 5’0, 5’1, 5’2 and so on. Because we are not completely sure, we will leave them as reported. The object new_heights contains our final solution for this case study.</p>
 </section><section id="case-study-2-extracting-tables-from-a-pdf" class="level2" data-number="16.8"><h2 data-number="16.8" class="anchored" data-anchor-id="case-study-2-extracting-tables-from-a-pdf">
 <span class="header-section-number">16.8</span> Case study 2: extracting tables from a PDF</h2>
 <p>One of the datasets provided in <strong>dslabs</strong> shows scientific funding rates by gender in the Netherlands:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
 <span><span class="va">research_funding_rates</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="st">"discipline"</span>, <span class="st">"success_rates_men"</span>, <span class="st">"success_rates_women"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;            discipline success_rates_men success_rates_women</span></span>
@@ -1259,21 +1260,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 6   Interdisciplinary              11.4                21.8</span></span>
 <span><span class="co">#&gt; 7 Earth/life sciences              24.4                14.3</span></span>
 <span><span class="co">#&gt; 8     Social sciences              15.3                11.5</span></span>
-<span><span class="co">#&gt; 9    Medical sciences              18.8                11.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 9    Medical sciences              18.8                11.2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The data comes from a paper published in the Proceedings of the National Academy of Science (PNAS)<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, a widely read scientific journal. However, the data is not provided in a spreadsheet; it is in a table in a PDF document. Here is a screenshot of the table:</p>
 <p><img src="img/pnas-table-s1.png" class="img-fluid"></p>
 <p>(Source: Romy van der Lee and Naomi Ellemers, PNAS 2015 112 (40) 12349-12353<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.)</p>
 <p>We could extract the numbers by hand, but this could lead to human error. Instead, we can try to wrangle the data using R. We start by downloading the pdf document, then importing into R:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ropensci.r-universe.dev/pdftools">"pdftools"</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb72"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ropensci.r-universe.dev/pdftools">"pdftools"</a></span><span class="op">)</span></span>
 <span><span class="va">temp_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"https://web.archive.org/web/20150927033124/"</span>,</span>
 <span>              <span class="st">"https://www.pnas.org/content/suppl/2015/09/16/"</span>,</span>
 <span>              <span class="st">"1510159112.DCSupplemental/pnas.201510159SI.pdf"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span><span class="va">url</span>, <span class="va">temp_file</span>, mode <span class="op">=</span> <span class="st">"wb"</span><span class="op">)</span></span>
 <span><span class="va">txt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/pdftools//reference/pdftools.html">pdf_text</a></span><span class="op">(</span><span class="va">temp_file</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.remove</a></span><span class="op">(</span><span class="va">temp_file</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.remove</a></span><span class="op">(</span><span class="va">temp_file</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
@@ -1287,12 +1288,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>If we examine the object text, we notice that it is a character vector with an entry for each page. So we keep the page we want:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">raw_data_research_funding_rates</span> <span class="op">&lt;-</span> <span class="va">txt</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb73"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">raw_data_research_funding_rates</span> <span class="op">&lt;-</span> <span class="va">txt</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The steps above can actually be skipped because we include this raw data in the <strong>dslabs</strong> package as well.</p>
 <p>Examining the object <code>raw_data_research_funding_rates</code> we see that it is a long string and each line on the page, including the table rows, are separated by the symbol for newline: <code>\n</code>. A first step in converting this into a data frame is to store rows separately in a way that will make them easy to access. For this we use the <code>str_split</code> function:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="va">raw_data_research_funding_rates</span>, <span class="st">"\n+"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb74"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="va">raw_data_research_funding_rates</span>, <span class="st">"\n+"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
@@ -1306,12 +1307,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Because we start off with just one string, we end up with a list with just one entry.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>By examining <code>tab</code> we see that the information for the column names is the third and fourth entries:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">the_names_1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span>
-<span><span class="va">the_names_2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb76"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">the_names_1</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span>
+<span><span class="va">the_names_2</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The first of these rows looks like this:</p>
 <div class="cell" data-layout-align="center">
@@ -1321,13 +1322,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We want to create one vector with one name for each column. Using some of the functions we have just learned, we do this.</p>
 <p>Let’s start with <code>the_names_1</code>, shown above. We want to remove the leading space and anything following the comma. We use regex for the latter. Then we can obtain the elements by splitting strings separated by space. We want to split only when there are 2 or more spaces to avoid splitting <code>Success rates</code>. So we use the regex <code>\\s{2,}</code></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">the_names_1</span> <span class="op">&lt;-</span> <span class="va">the_names_1</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb78"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">the_names_1</span> <span class="op">&lt;-</span> <span class="va">the_names_1</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span><span class="st">",\\s."</span>, <span class="st">""</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="st">"\\s{2,}"</span>, simplify <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">the_names_1</span> </span>
 <span><span class="co">#&gt;      [,1]           [,2]     [,3]           </span></span>
-<span><span class="co">#&gt; [1,] "Applications" "Awards" "Success rates"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1,] "Applications" "Awards" "Success rates"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now we will look at <code>the_names_2</code>:</p>
 <div class="cell" data-layout-align="center">
@@ -1336,18 +1337,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Here we want to trim the leading space and then split by space as we did for the first line:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">the_names_2</span> <span class="op">&lt;-</span> <span class="va">the_names_2</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb80"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">the_names_2</span> <span class="op">&lt;-</span> <span class="va">the_names_2</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="st">"\\s+"</span>, simplify <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">the_names_2</span></span>
 <span><span class="co">#&gt;      [,1]         [,2]    [,3]  [,4]    [,5]    [,6]  [,7]    [,8]   </span></span>
 <span><span class="co">#&gt; [1,] "Discipline" "Total" "Men" "Women" "Total" "Men" "Women" "Total"</span></span>
 <span><span class="co">#&gt;      [,9]  [,10]  </span></span>
-<span><span class="co">#&gt; [1,] "Men" "Women"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1,] "Men" "Women"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can then join these to generate one name for each column:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tmp_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">the_names_1</span>, each <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>, <span class="va">the_names_2</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>, sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb81"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tmp_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">the_names_1</span>, each <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>, <span class="va">the_names_2</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>, sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span></span>
 <span><span class="va">the_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">the_names_2</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="va">tmp_names</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_lower</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span><span class="st">"\\s"</span>, <span class="st">"_"</span><span class="op">)</span></span>
@@ -1355,11 +1356,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt;  [1] "discipline"          "applications_total"  "applications_men"   </span></span>
 <span><span class="co">#&gt;  [4] "applications_women"  "awards_total"        "awards_men"         </span></span>
 <span><span class="co">#&gt;  [7] "awards_women"        "success_rates_total" "success_rates_men"  </span></span>
-<span><span class="co">#&gt; [10] "success_rates_women"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [10] "success_rates_women"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now we are ready to get the actual data. By examining the <code>tab</code> object, we notice that the information is in lines 6 through 14. We can use <code>str_split</code> again to achieve our goal:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_research_funding_rates</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">6</span><span class="op">:</span><span class="fl">14</span><span class="op">]</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb82"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_research_funding_rates</span> <span class="op">&lt;-</span> <span class="va">tab</span><span class="op">[</span><span class="fl">6</span><span class="op">:</span><span class="fl">14</span><span class="op">]</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="st">"\\s{2,}"</span>, simplify <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1377,12 +1378,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; # ℹ 4 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 6 more variables: awards_total &lt;dbl&gt;, awards_men &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   awards_women &lt;dbl&gt;, success_rates_total &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   success_rates_men &lt;dbl&gt;, success_rates_women &lt;dbl&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; #   success_rates_men &lt;dbl&gt;, success_rates_women &lt;dbl&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can see that the objects are identical:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/identical.html">identical</a></span><span class="op">(</span><span class="va">research_funding_rates</span>, <span class="va">new_research_funding_rates</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb83"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/identical.html">identical</a></span><span class="op">(</span><span class="va">research_funding_rates</span>, <span class="va">new_research_funding_rates</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="sec-recode" class="level2" data-number="16.9"><h2 data-number="16.9" class="anchored" data-anchor-id="sec-recode">
 <span class="header-section-number">16.9</span> Renaming levels</h2>
@@ -1390,14 +1391,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Rather than changing each entry, a more efficient approach is to change the levels.</p>
 <p>Here is an example that shows how to rename countries with long names:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb84"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Suppose we want to show life expectancy time series by country for the Caribbean. If we make this plot</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb85"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">region</span> <span class="op">==</span> <span class="st">"Caribbean"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">life_expectancy</span>, color <span class="op">=</span> <span class="va">country</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="string-processing_files/figure-html/caribbean-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
@@ -1407,7 +1408,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>we see that the legend takes up much of the plot because we have four countries with names longer than 12 characters. We can rename these levels using the <code>case_when</code> function:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">country</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb86"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">country</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">country</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
 <span>  <span class="va">x</span> <span class="op">==</span> <span class="st">"Antigua and Barbuda"</span> <span class="op">~</span> <span class="st">"Barbuda"</span>,</span>
 <span>  <span class="va">x</span> <span class="op">==</span> <span class="st">"Dominican Republic"</span> <span class="op">~</span> <span class="st">"DR"</span>,</span>
@@ -1417,7 +1418,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">region</span> <span class="op">==</span> <span class="st">"Caribbean"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">life_expectancy</span>, color <span class="op">=</span> <span class="va">country</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="string-processing_files/figure-html/country-long-names-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
@@ -1427,29 +1428,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>We can instead use the <code>fct_recode</code> function in the <strong>forcats</strong> package:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://forcats.tidyverse.org/">forcats</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb87"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://forcats.tidyverse.org/">forcats</a></span><span class="op">)</span></span>
 <span><span class="va">gapminder</span><span class="op">$</span><span class="va">country</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_recode.html">fct_recode</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">country</span>, </span>
 <span>             <span class="st">"Barbuda"</span> <span class="op">=</span> <span class="st">"Antigua and Barbuda"</span>,</span>
 <span>             <span class="st">"DR"</span> <span class="op">=</span> <span class="st">"Dominican Republic"</span>,</span>
 <span>             <span class="st">"St. Vincent"</span> <span class="op">=</span> <span class="st">"St. Vincent and the Grenadines"</span>,</span>
-<span>             <span class="st">"Trinidad"</span> <span class="op">=</span> <span class="st">"Trinidad and Tobago"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>             <span class="st">"Trinidad"</span> <span class="op">=</span> <span class="st">"Trinidad and Tobago"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="exercises" class="level2" data-number="16.10"><h2 data-number="16.10" class="anchored" data-anchor-id="exercises">
 <span class="header-section-number">16.10</span> Exercises</h2>
 <p>1. Complete all lessons and exercises in the RegexOne<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> online interactive tutorial.</p>
 <p>2. In the <code>extdata</code> directory of the <strong>dslabs</strong> package, you will find a PDF file containing daily mortality data for Puerto Rico from Jan 1, 2015 to May 31, 2018. You can find the file like this:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"RD-Mortality-Report_2015-18-180531.pdf"</span>,</span>
-<span>                  package<span class="op">=</span><span class="st">"dslabs"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb88"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"RD-Mortality-Report_2015-18-180531.pdf"</span>,</span>
+<span>                  package<span class="op">=</span><span class="st">"dslabs"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Find and open the file or open it directly from RStudio. On a Mac, you can type:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/system2.html">system2</a></span><span class="op">(</span><span class="st">"open"</span>, args <span class="op">=</span> <span class="va">fn</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb89"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/system2.html">system2</a></span><span class="op">(</span><span class="st">"open"</span>, args <span class="op">=</span> <span class="va">fn</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>and on Windows, you can type:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="st">"cmd.exe"</span>, input <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"start"</span>, <span class="va">fn</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb90"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="st">"cmd.exe"</span>, input <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"start"</span>, <span class="va">fn</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Which of the following best describes this file:</p>
 <ol type="a">
@@ -1460,8 +1461,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>3. We are going to create a tidy dataset with each row representing one observation. The variables in this dataset will be year, month, day, and deaths. Start by installing and loading the <strong>pdftools</strong> package:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"pdftools"</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropensci.r-universe.dev/pdftools">pdftools</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb91"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"pdftools"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropensci.r-universe.dev/pdftools">pdftools</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now read-in <code>fn</code> using the <code>pdf_text</code> function and store the results in an object called <code>txt</code>. Which of the following best describes what you see in <code>txt</code>?</p>
 <ol type="a">
@@ -1554,13 +1555,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
