@@ -583,6 +583,10 @@ However, this can become cumbersome, especially within the tidyverse approach. T
 between(x, a, b)
 ```
 
+:::{.callout-note}
+You are ready to do exercises 20-23.
+:::
+
 ## Exercises 
 
 1\. Examine the built-in dataset `co2`. Which of the following is true:
@@ -782,6 +786,6 @@ d. `murders` is not in tidy format and is stored in a data frame.
 exp(mean(log(murders$population)))
 ```
 
-Write it using the pipe so that each function is called without arguments. Use the dot operator to access the population. Hint: The code should start with `murders |>`.
+Write it using the pipe so that each function is called without arguments. Use `pull` to access the population variable. Hint: The code should start with `murders |>`.
     
 23\. Use the `map_df` to create a data frame with three columns named `n`, `s_n`, and `s_n_2`. The first column should contain the numbers 1 through 100. The second and third columns should each contain the sum of 1 through $n$ with $n$ the row number.  
